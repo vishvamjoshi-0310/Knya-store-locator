@@ -1,0 +1,117 @@
+{{ 'focus_on_you.css' | asset_url | stylesheet_tag }}
+{%- style -%}
+  .main_focuson_you {max-width: 100%;margin-top:{{ section.settings.margintop_focuson_you}}px;background: #F4ECD0;}
+{%- endstyle -%}
+<div class="main_focuson_you page-width-updated ">
+  <div class=" main_bg{% if section.settings.how_wefocus_desktop  %} page-padding-right page-padding-left{% endif %} {% if section.settings.how_wefocus_mob %}padding-right-mob padding-left-mob{% endif %}">
+    <p class="main_heading">{{ section.settings.main_heading }}</p>
+    <div class="aboutus_focuson_you">
+      <div class="swiper mySwiper_focusonyou">
+        <div class="swiper-wrapper">
+          {% content_for 'blocks' %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Initialize Swiper -->
+<script>
+window.addEventListener(
+  'DOMContentLoaded',
+  () => {
+    const focus_on_you_slider = document.querySelector('.mySwiper_focusonyou');
+    const focus_on_you_slides = focus_on_you_slider.querySelectorAll('.swiper-slide');
+    const isDesktop = window.matchMedia('(min-width: 750px)').matches;
+
+    if (isDesktop && focus_on_you_slides.length <= 3) {
+      focus_on_you_slides.forEach(slide => {
+        focus_on_you_slider.querySelector('.swiper-wrapper')
+          .appendChild(slide.cloneNode(true));
+      });
+    }
+
+    new Swiper('.mySwiper_focusonyou', {
+      slidesPerView: isDesktop ? 3 : "auto",
+      spaceBetween: 20,
+      loop: true,
+      centeredSlides: isDesktop? false: true,
+      initialSlide : isDesktop? 0 : 2,
+      grabCursor: true,
+      {% if section.settings.autoplay_inMobile == true %}
+        autoplay: isDesktop? false: true,
+      {% endif %}
+      effect: isDesktop ? 'slide' : 'slide',
+
+      coverflowEffect: {
+        rotate: 0,
+        stretch: 60,
+        depth: 200,
+        modifier: 1,
+        slideShadows: false,
+      },
+      centeredSlidesBounds: isDesktop? false: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+    });
+  },
+  { once: true }
+);
+
+</script>
+
+{% schema %}
+{
+  "name": "How we focus on you",
+  "settings": [
+    {
+      "type": "range",
+      "id": "margintop_focuson_you",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Margin from top for Entire Section",
+      "default": 0
+    },
+    {
+      "type": "text",
+      "id": "main_heading",
+      "label": " Heading",
+      "default": " Heading"
+    },
+    {
+      "type": "checkbox",
+      "id": "how_wefocus_desktop",
+      "label": "Padding for Section",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "how_wefocus_mob",
+      "label": "Padding for Section in Mobile",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay_inMobile",
+      "label": "Autoplay slider in mobile",
+      "default": false
+    },
+  ],
+  "blocks": [
+    {
+      "type": "focus_on_you_slide",
+    }
+  ],
+  "presets": [
+    {
+      "name": "How we focus"
+    }
+  ],
+  "enabled_on": {
+    "templates": ["page"]
+  }
+}
+{% endschema %}

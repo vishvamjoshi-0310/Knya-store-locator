@@ -1,0 +1,207 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "breadcrumb_new_6QqVjn": {
+      "type": "breadcrumb-new",
+      "name": "breadcrumbs-new",
+      "settings": {
+        "margintopbread": 24,
+        "marginbottombread": 0,
+        "margintopbreadmob": 12,
+        "marginbottombreadmob": 0,
+        "margintopbread_collection": 0,
+        "marginbottombread_collection": 0,
+        "margintopbreadmob_collection": 0,
+        "marginbottombreadmob_collection": 0
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "name": "Title",
+          "settings": {
+            "text": "<h1>{{ closest.page.title }}</h1>",
+            "width": "100%",
+            "max_width": "none",
+            "alignment": "left",
+            "type_preset": "custom",
+            "font": "var(--font-heading--family)",
+            "font_size": "2rem",
+            "font_size_mobile": "1.5rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground-heading)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 24,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0,
+            "custom_font_class": ""
+          },
+          "blocks": {}
+        },
+        "page-content": {
+          "type": "page-content",
+          "settings": {},
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "heading",
+        "page-content"
+      ],
+      "disabled": true,
+      "settings": {
+        "content_direction": "column",
+        "gap": 0,
+        "color_scheme": "scheme-4a76643a-9223-4c3b-a8eb-634a27a0a48a",
+        "padding-block-start": 24,
+        "padding-block-end": 24
+      }
+    },
+    "helping_cards_PE84gA": {
+      "type": "helping_cards",
+      "blocks": {
+        "help_card_7cd3QT": {
+          "type": "help_card",
+          "name": "Help card",
+          "settings": {
+            "icon_svg": "<svg width=\"36\" height=\"36\" viewbox=\"0 0 36 36\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M15.75 13.5H6.6C5.4402 13.5 4.5 14.4402 4.5 15.6V32.4C4.5 33.5598 5.4402 34.5 6.6 34.5H29.4C30.5598 34.5 31.5 33.5598 31.5 32.4V15.6C31.5 14.4402 30.5598 13.5 29.4 13.5H20.25\" stroke=\"#462D8C\" stroke-width=\"2.1\"></path>\n<path d=\"M24 13.5L24 18C24 18.8284 23.3284 19.5 22.5 19.5L18 19.5M12 13.5L12 18C12 18.8284 12.6716 19.5 13.5 19.5L18 19.5M18 33.75L18 19.5\" stroke=\"#462D8C\" stroke-width=\"2.1\"></path>\n<path d=\"M18 1.5C14.6829 1.5 12 4.08225 12 7.275C12 11.6062 18 18 18 18C18 18 24 11.6062 24 7.275C24 4.08225 21.3171 1.5 18 1.5ZM13.7143 7.275C13.7143 4.998 15.6343 3.15 18 3.15C20.3657 3.15 22.2857 4.998 22.2857 7.275C22.2857 9.651 19.8171 13.2067 18 15.426C16.2171 13.2232 13.7143 9.62625 13.7143 7.275Z\" fill=\"#462D8C\"></path>\n<path d=\"M18 9.3375C19.1835 9.3375 20.1429 8.41409 20.1429 7.275C20.1429 6.13591 19.1835 5.2125 18 5.2125C16.8165 5.2125 15.8571 6.13591 15.8571 7.275C15.8571 8.41409 16.8165 9.3375 18 9.3375Z\" fill=\"#462D8C\"></path>\n</svg>",
+            "title": "Track Your Order",
+            "link_text": "Track Now",
+            "link_url": "https://knyamed.com/account/login",
+            "link_icon_svg": "<svg width=\"9\" height=\"9\" viewbox=\"0 0 9 9\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M0.886363 8.7159L-1.19209e-06 7.82953L6.59091 1.22726H1.5L1.51136 -1.14441e-05H8.70454V7.20453H7.46591L7.47727 2.11362L0.886363 8.7159Z\" fill=\"#462D8C\"></path>\n</svg>"
+          },
+          "blocks": {}
+        },
+        "help_card_cPNEJt": {
+          "type": "help_card",
+          "name": "Help card",
+          "settings": {
+            "icon_svg": "<svg width=\"36\" height=\"36\" viewbox=\"0 0 36 36\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M31.5 26.4V9.6C31.5 8.4402 30.5598 7.5 29.4 7.5H16.4514H6.6C5.4402 7.5 4.5 8.4402 4.5 9.6V26.4C4.5 27.5598 5.4402 28.5 6.6 28.5H29.4C30.5598 28.5 31.5 27.5598 31.5 26.4Z\" stroke=\"#462D8C\" stroke-width=\"2.1\"></path>\n<path d=\"M24 7.5L24 12C24 12.8284 23.3284 13.5 22.5 13.5L18 13.5M12 7.5L12 12C12 12.8284 12.6716 13.5 13.5 13.5L18 13.5M18 27.75L18 24M18 13.5L18 16.5\" stroke=\"#462D8C\" stroke-width=\"2.1\"></path>\n<path d=\"M24.7706 19.5H15.6738C15.3032 19.5 15 19.1928 15 18.8174C15 18.442 15.3032 18.1348 15.6738 18.1348H23.2005L21.2666 16.1621C21.0039 15.8959 21.0039 15.4659 21.2666 15.1997C21.5294 14.9334 21.954 14.9334 22.2167 15.1997L25.3029 18.3396C25.5657 18.6058 25.5657 19.0358 25.3029 19.302C25.1291 19.4576 25.0147 19.4937 24.7706 19.5Z\" fill=\"#462D8C\"></path>\n<path d=\"M11.2294 20.25H20.3262C20.6968 20.25 21 20.5572 21 20.9326C21 21.308 20.6968 21.6152 20.3262 21.6152H12.7995L14.7334 23.5879C14.9961 23.8541 14.9961 24.2841 14.7334 24.5503C14.4706 24.8166 14.046 24.8166 13.7833 24.5503L10.6971 21.4104C10.4343 21.1442 10.4343 20.7142 10.6971 20.448C10.8709 20.2924 10.9853 20.2563 11.2294 20.25Z\" fill=\"#462D8C\"></path>\n</svg>",
+            "title": "Returns & Exchanges",
+            "link_text": "Learn More",
+            "link_url": "https://knyamed.com/pages/exchanges-returns",
+            "link_icon_svg": "<svg width=\"9\" height=\"9\" viewbox=\"0 0 9 9\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M0.886347 8.7159L-1.64509e-05 7.82953L6.59089 1.22726H1.49998L1.51135 -1.14441e-05H8.70453V7.20453H7.46589L7.47726 2.11362L0.886347 8.7159Z\" fill=\"#462D8C\"></path>\n</svg>"
+          },
+          "blocks": {}
+        },
+        "help_card_rTy3EH": {
+          "type": "help_card",
+          "name": "Help card",
+          "settings": {
+            "icon_svg": "<svg width=\"36\" height=\"36\" viewbox=\"0 0 36 36\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<g clip-path=\"url(#clip0_11531_8395)\">\n<rect x=\"6.9\" y=\"5.4\" width=\"22.1241\" height=\"25.2\" rx=\"2.48571\" stroke=\"#462D8C\" stroke-width=\"1.8\"></rect>\n<line x1=\"6.67876\" y1=\"10.4344\" x2=\"29.2357\" y2=\"10.4344\" stroke=\"#462D8C\" stroke-width=\"1.8\"></line>\n<circle cx=\"18.1321\" cy=\"20.7346\" r=\"5.76456\" stroke=\"#462D8C\" stroke-width=\"1.8\"></circle>\n<circle cx=\"20.865\" cy=\"7.74839\" r=\"1.1962\" fill=\"#462D8C\"></circle>\n<circle cx=\"24.9675\" cy=\"7.74839\" r=\"1.1962\" fill=\"#462D8C\"></circle>\n<path d=\"M9.75375 7.78311H17.9563\" stroke=\"#462D8C\" stroke-width=\"1.8\" stroke-linecap=\"round\"></path>\n<path d=\"M11.9775 21.2488C12.8319 20.4513 15.0193 19.0614 16.9332 19.8817C19.3256 20.907 20.5218 23.9835 24.1104 21.762\" stroke=\"#462D8C\" stroke-width=\"1.8\"></path>\n</g>\n<defs>\n<clippath id=\"clip0_11531_8395\">\n<rect width=\"36\" height=\"36\" fill=\"white\"></rect>\n</clippath>\n</defs>\n</svg>",
+            "title": "Bulk Orders",
+            "link_text": "Get in Touch",
+            "link_url": "https://knyamed.com/pages/bulk-order",
+            "link_icon_svg": "<svg width=\"9\" height=\"9\" viewbox=\"0 0 9 9\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M0.886363 8.7159L-1.19209e-06 7.82953L6.59091 1.22726H1.5L1.51136 -1.14441e-05H8.70454V7.20453H7.46591L7.47727 2.11362L0.886363 8.7159Z\" fill=\"#462D8C\"></path>\n</svg>"
+          },
+          "blocks": {}
+        },
+        "help_card_bJYdxW": {
+          "type": "help_card",
+          "name": "Help card",
+          "settings": {
+            "icon_svg": "<svg width=\"35\" height=\"35\" viewbox=\"0 0 35 35\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M3.28673 15.516L5.28058 6.87603C5.43135 6.22266 6.01315 5.75983 6.6837 5.75983H11.5197L9.57994 16.1052C9.45224 16.7863 8.85755 17.2798 8.16461 17.2798H4.68985C3.76381 17.2798 3.0785 16.4184 3.28673 15.516Z\" stroke=\"#462D8C\" stroke-width=\"2.16\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path>\n<path d=\"M31.2727 15.516L29.2788 6.87603C29.128 6.22266 28.5462 5.75983 27.8757 5.75983H23.0397L24.9794 16.1052C25.1071 16.7863 25.7018 17.2798 26.3948 17.2798H29.8695C30.7956 17.2798 31.4809 16.4184 31.2727 15.516Z\" stroke=\"#462D8C\" stroke-width=\"2.16\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path>\n<path d=\"M9.72469 15.5436L11.7815 5.75983H17.2797V15.8398C17.2797 16.6351 16.635 17.2798 15.8397 17.2798H11.1339C10.2194 17.2798 9.53655 16.4385 9.72469 15.5436Z\" stroke=\"#462D8C\" stroke-width=\"2.16\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path>\n<path d=\"M24.8799 15.5745L23.0397 5.75983H17.2797V15.8398C17.2797 16.6351 17.9244 17.2798 18.7197 17.2798H23.4646C24.3663 17.2798 25.0461 16.4606 24.8799 15.5745Z\" stroke=\"#462D8C\" stroke-width=\"2.16\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path>\n<path d=\"M7.19971 17.2798V27.3598C7.19971 28.1551 7.84442 28.7998 8.63971 28.7998H25.9197C26.715 28.7998 27.3597 28.1551 27.3597 27.3598V17.2798\" stroke=\"#462D8C\" stroke-width=\"2.16\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path>\n<path d=\"M14.3997 28.0798V24.4798C14.3997 23.6845 15.0444 23.0398 15.8397 23.0398H18.7197C19.515 23.0398 20.1597 23.6845 20.1597 24.4798V28.0798\" stroke=\"#462D8C\" stroke-width=\"2.16\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path>\n</svg>",
+            "title": "Store Locator",
+            "link_text": "View All Stores",
+            "link_url": "https://knyamed.com/pages/store-locator",
+            "link_icon_svg": "<svg width=\"9\" height=\"9\" viewbox=\"0 0 9 9\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M0.886347 8.7159L-1.64509e-05 7.82953L6.59089 1.22726H1.49998L1.51135 -1.14441e-05H8.70453V7.20453H7.46589L7.47726 2.11362L0.886347 8.7159Z\" fill=\"#462D8C\"></path>\n</svg>"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "help_card_7cd3QT",
+        "help_card_cPNEJt",
+        "help_card_rTy3EH",
+        "help_card_bJYdxW"
+      ],
+      "name": "Helping Cards",
+      "settings": {
+        "heading": "how can we help?"
+      }
+    },
+    "carrer_section_V4tyba": {
+      "type": "carrer-section",
+      "name": "Career Section",
+      "settings": {
+        "image": "shopify://shop_images/42b7afa7dd53e127f1771ffe81446b279f55aefe.mp4.png",
+        "label": "Careers At Knya",
+        "heading": "Build the future of medical apparel in India.",
+        "description": "At Knya, every role shapes how millions of doctors and nurses experience their daily lives. Come build with a team that obsesses over design, quality, and scale.",
+        "button_text": "Explore Careers",
+        "button_url": "https://knyamed.zohorecruit.in/jobs/Careers"
+      }
+    },
+    "support_channels_YNYnPM": {
+      "type": "support_channels",
+      "blocks": {
+        "support_block_AyXKzt": {
+          "type": "support_block",
+          "name": "Support Channel",
+          "settings": {
+            "icon_svg": "<svg width=\"32\" height=\"32\" viewbox=\"0 0 32 32\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<g clip-path=\"url(#clip0_11513_5075)\">\n<g clip-path=\"url(#clip1_11513_5075)\">\n<g clip-path=\"url(#clip2_11513_5075)\">\n<path d=\"M11.8367 3.095C11.5893 2.47677 11.1624 1.9468 10.6111 1.5734C10.0598 1.2 9.40922 1.00029 8.74333 1H4.15833C3.32069 1 2.51736 1.33275 1.92505 1.92505C1.33275 2.51736 1 3.32069 1 4.15833C1 18.9817 13.0167 31 27.8433 31C28.6807 30.9996 29.4836 30.6666 30.0755 30.0744C30.6675 29.4821 31 28.679 31 27.8417V23.2567C31 22.5905 30.8005 21.9396 30.4271 21.3879C30.0536 20.8363 29.5235 20.4091 28.905 20.1617L24.5117 18.405C23.9538 18.1817 23.3459 18.1134 22.7524 18.2073C22.1589 18.3012 21.6017 18.5538 21.14 18.9383L20.0067 19.885C19.3675 20.4182 18.552 20.6931 17.7205 20.6554C16.889 20.6178 16.1017 20.2704 15.5133 19.6817L12.32 16.4833C11.7319 15.8954 11.3848 15.1088 11.3469 14.2781C11.309 13.4473 11.5829 12.6324 12.115 11.9933L13.06 10.86C13.4454 10.3984 13.6988 9.84116 13.7933 9.2473C13.8877 8.65343 13.8198 8.04507 13.5967 7.48667L11.8367 3.095Z\" stroke=\"#462D8C\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path>\n</g>\n</g>\n</g>\n<defs>\n<clippath id=\"clip0_11513_5075\">\n<rect width=\"32\" height=\"32\" fill=\"white\"></rect>\n</clippath>\n<clippath id=\"clip1_11513_5075\">\n<rect width=\"32\" height=\"32\" fill=\"white\"></rect>\n</clippath>\n<clippath id=\"clip2_11513_5075\">\n<rect width=\"32\" height=\"32\" fill=\"white\"></rect>\n</clippath>\n</defs>\n</svg>",
+            "description": "Need personalised help?<br>\nOur team’s just a click away.",
+            "link_text": "Call us",
+            "link_url": "tel:+919987200005"
+          },
+          "blocks": {}
+        },
+        "support_block_W3MYpB": {
+          "type": "support_block",
+          "name": "Support Channel",
+          "settings": {
+            "icon_svg": "<svg width=\"32\" height=\"32\" viewbox=\"0 0 32 32\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<g clip-path=\"url(#clip0_11513_5089)\">\n<g clip-path=\"url(#clip1_11513_5089)\">\n<path d=\"M26.6667 29.2L24.1267 27.1683L24.11 27.155C23.58 26.73 23.3117 26.5166 23.0133 26.365C22.7456 26.2283 22.4633 26.1294 22.1667 26.0683C21.835 26 21.49 26 20.7967 26H6.32833C4.465 26 3.53167 26 2.82 25.6366C2.19282 25.3171 1.68291 24.8071 1.36333 24.18C1 23.4666 1 22.5333 1 20.6733V7.99496C1 6.13163 1 5.19829 1.36333 4.48663C1.68334 3.85919 2.19387 3.34925 2.82167 3.02996C3.53333 2.66663 4.46667 2.66663 6.33334 2.66663H25.6667C27.5333 2.66663 28.4667 2.66663 29.18 3.02996C29.8072 3.34953 30.3171 3.85945 30.6367 4.48663C31 5.19996 31 6.13329 31 7.99996V27.1183C31 28.895 31 29.7833 30.6367 30.2383C30.4804 30.4345 30.2819 30.5928 30.056 30.7016C29.83 30.8104 29.5824 30.8668 29.3317 30.8666C28.7483 30.8666 28.055 30.31 26.6667 29.2Z\" stroke=\"#462D8C\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path>\n</g>\n</g>\n<defs>\n<clippath id=\"clip0_11513_5089\">\n<rect width=\"32\" height=\"32\" fill=\"white\"></rect>\n</clippath>\n<clippath id=\"clip1_11513_5089\">\n<rect width=\"32\" height=\"32\" fill=\"white\"></rect>\n</clippath>\n</defs>\n</svg>",
+            "description": "Get instant answers to your <br>\nquestions with our live chat support.",
+            "link_text": "Chat with us",
+            "link_url": "https://wa.me/919987200005?text=Hi%20there,%20can%20you%20help?"
+          },
+          "blocks": {}
+        },
+        "support_block_xtagqc": {
+          "type": "support_block",
+          "name": "Support Channel",
+          "settings": {
+            "icon_svg": "<svg width=\"32\" height=\"32\" viewbox=\"0 0 32 32\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<g clip-path=\"url(#clip0_11513_5097)\">\n<g clip-path=\"url(#clip1_11513_5097)\">\n<g clip-path=\"url(#clip2_11513_5097)\">\n<path d=\"M2.66667 6.00004L12.8467 13.6867L12.85 13.69C13.98 14.5184 14.545 14.9334 15.165 15.0934C15.7126 15.2351 16.2874 15.2351 16.835 15.0934C17.455 14.9334 18.0217 14.5184 19.155 13.6867C19.155 13.6867 25.6833 8.67671 29.3333 6.00004M1 22.3334V9.66671C1 7.80004 1 6.86671 1.36333 6.15337C1.68333 5.52504 2.19167 5.01671 2.82 4.69671C3.53333 4.33337 4.46667 4.33337 6.33333 4.33337H25.6667C27.5333 4.33337 28.4667 4.33337 29.1783 4.69671C29.8067 5.01671 30.3167 5.52504 30.6367 6.15337C31 6.86504 31 7.79837 31 9.66171V22.34C31 24.2034 31 25.1334 30.6367 25.8467C30.3167 26.4741 29.8061 26.9841 29.1783 27.3034C28.4667 27.6667 27.535 27.6667 25.6717 27.6667H6.32833C4.465 27.6667 3.53167 27.6667 2.82 27.3034C2.19282 26.9838 1.68291 26.4739 1.36333 25.8467C1 25.1334 1 24.2 1 22.3334Z\" stroke=\"#462D8C\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path>\n</g>\n</g>\n</g>\n<defs>\n<clippath id=\"clip0_11513_5097\">\n<rect width=\"32\" height=\"32\" fill=\"white\"></rect>\n</clippath>\n<clippath id=\"clip1_11513_5097\">\n<rect width=\"32\" height=\"32\" fill=\"white\"></rect>\n</clippath>\n<clippath id=\"clip2_11513_5097\">\n<rect width=\"32\" height=\"32\" fill=\"white\"></rect>\n</clippath>\n</defs>\n</svg>",
+            "description": "Share your queries, feedback, or<br>\nspecial requests we’ll get back to you",
+            "link_text": "Write to us",
+            "link_url": "mailto:support@knya.in"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "support_block_AyXKzt",
+        "support_block_W3MYpB",
+        "support_block_xtagqc"
+      ],
+      "name": "Support Channels",
+      "settings": {
+        "main_heading": "Couldn't find what you needed?",
+        "sub_heading": "Don't worry, we've got more options for you."
+      }
+    }
+  },
+  "order": [
+    "breadcrumb_new_6QqVjn",
+    "main",
+    "helping_cards_PE84gA",
+    "carrer_section_V4tyba",
+    "support_channels_YNYnPM"
+  ]
+}

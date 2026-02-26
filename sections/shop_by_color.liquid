@@ -1,0 +1,211 @@
+{{ 'shop-by-color.css' | asset_url | stylesheet_tag }}
+
+<style>
+  .section-{{ section.id }}-margin {
+    margin-top:{{ section.settings.margin_top_desktop }}px;
+    margin-bottom: {{ section.settings.margin_bottom_desktop }}px;
+  }
+  .mySwiper-{{section.id}}:not(.swiper-initialized) .swiper-wrapper{display:flex;}
+  .mySwiper-{{section.id}}:not(.swiper-initialized) .swiper-wrapper .swiper-slide{width:14%;}
+  .sbc-card-title{ margin-top: 20px;}
+@media screen and (max-width:1024px){
+ .mySwiper-{{section.id}}:not(.swiper-initialized) .swiper-wrapper .swiper-slide{width:35%;}
+}
+ @media screen and (max-width: 640px) {
+      .section-{{ section.id }}-margin {
+        margin-top:{{ section.settings.margin_top_mobile }}px;
+        margin-bottom: {{ section.settings.margin_bottom_mobile }}px;
+      }
+.shop-by-color-parent-{{ section.id }} .swiper:not(.swiper-initialized) .swiper-slide{display:none;}
+.shop-by-color-parent-{{ section.id }} .swiper:not(.swiper-initialized) .swiper-slide:first-child{display:block; max-width:120px;} 
+}
+</style>
+
+<div
+  class="shop-by-color-parent shop-by-color-parent-{{ section.id }} section-{{ section.id }}-margin page-width-updated"
+>
+  <h2 class="sbc-heading heebo-medium">{{ section.settings.section_heading }}</h2>
+  <div class="shop-by-color-main ">
+    <div class="swiper sbc-swiper mySwiper-{{section.id}}">
+        <div class="swiper-wrapper">
+            {% content_for 'blocks' %}
+      </div>
+    </div>
+    <div class="swiper-button-next">
+      {% comment %}
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xml:space="preserve"
+          width="50px"
+          height="50px"
+          version="1.0"
+          style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+          viewBox="0 0 130.48 130.48"
+        >
+          <defs>
+           <style type="text/css">
+            <![CDATA[
+             .str0 {stroke:#2B2B2A;stroke-width:10.19;stroke-miterlimit:22.9256}
+             .fil1 {fill:none}
+             .fil0 {fill:white}
+            ]]>
+           </style>
+          </defs>
+          <g id="Layer_x0020_1">
+           <metadata id="CorelCorpID_0Corel-Layer"/>
+           <circle class="fil0" cx="65.24" cy="65.24" r="65.24"/>
+           <polyline class="fil1 str0" points="46.45,33.58 84.03,66.54 49.41,96.89 "/>
+          </g>
+        </svg>
+      {% endcomment %}
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        xml:space="preserve"
+        width="50px"
+        height="50px"
+        version="1.0"
+        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+        viewBox="0 0 277.53 277.53"
+      >
+        <defs>
+         <style type="text/css">
+          <![CDATA[
+           .str0 {stroke:#2B2B2A;stroke-width:21.68;stroke-miterlimit:22.9256}
+           .fil1 {fill:none}
+           .fil0 {fill:white}
+          ]]>
+         </style>
+        </defs>
+        <g id="Layer_x0020_1">
+         <metadata id="CorelCorpID_0Corel-Layer"/>
+         <circle class="fil0" cx="138.76" cy="138.76" r="138.77"/>
+         <polyline class="fil1 str0" points="178.74,71.43 98.79,141.52 172.43,206.09 "/>
+        </g>
+      </svg>
+    </div>
+    <div class="swiper-button-prev">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        xml:space="preserve"
+        width="50px"
+        height="50px"
+        version="1.0"
+        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+        viewBox="0 0 277.53 277.53"
+      >
+        <defs>
+         <style type="text/css">
+          <![CDATA[
+           .str0 {stroke:#2B2B2A;stroke-width:21.68;stroke-miterlimit:22.9256}
+           .fil1 {fill:none}
+           .fil0 {fill:white}
+          ]]>
+         </style>
+        </defs>
+        <g id="Layer_x0020_1">
+         <metadata id="CorelCorpID_0Corel-Layer"/>
+         <circle class="fil0" cx="138.76" cy="138.76" r="138.77"/>
+         <polyline class="fil1 str0" points="178.74,71.43 98.79,141.52 172.43,206.09 "/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</div>
+<script>
+  window.shopByColor = function(event) {
+    try{
+     const dataAttrValue = event.getAttribute("data-dataAttr");
+      dataLayer.push({
+        event: "Shop By Color",
+        clicked_item: dataAttrValue
+      });
+    }catch(error){
+      console.log("An error occurred:",error) 
+    }
+  };
+</script>
+<script>
+  window.addEventListener(
+    'DOMContentLoaded',
+    () => {
+      var swiper = new Swiper('.mySwiper-{{ section.id }}', {
+        slidesPerView: 2.6,
+        spaceBetween: 17,       
+        breakpoints: {
+          1024: {           
+            slidesPerView:7,
+            spaceBetween: 24,
+            navigation: {
+              nextEl: '.swiper-button-next',
+              prevEl: '.swiper-button-prev',
+            },
+          },
+        },
+      });
+    },
+    { once: true }
+  );
+</script>
+
+
+{% schema %}
+{
+  "name": "Shop by color",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_heading",
+      "label": "Section Heading"
+    },
+    {
+      "type": "range",
+      "id": "margin_top_desktop",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Desktop : Margin-Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_desktop",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Desktop : Margin-Bottom",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile : Margin-Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile : Margin-Bottom",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "_collection_color",
+    }
+  ],
+  "presets": [{ "name": "Shop by color" }]
+}
+{% endschema %}

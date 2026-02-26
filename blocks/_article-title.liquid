@@ -1,0 +1,88 @@
+
+{%- doc -%}
+  Renders the article title block with author and date.
+{%- enddoc -%}
+
+{% liquid
+  if article != blank
+    assign current_article = article
+  elsif closest.article != blank
+    assign current_article = closest.article
+  endif
+%}
+
+    {% liquid
+  if article != blank
+    assign article_image = article.image
+  elsif closest.article != blank
+    assign article_image = closest.article.image
+  else
+    assign article_image = null
+  endif
+%}
+
+{% if current_article != blank %}
+  <div class="articleimagenadtitle">
+    <header {{ block.shopify_attributes }}>
+      <h1 class="article-template__title" itemprop="headline">{{ current_article.title | escape }}</h1>
+      {%- if block.settings.blog_show_author -%}
+        <span class="caption-with-letter-spacing" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <span itemprop="name">{{ current_article.author }}</span> |
+        </span>
+      {%- endif -%}
+      {%- if block.settings.blog_show_date -%}
+        <span class="circle-divider caption-with-letter-spacing" itemprop="dateCreated datePublished">
+          {{- current_article.published_at | time_tag: format: 'date' -}}
+        </span>
+      {%- endif -%}
+    </header>
+
+{%- if article_image -%}
+  <div class="article-template__hero-container" {{ block.shopify_attributes }}>
+    <div
+      class="article-template__hero media"
+      itemprop="image"
+    >
+      <img
+        srcset="
+          {% if article_image.width >= 350 %}{{ article_image | image_url: width: 350 }} 350w,{% endif %}
+          {% if article_image.width >= 750 %}{{ article_image | image_url: width: 750 }} 750w,{% endif %}
+          {% if article_image.width >= 1100 %}{{ article_image | image_url: width: 1100 }} 1100w,{% endif %}
+          {% if article_image.width >= 1500 %}{{ article_image | image_url: width: 1500 }} 1500w,{% endif %}
+          {% if article_image.width >= 2200 %}{{ article_image | image_url: width: 2200 }} 2200w,{% endif %}
+          {% if article_image.width >= 3000 %}{{ article_image | image_url: width: 3000 }} 3000w,{% endif %}
+          {{ article_image | image_url }} {{ article_image.width }}w
+        "
+        sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 }}px, (min-width: 750px) calc(100vw - 10rem), 100vw"
+        src="{{ article_image | image_url: width: 1100 }}"
+        loading="eager"
+        width="{{ article_image.width }}"
+        height="{{ article_image.height }}"
+        alt="{{ article_image.alt | escape }}"
+      >
+    </div>
+  </div>
+{%- endif -%}
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "t:sections.main-article.blocks.title.name",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "blog_show_date",
+      "default": true,
+      "label": "t:sections.main-article.blocks.title.settings.blog_show_date.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "blog_show_author",
+      "default": false,
+      "label": "t:sections.main-article.blocks.title.settings.blog_show_author.label"
+    }
+  ]
+}
+{% endschema %}
+

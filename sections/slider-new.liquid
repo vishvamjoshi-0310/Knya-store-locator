@@ -1,0 +1,258 @@
+{{ 'swiper.css' | asset_url | stylesheet_tag }}
+
+
+<style>
+
+  #shopify-section-{{ section.id }} .coll-home{
+    margin-top : {{ section.settings.marginTopslidd }}px;
+    margin-bottom : {{ section.settings.marginBottomslidd }}px;
+  }
+  .content-home {
+    margin-bottom: 24px;
+}
+    .main-collection-home .HorizontalList .desktopcolorhide {display: none;}
+  .main-collection-home .plus-swatch.show-plus-desktop {display: flex;}
+  .main-collection-home .plus-swatch.show-plus-desktop a{width: 20px;
+    height: 20px !important;
+    display: flex;
+    align-items: center;}
+  @media screen and (max-width: 989px) {
+  .plus-swatch.show-plus-desktop a{width:16px;height:17px !important;}
+}
+   @media screen and (max-width: 640px){
+    #shopify-section-{{ section.id }} .coll-home{
+      margin-top:{{ section.settings.marginTopsliddmob }}px;
+      margin-bottom:{{ section.settings.marginBottomsliddmob }}px;
+    }
+     .shop-our-bestsellers .first-line-home {color: #482f8f;    letter-spacing: 0.016px;
+    margin-bottom: 3.5%!important;font-size: 16px;line-height:20px;}
+       .content-home {
+    margin-bottom: 12px;
+}
+       .main-collection-home .plus-swatch.show-plus-mobile {display: block;}
+       .main-collection-home .HorizontalList :is(.desktopcolorhide,.mobilecolorhide){display: none;}
+  }
+ .first-line-home {color: #282828;    letter-spacing: 0.64px;
+    margin-bottom: 1.8%;}
+
+  @media screen and (max-width: 350px) {
+  .main-collection-home .HorizontalList :is(.desktopcolorhide, .mobilecolorhide, .extrasmallhide) {
+    display: none;
+  }
+}
+</style>
+
+{%- if section.settings.enable_quick_add -%}
+  <script src="{{ 'quick-add.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
+{% if section.settings.collection != blank %}
+  <div class="main-collection-home shop-our-bestsellers page-width coll-home conditional-class">
+    <div class="div-padding{% if section.settings.show_padding_slidd  %} page-padding-right page-padding-left{% endif %} {% if section.settings.show_padding_mob_slidd %}padding-right-mob padding-left-mob{% endif %}">
+      <div class="content-home">
+        <h2 class="first-line-home font-heebo-medium">{{ section.settings.headText }}</h2>
+        <p class="second-line-home font-heebo-regular">{{ section.settings.secondText }}</p>
+      </div>
+
+      <div class="swiper mySwiper-{{ section.id }} home-slider ">
+        <div class="swiper-wrapper">
+          {%- for product in section.settings.collection.products limit: 10 -%}
+            <div class="swiper-slide">
+              <div class="main-div">
+                {%- liquid
+                  assign product_card_id = 'product-card-' | append: section.id | append: '-' | append: product.id
+                  assign variant_to_link = product.selected_or_first_available_variant
+                -%}
+                <product-card
+                  class="product-card"
+                  data-product-id="{{ product.id }}"
+                  data-product-variants-size="{{ product.variants.size }}"
+                  id="{{ product_card_id }}"
+                >
+                  <a
+                    id="{{ product_card_id | md5 }}"
+                    href="{{ variant_to_link.url }}"
+                    class="product-card__link"
+                    ref="productCardLink"
+                  >
+                    <span class="visually-hidden">{{ product.title }}</span>
+                  </a>
+                  <div class="product-card__content layout-panel-flex layout-panel-flex--column product-grid__card spacing-style gap-style">
+                    {%- if product.featured_image -%}
+                      <div class="card-gallery">
+                        <a href="{{ variant_to_link.url }}">
+                          <img
+                            src="{{ product.featured_image | image_url: width: 500 }}"
+                            alt="{{ product.featured_image.alt | escape }}"
+                            loading="lazy"
+                            width="{{ product.featured_image.width }}"
+                            height="{{ product.featured_image.height }}"
+                          >
+                        </a>
+                      </div>
+                    {%- endif -%}
+                    <a class="contents user-select-text" href="{% render 'product-card-variant-url', product: product %}">
+                      <p class="rte">{{ product.title }}</p>
+                    </a>
+                    <product-price class="text-block text-left h6 spacing-style" data-product-id="{{ product.id }}">
+                      {% render 'price', show_unit_price: true, product_resource: product, show_sale_price_first: true %}
+                    </product-price>
+                  </div>
+                </product-card>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+
+        {% if section.settings.pagination %}
+          <div class="swiper-pagination"></div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+<script>
+  window.addEventListener(
+    'DOMContentLoaded',
+    () => {
+      var swiper = new Swiper('.mySwiper-{{ section.id }}', {
+        slidesPerView: 4.5,
+        spaceBetween: 30,
+        slidesPerGroup: 1,
+        loop: true,
+        loopFillGroupWithBlank: true,
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        },
+        breakpoints: {
+          0: {
+            slidesPerView: 1.5,
+            spaceBetween: 5,
+          },
+          500: {
+            slidesPerView: 1.5,
+            spaceBetween: 5,
+          },
+          660: {
+            slidesPerView: 2.2,
+            spaceBetween: 20,
+          },
+          900: {
+            slidesPerView: 2.5,
+            spaceBetween: 20,
+          },
+          1100: {
+            slidesPerView: 4.5,
+            spaceBetween: 20,
+          },
+          2100: {
+            slidesPerView: 3.5,
+            spaceBetween: 20,
+          },
+        },
+        // navigation: {
+        //   nextEl: '.swiper-button-next',
+        //   prevEl: '.swiper-button-prev',
+        // },
+      });
+    },
+    { once: true }
+  );
+
+</script>
+
+{% schema %}
+{
+  "name": "Best Seller New",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_padding_slidd",
+      "label": "padding for section",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "pagination",
+      "label": "show dot on slider",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_padding_mob_slidd",
+      "label": "padding for section in mobile",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "marginTopslidd",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Desktop : Margin-Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "marginBottomslidd",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Desktop : Margin-Bottom",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "marginTopsliddmob",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile : Margin-Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "marginBottomsliddmob",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile : Margin-Bottom",
+      "default": 0
+    },
+
+    {
+      "type": "text",
+      "id": "headText",
+      "label": "enter heading"
+    },
+    {
+      "type": "text",
+      "id": "secondText",
+      "label": "enter content"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_quick_add",
+      "label": "Enable quick add",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "slider_new"
+    }
+  ]
+}
+{% endschema %}

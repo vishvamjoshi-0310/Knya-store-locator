@@ -1,0 +1,362 @@
+{% comment %}
+  {{ 'customer.css' | asset_url | stylesheet_tag }}
+
+  {%- style -%}
+      .section-{{ section.id }}-padding {
+        padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+        padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+      }
+
+      .login-main-container .recover-text{
+        text-align: left;
+      }
+
+    /*   hide section when forgot password clicked */
+      #recover:target~.login-header{
+        display: none;
+      }
+
+      .login-main-container .header-container {
+        font-family: Heebo-Regular;
+        text-align: left;
+        color: rgba(var(--color-foreground), 0.75);
+      }
+
+      .login-main-container .header-title {
+        margin: 0 0 20px;
+      }
+
+      .login-main-container .header-content {
+        letter-spacing: 0.5px;
+        margin-bottom: 18px;
+      }
+
+      .login-main-container .header-list {
+        font-size: 12px;
+      }
+
+      .login-main-container .header-list-item:last-child {
+        color: #078c07;
+      }
+
+      .login-main-container .customer.login .title{
+        text-align: left;
+      }
+
+      .login-main-container .customer.login .form-label {
+        text-align: left;
+        display: block;
+        text-transform: uppercase;
+      }
+
+      .login-main-container .required{
+        color: red;
+      }
+
+
+
+      .login-main-container .customer.login .field{
+         margin: 0;
+         margin-bottom: 17.55px;
+         padding: 0 15px;
+         min-height: 40px;
+         align-items: center;
+      }
+
+      .login-main-container .customer .field:after,
+      .login-main-container .customer .field:hover.field:after{
+        border-radius: 6px;
+      }
+
+      .login-main-container .customer .field input,
+      .login-main-container .customer .field input:not(:placeholder-shown),
+      .login-main-container .customer .field input:focus{
+        padding: 0;
+      }
+
+      .login-main-container .customer.login .login-forgot-password{
+        text-align: left;
+        margin-bottom: 17.55px;
+      }
+
+      .login-main-container .customer.login .login-forgot-password > a{
+        font-size: 1.6rem !important;
+        width: 100%;
+      }
+
+      .login-main-container .customer.login .btn-signin,
+      .login-main-container .customer.login .btnRecoverPassword{
+        margin-top: 0px;
+        text-transform: uppercase;
+      }
+
+      .login-main-container .customer button,
+      .login-main-container .customer button:after{
+        border-radius: 6px;
+      }
+
+      .password-reset-popup{
+          position: absolute;
+          font-size: 14px;
+          width: 300px;
+          padding: 10px 20px;
+          margin: auto;
+          right: 0;
+          top: 13.62vh;
+          border: 1px solid black;
+          color: white;
+          font-weight: bold;
+          background: #39a706;
+          display: none;
+          border-radius: 6px;
+          font-family: 'Heebo-Regular';
+        }
+
+
+
+      .sl-container .sl-vertical a.social_login.facebook, .sl-container .sl-vertical a.social_login.google{
+        border-radius: 6px;
+      }
+
+      .login-main-container .customer.login .btnCancelRecover{
+        border-radius: 6px;
+        border: 1px solid gray;
+        display: inline-block;
+        width: 100%;
+        text-decoration: none;
+        text-transform: uppercase;
+        text-align: center;
+        min-height: 45px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #121212BF;
+      }
+
+      .login-main-container .customer.login .btnCancelRecover:hover,
+      .login-main-container .customer.login .btnCancelRecover:visited{
+          color: #121212BF;
+      }
+
+
+       @media screen and (max-width: 768px) {
+
+         .login-main-container .customer:not(.account):not(.order){
+           margin: 0;
+           text-align: left;
+           width: 100%;
+           max-width: 100%;
+         }
+
+         .password-reset-popup{
+           width: 200px;
+           top: 11.62vh;
+         }
+
+       }
+
+
+      @media screen and (min-width: 750px) {
+        .section-{{ section.id }}-padding {
+          padding-top: {{ section.settings.padding_top }}px;
+          padding-bottom: {{ section.settings.padding_bottom }}px;
+        }
+      }
+  {%- endstyle -%}
+
+  <div class="login-main-container">
+    <div class="customer login section-{{ section.id }}-padding">
+      <h1 id="recover" tabindex="-1" class="title">
+        {{ 'customer.recover_password.title' | t }}
+      </h1>
+      <div>
+        <p class="recover-text">
+          {{ 'customer.recover_password.subtext' | t }}
+        </p>
+
+        {%- form 'recover_customer_password' -%}
+          {% assign recover_success = form.posted_successfully? %}
+          <label class="form-label" for="RecoverEmail" class="font-heebo-regular forget-pass">
+            {{ 'customer.login_page.email' | t }}
+          </label>
+          <div class="field">
+            <input
+              type="email"
+              value=""
+              name="email"
+              id="RecoverEmail"
+              autocorrect="off"
+              autocapitalize="off"
+              autocomplete="email"
+              {% if form.errors %}
+                aria-invalid="true"
+                aria-describedby="RecoverEmail-email-error"
+                autofocus
+              {% endif %}
+              placeholder="{{ 'customer.login_page.email' | t }}"
+            >
+          </div>
+          {%- if form.errors -%}
+            <small id="RecoverEmail-email-error" class="form__message font-heebo-regular forget-pass">
+              <svg aria-hidden="true" focusable="false" role="presentation" viewBox="0 0 13 13">
+                <circle cx="6.5" cy="6.50049" r="5.5" stroke="white" stroke-width="2"/>
+                <circle cx="6.5" cy="6.5" r="5.5" fill="#EB001B" stroke="#EB001B" stroke-width="0.7"/>
+                <path d="M5.87413 3.52832L5.97439 7.57216H7.02713L7.12739 3.52832H5.87413ZM6.50076 9.66091C6.88091 9.66091 7.18169 9.37267 7.18169 9.00504C7.18169 8.63742 6.88091 8.34917 6.50076 8.34917C6.12061 8.34917 5.81982 8.63742 5.81982 9.00504C5.81982 9.37267 6.12061 9.66091 6.50076 9.66091Z" fill="white"/>
+                <path d="M5.87413 3.17832H5.51535L5.52424 3.537L5.6245 7.58083L5.63296 7.92216H5.97439H7.02713H7.36856L7.37702 7.58083L7.47728 3.537L7.48617 3.17832H7.12739H5.87413ZM6.50076 10.0109C7.06121 10.0109 7.5317 9.57872 7.5317 9.00504C7.5317 8.43137 7.06121 7.99918 6.50076 7.99918C5.94031 7.99918 5.46982 8.43137 5.46982 9.00504C5.46982 9.57872 5.94031 10.0109 6.50076 10.0109Z" fill="white" stroke="#EB001B" stroke-width="0.7">
+              </svg>
+              {{ form.errors.messages.form }}
+            </small>
+          {%- endif -%}
+
+          <button class="btnRecoverPassword">
+            <span class="font-heebo-regular forget-pass">Reset Password</span>
+          </button>
+
+          <a class="btnCancelRecover" href="#login">
+            <span class="font-heebo-regular forget-pass"> {{ 'customer.login_page.cancel' | t }} </span>
+          </a>
+        {%- endform -%}
+      </div>
+
+      <div>
+        {%- if recover_success == true -%}
+          <h3 class="form__message" tabindex="-1" autofocus>
+            <svg aria-hidden="true" focusable="false" role="presentation" viewBox="0 0 13 13">
+              <path d="M6.5 12.35C9.73087 12.35 12.35 9.73086 12.35 6.5C12.35 3.26913 9.73087 0.65 6.5 0.65C3.26913 0.65 0.65 3.26913 0.65 6.5C0.65 9.73086 3.26913 12.35 6.5 12.35Z" fill="#428445" stroke="white" stroke-width="0.7"/>
+              <path d="M5.53271 8.66357L9.25213 4.68197" stroke="white"/>
+              <path d="M4.10645 6.7688L6.13766 8.62553" stroke="white">
+            </svg>
+            {{ 'customer.recover_password.success' | t }}
+          </h3>
+        {%- endif -%}
+      </div>
+
+      <h1 id="login" tabindex="-1" class="font-heebo-medium title">
+        {{ 'customer.login_page.title' | t }}
+      </h1>
+
+      <div>
+        {%- form 'customer_login', novalidate: 'novalidate' -%}
+          {% unless template.name == 'register' %}
+            {%- if form.errors -%}
+              <h2 class="form__message font-heebo-regular forget-pass" tabindex="-1" autofocus>
+                <span class="visually-hidden">{{ 'accessibility.error' | t }} </span>
+                <svg aria-hidden="true" focusable="false" role="presentation" viewBox="0 0 13 13">
+                  <circle cx="6.5" cy="6.50049" r="5.5" stroke="white" stroke-width="2"/>
+                  <circle cx="6.5" cy="6.5" r="5.5" fill="#EB001B" stroke="#EB001B" stroke-width="0.7"/>
+                  <path d="M5.87413 3.52832L5.97439 7.57216H7.02713L7.12739 3.52832H5.87413ZM6.50076 9.66091C6.88091 9.66091 7.18169 9.37267 7.18169 9.00504C7.18169 8.63742 6.88091 8.34917 6.50076 8.34917C6.12061 8.34917 5.81982 8.63742 5.81982 9.00504C5.81982 9.37267 6.12061 9.66091 6.50076 9.66091Z" fill="white"/>
+                  <path d="M5.87413 3.17832H5.51535L5.52424 3.537L5.6245 7.58083L5.63296 7.92216H5.97439H7.02713H7.36856L7.37702 7.58083L7.47728 3.537L7.48617 3.17832H7.12739H5.87413ZM6.50076 10.0109C7.06121 10.0109 7.5317 9.57872 7.5317 9.00504C7.5317 8.43137 7.06121 7.99918 6.50076 7.99918C5.94031 7.99918 5.46982 8.43137 5.46982 9.00504C5.46982 9.57872 5.94031 10.0109 6.50076 10.0109Z" fill="white" stroke="#EB001B" stroke-width="0.7">
+                </svg>
+                {{ 'templates.contact.form.error_heading' | t }}
+              </h2>
+              {{ form.errors | default_errors }}
+            {%- endif -%}
+          {% endunless %}
+
+          <label class="form-label" for="CustomerEmail">Email <span class="required">*</span></label>
+          <div class="field">
+            <input
+              type="email"
+              name="customer[email]"
+              id="CustomerEmail"
+              autocomplete="email"
+              autocorrect="off"
+              autocapitalize="off"
+              {% if form.errors contains 'form' %}
+                aria-invalid="true"
+              {% endif %}
+              placeholder="{{ 'customer.login_page.email' | t }}"
+            >
+          </div>
+
+          {%- if form.password_needed -%}
+            <label class="form-label" for="CustomerPassword">Password <span class="required">*</span></label>
+            <div class="field">
+              <input
+                type="password"
+                value=""
+                name="customer[password]"
+                id="CustomerPassword"
+                autocomplete="current-password"
+                {% if form.errors contains 'form' %}
+                  aria-invalid="true"
+                {% endif %}
+                placeholder="{{ 'customer.login_page.password' | t }}"
+              >
+            </div>
+            <p class="login-forgot-password">
+              <a href="#recover" class="font-heebo-regular forget-pass">
+                {{ 'customer.login_page.forgot_password' | t }}
+              </a>
+            </p>
+          {%- endif -%}
+
+          <button class="btn-signin">
+            <span class="font-heebo-regular forget-pass">{{ 'customer.login_page.sign_in' | t }}</span>
+          </button>
+        {%- endform -%}
+
+        <div class="password-reset-popup">
+          <p class="password-popup-content">Password has been updated successfully. Please login in.</p>
+        </div>
+      </div>
+
+      {%- if shop.checkout.guest_login -%}
+        <div>
+          <hr>
+          <h2>{{ 'customer.login_page.guest_title' | t }}</h2>
+
+          {%- form 'guest_login' -%}
+            <button>
+              {{ 'customer.login_page.guest_continue' | t }}
+            </button>
+          {%- endform -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+
+  <script>
+    function hideMessage(htmlInput) {
+      htmlInput.style.display = 'none';
+    }
+
+    const passwordResetPopup = document.querySelector('.password-reset-popup');
+    const passwordResetContent = document.querySelector('.password-popup-content');
+
+    if (sessionStorage.getItem('passwordReseted') != null) {
+      if (sessionStorage.getItem('passwordReseted') === 'true') {
+        passwordResetPopup.style.display = 'block';
+        setTimeout(() => {
+          hideMessage(passwordResetPopup);
+        }, 5000);
+        sessionStorage.removeItem('passwordReseted');
+      }
+    }
+  </script>
+{% endcomment %}
+
+<!-- - SML customisation starts -->
+<style>
+  {% render 'sml-client-css' %}
+</style>
+{% render 'sml-main' %}
+<script>
+  {% render 'sml-client-js' %}
+</script>
+<!-- SML customisation ends -->
+
+<form
+  id="customer_login"
+  action="/account/login"
+  method="post"
+  accept-charset="UTF-8"
+  novalidate="novalidate"
+  onsubmit="window.Shopify.recaptchaV3.addToken(this, 'customer_login'); return false;"
+>
+  <input name="form_type" type="hidden" value="customer_login">
+  <input name="utf8" type="hidden" value="✓">
+  <input type="email" value="" name="customer[email]" placeholder="Email Address" style="display: none;">
+  <input type="password" value="" placeholder="Password" name="customer[password]" style="display: none;">
+  <button type="submit" style="display:none" />
+</form>

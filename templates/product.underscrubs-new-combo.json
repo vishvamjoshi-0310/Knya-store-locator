@@ -1,0 +1,599 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "breadcrumb_new_GW3nMF": {
+      "type": "breadcrumb-new",
+      "name": "breadcrumbs-new",
+      "settings": {
+        "margintopbread": 24,
+        "marginbottombread": 24,
+        "margintopbreadmob": 12,
+        "marginbottombreadmob": 0,
+        "margintopbread_collection": 0,
+        "marginbottombread_collection": 0,
+        "margintopbreadmob_collection": 0,
+        "marginbottombreadmob_collection": 0
+      }
+    },
+    "main": {
+      "type": "combo-product-new",
+      "blocks": {
+        "product-title-group": {
+          "type": "_product-title-group",
+          "static": true,
+          "settings": {},
+          "blocks": {
+            "pdp_badge_TYLikB": {
+              "type": "_pdp-badge",
+              "name": "PDP Badge",
+              "disabled": true,
+              "settings": {},
+              "blocks": {}
+            },
+            "pdp_product_title_7x6YEj": {
+              "type": "_pdp-product-title",
+              "name": "Product Heading",
+              "settings": {
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "heading_tag": "h1",
+                "font": "Heebo-Medium",
+                "type_preset": "h4",
+                "font_size": "",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground-heading)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "pdp_badge_TYLikB",
+            "pdp_product_title_7x6YEj"
+          ]
+        },
+        "media-gallery": {
+          "type": "_product-media-gallery",
+          "static": true,
+          "settings": {
+            "media_presentation": "carousel",
+            "media_columns": "two",
+            "image_gap": 4,
+            "large_first_image": false,
+            "icons_style": "none",
+            "slideshow_controls_style": "thumbnails",
+            "slideshow_mobile_controls_style": "dots",
+            "thumbnail_position": "left",
+            "thumbnail_width": 72,
+            "aspect_ratio": "adapt",
+            "constrain_to_viewport": true,
+            "media_fit": "cover",
+            "media_radius": 0,
+            "extend_media": false,
+            "zoom": true,
+            "video_loop": false,
+            "hide_variants": true,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "product-details": {
+          "type": "_product-details",
+          "static": true,
+          "settings": {
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "details_position": "flex-start",
+            "gap": 22,
+            "sticky_details_desktop": true,
+            "inherit_color_scheme": true,
+            "color_scheme": "scheme-1",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 24,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "product_title_group_D3BtaB": {
+              "type": "_product-title-group",
+              "name": "Product Title Group",
+              "settings": {},
+              "blocks": {
+                "pdp_badge_HQ6aAH": {
+                  "type": "_pdp-badge",
+                  "name": "PDP Badge",
+                  "disabled": true,
+                  "settings": {},
+                  "blocks": {}
+                },
+                "pdp_product_title_RX7A3y": {
+                  "type": "_pdp-product-title",
+                  "name": "Product Heading",
+                  "settings": {
+                    "width": "fit-content",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "heading_tag": "h1",
+                    "font": "Heebo-Medium",
+                    "type_preset": "h4",
+                    "font_size": "",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground-heading)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "pdp_badge_HQ6aAH",
+                "pdp_product_title_RX7A3y"
+              ]
+            },
+            "price_review_zd3WkC": {
+              "type": "_price-review",
+              "name": "Price & Review",
+              "settings": {},
+              "blocks": {
+                "price_4mUXbf": {
+                  "type": "price",
+                  "name": "t:names.product_price",
+                  "settings": {
+                    "show_sale_price_first": true,
+                    "show_installments": false,
+                    "show_tax_info": true,
+                    "show_tax_info_product_card": false,
+                    "tax_info_product_card_text": "*Incl of taxes",
+                    "type_preset": "h3",
+                    "width": "fit-content",
+                    "alignment": "left",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "color": "var(--color-foreground-heading)",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "review_YrjhQQ": {
+                  "type": "review",
+                  "name": "t:names.product_review_stars",
+                  "settings": {
+                    "stars_style": "shaded",
+                    "show_number": true,
+                    "rating_color": "primary",
+                    "type_preset": "paragraph",
+                    "alignment": "left"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "price_4mUXbf",
+                "review_YrjhQQ"
+              ]
+            },
+            "custom_color_swatch_6WMiLx": {
+              "type": "custom-color-swatch",
+              "name": "Color swatches",
+              "settings": {
+                "title": "Colour:",
+                "title_font_size": 16,
+                "title_font_size_mobile": 14,
+                "title_font_weight": "Heebo-Medium",
+                "title_padding": 0,
+                "title_padding_mobile": 0,
+                "title_bottom_spacing": 8,
+                "title_text_color": "#000000",
+                "use_product_image": false,
+                "swatch_size": 28,
+                "swatch_size_mobile": 22,
+                "swatch_spacing": 12,
+                "swatch_spacing_mobile": 12,
+                "top_spacing": 12,
+                "swatch_border_radius": 40,
+                "color-swatches-show-desktop": 20,
+                "color-swatches-show-mobile": 20,
+                "swatch_border_width": 1,
+                "swatch_border_color": "#e6e6e6",
+                "current_swatch_border_width": 2,
+                "current_swatch_border_color": "#000000",
+                "placeholder_color": "#f5f5f5",
+                "placeholder_text_color": "#666666"
+              },
+              "blocks": {}
+            },
+            "variant_picker_R3rGDr": {
+              "type": "variant-picker",
+              "settings": {
+                "variant_style": "buttons",
+                "show_swatches": false,
+                "alignment": "left",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "embroidery_d8qUQN": {
+              "type": "_embroidery",
+              "name": "Embroidery",
+              "disabled": true,
+              "settings": {
+                "showEmbroidery": true,
+                "EmbroideryProductHandlepicker": "custom-embroidery",
+                "EmbroideryLeftImage_desk": "shopify://shop_images/Navy_Men_Desktop.png",
+                "EmbroideryLeftImage_mob": "shopify://shop_images/Navy_Men_Mobile.png",
+                "custom_embroidery_subheading": "scrub",
+                "heading_text_embroidery": "Add Embroidery",
+                "subheading_text_embroidery": "Add your Name/Logo/ Icon",
+                "heading_second_text_embroidery": "No, I’ll Pass",
+                "subheading_second_text_embroidery": "",
+                "Embroiderybullets": "<ul><li>Minimum resolution: 200px by 200px.</li><li>Maximum size: 5 MB.</li><li>Uploaded File should be JPG/JPEG</li></ul>",
+                "EmbroideryFinalbullets": "<ul><li>Embroidery orders take an additional 3-5 business days for dispatch.</li><li>Since they are customised just for you, embroidered items are not eligible for return or exchange.</li></ul>"
+              },
+              "blocks": {
+                "pdp-dispatch-message": {
+                  "type": "_pdp-dispatch-message",
+                  "static": true,
+                  "settings": {
+                    "textMg": "3-5 days dispatch for embroidered orders.",
+                    "textMgFontSizeDesktop": 16,
+                    "textMgFontSizeMobile": 14
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": []
+            },
+            "pdp_dispatch_message_g4Ut6R": {
+              "type": "_pdp-dispatch-message",
+              "name": "PDP Dispatch Message",
+              "disabled": true,
+              "settings": {
+                "textMg": "3-5 days dispatch for embroidered orders.",
+                "textMgFontSizeDesktop": 16,
+                "textMgFontSizeMobile": 14
+              },
+              "blocks": {}
+            },
+            "koin_promotion_widget_PxQd9U": {
+              "type": "shopify://apps/koin/blocks/promotion_widget/02895843-ca31-4ee5-82a1-bfd81a36a58d",
+              "settings": {
+                "product": "{{product}}",
+                "form": ""
+              }
+            },
+            "buy_buttons_eYQEYi": {
+              "type": "buy-buttons",
+              "settings": {
+                "stacking": true,
+                "show_pickup_availability": false,
+                "gift_card_form": true,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "quantity": {
+                  "type": "quantity",
+                  "static": true,
+                  "settings": {},
+                  "blocks": {}
+                },
+                "add-to-cart": {
+                  "type": "add-to-cart",
+                  "static": true,
+                  "settings": {
+                    "style_class": "button"
+                  },
+                  "blocks": {}
+                },
+                "accelerated-checkout": {
+                  "type": "accelerated-checkout",
+                  "disabled": true,
+                  "static": true,
+                  "settings": {},
+                  "blocks": {}
+                }
+              },
+              "block_order": []
+            },
+            "icon_with_text_yW67pC": {
+              "type": "_icon-with-text",
+              "name": "Icon with Text",
+              "settings": {
+                "layout": "horizontal",
+                "image_1": "shopify://shop_images/Component_1_2_09fd71dc-f54e-4c1c-b065-01891dd84508.png",
+                "heading_1": "1-3 Day express shipping",
+                "image_2": "shopify://shop_images/Component_1_1_f7882a51-9efa-4c5e-8ce6-87aa6fb33495.png",
+                "heading_2": "Easy exchange & returns",
+                "image_3": "shopify://shop_images/Component_1_fba398f7-26c0-4860-b7c9-568ee55fa798.png",
+                "heading_3": "Cash on Delivery Available"
+              },
+              "blocks": {}
+            },
+            "product_offer_bFm7nY": {
+              "type": "product-offer",
+              "name": "Product Offer",
+              "disabled": true,
+              "settings": {
+                "headingoffer": "We are offering",
+                "offer1": "15% OFF Sidewide##Crash Cart Sale####Crash15",
+                "offer2": "",
+                "offer3": "",
+                "offer4": "",
+                "offer5": "",
+                "offer6": ""
+              },
+              "blocks": {}
+            },
+            "estimated_delivery_date_cp_clickpost_edd_z9kfkF": {
+              "type": "shopify://apps/estimated-delivery-date-cp/blocks/clickpost-edd/052d4955-0ec2-4e86-8e1f-f971acb44560",
+              "settings": {
+                "heading": "Delivery Details",
+                "color": "#482f8f",
+                "submit_color": "#ffffff",
+                "submit": "Check",
+                "edd_text": "Delivery between",
+                "edd_color": "#008000",
+                "fail_color": "#ff0000",
+                "cod_text": "Cash on delivery",
+                "unservicable_text": "Pincode not servicable",
+                "cod": true,
+                "date_range": true,
+                "only_min": false,
+                "month": false,
+                "placeholder": "Enter your pincode",
+                "date_format": "1",
+                "enable_countdown": false,
+                "invalid_text": "Please enter a valid pincode",
+                "extra_text": "",
+                "max_date_additional_text": "",
+                "helping_text": "",
+                "padding_top": 0,
+                "padding_bottom": 0
+              }
+            },
+            "knya_description_8cj9br": {
+              "type": "_knya-description",
+              "name": "Knyamed Description",
+              "settings": {
+                "des1": "DESCRIPTION",
+                "des2": "Details & Fit",
+                "des3": "Fabric & Care",
+                "des4": "Return & Exchange",
+                "des5": "The Anatomy Of Knya"
+              },
+              "blocks": {}
+            },
+            "selleasy_lb_upsell_addon_block_cxpzB8": {
+              "type": "shopify://apps/selleasy/blocks/lb-upsell-addon-block/790c1a03-a71f-4bc1-9869-00dad526d3c2",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "product_title_group_D3BtaB",
+            "price_review_zd3WkC",
+            "custom_color_swatch_6WMiLx",
+            "variant_picker_R3rGDr",
+            "embroidery_d8qUQN",
+            "pdp_dispatch_message_g4Ut6R",
+            "koin_promotion_widget_PxQd9U",
+            "buy_buttons_eYQEYi",
+            "icon_with_text_yW67pC",
+            "product_offer_bFm7nY",
+            "estimated_delivery_date_cp_clickpost_edd_z9kfkF",
+            "knya_description_8cj9br",
+            "selleasy_lb_upsell_addon_block_cxpzB8"
+          ]
+        }
+      },
+      "settings": {
+        "content_width": "content-full-width",
+        "desktop_media_position": "left",
+        "equal_columns": false,
+        "limit_details_width": false,
+        "gap": 24,
+        "color_scheme": "",
+        "padding-block-start": 0,
+        "padding-block-end": 28,
+        "add_emb_desktop_font_size": 16,
+        "add_emb_mobile_font_size": 14,
+        "add_emb_desktop_sub_font_size": 12,
+        "add_emb_mobile_sub_font_size": 12,
+        "selected_background_color": "#f7f1ff",
+        "heading_font_text": "#462d8c",
+        "subHeading_font_text": "#000000",
+        "heading_text": "Add Embroidery",
+        "subheading_text": "Add your Name/Logo/ Icon",
+        "heading_second_text": "No, I’ll Pass",
+        "subheading_second_text": "No, I’ll Pass"
+      }
+    },
+    "product_feature_R6J6j7": {
+      "type": "product-feature",
+      "name": "product-key-feature",
+      "settings": {}
+    },
+    "product_details_exchange_new_EHrqwP": {
+      "type": "product-details-exchange-new",
+      "name": "product-details-exchange-new",
+      "settings": {
+        "show_padding_ex": true,
+        "show_padding_mob_ex": true,
+        "backgroundImage": "shopify://shop_images/Screenshot_2023-05-01_at_4.56.26_PM_d2174389-781a-4316-b713-5293c038f260.png",
+        "margintopex": 0,
+        "margintopexmob": 0,
+        "product-detail": "Anatomy Of Knya",
+        "detail-title": "The anatomy of Knya",
+        "exchange-title": "How you can Return, Refund, or Exchange"
+      }
+    },
+    "flex_fit_new_FfyGmM": {
+      "type": "flex-fit-new",
+      "name": "flex_fit_new",
+      "settings": {
+        "shop-now-cont": "",
+        "show_padding_slidd": false,
+        "pagination": false,
+        "show_secondary_image": false,
+        "show_padding_mob_slidd": false,
+        "swiper_enable_button": false,
+        "marginTopslidd1": 56,
+        "marginBottomslidd1": 0,
+        "marginTopsliddmob1": 42,
+        "marginBottomsliddmob1": 0,
+        "headText": "Seen in Knya",
+        "secondText": "Over a 1000+ 5-star reviews and counting"
+      }
+    },
+    "slider_new_i4wGrL": {
+      "type": "slider-new",
+      "name": "slider_new",
+      "settings": {
+        "show_padding_slidd": false,
+        "pagination": false,
+        "show_padding_mob_slidd": false,
+        "marginTopslidd": 48,
+        "marginBottomslidd": 48,
+        "marginTopsliddmob": 24,
+        "marginBottomsliddmob": 24,
+        "headText": "You May Also Like",
+        "secondText": "",
+        "collection": "{{ product.metafields.custom.game_changer_collection_picker.value }}",
+        "enable_quick_add": false
+      }
+    },
+    "slider_new_Wa8e7e": {
+      "type": "slider-new",
+      "name": "slider_new",
+      "settings": {
+        "show_padding_slidd": true,
+        "pagination": false,
+        "show_padding_mob_slidd": true,
+        "marginTopslidd": 0,
+        "marginBottomslidd": 0,
+        "marginTopsliddmob": 0,
+        "marginBottomsliddmob": 0,
+        "headText": "Others Also Bought",
+        "secondText": "",
+        "collection": "{{ product.metafields.custom.pair_to_perform_collection_picker.value }}",
+        "enable_quick_add": false
+      }
+    },
+    "upper_reviews_title_section_zaahEK": {
+      "type": "upper-reviews-title-section",
+      "name": "title-reviews",
+      "settings": {
+        "show_padding_rev": false,
+        "show_padding_mob_rev": false,
+        "margintoprev": 48,
+        "margintoprevmob": 30,
+        "review-title": "From the #FocusedCrew",
+        "review-sub-title": "Tried, tested, and loved"
+      }
+    },
+    "1764913364c69af412": {
+      "type": "_blocks",
+      "blocks": {
+        "judge_me_reviews_review_widget_JDN3Tp": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_JDN3Tp"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "full-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    }
+  },
+  "order": [
+    "breadcrumb_new_GW3nMF",
+    "main",
+    "product_feature_R6J6j7",
+    "product_details_exchange_new_EHrqwP",
+    "flex_fit_new_FfyGmM",
+    "slider_new_i4wGrL",
+    "slider_new_Wa8e7e",
+    "upper_reviews_title_section_zaahEK",
+    "1764913364c69af412"
+  ]
+}

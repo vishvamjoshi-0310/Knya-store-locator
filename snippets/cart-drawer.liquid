@@ -1,0 +1,243 @@
+{%- doc -%}
+  Renders the cart drawer, a slide-out panel that displays the contents of the cart. It includes the cart icon that acts as a trigger.
+
+  @param {object} [settings] - An object containing theme settings.
+
+  @param {boolean} [settings.auto_open_cart_drawer] - If `true`, the cart drawer opens automatically after an item is
+  added.
+  @param {string} [settings.drawer_color_scheme] - The color scheme for the drawer.
+{%- enddoc -%}
+
+<script
+  src="{{ 'cart-drawer.js' | asset_url }}"
+  type="module"
+  fetchpriority="low"
+></script>
+
+<cart-drawer-component
+  class="cart-drawer"
+  {{ block.shopify_attributes }}
+  {% if settings.auto_open_cart_drawer %}
+    auto-open
+  {% endif %}
+>
+  <button
+    class="button header-actions__action button-unstyled"
+    on:click="/open"
+    aria-haspopup="dialog"
+    aria-label="{{ 'accessibility.cart' | t }}"
+    aria-describedby="cart-bubble-text"
+    data-testid="cart-drawer-trigger"
+  >
+    {% render 'cart-icon-component' %}
+  </button>
+
+  <dialog
+    ref="dialog"
+    class="cart-drawer__dialog dialog-modal dialog-drawer color-{{ settings.drawer_color_scheme }}{% if cart.empty? %} cart-drawer--empty{%endif%}"
+    aria-labelledby="{% if cart.empty? %}cart-drawer-heading-empty{% else %}cart-drawer-heading{% endif %}"
+    scroll-lock
+  >
+    <div class="cart-drawer__inner">
+      <cart-items-component
+        class="cart-items-component"
+        data-section-id="{{ section.id }}"
+      >
+        {%- if cart.empty? -%}
+          <div class="cart-drawer__header">
+            <button
+              ref="closeButton"
+              on:click="cart-drawer-component/close"
+              class="button close-button cart-drawer__close-button button-unstyled"
+              aria-label="{{ 'actions.close_dialog' | t }}"
+            >
+              <span class="svg-wrapper">
+                {{- 'icon-close.svg' | inline_asset_content -}}
+              </span>
+            </button>
+          </div>
+
+          <div
+            class="cart-drawer__content motion-reduce"
+            aria-label="{{ 'accessibility.cart' | t }}"
+          >
+            <h2
+              class="cart-drawer__heading h3 cart-drawer__heading--empty"
+              id="cart-drawer-heading-empty"
+            >
+              {{ 'content.your_cart_is_empty' | t }}
+            </h2>
+
+            <div class="cart-drawer__items">
+              {% render 'cart-products' %}
+            </div>
+          </div>
+        {%- else -%}
+          <div
+            class="cart-drawer__header"
+            id="cart-drawer-header"
+          >
+            <h2
+              class="cart-drawer__heading h3"
+              id="cart-drawer-heading"
+            >
+              {{ 'content.cart_title' | t }}
+              {% render 'cart-bubble' %}
+            </h2>
+
+            <button
+              ref="closeButton"
+              on:click="cart-drawer-component/close"
+              class="button close-button cart-drawer__close-button button-unstyled"
+              aria-label="{{ 'actions.close_dialog' | t }}"
+            >
+              <span class="svg-wrapper">
+                {{- 'icon-close.svg' | inline_asset_content -}}
+              </span>
+            </button>
+          </div>
+          {% if cart != empty and settings.show_announcement_cb and settings['rich-txt-id'] != blank %}
+            <div class="cart-bar-container">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="18" viewBox="0 0 14 18" fill="none">
+              <path d="M7.59062 16.1268L0.248123 8.78433V10.2843C0.248123 10.6818 0.405623 11.0643 0.690623 11.3418L6.53312 17.1843C7.11812 17.7693 8.07062 17.7693 8.65562 17.1843L13.3131 12.5268C13.8981 11.9418 13.8981 10.9893 13.3131 10.4043L7.59062 16.1268Z" fill="black"/>
+              <path d="M6.53312 13.4343C6.82562 13.7268 7.20812 13.8768 7.59062 13.8768C7.97312 13.8768 8.35562 13.7268 8.64812 13.4343L13.3056 8.77683C13.8906 8.19183 13.8906 7.23933 13.3056 6.65433L7.46312 0.811831C7.18562 0.534331 6.80312 0.376831 6.40562 0.376831H1.74812C0.923123 0.376831 0.248123 1.05183 0.248123 1.87683V6.53433C0.248123 6.93183 0.405623 7.31433 0.690623 7.59183L6.53312 13.4343ZM1.74812 1.87683H6.40562L12.2481 7.71933L7.59062 12.3768L1.74812 6.53433V1.87683Z" fill="black"/>
+              <path d="M3.43562 4.50183C3.95339 4.50183 4.37312 4.0821 4.37312 3.56433C4.37312 3.04656 3.95339 2.62683 3.43562 2.62683C2.91786 2.62683 2.49812 3.04656 2.49812 3.56433C2.49812 4.0821 2.91786 4.50183 3.43562 4.50183Z" fill="black"/>
+              </svg>
+              {{ settings['rich-txt-id'] }}
+            </div>
+          {% endif %}
+
+          <div
+            class="cart-drawer__content motion-reduce"
+            aria-label="{{ 'accessibility.cart' | t }}"
+            style="--header-height: 60px;"
+          >
+            <scroll-hint
+              class="cart-drawer__items"
+            >
+              {% render 'cart-products' %}
+            </scroll-hint>
+
+            <div
+              class="cart-drawer__summary"
+            >
+              {% render 'cart-summary' %}
+            </div>
+          </div>
+        {%- endif -%}
+      </cart-items-component>
+    </div>
+  </dialog>
+</cart-drawer-component>
+
+{% stylesheet %}
+  .cart-items-component {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 0 22px;
+    @media screen and (max-width: 359px){
+      padding: 0 16px;
+    }
+  }
+
+  .cart-drawer__heading .cart-bubble {
+    width: fit-content;
+    border-radius: var(--style-border-radius-buttons-primary);
+    aspect-ratio: auto;
+    padding: var(--cart-padding);
+    display: none;
+  }
+
+  .cart-drawer__heading .cart-bubble[data-maintain-ratio] {
+    aspect-ratio: 1;
+    min-width: 26px;
+  }
+
+  .cart-drawer__header {
+    background-color: var(--color-background);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: var(--cart-drawer-padding);
+    border-bottom: var(--style-border-width) solid none;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    padding-left: 0;
+    padding-right: 0;
+
+    @media screen and (min-width: 750px) {
+      padding: 16px 0 12px;
+    }
+  }
+
+  .cart-drawer__dialog {
+    overflow: hidden;
+  }
+
+  .cart-drawer__inner {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .cart-drawer__content {
+    height: calc(100% - var(--header-height));
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cart-drawer__summary {
+    background-color: var(--color-background);
+    position: sticky;
+    bottom: 0;
+    z-index: 1;
+  }
+  .cart-drawer__summary:has(+ scroll-hint) {
+    display: none;
+  }
+{% endstylesheet %}
+{%  style %}
+  .cart-bar-container {
+    background-color: {{ settings.bg-color-id }};
+    color: {{ settings.font_color_id }};
+    width:100%;
+    height: auto;
+    margin: 0;
+    text-align:center;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background-color: #7DAAD73D;
+    padding: 9px 8px;
+    border: 1px solid #7DAAD785;
+    border-radius: 6px;
+    height: 36px;
+  }
+
+  .cart-bar-container svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .cart-bar-container p {
+    font-size: 14px;
+    font-family: 'Heebo-Regular';
+    margin: 0;
+    line-height: 20px;
+    letter-spacing: 0.1px;
+    color: #2C2C2C;
+    @media screen and (max-width: 749px) {
+      font-size: 12px;
+      line-height: 16px;
+    }
+  }
+
+  .cart-bar-container p strong {
+    font-weight: 500;
+    font-family: 'Heebo-Medium';
+  }
+{% endstyle %}

@@ -1,0 +1,401 @@
+{{ 'section-breakpoint-support.css' | asset_url | stylesheet_tag }}
+
+<section class="breakpoint-support-section">
+  <div class="breakpoint-support-parent">
+    <h2 class="breakpoint-support-heading">{{ section.settings.heading }}</h2>
+    {%- if section.settings.background_image_desktop != blank or section.settings.background_image_mobile != blank -%}
+      <div class="breakpoint-support-bg-image desktop-bg-image">
+        <picture>
+          {%- if section.settings.background_image_mobile != blank -%}
+            <source
+              media="(max-width: 768px)"
+              srcset="{{ section.settings.background_image_mobile | image_url: width: 800 }}"
+            >
+          {%- endif -%}
+          {%- if section.settings.background_image_desktop != blank -%}
+            <source
+              media="(min-width: 769px)"
+              srcset="{{ section.settings.background_image_desktop | image_url: width: 2000 }}"
+            >
+          {%- endif -%}
+          {%- liquid
+            if section.settings.background_image_desktop != blank
+              assign bg_image = section.settings.background_image_desktop
+              assign bg_width = 2000
+            else
+              assign bg_image = section.settings.background_image_mobile
+              assign bg_width = 800
+            endif
+            assign bg_height = bg_width | divided_by: bg_image.aspect_ratio | round
+          -%}
+          <img
+            loading="lazy"
+            src="{{ bg_image | image_url: width: bg_width }}"
+            width="{{ bg_width }}"
+            height="{{ bg_height }}"
+            alt="{{ bg_image.alt | escape }}"
+          >
+        </picture>
+      </div>
+    {%- endif -%}
+
+    {%- assign blocks_count = section.blocks.size -%}
+    <div class="swiper breakpoint-support-swiper breakpoint-support-swiper-{{ section.id }}{% if blocks_count <= 3 %} breakpoint-support-swiper-static{% endif %}">
+      <div class="swiper-wrapper">
+        {%- if section.settings.background_image_desktop != blank
+          or section.settings.background_image_mobile != blank
+        -%}
+          <div class="breakpoint-support-bg-image mobile-bg-image">
+            <picture>
+              {%- if section.settings.background_image_mobile != blank -%}
+                <source
+                  media="(max-width: 768px)"
+                  srcset="{{ section.settings.background_image_mobile | image_url: width: 800 }}"
+                >
+              {%- endif -%}
+              {%- if section.settings.background_image_desktop != blank -%}
+                <source
+                  media="(min-width: 769px)"
+                  srcset="{{ section.settings.background_image_desktop | image_url: width: 2000 }}"
+                >
+              {%- endif -%}
+              {%- liquid
+                if section.settings.background_image_desktop != blank
+                  assign bg_image = section.settings.background_image_desktop
+                  assign bg_width = 2000
+                else
+                  assign bg_image = section.settings.background_image_mobile
+                  assign bg_width = 800
+                endif
+                assign bg_height = bg_width | divided_by: bg_image.aspect_ratio | round
+              -%}
+              <img
+                loading="lazy"
+                src="{{ bg_image | image_url: width: bg_width }}"
+                width="{{ bg_width }}"
+                height="{{ bg_height }}"
+                alt="{{ bg_image.alt | escape }}"
+              >
+            </picture>
+          </div>
+        {%- endif -%}
+        {%- for block in section.blocks -%}
+          <div class="swiper-slide">
+            <div
+              class="breakpoint-support-card"
+              {%- if block.settings.card_background_image != blank -%}
+                style="background-image: url('{{ block.settings.card_background_image | image_url: width: 800 }}');"
+              {%- endif -%}
+            >
+              <div class="breakpoint-support-card-content">
+                {%- if block.settings.card_title != blank -%}
+                  <h3 class="breakpoint-support-card-title">{{ block.settings.card_title }}</h3>
+                {%- endif -%}
+
+                {%- if block.settings.card_subtitle != blank -%}
+                  <p class="breakpoint-support-card-subtitle">{{ block.settings.card_subtitle }}</p>
+                {%- endif -%}
+              </div>
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+
+    {%- if section.settings.cta_text != blank or section.settings.cta_icon_svg != blank -%}
+      <div class="breakpoint-support-button">
+        <a href="{{ section.settings.cta_link }}" class="breakpoint-support-cta">
+          <span class="breakpoint-support-cta-text">{{ section.settings.cta_text }}</span>
+          {{ section.settings.cta_icon_svg }}
+        </a>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+<script>
+  (function() {
+    var slider = document.querySelector('.breakpoint-support-swiper-{{ section.id }}');
+    if (!slider) return;
+
+    var wrapper = slider.querySelector('.swiper-wrapper');
+    var slides = Array.from(slider.querySelectorAll('.swiper-slide'));
+    var pagination = slider.querySelector('.swiper-pagination');
+    var blocksCount = {{ blocks_count }};
+    var isStatic = blocksCount <= 3;
+    var currentIndex = 0;
+    var isDragging = false;
+    var startX = 0;
+    var currentTranslate = 0;
+    var animationFrameId;
+
+    if (slides.length === 0) return;
+
+    function getTranslateX() {
+      var style = window.getComputedStyle(wrapper);
+      var matrix = new DOMMatrixReadOnly(style.transform);
+      return matrix.m41;
+    }
+
+    function setTranslateX(x) {
+      wrapper.style.transform = 'translateX(' + x + 'px)';
+    }
+
+    function updateSlider() {
+      if (window.innerWidth <= 768) {
+        // Mobile: carousel mode
+        var slideWidth = slider.offsetWidth;
+        currentTranslate = -currentIndex * slideWidth;
+        setTranslateX(currentTranslate);
+        updatePagination();
+      } else {
+        // Desktop
+        if (isStatic) {
+          // Static grid: no transform needed
+          wrapper.style.transform = 'translateX(0)';
+        } else {
+          // Carousel mode: show 3 cards at a time
+          var slideWidth = slides[0].offsetWidth + 36; // 36px gap from CSS
+          currentTranslate = -currentIndex * slideWidth;
+          setTranslateX(currentTranslate);
+        }
+        updatePagination();
+      }
+    }
+
+    function goToSlide(index) {
+      currentIndex = index;
+      var maxIndex = slides.length - 1;
+
+      if (window.innerWidth <= 768) {
+        // Mobile: one slide at a time
+        if (currentIndex < 0) currentIndex = 0;
+        if (currentIndex > maxIndex) currentIndex = maxIndex;
+      } else {
+        // Desktop: show 3 cards at a time
+        if (!isStatic) {
+          var maxSlideIndex = Math.max(0, slides.length - 3);
+          if (currentIndex < 0) currentIndex = 0;
+          if (currentIndex > maxSlideIndex) currentIndex = maxSlideIndex;
+        }
+      }
+      wrapper.style.transition = 'transform 0.8s ease-in-out';
+      updateSlider();
+    }
+
+    function createPagination() {
+      if (!pagination) return;
+      pagination.innerHTML = '';
+
+      if (window.innerWidth <= 768) {
+        // Mobile: show pagination
+        slides.forEach(function(_, index) {
+          var dot = document.createElement('span');
+          dot.className = 'swiper-pagination-bullet';
+          if (index === currentIndex) {
+            dot.classList.add('swiper-pagination-bullet-active');
+          }
+          dot.addEventListener('click', function() {
+            goToSlide(index);
+          });
+          pagination.appendChild(dot);
+        });
+      }
+    }
+
+    function updatePagination() {
+      if (!pagination || window.innerWidth > 768) return;
+      var dots = pagination.querySelectorAll('.swiper-pagination-bullet');
+      dots.forEach(function(dot, index) {
+        if (index === currentIndex) {
+          dot.classList.add('swiper-pagination-bullet-active');
+        } else {
+          dot.classList.remove('swiper-pagination-bullet-active');
+        }
+      });
+    }
+
+    function handleTouchStart(e) {
+      if (window.innerWidth > 768 && isStatic) return;
+      isDragging = true;
+      startX = e.touches ? e.touches[0].clientX : e.clientX;
+      currentTranslate = getTranslateX();
+      wrapper.style.transition = 'none';
+      cancelAnimationFrame(animationFrameId);
+    }
+
+    function handleTouchMove(e) {
+      if (!isDragging) return;
+      if (window.innerWidth > 768 && isStatic) return;
+      var currentX = e.touches ? e.touches[0].clientX : e.clientX;
+      var diff = currentX - startX;
+
+      animationFrameId = requestAnimationFrame(function() {
+        setTranslateX(currentTranslate + diff);
+      });
+    }
+
+    function handleTouchEnd(e) {
+      if (!isDragging) return;
+      isDragging = false;
+      wrapper.style.transition = 'transform 0.3s ease';
+      cancelAnimationFrame(animationFrameId);
+
+      var movedBy = getTranslateX() - currentTranslate;
+      var slideWidth = window.innerWidth <= 768 ? slider.offsetWidth : (slides[0].offsetWidth + 36);
+
+      if (window.innerWidth <= 768) {
+        // Mobile: one slide at a time
+        if (movedBy < -50) {
+          goToSlide(currentIndex + 1);
+        } else if (movedBy > 50) {
+          goToSlide(currentIndex - 1);
+        } else {
+          goToSlide(currentIndex);
+        }
+      } else {
+        // Desktop: 3 slides at a time
+        if (!isStatic) {
+          if (movedBy < -50) {
+            goToSlide(currentIndex + 1);
+          } else if (movedBy > 50) {
+            goToSlide(currentIndex - 1);
+          } else {
+            goToSlide(currentIndex);
+          }
+        }
+      }
+    }
+
+    function handleMouseDown(e) {
+      if (window.innerWidth > 768 && isStatic) return;
+      e.preventDefault();
+      handleTouchStart(e);
+      document.addEventListener('mousemove', handleMouseMove);
+      document.addEventListener('mouseup', handleMouseUp);
+    }
+
+    function handleMouseMove(e) {
+      handleTouchMove(e);
+    }
+
+    function handleMouseUp(e) {
+      handleTouchEnd(e);
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
+    }
+
+    function init() {
+      createPagination();
+      updateSlider();
+
+      wrapper.addEventListener('touchstart', handleTouchStart);
+      wrapper.addEventListener('touchmove', handleTouchMove);
+      wrapper.addEventListener('touchend', handleTouchEnd);
+      wrapper.addEventListener('mousedown', handleMouseDown);
+
+      window.addEventListener('resize', function() {
+        currentIndex = 0;
+        createPagination();
+        updateSlider();
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Breakpoint Support",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section Heading",
+      "default": "How can we support you?"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image_desktop",
+      "label": "Background Image Desktop"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image_mobile",
+      "label": "Background Image Mobile"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA Text"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA Link"
+    },
+    {
+      "type": "html",
+      "id": "cta_icon_svg",
+      "label": "CTA Icon SVG",
+      "info": "Paste SVG code for the button icon"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "support_card",
+      "name": "Support Card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "card_title",
+          "label": "Card Title"
+        },
+        {
+          "type": "textarea",
+          "id": "card_subtitle",
+          "label": "Card Subtitle"
+        },
+        {
+          "type": "image_picker",
+          "id": "card_background_image",
+          "label": "Card Background Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Breakpoint Support",
+      "blocks": [
+        {
+          "type": "support_card",
+          "settings": {
+            "card_title": "I'm not okay right now"
+          }
+        },
+        {
+          "type": "support_card",
+          "settings": {
+            "card_title": "I don't feel like myself anymore"
+          }
+        },
+        {
+          "type": "support_card",
+          "settings": {
+            "card_title": "I'm scared I'm going to break"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

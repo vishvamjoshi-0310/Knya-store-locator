@@ -1,0 +1,84 @@
+<link rel="stylesheet" href="{{ 'product-feature-card-stylesheet.css' | asset_url }}">
+
+<div class="product-feature-card">
+  <h2 class="product-feature-title">{{ section.settings.section_title }}</h2>
+
+  <div class="product-feature-slider">
+    {% for block in section.blocks %}
+      <div class="product-feature-image">
+        {% if block.settings.video_url != blank %}
+          {{
+            block.settings.video_url
+            | media_tag: autoplay: true, muted: true, controls: false, loop: true, playsinline: true, class: "card-videos"
+          }}
+        {% elsif block.settings.image != blank %}
+          <img
+            src="{{ block.settings.image | img_url: '600x' }}"
+            alt="{{ block.settings.title }}"
+            loading="lazy"
+            width="600"
+            height="auto"
+          >
+        {% endif %}
+        <div class="product-feature-text-overlay">
+          {% if block.settings.heading != blank %}
+            <h3 class="feature-heading">{{ block.settings.heading }}</h3>
+          {% endif %}
+          {% if block.settings.subheading != blank %}
+            <p class="feature-subheading">{{ block.settings.subheading }}</p>
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Product Feature Card",
+  "class": "product-feature-card-parent",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "DRIFT, up close"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature Card",
+      "settings": [
+        {
+          "type": "video",
+          "id": "video_url",
+          "label": "Video"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Stay Warm."
+        },
+        {
+          "type": "text",
+          "id": "subheading",
+          "label": "Subheading",
+          "default": "Warm fleece lining"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Feature Card"
+    }
+  ]
+}
+{% endschema %}

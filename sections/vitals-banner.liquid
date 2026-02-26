@@ -1,0 +1,96 @@
+{{ 'vitals-banner-stylesheet.css' | asset_url | stylesheet_tag: preload: true }}
+
+<div class="vitals-banner">
+  <div class="vitals-banner-inner">
+    {% if section.settings.desktop_banner_image != blank %}
+      <picture>
+        {% if section.settings.mobile_banner_image %}
+          <source
+            media="(max-width: 749px)"
+            srcset="{{ section.settings.mobile_banner_image | image_url: width: 750 }}"
+          >
+        {% endif %}
+        {% if section.settings.desktop_banner_image %}
+          <source
+            media="(min-width: 750px)"
+            srcset="{{ section.settings.desktop_banner_image | image_url: width: 1400 }}"
+          >
+        {% endif %}
+        <img
+          src="{{ section.settings.desktop_banner_image | image_url: width: 1400 }}"
+          loading="lazy"
+          width="1400"
+          height="auto"
+          alt="{{ section.settings.desktop_banner_image.alt | default: 'Banner image' }}"
+          class=""
+        >
+      </picture>
+    {% endif %}
+  </div>
+  <div class="vitals-banner-content">
+    <div class="vitals-banner-logo">
+      {{
+        section.settings.vitals_logo
+        | image_url: width: 170
+        | image_tag: widths: '170', loading: 'lazy', height: '25px', class: ''
+      }}
+    </div>
+    <div class="vitals-banner-heading">
+      {{ section.settings.vitals_heading | newline_to_br }}
+    </div>
+     {% if section.settings.pdf_file != blank %}
+    <form id="vitals-banner-form" class="vitals-banner-form">
+      <div class="vitals-banner-form-inner custom-radio">
+        <span class="vital-form-text">Are you a medical professional?</span>
+        <span><input type="radio" name="option" id="yes" class="vitals-radio"> <label for="yes">Yes</label></span>
+        <span><input type="radio" name="option" id="no" class="vitals-radio"> <label for="no">No</label></span>
+      </div>
+      <div id="banner-vitals-button" class="vitals-banner-form-submit-container">
+        <input type="text" class="vitals-text" placeholder="example@gmail.com" id="vitals-text">
+        <button class="vitals-button download-vitals-pdf">Download The Report</button>
+      </div>
+    </form>
+        {% endif %}
+  </div>
+</div>
+<script id="vitals-banner-pdf-url" data-pdf="{{ section.settings.pdf_file }}"></script>
+<script src="{{ 'vitals-banner-javascript.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "vitals-banner",
+  "class": "vitals-banner-parent",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "desktop_banner_image",
+      "label": "Banner Image - Desktop"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_banner_image",
+      "label": "Banner Image - Mobile"
+    },
+    {
+      "type": "image_picker",
+      "id": "vitals_logo",
+      "label": "Vitals Logo"
+    },
+    {
+      "type": "textarea",
+      "id": "vitals_heading",
+      "label": "Vitals Heading"
+    },
+     {
+      "type": "text",
+      "id": "pdf_file",
+      "label": "Vitals Report PDF"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Vitals Banner"
+    }
+  ]
+}
+{% endschema %}

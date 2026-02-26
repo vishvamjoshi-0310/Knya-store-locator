@@ -1,0 +1,44 @@
+  <div class="newsSlide-bg">
+    <div class="newsSlide-logo">
+      {% if block.settings.logo %}
+      <picture>
+        <source type="image/webp" srcset="{{ block.settings.logo | image_url: width: 200, format: 'webp' }}">
+        <source srcset="{{ block.settings.logo | image_url: width: 200 }}">
+        <img
+          src="{{ block.settings.logo | image_url: width: 200 }}"
+          loading="lazy"
+          width="200"
+          height="auto"
+          alt="{{ block.settings.logo.alt | escape }}"
+        >
+      </picture>
+      {% endif %}
+    </div>
+
+    <div class="newsSlide-summary font-heebo-regular">
+      {{ block.settings.summary }}
+    </div>
+
+    <div class="newsSlide-read font-heebo-medium">
+      <a href="{{ block.settings.url }}" target="_blank">
+        <p>{{ block.settings.read_more }}</p>
+      </a>
+    </div>
+  </div>
+
+
+{% schema %}
+{
+  "name": "News Item",
+  "class": "newsSlide swiper-slide",
+  "settings": [
+    { "type": "image_picker", "id": "logo", "label": "Logo Image (200×200)" },
+    { "type": "text", "id": "summary", "label": "News Summary" },
+    { "type": "url", "id": "url", "label": "News URL" },
+    { "type": "text", "id": "read_more", "label": "Read More Text", "default": "Read More" }
+  ],
+  "presets": [
+    { "name": "News Item" }
+  ]
+}
+{% endschema %}

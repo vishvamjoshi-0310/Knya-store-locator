@@ -1,0 +1,94 @@
+{% assign engravingproductvariantID = block.settings.EngravingProductHandlepicker.selected_or_first_available_variant.id %}
+{% assign engravingproductvariantsku = block.settings.EngravingProductHandlepicker.selected_or_first_available_variant.sku %}
+<div class="embroidery-box">
+  <div class="loading-overlay__spinner pdpLoader">
+    <svg
+      aria-hidden="true"
+      focusable="false"
+      role="presentation"
+      class="spinner"
+      viewBox="0 0 66 66"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+    </svg>
+  </div>
+
+  {% render 'engraving-box-new', section: section, block: block %}
+</div>
+{% render 'engraving-popup', section: section, block: block %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.loading-overlay__spinner').forEach((each) => {
+      each.classList.remove('pdpLoader');
+      each.style.display = 'none';
+    });
+  });
+</script>
+{% schema %}
+{
+  "name": "Engraving Product",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Engraving Settings"
+    },
+    {
+      "id": "showEngraving",
+      "type": "checkbox",
+      "label": "Show Engraving",
+      "default": true
+    },
+    {
+      "id": "EngravingProductHandlepicker",
+      "type": "product",
+      "label": "Product Handle"
+    },
+    {
+      "id": "EngravingLeftImage_desk",
+      "type": "image_picker",
+      "label": "Main Image for Engraving left Image For Desktop"
+    },
+    {
+      "id": "EngravingLeftImage_mob",
+      "type": "image_picker",
+      "label": "Main Image for Engraving left Image For Mobile"
+    },
+    {
+      "type": "text",
+      "id": "heading_text_emgrav",
+      "label": "Heading Text for Engraving",
+      "default": "Add Engraving"
+    },
+    {
+      "type": "text",
+      "id": "subheading_text_emgrav",
+      "label": "SubHeading Text for Engraving",
+      "default": "Add your Name/Logo/ Icon "
+    },
+    {
+      "type": "text",
+      "id": "heading_second_text_emgrav",
+      "label": "Heading Text for Engraving",
+      "default": "No, I’ll Pass"
+    },
+    {
+      "type": "text",
+      "id": "subheading_second_text_emgrav",
+      "label": "Heading second Text for Engraving",
+      "default": "No, I’ll Pass"
+    },
+    {
+      "type": "richtext",
+      "id": "Engravingbullets",
+      "label": "Engraving bullets points"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Engraving Product"
+    }
+  ]
+}
+{% endschema %}

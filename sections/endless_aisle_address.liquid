@@ -1,0 +1,111 @@
+{% style %}
+      #{{ section.id }} {
+      margin-top: {{section.settings.margin_top_desktop}}px;
+      margin-bottom: {{section.settings.margin_bottom_desktop}}px;
+    }
+    @media(max-width: 600px){
+        #{{ section.id }} {
+      margin-top: {{section.settings.margin_top_Mobile}}px;
+      margin-bottom: {{section.settings.margin_bottom_Mobile}}px;
+    }
+    }
+  .endless_aisle_address{background: {{section.settings.color_back2}};}
+ 
+{% endstyle %}
+<section class="{{ section.id }} page-width-updated" id ="{{ section.id }}">
+ <div class="endless-aisle__maincontainer">
+    <div class="endless-aisle__subcontainer">
+      <div class="endless-aisle__container">
+        <div class="endless-aisle__header">
+          <div class="endless-aisle__customerInformation">
+          <h2><strong>Customer Name:</strong> <span id="endless-aisle__customer-name">Loading...</span></h2>
+          <h2><strong>Customer Email:</strong> <span id="endless-aisle__customer-email">Loading...</span></h2>
+          </div>
+          <div class="endless-aisle__nav-buttons">
+            <button
+              id="endless-aisle__prev-btn"
+              class="endless-aisle__nav-btn endless-aisle__logout-btn endless-aisle__address_back"
+              onclick="goBackToLogin()"
+              disabled
+            >
+              Prev
+            </button>
+            <button id="endless-aisle__next-btn"  onclick="goNextToLogin()" class="endless-aisle__nav-btn endless-aisle__logout-btn" disabled>Next</button>
+          </div>
+        </div>
+
+        <div class="endless-aisle__section">
+          <h3>Customer Address</h3>
+          <div id="endless-aisle__address-grid" class="endless-aisle__address-grid"></div>
+        </div>
+      </div>
+      <div class="endless-aisle__continue-btnContainer" style="margin-top: 20px;">
+  <button 
+    class="endless-aisle__continue-btn"
+    onclick="handleContinueClick()"
+  >
+    Verify Customer
+  </button>
+</div>
+    </div>
+  </div>
+</section>
+
+
+{% schema %}
+  {
+    "name": "endless-aisle--addresses",
+    "class": "endless_aisle_address",
+    "settings": [
+      {
+          "type": "color",
+          "id": "color_back2",
+          "label": "Body background color for Address",
+          "default": "#fffefb"
+        },
+       {
+      "type": "range",
+      "id": "margin_bottom_desktop",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Bottom Desktop",
+      "default": 36
+    },
+     {
+      "type": "range",
+      "id": "margin_top_desktop",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Top Desktop",
+      "default": 36
+    },
+     {
+      "type": "range",
+      "id": "margin_bottom_Mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Bottom Mobile",
+      "default": 20
+    },
+     {
+      "type": "range",
+      "id": "margin_top_Mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Top Desktop",
+      "default": 20
+    }
+    ],
+     "presets": [{
+    "name": "endless-aisle--addresses"
+  }]
+  }
+{% endschema %}

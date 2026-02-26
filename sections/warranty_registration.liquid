@@ -1,0 +1,159 @@
+{{ 'warranty-registration-stylesheet.css' | asset_url | stylesheet_tag: preload: true }}
+<div class="warranty-registration-mobile-breadcrumbs">
+  <a href="{{ routes.root_url }}">Home</a> > <a href="/pages/stethoscope">Stethoscope</a> >
+  <a class="warranty" href="/pages/stethoscope-warranty-registration">Warranty</a>
+</div>
+<div class="warranty-registration">
+  <div class="warranty-registration-image-container">
+    {% if section.settings.warranty_registration_image != blank %}
+        <picture>
+        <source
+            srcset="{{ section.settings.warranty_registration_image | image_url: width: 1020 }}"
+            media="(min-width: 1020px)">
+        <source
+            srcset="{{ section.settings.warranty_registration_image | image_url: width: 800 }}"
+            media="(min-width: 800px)">
+    
+        {{ section.settings.warranty_registration_image
+            | image_url: width: 1400
+            | image_tag:
+                loading: 'eager',
+                fetchpriority: 'high',
+                height: 'auto',
+                widths: '800, 1020',
+                class: ''
+        }}
+        </picture>
+    {% endif %}
+  </div>
+  <div class="warranty-registration-form-container">
+    <div class="warranty-registration-text-container">
+      <p class="warranty-registration-heading-dekstop">{{ section.settings.warranty_registration_desktop_heading }}</p>
+      <p class="warranty-registration-heading-mobile">{{ section.settings.warranty_registration_mobile_heading }}</p>
+      <p class="warranty-registration-subheading">{{ section.settings.warranty_registration_subheading }}</p>
+    </div>
+    <div class="warranty-registration-form">
+      <div class="login-input-fields-container">
+        <label for="warranty-registration-name">Name *</label>
+        <input
+          type="text"
+          class="warranty-registration-input"
+          id="warranty-registration-name"
+          placeholder="Name"
+          name="name"
+          required
+        >
+      </div>
+      <div class="login-input-fields-container">
+        <label for="warranty-registration-email">Email ID *</label>
+        <input
+          type="email"
+          class="warranty-registration-input"
+          id="warranty-registration-email"
+          placeholder="Email ID"
+          name="email"
+          required
+        >
+      </div>
+      <div class="login-input-fields-container">
+        <label for="warranty-registration-phone">Phone Number *</label>
+        <input
+          type="tel"
+          class="warranty-registration-input"
+          id="warranty-registration-phone"
+          placeholder="Phone Number"
+          name="phone"
+          required
+        >
+      </div>
+      <div class="login-input-fields-container">
+        <label for="warranty-registration-order-id">Order ID *</label>
+        <input
+          type="text"
+          class="warranty-registration-input"
+          id="warranty-registration-order-id"
+          placeholder="Order ID"
+          inputmode="numeric"
+          pattern="\d{1,6}"
+          name="order-id"
+          required
+        >
+      </div>
+    </div>
+    <button class="warranty-registration-submit-button">Submit</button>
+  </div>
+</div>
+
+<!-- Warranty Registration Success Snackbar -->
+<div id="warranty-snackbar" class="warranty-snackbar" style="display: none;">
+  <div class="warranty-tick-gif">
+    {% if section.settings.tick_image %}
+        {{
+          section.settings.tick_image
+          | image_url: width: 100
+          | image_tag: widths: '80,100', loading: 'lazy', height: 'auto', class: '', fetchpriority: 'low'
+        }}
+    {% endif %}
+  </div>
+  <div class="success-container">
+    <span class="success-message">{{ section.settings['success-message'] }}</span>
+    <span class="success-description">{{ section.settings['success-description'] }}</span>
+  </div>
+</div>
+<div id="warranty-error-snackbar" class="warranty-snackbar" style="display: none;">
+  <div class="failure-container">
+    <span class="failure-message">Something went wrong!!</span>
+    <span class="failure-description"> Please try again later.</span>
+  </div>
+</div>
+
+<script src="{{ 'warranty-registration-javascript.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "warranty-registration",
+  "class": "warranty-registration-parent",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "warranty_registration_image",
+      "label": "Warranty Registration Image"
+    },
+    {
+      "type": "text",
+      "id": "warranty_registration_desktop_heading",
+      "label": "Warranty Registration Desktop Heading"
+    },
+    {
+      "type": "text",
+      "id": "warranty_registration_mobile_heading",
+      "label": "Warranty Registration Mobile Heading"
+    },
+    {
+      "type": "text",
+      "id": "warranty_registration_subheading",
+      "label": "Warranty Registration Subheading"
+    },
+    {
+      "type": "image_picker",
+      "id": "tick_image",
+      "label": "Tick GIF"
+    },
+    {
+      "type": "text",
+      "id": "success-message",
+      "label": "Success Message"
+    },
+    {
+      "type": "text",
+      "id": "success-description",
+      "label": "Success Description"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Warranty Registration"
+    }
+  ]
+}
+{% endschema %}

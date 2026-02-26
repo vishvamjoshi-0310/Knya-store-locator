@@ -1,0 +1,1174 @@
+.ifnoorder {
+  text-align: center;
+}
+.font-heebo-regular_knya_account {
+  font-family: "Heebo-Regular";
+}
+.font-heebo-medium_knya_account {
+  font-family: "Heebo-Medium";
+}
+.noordercollectionlinkstyle {
+  display: inline-flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  border: 0 !important;
+  padding: 0 3rem !important;
+  cursor: pointer !important;
+  font: inherit !important;
+  font-size: 1.5rem !important;
+  text-decoration: none !important;
+  color: rgb(var(--color-button-text)) !important;
+  transition: box-shadow var(--duration-short) ease !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  background-color: rgba(var(--color-button), var(--alpha-button-background)) !important;
+  border-radius: 6px;
+
+  padding: 1rem 1.5rem !important;
+}
+
+.customer.account {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.account-container {
+  max-width: 90%;
+  width: 100%;
+  margin: 10px auto;
+  padding: 0 15px;
+  font-family: "Heebo-Regular";
+}
+
+.header-title {
+  text-align: center;
+  padding-bottom: 40px;
+  border-bottom: 1px solid #ddd;
+  font-size: clamp(44px, calc(47 * (100vw / 1440)), 57px);
+}
+
+.account-tab {
+  margin: 50px 0;
+  display: flex;
+}
+
+.account-tab .tab {
+  max-width: 25.68%;
+  width: 100%;
+  margin-right: 3%;
+  display: block;
+}
+
+.account-tab .tab button {
+  display: block;
+  background: transparent;
+  color: black;
+  padding: 10px 0px;
+  margin: 0;
+  width: 100%;
+  outline: none;
+  text-align: left;
+  cursor: pointer;
+  transition: 0.3s;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 0;
+}
+
+.account-tab .left-section {
+  display: block;
+  transition: 0.3s all;
+}
+
+.left-section .tablinks {
+  text-decoration: none;
+  padding: 10px 0px;
+  font-size: clamp(16px, calc(18 * (100vw / 1440)), 20px);
+  text-transform: uppercase;
+  color: rgba(var(--color-foreground), 0.75);
+  letter-spacing: 1px;
+  display: flex;
+  justify-content: space-between;
+  font-family: "Heebo-Regular";
+
+  transition: 0.3s all;
+}
+
+.account-tab .tab .tablinks:hover {
+  color: var(--gradient-base-accent-1);
+  font-weight: bold;
+  transition: all 0.3s;
+  text-shadow: 0.5px 0px var(--gradient-base-accent-1);
+  font-family: Heebo-Medium !important  ;
+}
+
+.customer .account-tab .tablinks:after {
+  box-shadow: none;
+}
+
+.account-tab .tab .tablinks.active {
+  color: var(--gradient-base-accent-1);
+  font-weight: bold;
+}
+
+.account-tab .left-section .nav-caret-icon-container {
+  width: 11px;
+  display: inline-block;
+  height: 11px;
+  display: none;
+}
+
+.account-tab .left-section .nav-caret-icon {
+  width: 100%;
+  object-fit: cover;
+  height: auto;
+}
+
+.account-tab .tab .item-counter {
+  background-color: var(--gradient-base-accent-1);
+  border-radius: 30px;
+  color: white;
+  padding: 0 5px;
+  display: inline-block;
+  min-width: 35px;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Profile Right Section */
+
+.account-tab .right-section {
+  max-width: 71%;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* spinner code */
+#spinner:not([hidden]) {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#spinner::after {
+  content: "";
+  width: 80px;
+  height: 80px;
+  border: 2px solid #f3f3f3;
+  border-top: 3px solid #a6a09f;
+  border-radius: 100%;
+  will-change: transform;
+  animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.account-tab .right-section .tabcontent {
+  padding: 0px 12px;
+  border-left: none;
+  display: none;
+  scroll-margin-top: 56.25vh;
+}
+
+.account-tab .tabcontent-header {
+  display: none;
+}
+
+.account-tab .back-icon-container {
+  width: 11px;
+  height: 11px;
+  margin-right: 5px;
+}
+
+.back-icon {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  vertical-align: top;
+}
+
+.account-tab .profile-data {
+  display: flex;
+  margin-bottom: 15px;
+  font-family: "Heebo-Regular";
+  align-items: center;
+  min-height: 32px;
+}
+
+.account-tab .profile-data-title,
+.account-tab .profile-data-content {
+  padding: 0;
+  margin: 0;
+}
+
+.account-tab .profile-data-title {
+  max-width: 26.06%;
+  width: 100%;
+  text-transform: uppercase;
+  font-size: clamp(16px, calc(18 * (100vw / 1440)), 20px);
+  letter-spacing: 1px;
+  min-width: 220px;
+}
+
+.account-tab .profile-data-content {
+  font-size: clamp(16px, calc(18 * (100vw / 1440)), 20px);
+}
+
+.account-tab .right-section .tab-button {
+  font-size: clamp(13.5px, calc(15 * (100vw / 1440)), 17px);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 11px 20px 9px;
+  border-radius: 6px;
+  cursor: pointer;
+  width: inherit;
+  margin: 0;
+  font-family: "Heebo-Medium";
+  border: 1px solid rgba(var(--color-button), var(--alpha-button-background));
+}
+
+.btnEditProfile,
+.btnSaveProfile,
+.btnSaveAddress,
+.btnUpdateAddress {
+  border: 1px solid rgb(72, 47, 143);
+  background-color: rgb(72, 47, 143);
+  color: #fff;
+}
+
+/* My profile - editModal */
+
+.customer.account .account-tab .form-label {
+  text-align: left;
+  display: block;
+  text-transform: uppercase;
+  font-family: "Heebo-Regular";
+}
+
+.customer .account-tab .field input,
+.customer .account-tab .field input:not(:placeholder-shown),
+.customer .account-tab .field input:focus {
+  padding: 0;
+}
+
+.customer.account .account-tab .field {
+  min-height: 40px;
+  align-items: center;
+}
+
+.customer .account-tab .field:after,
+.customer .account-tab .field:hover.field:after {
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  box-shadow: none;
+}
+
+.customer.account .account-tab #ProfileForm-Phone::placeholder {
+  opacity: 1;
+  display: flex;
+  align-items: center;
+}
+
+.customer.account .account-tab .btnSaveProfile,
+.account-tab .btnResetPassword {
+  margin-top: 0px;
+  text-transform: uppercase;
+  width: inherit;
+  margin-left: 1rem;
+}
+
+.customer .account-tab button,
+.customer .account-tab button:after {
+  border-radius: 6px;
+}
+
+.profile-editModal {
+  display: none;
+}
+
+.account-tab .account-page-form {
+  margin-top: 0;
+}
+
+.account-tab .right-section .form-label {
+  max-width: 50%;
+  width: 100%;
+  letter-spacing: 1px;
+  font-size: clamp(16px, calc(18 * (100vw / 1440)), 20px);
+  line-height: clamp(21px, calc(22 * (100vw / 1440)), 24px);
+  margin: 5px 0 7px;
+}
+
+.account-tab .right-section .form-label .required {
+  color: red;
+}
+
+.account-tab .right-section .field {
+  max-width: 60%;
+  width: 100%;
+  padding: 0 12px;
+  margin: 0;
+  margin-bottom: 15px;
+  background: transparent;
+}
+
+.account-tab .right-section .field :is(input, select) {
+  font-family: "Heebo-Regular";
+  background: transparent;
+  padding: 0;
+}
+
+.profile-editModal .profile-edit-form .field .select select:focus,
+.profile-editModal .profile-edit-form .field .select select:after,
+.profile-editModal .profile-edit-form .field .select select:hover,
+.customer .profile-editModal .profile-edit-form .field select:focus-visible,
+.profile-editModal .profile-edit-form .field .select:hover.select:after {
+  box-shadow: none;
+}
+
+.address-city-country .select:after,
+.address-city-country .select:focus,
+.address-city-country .select:hover,
+.address-city-country .select:focus-visible {
+  box-shadow: none;
+}
+
+.address-city-country .select select:focus,
+.address-city-country .select select:after,
+.address-city-country .select select:hover,
+.address-city-country .select select:focus-visible,
+.address-city-country .select:hover.select:after {
+  box-shadow: none;
+}
+
+.profile-editModal .profile-edit-form .field .iti__flag-container,
+.account-tab .address-addModal .field .iti__flag-container,
+.account-tab .address-editModal .field .iti__flag-container {
+  min-width: 74px;
+}
+
+.profile-editModal .profile-edit-form .iti__flag-container .iti__country-list,
+.account-tab .address-editModal .field .iti__flag-container .iti__country-list,
+.account-tab .address-editModal .field .iti__flag-container .iti__country-list {
+  padding: 0;
+}
+
+.account-tab .profile-editModal .profile-edit-form .field #profileForm-Phone,
+.account-tab .right-section .address-addModal .field .addNewAddressForm-Phone {
+  /* margin-left: 25px; */
+  padding-left: 78px !important;
+}
+
+.profile-editModal .profile-edit-form .field .mobile-code-icon,
+.account-tab .address-addModal .field .mobile-code-icon,
+.account-tab .address-editModal .field .mobile-code-icon {
+  position: absolute;
+  left: 65px;
+}
+
+.account-tab .address-editModal .field .mobile-code-icon {
+  display: none;
+}
+
+.profile-editModal .profile-edit-form .field .icon-container,
+.account-tab .address-addModal .field .icon-container {
+  width: 14px;
+  height: 14px;
+}
+
+.account-tab .address-editModal .field .icon-container {
+  display: none;
+}
+
+.profile-editModal .profile-edit-form .down-arrow-icon,
+.account-tab .address-addModal .field .down-arrow-icon,
+.account-tab .address-editModal .field .down-arrow-icon {
+  object-fit: cover;
+  width: 100%;
+  height: auto;
+  vertical-align: super;
+}
+
+.profile-editModal .profile-edit-form #profileForm-Gender {
+  padding: 0 10px;
+}
+
+/* For My profile Status Messages */
+
+.profile-editModal .profileForm-errors,
+.profile-editModal .profileForm-status,
+.profile-viewModal .profileViewModal-status,
+.addAddressForm-errors,
+.addAddressForm-status,
+.deliveryAddressTab-status,
+.editAddressForm-errors,
+.editAddressForm-status,
+.pass-error {
+  color: white;
+  display: inline;
+  bottom: 2vh;
+  margin: 0;
+
+  position: fixed;
+  z-index: 1;
+  font-weight: bold;
+  padding: 10px 20px;
+  /* margin-left: 130px; */
+  display: none;
+  min-width: 300px;
+  text-align: center;
+  border-radius: 6px;
+  /* opacity: 0; */
+  /* transition: all 0.5s; */
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.message-animation {
+  opacity: 1;
+  display: block;
+  bottom: 4vh;
+  transition: all 0.5s;
+}
+
+.profile-editModal .profileForm-errors,
+.addAddressForm-errors,
+.editAddressForm-errors,
+.pass-error {
+  border: 1px solid red;
+  background: red;
+}
+
+.profile-editModal .profileForm-status,
+.addAddressForm-status,
+.editAddressForm-status {
+  border: 1px solid black;
+  background: black;
+}
+
+.profile-viewModal .profileViewModal-status,
+.deliveryAddressTab-status {
+  border: 1px solid #39a706;
+  background: #39a706;
+}
+
+.addAddressForm-phone-errors {
+  text-align: center;
+  color: red;
+}
+
+.btnCancelProfile,
+.btnCancelAddress,
+.btnCancelUpdateAddress {
+  border: 1px solid #ccc;
+  color: #222;
+}
+
+.address-addModal,
+.address-editModal {
+  display: none;
+}
+
+.account-tab .right-section .btnCancelProfile {
+  border: 1px solid #ccc;
+  color: #222;
+  background-color: transparent;
+}
+
+.profile-editModal .oxi_social_wrapper {
+  display: none;
+}
+
+/* Delivery Address */
+
+.account-tab .right-section .delivery-address-header {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  /* justify-content: center; */
+}
+
+.account-tab .right-section .customer.addresses {
+  width: 100%;
+  max-width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.account-tab .delivery-address-container :is(.address-list, .address-list-item) {
+  margin: 0;
+}
+
+.account-tab .right-section .address-block {
+  min-width: 260px;
+  width: 260px;
+  position: relative;
+  border: 1px solid lightgray;
+  min-height: 235px;
+  border-radius: 5px;
+  text-align: left;
+  padding: 20px;
+}
+
+.account-tab .right-section .address-block:hover {
+  border: 1px solid gray;
+}
+
+.account-tab .right-section .address-block:hover .address-buttons {
+  transform: translateX(-50px);
+  opacity: 1;
+  transition: all 0.3s;
+}
+
+/* .account-tab .right-section .address-block p{
+        font-size: clamp(13.5px, calc(14 * (100vw / 1440)), 14.5px);
+        word-break: break-word;
+        width: 100%;
+    } */
+
+.address-block .customer-address-data {
+  text-align: left;
+  font-size: clamp(13.5px, calc(14 * (100vw / 1440)), 15px);
+  word-break: break-word;
+  width: 100%;
+}
+
+.address-block .customer-address-data .address-personname {
+  font-weight: bold;
+  margin: 0 0 10px;
+  font-family: "Heebo-Medium";
+  text-transform: capitalize;
+}
+
+.account-tab .right-section .add-new-address {
+  /* border: 1px solid lightgray; */
+}
+
+.account-tab .right-section .btnAddAddress {
+  background: transparent;
+  /* border: 1px solid; */
+  color: black;
+  display: flex;
+  flex-direction: column;
+  font-size: clamp(13.5px, calc(14 * (100vw / 1440)), 14.5px);
+  margin: 0;
+  display: flex;
+  height: 100%;
+}
+
+.account-tab .right-section .default-address {
+  border: 1px solid lightgray;
+}
+
+.account-tab .right-section .default-address > h2 {
+  text-transform: uppercase;
+  margin: 0;
+  padding-bottom: 15px;
+  font-size: clamp(14px, calc(15 * (100vw / 1440)), 16px);
+}
+
+.account-tab .right-section .address-buttons {
+  width: 22px;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 10px;
+  right: 0px;
+  opacity: 0;
+}
+
+.account-tab .right-section .delivery-address-btn {
+  color: #121212bf;
+  background-color: transparent;
+  margin: 0;
+  width: 20px;
+  min-width: 20px;
+}
+
+.account-tab .delivery-address-container .add-address-icon-container {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 15px;
+}
+
+.edit-icon-container,
+.delete-icon-container,
+.markasdefault-icon-container {
+  width: 20px;
+  height: 20px;
+  position: relative;
+}
+
+.edit-icon-container .tooltip,
+.delete-icon-container .tooltip,
+.markasdefault-icon-container .tooltip {
+  visibility: hidden;
+  color: white;
+  position: relative;
+  font-size: 14px;
+  border: 5px solid black;
+  padding: 0px 5px;
+  background-color: black;
+  min-width: 100px;
+  margin: 2em auto;
+  text-align: center;
+  border-radius: 6px;
+  right: 110px;
+  bottom: 58px;
+}
+
+.edit-icon-container .tooltip::before,
+.delete-icon-container .tooltip::before,
+.markasdefault-icon-container .tooltip::before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 0px;
+  right: 0;
+  top: 50%;
+  border: 7px solid transparent;
+  border-right: 0;
+  /* border-left: 15px solid #5494db; */
+  border-left: 7px solid black;
+  transform: translate(calc(100% + 5px), -50%);
+}
+
+.account-tab .right-section .delivery-address-btn:hover .tooltip,
+.delete-icon-container:hover .tooltip,
+.markasdefault-icon-container:hover .tooltip {
+  visibility: visible;
+}
+
+.delivery-address-btn.btnEditAddressModal:hover .edit-icon svg,
+.delivery-address-btn.btnDeleteAddress:hover .delete-icon svg,
+.delivery-address-btn.btnMarkAsDefault:hover .markasdefault-icon svg {
+  fill: #482f8f;
+}
+.add-address-icon,
+.markasdefault-icon,
+.delete-icon,
+.edit-icon {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.account-tab .address-buttons .btnEditAddressModal {
+  /* background: transparent;
+      color: black;
+      border: 1px solid; */
+}
+
+.account-tab .delivery-address-container .address-buttons form {
+  margin: 0;
+}
+
+.account-tab .right-section .different-address-container {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 10px;
+  row-gap: 20px;
+  /* justify-content: center; */
+}
+
+/* address-addModal  */
+
+/* address-editmodal */
+
+.account-tab .address-editModal .edit-address-form-list {
+  list-style: none;
+  margin-top: 0;
+}
+
+.account-tab .address-editModal .edit-address-form {
+  display: none;
+}
+
+.account-tab .address-addModal .address-footer,
+.account-tab .address-editModal .address-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.account-tab .address-addModal .btnCancelAddress,
+.account-tab .address-editModal .btnCancelEditAddress {
+  min-height: 30px;
+  height: 45px;
+  background: transparent;
+  color: var(--color-base-text);
+  border: 1px solid rgb(204, 204, 204);
+}
+
+.account-tab .address-editModal .btnEditAddress {
+  width: initial;
+  height: 45px;
+  margin: 0;
+}
+
+.account-tab .right-section .address-editModal :is(.form-label, .field),
+.account-tab .right-section .address-addModal :is(.form-label, .field) {
+  max-width: 100%;
+}
+
+.account-tab .address-editModal :is(.address-name-row, .address-zip-contact, .address-city-country),
+.account-tab .address-addModal :is(.address-name-row, .address-zip-contact, .address-city-country) {
+  display: flex;
+  gap: 2%;
+}
+
+.address-editModal :is(.address-firstname, .address-lastname),
+.address-addModal :is(.address-firstname, .address-lastname) {
+  width: 50%;
+}
+
+.address-editModal :is(.address-company, .address-zip, .address-contactnumber),
+.address-addModal :is(.address-company, .address-zip, .address-contactnumber) {
+  width: 32%;
+}
+.address-editModal :is(.address-city, .address-country, .address-province),
+.address-addModal :is(.address-city, .address-country, .address-province) {
+  width: 32%;
+}
+
+.address-editModal .address-setdefault-checkbox,
+.address-addModal .address-setdefault-checkbox {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.address-editModal input[type="checkbox"],
+.address-addModal input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+}
+
+.address-editModal .address-setdefault-checkbox .address-setdefault-label,
+.address-addModal .address-setdefault-checkbox .address-setdefault-label {
+  font-size: clamp(16px, calc(18 * (100vw / 1440)), 20px);
+  text-transform: uppercase;
+}
+
+.addAddressForm-errors,
+.editAddressForm-errors {
+}
+
+.addAddressForm-status,
+.editAddressForm-status {
+}
+
+/* My Orders */
+
+.order-container {
+  border: 1px solid gray;
+  width: 100%;
+}
+
+.order-content,
+.view-order-modal {
+  padding: 10px;
+}
+
+.order-row,
+.order-details,
+.order-detail-buttons,
+.address-container,
+.sub-total,
+.shipping-cost,
+.grand-total,
+.payment-type {
+  display: flex;
+}
+
+.order-row,
+.sub-total,
+.shipping-cost,
+.grand-total,
+.payment-type {
+  justify-content: space-between;
+}
+
+.order-image-container,
+.order-details-div {
+  border: 1px solid gray;
+}
+
+.order-image-container {
+  width: 15%;
+}
+
+.order-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+.order-details-div {
+  width: 80%;
+}
+
+.order-detail-buttons {
+  justify-content: flex-end;
+}
+
+.view-order-modal {
+  display: none;
+}
+
+.active {
+  display: block;
+}
+
+.shipping-address,
+.billing-address {
+  width: 50%;
+}
+
+.shipping-address {
+  border-right: 1px solid gray;
+}
+
+.markDefault-checkbox-container {
+  display: none;
+}
+
+.customer .account-tab button,
+.customer .account-tab button:after {
+  border-radius: 6px;
+  box-shadow: none;
+}
+
+.order-container {
+  border: 1px solid gray;
+  width: 100%;
+  border-radius: 5px;
+}
+
+.order-row,
+.order-details,
+.order-detail-buttons,
+.address-container,
+.sub-total,
+.shipping-cost,
+.grand-total,
+.payment-type {
+  display: flex;
+  gap: 1%;
+}
+
+.order-row,
+.sub-total,
+.shipping-cost,
+.grand-total,
+.payment-type {
+  justify-content: space-between;
+}
+.knyamed-account .order-details-div {
+  border: none;
+}
+
+.knyamed-account .order-details {
+  gap: 20px;
+}
+.knyamed-account .order-details-div .product-name {
+  color: rgba(var(--color-button), var(--alpha-button-background));
+  font-family: "Heebo-Medium";
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+.knyamed-account .order-image-container {
+  border: none;
+}
+
+.knyamed-account .account-tab #myorders button {
+  width: 16vw;
+  text-transform: uppercase;
+}
+.knyamed-account .order-detail-buttons {
+  gap: 1%;
+}
+.knyamed-account .removeBtnBGColor {
+  background-color: transparent;
+  color: #121212bf;
+  border: 1px solid #121212bf;
+}
+
+.knyamed-account .customer button:after {
+  box-shadow: none;
+}
+
+.knyamed-account .btnReorder {
+  display: none;
+}
+
+.knyamed-account hr {
+  margin: 10px 0;
+}
+
+.knyamed-account .fontbold {
+  font-weight: bold;
+}
+
+.knyamed-account .shipping-cost p {
+}
+
+.knyamed-account .marginbottom-10 {
+  margin-bottom: 5px;
+}
+
+.knyamed-account .order-parent-container {
+  margin-bottom: 20px;
+}
+
+.order-image-container,
+.order-details-div {
+  border: 1px solid gray;
+}
+
+.shipping-address,
+.billing-address {
+  width: 50%;
+}
+.knyamed-account .shipping-address p,
+.knyamed-account .billing-address p {
+  margin-top: 5px;
+}
+
+/* ----------------MEDIA QUERIES------------ */
+
+@media screen and (max-width: 990px) {
+  .customer.account .account-container {
+    margin: 10px auto 60px;
+  }
+
+  .account-container .header-title {
+    font-size: clamp(36px, calc(40 * (100vw / 1440)), 44px);
+  }
+
+  .account-tab .tab {
+    max-width: 100%;
+    margin: 0;
+  }
+
+  .left-section .tablinks {
+    font-size: 15px;
+  }
+
+  .account-tab .left-section .nav-caret-icon-container {
+    display: block;
+  }
+
+  .account-tab .right-section {
+    max-width: 90%;
+    display: none;
+  }
+
+  /* My Profile tab */
+
+  .account-tab .tabcontent-header {
+    display: flex;
+    position: relative;
+    margin-bottom: 30px;
+  }
+
+  .account-tab .btnBack {
+    position: absolute;
+    width: 30px;
+    top: -1px;
+    height: 16px;
+    min-width: 60px;
+    min-height: 20px;
+    margin: 0;
+    padding: 0;
+    text-transform: uppercase;
+    background: transparent;
+    color: rgba(var(--color-foreground), 0.75);
+    letter-spacing: 2px;
+    font-size: 14px;
+    display: flex;
+    text-decoration: none;
+    align-items: center;
+  }
+
+  .account-tab .btnBack:before,
+  .account-tab .btnBack:after,
+  .account-tab .btnBack:hover::after {
+    box-shadow: none;
+  }
+
+  .account-tab .tabcontent-header-title {
+    margin: auto;
+    font-weight: bold;
+    font-size: 15px;
+  }
+
+  .account-tab .profile-data-title,
+  .account-tab .profile-data-content {
+    font-size: 14px;
+  }
+
+  .account-tab .profile-data-content {
+    min-width: 170px;
+    word-wrap: break-word;
+  }
+
+  /* profile-editModal */
+
+  .account-tab .right-section .form-label,
+  .account-tab .right-section .field {
+    max-width: 100%;
+    font-size: 14px;
+  }
+
+  .account-tab .right-section .field :is(input, select) {
+    font-size: 14px;
+  }
+
+  /* Address tab */
+
+  .account-tab .right-section .delivery-address-header {
+    justify-content: center;
+    margin: 0 auto 20px;
+    max-width: 90%;
+  }
+
+  .account-tab .right-section .different-address-container {
+    justify-content: center;
+    max-width: 90%;
+    margin: auto;
+  }
+
+  .account-tab .right-section .address-buttons {
+    right: 45px;
+    opacity: 1;
+  }
+
+  .account-tab .right-section .address-block:hover .address-buttons {
+    transform: none;
+    opacity: initial;
+    transition: none;
+  }
+
+  /* address-edit-modal */
+  .address-editModal .address-form-list {
+    padding: 0;
+  }
+
+  .account-tab .address-addModal :is(.address-name-row, .address-zip-contact, .address-city-country),
+  .account-tab .address-editModal :is(.address-name-row, .address-zip-contact, .address-city-country) {
+    display: block;
+    gap: initial;
+  }
+
+  .address-addModal :is(.address-firstname, .address-lastname),
+  .address-editModal :is(.address-firstname, .address-lastname) {
+    width: 100%;
+  }
+
+  .address-addModal :is(.address-company, .address-zip, .address-contactnumber),
+  .address-editModal :is(.address-company, .address-zip, .address-contactnumber) {
+    width: 100%;
+  }
+  .address-addModal :is(.address-city, .address-country, .address-province),
+  .address-editModal :is(.address-city, .address-country, .address-province) {
+    width: 100%;
+  }
+
+  .address-addModal .address-setdefault-checkbox,
+  .address-editModal .address-setdefault-checkbox {
+  }
+
+  .address-addModal input[type="checkbox"],
+  .address-editModal input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+  }
+
+  .address-addModal .address-setdefault-checkbox .address-setdefault-label,
+  .address-editModal .address-setdefault-checkbox .address-setdefault-label {
+    font-size: 14px;
+  }
+
+  /* Order tab */
+
+  .knyamed-account .right-section {
+    max-width: 100%;
+  }
+
+  .knyamed-account .order-details-div {
+    display: flex;
+    justify-content: space-between;
+  }
+  .knyamed-account .order-details-div .product-name {
+    width: 60%;
+    font-size: 12px;
+  }
+  .knyamed-account .account-container {
+    max-width: 100%;
+  }
+
+  .knyamed-account .order-details {
+    gap: 10px;
+  }
+  .knyamed-account .product-price {
+    font-size: 14px;
+  }
+  .knyamed-account .order-detail-buttons {
+    flex-direction: column;
+  }
+
+  .knyamed-account .account-tab #myorders button,
+  .knyamed-account .account-tab #mycredits button,
+  .knyamed-account .account-tab #referfriend button {
+    width: 100%;
+    margin-top: 0px;
+  }
+
+  .knyamed-account .order-row {
+    flex-direction: column;
+  }
+  .knyamed-account .order-row p {
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .knyamed-account .sub-total p {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .customer.account .account-container {
+    max-width: 100%;
+  }
+
+  .account-tab .tab {
+    max-width: 100%;
+  }
+
+  .account-tab .right-section {
+    max-width: 100%;
+    display: none;
+  }
+
+  .account-tab .profile-data-title {
+    margin-right: 2%;
+    min-width: 145px;
+  }
+}

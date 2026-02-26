@@ -1,0 +1,39 @@
+<link rel="stylesheet" href="{{ 'survey-strip-stylesheet.css' | asset_url }}" media="print" onload="this.media='all'">
+
+<div class="survey-strip">
+  <div class="survey-strip-heading">
+    <p>{{ section.settings.heading }}</p>
+  </div>
+  <div class="survey-strip-button">
+    <a href="{{ section.settings.Survey_button_link }}" target="_blank">{{ section.settings.button_text }}</a>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "survey-strip",
+  "class": "survey-strip-parent",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text"
+    },
+    {
+  "type": "url",
+  "id": "Survey_button_link",
+  "label": "Link For Survey"
+}
+  ],
+  "presets": [
+    {
+      "name": "Survey Strip"
+    }
+  ]
+}
+{% endschema %}

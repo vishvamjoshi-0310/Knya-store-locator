@@ -1,0 +1,285 @@
+.breakpoint-support-section {
+  width: 100%;
+  padding: 56px 80px !important;
+  position: relative;
+  overflow: hidden;
+}
+.desktop-bg-image{
+  display: block;
+}
+.mobile-bg-image{
+  display: none;
+}
+
+.breakpoint-support-section .breakpoint-support-parent {
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.breakpoint-support-section .breakpoint-support-bg-image {
+  position: absolute;
+  bottom: calc(50% + 60px);
+  left: 50%;
+  transform: translate(-50%, 50%);
+  width: 100vw;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.breakpoint-support-section .breakpoint-support-bg-image img {
+  width: 100vw;
+  height: 100%;
+  object-fit:cover;
+  display: block;
+
+}
+
+.breakpoint-support-section .breakpoint-support-heading {
+  font-family: Poppins-Regular;
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 64px;
+  letter-spacing: 0px;
+  color: #000000;
+  margin-bottom: 36px;
+}
+
+.breakpoint-support-section .breakpoint-support-swiper {
+  overflow: visible;
+}
+
+.breakpoint-support-section .breakpoint-support-swiper .swiper-wrapper {
+  align-items: stretch;
+}
+
+.breakpoint-support-section .breakpoint-support-swiper .swiper-slide {
+  width: auto;
+  height: auto;
+  display: flex;
+  flex-shrink: 0;
+  flex: 1 0 30%;
+}
+
+.breakpoint-support-section .breakpoint-support-swiper-static .swiper-wrapper {
+  display: flex;
+  gap: 36px;
+}
+
+.breakpoint-support-section .breakpoint-support-swiper-static .swiper-slide {
+  width: auto;
+  flex-shrink: 0;
+}
+
+.breakpoint-support-section .breakpoint-support-swiper .swiper-pagination {
+  position: relative;
+  bottom: 0;
+}
+
+.breakpoint-support-section .breakpoint-support-card {
+  flex: 1;
+  height: 469px;
+  border-radius: 22px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 36px 32px;
+  box-sizing: border-box;
+}
+
+.breakpoint-support-section .breakpoint-support-card-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.breakpoint-support-section .breakpoint-support-card-title {
+  margin: 0;
+  font-family: Poppins-SemiBold;
+  font-size: 44px;
+  font-weight: 600;
+  line-height: 56px;
+  letter-spacing: 0px;
+  color: #4949E9;
+  margin-bottom: 22px;
+  width: 80%;
+}
+
+.breakpoint-support-section .breakpoint-support-card-subtitle {
+  font-family: Poppins-Medium;
+  font-size: 18px;
+  font-weight: 500;
+  color: #616161;
+  line-height: 28px;
+  letter-spacing: 0px;
+  margin: 0;
+}
+.breakpoint-support-parent .swiper .swiper-pagination{
+  margin-top: 22px;
+}
+.breakpoint-support-parent .swiper .swiper-pagination .swiper-pagination-bullet-active{
+  background-color: #000000;
+}
+/* Support Button Styles */
+.breakpoint-support-section .breakpoint-support-button {
+  margin-top: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.breakpoint-support-section .breakpoint-support-button a {
+  display: flex;
+  padding: 24px;
+  gap: 14px;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  font-family: Poppins-SemiBold;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 36px;
+  letter-spacing: 0px;
+  text-decoration: none;
+  width: fit-content;
+  background-color: #4949E9;
+  border-radius: 45px;
+}
+
+.breakpoint-support-section .breakpoint-support-button a svg {
+  height: 36px;
+  width: 36px;
+  flex-shrink: 0;
+}
+
+.breakpoint-support-section .breakpoint-support-button a svg rect {
+  fill: #FFFFFF;
+}
+
+.breakpoint-support-section .breakpoint-support-button a svg path {
+  stroke: #FFFFFF;
+}
+
+@media screen and (max-width: 768px) {
+  .breakpoint-support-section {
+    padding: 36px 18px !important;
+  }
+  .desktop-bg-image{
+    display: none;
+  }
+  .mobile-bg-image{
+    display: block;
+  }
+  
+  .breakpoint-support-section .breakpoint-support-bg-image {
+    position: absolute;
+    /* bottom: 56%; */
+    /* left: 133%; */
+    /* bottom: unset; */
+    /* left: unset; */
+    width: max-content;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+    transform: translate(-23%, 61%);
+  }
+  .breakpoint-support-section .breakpoint-support-bg-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: max-content;
+    display: block;
+  }
+  
+  .breakpoint-support-section .breakpoint-support-heading {
+    font-size: 22px;
+    margin-bottom: 22px;
+  }
+  
+  .breakpoint-support-section .breakpoint-support-swiper {
+    overflow: visible;
+    /* padding-left: 18px; */
+  }
+  
+  .breakpoint-support-section .breakpoint-support-swiper .swiper-wrapper {
+    align-items: stretch;
+  }
+  
+  .breakpoint-support-section .breakpoint-support-swiper .swiper-slide {
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-shrink: 0;
+    flex: 1 0 92%;
+  }
+  
+  .breakpoint-support-section .breakpoint-support-swiper-static .swiper-wrapper {
+    display: flex;
+    justify-content: flex-start;
+    gap: 22px;
+    /* margin-left: 18px; */
+  }
+  
+  .breakpoint-support-section .breakpoint-support-swiper-static .swiper-slide {
+    width: auto;
+    flex-shrink: 0;
+  }
+  
+  .breakpoint-support-section .breakpoint-support-swiper .swiper-pagination {
+    position: relative;
+    bottom: 0;
+  }
+  
+  .breakpoint-support-section .breakpoint-support-card {
+    flex: 1;
+    height: 385px;
+    padding: 36px 20px;
+  }
+
+  .breakpoint-support-section .breakpoint-support-card-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .breakpoint-support-section .breakpoint-support-card-title {
+    font-size: 32px;
+    line-height: 38px;
+    margin-bottom: 22px;
+    width: 78%;
+  }
+  
+  .breakpoint-support-section .breakpoint-support-card-subtitle {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .breakpoint-support-parent .swiper .swiper-pagination{
+    margin-top: 14px;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    padding: 8px 12px;
+  }  
+    .breakpoint-support-section .breakpoint-support-button a {
+    padding: 18px;
+    gap: 8px;
+    font-size: 16px;
+    line-height: 24px;
+  }
+  
+  .breakpoint-support-section .breakpoint-support-button a svg {
+    height: 24px;
+    width: 24px;
+  }
+}
+
+
+

@@ -1,0 +1,2492 @@
+{{ 'customer.css' | asset_url | stylesheet_tag }}
+{{ 'custom-account-page.css' | asset_url | stylesheet_tag }}
+{{ 'intlTelInput.min.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'customer.js' | asset_url }}" defer></script>
+<!-- <script src="{{ 'intlTelInput.min.js' | asset_url }}" async></script> -->
+<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/intlTelInput.min.js"></script>
+
+{%- style -%}
+    .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+
+  @media screen and (min-width: 750px) {
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+
+  }}
+{%- endstyle -%}
+
+<div class="customer account section-{{ section.id }}-padding knyamed-account">
+  <section class="account-container">
+    <section class="account-header">
+      <h1 class="header-title  font-heebo-medium_knya_account">Hi {{ customer.first_name }}</h1>
+    </section>
+    <section class="account-tab">
+      <div class="tab left-section">
+        <a href="#myprofile" id="myprofileTablink" class="tablinks" onclick="openTabContent(event, 'myprofile')">
+          <span class="myProfile">My Profile</span>
+          <span class="nav-caret-icon-container">
+            <img
+              class="nav-caret-icon"
+              src="https://cdn.shopify.com/s/files/1/0562/9247/5063/files/angle-right-solid.svg?v=1690517969"
+              width="320px"
+              height="auto"
+              alt="nav-caret-icon"
+            >
+          </span>
+        </a>
+        <a
+          href="#deliveryaddress"
+          class="tablinks"
+          onclick="openTabContent(event, 'deliveryaddress')"
+        >
+          <span>
+            <span class="deliveryAddress"> Delivery Address </span>
+            <span class="item-counter">{{ customer.addresses_count }}</span>
+          </span>
+          <span class="nav-caret-icon-container">
+            <img
+              class="nav-caret-icon"
+              src="https://cdn.shopify.com/s/files/1/0562/9247/5063/files/angle-right-solid.svg?v=1690517969"
+              width="320px"
+              height="auto"
+              alt="nav-caret-icon"
+            >
+          </span>
+        </a>
+        <a href="#myorders" class="tablinks" onclick="openTabContent(event, 'myorders')">
+          <span>
+            <span class="myOrders">My Orders </span>
+            <span class="item-counter">{{ customer.orders_count }} </span>
+          </span>
+          <span class="nav-caret-icon-container">
+            <img
+              class="nav-caret-icon"
+              src="https://cdn.shopify.com/s/files/1/0562/9247/5063/files/angle-right-solid.svg?v=1690517969"
+              width="320px"
+              height="auto"
+              alt="nav-caret-icon"
+            >
+          </span>
+        </a>
+
+        <a href="{{ routes.account_logout_url }}" class="tablinks logout">
+          <span class="logOut">Log Out</span>
+          <span class="nav-caret-icon-container"> </span>
+        </a>
+      </div>
+
+      <div class="right-section">
+        <div hidden id="spinner"></div>
+        <div id="myprofile" class="tabcontent">
+          <div class="tabcontent-header">
+            <a class="btnBack" href="#">
+              <div class="back-icon-container">
+                <img
+                  class="back-icon"
+                  src="https://cdn.shopify.com/s/files/1/0562/9247/5063/files/arrow-left-long-solid.svg?v=1690469619"
+                  width="512px"
+                  height="auto"
+                  alt="back-arrow-icon"
+                >
+              </div>
+              <span>Back</span>
+            </a>
+            <p class="tabcontent-header-title">My Profile</p>
+          </div>
+          <div class="profile-viewModal">
+            <div class="profile-content-container">
+              <div class="firstname profile-data">
+                <p class="profile-data-title ">First Name:</p>
+                <p class="profile-data-content">{{ customer.first_name }}</p>
+              </div>
+              <div class="lastname profile-data">
+                <p class="profile-data-title">Last Name:</p>
+                <p class="profile-data-content">{{ customer.last_name }}</p>
+              </div>
+              <div class="email profile-data">
+                <p class="profile-data-title">Email:</p>
+                <p class="profile-data-content">{{ customer.email }}</p>
+              </div>
+              <div class="contact-number profile-data">
+                <p class="profile-data-title">Contact Number:</p>
+                <p class="profile-data-content">
+                  {% if customer.phone %}
+                    {{ customer.phone }}
+                  {% else %}
+                    <i>Loading...</i>
+                  {% endif %}
+                </p>
+              </div>
+              <div class="birthdate profile-data">
+                <p class="profile-data-title">Birth Date:</p>
+                <p class="profile-data-content"><i>Loading...</i></p>
+              </div>
+              <div class="gender profile-data">
+                <p class="profile-data-title">Gender:</p>
+                <p class="profile-data-content"><i>Loading...</i></p>
+              </div>
+              <p class="profileViewModal-status"></p>
+            </div>
+            <div class="profile-footer">
+              <button class="btnEditProfile tab-button">Edit</button>
+            </div>
+          </div>
+
+          <div class="profile-editModal">
+            <div class="profile-content-container">
+              <form class="profile-edit-form account-page-form" method="post">
+                <!-- form start -->
+
+                <label class="form-label" for="profileForm-FirstName"
+                  >First Name : <span class="required">*</span></label
+                >
+
+                <div class="field">
+                  <input
+                    type="text"
+                    name="customer_first_name"
+                    id="profileForm-FirstName"
+                    {% if customer.first_name %}
+                      value="{{ customer.first_name }}"
+                    {% endif %}
+                    autocomplete="true"
+                    placeholder="{{ 'customer.register.first_name' | t }}"
+                  >
+                </div>
+
+                <label class="form-label" for="profileForm-LastName">Last Name :</label>
+                <div class="field">
+                  <input
+                    type="text"
+                    name="customer_last_name"
+                    id="profileForm-LastName"
+                    {% if customer.last_name %}
+                      value="{{ customer.last_name }}"
+                    {% endif %}
+                    autocomplete="true"
+                    placeholder="{{ 'customer.register.last_name' | t }}"
+                  >
+                </div>
+
+                <label class="form-label" for="profileForm-Email">Email :</label>
+                <div class="field">
+                  <input
+                    type="email"
+                    name="customer_email"
+                    id="profileForm-Email"
+                    {% if customer.email %}
+                      value="{{ customer.email }}"
+                    {% endif %}
+                    spellcheck="false"
+                    autocapitalize="off"
+                    autocomplete="email"
+                    aria-required="true"
+                    disabled
+                  >
+                </div>
+
+                <label class="form-label" for="profileForm-Phone"
+                  >Contact Number : <span class="required">*</span></label
+                >
+                <div class="field">
+                  <div class="mobile-code-icon icon-container">
+                    <img
+                      class="down-arrow-icon"
+                      src="https://cdn.shopify.com/s/files/1/0562/9247/5063/files/angle-down-solid.svg?v=1690446509"
+                      width="448px"
+                      height="auto"
+                      alt="angle-down-solid"
+                    >
+                  </div>
+                  <input
+                    id="profileForm-Phone"
+                    type="tel"
+                    name="customer_phone"
+                    aria-required="true"
+                    {% if customer.phone %}
+                      value="{{ customer.phone }}"
+                    {% endif %}
+                  >
+                </div>
+
+                <label class="form-label" for="profileForm-Birthdate">Birthdate :</label>
+                <div class="field">
+                  <input
+                    type="date"
+                    name="profileForm-Birthdate"
+                    id="profileForm-Birthdate"
+                  >
+                </div>
+
+                <label class="form-label" for="profileForm-Gender">Gender :</label>
+                <div class="field">
+                  <select id="profileForm-Gender" name="profileForm-Gender">
+                    <option value="">Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                  </select>
+                  <div class="icon-container">
+                    <img
+                      class="down-arrow-icon"
+                      src="https://cdn.shopify.com/s/files/1/0562/9247/5063/files/angle-down-solid.svg?v=1690446509"
+                      width="448px"
+                      height="auto"
+                      alt="angle-down-solid"
+                    >
+                  </div>
+                </div>
+              </form>
+            </div>
+            <p class="profileForm-errors"></p>
+            <p class="profileForm-status"></p>
+            <div class="profile-footer">
+              <button class="btnCancelProfile tab-button">Cancel</button>
+              <button class="btnSaveProfile tab-button">Save</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Delivery Address -->
+
+        <div id="deliveryaddress" class="tabcontent">
+          <div class="tabcontent-header">
+            <a class="btnBack" href="#">
+              <div class="back-icon-container">
+                <img
+                  class="back-icon"
+                  src="https://cdn.shopify.com/s/files/1/0562/9247/5063/files/arrow-left-long-solid.svg?v=1690469619"
+                  width="512px"
+                  height="auto"
+                  alt="back-arrow-icon"
+                >
+              </div>
+              <span>Back</span>
+            </a>
+            <p class="tabcontent-header-title">Delivery Address</p>
+          </div>
+
+          <div class="delivery-address-container">
+            <div class="existing-address">
+              <!-- main address code start -->
+
+              <div class="customer addresses section-{{ section.id }}-padding" data-customer-addresses>
+                <ul class="address-list" role="list">
+                  {%- for address in customer.addresses -%}
+                    {%- if address == customer.default_address -%}
+                      <li class="address-list-item" data-address>
+                        <div class="delivery-address-header">
+                          <div class="address-block add-new-address">
+                            <button class="btnAddAddress">
+                              <div class="add-address-icon-container">
+                                <img
+                                  class="add-address-icon"
+                                  src="https://cdn.shopify.com/s/files/1/0562/9247/5063/files/add-icon.svg?v=1690602452"
+                                  width="800px"
+                                  height="auto"
+                                  alt="Add Address Icon"
+                                >
+                              </div>
+                              <span>Add New Address</span>
+                            </button>
+                          </div>
+                          <div class="address-block default-address">
+                            <h2 class="font-heebo-regular_knya_account">{{ 'customer.addresses.default' | t }}</h2>
+
+                            <div class="customer-address">
+                              <ul class="customer-address-data">
+                                <li class="address-personname">
+                                  {{ address.first_name }}
+                                  {{ address.last_name }}
+                                </li>
+                                <li class="address-company font-heebo-regular_knya_account">{{ address.company }}</li>
+                                <li class="cust-add-address1 font-heebo-regular_knya_account">
+                                  {{ address.address1 }}
+                                </li>
+                                <li class="cust-add-address2 font-heebo-regular_knya_account">
+                                  {{ address.address2 }}
+                                </li>
+                                <li class="address-city font-heebo-regular_knya_account">
+                                  {{ address.zip }}
+                                  {{ address.city }}
+                                  {{ address.province_code }}
+                                </li>
+                                <li class="address-country  font-heebo-regular_knya_account">{{ address.country }}</li>
+                                <li class="address-phone font-heebo-regular_knya_account">{{ address.phone }}</li>
+                              </ul>
+                            </div>
+
+                            <div class="address-buttons">
+                              <button
+                                class="delivery-address-btn btnEditAddressModal"
+                                onclick="openEditAddressModal('{{address.id}}')"
+                              >
+                                <div class="edit-icon-container">
+                                  <span class="edit-icon">
+                                    <svg
+                                      viewBox="0 0 24 24"
+                                      width="24"
+                                      height="24"
+                                      stroke="currentColor"
+                                      stroke-width="2"
+                                      fill="none"
+                                      stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      class="css-i6dzq1"
+                                    >
+                                      <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
+                                    </svg>
+                                  </span>
+
+                                  <div class="tooltip">Edit</div>
+                                </div>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                    {%- endif -%}
+                  {%- endfor -%}
+
+                  <div class="different-address-container">
+                    {%- for address in customer.addresses -%}
+                      <!-- Non-default delivery-addresses -->
+
+                      {%- if address != customer.default_address -%}
+                        <div class="address-block">
+                          <li class="address-list-item" data-address>
+                            <div class="customer-address">
+                              <ul class="customer-address-data">
+                                <li class="address-personname">
+                                  {{ address.first_name }}
+                                  {{ address.last_name }}
+                                </li>
+                                <li class="address-company font-heebo-regular_knya_account">{{ address.company }}</li>
+                                <li class="cust-add-address1 font-heebo-regular_knya_account">
+                                  {{ address.address1 }}
+                                </li>
+                                <li class="cust-add-address2 font-heebo-regular_knya_account">
+                                  {{ address.address2 }}
+                                </li>
+                                <li class="address-city">
+                                  {{ address.zip }}
+                                  {{ address.city }}
+                                  {{ address.province_code }}
+                                </li>
+                                <li class="address-country font-heebo-regular_knya_account">{{ address.country }}</li>
+                                <li class="address-phone font-heebo-regular_knya_account">{{ address.phone }}</li>
+                              </ul>
+                            </div>
+                            <div class="address-buttons">
+                              <button
+                                class="delivery-address-btn btnEditAddressModal"
+                                onclick="openEditAddressModal('{{address.id}}')"
+                              >
+                                <div class="edit-icon-container">
+                                  <span class="edit-icon">
+                                    <svg
+                                      viewBox="0 0 24 24"
+                                      width="24"
+                                      height="24"
+                                      stroke="currentColor"
+                                      stroke-width="2"
+                                      fill="none"
+                                      stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      class="css-i6dzq1"
+                                    >
+                                      <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
+                                    </svg>
+                                  </span>
+                                  <div class="tooltip">Edit</div>
+                                </div>
+                              </button>
+
+                              <button
+                                class="delivery-address-btn btnDeleteAddress"
+                                type="button"
+                                aria-label="{{ 'customer.addresses.delete' | t }} {{ forloop.index }}"
+                                data-target="{{ address.url }}"
+                                data-confirm-message="{{ 'customer.addresses.delete_confirm' | t }}"
+                              >
+                                <div class="delete-icon-container">
+                                  <span class="delete-icon">
+                                    <svg
+                                      viewBox="0 0 24 24"
+                                      width="24"
+                                      height="24"
+                                      stroke="currentColor"
+                                      stroke-width="2"
+                                      fill="none"
+                                      stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      class="css-i6dzq1"
+                                    >
+                                      <polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                    </svg>
+                                  </span>
+
+                                  <div class="tooltip">Delete</div>
+                                </div>
+                              </button>
+
+                              {%- form 'customer_address', address -%}
+                                <div class="markDefault-checkbox-container" data-addressId="{{address.id}}">
+                                  {{ form.set_as_default_checkbox }}
+                                  <label for="address_default_address_{{ form.id }}">
+                                    {{ 'customer.addresses.set_default' | t }}
+                                  </label>
+                                </div>
+                                <button class="delivery-address-btn btnMarkAsDefault">
+                                  <div class="markasdefault-icon-container">
+                                    <span class="markasdefault-icon">
+                                      <svg
+                                        viewBox="0 0 24 24"
+                                        width="24"
+                                        height="24"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        fill="none"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        class="css-i6dzq1"
+                                      >
+                                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                                      </svg>
+                                    </span>
+
+                                    <div class="tooltip">Mark As Default</div>
+                                  </div>
+                                </button>
+                              {%- endform -%}
+                            </div>
+                          </li>
+                        </div>
+                      {%- endif -%}
+                    {%- endfor -%}
+                  </div>
+                </ul>
+                <p class="deliveryAddressTab-status"></p>
+              </div>
+
+              <!-- main address code end -->
+            </div>
+          </div>
+
+          <!-- ADDRESSS ADD MODAL -->
+          <div class="address-addModal">
+            <div id="AddAddress">
+              <h3 id="AddressNewHeading  " class="font-heebo-medium_knya_account">
+                {{ 'customer.addresses.add_new' | t }}
+              </h3>
+
+              {%- form 'customer_address', customer.new_address, aria-labelledBy: 'AddressNewHeading' -%}
+                <div class="address-name-row">
+                  <div class="address-firstname">
+                    <label class="form-label" for="AddressFirstNameNew">
+                      {{ 'customer.addresses.first_name' | t }} :
+                    </label>
+
+                    <div class="field">
+                      <input
+                        type="text"
+                        id="AddressFirstNameNew"
+                        name="address[first_name]"
+                        value="{{ form.first_name }}"
+                        autocomplete="given-name"
+                        placeholder="{{ 'customer.addresses.first_name' | t }}"
+                      >
+                    </div>
+                  </div>
+                  <div class="address-lastname">
+                    <label class="form-label" for="AddressLastNameNew">
+                      {{- 'customer.addresses.last_name' | t }} :</label
+                    >
+                    <div class="field">
+                      <input
+                        type="text"
+                        id="AddressLastNameNew"
+                        name="address[last_name]"
+                        value="{{ form.last_name }}"
+                        autocomplete="family-name"
+                        placeholder="{{ 'customer.addresses.last_name' | t }}"
+                      >
+                    </div>
+                  </div>
+                </div>
+                <label class="form-label" for="AddressAddress1New">{{ 'customer.addresses.address1' | t }} :</label>
+
+                <div class="field">
+                  <input
+                    type="text"
+                    id="AddressAddress1New"
+                    name="address[address1]"
+                    value="{{ form.address1 }}"
+                    autocomplete="address-line1"
+                    placeholder="{{ 'customer.addresses.address1' | t }}"
+                  >
+                </div>
+
+                <label class="form-label" for="AddressAddress2New">{{ 'customer.addresses.address2' | t }} :</label>
+                <div class="field">
+                  <input
+                    type="text"
+                    id="AddressAddress2New"
+                    name="address[address2]"
+                    value="{{ form.address2 }}"
+                    autocomplete="address-line2"
+                    placeholder="{{ 'customer.addresses.address2' | t }}"
+                  >
+                </div>
+                <div class="address-zip-contact">
+                  <div class="address-company">
+                    <label class="form-label" for="AddressCompanyNew">{{ 'customer.addresses.company' | t }} :</label>
+                    <div class="field">
+                      <input
+                        type="text"
+                        id="AddressCompanyNew"
+                        name="address[company]"
+                        value="{{ form.company }}"
+                        autocomplete="organization"
+                        placeholder="{{ 'customer.addresses.company' | t }}"
+                      >
+                    </div>
+                  </div>
+                  <div class="address-zip">
+                    <label class="form-label" for="AddressZipNew">{{ 'customer.addresses.zip' | t }} :</label>
+                    <div class="field">
+                      <input
+                        type="text"
+                        id="AddressZipNew"
+                        name="address[zip]"
+                        value="{{ form.zip }}"
+                        autocapitalize="characters"
+                        autocomplete="postal-code"
+                        placeholder="{{ 'customer.addresses.zip' | t }}"
+                      >
+                    </div>
+                  </div>
+                  <div class="address-contactnumber addressContactNmumberForNewAdd ">
+                    <label class="form-label" for="AddressPhoneNew">
+                      {{- 'customer.addresses.phone' | t }} : <span class="required">*</span></label
+                    >
+                    <div class="field">
+                      <div class="mobile-code-icon icon-container">
+                        <img
+                          class="down-arrow-icon"
+                          src="https://cdn.shopify.com/s/files/1/0562/9247/5063/files/angle-down-solid.svg?v=1690446509"
+                          width="448px"
+                          height="auto"
+                          alt="angle-down-solid"
+                        >
+                      </div>
+                      <input
+                        class="addNewAddressForm-Phone"
+                        type="tel"
+                        id="AddressPhoneNew"
+                        name="address[phone]"
+                        value="{{ form.phone }}"
+                        autocomplete="tel"
+                        placeholder="{{ 'customer.addresses.phone' | t }}"
+                        aria-required="true"
+                      >
+                    </div>
+                    <p class="addAddressForm-phone-errors"></p>
+                  </div>
+                </div>
+                <div class="address-city-country">
+                  <div class="address-city">
+                    <label class="form-label" for="AddressCityNew">{{ 'customer.addresses.city' | t }} :</label>
+                    <div class="field">
+                      <input
+                        type="text"
+                        id="AddressCityNew"
+                        name="address[city]"
+                        value="{{ form.city }}"
+                        autocomplete="address-level2"
+                        placeholder="{{ 'customer.addresses.city' | t }}"
+                      >
+                    </div>
+                  </div>
+                  <div class="address-country">
+                    <label class="form-label" for="AddressCountryNew">{{ 'customer.addresses.country' | t }} :</label>
+                    <div class="field">
+                      <div class="select">
+                        <select
+                          id="AddressCountryNew"
+                          name="address[country]"
+                          data-default="{{ form.country }}"
+                          autocomplete="country"
+                        >
+                          {{ all_country_option_tags }}
+                        </select>
+                        <svg aria-hidden="true" focusable="false" viewBox="0 0 10 6">
+                          <use href="#icon-caret" />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="address-province">
+                    <div id="AddressProvinceContainerNew">
+                      <label class="form-label" for="AddressProvinceNew">
+                        {{- 'customer.addresses.province' | t }} :</label
+                      >
+                      <div class="field">
+                        <div class="select">
+                          <select
+                            id="AddressProvinceNew"
+                            name="address[province]"
+                            data-default="{{ form.province }}"
+                            autocomplete="address-level1"
+                          ></select>
+                          <svg aria-hidden="true" focusable="false" viewBox="0 0 10 6">
+                            <use href="#icon-caret" />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="address-setdefault-checkbox">
+                  {{ form.set_as_default_checkbox }}
+                  <label class="address-setdefault-label" for="address_default_address_new">
+                    {{- 'customer.addresses.set_default' | t -}}
+                    :
+                  </label>
+                </div>
+                <p class="addAddressForm-errors"></p>
+                <p class="addAddressForm-status"></p>
+                <div class="address-footer">
+                  <button class="btnCancelAddress tab-button">Cancel</button>
+                  <button class="btnSaveNewAddress tab-button " disabled>{{ 'customer.addresses.add' | t }}</button>
+                </div>
+              {%- endform -%}
+            </div>
+          </div>
+
+          <!-- ADDRESSS EDIT MODAL -->
+          <div class="address-editModal">
+            <ul class="address-form-list">
+              {%- for address in customer.addresses -%}
+                <li class="edit-address-form-list listofeditforms" data-address>
+                  <div id="EditAddress_{{ address.id }}" class="edit-address-form">
+                    <h3>{{ 'customer.addresses.edit_address' | t }}</h3>
+                    {%- form 'customer_address', address -%}
+                      <div class="address-name-row">
+                        <div class="address-firstname">
+                          <label class="form-label" for="AddressFirstName_{{ form.id }}">
+                            {{ 'customer.addresses.first_name' | t }} :
+                          </label>
+
+                          <div class="field">
+                            <input
+                              type="text"
+                              id="AddressFirstName_{{ form.id }}"
+                              name="address[first_name]"
+                              value="{{ form.first_name }}"
+                              autocomplete="given-name"
+                              placeholder="{{ 'customer.addresses.first_name' | t }}"
+                            >
+                          </div>
+                        </div>
+                        <div class="address-lastname">
+                          <label class="form-label" for="AddressLastName_{{ form.id }}">
+                            {{ 'customer.addresses.last_name' | t }} :
+                          </label>
+                          <div class="field">
+                            <input
+                              type="text"
+                              id="AddressLastName_{{ form.id }}"
+                              name="address[last_name]"
+                              value="{{ form.last_name }}"
+                              autocomplete="family-name"
+                              placeholder="{{ 'customer.addresses.last_name' | t }}"
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <label class="form-label" for="AddressAddress1_{{ form.id }}">
+                        {{ 'customer.addresses.address1' | t }} :
+                      </label>
+                      <div class="field">
+                        <input
+                          type="text"
+                          id="AddressAddress1_{{ form.id }}"
+                          name="address[address1]"
+                          value="{{ form.address1 }}"
+                          autocomplete="address-line1"
+                          placeholder="{{ 'customer.addresses.address1' | t }}"
+                        >
+                      </div>
+                      <label class="form-label" for="AddressAddress2_{{ form.id }}">
+                        {{ 'customer.addresses.address2' | t }} :
+                      </label>
+                      <div class="field">
+                        <input
+                          type="text"
+                          id="AddressAddress2_{{ form.id }}"
+                          name="address[address2]"
+                          value="{{ form.address2 }}"
+                          autocomplete="address-line2"
+                          placeholder="{{ 'customer.addresses.address2' | t }}"
+                        >
+                      </div>
+                      <div class="address-zip-contact">
+                        <div class="address-company">
+                          <label class="form-label" for="AddressCompany_{{ form.id }}">
+                            {{ 'customer.addresses.company' | t }} :
+                          </label>
+                          <div class="field">
+                            <input
+                              type="text"
+                              id="AddressCompany_{{ form.id }}"
+                              name="address[company]"
+                              value="{{ form.company }}"
+                              autocomplete="organization"
+                              placeholder="{{ 'customer.addresses.company' | t }}"
+                            >
+                          </div>
+                        </div>
+                        <div class="address-zip">
+                          <label class="form-label" for="AddressZip_{{ form.id }}">
+                            {{ 'customer.addresses.zip' | t }} :
+                          </label>
+                          <div class="field">
+                            <input
+                              type="text"
+                              id="AddressZip_{{ form.id }}"
+                              name="address[zip]"
+                              value="{{ form.zip }}"
+                              autocapitalize="characters"
+                              autocomplete="postal-code"
+                              placeholder="{{ 'customer.addresses.zip' | t }}"
+                            >
+                          </div>
+                        </div>
+                        <div class="address-contactnumber editaddressselectCountryCode{{ forloop.index0 }}">
+                          <label class="form-label" for="AddressPhone_{{ form.id }}">
+                            {{ 'customer.addresses.phone' | t }} :
+                            <span class="required">*</span>
+                          </label>
+                          <div class="field">
+                            <div class="mobile-code-icon icon-container">
+                              <img
+                                class="down-arrow-icon"
+                                src="https://cdn.shopify.com/s/files/1/0562/9247/5063/files/angle-down-solid.svg?v=1690446509"
+                                width="448px"
+                                height="auto"
+                                alt="angle-down-solid"
+                              >
+                            </div>
+                            <input
+                              class="editAddressForm-Phone editAddressFormPhone{{forloop.index0}}"
+                              type="tel"
+                              id="AddressPhone_{{ form.id }}"
+                              name="address[phone]"
+                              value="{{ form.phone }}"
+                              autocomplete="tel"
+                              placeholder="{{ 'customer.addresses.phone' | t }}"
+                              aria-required="true"
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <div class="address-city-country">
+                        <div class="address-city">
+                          <label class="form-label" for="AddressCity_{{ form.id }}">
+                            {{ 'customer.addresses.city' | t }} :
+                          </label>
+                          <div class="field">
+                            <input
+                              type="text"
+                              id="AddressCity_{{ form.id }}"
+                              name="address[city]"
+                              value="{{ form.city }}"
+                              autocomplete="address-level2"
+                              placeholder="{{ 'customer.addresses.city' | t }}"
+                            >
+                          </div>
+                        </div>
+
+                        <div class="address-country">
+                          <label class="form-label" for="AddressCountry_{{ form.id }}">
+                            {{ 'customer.addresses.country' | t }} :
+                          </label>
+                          <div class="field">
+                            <div class="select">
+                              <select
+                                class="editAddressFormCountry{{ forloop.index0 }} editAddressCountry"
+                                id="AddressCountry_{{ form.id }}"
+                                name="address[country]"
+                                data-address-country-select
+                                data-default="{{ form.country }}"
+                                data-form-id="{{ form.id }}"
+                                autocomplete="country"
+                                onchange="enableProvince(this)"
+                              >
+                                {{ all_country_option_tags }}
+                              </select>
+                              <svg aria-hidden="true" focusable="false" viewBox="0 0 10 6">
+                                <use href="#icon-caret" />
+                              </svg>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="address-province">
+                          <div
+                            id="AddressProvinceContainer_{{ form.id }} "
+                            class="address-province-container"
+                            style="display:none;"
+                          >
+                            <label class="form-label" for="AddressProvince_{{ form.id }}">
+                              {{ 'customer.addresses.province' | t }} :
+                            </label>
+                            <div class="field">
+                              <div class="select">
+                                <select
+                                  id="AddressProvince_{{ form.id }}"
+                                  class="AddressProvince_field"
+                                  name="address[province]"
+                                  data-default="{{ form.province }}"
+                                  autocomplete="address-level1"
+                                ></select>
+                                <svg aria-hidden="true" focusable="false" viewBox="0 0 10 6">
+                                  <use href="#icon-caret" />
+                                </svg>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="address-setdefault-checkbox">
+                        {{ form.set_as_default_checkbox }}
+                        <label class="address-setdefault-label" for="address_default_address_{{ form.id }}">
+                          {{ 'customer.addresses.set_default' | t }}
+                        </label>
+                      </div>
+                      <p class="editAddressForm-errors" id="editAddressErrors_{{ form.id }}"></p>
+                      <p class="editAddressForm-status" id="editAddressStatus_{{ form.id }}"></p>
+                      <div class="address-footer">
+                        <button
+                          class="btnCancelEditAddress tab-button"
+                          onclick="closeEditAddressModal(event,'{{address.id}}')"
+                        >
+                          Cancel
+                        </button>
+                        <button class="btnEditAddress tab-button" id="btnEditAddress_{{ form.id }}">
+                          {{ 'customer.addresses.update' | t }}
+                        </button>
+                      </div>
+                    {%- endform -%}
+                  </div>
+                </li>
+              {%- endfor -%}
+            </ul>
+          </div>
+        </div>
+
+        <!-- MY Orders TAB -->
+
+        <div id="myorders" class="tabcontent">
+          <div class="tabcontent-header">
+            <a class="btnBack" href="#">
+              <div class="back-icon-container">
+                <img
+                  class="back-icon"
+                  src="https://cdn.shopify.com/s/files/1/0562/9247/5063/files/arrow-left-long-solid.svg?v=1690469619"
+                  width="512px"
+                  height="auto"
+                  alt="back-arrow-icon"
+                >
+              </div>
+              <span>Back</span>
+            </a>
+            <p class="tabcontent-header-title">My Orders</p>
+          </div>
+          <h3>ORDERS</h3>
+          {% if settings.account_page_order_info != blank %}
+            <p>
+              {{ settings.account_page_order_info }}
+            </p>
+          {% endif %}
+          {% paginate customer.orders by 5 %}
+            {%- if customer.orders.size > 0 -%}
+              {%- for order in customer.orders -%}
+                <div class="order-parent-container">
+                  <div class="order-container">
+                    <div class="order-content">
+                      <div class="order-row">
+                        <p>
+                          Order: <span class="fontbold font-heebo-medium_knya_account">{{ order.name }}</span>
+                        </p>
+                        <p>
+                          Grand total:
+                          <span class="fontbold font-heebo-medium_knya_account">
+                            {{- order.total_price | money_with_currency -}}
+                          </span>
+                        </p>
+                      </div>
+                      <div class="order-row">
+                        <p>
+                          Date:
+                          <span class="fontbold font-heebo-medium_knya_account">
+                            {{- order.created_at | date: '%B %d, %Y' -}}
+                          </span>
+                        </p>
+                        <p>
+                          Total Items:
+                          <span class="fontbold font-heebo-medium_knya_account">{{ order.item_count }}</span>
+                        </p>
+                      </div>
+                      <div class="order-row ">
+                        <p>
+                          Fullfillment Status :<span class="fontbold font-heebo-medium_knya_account">
+                            {{- order.fulfillment_status | capitalize -}}
+                          </span>
+                        </p>
+                        <p>
+                          Payment:
+                          <span class="fontbold font-heebo-medium_knya_account">
+                            {{- order.financial_status | capitalize -}}
+                          </span>
+                        </p>
+                      </div>
+
+                      {% for line_item in order.line_items %}
+                        <div class="order-details">
+                          <div class="order-image-container">
+                            <img
+                              class="order-image"
+                              srcset="
+                                {%- if line_item.image.width >= 165 -%}{{ line_item.image | img_url: '165x' }} 165w,{%- endif -%}
+                                {%- if line_item.image.width >= 360 -%}{{ line_item.image | img_url: '360x' }} 360w,{%- endif -%}
+                                {%- if line_item.image.width >= 535 -%}{{ line_item.image | img_url: '535x' }} 535w,{%- endif -%}
+                                {%- if line_item.image.width >= 750 -%}{{ line_item.image | img_url: '750x' }} 750w,{%- endif -%}
+                                {%- if line_item.image.width >= 1070 -%}{{ line_item.image | img_url: '1070x' }} 1070w,{%- endif -%}
+                                {%- if line_item.image.width >= 1500 -%}{{ line_item.image | img_url: '1500x' }} 1500w,{%- endif -%}
+                                {{ line_item.image | image_url }} {{ line_item.image.width }}w
+                              "
+                              src="{{ line_item.image | img_url: '1500x' }}"
+                              sizes="100%"
+                              alt="{{ line_item.image.alt | escape }}"
+                              loading="lazy"
+                              width="{{ line_item.image.width }}"
+                              height="{{ line_item.image.height }}"
+                            >
+                          </div>
+
+                          <div class="order-details-div">
+                            <p class="product-name">{{ line_item.title }}</p>
+                            <p class="product-price">{{ line_item.final_price | money_with_currency }}</p>
+                          </div>
+                        </div>
+                      {% endfor %}
+                      <div class="order-detail-buttons">
+                        <button class="btnContactUs removeBtnBGColor">Contact us</button>
+                        <button class="btnViewOrder removeBtnBGColor  ">View Order</button>
+                        <button class="btnReorder">Re-order</button>
+                      </div>
+                    </div>
+
+                    <div class="view-order-modal">
+                      <hr>
+                      <div class="address-container">
+                        <div class="shipping-address">
+                          <p class="fontbold">Shipping Address</p>
+                          {{ order.shipping_address | format_address }}
+                        </div>
+                        <div class="billing-address">
+                          <p class="fontbold">Billing Address</p>
+
+                          {{ order.billing_address | format_address }}
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="cost-breakup">
+                        <p class="fontbold">Cost breakup</p>
+                        <div class="sub-total">
+                          <p>Sub Total</p>
+                          <p class="fontbold">{{ order.subtotal_price | money_with_currency }}</p>
+                        </div>
+                        <div class="shipping-cost">
+                          <p class="marginbottom-10">Shipping Cost</p>
+                          <p class="marginbottom-10 fontbold">{{ order.shipping_price | money_with_currency }}</p>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="grand-total-container">
+                        <div class="grand-total">
+                          <p>Grand Total</p>
+                          <p class="fontbold">{{ order.total_price | money_with_currency }}</p>
+                        </div>
+                        <div class="payment-type  ">
+                          <p class="marginbottom-10">Payment Type</p>
+                          <p class="marginbottom-10 fontbold">
+                            {{ order.transactions[0].gateway | replace: '_', ' ' | capitalize }}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              {%- endfor -%}
+            {%- else -%}
+              <div class="ifnoorder">
+                <div class="flits-empty-icon-box">
+                  <svg
+                    version="1.1"
+                    id="Capa_1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    x="0px"
+                    y="0px"
+                    width="100px"
+                    height="100px"
+                    viewBox="0 0 440 440"
+                    style="enable-background:new 0 0 440 440;"
+                    xml:space="preserve"
+                  >
+                    <g> <path d="M439.9,111.711c-0.374-2.142-1.786-3.958-3.77-4.85L274.576,34.147c-2.352-1.06-5.109-0.642-7.04,1.07L220,77.293 l-47.536-42.076c-1.93-1.711-4.688-2.13-7.039-1.07L3.869,106.861c-1.982,0.892-3.395,2.708-3.77,4.85 c-0.375,2.14,0.334,4.328,1.894,5.842l51.033,49.502l-28.774,50.806c-1.781,3.146-0.683,7.14,2.457,8.931l27.964,15.96v65.271 c0,2.342,1.248,4.507,3.274,5.678l158.768,91.85c1.017,0.587,2.15,0.882,3.286,0.882c1.083,0,2.165-0.275,3.146-0.812 c-0.002,0.004-0.008,0.01-0.009,0.014l158.915-91.933c2.026-1.171,3.274-3.336,3.274-5.678v-65.271l27.966-15.96 c3.14-1.791,4.237-5.785,2.455-8.931l-28.772-50.806l51.031-49.502C439.567,116.039,440.277,113.851,439.9,111.711z M278.612,213.567l-52.052-30.151V96.697l138.129,69.444L278.612,213.567z M75.311,166.142l138.131-69.445v86.719l-52.054,30.151 L75.311,166.142z M18.063,114.861l148.879-67.008l41.454,36.691L62.453,157.918L18.063,114.861z M38.892,218.639l24.854-43.887 l146.41,80.665l-32.483,42.427L38.892,218.639z M213.44,388.497L67.793,304.239v-53.998l108.353,61.839 c1.021,0.583,2.139,0.863,3.248,0.863c1.983,0,3.932-0.9,5.214-2.573l28.833-37.659L213.44,388.497L213.44,388.497z M220,245.861 l-45.196-24.901L220,194.78l45.196,26.18L220,245.861z M372.206,304.239l-145.646,84.258V272.71l28.833,37.659 c1.28,1.673,3.229,2.573,5.214,2.573c1.106,0,2.227-0.28,3.248-0.863l108.351-61.839V304.239z M401.109,218.639l-138.781,79.204 l-32.484-42.427l146.411-80.665L401.109,218.639z M377.548,157.918L231.604,84.544l41.452-36.691l148.881,67.008L377.548,157.918z"></path> </g>
+                  </svg>
+                </div>
+                <p>{{ 'customer.orders.none' | t }}</p>
+                {% if settings.noordercollectionlink != blank %}
+                  <a class="noordercollectionlinkstyle" href="  {{shop.url}}{{settings.noordercollectionlink.url}}"
+                    >VIEW PRODUCTS</a
+                  >
+                {% endif %}
+              </div>
+            {%- endif -%}
+
+            {%- if paginate.pages > 1 -%}
+              {%- if paginate.parts.size > 0 -%}
+                <nav class="pagination" role="navigation" aria-label="{{ 'general.pagination.label' | t }}">
+                  <ul role="list">
+                    {%- if paginate.previous -%}
+                      <li>
+                        <a
+                          href="{{ paginate.previous.url | append: '#myorders' }}"
+                          aria-label="{{ 'general.pagination.previous' | t }}"
+                        >
+                          <svg aria-hidden="true" focusable="false" viewBox="0 0 10 6">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor">
+                          </svg>
+                        </a>
+                      </li>
+                    {%- endif -%}
+
+                    {%- for part in paginate.parts -%}
+                      <li>
+                        {%- if part.is_link -%}
+                          <a
+                            href="{{ part.url | append: '#myorders' }}"
+                            aria-label="{{ 'general.pagination.page' | t: number: part.title }}"
+                          >
+                            {{- part.title -}}
+                          </a>
+                        {%- else -%}
+                          {%- if part.title == paginate.current_page -%}
+                            <span
+                              aria-current="page"
+                              aria-label="{{ 'general.pagination.page' | t: number: part.title }}"
+                            >
+                              {{- part.title -}}
+                            </span>
+                          {%- else -%}
+                            <span>{{ part.title }}</span>
+                          {%- endif -%}
+                        {%- endif -%}
+                      </li>
+                    {%- endfor -%}
+
+                    {%- if paginate.next -%}
+                      <li>
+                        <a
+                          href="{{ paginate.next.url | append: '/#myorders' }}"
+                          aria-label="{{ 'general.pagination.next' | t }}"
+                        >
+                          <svg aria-hidden="true" focusable="false" viewBox="0 0 10 6">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor">
+                          </svg>
+                        </a>
+                      </li>
+                    {%- endif -%}
+                  </ul>
+                </nav>
+              {%- endif -%}
+            {%- endif -%}
+          {% endpaginate %}
+        </div>
+
+        <!-- MY Credits TAB -->
+        <div id="mycredits" class="tabcontent">
+          <div class="tabcontent-header">
+            <a class="btnBack" href="#">
+              <div class="back-icon-container">
+                <img
+                  class="back-icon"
+                  src="https://cdn.shopify.com/s/files/1/0562/9247/5063/files/arrow-left-long-solid.svg?v=1690469619"
+                  width="512px"
+                  height="auto"
+                  alt="back-arrow-icon"
+                >
+              </div>
+              <span>Back</span>
+            </a>
+            <p class="tabcontent-header-title">My Credits</p>
+          </div>
+          <h3>My Credits</h3>
+          <script
+            async
+            src="https://cdn.nector.io/nector-static/no-cache/reward-widget/mainloader.min.js"
+            data-spdn="1"
+            data-op="reward"
+            data-api_key="222f07401125544031d9ebe1629d27364011bdadb196d3893e1202313e9e1321"
+            data-customer_id="{{customer.id}}"
+            data-platform="shopify"
+          ></script>
+        </div>
+
+        <!-- Refer Friend TAB -->
+        <div id="referfriend" class="tabcontent">
+          <div class="tabcontent-header">
+            <a class="btnBack" href="#">
+              <div class="back-icon-container">
+                <img
+                  class="back-icon"
+                  src="https://cdn.shopify.com/s/files/1/0562/9247/5063/files/arrow-left-long-solid.svg?v=1690469619"
+                  width="512px"
+                  height="auto"
+                  alt="back-arrow-icon"
+                >
+              </div>
+              <span>Back</span>
+            </a>
+            <p class="tabcontent-header-title">Refer Friend</p>
+          </div>
+
+          <h3>REFER FRIEND</h3>
+          <div>
+            <div class="image-with-text">
+              <div class="image-with-text__grid grid grid--gapless grid--1-col">
+                <div class="image-with-text__media-item image-with-text__media-item--{{ section.settings.desktop_image_width }} image-with-text__media-item--{{ section.settings.desktop_content_position }} grid__item">
+                  <div
+                    class="image-with-text__media image-with-text__media--{{ section.settings.height }}"
+                  >
+                    <img src="{{ 'Kayna.png' | asset_url }}" alt="Popcoins">
+                  </div>
+                </div>
+                <div class="image-with-text__text-item grid__item">
+                  <div
+                    id="ImageWithText--"
+                    class="image-with-text__content"
+                  >
+                    <h2
+                      class="image-with-text__heading {{ block.settings.heading_size }}"
+                      {{ block.shopify_attributes }}
+                    >
+                      REFER FRIEND
+                    </h2>
+                    <div
+                      class="button button--secondary"
+                      {{ block.shopify_attributes }}
+                      onclick="openReferLoadedIframe()"
+                    >
+                      REFER A FRIEND
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <script
+            async
+            src="https://cdn.nector.io/nector-static/no-cache/reward-widget/mainloader.min.js"
+            data-spdn="1"
+            data-op="referral"
+            data-api_key="222f07401125544031d9ebe1629d27364011bdadb196d3893e1202313e9e1321"
+            data-customer_id="{{customer.id}}"
+            data-platform="shopify"
+          ></script>
+        </div>
+
+        <!-- CHANGE PASSWORD TAB -->
+        <div id="changepassword" class="tabcontent">
+          <div class="tabcontent-header">
+            <a class="btnBack" href="#">
+              <div class="back-icon-container">
+                <img
+                  class="back-icon"
+                  src="https://cdn.shopify.com/s/files/1/0562/9247/5063/files/arrow-left-long-solid.svg?v=1690469619"
+                  width="512px"
+                  height="auto"
+                  alt="back-arrow-icon"
+                >
+              </div>
+              <span>Back</span>
+            </a>
+            <p class="tabcontent-header-title">Change Password</p>
+          </div>
+
+          <div class="reset-password-form">
+            <form class="account-page-form" method="post">
+              <label class="form-label" for="new_password"> New Password : <span class="required">*</span></label>
+              <div class="field">
+                <input
+                  type="password"
+                  name="new_password"
+                  id="new_password"
+                  aria-required="true"
+                >
+              </div>
+
+              <label class="form-label" for="new_password_confirmation">
+                Confirm New Password : <span class="required">*</span></label
+              >
+              <div class="field">
+                <input
+                  type="password"
+                  name="new_password_confirmation"
+                  id="new_password_confirmation"
+                  aria-required="true"
+                >
+              </div>
+              <p class="pass-validation"></p>
+              <p class="pass-error"></p>
+              <p class="pass-status"></p>
+            </form>
+
+            <button class="btnResetPassword tab-button" onClick="resetPassword()" disabled>Reset password</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+</div>
+
+<script>
+  
+  
+  
+  
+  
+  
+  
+    let i, tabcontent, tablinks;
+    let customerNotesDataOnLoad='';
+    let customerGenderInitial='', customerDobInitial='', customerGenderAfterSave='', customerDobAfterSave='';
+    let myProfileTabIdValue = 'myprofile';
+    let headerTitle = document.querySelector('.header-title');
+
+    const spinner = document.getElementById("spinner");
+    const leftSection = document.querySelector('.account-tab .left-section');
+    const rightSection = document.querySelector('.account-tab .right-section');
+
+
+    // Profile Tab
+    const myprofileTablink = document.querySelector('#myprofileTablink');
+    const myProfileTab = document.querySelector(`#${myProfileTabIdValue}`);
+
+    const firstNameProfileData = document.querySelector('.firstname > .profile-data-content');
+    const lastnameProfileData = document.querySelector('.lastname > .profile-data-content');
+    const contactNumberProfileData = document.querySelector('.contact-number > .profile-data-content');
+    const birthdateProfileData = document.querySelector('.birthdate > .profile-data-content');
+    const genderProfileData = document.querySelector('.gender > .profile-data-content');
+  
+    const profileViewModal = document.querySelector('.profile-viewModal');
+    const profileEditModal = document.querySelector('.profile-editModal');
+  
+    const profileFirstName = document.querySelector('#profileForm-FirstName');
+    const profileLastName = document.querySelector('#profileForm-LastName');
+    const profileEmail = document.querySelector('#profileForm-Email');
+    const profilePhone = document.querySelector('#profileForm-Phone');
+    const profileBirthdate = document.querySelector('#profileForm-Birthdate');
+    const profileGender = document.querySelector('#profileForm-Gender');
+    const profileFormErrors = document.querySelector('.profileForm-errors');
+    const profileFormStatus = document.querySelector('.profileForm-status');
+    const profileViewModalStatus = document.querySelector('.profileViewModal-status');
+
+
+    const btnEditProfile = document.querySelector('.btnEditProfile');
+    const btnCancelProfile = document.querySelector('.btnCancelProfile');
+    const btnSaveProfile = document.querySelector('.btnSaveProfile');
+    const allbtnBack = document.querySelectorAll('.btnBack');
+
+    // reset Password Tab
+  
+    const newPassword = document.querySelector('#new_password');
+    const newPasswordConfirmation = document.querySelector(
+      '#new_password_confirmation'
+    );
+    let passError = document.querySelector('.pass-error');
+    let passValidation = document.querySelector('.pass-validation');
+    let passStatus = document.querySelector('.pass-status');
+    const btnResetPassword = document.querySelector('.btnResetPassword');
+    
+    // Delivery Address Tab
+    const deliveryAddressContainer = document.querySelector(
+      '.delivery-address-container'
+    );
+    const deliveryAddressTabStatus = document.querySelector('.deliveryAddressTab-status');
+    const addressAddModal = document.querySelector('.address-addModal');
+    const addressEditModal = document.querySelector('.address-editModal');
+
+    const addNewAddressFormPhone = document.querySelector('.addNewAddressForm-Phone');
+    const allEditAddFormPhone = document.querySelectorAll('.editAddressForm-Phone');
+    const addNewAddressFormPhoneErrors = document.querySelector('.addAddressForm-phone-errors');
+    const addNewAddressFormErrors = document.querySelector('.addAddressForm-errors');
+    const addNewAddressFormStatus = document.querySelector('.addAddressForm-status');
+
+    const allEditAddressFormErrors = document.querySelectorAll('.editAddressForm-errors');
+    const allEditAddressFormStatus = document.querySelectorAll('.editAddressForm-status');
+
+    const btnAddAddress = document.querySelector('.btnAddAddress');
+    const btnCancelAddress = document.querySelector('.btnCancelAddress');
+    const btnEditAddressModal = document.querySelector('.btnEditAddressModal');
+    {% comment %} const btnCancelEditAddress = document.querySelector('.btnCancelEditAddress'); {% endcomment %}
+
+    const markDefaultCheckboxContainer = document.querySelectorAll('.markDefault-checkbox-container');
+    const allBtnMarkAsDefault = document.querySelectorAll('.btnMarkAsDefault');
+    const allBtnEditAddress = document.querySelectorAll('.btnEditAddress');
+    const btnSaveNewAddress = document.querySelector('.btnSaveNewAddress');
+
+    // My Orders Tab 
+    const allBtnViewOrder = document.querySelectorAll('.btnViewOrder');
+    const viewOrderModal = document.querySelectorAll('.view-order-modal');
+    const btnContactUs  = document.querySelectorAll('.btnContactUs');
+    
+    btnContactUs.forEach((btn)=>{
+      btn.addEventListener('click',()=>{
+
+     window.location.href = '/pages/contact-us';
+      
+      })
+    })
+
+
+    /*
+     * Function is used update provinces to input for selected country and also enable input if provinces are there.
+     */
+      function updateProvinces(containerId){
+    
+            const eachEdit = document.getElementById(containerId);
+            let isProvinceAdded = false;
+        
+            let defaultCountry = eachEdit.querySelector(".editAddressCountry").getAttribute("data-default");            
+            let defaultState = eachEdit.querySelector(".AddressProvince_field").getAttribute("data-default");
+            const addressProvinceContainer = eachEdit.querySelector(".address-province-container");
+ 
+            
+            eachEdit.querySelectorAll(".editAddressCountry option").forEach(eachCountry=>{
+              
+            if(eachCountry.value == defaultCountry && !isProvinceAdded){
+                let stateArr = [];
+                eachCountry.setAttribute("selected","selected");
+                let allStates = JSON.parse(eachCountry.getAttribute("data-provinces"));
+              
+                  
+                allStates.forEach(state =>{
+                    stateArr.push(state[1]);
+                })
+              
+                stateArr.forEach(eachState =>{
+                    let optionHtml;
+                    if(defaultState == eachState){
+                        optionHtml =` <option value='${eachState}'selected >${eachState}</option>`
+                    }else{
+                        optionHtml =` <option value='${eachState}' >${eachState}</option>`
+                    }              
+                    eachEdit.querySelector(".AddressProvince_field").innerHTML += optionHtml;
+                })
+
+                let stateOptions = eachEdit.querySelectorAll(".AddressProvince_field option");
+                if(stateOptions.length > 0){
+                  addressProvinceContainer.style.display="block";
+                }else{
+                  addressProvinceContainer.style.display="none";
+                }
+              
+                isProvinceAdded = true;
+            }
+              
+        })
+      
+    }
+
+
+    /*
+     * Function is used to make markDefaultCheckbox as checked by default, so that 
+     * it updates default address on "btnMarkAsDefault" click.
+     */
+  
+    markDefaultCheckboxContainer.forEach((item)=>{
+      let addressId = item.getAttribute('data-addressId');
+      let checkboxId = `address_default_address_${addressId}`;
+
+      let markDefaultCheckbox = item.querySelector(`#${checkboxId}`);
+      markDefaultCheckbox.checked = true;
+
+    })
+
+    /*
+     * Function sets session storage value "redirectToDeliveryAddressTab" on click, 
+     * so that it can be redirected using theme.liquid.
+     */
+    allBtnMarkAsDefault.forEach((btnMarkDefault)=>{
+        btnMarkDefault.addEventListener('click',(e)=>{
+            sessionStorage.setItem('redirectToDeliveryAddressTab','true');
+            
+        })
+    });
+    
+
+    /*
+     * Function on click event, display status messages and,
+     * (a) sets session storage value "redirectToAddressTabFromEdit", 
+     * so that it can be redirected to account page using theme.liquid.
+     *
+     * (b) sets session storage value "addressEdited", 
+     * so that "Address Edited Successfully" message can be shown on DOMContentLoaded. 
+     */
+    allBtnEditAddress.forEach((btnEditAddress)=>{
+        
+        btnEditAddress.addEventListener('click',(e)=>{
+            spinner.removeAttribute('hidden');
+            sessionStorage.setItem('redirectToAddressTabFromEdit','true');
+   
+            let addressId = btnEditAddress.id.split("_")[1].trim();
+            let editAddressError = document.querySelector(`#editAddressErrors_${addressId}`);
+            let editAddressStatus = document.querySelector(`#editAddressStatus_${addressId}`);       
+           
+    
+            editAddressStatus.textContent = 'Editing Address Details...';
+            editAddressStatus.style.display ='block'; //default display none.       
+            
+            
+            sessionStorage.setItem('addressEdited','true');
+
+             setTimeout(() => {
+                hideMessage(editAddressStatus);
+            }, 2000); 
+
+            spinner.setAttribute('hidden', '');
+
+
+        })
+
+        
+    });
+
+
+
+
+
+    /**
+     * Data fetched using Admin API for Customer notes in MyProfile tab.
+     */
+    const fetchCustomerData = async () => {
+      try{
+      
+          let requestOptions = {
+            method: 'GET',
+            redirect: 'follow',
+          };
+      
+          
+          let response = await fetch('https://script.google.com/macros/s/AKfycbzmB-H7Qbe1qo5opPhS_CnQf5uKc9zZyTRv-SVAkuQ26KF4VsLWITXjcDYcNiFraYaRyA/exec?action=getCustomerData&id={{customer.id}}');
+          if (!response.ok) {
+              const message = `An error has occured: ${response.status}`;
+              throw new Error(message);
+            }
+          let result = await response.text();
+          return result;
+
+      }catch(error){
+        console.error('error', error);
+      }
+        
+    };
+
+    /**
+     * This Event runs onload.
+     */
+    window.onload = () => {
+        typeof CustomerAddresses !== 'undefined' && new CustomerAddresses();
+
+    }
+
+    /**
+     * Function is used to load my profile data, stored in customer Notes using Admin API.
+     * Fields fetched - Phone, Date of Birth and Gender.
+     * Info:
+     * (a) Phone is stored in customer notes through registeration form.
+     * (b) Date of Birth and Gender is stored using edit profile modal.
+     */
+    const loadMyProfileData = async ()=>{
+      if(customerDobAfterSave === '' && customerGenderAfterSave ===''){
+        if(customerDobInitial === '' && customerGenderInitial === ''){
+          customerNotesDataOnLoad = await fetchCustomerData();
+          if(customerNotesDataOnLoad !== '' || customerNotesDataOnLoad !== null ){
+          
+              customerNotesDataOnLoad = JSON.parse(customerNotesDataOnLoad);
+    
+              //update value in tabContent and edit form.
+              if(customerNotesDataOnLoad.note !== 'null' ){
+                {% unless customer.phone %}
+              
+                    let phoneProperty ='phone';
+                    if(customerNotesDataOnLoad.note.includes(phoneProperty)){
+                        let custPhoneStartIndex = customerNotesDataOnLoad.note.indexOf(phoneProperty) + (phoneProperty.length-1) + 3;
+                        
+                        let registerPhoneNumber = customerNotesDataOnLoad.note.slice(custPhoneStartIndex,custPhoneStartIndex+10);
+                        contactNumberProfileData.textContent = registerPhoneNumber;
+                        profilePhone.value = registerPhoneNumber;
+                    }
+                {% endunless %}  
+       
+                let gap = 3;
+                let custDobStartIndex = customerNotesDataOnLoad.note.indexOf("###") + gap;
+                let custDobEndIndex = customerNotesDataOnLoad.note.lastIndexOf("###");
+                let custNotes = customerNotesDataOnLoad.note.slice(custDobStartIndex,custDobEndIndex);
+                
+                
+               if(customerNotesDataOnLoad.note.includes('###')){ 
+                let customerNotes = JSON.parse(custNotes);
+                
+                  if(customerNotes.dob !== 'null'){
+                      birthdateProfileData.textContent = customerNotes.dob;
+                      profileBirthdate.value = customerNotes.dob;
+                      customerDobInitial = customerNotes.dob;
+                  }
+    
+                  if(customerNotes.gender !== 'null'){
+                      genderProfileData.textContent = customerNotes.gender;
+                      profileGender.value = customerNotes.gender;
+                      customerGenderInitial = customerNotes.gender;
+                  } 
+                }
+                else{
+                    birthdateProfileData.textContent = '';
+                    genderProfileData.textContent='';
+              }  
+            }
+          }
+        }
+        else{
+            
+            birthdateProfileData.textContent = customerDobInitial;
+            profileBirthdate.value = customerDobInitial;
+            genderProfileData.textContent = customerGenderInitial;
+            profileGender.value = customerGenderInitial;
+        }
+      }
+      else{
+            
+            birthdateProfileData.textContent = customerDobAfterSave;
+            profileBirthdate.value = customerDobAfterSave;
+            genderProfileData.textContent = customerGenderAfterSave;
+            profileGender.value = customerGenderAfterSave;
+      }
+      
+    }
+    
+    /**
+     * Function is used to load default Profile Tab.
+     */
+    const defaultProfileTabView = ()=>{   
+        myprofileTablink.classList.add('active');
+         loadMyProfileData();               
+        myProfileTab.style.display='block';
+       
+    }
+   
+
+    
+    //logic to implement url redirect, the first time page loads:
+
+    let currentURL = new URL(window.location.href);
+        
+    let hash = currentURL.hash;
+
+    if (hash) {
+        let splitUrl = hash.slice(1).trim();
+
+
+        if (window.matchMedia("(max-width: 992px)").matches) {
+            leftSection.style.display = 'none';
+            rightSection.style.display = 'block';
+        }
+
+        if (splitUrl === '') {
+            window.location.href = '{{ shop.url }}/account';
+        } else {
+            document.querySelectorAll(".tablinks").forEach(tablink => {
+            if (tablink.href.split("#")[1] == splitUrl) {
+        
+                tablink.classList.add("active");
+                tabContentId = splitUrl;
+            }
+            });
+
+            document.querySelectorAll(".tabcontent").forEach(async (eachContent) => {
+            if (eachContent.getAttribute("id") == splitUrl) {
+                if (eachContent.getAttribute("id") === `${myProfileTabIdValue}`) {
+                await defaultProfileTabView();
+                } else {
+                eachContent.style.display = "block";
+                }
+            } else {
+                eachContent.style.display = "none";
+            }
+            });
+        }
+    }
+  
+
+    /**
+     * Function is used to open different account tabs.
+     * @param {event} event
+     * @param {HTMLElementId} tabContentId
+     */
+    const openTabContent = (event, tabContentId) => {
+      // Get all elements with class="tabcontent" and hide them
+      tabcontent = document.getElementsByClassName('tabcontent');
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = 'none';
+      }
+    
+      // Get all elements with class="tablinks" and remove the class "active"
+      tablinks = document.getElementsByClassName('tablinks');
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(' active', '');
+      }
+    
+      if (window.matchMedia("(max-width: 992px)").matches) {
+            leftSection.style.display = 'none';
+            rightSection.style.display = 'block';
+      } 
+
+      showTab(event, tabContentId);
+    };
+
+    /**
+     * Function is used to show tabs except default Profile Tab.
+     */
+    const showTab = (event, tabContentId) => {
+      if(tabContentId !== `${myProfileTabIdValue}`){
+        document.getElementById(tabContentId).style.display = 'block';
+        event.currentTarget.className += ' active';
+      }else{
+        showMyProfileTab(); 
+      }
+    }
+    
+    const showMyProfileTab = async ()=>{
+      await defaultProfileTabView();
+    } 
+
+    //Logic to implement contact number with country dropdown and its validation.
+    
+    const iti = window.intlTelInput(profilePhone, {
+      nationalMode: true,
+      showFlags: false,
+      separateDialCode: true,
+      preferredCountries: ['in'],
+      utilsScript:
+        'https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js', // just for formatting/placeholders etc
+    });
+
+    const itiAddForm = window.intlTelInput(addNewAddressFormPhone, {
+        nationalMode: true,
+        showFlags: false,
+        separateDialCode: true,
+        preferredCountries: ['in'],
+        utilsScript:
+          'https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js', // just for formatting/placeholders etc
+      });
+
+
+  
+    /**
+     * Function will execute on btnEditProfile click.
+     */
+    btnEditProfile.addEventListener('click', () => { 
+      profileViewModal.style.display = 'none';
+      profileEditModal.style.display = 'block';
+    });
+    
+    /**
+     * Function will execute on btnCancelProfile click and close profileEditModal.
+     */
+    btnCancelProfile.addEventListener('click', () => {
+      profileViewModal.style.display = 'block';
+      profileEditModal.style.display = 'none';
+    });
+
+    /**
+     * Function will hide message.
+     */
+    function hideMessage(htmlInput){
+        htmlInput.textContent = '';
+        htmlInput.style.display ='none';
+    }
+
+    /**
+     * Function will show message.
+     */
+    function showMessage(message, htmlInput) {
+          
+        htmlInput.textContent = message;
+        htmlInput.style.display = 'block';
+         
+    }
+  
+    /**
+     * Function will save edit profile form using Admin API and 
+     * updates "profileViewModal data" using response.
+     */
+    btnSaveProfile.addEventListener('click', async () => {
+        try {
+
+    
+
+  
+            spinner.removeAttribute('hidden');
+            if (validateProfileForm()) {
+                spinner.setAttribute('hidden', '');
+                return;
+            }
+            else {
+
+                profileFormStatus.textContent = 'Saving Profile Details...';
+                profileFormStatus.style.display = 'block'; //default display none.
+        
+                // add in sessionstorage
+                sessionStorage.setItem('profileUpdated', 'true');
+
+                // hide after 2sec.
+                setTimeout(() => {
+                    hideMessage(profileFormStatus);
+                }, 2000);
+
+                let customerUpdateResponse = await updateCustomerData();
+                customerUpdateResponse = JSON.parse(customerUpdateResponse);
+
+                if (customerUpdateResponse.hasOwnProperty('errors')) {
+            
+                  let errorMessage ='';
+                  for(let property in customerUpdateResponse.errors){
+                    errorMessage += `Error in ${property} : ${customerUpdateResponse.errors[property]} <br>`;
+                  }
+                  throw new Error(errorMessage);
+                  return;
+                }
+
+        
+
+                updateCustomerProfileDetails(customerUpdateResponse);
+                profileViewModal.style.display = 'block';
+                profileEditModal.style.display = 'none';
+
+
+                if (sessionStorage.getItem('profileUpdated') != null) {
+                    if (sessionStorage.getItem('profileUpdated') === 'true') {
+                        setTimeout(() => {
+                            let message = 'Profile Updated Successfully';
+                    
+                            showMessage(message, profileViewModalStatus);
+                        }, 500);
+                        setTimeout(() => {
+                            hideMessage(profileViewModalStatus);
+                        }, 3000);
+
+                        sessionStorage.removeItem('profileUpdated');
+                    }
+                }
+        
+            }
+            spinner.setAttribute('hidden', '');
+        }
+        catch (error) {
+            console.error('error :', error);
+            profileFormErrors.style.display = 'block';
+            profileFormErrors.innerHTML = error.message;
+    
+            setTimeout(() => {
+                hideMessage(profileFormErrors);
+            }, 3000);
+        }
+        finally {
+            sessionStorage.removeItem('profileUpdated');
+            spinner.setAttribute('hidden', '');
+        }
+    })
+
+
+
+    /**
+     * Function will execute on click of btnBack, present in right-section.
+     */
+    allbtnBack.forEach((btnBack)=>{
+        btnBack.addEventListener('click',()=>{
+          
+            leftSection.style.display = 'block';
+            rightSection.style.display = 'none';
+        })
+    })   
+
+    
+
+
+
+    /**
+    * Function used to validate address phone number submitted by user.
+    * @returns boolean hasAnyErrors
+    */
+    const validateAddAddressPhone = () => {
+        addNewAddressFormPhoneErrors.textContent='';
+        let hasAnyErrors = false;
+  
+        if (addNewAddressFormPhone.value) {
+          if(!itiAddForm.isValidNumber()){
+            addNewAddressFormPhoneErrors.textContent = 'Invalid number. Please try again. \n';
+            hasAnyErrors=true;
+          }
+        } else {
+          addNewAddressFormPhoneErrors.textContent = 'Please enter a valid number. \n';
+          hasAnyErrors=true;
+        }
+  
+      return hasAnyErrors;
+    }
+
+    /**
+    * Function used to enable button "btnSaveNewAddress" after successful validation.
+    */
+    addNewAddressFormPhone.addEventListener('keyup',()=>{
+      if(validateAddAddressPhone()){
+        btnSaveNewAddress.disabled = true;
+        return;
+      }else{
+        addNewAddressFormPhoneErrors.textContent='';
+        btnSaveNewAddress.disabled = false;
+      }
+    })
+
+
+
+     /**
+     * Function will execute on click of btnSaveNewAddress, shows updating messages
+     */
+     btnSaveNewAddress.addEventListener('click',()=>{
+
+      addNewAddressFormStatus.textContent = 'Saving Address Details...';
+      addNewAddressFormStatus.style.display ='block'; //default display none.
+      
+      sessionStorage.setItem('newAddressAdded','true');
+
+        setTimeout(() => {
+          hideMessage(addNewAddressFormStatus);
+      }, 2000);       
+    }) 
+    
+    
+    /**
+    * Function used to validate profile form submitted by user.
+    * @returns boolean hasAnyErrors
+    */
+    const validateProfileForm = ( )=>{
+
+      profileFormErrors.textContent = '';
+      let hasAnyErrors = false;
+
+      if (profilePhone.value) {
+          if(!iti.isValidNumber()){
+            profileFormErrors.textContent = 'Invalid number. Please try again. \n';
+            hasAnyErrors=true;
+          }
+      } else {
+        profileFormErrors.textContent = 'Please enter a valid number. \n';
+        hasAnyErrors=true;
+      }
+
+      if(profileFirstName.value === ''){
+        profileFormErrors.textContent += 'First Name cannot be blank. \n';
+        hasAnyErrors=true;
+      }
+
+      if(hasAnyErrors){
+        profileFormErrors.style.display ='block';
+        setTimeout(() => {
+          hideMessage(profileFormErrors);
+      }, 3000); 
+    }
+      return hasAnyErrors;
+    }
+
+    /**
+    * Function used to show updated Customer Profile Details to main content from profile form.
+    * @param {JSONResponse} customerUpdateResponse
+    */
+  const updateCustomerProfileDetails = (customerUpdateResponse)=> {
+      try{
+        let gap = 3;
+        let custDobStartIndex = customerUpdateResponse.customer.note.indexOf("###") + gap;
+        let custDobEndIndex = customerUpdateResponse.customer.note.lastIndexOf("###");
+        let custNotes = customerUpdateResponse.customer.note.slice(custDobStartIndex,custDobEndIndex);
+   
+        
+        firstNameProfileData.textContent = customerUpdateResponse.customer.first_name;
+        headerTitle.textContent = `Hello ${customerUpdateResponse.customer.first_name}`;
+        
+        lastnameProfileData.textContent = customerUpdateResponse.customer.last_name;
+        contactNumberProfileData.textContent = customerUpdateResponse.customer.phone;
+        
+        birthdateProfileData.textContent = JSON.parse(custNotes).dob;
+        customerDobAfterSave = JSON.parse(custNotes).dob;
+        
+        genderProfileData.textContent = JSON.parse(custNotes).gender;
+        customerGenderAfterSave = JSON.parse(custNotes).gender;
+      }
+      catch(error){
+        console.error(error);
+      }
+    }
+    
+    btnAddAddress.addEventListener('click', () => {
+      addressAddModal.style.display = 'block';
+      deliveryAddressContainer.style.display = 'none';
+    });
+    
+    btnCancelAddress.addEventListener('click', (e) => {
+      e.preventDefault();
+      addressAddModal.style.display = 'none';
+      deliveryAddressContainer.style.display = 'block';
+    });
+
+
+    /*
+    * Function is used to close "Edit Address Modal".
+    * @param {number} addressId 
+    */
+    const closeEditAddressModal = (event,addressId) =>{
+        event.preventDefault();
+        let containerId = `EditAddress_${addressId}`;
+
+        addressEditModal.style.display = 'none';
+        deliveryAddressContainer.style.display = 'block';
+
+        const editModalFormContainer = document.getElementById(containerId);
+        editModalFormContainer.style.display = 'none';
+      }
+
+
+      
+    /*
+    * Function is used to update customer data to shopify customer object using Admin API.
+    */
+    const updateCustomerData = async () => {   
+        
+        try {
+          let myHeaders = new Headers();
+            
+          let endpointUrl =
+            'https://script.google.com/macros/s/AKfycbzmB-H7Qbe1qo5opPhS_CnQf5uKc9zZyTRv-SVAkuQ26KF4VsLWITXjcDYcNiFraYaRyA/exec?action=customerUpdate';
+      
+            let myNote='';
+            if(customerNotesDataOnLoad.note === 'null' ){
+                customerNotesDataOnLoad.note = '';
+            }
+          
+            if(customerNotesDataOnLoad.note.includes("###")){
+                let gap = 3;
+                let custDobStartIndex = customerNotesDataOnLoad.note.indexOf("###") + gap;
+                let custDobEndIndex = customerNotesDataOnLoad.note.lastIndexOf("###");
+                let noteValue =  customerNotesDataOnLoad.note.slice(custDobStartIndex, custDobEndIndex);
+            
+                myNote = customerNotesDataOnLoad.note.replace(noteValue,'');
+             
+                myNote = myNote.replace('######','');
+            
+                myNote += `###{
+                                    "dob":"${profileBirthdate.value}",
+                                    "gender":"${profileGender.value}"
+                                }###`;
+                                      
+                }
+                else{
+                    myNote = customerNotesDataOnLoad.note + `###{
+                                            "dob":"${profileBirthdate.value}",
+                                            "gender":"${profileGender.value}"
+                                        }###`
+                }
+         
+                  let raw = JSON.stringify({
+                    "customer": {
+                        "id":{{customer.id}},
+                        "first_name": profileFirstName.value,
+                        "last_name": profileLastName.value,
+                        "phone": profilePhone.value,
+                        "note":  myNote
+                    }
+                  });
+      
+          let requestOptions = {
+            method: 'POST',
+            body: raw,
+            redirect: 'follow'
+            
+          };
+      
+          let response = await fetch(endpointUrl, requestOptions);
+          if (!response.ok) {
+            const message = `An error has occured: ${response.status}`;
+            throw new Error(message);
+          }
+          let result = await response.text();    
+          
+          
+          return result;
+          
+        } catch (error) {
+          console.error(error);
+        }
+      };
+      
+      
+      // MY ORDERS TAB
+ 
+      allBtnViewOrder.forEach((btn, index) => {
+        btn.addEventListener('click', (e) => {
+          viewOrderModal[index].classList.toggle('active');
+
+           if(viewOrderModal[index].className.includes('active')){
+              e.currentTarget.textContent='Hide Order';
+           }else{
+              e.currentTarget.textContent='View Order';
+           }
+         
+        });
+      });
+
+
+      // RESET PASSWORD TAB
+  
+      /**
+       * This is driver function, which is called on click of "reset password button". 
+       */
+       async function resetPassword() {
+          try {
+            spinner.removeAttribute('hidden');
+            // add code for password save to local storage
+            localStorage.setItem('newPassword', newPassword.value);
+             await recoverPassword();        
+            
+          } catch (error) {
+            console.error(error);
+          }
+        }
+  
+
+        /**
+         * Function is used to generate customer.reset_password_url and send email, which in turn helps to update new password.
+         */
+        const recoverPassword = async() => {
+          try {
+            {% if customer.email %}
+            email = "{{ customer.email }}";
+            {% endif %}
+  
+            let graphqlEndPoint =
+              "https://knya-med.myshopify.com/api/2023-07/graphql.json";
+              
+  
+            let myHeaders = new Headers();
+            myHeaders.append(
+              'X-Shopify-Storefront-Access-Token',
+              '71087f06f1643f3f4f37093922f0ce76'
+            );
+            myHeaders.append('Content-Type', 'application/json');
+  
+            let graphql = JSON.stringify({
+              query:
+                'mutation customerRecover($email: String!) {\r\n  customerRecover(email: $email) {\r\n    customerUserErrors {\r\n      code\r\n      field\r\n      message\r\n    }\r\n  }\r\n}',
+              variables: { email: email },
+            });
+  
+            let requestOptions = {
+              method: 'POST',
+              headers: myHeaders,
+              body: graphql,
+              redirect: 'follow',
+            };
+
+
+            
+            
+            const response = await fetch(graphqlEndPoint, requestOptions);
+            
+            if (!response.ok) {
+              const message = `An error has occured: ${response.status}`;
+              throw new Error(message);
+              return;
+            }
+            
+            const result = await response.json();
+            
+
+            if (result.hasOwnProperty('errors')) {
+              
+              throw new Error(result.errors[0].message);
+              return;
+            }
+
+            
+            localStorage.setItem('isRecoverPasswordResponseSent','true'); 
+            spinner.setAttribute('hidden', '');
+            location.reload();
+          }
+            
+          catch (error) {
+              console.error('error :', error.message);
+              passError.style.display ='block';
+              passError.textContent = error.message ;
+              setTimeout(() => {
+                hideMessage(passError);
+            }, 5000);
+              
+          }finally{
+            spinner.setAttribute('hidden', '');
+          }
+
+
+        };
+    
+
+        /**
+         * Function gets reset url and update new password. This is called on DOMContentLoaded.
+         */
+        const getResetUrlAndUpdatePassword = async ()=>{
+            try {
+                
+                
+                
+                let resetPasswordUrl = getResetPasswordUrl();
+                
+
+                await updatePassword(resetPasswordUrl);
+                sessionStorage.setItem('passwordReseted','true'); 
+                spinner.setAttribute('hidden', '');
+                
+                
+                window.location.replace('{{ routes.account_login_url }}');
+                
+            }catch (error) {
+                console.error(error);
+            }finally{
+                spinner.setAttribute('hidden', '');
+            }
+        }
+
+  
+        /**
+         * Function gets "Reset Password Url".
+         * @returns {string} resetPasswordUrl
+         */
+        const getResetPasswordUrl = () => {
+            try {
+              
+
+                let resetPasswordUrl = '';
+                {% if customer.reset_password_url %}
+                    resetPasswordUrl = "{{customer.reset_password_url }}";
+                {% endif %}
+                return resetPasswordUrl;
+            } catch (error) {
+                  console.error(error);
+            }
+        };    
+
+  
+          /**
+           * Function is used to update new password.
+           * @param {string} resetPasswordUrl 
+           */
+         const updatePassword = async (resetPasswordUrl) => {
+             try {
+              
+                 let graphqlEndPoint =
+                   'https://knya-med.myshopify.com/api/2023-07/graphql.json';
+                 let myHeaders = new Headers();
+                 myHeaders.append(
+                   'X-Shopify-Storefront-Access-Token',
+                   '71087f06f1643f3f4f37093922f0ce76'
+                 );
+      
+                 myHeaders.append('Content-Type', 'application/json')
+                 let graphql = JSON.stringify({
+                   query:
+                     'mutation resetPasswordByUrl($resetUrl: URL!, $password: String!) {\r\n  customerResetByUrl(resetUrl: $resetUrl, password: $password) {\r\n    customer { id }\r\n    customerUserErrors { code field message}\r\n  }\r\n}',
+                   variables: {
+                     resetUrl: resetPasswordUrl,
+                     password: localStorage.getItem('newPassword'),
+                   },
+                 })
+      
+                 let requestOptions = {
+                   method: 'POST',
+                   headers: myHeaders,
+                   body: graphql,
+                   redirect: 'follow',
+                 }
+
+                  const response = await fetch(graphqlEndPoint, requestOptions);
+                  
+                  if (!response.ok) {
+                    const message = `An error has occured: ${response.status}`;
+                    throw new Error(message);
+                    return;
+                  }
+                  
+                  const result = await response.json();
+                  
+                     
+                  if (result.hasOwnProperty('errors')) {
+                    
+                    return;
+                  }
+                     
+               
+             }
+             catch(error){
+               console.error(error);
+             }finally{
+                localStorage.removeItem('isRecoverPasswordResponseSent');
+                localStorage.removeItem('newPassword');
+            }
+         };
+
+  
+          /**
+           * On DOMContentLoaded, 
+           * (a) on clicking reset password button, 
+           *     if "isRecoverPasswordResponseSent" is true, that means "reset password Url" is received and new password is updated using it.
+           * (b) shows status message using sessionStorage variable "newAddressAdded".
+           * (c) shows status message using sessionStorage variable "addressEdited".
+           */
+          document.addEventListener('DOMContentLoaded', () => {  
+            let windowUrl = window.location.href;
+            if(!windowUrl.includes("#")){
+               defaultProfileTabView();
+            }
+            
+            if (localStorage.getItem('isRecoverPasswordResponseSent') !== null) {
+              if(localStorage.getItem('isRecoverPasswordResponseSent') === 'true'){
+                  
+                  spinner.removeAttribute('hidden');
+                  getResetUrlAndUpdatePassword();
+              }
+            } 
+            
+            if(sessionStorage.getItem('newAddressAdded') != null){
+                if(sessionStorage.getItem('newAddressAdded') === 'true'){
+                    setTimeout(() => {
+                        let message = 'Address Updated Successfully';
+                        
+                        showMessage(message,deliveryAddressTabStatus);
+                    }, 500); 
+
+                    setTimeout(() => {
+                        hideMessage(deliveryAddressTabStatus);
+                    }, 3000); 
+
+
+                    sessionStorage.removeItem('newAddressAdded');
+                } 
+            }
+
+           
+            if(sessionStorage.getItem('addressEdited') != null){
+                if(sessionStorage.getItem('addressEdited') === 'true'){
+                    setTimeout(() => {
+                        let message = 'Address Edited Successfully';
+                        
+                        showMessage(message,deliveryAddressTabStatus);
+                    }, 500); 
+
+                    setTimeout(() => {
+                        hideMessage(deliveryAddressTabStatus);
+                    }, 3000); 
+
+                    sessionStorage.removeItem('addressEdited');
+                } 
+            }
+            
+
+
+          });
+
+        
+        
+        
+        
+        
+        /**
+         * function validates new password
+         */
+
+        newPassword.addEventListener('keyup', () => {
+            if (validateNewPassword() && validateNewPasswordConfirmation()) {
+              btnResetPassword.disabled = false;
+            } else {
+              btnResetPassword.disabled = true;
+            }
+          });
+
+        
+        /**
+         * function validates password and confirm password.
+         */
+        newPasswordConfirmation.addEventListener('keyup', () => {
+          if (validateNewPassword() && validateNewPasswordConfirmation()) {
+            btnResetPassword.disabled = false;
+          } else {
+            btnResetPassword.disabled = true;
+          }
+        });
+        
+
+        
+        /**
+         * function validates new password.
+         * @returns {boolean} isPasswordValid
+         */
+        const validateNewPassword = () => {
+          let isPasswordValid = false;
+          passValidation.style.color = 'red';
+
+          if (newPassword.value.length < 5) {
+            passValidation.textContent = 'Your password must be at least 5 characters';
+            isPasswordValid = false;
+          } else if (
+            newPassword.value.toString().endsWith(' ') ||
+            newPassword.value.toString().startsWith(' ')
+          ) {
+            passValidation.textContent = 'Your password should not start or end with spaces';
+            isPasswordValid = false;
+          } else {
+            passValidation.textContent = '';
+            isPasswordValid = true;
+          }
+        
+          return isPasswordValid;
+        };
+
+        /**
+         * function validates new password confirmation.
+         * @returns {boolean}
+         */
+        const validateNewPasswordConfirmation = () => {
+            if(newPassword.value && newPasswordConfirmation.value){
+                if (newPassword.value !== newPasswordConfirmation.value) {
+                    passValidation.textContent = 'Passwords do not match.';
+                    passValidation.style.color = 'red';
+                    return false;
+                } else {
+                    passValidation.textContent = 'Password Verified';
+                    passValidation.style.color = 'green';
+                    return true;
+                }
+            }
+        };
+
+        /**
+         * function used to open to edit address modal.
+         * @param {number} addressId
+         */
+        const openEditAddressModal = (addressId)=>{
+            let containerId = `EditAddress_${addressId}`;      
+            updateProvinces(containerId);
+            addressEditModal.style.display = 'block';
+            deliveryAddressContainer.style.display = 'none';
+            let editAddressPhone = document.querySelector(`#AddressPhone_${addressId}`);
+            
+
+            // let itiEditform = window.intlTelInput(editAddressPhone, {
+            //   nationalMode: true,
+            //   showFlags: false,
+            //   separateDialCode: true,
+            //   preferredCountries: ['in'],
+            //   utilsScript:
+            //     'https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js', // just for formatting/placeholders etc
+            // }); 
+            
+            
+            const editModalFormContainer = document.getElementById(containerId);
+            
+            editModalFormContainer.style.display = 'block';
+
+        }
+
+        /**
+         * function used to enable Province based on country.
+         * @param {event} e
+         */
+        function enableProvince(e){
+            let newArr = [];
+            var selectedOption = JSON.parse(e.options[e.selectedIndex].getAttribute("data-provinces"));
+            selectedOption.forEach(each=>{
+            newArr.push(each[1])
+            })
+            e.closest(".address-country").nextElementSibling.firstElementChild.querySelector('select[name="address[province]"]').innerHTML="";
+            
+            if(selectedOption.length > 0){
+                e.closest(".address-country").nextElementSibling.firstElementChild.style.display = "block";
+            newArr.forEach(eachSelect=>{
+                    e.closest(".address-country").nextElementSibling.firstElementChild.querySelector('select[name="address[province]"]').innerHTML +=  `<option value='${eachSelect}'>${eachSelect}</option>`
+                })
+            }  else{
+                e.closest(".address-country").nextElementSibling.firstElementChild.style.display = "none";
+            }
+        }
+</script>
+
+{% schema %}
+{
+  "name": "t:sections.main-account.name",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ]
+}
+{% endschema %}

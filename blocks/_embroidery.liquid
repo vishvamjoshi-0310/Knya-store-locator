@@ -1,0 +1,110 @@
+
+<div class="embroidery-box">
+  <div class="loading-overlay__spinner pdpLoader">
+    <svg
+      aria-hidden="true"
+      focusable="false"
+      role="presentation"
+      class="spinner"
+      viewBox="0 0 66 66"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+    </svg>
+  </div>
+
+  {% render 'embroidery-Box_Rewamp', section: section, block: block, product: product %}
+  {% content_for 'block', type: '_pdp-dispatch-message', id: 'pdp-dispatch-message' %}
+</div>
+{% render 'embroidery-popup-Rewamp', section: section, block: block %}
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll(".loading-overlay__spinner").forEach(each => {
+      each.classList.remove("pdpLoader");
+      each.style.display = "none";
+    });  
+  });
+</script>
+{% schema %}
+{
+  "name": "Embroidery",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Embroidery Settings"
+    },
+    {
+      "id": "showEmbroidery",
+      "type": "checkbox",
+      "label": "Show Embroidery",
+      "default": true
+    },
+    {
+      "id": "EmbroideryProductHandlepicker",
+      "type": "product",
+      "label": "Product Handle"
+    },
+    {
+      "id": "EmbroideryLeftImage_desk",
+      "type": "image_picker",
+      "label": "Main Image for Embroidery left Image For Desktop"
+    },
+    {
+      "id": "EmbroideryLeftImage_mob",
+      "type": "image_picker",
+      "label": "Main Image for Embroidery left Image For Mobile"
+    },
+    {
+      "type": "text",
+      "id": "custom_embroidery_subheading",
+      "label": "Text After 'personalise your' word",
+      "default": "scrub"
+    },
+    {
+      "type": "text",
+      "id": "heading_text_embroidery",
+      "label": "Heading Text for Embroidery",
+      "default": "Add Embroidery"
+    },
+    {
+      "type": "text",
+      "id": "subheading_text_embroidery",
+      "label": "SubHeading Text for Embroidery",
+      "default": "Add your Name/Logo/ Icon "
+    },
+    {
+      "type": "text",
+      "id": "heading_second_text_embroidery",
+      "label": "Heading Text for Embroidery",
+      "default": "No, I’ll Pass"
+    },
+    {
+      "type": "text",
+      "id": "subheading_second_text_embroidery",
+      "label": "Heading second Text for Embroidery",
+      "default": "No, I’ll Pass"
+    },
+    {
+      "type": "richtext",
+      "id": "Embroiderybullets",
+      "label": "Embroidery bullets points"
+    },
+    {
+      "type": "richtext",
+      "id": "EmbroideryFinalbullets",
+      "label": "Embroidery bullets Final points"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "_pdp-dispatch-message"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Embroidery"
+    }
+  ]
+}
+{% endschema %}

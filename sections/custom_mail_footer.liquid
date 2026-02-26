@@ -1,0 +1,120 @@
+{{ 'custom_mail_footer.css' | asset_url | stylesheet_tag }}
+{{ 'component-newsletter.css' | asset_url | stylesheet_tag }}
+
+{% style %}
+  .top-mail{margin-top:{{section.settings.margintopemail}}px;}
+  @media only screen and (max-width: 640px) {
+    .top-mail{margin-top:{{section.settings.margintopemailmob}}px;}
+    .brand-logo {width: 37%;}
+  }
+{% endstyle %}
+
+<div class="top-mail">
+  <div class="emailDiv page-width {% if section.settings.show_padding_mail  %} page-padding-right page-padding-left{% endif %} {% if section.settings.show_padding_mob_mail %}padding-right-mob padding-left-mob{% endif %}">
+    <div class="eMailText font-heebo-SemiBold desk-mail">
+      <p class="text-email">{{ section.settings.subscribeEMailText }}</p>
+    </div>
+    <div class="eMailText font-heebo-medium mob-mail">
+      <p class="text-email">{{ section.settings.subscribeEMailText }}</p>
+    </div>
+    <div class="eMailForm ">
+      {%- form 'customer', id: 'ContactFooter', class: 'footer__newsletter newsletter-form' -%}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <div class="newsletter-form__field-wrapper">
+          <div class="field ">
+            <input
+              id="NewsletterForm--{{ section.id }}"
+              type="email"
+              name="contact[email]"
+              class="field__input email-custom"
+              value="{{ form.email }}"
+              aria-required="true"
+              autocorrect="off"
+              autocapitalize="off"
+              autocomplete="email"
+              {% if form.errors %}
+                autofocus
+                aria-invalid="true"
+                aria-describedby="ContactFooter-error"
+              {% elsif form.posted_successfully? %}
+                aria-describedby="ContactFooter-success"
+              {% endif %}
+              required
+            >
+            <label
+              class="opacity-email field__label font-heebo-SemiBold upper-news-letter"
+              for="NewsletterForm--{{ section.id }}"
+            >
+              <span> {{ 'newsletter.label' | t }} </span>
+            </label>
+            <button
+              type="submit"
+              class=" opacity-email newsletter-form__button field__button"
+              name="commit"
+              id="Subscribe"
+              aria-label="{{ 'newsletter.button_label' | t }}"
+            >
+              {{ 'icon-arrow.svg' | inline_asset_content }}
+            </button>
+          </div>
+          <small class="newsletter-form__message form__message font-heebo-regular" id="exiting_customer">
+            {{ 'icon-error.svg' | inline_asset_content }}
+            <span>You are already subscribed</span>
+          </small>
+          {%- if form.errors -%}
+            <small class="newsletter-form__message form__message font-heebo-regular" id="ContactFooter-error">
+            {{ 'icon-error.svg' | inline_asset_content }}
+              <span>
+                {{- form.errors.translated_fields.email | capitalize }}
+                {{ form.errors.messages.email -}}
+              </span></small
+            >
+          {% endif %}
+        </div>
+        {%- if form.posted_successfully? -%}
+          <h3
+            class="newsletter-form__message newsletter-form__message--success form__message font-heebo-regular"
+            id="ContactFooter-success"
+            tabindex="-1"
+            autofocus
+          >
+            {% render 'icon-success' -%}
+            {{- 'newsletter.success' | t }}
+          </h3>
+        {%- endif -%}
+      {%- endform -%}
+    </div>
+  </div>
+</div>
+
+<script>
+  window.addEventListener('load', (event) => {
+    let newsUrl = window.location.href;
+    let inputVAlue = document.querySelector('#NewsletterForm--{{ section.id }}').value;
+    if (newsUrl.includes('form_type=customer') && inputVAlue != '') {
+      document.querySelector('#exiting_customer').style.display = 'block';
+    }
+  });
+
+  if (document.querySelector('#NewsletterForm--footer').value != '') {
+    document.querySelector('.upper-news-letter ').style.display = 'none';
+  }
+</script>
+
+
+
+{% schema %}
+{
+    "name": "Custom-mail-footer",
+    "settings": [
+        {
+            "type": "text",
+            "id": "subscribeEMailText",
+            "label": "newsLetter text"
+        }
+    ],
+    "presets": [
+        {"name": "Custom-mail-footer"}
+    ]
+}
+{% endschema %}

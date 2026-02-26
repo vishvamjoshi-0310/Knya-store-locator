@@ -1,0 +1,329 @@
+<style>
+  .quickfilter-container {
+      display: flex;
+      align-items: flex-start;
+      gap:24px;
+      overflow-x: auto;
+      justify-content: center;
+      scrollbar-width: none;
+      scroll-behavior: smooth;
+      margin-top: 30px;
+  }
+
+  .quickfilter-container:has(> nth-child(8)){
+    justify-content: center;
+  }
+  .quickfilter-container::-webkit-scrollbar{
+      display: none;
+    }
+    .quick-filter-menu .quick-filter-item{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      row-gap: 6px;
+      cursor: pointer;
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+  .quick-filter-menu .quick-filter-item.active-filter span {
+          color: #462D8C !important;
+          font-family: 'Heebo-Medium';
+           font-style: normal;
+      }
+      .quick-filter-menu .quick-filter-item:hover span{
+          color: #232323;
+          font-family: 'Heebo-Medium';
+      }
+      .quick-filter-item.disabled-filter {
+        opacity: 0.5;
+        pointer-events: none;
+        cursor: not-allowed;
+      }
+      .quick-filter-menu .quick-filter-item.active-filter {
+          opacity: 1;
+          pointer-events: auto;
+          cursor: pointer;
+      }
+
+
+
+
+    .quick-filter-image-container {
+      width: 120px;
+      height: 120px;
+    }
+    .quick-filter-image-container img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1;
+      object-fit: cover;
+      -webkit-user-drag: none;
+      user-drag: none;
+    }
+    .quick-filter-item span {
+          font-size: 16px;
+          line-height: 16px;
+          font-family: 'Heebo-Regular';
+          letter-spacing: 0.064px;
+          color: #616161;
+    }
+    .quick-filter-item.active-filter span {
+      font-family: Heebo-Medium;
+    }
+    .quick-filter-item .selected-image{
+      display: none;
+    }
+    .quickfilter-container .stop-click-event{
+      pointer-events: none;
+    }
+    .quick-filter-item.active-filter .selected-image{
+      display: block;
+    }
+    .quick-filter-item.active-filter .default-image{
+      display: none;
+    }
+  .quick-filter-item span.imageblankonlybutton{
+      border: 1px solid #462D8C;
+      padding: 6px 18px;
+      line-height: 1;
+      min-width: fit-content;
+      border-radius: 8px;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      font-size: 16px;
+      line-height: 24px;
+      font-family: 'Heebo-Regular';
+      font-weight: 400;
+      color: #202020;
+      letter-spacing: 0;
+      margin:5px 0px; text-wrap-mode: nowrap;
+  }
+  .quick-filter-item span.imageblankonlybutton:hover{
+          font-family: 'Heebo-Regular';
+          color: #202020;
+          background: #462D8C0F;
+          border: 1px solid #462D8C0F;
+  }
+
+
+  {% if collection.metafields.custom.quick_filter_gender_hide_and_show.value == true %}
+    accordion-custom.facets__item[filter-label="gender"], .mobile-facets__summary[filter-label='gender'], .filter_content_div[category-label='gender'], .facets__filter-labels-mobile button[aria-label="Gender"] {
+              display: none !important;
+          }
+  {% endif %}
+
+
+
+       .quick-filter-menu .quick-filter-item img{display:none;}
+       .quick-filter-menu .quick-filter-item img:nth-child(1){display:block;}
+       .quick-filter-menu .quick-filter-item:hover img:nth-child(1){display:none;}
+       .quick-filter-menu .quick-filter-item:hover img:nth-child(2){display:block;}
+
+       .quick-filter-menu .quick-filter-item.active-filter img:nth-child(1){display:none !important;}
+        .quick-filter-menu .quick-filter-item.active-filter img:nth-child(2){display:none !important;}
+        .quick-filter-menu .quick-filter-item.active-filter img:nth-child(3){display:block !important;}
+       .quick-filter-menu .quick-filter-item.active-filter:hover img:nth-child(3){display:block !important;}
+       .quickfilter-container::-webkit-scrollbar {
+          display: none;
+        }
+
+        @media screen and (max-width: 1249px){
+          .quickfilter-container:has(> :nth-child(6)) {
+            justify-content: start;
+          }
+        }
+    @media screen and (max-width: 749px){
+      .quick-filter-image-container {
+        width: 100px;
+        height: 100px;
+      }
+      .quick-filter-item span {
+        font-size: 13px;
+        line-height: 16px;
+        letter-spacing: 0.052px;
+      }
+      .quick-filter-item:hover span, .quick-filter-item.active-filter span{
+        font-size: 14px;
+        letter-spacing: 0.4px;
+        line-height: 16px;
+      }
+      .quickfilter-container{
+        gap: 4px;
+        justify-content: start;
+        padding: 0 8px;
+      }
+      .quick-filter-image-container img{
+        margin-top: 1px;
+      }
+     .quick-filter-item span.imageblankonlybutton{font-size:14px;line-height:18px; margin:5px 0px;}
+  }
+
+
+</style>
+{% style %}
+  {% if collection.handle == 'all' %}
+    .sub-category-collection{
+      display: none;
+    }
+  {% endif %}
+{% endstyle %}
+<div class="quick-filter-menu">
+  {% assign quickFilters = collection.metafields.custom.quick_filter_content.value %}
+  <div class="quickfilter-container page-width">
+
+    {% for filter in collection.filters %}
+      {% for quickFilterItem in quickFilters %}
+        {% assign filterItemArray = quickFilterItem | split: '##' %}
+        {% assign meta_category_value = filterItemArray[0] | downcase | strip %}
+        {% assign filterMetaValue = filterItemArray[1] %}
+        {% assign imgDefault = filterItemArray[2] %}
+        {% assign hoverimage = filterItemArray[3] %}
+        {% assign imgSelected = filterItemArray[4] %}
+        {% assign category_name = filter.label | downcase | strip %}
+        {% assign quickfilter_name = filterMetaValue | downcase | strip %}
+
+        {% if category_name == meta_category_value %}
+          {% for value in filter.values %}
+            {% assign filter_value_normalized = value.label | downcase | strip %}
+            {% if quickfilter_name == filter_value_normalized %}
+              <div
+                class="quick-filter-item {% if value.count == 0 %}disabled-filter{% endif %} {% if value.active%}active-filter{% endif %}"
+                onclick="quickFilterPlp(this)"
+                filter-label="{{ filter.label }}"
+                filter-value="{{ value.value | downcase }}"
+                data-testing="{{ meta_category_value }}--{{ category_name }}"
+              >
+                {% if imgDefault != blank or imgSelected != blank %}
+                  <div class="quick-filter-image-container">
+                    {% assign imgWidthDesk = metaImage.width | default: 160 %}
+                    {% assign imgHeightDesk = metaImage.height | default: 160 %}
+                    <img
+                      class="default-image"
+                      srcset="
+                        {%- if imgWidthDesk >= 165 -%}{{ imgDefault | image_url: '165x' }} 165w,{%- endif -%}
+                        {%- if imgWidthDesk >= 360 -%}{{ imgDefault | image_url: '360x' }} 360w,{%- endif -%}
+                        {%- if imgWidthDesk >= 535 -%}{{ imgDefault | image_url: '535x' }} 535w,{%- endif -%}
+                        {{ imgDefault }} {{ imgWidthDesk }}w
+                      "
+                      src="{{ imgDefault }}"
+                      sizes="100vw"
+                      alt="{{ filterMetaValue }}"
+                      loading="lazy"
+                      width="{{ imgWidthDesk }}"
+                      height="{{ imgHeightDesk }}"
+                    >
+
+                    <img
+                      class="second"
+                      srcset="
+                        {%- if imgWidthDesk >= 165 -%}{{ hoverimage | image_url: '165x' }} 165w,{%- endif -%}
+                        {%- if imgWidthDesk >= 360 -%}{{ hoverimage | image_url: '360x' }} 360w,{%- endif -%}
+                        {%- if imgWidthDesk >= 535 -%}{{ hoverimage | image_url: '535x' }} 535w,{%- endif -%}
+                        {{ hoverimage }} {{ imgWidthDesk }}w
+                      "
+                      src="{{ hoverimage }}"
+                      sizes="100vw"
+                      alt="{{ filterMetaValue }}"
+                      loading="lazy"
+                      width="{{ imgWidthDesk }}"
+                      height="{{ imgHeightDesk }}"
+                    >
+
+                    <img
+                      class="selected-image"
+                      srcset="
+                        {%- if imgWidthDesk >= 165 -%}{{ imgSelected | image_url: '165x' }} 165w,{%- endif -%}
+                        {%- if imgWidthDesk >= 360 -%}{{ imgSelected | image_url: '360x' }} 360w,{%- endif -%}
+                        {%- if imgWidthDesk >= 535 -%}{{ imgSelected | image_url: '535x' }} 535w,{%- endif -%}
+                        {{ imgSelected }} {{ imgWidthDesk }}w
+                      "
+                      src="{{ imgSelected }}"
+                      sizes="100vw"
+                      alt="{{ filterMetaValue }}"
+                      loading="lazy"
+                      width="{{ imgWidthDesk }}"
+                      height="{{ imgHeightDesk }}"
+                    >
+                  </div>
+                  <span class="font-heebo-regular">{{ filterItemArray[1] }}</span>
+                {% else %}
+                  <span class="font-heebo-regular imageblankonlybutton">{{ filterItemArray[1] }}</span>
+                {% endif %}
+              </div>
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+  </div>
+</div>
+
+<script>
+  function passGTMEvent(eventContent, filterValue) {
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+      event: eventContent,
+      filterValue: filterValue,
+    });
+  }
+  function quickFilterPlp(event) {
+    event.closest('.quickfilter-container').classList.add('stop-click-event');
+    let filterLabel = event.getAttribute('filter-label');
+    let eventFilterValue = event.getAttribute('filter-value').trim();
+    let listItem = screen.width > 600 ? document.querySelectorAll('ul.desktop-list li input'):document.querySelectorAll('ul.filter_content_div li input');
+    listItem?.forEach((item) => {
+      let filterValue = item.getAttribute('filter-value');
+      if (eventFilterValue == filterValue) {
+        item.click();
+        setTimeout(() => {
+          if (item.checked) {
+            event.classList.add('active-filter');
+            passGTMEvent('filter_added', eventFilterValue);
+          } else {
+            event.classList.remove('active-filter');
+            passGTMEvent('filter_removed', eventFilterValue);
+          }
+          event.closest('.quickfilter-container').classList.remove('stop-click-event');
+        }, 1000);
+        return;
+      }
+    });
+  }
+</script>
+
+<script>
+  if (screen.width > 786) {
+    const slider = document.querySelectorAll('.quickfilter-container');
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+    for (let i = 0; i < document.querySelectorAll('.quickfilter-container').length; i++) {
+      slider[i].addEventListener('mousedown', (e) => {
+        isDown = true;
+        slider[i].classList.add('active');
+        startX = e.pageX - slider[i].offsetLeft;
+        scrollLeft = slider[i].scrollLeft;
+      });
+      slider[i].addEventListener('mouseleave', () => {
+        isDown = false;
+        slider[i].classList.remove('active');
+      });
+      slider[i].addEventListener('mouseup', () => {
+        isDown = false;
+        slider[i].classList.remove('active');
+      });
+      slider[i].addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - slider[i].offsetLeft;
+        const walk = (x - startX) * 2; //scroll-fast
+        slider[i].scrollLeft = scrollLeft - walk;
+      });
+    }
+  }
+</script>

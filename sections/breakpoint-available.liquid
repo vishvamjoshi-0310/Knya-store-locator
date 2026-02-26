@@ -1,0 +1,178 @@
+{{ 'section-breakpoint-available.css' | asset_url | stylesheet_tag }}
+
+<section class="breakpoint-available-section">
+  <div class="breakpoint-available-parent">
+    <div class="breakpoint-available-content">
+      {%- if section.settings.available_image_desktop != blank or section.settings.available_image_mobile != blank -%}
+        <div class="breakpoint-available-svg">
+          <picture>
+            {%- if section.settings.available_image_mobile != blank -%}
+              <source
+                media="(max-width: 768px)"
+                srcset="{{ section.settings.available_image_mobile | image_url: width: 200 }}"
+              >
+            {%- endif -%}
+            {%- if section.settings.available_image_desktop != blank -%}
+              <source
+                media="(min-width: 769px)"
+                srcset="{{ section.settings.available_image_desktop | image_url: width: 400 }}"
+              >
+            {%- endif -%}
+            {%- liquid
+              if section.settings.available_image_desktop != blank
+                assign available_image = section.settings.available_image_desktop
+                assign available_width = 400
+              else
+                assign available_image = section.settings.available_image_mobile
+                assign available_width = 200
+              endif
+              assign available_height = available_width | divided_by: available_image.aspect_ratio | round
+            -%}
+            <img
+              loading="lazy"
+              src="{{ available_image | image_url: width: available_width }}"
+              width="{{ available_width }}"
+              height="{{ available_height }}"
+              alt="{{ available_image.alt | escape }}"
+            >
+          </picture>
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.description_text != blank -%}
+        <div class="breakpoint-available-description-desktop">
+          {{ section.settings.description_text }}
+        </div>
+      {%- endif -%}
+    </div>
+    <div class="breakpoint-available-right">
+      {%- if section.settings.knya_logo_desktop != blank or section.settings.knya_logo_mobile != blank -%}
+        <div class="breakpoint-available-logo">
+          <picture>
+              <source
+                media="(max-width: 768px)"
+                srcset="{{ section.settings.knya_logo_mobile | image_url: width: 200 }}"
+              >
+              <source
+                media="(min-width: 769px)"
+                srcset="{{ section.settings.knya_logo_desktop | image_url: width: 400 }}"
+              >
+            {%- liquid
+              if section.settings.knya_logo_desktop != blank
+                assign knya_image = section.settings.knya_logo_desktop
+                assign knya_width = 400
+              else
+                assign knya_image = section.settings.knya_logo_mobile
+                assign knya_width = 200
+              endif
+              assign knya_height = knya_width | divided_by: knya_image.aspect_ratio | round
+            -%}
+            <img
+              loading="lazy"
+              src="{{ knya_image | image_url: width: knya_width }}"
+              width="{{ knya_width }}"
+              height="{{ knya_height }}"
+              alt="{{ knya_image.alt | escape }}"
+            >
+          </picture>
+        </div>
+      {%- endif -%}
+      <div class="breakpoint-available-logo-separator"></div>
+      {%- if section.settings.mpower_logo_desktop != blank or section.settings.mpower_logo_mobile != blank -%}
+        <div class="breakpoint-available-logo">
+          <picture>
+              <source
+                media="(max-width: 768px)"
+                srcset="{{ section.settings.mpower_logo_mobile | image_url: width: 200 }}"
+              >
+              <source
+                media="(min-width: 769px)"
+                srcset="{{ section.settings.mpower_logo_desktop | image_url: width: 400 }}"
+              >
+            {%- liquid
+              if section.settings.mpower_logo_desktop != blank
+                assign mpower_image = section.settings.mpower_logo_desktop
+                assign mpower_width = 400
+              else
+                assign mpower_image = section.settings.mpower_logo_mobile
+                assign mpower_width = 200
+              endif
+              assign mpower_height = mpower_width | divided_by: mpower_image.aspect_ratio | round
+            -%}
+            <img
+              loading="lazy"
+              src="{{ mpower_image | image_url: width: mpower_width }}"
+              width="{{ mpower_width }}"
+              height="{{ mpower_height }}"
+              alt="{{ mpower_image.alt | escape }}"
+            >
+          </picture>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+  {%- if section.settings.description_text != blank -%}
+    <div class="breakpoint-available-description-mobile">
+      {{ section.settings.description_text }}
+    </div>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Breakpoint Available",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "available_image_desktop",
+      "label": "Available 24/7 Desktop Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "available_image_mobile",
+      "label": "Available 24/7 Mobile Image"
+    },
+    {
+      "type": "textarea",
+      "id": "description_text",
+      "label": "Description Text",
+      "default": "Breakpoint is completely free. No charges, no hidden costs and no limits on how many times you can reach out."
+    },
+    {
+      "type": "header",
+      "content": "Knya Logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "knya_logo_desktop",
+      "label": "Knya Logo Desktop"
+    },
+    {
+      "type": "image_picker",
+      "id": "knya_logo_mobile",
+      "label": "Knya Logo Mobile"
+    },
+    {
+      "type": "header",
+      "content": "MPOWER Logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "mpower_logo_desktop",
+      "label": "MPOWER Logo Desktop"
+    },
+    {
+      "type": "image_picker",
+      "id": "mpower_logo_mobile",
+      "label": "MPOWER Logo Mobile"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Breakpoint Available"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,4841 @@
+const COUNTRY_CODE_TO_PHONE_CODE = {
+    "AF": {
+        "COUNTRY": "Afghanistan",
+        "CODE": "93"
+    },
+    "AL": {
+        "COUNTRY": "Albania",
+        "CODE": "355"
+    },
+    "DZ": {
+        "COUNTRY": "Algeria",
+        "CODE": "213"
+    },
+    "AS": {
+        "COUNTRY": "American Samoa",
+        "CODE": "1-684"
+    },
+    "AD": {
+        "COUNTRY": "Andorra",
+        "CODE": "376"
+    },
+    "AO": {
+        "COUNTRY": "Angola",
+        "CODE": "244"
+    },
+    "AI": {
+        "COUNTRY": "Anguilla",
+        "CODE": "1-264"
+    },
+    "AQ": {
+        "COUNTRY": "Antarctica",
+        "CODE": "672"
+    },
+    "AG": {
+        "COUNTRY": "Antigua and Barbuda",
+        "CODE": "1-268"
+    },
+    "AR": {
+        "COUNTRY": "Argentina",
+        "CODE": "54"
+    },
+    "AM": {
+        "COUNTRY": "Armenia",
+        "CODE": "374"
+    },
+    "AW": {
+        "COUNTRY": "Aruba",
+        "CODE": "297"
+    },
+    "AU": {
+        "COUNTRY": "Australia",
+        "CODE": "61"
+    },
+    "AT": {
+        "COUNTRY": "Austria",
+        "CODE": "43"
+    },
+    "AZ": {
+        "COUNTRY": "Azerbaijan",
+        "CODE": "994"
+    },
+    "BS": {
+        "COUNTRY": "Bahamas",
+        "CODE": "1-242"
+    },
+    "BH": {
+        "COUNTRY": "Bahrain",
+        "CODE": "973"
+    },
+    "BD": {
+        "COUNTRY": "Bangladesh",
+        "CODE": "880"
+    },
+    "BB": {
+        "COUNTRY": "Barbados",
+        "CODE": "1-246"
+    },
+    "BY": {
+        "COUNTRY": "Belarus",
+        "CODE": "375"
+    },
+    "BE": {
+        "COUNTRY": "Belgium",
+        "CODE": "32"
+    },
+    "BZ": {
+        "COUNTRY": "Belize",
+        "CODE": "501"
+    },
+    "BJ": {
+        "COUNTRY": "Benin",
+        "CODE": "229"
+    },
+    "BM": {
+        "COUNTRY": "Bermuda",
+        "CODE": "1-441"
+    },
+    "BT": {
+        "COUNTRY": "Bhutan",
+        "CODE": "975"
+    },
+    "BO": {
+        "COUNTRY": "Bolivia",
+        "CODE": "591"
+    },
+    "BA": {
+        "COUNTRY": "Bosnia and Herzegovina",
+        "CODE": "387"
+    },
+    "BW": {
+        "COUNTRY": "Botswana",
+        "CODE": "267"
+    },
+    "BR": {
+        "COUNTRY": "Brazil",
+        "CODE": "55"
+    },
+    "IO": {
+        "COUNTRY": "British Indian Ocean Territory",
+        "CODE": "246"
+    },
+    "VG": {
+        "COUNTRY": "British Virgin Islands",
+        "CODE": "1-284"
+    },
+    "BN": {
+        "COUNTRY": "Brunei",
+        "CODE": "673"
+    },
+    "BG": {
+        "COUNTRY": "Bulgaria",
+        "CODE": "359"
+    },
+    "BF": {
+        "COUNTRY": "Burkina Faso",
+        "CODE": "226"
+    },
+    "BI": {
+        "COUNTRY": "Burundi",
+        "CODE": "257"
+    },
+    "KH": {
+        "COUNTRY": "Cambodia",
+        "CODE": "855"
+    },
+    "CM": {
+        "COUNTRY": "Cameroon",
+        "CODE": "237"
+    },
+    "CA": {
+        "COUNTRY": "Canada",
+        "CODE": "1"
+    },
+    "CV": {
+        "COUNTRY": "Cape Verde",
+        "CODE": "238"
+    },
+    "KY": {
+        "COUNTRY": "Cayman Islands",
+        "CODE": "1-345"
+    },
+    "CF": {
+        "COUNTRY": "Central African Republic",
+        "CODE": "236"
+    },
+    "TD": {
+        "COUNTRY": "Chad",
+        "CODE": "235"
+    },
+    "CL": {
+        "COUNTRY": "Chile",
+        "CODE": "56"
+    },
+    "CN": {
+        "COUNTRY": "China",
+        "CODE": "86"
+    },
+    "CX": {
+        "COUNTRY": "Christmas Island",
+        "CODE": "61"
+    },
+    "CC": {
+        "COUNTRY": "Cocos Islands",
+        "CODE": "61"
+    },
+    "CO": {
+        "COUNTRY": "Colombia",
+        "CODE": "57"
+    },
+    "KM": {
+        "COUNTRY": "Comoros",
+        "CODE": "269"
+    },
+    "CK": {
+        "COUNTRY": "Cook Islands",
+        "CODE": "682"
+    },
+    "CR": {
+        "COUNTRY": "Costa Rica",
+        "CODE": "506"
+    },
+    "HR": {
+        "COUNTRY": "Croatia",
+        "CODE": "385"
+    },
+    "CU": {
+        "COUNTRY": "Cuba",
+        "CODE": "53"
+    },
+    "CW": {
+        "COUNTRY": "Curacao",
+        "CODE": "599"
+    },
+    "CY": {
+        "COUNTRY": "Cyprus",
+        "CODE": "357"
+    },
+    "CZ": {
+        "COUNTRY": "Czech Republic",
+        "CODE": "420"
+    },
+    "CD": {
+        "COUNTRY": "Democratic Republic of the Congo",
+        "CODE": "243"
+    },
+    "DK": {
+        "COUNTRY": "Denmark",
+        "CODE": "45"
+    },
+    "DJ": {
+        "COUNTRY": "Djibouti",
+        "CODE": "253"
+    },
+    "DM": {
+        "COUNTRY": "Dominica",
+        "CODE": "1-767"
+    },
+    "DO": {
+        "COUNTRY": "Dominican Republic",
+        "CODE": "1-809, 1-829, 1-849"
+    },
+    "TL": {
+        "COUNTRY": "East Timor",
+        "CODE": "670"
+    },
+    "EC": {
+        "COUNTRY": "Ecuador",
+        "CODE": "593"
+    },
+    "EG": {
+        "COUNTRY": "Egypt",
+        "CODE": "20"
+    },
+    "SV": {
+        "COUNTRY": "El Salvador",
+        "CODE": "503"
+    },
+    "GQ": {
+        "COUNTRY": "Equatorial Guinea",
+        "CODE": "240"
+    },
+    "ER": {
+        "COUNTRY": "Eritrea",
+        "CODE": "291"
+    },
+    "EE": {
+        "COUNTRY": "Estonia",
+        "CODE": "372"
+    },
+    "ET": {
+        "COUNTRY": "Ethiopia",
+        "CODE": "251"
+    },
+    "FK": {
+        "COUNTRY": "Falkland Islands",
+        "CODE": "500"
+    },
+    "FO": {
+        "COUNTRY": "Faroe Islands",
+        "CODE": "298"
+    },
+    "FJ": {
+        "COUNTRY": "Fiji",
+        "CODE": "679"
+    },
+    "FI": {
+        "COUNTRY": "Finland",
+        "CODE": "358"
+    },
+    "FR": {
+        "COUNTRY": "France",
+        "CODE": "33"
+    },
+    "PF": {
+        "COUNTRY": "French Polynesia",
+        "CODE": "689"
+    },
+    "GA": {
+        "COUNTRY": "Gabon",
+        "CODE": "241"
+    },
+    "GM": {
+        "COUNTRY": "Gambia",
+        "CODE": "220"
+    },
+    "GE": {
+        "COUNTRY": "Georgia",
+        "CODE": "995"
+    },
+    "DE": {
+        "COUNTRY": "Germany",
+        "CODE": "49"
+    },
+    "GH": {
+        "COUNTRY": "Ghana",
+        "CODE": "233"
+    },
+    "GI": {
+        "COUNTRY": "Gibraltar",
+        "CODE": "350"
+    },
+    "GR": {
+        "COUNTRY": "Greece",
+        "CODE": "30"
+    },
+    "GL": {
+        "COUNTRY": "Greenland",
+        "CODE": "299"
+    },
+    "GD": {
+        "COUNTRY": "Grenada",
+        "CODE": "1-473"
+    },
+    "GU": {
+        "COUNTRY": "Guam",
+        "CODE": "1-671"
+    },
+    "GT": {
+        "COUNTRY": "Guatemala",
+        "CODE": "502"
+    },
+    "GG": {
+        "COUNTRY": "Guernsey",
+        "CODE": "44-1481"
+    },
+    "GN": {
+        "COUNTRY": "Guinea",
+        "CODE": "224"
+    },
+    "GW": {
+        "COUNTRY": "Guinea-Bissau",
+        "CODE": "245"
+    },
+    "GY": {
+        "COUNTRY": "Guyana",
+        "CODE": "592"
+    },
+    "HT": {
+        "COUNTRY": "Haiti",
+        "CODE": "509"
+    },
+    "HN": {
+        "COUNTRY": "Honduras",
+        "CODE": "504"
+    },
+    "HK": {
+        "COUNTRY": "Hong Kong",
+        "CODE": "852"
+    },
+    "HU": {
+        "COUNTRY": "Hungary",
+        "CODE": "36"
+    },
+    "IS": {
+        "COUNTRY": "Iceland",
+        "CODE": "354"
+    },
+    "IN": {
+        "COUNTRY": "India",
+        "CODE": "91"
+    },
+    "ID": {
+        "COUNTRY": "Indonesia",
+        "CODE": "62"
+    },
+    "IR": {
+        "COUNTRY": "Iran",
+        "CODE": "98"
+    },
+    "IQ": {
+        "COUNTRY": "Iraq",
+        "CODE": "964"
+    },
+    "IE": {
+        "COUNTRY": "Ireland",
+        "CODE": "353"
+    },
+    "IM": {
+        "COUNTRY": "Isle of Man",
+        "CODE": "44-1624"
+    },
+    "IL": {
+        "COUNTRY": "Israel",
+        "CODE": "972"
+    },
+    "IT": {
+        "COUNTRY": "Italy",
+        "CODE": "39"
+    },
+    "CI": {
+        "COUNTRY": "Ivory Coast",
+        "CODE": "225"
+    },
+    "JM": {
+        "COUNTRY": "Jamaica",
+        "CODE": "1-876"
+    },
+    "JP": {
+        "COUNTRY": "Japan",
+        "CODE": "81"
+    },
+    "JE": {
+        "COUNTRY": "Jersey",
+        "CODE": "44-1534"
+    },
+    "JO": {
+        "COUNTRY": "Jordan",
+        "CODE": "962"
+    },
+    "KZ": {
+        "COUNTRY": "Kazakhstan",
+        "CODE": "7"
+    },
+    "KE": {
+        "COUNTRY": "Kenya",
+        "CODE": "254"
+    },
+    "KI": {
+        "COUNTRY": "Kiribati",
+        "CODE": "686"
+    },
+    "XK": {
+        "COUNTRY": "Kosovo",
+        "CODE": "383"
+    },
+    "KW": {
+        "COUNTRY": "Kuwait",
+        "CODE": "965"
+    },
+    "KG": {
+        "COUNTRY": "Kyrgyzstan",
+        "CODE": "996"
+    },
+    "LA": {
+        "COUNTRY": "Laos",
+        "CODE": "856"
+    },
+    "LV": {
+        "COUNTRY": "Latvia",
+        "CODE": "371"
+    },
+    "LB": {
+        "COUNTRY": "Lebanon",
+        "CODE": "961"
+    },
+    "LS": {
+        "COUNTRY": "Lesotho",
+        "CODE": "266"
+    },
+    "LR": {
+        "COUNTRY": "Liberia",
+        "CODE": "231"
+    },
+    "LY": {
+        "COUNTRY": "Libya",
+        "CODE": "218"
+    },
+    "LI": {
+        "COUNTRY": "Liechtenstein",
+        "CODE": "423"
+    },
+    "LT": {
+        "COUNTRY": "Lithuania",
+        "CODE": "370"
+    },
+    "LU": {
+        "COUNTRY": "Luxembourg",
+        "CODE": "352"
+    },
+    "MO": {
+        "COUNTRY": "Macau",
+        "CODE": "853"
+    },
+    "MK": {
+        "COUNTRY": "Macedonia",
+        "CODE": "389"
+    },
+    "MG": {
+        "COUNTRY": "Madagascar",
+        "CODE": "261"
+    },
+    "MW": {
+        "COUNTRY": "Malawi",
+        "CODE": "265"
+    },
+    "MY": {
+        "COUNTRY": "Malaysia",
+        "CODE": "60"
+    },
+    "MV": {
+        "COUNTRY": "Maldives",
+        "CODE": "960"
+    },
+    "ML": {
+        "COUNTRY": "Mali",
+        "CODE": "223"
+    },
+    "MT": {
+        "COUNTRY": "Malta",
+        "CODE": "356"
+    },
+    "MH": {
+        "COUNTRY": "Marshall Islands",
+        "CODE": "692"
+    },
+    "MR": {
+        "COUNTRY": "Mauritania",
+        "CODE": "222"
+    },
+    "MU": {
+        "COUNTRY": "Mauritius",
+        "CODE": "230"
+    },
+    "YT": {
+        "COUNTRY": "Mayotte",
+        "CODE": "262"
+    },
+    "MX": {
+        "COUNTRY": "Mexico",
+        "CODE": "52"
+    },
+    "FM": {
+        "COUNTRY": "Micronesia",
+        "CODE": "691"
+    },
+    "MD": {
+        "COUNTRY": "Moldova",
+        "CODE": "373"
+    },
+    "MC": {
+        "COUNTRY": "Monaco",
+        "CODE": "377"
+    },
+    "MN": {
+        "COUNTRY": "Mongolia",
+        "CODE": "976"
+    },
+    "ME": {
+        "COUNTRY": "Montenegro",
+        "CODE": "382"
+    },
+    "MS": {
+        "COUNTRY": "Montserrat",
+        "CODE": "1-664"
+    },
+    "MA": {
+        "COUNTRY": "Morocco",
+        "CODE": "212"
+    },
+    "MZ": {
+        "COUNTRY": "Mozambique",
+        "CODE": "258"
+    },
+    "MM": {
+        "COUNTRY": "Myanmar",
+        "CODE": "95"
+    },
+    "NA": {
+        "COUNTRY": "Namibia",
+        "CODE": "264"
+    },
+    "NR": {
+        "COUNTRY": "Nauru",
+        "CODE": "674"
+    },
+    "NP": {
+        "COUNTRY": "Nepal",
+        "CODE": "977"
+    },
+    "NL": {
+        "COUNTRY": "Netherlands",
+        "CODE": "31"
+    },
+    "AN": {
+        "COUNTRY": "Netherlands Antilles",
+        "CODE": "599"
+    },
+    "NC": {
+        "COUNTRY": "New Caledonia",
+        "CODE": "687"
+    },
+    "NZ": {
+        "COUNTRY": "New Zealand",
+        "CODE": "64"
+    },
+    "NI": {
+        "COUNTRY": "Nicaragua",
+        "CODE": "505"
+    },
+    "NE": {
+        "COUNTRY": "Niger",
+        "CODE": "227"
+    },
+    "NG": {
+        "COUNTRY": "Nigeria",
+        "CODE": "234"
+    },
+    "NU": {
+        "COUNTRY": "Niue",
+        "CODE": "683"
+    },
+    "KP": {
+        "COUNTRY": "North Korea",
+        "CODE": "850"
+    },
+    "MP": {
+        "COUNTRY": "Northern Mariana Islands",
+        "CODE": "1-670"
+    },
+    "NO": {
+        "COUNTRY": "Norway",
+        "CODE": "47"
+    },
+    "OM": {
+        "COUNTRY": "Oman",
+        "CODE": "968"
+    },
+    "PK": {
+        "COUNTRY": "Pakistan",
+        "CODE": "92"
+    },
+    "PW": {
+        "COUNTRY": "Palau",
+        "CODE": "680"
+    },
+    "PS": {
+        "COUNTRY": "Palestine",
+        "CODE": "970"
+    },
+    "PA": {
+        "COUNTRY": "Panama",
+        "CODE": "507"
+    },
+    "PG": {
+        "COUNTRY": "Papua New Guinea",
+        "CODE": "675"
+    },
+    "PY": {
+        "COUNTRY": "Paraguay",
+        "CODE": "595"
+    },
+    "PE": {
+        "COUNTRY": "Peru",
+        "CODE": "51"
+    },
+    "PH": {
+        "COUNTRY": "Philippines",
+        "CODE": "63"
+    },
+    "PN": {
+        "COUNTRY": "Pitcairn",
+        "CODE": "64"
+    },
+    "PL": {
+        "COUNTRY": "Poland",
+        "CODE": "48"
+    },
+    "PT": {
+        "COUNTRY": "Portugal",
+        "CODE": "351"
+    },
+    "PR": {
+        "COUNTRY": "Puerto Rico",
+        "CODE": "1-787, 1-939"
+    },
+    "QA": {
+        "COUNTRY": "Qatar",
+        "CODE": "974"
+    },
+    "CG": {
+        "COUNTRY": "Republic of the Congo",
+        "CODE": "242"
+    },
+    "RE": {
+        "COUNTRY": "Reunion",
+        "CODE": "262"
+    },
+    "RO": {
+        "COUNTRY": "Romania",
+        "CODE": "40"
+    },
+    "RU": {
+        "COUNTRY": "Russia",
+        "CODE": "7"
+    },
+    "RW": {
+        "COUNTRY": "Rwanda",
+        "CODE": "250"
+    },
+    "BL": {
+        "COUNTRY": "Saint Barthelemy",
+        "CODE": "590"
+    },
+    "SH": {
+        "COUNTRY": "Saint Helena",
+        "CODE": "290"
+    },
+    "KN": {
+        "COUNTRY": "Saint Kitts and Nevis",
+        "CODE": "1-869"
+    },
+    "LC": {
+        "COUNTRY": "Saint Lucia",
+        "CODE": "1-758"
+    },
+    "MF": {
+        "COUNTRY": "Saint Martin",
+        "CODE": "590"
+    },
+    "PM": {
+        "COUNTRY": "Saint Pierre and Miquelon",
+        "CODE": "508"
+    },
+    "VC": {
+        "COUNTRY": "Saint Vincent and the Grenadines",
+        "CODE": "1-784"
+    },
+    "WS": {
+        "COUNTRY": "Samoa",
+        "CODE": "685"
+    },
+    "SM": {
+        "COUNTRY": "San Marino",
+        "CODE": "378"
+    },
+    "ST": {
+        "COUNTRY": "Sao Tome and Principe",
+        "CODE": "239"
+    },
+    "SA": {
+        "COUNTRY": "Saudi Arabia",
+        "CODE": "966"
+    },
+    "SN": {
+        "COUNTRY": "Senegal",
+        "CODE": "221"
+    },
+    "RS": {
+        "COUNTRY": "Serbia",
+        "CODE": "381"
+    },
+    "SC": {
+        "COUNTRY": "Seychelles",
+        "CODE": "248"
+    },
+    "SL": {
+        "COUNTRY": "Sierra Leone",
+        "CODE": "232"
+    },
+    "SG": {
+        "COUNTRY": "Singapore",
+        "CODE": "65"
+    },
+    "SX": {
+        "COUNTRY": "Sint Maarten",
+        "CODE": "1-721"
+    },
+    "SK": {
+        "COUNTRY": "Slovakia",
+        "CODE": "421"
+    },
+    "SI": {
+        "COUNTRY": "Slovenia",
+        "CODE": "386"
+    },
+    "SB": {
+        "COUNTRY": "Solomon Islands",
+        "CODE": "677"
+    },
+    "SO": {
+        "COUNTRY": "Somalia",
+        "CODE": "252"
+    },
+    "ZA": {
+        "COUNTRY": "South Africa",
+        "CODE": "27"
+    },
+    "KR": {
+        "COUNTRY": "South Korea",
+        "CODE": "82"
+    },
+    "SS": {
+        "COUNTRY": "South Sudan",
+        "CODE": "211"
+    },
+    "ES": {
+        "COUNTRY": "Spain",
+        "CODE": "34"
+    },
+    "LK": {
+        "COUNTRY": "Sri Lanka",
+        "CODE": "94"
+    },
+    "SD": {
+        "COUNTRY": "Sudan",
+        "CODE": "249"
+    },
+    "SR": {
+        "COUNTRY": "Suriname",
+        "CODE": "597"
+    },
+    "SJ": {
+        "COUNTRY": "Svalbard and Jan Mayen",
+        "CODE": "47"
+    },
+    "SZ": {
+        "COUNTRY": "Swaziland",
+        "CODE": "268"
+    },
+    "SE": {
+        "COUNTRY": "Sweden",
+        "CODE": "46"
+    },
+    "CH": {
+        "COUNTRY": "Switzerland",
+        "CODE": "41"
+    },
+    "SY": {
+        "COUNTRY": "Syria",
+        "CODE": "963"
+    },
+    "TW": {
+        "COUNTRY": "Taiwan",
+        "CODE": "886"
+    },
+    "TJ": {
+        "COUNTRY": "Tajikistan",
+        "CODE": "992"
+    },
+    "TZ": {
+        "COUNTRY": "Tanzania",
+        "CODE": "255"
+    },
+    "TH": {
+        "COUNTRY": "Thailand",
+        "CODE": "66"
+    },
+    "TG": {
+        "COUNTRY": "Togo",
+        "CODE": "228"
+    },
+    "TK": {
+        "COUNTRY": "Tokelau",
+        "CODE": "690"
+    },
+    "TO": {
+        "COUNTRY": "Tonga",
+        "CODE": "676"
+    },
+    "TT": {
+        "COUNTRY": "Trinidad and Tobago",
+        "CODE": "1-868"
+    },
+    "TN": {
+        "COUNTRY": "Tunisia",
+        "CODE": "216"
+    },
+    "TR": {
+        "COUNTRY": "Turkey",
+        "CODE": "90"
+    },
+    "TM": {
+        "COUNTRY": "Turkmenistan",
+        "CODE": "993"
+    },
+    "TC": {
+        "COUNTRY": "Turks and Caicos Islands",
+        "CODE": "1-649"
+    },
+    "TV": {
+        "COUNTRY": "Tuvalu",
+        "CODE": "688"
+    },
+    "VI": {
+        "COUNTRY": "U.S. Virgin Islands",
+        "CODE": "1-340"
+    },
+    "UG": {
+        "COUNTRY": "Uganda",
+        "CODE": "256"
+    },
+    "UA": {
+        "COUNTRY": "Ukraine",
+        "CODE": "380"
+    },
+    "AE": {
+        "COUNTRY": "United Arab Emirates",
+        "CODE": "971"
+    },
+    "GB": {
+        "COUNTRY": "United Kingdom",
+        "CODE": "44"
+    },
+    "US": {
+        "COUNTRY": "United States",
+        "CODE": "1"
+    },
+    "UY": {
+        "COUNTRY": "Uruguay",
+        "CODE": "598"
+    },
+    "UZ": {
+        "COUNTRY": "Uzbekistan",
+        "CODE": "998"
+    },
+    "VU": {
+        "COUNTRY": "Vanuatu",
+        "CODE": "678"
+    },
+    "VA": {
+        "COUNTRY": "Vatican",
+        "CODE": "379"
+    },
+    "VE": {
+        "COUNTRY": "Venezuela",
+        "CODE": "58"
+    },
+    "VN": {
+        "COUNTRY": "Vietnam",
+        "CODE": "84"
+    },
+    "WF": {
+        "COUNTRY": "Wallis and Futuna",
+        "CODE": "681"
+    },
+    "EH": {
+        "COUNTRY": "Western Sahara",
+        "CODE": "212"
+    },
+    "YE": {
+        "COUNTRY": "Yemen",
+        "CODE": "967"
+    },
+    "ZM": {
+        "COUNTRY": "Zambia",
+        "CODE": "260"
+    },
+    "ZW": {
+        "COUNTRY": "Zimbabwe",
+        "CODE": "263"
+    }
+}
+
+//Validates a phone number starting from + and has 6 digits after that
+function smlValidatePhoneNumber(phoneNumber) {
+
+    if (!phoneNumber) {
+        return false;
+    }
+
+    if (phoneNumber.length < 10) {
+        return false
+    }
+
+    if (!phoneNumber.startsWith('+')) {
+        return false
+    }
+
+    if (phoneNumber.startsWith('+91') && phoneNumber.length != 13) {
+        return false
+    }
+
+    if (phoneNumber.startsWith("+91") && !['6', '7', '8', '9'].includes(phoneNumber.charAt(3))) {
+        return false
+    }
+
+    let phoneNumberRegex = /^\+([0-9]{6}[0-9]*)$/;
+
+    if (phoneNumber.match(phoneNumberRegex)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+
+const smlValidatePassword = (password) => {
+
+    if (!password) {
+        return false
+    }
+
+    if (password.length < 5) {
+        return false
+    }
+
+    return true;
+}
+
+//https://stackoverflow.com/questions/46155/how-can-i-validate-an-email-address-in-javascript
+const smlValidateEmail = (email) => {
+    const matches = String(email)
+        .toLowerCase()
+        .match(
+            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        )
+    return Boolean(matches)
+}
+
+function smlDebounce(func, wait, immediate) {
+    var timeout;
+    return function() {
+        var context = this,
+            args = arguments;
+        var later = function() {
+            timeout = null;
+            if (!immediate) func.apply(context, args);
+        };
+        var callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) func.apply(context, args);
+    };
+};
+
+
+const smlSanitizeEmail = (email) => {
+
+    if (email) {
+        //handling for user email input thamizhvasanthi@gmail. Com
+        email = email.replace(/ /g, '')
+    }
+
+    return email
+}
+
+const smlSanitizeName = (name) => {
+    if (name) {
+        return name.trim();
+    }
+
+    return name
+}
+
+const smlValidateAlphanumeric = (text) => {
+    if (!text) {
+        return false
+    }
+
+    let code, i, len;
+
+    for (i = 0, len = text.length; i < len; i++) {
+        code = text.charCodeAt(i);
+        if (!(code > 47 && code < 58) && // numeric (0-9)
+            !(code > 64 && code < 91) && // upper alpha (A-Z)
+            !(code > 96 && code < 123) && // lower alpha (a-z)
+            !(code==32)) { //whitespace as somenames can have middle name like Rahul S
+          return false;
+        }
+    }
+    return true;
+}
+
+const smlSanitizePhoneNumber = (phoneNumber) => {
+
+    if (phoneNumber) {
+        //handling for phoneNumber input like 7411 71 3971
+        phoneNumber = phoneNumber.replace(/ /g, '')
+    }
+
+    if (phoneNumber && phoneNumber.startsWith('0')) {
+        phoneNumber = phoneNumber.substring(1)
+    }
+
+    return phoneNumber
+}
+
+const smlSanitizeOTP = (otp) => {
+    if (otp) {
+        otp = otp.replace(/\s+/g, '');
+    }
+
+    return otp
+}
+
+const smlGetFullPhoneNumber = (phoneNumber, phoneCodeSelected) => {
+    phoneNumber = smlSanitizePhoneNumber(phoneNumber)
+    return phoneCodeSelected + phoneNumber
+}
+
+
+const simplify_jQuery_3_6_0 = $.noConflict(true);
+
+/************************************************* client.js *******************************************************/
+
+(function($) {
+    console.log("SUCCESS", "jquery version is ", $.fn.jquery)
+    let SERVER_DOMAIN = "loginviaotp.com"
+
+    let SHOP = window.location.hostname
+
+    let SHOPIFY_THEME = "no-theme"
+
+    let useProxiedUrl = true
+
+    if (Shopify) {
+        SHOP = Shopify.shop
+
+        if (Shopify.theme && Shopify.theme.name) {
+            SHOPIFY_THEME = Shopify.theme.name
+        }
+
+        if (SHOP == "testsimplifyloginembed.myshopify.com") {
+            SERVER_DOMAIN = "staging.loginviaotp.com"
+            useProxiedUrl = true
+        }
+
+        if (SHOP == "newteststorelogin.myshopify.com") {
+            SERVER_DOMAIN = "staging5002.loginviaotp.com"
+            useProxiedUrl = true
+        }
+    }
+
+    console.log("Shopify url is: ", SHOP)
+
+    let is_disabled = false
+    let allowedLoginMethod = "ONLY_EMAIL_PASSWORD"
+    let isPhoneCodeHardcoded = false
+    let PHONE_CODE = "+91"
+    let STORE_LANG = "ENGLISH"
+    let autoFillOTPEnabled = false
+    let LOGIN_EXP = "new"
+    let fields_during_signup = "EMAIL_ONLY"
+    let RESEND_OTP_TIMER_ENABLED = false
+    let fb_login_enabled = false
+    let google_login_enabled = false
+    let selected_country_code = "All"
+    let selected_country_code_list = []
+    let relative_route = ""
+    let showTermsAndConditions = false
+    let isBiometricLoginEnabled = false
+    let autoPopupBiometricLogin = false
+    let FIREBASE_LEVEL = "DISABLED" // ALL_NUMBERS, ONLY_INTERNATIONAL_NUMBERS
+    let FIREBASE_CONFIG
+    const CRED_KEY_STRING = 'sml-cred'
+    let SHOW_FULL_COUNTRY_NAME = false
+    let ASK_PASSWORD_DURING_SIGNUP = false
+    let RESEND_OTP_TIMER_TOTAL_TIME = 30
+    let IS_EMAIL_MANDATORY = true
+    let isEmailOTPLoginEnabled = false
+    let email_and_sms_consent = false
+    let show_accept_marketing_checkbox = false
+    let show_birthday_field_during_signup = false
+    let show_gender_field_during_signup = false
+
+    
+
+    const initExtension = async () => {
+
+        console.log("SML: initExtension")
+
+        let simplifyURLParams = new URLSearchParams(window.location.search)
+
+        if (simplifyURLParams.has("simplify_is_disabled")) {
+            is_disabled = (simplifyURLParams.get("simplify_is_disabled") == "true")
+        }
+
+        if (simplifyURLParams.has("simplify_allowed_login_method")) {
+            allowedLoginMethod = simplifyURLParams.get("simplify_allowed_login_method")
+        }
+
+        if (simplifyURLParams.has("simplify_login_exp")) {
+            LOGIN_EXP = simplifyURLParams.get("simplify_login_exp")
+        }
+
+        if (is_disabled) {
+
+            console.log("SML: Extension is is_disabled")
+
+            //make sign in form appear back
+
+            let signInForm = document.getElementById('customer_login')
+
+            if (!signInForm) {
+                console.log("Strange #customer_login not found, trying CustomerLoginForm")
+                signInForm = document.getElementById('CustomerLoginForm')
+            }
+
+            if (signInForm) {
+                console.log("Showing signInForm")
+                // signInForm.style.display = "block"
+                signInForm.style.visibility = "visible"
+            }
+
+            throw new Error("Extension is disabled")
+        }
+
+        console.log("SML: Extension not disabled")
+
+        if (SHOP.indexOf("yashteststore") > -1) {}
+
+        if (selected_country_code != "All") {
+            isPhoneCodeHardcoded = true
+        }
+
+        if (SHOP.indexOf("rubansaccessories.myshopify.com") > -1) {
+            showTermsAndConditions = true
+        }
+
+
+        let isIpInfoRequestPending = true
+        if (!isPhoneCodeHardcoded) {
+            $.get("https://ipinfo.io", function() {}, "jsonp").always(function(resp) {
+                console.log("ipinfo resp", resp)
+                if (resp && resp.country) {
+                    const countryCode = resp.country.toUpperCase()
+                    if (COUNTRY_CODE_TO_PHONE_CODE[countryCode]) {
+                        PHONE_CODE = "+" + COUNTRY_CODE_TO_PHONE_CODE[countryCode].CODE
+                    }
+                    if (selected_country_code_list.length > 0) {
+                        if (selected_country_code_list.indexOf(PHONE_CODE) == -1) {
+                            PHONE_CODE = selected_country_code_list[0]
+                        }
+                    }
+                }
+                isIpInfoRequestPending = false
+            });
+        } else {
+            isIpInfoRequestPending = false
+        }
+
+        let PHONE_NUMBER_TEXT = 'Enter Phone No.'
+        let EMAIL_PHONE_NUMBER_TEXT = 'Email/Phone number'
+        let OTP_TEXT = 'OTP'
+        let PASSWORD_OTP_TEXT = 'Password/OTP'
+        let GET_OTP_TEXT = 'Send OTP'
+        let GET_OTP_ON_SMS_TEXT = 'Get OTP on SMS'
+        let GET_OTP_ON_WHATSAPP_TEXT = 'Get OTP on WhatsApp'
+        let EMAIL_TEXT = "Enter Email ID"
+        let SUBMIT_OTP_TEXT = "Verify"
+        let REGISTER_AND_LOGIN_TEXT = "Sign Up"
+        let EDIT_PHONE_TEXT = "Edit phone number"
+        let RESEND_OTP_TEXT = "Resend OTP"
+        let LOGIN_SIGN_UP_TEXT = "Login/Sign up"
+        let CONTINUE_WITH_TEXT = "Or continue with"
+        let LOGIN_REGISTER_WITH_PHONE_NUMBER = "Login/Register with Phone Number"
+        let LOGIN_WITH_EMAIL_TEXT = "Login with Email/Password"
+        let FIRST_NAME_TEXT = "Enter First Name"
+        let LAST_NAME_TEXT = "Enter Last Name"
+        let PASSWORD_TEXT = "Password"
+        let OTP_SENT_SUCCESSFULLY_TEXT = "OTP sent successfully on phone, please enter it below";
+        let OTP_SENT_UNSUCCESSFULLY_ERROR_TEXT = "Not able to send otp. Please try again";
+        let ENTER_VALID_NUMBER = "Please enter a valid number";
+        let ENTER_VALID_OTP = "Please enter a valid 4 digit OTP"
+        let ENTER_VALID_SIX_DIGIT_OTP = "Please enter a valid 6 digit OTP"
+        let ENTER_VALID_FIRST_NAME = "Please enter a valid first name"
+        let ENTER_VALID_LAST_NAME = "Please enter a valid last name"
+        let ENTER_VALID_EMAIL = "Please enter a valid email"
+        let OTP_SUCCESSFULLY_VERIFIED = "Successfully verified otp, logging you in"
+        let ENTER_EMAIL_REGISTER_LOGIN = "Please enter your email id to register and login"
+        let OTP_VALIDATION_UNABLED = "Not able to validate otp."
+        let USER_REGISTRATION_UNABLED = "Not able to register user."
+        let EMAIL_TAKEN_WITHOUT_CLICK = "This email is already taken. Please provide different email"
+        let EMAIL_TAKEN_WITH_CLICK = "This email is already taken. Please provide different email or use Email/Password to login by"
+        let CLICKING_HERE = "clicking here."
+        let SUCCESSFULLY_REGISTERED_USER = "Successfully registered user, logging you in"
+        let OTP_SEND_UNABLE = "Not able to send otp. Error:"
+        let OTP_SENT_SUCCESSFULLY_TEXT_EMAIL = "Existing user found with given email, please enter OTP sent on email to verify email ownership";
+        let OTP_SENT_ON_EMAIL_TEXT = "OTP sent successfully to email id"
+        let OTP_SENT_SUCCESS_MESSAGE = "OTP sent successfully on phone and email"
+        let ENTER_IT_BELOW_TEXT = "please enter it below"
+        let SIGN_IN_WITH_GOOGLE = "Sign in with Google"
+        let SIGN_IN_WITH_FACEBOOK = "Sign in with Facebook"
+        let LOGIN_WITH_BIOMETRIC_TEXT = "Login as"
+        let LOGIN_WITH_EMAIL_OTP = "Login with Email/OTP"
+        let ENTER_YOUR_EMAIL_PLACEHOLDER = "Enter your email here"
+
+        if (STORE_LANG == "Swedish") {
+            PHONE_NUMBER_TEXT = 'Telefonnummer'
+            EMAIL_PHONE_NUMBER_TEXT = 'E-post/Telefonnummer'
+            OTP_TEXT = 'Engångskod (OTP)'
+            PASSWORD_OTP_TEXT = 'Lösenord/Engångskod'
+            GET_OTP_TEXT = 'Hämta engångskod'
+            GET_OTP_ON_SMS_TEXT = 'Hämta engångskod via SMS'
+            GET_OTP_ON_WHATSAPP_TEXT = 'Hämta engångskod via WhatsApp'
+            EMAIL_TEXT = "E-post"
+            SUBMIT_OTP_TEXT = "Bekräfta engångskod"
+            REGISTER_AND_LOGIN_TEXT = "Register and log in"
+            EDIT_PHONE_TEXT = "Redigera telefonnummer"
+            RESEND_OTP_TEXT = "Skicka om engångskod"
+            LOGIN_SIGN_UP_TEXT = "Logga in/Registrera dig"
+            CONTINUE_WITH_TEXT = "Eller fortsätt med"
+            LOGIN_REGISTER_WITH_PHONE_NUMBER = "Logga in/Registrera med telefonnummer"
+            LOGIN_WITH_EMAIL_TEXT = "Logga in med e-post/lösenord"
+            FIRST_NAME_TEXT = "Förnamn"
+            LAST_NAME_TEXT = "Efternamn"
+            PASSWORD_TEXT = "Lösenord"
+            OTP_SENT_SUCCESSFULLY_TEXT = "Engångskod skickades till telefonen, vänligen ange den nedan"
+            OTP_SENT_UNSUCCESSFULLY_ERROR_TEXT = "Kunde inte skicka engångskod. Försök igen"
+            ENTER_VALID_NUMBER = "Vänligen ange ett giltigt nummer"
+            ENTER_VALID_OTP = "Vänligen ange en giltig 4-siffrig engångskod"
+            ENTER_VALID_SIX_DIGIT_OTP = "Vänligen ange en giltig 6-siffrig engångskod"
+            ENTER_VALID_FIRST_NAME = "Vänligen ange ett giltigt förnamn"
+            ENTER_VALID_LAST_NAME = "Vänligen ange ett giltigt efternamn"
+            ENTER_VALID_EMAIL = "Vänligen ange en giltig e-postadress"
+            OTP_SUCCESSFULLY_VERIFIED = "Engångskoden har verifierats, du loggas in"
+            ENTER_EMAIL_REGISTER_LOGIN = "Vänligen ange din e-postadress för att registrera dig och logga in"
+            OTP_VALIDATION_UNABLED = "Det gick inte att validera engångskoden."
+            USER_REGISTRATION_UNABLED = "Det gick inte att registrera användaren."
+            EMAIL_TAKEN_WITHOUT_CLICK = "Denna e-postadress är redan upptagen. Vänligen ange en annan e-postadress"
+            EMAIL_TAKEN_WITH_CLICK = "Denna e-postadress är redan upptagen. Ange en annan e-postadress eller logga in med e-post/lösenord genom att"
+            CLICKING_HERE = "klicka här."
+            SUCCESSFULLY_REGISTERED_USER = "Användaren har registrerats, du loggas in"
+            OTP_SEND_UNABLE = "Det gick inte att skicka engångskod. Fel:"
+            OTP_SENT_SUCCESSFULLY_TEXT_EMAIL = "Befintlig användare hittades med angiven e-postadress, ange engångskoden som skickats till e-post för att verifiera ägarskap"
+            OTP_SENT_ON_EMAIL_TEXT = "Engångskod skickades till e-postadressen"
+            OTP_SENT_SUCCESS_MESSAGE = "Engångskod skickades till både telefon och e-post"
+            ENTER_IT_BELOW_TEXT = "vänligen ange den nedan"
+            SIGN_IN_WITH_GOOGLE = "Logga in med Google"
+            SIGN_IN_WITH_FACEBOOK = "Logga in med Facebook"
+            LOGIN_WITH_BIOMETRIC_TEXT = "Logga in som"
+            LOGIN_WITH_EMAIL_OTP = "Logga in med e-post/engångskod"
+            ENTER_YOUR_EMAIL_PLACEHOLDER = "Ange din e-post här"
+        }
+
+        if (STORE_LANG == "German") {
+            PHONE_NUMBER_TEXT = 'Telefonnummer';
+            EMAIL_PHONE_NUMBER_TEXT = 'E-Mail/Telefonnummer';
+            OTP_TEXT = 'OTP';
+            PASSWORD_OTP_TEXT = 'Passwort/OTP';
+            GET_OTP_TEXT = 'OTP anfordern';
+            GET_OTP_ON_SMS_TEXT = 'OTP per SMS anfordern';
+            GET_OTP_ON_WHATSAPP_TEXT = 'OTP per WhatsApp anfordern';
+            EMAIL_TEXT = "E-Mail";
+            SUBMIT_OTP_TEXT = "OTP absenden";
+            REGISTER_AND_LOGIN_TEXT = "Anmelden";
+            EDIT_PHONE_TEXT = "Telefonnummer bearbeiten";
+            RESEND_OTP_TEXT = "OTP erneut senden";
+            LOGIN_SIGN_UP_TEXT = "Anmelden/Registrieren";
+            CONTINUE_WITH_TEXT = "Oder fortfahren mit";
+            LOGIN_REGISTER_WITH_PHONE_NUMBER = "Mit Telefonnummer anmelden/registrieren";
+            LOGIN_WITH_EMAIL_TEXT = "Mit E-Mail/Passwort anmelden";
+            FIRST_NAME_TEXT = "Vorname";
+            LAST_NAME_TEXT = "Nachname";
+            PASSWORD_TEXT = "Passwort";
+            OTP_SENT_SUCCESSFULLY_TEXT = "OTP wurde erfolgreich an das Telefon gesendet, bitte unten eingeben";
+            OTP_SENT_UNSUCCESSFULLY_ERROR_TEXT = "OTP konnte nicht gesendet werden. Bitte versuchen Sie es erneut";
+            ENTER_VALID_NUMBER = "Bitte geben Sie eine gültige Nummer ein";
+            ENTER_VALID_OTP = "Bitte geben Sie ein gültiges 4-stelliges OTP ein";
+            ENTER_VALID_SIX_DIGIT_OTP = "Bitte geben Sie ein gültiges 6-stelliges OTP ein";
+            ENTER_VALID_FIRST_NAME = "Bitte geben Sie einen gültigen Vornamen ein";
+            ENTER_VALID_LAST_NAME = "Bitte geben Sie einen gültigen Nachnamen ein";
+            ENTER_VALID_EMAIL = "Bitte geben Sie eine gültige E-Mail-Adresse ein";
+            OTP_SUCCESSFULLY_VERIFIED = "OTP erfolgreich verifiziert, Sie werden angemeldet";
+            ENTER_EMAIL_REGISTER_LOGIN = "Bitte geben Sie Ihre E-Mail-Adresse ein, um sich zu registrieren und anzumelden";
+            OTP_VALIDATION_UNABLED = "OTP-Validierung nicht möglich.";
+            USER_REGISTRATION_UNABLED = "Benutzerregistrierung nicht möglich.";
+            EMAIL_TAKEN_WITHOUT_CLICK = "Diese E-Mail-Adresse ist bereits vergeben. Bitte geben Sie eine andere E-Mail-Adresse an";
+            EMAIL_TAKEN_WITH_CLICK = "Diese E-Mail-Adresse ist bereits vergeben. Bitte geben Sie eine andere E-Mail-Adresse an oder verwenden Sie E-Mail/Passwort zur Anmeldung, indem Sie";
+            CLICKING_HERE = "hier klicken.";
+            SUCCESSFULLY_REGISTERED_USER = "Benutzer erfolgreich registriert, Sie werden angemeldet";
+            OTP_SEND_UNABLE = "OTP konnte nicht gesendet werden. Fehler:";
+            OTP_SENT_SUCCESSFULLY_TEXT_EMAIL = "Ein bestehender Benutzer mit dieser E-Mail-Adresse wurde gefunden, bitte geben Sie das an die E-Mail gesendete OTP ein, um die E-Mail zu verifizieren";
+            OTP_SENT_ON_EMAIL_TEXT = "OTP wurde erfolgreich an die E-Mail-Adresse gesendet";
+            OTP_SENT_SUCCESS_MESSAGE = "OTP wurde erfolgreich an Telefon und E-Mail gesendet";
+            ENTER_IT_BELOW_TEXT = "bitte unten eingeben";
+            SIGN_IN_WITH_GOOGLE = "Mit Google anmelden";
+            SIGN_IN_WITH_FACEBOOK = "Mit Facebook anmelden";
+            LOGIN_WITH_BIOMETRIC_TEXT = "Anmelden als";
+            LOGIN_WITH_EMAIL_OTP = "Mit E-Mail/OTP anmelden";
+            ENTER_YOUR_EMAIL_PLACEHOLDER = "Geben Sie hier Ihre E-Mail-Adresse ein";
+        }
+
+        if (STORE_LANG == "French") {
+            PHONE_NUMBER_TEXT = 'Numéro de téléphone'
+            EMAIL_PHONE_NUMBER_TEXT = 'Email/Numéro de téléphone'
+            OTP_TEXT = 'Mot de passe à usage unique'
+            PASSWORD_OTP_TEXT = 'Mot de passe/Mot de passe à usage unique'
+            GET_OTP_TEXT = 'Obtenir le mot de passe à usage unique'
+            GET_OTP_ON_SMS_TEXT = 'Obtenir le mot de passe à usage unique par SMS'
+            GET_OTP_ON_WHATSAPP_TEXT = 'Obtenir le mot de passe à usage unique par WhatsApp'
+            EMAIL_TEXT = "Email"
+            SUBMIT_OTP_TEXT = "Soumettre le mot de passe à usage unique"
+            REGISTER_AND_LOGIN_TEXT = "Connexion"
+            EDIT_PHONE_TEXT = "Modifier le numéro de téléphone"
+            RESEND_OTP_TEXT = "Renvoyer le mot de passe à usage unique"
+            LOGIN_SIGN_UP_TEXT = "Connexion/Inscription"
+            CONTINUE_WITH_TEXT = "Ou continuer avec"
+            LOGIN_REGISTER_WITH_PHONE_NUMBER = "Connexion/Inscription avec numéro de téléphone"
+            LOGIN_WITH_EMAIL_TEXT = "Connexion avec Email/Mot de passe"
+            FIRST_NAME_TEXT = "Prénom"
+            LAST_NAME_TEXT = "Nom"
+            PASSWORD_TEXT = "Mot de passe"
+            OTP_SENT_SUCCESSFULLY_TEXT = "Mot de passe à usage unique envoyé avec succès sur le téléphone, veuillez l'entrer ci-dessous"
+            OTP_SENT_UNSUCCESSFULLY_ERROR_TEXT = "Impossible d'envoyer le mot de passe à usage unique. Veuillez réessayer"
+            ENTER_VALID_NUMBER = "Veuillez entrer un numéro valide"
+            ENTER_VALID_OTP = "Veuillez entrer un mot de passe à usage unique valide de 4 chiffres"
+            ENTER_VALID_SIX_DIGIT_OTP = "Veuillez entrer un mot de passe à usage unique valide de 6 chiffres"
+            ENTER_VALID_FIRST_NAME = "Veuillez entrer un prénom valide"
+            ENTER_VALID_LAST_NAME = "Veuillez entrer un nom valide"
+            ENTER_VALID_EMAIL = "Veuillez entrer un email valide"
+            OTP_SUCCESSFULLY_VERIFIED = "Mot de passe à usage unique vérifié avec succès, connexion en cours"
+            ENTER_EMAIL_REGISTER_LOGIN = "Veuillez entrer votre adresse email pour vous inscrire et vous connecter"
+            OTP_VALIDATION_UNABLED = "Impossible de valider le mot de passe à usage unique."
+            USER_REGISTRATION_UNABLED = "Impossible d'enregistrer l'utilisateur."
+            EMAIL_TAKEN_WITHOUT_CLICK = "Cet email est déjà pris. Veuillez fournir un autre email"
+            EMAIL_TAKEN_WITH_CLICK = "Cet email est déjà pris. Veuillez fournir un autre email ou utiliser Email/Mot de passe pour vous connecter en"
+            CLICKING_HERE = "cliquant ici."
+            SUCCESSFULLY_REGISTERED_USER = "Utilisateur enregistré avec succès, connexion en cours"
+            OTP_SEND_UNABLE = "Impossible d'envoyer le mot de passe à usage unique. Erreur :"
+            OTP_SENT_SUCCESSFULLY_TEXT_EMAIL = "Utilisateur existant trouvé avec l'email fourni, veuillez entrer le mot de passe à usage unique envoyé par email pour vérifier la propriété de l'email"
+            OTP_SENT_ON_EMAIL_TEXT = "Mot de passe à usage unique envoyé avec succès à l'adresse email"
+            OTP_SENT_SUCCESS_MESSAGE = "Mot de passe à usage unique envoyé avec succès sur téléphone et email"
+            ENTER_IT_BELOW_TEXT = "veuillez l'entrer ci-dessous"
+            SIGN_IN_WITH_GOOGLE = "Se connecter avec Google"
+            SIGN_IN_WITH_FACEBOOK = "Se connecter avec Facebook"
+            LOGIN_WITH_BIOMETRIC_TEXT = "Se connecter en tant que"
+            LOGIN_WITH_EMAIL_OTP = "Connexion avec Email/Mot de passe à usage unique"
+            ENTER_YOUR_EMAIL_PLACEHOLDER = "Entrez votre email ici"
+        }
+
+        if (STORE_LANG == "Portuguese-Brazil") {
+            PHONE_NUMBER_TEXT = 'Número de telefone'
+            EMAIL_PHONE_NUMBER_TEXT = 'E-mail/Número de telefone'
+            OTP_TEXT = 'Código'
+            PASSWORD_OTP_TEXT = 'Senha/Código'
+            GET_OTP_TEXT = 'Obter Código'
+            GET_OTP_ON_SMS_TEXT = 'Obter Código via SMS'
+            GET_OTP_ON_WHATSAPP_TEXT = 'Obter Código via WhatsApp'
+            EMAIL_TEXT = "E-mail"
+            SUBMIT_OTP_TEXT = "Enviar Código"
+            REGISTER_AND_LOGIN_TEXT = "Entrar"
+            EDIT_PHONE_TEXT = "Editar número de telefone"
+            RESEND_OTP_TEXT = "Reenviar Código"
+            LOGIN_SIGN_UP_TEXT = "Entrar/Cadastrar"
+            CONTINUE_WITH_TEXT = "Ou continuar com"
+            LOGIN_REGISTER_WITH_PHONE_NUMBER = "Entrar/Cadastrar com número de telefone"
+            LOGIN_WITH_EMAIL_TEXT = "Entrar com E-mail/Senha"
+            FIRST_NAME_TEXT = "Primeiro Nome"
+            LAST_NAME_TEXT = "Último Nome"
+            PASSWORD_TEXT = "Senha"
+            OTP_SENT_SUCCESSFULLY_TEXT = "Código enviado com sucesso para o telefone, por favor insira-o abaixo";
+            OTP_SENT_UNSUCCESSFULLY_ERROR_TEXT = "Não foi possível enviar o código. Por favor, tente novamente";
+            ENTER_VALID_NUMBER = "Por favor, insira um número válido";
+            ENTER_VALID_OTP = "Por favor, insira o código válido de 4 dígitos"
+            ENTER_VALID_SIX_DIGIT_OTP = "Por favor, insira um código válido de 6 dígitos"
+            ENTER_VALID_FIRST_NAME = "Por favor, insira um nome válido"
+            ENTER_VALID_LAST_NAME = "Por favor, insira um sobrenome válido"
+            ENTER_VALID_EMAIL = "Por favor, insira um e-mail válido"
+            OTP_SUCCESSFULLY_VERIFIED = "Código verificado com sucesso, conectando você"
+            ENTER_EMAIL_REGISTER_LOGIN = "Por favor, insira seu e-mail para cadastrar e entrar"
+            OTP_VALIDATION_UNABLED = "Não foi possível validar o código."
+            USER_REGISTRATION_UNABLED = "Não foi possível registrar o usuário."
+            EMAIL_TAKEN_WITHOUT_CLICK = "Este e-mail já está em uso. Por favor, forneça outro e-mail"
+            EMAIL_TAKEN_WITH_CLICK = "Este e-mail já está em uso. Por favor, forneça outro e-mail ou use E-mail/Senha para entrar"
+            CLICKING_HERE = "clicando aqui."
+            SUCCESSFULLY_REGISTERED_USER = "Usuário registrado com sucesso, conectando você"
+            OTP_SEND_UNABLE = "Não foi possível enviar o código. Erro:"
+            OTP_SENT_SUCCESSFULLY_TEXT_EMAIL = "Usuário existente encontrado com o e-mail fornecido, por favor, insira o código enviado para o e-mail para verificar a propriedade"
+            OTP_SENT_ON_EMAIL_TEXT = "Código enviado com sucesso para o e-mail"
+            OTP_SENT_SUCCESS_MESSAGE = "Código enviado com sucesso para o telefone e e-mail"
+            ENTER_IT_BELOW_TEXT = "por favor, insira-o abaixo"
+            SIGN_IN_WITH_GOOGLE = "Entrar com Google"
+            SIGN_IN_WITH_FACEBOOK = "Entrar com Facebook"
+            LOGIN_WITH_BIOMETRIC_TEXT = "Entrar como"
+            LOGIN_WITH_EMAIL_OTP = "Entrar com E-mail/Código"
+            ENTER_YOUR_EMAIL_PLACEHOLDER = "Insira seu e-mail aqui"
+        }
+
+        if (STORE_LANG == "Vietnamese") {
+            PHONE_NUMBER_TEXT = 'Số điện thoại'
+            EMAIL_PHONE_NUMBER_TEXT = 'Email/Số điện thoại'
+            OTP_TEXT = 'Mã OTP'
+            PASSWORD_OTP_TEXT = 'Mật khẩu/OTP'
+            GET_OTP_TEXT = 'Lấy mã OTP'
+            GET_OTP_ON_SMS_TEXT = 'Lấy OTP qua SMS'
+            GET_OTP_ON_WHATSAPP_TEXT = 'Lấy OTP qua WhatsApp'
+            EMAIL_TEXT = "Email"
+            SUBMIT_OTP_TEXT = "Gửi OTP"
+            REGISTER_AND_LOGIN_TEXT = "Đăng nhập"
+            EDIT_PHONE_TEXT = "Chỉnh sửa số điện thoại"
+            RESEND_OTP_TEXT = "Gửi lại mã OTP"
+            LOGIN_SIGN_UP_TEXT = "Đăng nhập/Đăng ký"
+            CONTINUE_WITH_TEXT = "Cách đăng nhập khác"
+            LOGIN_REGISTER_WITH_PHONE_NUMBER = "Đăng nhập bằng OTP gởi qua số điện thoại"
+            LOGIN_WITH_EMAIL_TEXT = "Đăng nhập bằng Email và Mật khẩu"
+            FIRST_NAME_TEXT = "Tên"
+            LAST_NAME_TEXT = "Họ"
+            PASSWORD_TEXT = "Mật khẩu"
+            OTP_SENT_SUCCESSFULLY_TEXT = "Mã OTP đã được gửi thành công, vui lòng nhập mã bên dưới"
+            OTP_SENT_UNSUCCESSFULLY_ERROR_TEXT = "Không thể gửi mã OTP. Vui lòng thử lại"
+            ENTER_VALID_NUMBER = "Vui lòng nhập số hợp lệ"
+            ENTER_VALID_OTP = "Vui lòng nhập mã OTP 4 chữ số hợp lệ"
+            ENTER_VALID_SIX_DIGIT_OTP = "Vui lòng nhập mã OTP 6 chữ số hợp lệ"
+            ENTER_VALID_FIRST_NAME = "Vui lòng nhập tên hợp lệ"
+            ENTER_VALID_LAST_NAME = "Vui lòng nhập họ hợp lệ"
+            ENTER_VALID_EMAIL = "Vui lòng nhập email hợp lệ"
+            OTP_SUCCESSFULLY_VERIFIED = "Mã OTP đã được xác minh thành công, đang đăng nhập"
+            ENTER_EMAIL_REGISTER_LOGIN = "Vui lòng nhập email của bạn để đăng ký và đăng nhập"
+            OTP_VALIDATION_UNABLED = "Không thể xác minh mã OTP"
+            USER_REGISTRATION_UNABLED = "Không thể đăng ký người dùng"
+            EMAIL_TAKEN_WITHOUT_CLICK = "Email này đã được sử dụng. Vui lòng cung cấp email khác"
+            EMAIL_TAKEN_WITH_CLICK = "Email này đã được sử dụng. Vui lòng cung cấp email khác hoặc sử dụng Email/Mật khẩu để đăng nhập bằng cách "
+            CLICKING_HERE = "nhấn vào đây."
+            SUCCESSFULLY_REGISTERED_USER = "Người dùng đã được đăng ký thành công, đang đăng nhập"
+            OTP_SEND_UNABLE = "Không thể gửi mã OTP. Lỗi:"
+            OTP_SENT_SUCCESSFULLY_TEXT_EMAIL = "Tìm thấy người dùng hiện có với email đã cho, vui lòng nhập mã OTP gửi qua email để xác minh quyền sở hữu email"
+            OTP_SENT_ON_EMAIL_TEXT = "Mã OTP đã được gửi thành công đến email"
+            OTP_SENT_SUCCESS_MESSAGE = "Mã OTP đã được gửi thành công qua điện thoại và email"
+            ENTER_IT_BELOW_TEXT = "vui lòng nhập mã bên dưới"
+            SIGN_IN_WITH_GOOGLE = "Đăng nhập bằng Google"
+            SIGN_IN_WITH_FACEBOOK = "Đăng nhập bằng Facebook"
+            LOGIN_WITH_BIOMETRIC_TEXT = "Đăng nhập bằng sinh trắc học"
+            LOGIN_WITH_EMAIL_OTP = "Đăng nhập bằng Email OTP"
+            ENTER_YOUR_EMAIL_PLACEHOLDER = "Hãy nhập Email"
+        }
+
+        if (STORE_LANG == "Norwegian") {
+            PHONE_NUMBER_TEXT = 'Mobilnummer'
+            EMAIL_PHONE_NUMBER_TEXT = 'E-post/Mobilnummer'
+            OTP_TEXT = 'Kode på SMS'
+            PASSWORD_OTP_TEXT = 'Passord/Kode'
+            GET_OTP_TEXT = 'Få tilsendt kode på SMS'
+            GET_OTP_ON_SMS_TEXT = 'Få kode på SMS'
+            GET_OTP_ON_WHATSAPP_TEXT = 'Få kode på WhatsApp'
+            EMAIL_TEXT = "E-post"
+            SUBMIT_OTP_TEXT = "Send inn kode"
+            REGISTER_AND_LOGIN_TEXT = "Logg inn"
+            EDIT_PHONE_TEXT = "Redigér mobilnummer"
+            RESEND_OTP_TEXT = "Send kode på nytt"
+            LOGIN_SIGN_UP_TEXT = "Logg inn / Registrér deg"
+            CONTINUE_WITH_TEXT = "Eller gå videre med"
+            LOGIN_REGISTER_WITH_PHONE_NUMBER = " Logg inn / Registrér deg med Mobilnummer"
+            LOGIN_WITH_EMAIL_TEXT = "Logg inn med E-post/Passord"
+            FIRST_NAME_TEXT = "Fornavn"
+            LAST_NAME_TEXT = "Etternavn"
+            PASSWORD_TEXT = "Passord"
+            OTP_SENT_SUCCESSFULLY_TEXT = "Kode sendt til din telefon, oppgi kode her";
+            OTP_SENT_UNSUCCESSFULLY_ERROR_TEXT = "Kunne ikke sende kode. Vennligst prøv igjen";
+            ENTER_VALID_NUMBER = "Du må oppgi et gyldig tall";
+            ENTER_VALID_OTP = "Vennligst oppgi en 4-sifret kode"
+            ENTER_VALID_SIX_DIGIT_OTP = " Vennligst oppgi en 6-sifret kode "
+            ENTER_VALID_FIRST_NAME = "Vennligst oppgi fornavn"
+            ENTER_VALID_LAST_NAME = "Vennligst oppgi etternavn"
+            ENTER_VALID_EMAIL = "Vennligst oppgi en gyldig e-post"
+            OTP_SUCCESSFULLY_VERIFIED = "Koden ble godkjent. Logger deg inn…"
+            ENTER_EMAIL_REGISTER_LOGIN = "Vennligst oppgi din e-post for å logge inn"
+            OTP_VALIDATION_UNABLED = "Kunne ikke bekrefte kode"
+            USER_REGISTRATION_UNABLED = "Kunne ikke registrere bruker"
+            EMAIL_TAKEN_WITHOUT_CLICK = "Denne e-posten er allerede i bruk. Logg inn eller bruk en annen e-post."
+            EMAIL_TAKEN_WITH_CLICK = " Denne e-posten er allerede i bruk. Bruk annen e-post eller benytt E-post og passord for å logge inn med"
+            CLICKING_HERE = "klikk her."
+            SUCCESSFULLY_REGISTERED_USER = "Brukerkonto opprettet! Logger deg inn…"
+            OTP_SEND_UNABLE = "Kunne ikke sende kode. Feilmelding: "
+            OTP_SENT_SUCCESSFULLY_TEXT_EMAIL = "Fant eksisterende bruker med angitt e-post, vennligst oppgi kode sendt på e-post for å bekrefte eierkap.";
+            OTP_SENT_ON_EMAIL_TEXT = "Kode sendt til e-post"
+            OTP_SENT_SUCCESS_MESSAGE = "Kode sendt på SMS og på e-post"
+            ENTER_IT_BELOW_TEXT = "vennligst fyll inn under"
+            SIGN_IN_WITH_GOOGLE = "Logg på med Google"
+            SIGN_IN_WITH_FACEBOOK = "Logg på med Facebook"
+            LOGIN_WITH_BIOMETRIC_TEXT = "Logg inn som"
+        }
+
+
+        if (STORE_LANG == "Spanish") {
+            PHONE_NUMBER_TEXT = 'Número de teléfono';
+            EMAIL_PHONE_NUMBER_TEXT = 'Correo electrónico/Número de teléfono';
+            OTP_TEXT = 'Código';
+            PASSWORD_OTP_TEXT = 'Contraseña/Código';
+            GET_OTP_TEXT = 'Obtener código';
+            GET_OTP_ON_SMS_TEXT = 'Obtener código en SMS';
+            GET_OTP_ON_WHATSAPP_TEXT = 'Obtener código en WhatsApp';
+            EMAIL_TEXT = "Correo electrónico";
+            SUBMIT_OTP_TEXT = "Enviar código";
+            REGISTER_AND_LOGIN_TEXT = "Iniciar sesión";
+            EDIT_PHONE_TEXT = "Editar número de teléfono";
+            RESEND_OTP_TEXT = "Reenviar código";
+            LOGIN_SIGN_UP_TEXT = "Iniciar sesión/Registrarse";
+            CONTINUE_WITH_TEXT = "O continuar con";
+            LOGIN_REGISTER_WITH_PHONE_NUMBER = "Iniciar sesión/Registrarse con número de teléfono";
+            LOGIN_WITH_EMAIL_TEXT = "Iniciar sesión con correo electrónico";
+            FIRST_NAME_TEXT = "Nombre(s)";
+            LAST_NAME_TEXT = "Apellido(s)";
+            PASSWORD_TEXT = "Contraseña";
+            OTP_SENT_SUCCESSFULLY_TEXT = "Código enviado exitosamente al teléfono, por favor ingresa el código abajo";
+            OTP_SENT_UNSUCCESSFULLY_ERROR_TEXT = "No se pudo enviar el código. Por favor, inténtalo de nuevo";
+            ENTER_VALID_NUMBER = "Por favor ingresa un número válido";
+            ENTER_VALID_OTP = "Por favor ingresa un código válido de 4 dígitos";
+            ENTER_VALID_SIX_DIGIT_OTP = "Por favor ingresa un código válido de 6 dígitos";
+            ENTER_VALID_FIRST_NAME = "Por favor ingresa un nombre válido";
+            ENTER_VALID_LAST_NAME = "Por favor ingresa un apellido válido";
+            ENTER_VALID_EMAIL = "Por favor ingresa un correo electrónico válido";
+            OTP_SUCCESSFULLY_VERIFIED = "Código verificado con éxito, iniciando sesión";
+            ENTER_EMAIL_REGISTER_LOGIN = "Por favor ingresa tu dirección de correo electrónico para registrarte e iniciar sesión";
+            OTP_VALIDATION_UNABLED = "No se pudo validar el código";
+            USER_REGISTRATION_UNABLED = "No se pudo registrar al usuario";
+            EMAIL_TAKEN_WITHOUT_CLICK = "Este correo electrónico ya está en uso. Por favor proporciona un correo electrónico diferente";
+            EMAIL_TAKEN_WITH_CLICK = "Este correo electrónico ya está en uso. Por favor proporciona un correo electrónico diferente o utiliza Correo electrónico/Contraseña para iniciar sesión haciendo clic aquí";
+            CLICKING_HERE = "aquí.";
+            SUCCESSFULLY_REGISTERED_USER = "Usuario registrado con éxito, iniciando sesión";
+            OTP_SEND_UNABLE = "No se pudo enviar el código. Error:";
+            OTP_SENT_SUCCESSFULLY_TEXT_EMAIL = "Se encontró un usuario existente con el correo electrónico proporcionado, por favor ingresa el código enviado al correo electrónico para verificar la propiedad del correo electrónico";
+            OTP_SENT_SUCCESS_MESSAGE = "Código enviado con éxito al teléfono y al correo electrónico";
+            ENTER_IT_BELOW_TEXT = "por favor ingrésalo abajo";
+            SIGN_IN_WITH_GOOGLE = "Iniciar sesión con Google";
+            SIGN_IN_WITH_FACEBOOK = "Iniciar sesión con Facebook";
+            LOGIN_WITH_BIOMETRIC_TEXT = "Iniciar sesión como";
+        }
+
+
+        if (STORE_LANG == "Indonesian") {
+            PHONE_NUMBER_TEXT = 'Nomor HP'
+            EMAIL_PHONE_NUMBER_TEXT = 'Email/Nomor HP'
+            OTP_TEXT = 'OTP'
+            PASSWORD_OTP_TEXT = 'Sandi/OTP'
+            GET_OTP_TEXT = 'Kirim OTP'
+            EMAIL_TEXT = "Email"
+            SUBMIT_OTP_TEXT = "Masukan OTP"
+            REGISTER_AND_LOGIN_TEXT = "Masuk"
+            EDIT_PHONE_TEXT = "Ubah Nomor HP"
+            RESEND_OTP_TEXT = "Kirim Ulang OTP"
+            LOGIN_SIGN_UP_TEXT = "Masuk/Daftar"
+            CONTINUE_WITH_TEXT = "atau lanjutkan dengan"
+            LOGIN_REGISTER_WITH_PHONE_NUMBER = "Masuk/Daftar dengan Nomor HP"
+            LOGIN_WITH_EMAIL_TEXT = "Masuk menggunakan Email"
+            FIRST_NAME_TEXT = "Nama Depan"
+            LAST_NAME_TEXT = "Nama Belakang"
+            PASSWORD_TEXT = "Kata Sandi"
+            OTP_SENT_SUCCESSFULLY_TEXT = "OTP terkirim ke nomor tujuan, masukan kodenya pada form di bawah.";
+            OTP_SENT_UNSUCCESSFULLY_ERROR_TEXT = "Tidak bisa mengirim OTP. Silakan coba lagi";
+            ENTER_VALID_NUMBER = "Masukan nomor yang valid";
+            ENTER_VALID_OTP = "Masukan kode OPT 4 digit yang valid"
+            ENTER_VALID_SIX_DIGIT_OTP = "Masukan kode OPT 6 digit yang valid"
+            ENTER_VALID_FIRST_NAME = "Masukan nama depan yang valid"
+            ENTER_VALID_LAST_NAME = "Masukan nama belakang yang valid"
+            ENTER_VALID_EMAIL = "Masukan alamat email yang valid"
+            OTP_SUCCESSFULLY_VERIFIED = "OTP Terverifikasi, anda akan segera masuk"
+            ENTER_EMAIL_REGISTER_LOGIN = "Masukan alamat email anda untuk mendaftar dan masuk"
+            OTP_VALIDATION_UNABLED = "Gagal memvalidasi OTP."
+            USER_REGISTRATION_UNABLED = "Gagal mendaftarkan pengguna."
+            EMAIL_TAKEN_WITHOUT_CLICK = "Alamat email sudah terdaftar. Gunakan alamat email lain."
+            EMAIL_TAKEN_WITH_CLICK = "Alamat email sudah terdaftar. Gunakan alamat email lain atau gunakan email/sandi untuk masuk."
+            CLICKING_HERE = "Klik disini."
+            SUCCESSFULLY_REGISTERED_USER = "Sukses terdaftar, anda akan segera masuk"
+            OTP_SEND_UNABLE = "Gagal mengirim OTP. Terjadi kesalahan:"
+            OTP_SENT_SUCCESSFULLY_TEXT_EMAIL = "User ditemukan dengan alamat email yang sama, kirim OTP ke email untuk verifikasi.";
+            OTP_SENT_SUCCESS_MESSAGE = "OTP sukses terkirim ke Nomor HP dan email"
+            ENTER_IT_BELOW_TEXT = "masukan di bawah"
+            SIGN_IN_WITH_GOOGLE = "Masuk dengan Google"
+            SIGN_IN_WITH_FACEBOOK = "Masuk dengan Facebook"
+            LOGIN_WITH_BIOMETRIC_TEXT = "Masuk dengan"
+        }
+
+
+        if (STORE_LANG == "ARABIC") {
+            PHONE_NUMBER_TEXT = "رقم الهاتف";
+            EMAIL_PHONE_NUMBER_TEXT = "البريد الإلكتروني / رقم الهاتف";
+            OTP_TEXT = "رمز التحقق";
+            PASSWORD_OTP_TEXT = "كلمة المرور / رمز التحقق";
+            GET_OTP_TEXT = "احصل على رمز التحقق";
+            EMAIL_TEXT = "البريد الإلكتروني";
+            SUBMIT_OTP_TEXT = "إرسال رمز التحقق";
+            REGISTER_AND_LOGIN_TEXT = "تسجيل الدخول";
+            EDIT_PHONE_TEXT = "تعديل رقم الهاتف";
+            RESEND_OTP_TEXT = "إعادة إرسال رمز التحقق";
+            LOGIN_SIGN_UP_TEXT = "الدخول / التسجيل";
+            CONTINUE_WITH_TEXT = "أو استخدم طريقة أخرى";
+            LOGIN_REGISTER_WITH_PHONE_NUMBER = "تسجيل الدخول / التسجيل باستخدام رقم الهاتف";
+            LOGIN_WITH_EMAIL_TEXT = "تسجيل الدخول بالبريد الإلكتروني";
+            OTP_SENT_SUCCESSFULLY_TEXT = "تم إرسال رمز التحقق بنجاح على الهاتف ، يرجى إدخاله أدناه";
+            OTP_SENT_UNSUCCESSFULLY_ERROR_TEXT = "غير قادر على إرسال رمز التحقق. حاول مرة اخرى";
+            ENTER_VALID_NUMBER = "يرجى إدخال رقم هاتف صحيح";
+            ENTER_VALID_OTP = "الرجاء إدخال رمز تحقق صالح"
+            ENTER_VALID_FIRST_NAME = "الرجاء إدخال الاسم الأول بشكل صحيح"
+            ENTER_VALID_LAST_NAME = "يرجى إدخال الاسم الاخير بشكل صحيح"
+            ENTER_VALID_EMAIL = "يرجى إدخال البريد الإلكتروني بشكل صحيح"
+            OTP_SUCCESSFULLY_VERIFIED = "تم التحقق من الرمز بنجاح، لقد قمت بتسجيل الدخول"
+            ENTER_EMAIL_REGISTER_LOGIN = "الرجاء إدخال بريدك الالكتروني لتسجيل الدخول"
+            OTP_VALIDATION_UNABLED = "غير قادر على التحقق من صحة الرمز."
+            USER_REGISTRATION_UNABLED = "غير قادر على إنشاء حساب."
+            EMAIL_TAKEN_WITHOUT_CLICK = "البريد إلكتروني مستخدم في حساب اخر. يرجى إدخال بريد إلكتروني مختلف"
+            EMAIL_TAKEN_WITH_CLICK = "الايميل مستخدم مسبقا. يرجى تقديم بريد إلكتروني مختلف أو استخدام البريد الإلكتروني / كلمة المرور لتسجيل الدخول عن طريق"
+            CLICKING_HERE = "النقر هنا"
+            SUCCESSFULLY_REGISTERED_USER = "تم إنشاء حسابك بنجاح"
+            OTP_SEND_UNABLE = "خطأ: غير قادر على إرسال رمز التحقق"
+            OTP_SENT_SUCCESSFULLY_TEXT_EMAIL = "لديك حساب بالفعل على نفس البريد الالكتروني. ادخل رمز التحقق الذي تم ارساله الى ايميلك الآن"
+            OTP_SENT_SUCCESS_MESSAGE = "تم إرسال رمز التحقق بنجاح عبر الهاتف والبريد الإلكتروني"
+            ENTER_IT_BELOW_TEXT = "الرجاء إدخاله أدناه"
+            SIGN_IN_WITH_GOOGLE = "سجل دخول بـ جوجل"
+            SIGN_IN_WITH_FACEBOOK = "سجل دخول بـ فيسبوك"
+            LOGIN_WITH_BIOMETRIC_TEXT = "التسجيل باستخدام"
+        }
+
+        if (STORE_LANG == "ITALIAN") {
+            PHONE_NUMBER_TEXT = 'Numero di telefono'
+            EMAIL_PHONE_NUMBER_TEXT = 'E-mail/Numero di telefono'
+            OTP_TEXT = 'Codice di verifica'
+            PASSWORD_OTP_TEXT = "Parola d'ordine/ Codice di verifica"
+            GET_OTP_TEXT = 'Ottieni il codice di verifica'
+            EMAIL_TEXT = "E-mail"
+            SUBMIT_OTP_TEXT = "Invia il codice di verifica"
+            REGISTER_AND_LOGIN_TEXT = "Login"
+            EDIT_PHONE_TEXT = "Modifica numero di telefono"
+            RESEND_OTP_TEXT = "Invia nuovamente il codice di verifica"
+            LOGIN_SIGN_UP_TEXT = "Accedi/Iscriviti"
+            CONTINUE_WITH_TEXT = "Oppure continua con"
+            LOGIN_REGISTER_WITH_PHONE_NUMBER = "Accedi/Registrati con il numero di telefono"
+            LOGIN_WITH_EMAIL_TEXT = "Accedi con e-mail"
+            FIRST_NAME_TEXT = "Nome di battesimo"
+            LAST_NAME_TEXT = "Cognome"
+            OTP_SENT_SUCCESSFULLY_TEXT = "Codice di verifica inviato con successo sul telefono, inseriscilo di seguito";
+            OTP_SENT_UNSUCCESSFULLY_ERROR_TEXT = "Impossibile inviare il codice di verifica. Per favore riprova";
+            ENTER_VALID_NUMBER = "Per favore, inserire un numero valido";
+            ENTER_VALID_OTP = "Inserisci un codice di verifica a 4 cifre valido"
+            ENTER_VALID_FIRST_NAME = "Per favore inserire un nome di battesimo valido"
+            ENTER_VALID_LAST_NAME = "Si prega di inserire un cognome valido"
+            ENTER_VALID_EMAIL = "Inserisci una email valida"
+            OTP_SUCCESSFULLY_VERIFIED = "Codice di verifica convalidato con successo, accedi"
+            ENTER_EMAIL_REGISTER_LOGIN = "Inserisci la tua e-mail per registrarti ed effettuare il login"
+            OTP_VALIDATION_UNABLED = "Impossibile convalidare il codice di verifica."
+            USER_REGISTRATION_UNABLED = "Impossibile registrare l'utente."
+            EMAIL_TAKEN_WITHOUT_CLICK = "Questo indirizzo e-mail è già in uso. Si prega di fornire un'e-mail diversa"
+            EMAIL_TAKEN_WITH_CLICK = "Questo indirizzo e-mail è già in uso. Si prega di fornire un'e-mail diversa o utilizzare l'e-mail/password per accedere"
+            CLICKING_HERE = "cliccando qui."
+            SUCCESSFULLY_REGISTERED_USER = "Utente registrato con successo, effettua il login"
+            OTP_SEND_UNABLE = "Impossibile inviare il codice di verifica. Errore:"
+            OTP_SENT_SUCCESSFULLY_TEXT_EMAIL = "Utente esistente trovato con l'e-mail fornita, inserisci il codice di verifica inviato nell'e-mail per verificare la proprietà dell'e-mail";
+            OTP_SENT_SUCCESS_MESSAGE = "Codice di verifica inviato con successo su telefono ed e-mail"
+            ENTER_IT_BELOW_TEXT = "si prega di inserirlo qui sotto"
+        }
+
+        if (STORE_LANG == "Chinese(Traditional)") {
+            PHONE_NUMBER_TEXT = "手機號碼"
+            EMAIL_PHONE_NUMBER_TEXT = "信箱/手機號碼"
+            OTP_TEXT = "驗證碼"
+            PASSWORD_OTP_TEXT = "密碼/驗證碼"
+            GET_OTP_TEXT = "取得驗證碼"
+            EMAIL_TEXT = "信箱"
+            SUBMIT_OTP_TEXT = "提交驗證碼"
+            REGISTER_AND_LOGIN_TEXT = "登入"
+            EDIT_PHONE_TEXT = "編輯手機號碼"
+            RESEND_OTP_TEXT = "重新發送驗證碼"
+            LOGIN_SIGN_UP_TEXT = "登入/註冊"
+            CONTINUE_WITH_TEXT = "或使用以下方式登入"
+            LOGIN_REGISTER_WITH_PHONE_NUMBER = "使用手機號碼登入/註冊"
+            LOGIN_WITH_EMAIL_TEXT = "使用信箱登入"
+            FIRST_NAME_TEXT = "名字"
+            LAST_NAME_TEXT = "姓氏"
+            OTP_SENT_SUCCESSFULLY_TEXT = "驗證碼已成功發送，請在下方輸入"
+            OTP_SENT_UNSUCCESSFULLY_ERROR_TEXT = "驗證碼無效，請重新嘗試"
+            ENTER_VALID_NUMBER = "請輸入正確數字"
+            ENTER_VALID_OTP = "請輸入正確四位數驗證碼"
+            ENTER_VALID_FIRST_NAME = "請輸入名字"
+            ENTER_VALID_LAST_NAME = "請輸入姓氏"
+            ENTER_VALID_EMAIL = "請輸入信箱"
+            OTP_SUCCESSFULLY_VERIFIED = "驗證碼通過，已成功登入"
+            ENTER_EMAIL_REGISTER_LOGIN = "請輸入您的信箱註冊或登入帳號"
+            OTP_VALIDATION_UNABLED = "無法驗證此驗證碼"
+            USER_REGISTRATION_UNABLED = "此帳號無法註冊"
+            EMAIL_TAKEN_WITHOUT_CLICK = "請提供其他信箱"
+            EMAIL_TAKEN_WITH_CLICK = "此信箱已被註冊，請使用其他信箱註冊、登入"
+            CLICKING_HERE = "點擊此處"
+            SUCCESSFULLY_REGISTERED_USER = "已成功註冊"
+            OTP_SEND_UNABLE = "錯誤，無法成功發送驗證碼"
+            OTP_SENT_SUCCESSFULLY_TEXT_EMAIL = "此信箱已被註冊，請輸入透過信箱發送的驗證碼驗證此帳戶"
+            OTP_SENT_SUCCESS_MESSAGE = "手機和郵箱發送驗證碼成功"
+            ENTER_IT_BELOW_TEXT = "請在下面輸入"
+            SIGN_IN_WITH_GOOGLE = "使用 Google 帳號登入"
+            SIGN_IN_WITH_FACEBOOK = "使用Facebook帳號登入"
+        }
+
+        if (STORE_LANG == "Japanese") {
+            PHONE_NUMBER_TEXT = '電話番号'
+            EMAIL_PHONE_NUMBER_TEXT = 'メールアドレス/電話番号'
+            OTP_TEXT = 'パスコード'
+            PASSWORD_OTP_TEXT = 'Password/OTP'
+            GET_OTP_TEXT = "パスコードを送信"
+            EMAIL_TEXT = "メールアドレス"
+            SUBMIT_OTP_TEXT = "送信"
+            REGISTER_AND_LOGIN_TEXT = "ログイン"
+            EDIT_PHONE_TEXT = "電話番号を変更"
+            RESEND_OTP_TEXT = "パスコードを再送する"
+            LOGIN_SIGN_UP_TEXT = "ログイン/会員登録"
+            CONTINUE_WITH_TEXT = "または"
+            LOGIN_REGISTER_WITH_PHONE_NUMBER = "電話番号でログイン/会員登録"
+            LOGIN_WITH_EMAIL_TEXT = "メールアドレスでログインl"
+            FIRST_NAME_TEXT = "名"
+            LAST_NAME_TEXT = "姓"
+            PASSWORD_TEXT = "パスワード"
+            OTP_SENT_SUCCESSFULLY_TEXT = "SMSに届いたパスコードを入力してください";
+            OTP_SENT_UNSUCCESSFULLY_ERROR_TEXT = "再度お試しください";
+            ENTER_VALID_NUMBER = "正しいコードを入力してください";
+            ENTER_VALID_OTP = "4桁のパスコードを入力してください"
+            ENTER_VALID_SIX_DIGIT_OTP = "4桁のパスコードを入力してください"
+            ENTER_VALID_FIRST_NAME = "名を入力してください"
+            ENTER_VALID_LAST_NAME = "姓を入力してください"
+            ENTER_VALID_EMAIL = "メールアドレスを入力してくださいl"
+            OTP_SUCCESSFULLY_VERIFIED = "ログイン中..."
+            ENTER_EMAIL_REGISTER_LOGIN = "メールアドレスを入力してください"
+            OTP_VALIDATION_UNABLED = "Not able to validate otp."
+            USER_REGISTRATION_UNABLED = "会員登録に失敗しました"
+            EMAIL_TAKEN_WITHOUT_CLICK = "このメールアドレスはすでに使われています"
+            EMAIL_TAKEN_WITH_CLICK = "別のメールアドレスをお試しいただくか"
+            CLICKING_HERE = "こちらからメールアドレスとパスワードでログインしてください"
+            SUCCESSFULLY_REGISTERED_USER = "会員登録に成功しました"
+            OTP_SEND_UNABLE = "再度お試しください:"
+            OTP_SENT_SUCCESSFULLY_TEXT_EMAIL = "入力したメールアドレスに届くパスコードを入力してください";
+            OTP_SENT_SUCCESS_MESSAGE = "パスコードを送信しましたl"
+            ENTER_IT_BELOW_TEXT = "下記に入力"
+            SIGN_IN_WITH_GOOGLE = "Sign in with Google"
+            SIGN_IN_WITH_FACEBOOK = "Sign in with Facebook"
+            LOGIN_WITH_BIOMETRIC_TEXT = "Login as"
+        }
+
+        if (STORE_LANG == "Korean") {
+            PHONE_NUMBER_TEXT = '전화 번호'
+            EMAIL_PHONE_NUMBER_TEXT = '이메일/전화 번호'
+            OTP_TEXT = 'OTP'
+            PASSWORD_OTP_TEXT = '비밀번호/OTP'
+            GET_OTP_TEXT = 'OTP 받기'
+            EMAIL_TEXT = "이메일"
+            SUBMIT_OTP_TEXT = "OTP 제출"
+            REGISTER_AND_LOGIN_TEXT = "로그인"
+            EDIT_PHONE_TEXT = "전화 번호 편집"
+            RESEND_OTP_TEXT = "OTP 재발송"
+            LOGIN_SIGN_UP_TEXT = "로그인/가입"
+            CONTINUE_WITH_TEXT = "또는 다음으로 계속하기"
+            LOGIN_REGISTER_WITH_PHONE_NUMBER = "전화 번호로 로그인/가입"
+            LOGIN_WITH_EMAIL_TEXT = "이메일/비밀번호로 로그인"
+            FIRST_NAME_TEXT = "이름"
+            LAST_NAME_TEXT = "성"
+            PASSWORD_TEXT = "비밀번호"
+            OTP_SENT_SUCCESSFULLY_TEXT = "전화로 성공적으로 OTP 발송, 아래에 입력하십시오";
+            OTP_SENT_UNSUCCESSFULLY_ERROR_TEXT = "OTP를 보낼 수 없습니다. 다시 시도하십시오";
+            ENTER_VALID_NUMBER = "올바른 번호를 입력하십시오";
+            ENTER_VALID_OTP = "유효한 4자리 OTP를 입력하십시오"
+            ENTER_VALID_SIX_DIGIT_OTP = "유효한 6자리 OTP를 입력하십시오"
+            ENTER_VALID_FIRST_NAME = "유효한 이름을 입력하십시오"
+            ENTER_VALID_LAST_NAME = "유효한 성을 입력하십시오"
+            ENTER_VALID_EMAIL = "유효한 이메일을 입력하십시오"
+            OTP_SUCCESSFULLY_VERIFIED = "OTP가 성공적으로 확인되었습니다, 로그인합니다"
+            ENTER_EMAIL_REGISTER_LOGIN = "등록하고 로그인하기 위해 이메일 주소를 입력하십시오"
+            OTP_VALIDATION_UNABLED = "OTP를 확인할 수 없습니다."
+            USER_REGISTRATION_UNABLED = "사용자를 등록할 수 없습니다."
+            EMAIL_TAKEN_WITHOUT_CLICK = "이 이메일은 이미 사용 중입니다. 다른 이메일을 제공해 주십시오"
+            EMAIL_TAKEN_WITH_CLICK = "이 이메일은 이미 사용 중입니다. 다른 이메일을 제공하거나 이메일/비밀번호를 사용하여 로그인하십시오 "
+            CLICKING_HERE = "여기를 클릭하십시오."
+            SUCCESSFULLY_REGISTERED_USER = "사용자가 성공적으로 등록되었습니다, 로그인합니다"
+            OTP_SEND_UNABLE = "OTP를 보낼 수 없습니다. 에러:"
+            OTP_SENT_SUCCESSFULLY_TEXT_EMAIL = "주어진 이메일로 기존 사용자를 찾았습니다, 이메일 소유권을 확인하기 위해 이메일로 전송된 OTP를 입력하십시오";
+            OTP_SENT_ON_EMAIL_TEXT = "이메일 ID에 OTP가 성공적으로 전송되었습니다."
+            OTP_SENT_SUCCESS_MESSAGE = "휴대폰 및 이메일로 OTP가 성공적으로 전송되었습니다"
+            ENTER_IT_BELOW_TEXT = "아래에 입력하십시오"
+            SIGN_IN_WITH_GOOGLE = "Google로 로그인"
+            SIGN_IN_WITH_FACEBOOK = "Facebook으로 로그인"
+            LOGIN_WITH_BIOMETRIC_TEXT = "바이오메트릭으로 로그인"
+        }
+
+        if (SHOP.indexOf("iron-kettle-tea") > -1) {
+            LOGIN_SIGN_UP_TEXT = "OTP LOGIN"
+        }
+
+        if (SHOP == "ohana-fine-flowers.myshopify.com") {
+            LOGIN_SIGN_UP_TEXT = "LOGIN"
+        }
+
+        if (SHOP == "feelzerog.myshopify.com") {
+            LOGIN_SIGN_UP_TEXT = "Log in to Shoely"
+            LOGIN_REGISTER_WITH_PHONE_NUMBER = "Login with Phone Number"
+        }
+
+        console.log("SML: starting looking for login form")
+
+
+        let signInForm = $('form#customer_login')
+
+        if (signInForm.length == 0) {
+
+            //https://niyatee.com/account/login
+            console.log("Strange #customer_login not found, trying CustomerLoginForm")
+            signInForm = $('form#CustomerLoginForm')
+
+            if (signInForm.length == 0) {
+                // https://market99.com/account/login?return_url=%2Faccount
+                signInForm = $('form#CustomerLogin')
+
+                if (signInForm.length == 0) {
+                    throw new Error("Sign in form not found, tried CustomerLoginForm and customer_login")
+                }
+            }
+        }
+
+        if (signInForm.length > 1) {
+            console.log("Weird got more than one signInForm, please remove extra signin form from page.", signInForm, signInForm.length)
+        }
+        
+        console.log("SML: sign in form is", signInForm)
+
+        const createAccountLink = $('a[href="/account/register"]', signInForm)
+        const forgotPasswordLink = $('a[href="#recover"]', signInForm)
+        const emailInputBox = $('input[name=customer\\[email\\]]', signInForm)
+        const passwordInputBox = $('input[name=customer\\[password\\]]', signInForm)
+        const emailInputBoxLabel = $('label[for="' + emailInputBox.attr('id') + '"]', signInForm)
+        const passwordInputBoxLabel = $('label[for="' + passwordInputBox.attr('id') + '"]', signInForm)
+        let signInButton = $('button[type!=button]', signInForm)
+
+        if (signInButton.length == 0) {
+            //needed for https://wooum.com/account/login
+            signInButton = $('input[type=submit]', signInForm)
+        }
+
+        if (signInButton.length == 0) {
+            console.error('Sign in form is missing submit button. Please add this <button type="submit" style="display:none"/> to sign in form')
+        }
+
+
+        const createPhoneOptions = () => {
+            let phoneOptions = ""
+            if (selected_country_code != "All") {
+                phoneOptions = `<option role='option' selected='selected' value='+${selected_country_code}'>+${selected_country_code}</option>`
+            } else {
+                let countryCodeOjbect = COUNTRY_CODE_TO_PHONE_CODE
+                
+                if (!SHOW_FULL_COUNTRY_NAME) {
+                    const SORTED_COUNTRY_CODE_TO_PHONE_CODE = {}
+                    Object.keys(COUNTRY_CODE_TO_PHONE_CODE).sort().forEach((v) => SORTED_COUNTRY_CODE_TO_PHONE_CODE[v] = COUNTRY_CODE_TO_PHONE_CODE[v])
+                    countryCodeOjbect = SORTED_COUNTRY_CODE_TO_PHONE_CODE
+                }
+
+                for (const countryCode in countryCodeOjbect) {
+                    const phoneCode = COUNTRY_CODE_TO_PHONE_CODE[countryCode].CODE
+                    const country = COUNTRY_CODE_TO_PHONE_CODE[countryCode].COUNTRY
+
+                    if (selected_country_code_list.length > 0) {
+                        if (selected_country_code_list.indexOf("+" + phoneCode) == -1) {
+                            continue
+                        }
+                    }
+
+                    let countryCodeToDisplay = countryCode
+                    if (countryCodeToDisplay == "CA" || countryCodeToDisplay == "US") {
+                        countryCodeToDisplay = "US/CA"
+                    }
+
+                    if (SHOW_FULL_COUNTRY_NAME) {
+                        phoneOptions += `<option role='option' selected='' value='+${phoneCode}'>+${phoneCode} ${country}</option>`
+                    } else {
+                        phoneOptions += `<option role='option' selected='' value='+${phoneCode}'>+${phoneCode}</option>`
+                    }
+                    
+                }
+            }
+            return phoneOptions
+        }
+
+        const phoneInputBoxHTML = `
+
+            <style>
+            #resendOTPButton {
+                ${showTermsAndConditions ? `--border-opacity: calc()`: ``};
+            }
+            #resendEmailOTPButton {
+                ${showTermsAndConditions ? `--border-opacity: calc()`: ``};
+            }
+            </style>
+            `
+
+        const spinnerHTML = `
+        <div id="spinner" style="display:none">
+            <img src="https://${SERVER_DOMAIN}/static/img/loading.gif" alt="Loading" id='sml-spinner-img'/>
+        </div>`
+
+        const otherLoginMethodsHTML = `
+        <div id="otherLoginMethodsDiv">
+        <button type="button" id="loginWithPhoneNumberButton">${LOGIN_REGISTER_WITH_PHONE_NUMBER}</button>
+        <button type="button" id="loginWithBiometricButton" style="text-align: center;"><img src="https://${SERVER_DOMAIN}/static/img/fingerprint.svg" style="width: 6%"/>${LOGIN_WITH_BIOMETRIC_TEXT}</button>
+        <button type="button" id="loginWithEmailButton">${LOGIN_WITH_EMAIL_TEXT}</button>
+        <button type="button" id="loginWithEmailOTPButton">${LOGIN_WITH_EMAIL_OTP}</button>
+      </div>
+        `
+
+
+        const googleLoginDiv = `
+        <div class="socialLogin_buttons" id="googleLogin">
+            <div class="google_button">
+            <img class="h_googleFB_logo" src="https://${SERVER_DOMAIN}/static/img/google_img.webp" alt="">
+                <span class="h_google_text" id="smlGoogleLoginButtonSpan">
+                    ${SIGN_IN_WITH_GOOGLE}
+                </span>
+            </div>
+        </div>
+            `
+        const fbLoginDiv = `
+        <div class="socialLogin_buttons" id="fbLogin">
+            <div class="facebook_button">
+            <img class="h_googleFB_logo" src="https://${SERVER_DOMAIN}/static/img/facebook_img.png" alt="">
+                <span class="h_facebook_text" id="smlFacebookLoginButtonSpan">
+                    ${SIGN_IN_WITH_FACEBOOK}
+                </span>
+            </div>
+        </div>
+        `
+
+        const orContinueWithHTML = `
+        <p class="continue_text" id="smlContinueText">${CONTINUE_WITH_TEXT}</p>
+        `
+
+        signInForm.after(spinnerHTML)
+        signInForm.prepend(phoneInputBoxHTML)
+        signInForm.prepend($('#mobileOTPLoginSection'))
+        signInForm.prepend($('#smlEmailOTPDiv'))
+        signInForm.append(orContinueWithHTML)
+        signInForm.prepend($('#loginErrorEmail'))
+        
+
+        const mobileOTPLoginSection = $('#mobileOTPLoginSection', signInForm)
+        const getOTPButton = $('#getOTPButton', signInForm)
+        const smlGetOTPOnWhatsAppButton = $('#smlGetOTPOnWhatsAppButton', signInForm)
+        const mobileCountryCodeDropdown = $('#mobileCountryCodeDropdown', signInForm)
+        const selectWrapper = $('.selectbox-wrapper', signInForm)
+        const phoneNumberInput = $('#smlPhoneNumberInput', signInForm)
+        const phoneNumberDiv = $('#phoneNumberDiv', signInForm)
+        const emailDiv = $('#emailDiv', signInForm)
+        const errorBox = $('#loginError', signInForm)
+        const successBox = $('#loginSuccess', signInForm)
+        const errorBoxOnEmailScreen = $('#loginErrorEmail', signInForm)
+
+        // Function to auto-hide error messages after 3 seconds
+        let errorTimers = {}; // Store timers for each error element
+
+        const autoHideError = (errorElement) => {
+            if (errorElement && errorElement.html() && errorElement.html().trim() !== '') {
+                // Clear any existing timer for this element
+                const elementId = errorElement.attr('id') || 'unknown';
+                if (errorTimers[elementId]) {
+                    clearTimeout(errorTimers[elementId]);
+                }
+
+                // Make sure the error is visible
+                errorElement.show();
+
+                // Set new timer
+                errorTimers[elementId] = setTimeout(() => {
+                    errorElement.html('')
+                    errorElement.hide()
+                    delete errorTimers[elementId]; // Clean up
+                }, 2000)
+            }
+        }
+        const submitOTPButton = $('#submitOTPButton', signInForm)
+        const otpInput = $('#otpInput', signInForm)
+        const otpInputSixDigit = $('#otpInputSixDigit', signInForm)
+        const otpBoxContainer = $('#otpBoxContainer', signInForm)
+        const otpBoxContainerSix = $('#otpBoxContainerSix', signInForm)
+        const otpBoxes = $('.otp-box', otpBoxContainer)
+        const otpBoxesSix = $('.otp-box', otpBoxContainerSix)
+        const otpSubmitContainer = $('.otp-submit-container', signInForm)
+        const submitEmailOTPButton = $('#submitEmailOTPButton', signInForm)
+        const emailOtpInput = $('#emailOtpInput', signInForm)
+        const userEmailInput = $('#userEmailInput', signInForm)
+        const userPasswordInput = $('#userPasswordInput', signInForm)
+        const registerUserButton = $('#registerUserButton', signInForm)
+        const backToLoginButton = $('#backToLoginButton', signInForm)
+        const backToLoginButtonEmailOtp = $('#backToLoginButtonEmailOtp', signInForm)
+        const resendOTPButton = $('#resendOTPButton', signInForm)
+        const resendEmailOTPButton = $('#resendEmailOTPButton', signInForm)
+        const userFirstNameInput = $('#userFirstNameInput', signInForm)
+        const userLastNameInput = $('#userLastNameInput', signInForm)
+        const newUserEmailInput = $('#newUserEmailInput', signInForm)
+        const resendCountdownTimer = $('#smlCountdown', signInForm)
+        newUserEmailInput.on('input', function() {
+            userEmailInput.val($(this).val())
+        })
+        // Ensure countdown timer starts hidden
+        resendCountdownTimer.hide()
+        const emailOTPCountdownTimer = $('#smlEmailOTPCountdown', signInForm)
+        // Ensure email OTP countdown timer starts hidden
+        emailOTPCountdownTimer.hide()
+        const termsAndConditionsDiv = $('#smlTermsAndConditionsDiv', signInForm)
+        const termsAndConditionsCheckbox = $('#smlTermsAndConditionsCheckbox', signInForm)
+        const termsAndConditionsText = $('#smlTermsAndConditionsText', signInForm)
+        const smlEmailOTPDiv = $('#smlEmailOTPDiv', signInForm)
+        const smlEmailOTPScreenGetOTPPage = $('#smlEmailOTPScreenGetOTPPage', signInForm)
+        const smlEmailOTPDivUserEmailInput = $('#smlEmailOTPDivUserEmailInput', signInForm)
+        const smlEmailOTPDivGetOTPButton = $('#smlEmailOTPDivGetOTPButton', signInForm)
+        const smlEmailOTPScreenSubmitOTPPage = $('#smlEmailOTPScreenSubmitOTPPage', signInForm)
+        const smlEmailOTPDivOTPInput = $('#smlEmailOTPDivOTPInput', signInForm)
+        const smlEmailOTPDivSubmitOTPButton = $('#smlEmailOTPDivSubmitOTPButton', signInForm)
+        const smlEmailOTPDivError = $('#smlEmailOTPDivError', signInForm)
+        const smlEmailOTPDivSuccess = $('#smlEmailOTPDivSuccess', signInForm)
+        const smlEmailOTPDivResendOTPButton = $('#smlEmailOTPDivResendOTPButton', signInForm)
+        const smlAcceptMarketingDiv = $('#smlAcceptMarketingDiv', signInForm)
+        const smlAcceptMarketingCheckbox = $('#smlAcceptMarketingCheckbox', signInForm)
+        const loginHeadingH2 = $('.login-heading-div h2', signInForm)
+        const loginHeadingSpan = $('.login-heading-div span', signInForm)
+
+        // Store original text values for reverting later
+        if (loginHeadingH2.length > 0 && !loginHeadingH2.attr('data-original')) {
+            loginHeadingH2.attr('data-original', loginHeadingH2.text())
+        }
+        if (loginHeadingSpan.length > 0 && !loginHeadingSpan.attr('data-original')) {
+            loginHeadingSpan.attr('data-original', loginHeadingSpan.text())
+        }
+
+        const recaptchaKey = "6Lf5M7sjAAAAAN6cj5PtXrtkjvSd82YlvW0MEXVK"
+
+        // OTP Box functionality
+        const setupOTPBoxes = (container, targetInput) => {
+            const boxes = $('.otp-box', container)
+
+            boxes.each(function(index) {
+                const box = $(this)
+
+                box.on('input', function(e) {
+                    const value = e.target.value
+
+                    // Only allow numbers
+                    if (!/^\d$/.test(value) && value !== '') {
+                        e.target.value = ''
+                        return
+                    }
+
+                    // Add filled class
+                    if (value) {
+                        box.addClass('filled')
+                        // Move to next box
+                        if (index < boxes.length - 1) {
+                            boxes.eq(index + 1).focus()
+                        }
+                    } else {
+                        box.removeClass('filled')
+                    }
+
+                    // Update the hidden input with combined value
+                    updateHiddenInput(container, targetInput)
+                })
+
+                box.on('keydown', function(e) {
+                    // Handle backspace
+                    if (e.key === 'Backspace' && !e.target.value && index > 0) {
+                        boxes.eq(index - 1).focus()
+                        boxes.eq(index - 1).val('')
+                        boxes.eq(index - 1).removeClass('filled')
+                        updateHiddenInput(container, targetInput)
+                    }
+
+                    // Handle arrow keys
+                    if (e.key === 'ArrowLeft' && index > 0) {
+                        boxes.eq(index - 1).focus()
+                    }
+                    if (e.key === 'ArrowRight' && index < boxes.length - 1) {
+                        boxes.eq(index + 1).focus()
+                    }
+                })
+
+                box.on('paste', function(e) {
+                    e.preventDefault()
+                    const pastedData = e.originalEvent.clipboardData.getData('text')
+                    const digits = pastedData.replace(/\D/g, '').split('')
+
+                    digits.forEach((digit, i) => {
+                        if (i < boxes.length) {
+                            boxes.eq(i).val(digit).addClass('filled')
+                        }
+                    })
+
+                    updateHiddenInput(container, targetInput)
+
+                    // Focus on the next empty box or last box
+                    const nextEmptyIndex = Math.min(digits.length, boxes.length - 1)
+                    boxes.eq(nextEmptyIndex).focus()
+                })
+            })
+        }
+
+        const updateHiddenInput = (container, targetInput) => {
+            const boxes = $('.otp-box', container)
+            let value = ''
+            boxes.each(function() {
+                value += $(this).val() || ''
+            })
+            targetInput.val(value)
+        }
+
+        const clearOTPBoxes = (container) => {
+            $('.otp-box', container).val('').removeClass('filled')
+        }
+
+        // Initialize OTP boxes
+        setupOTPBoxes(otpBoxContainer, otpInput)
+        setupOTPBoxes(otpBoxContainerSix, otpInputSixDigit)
+
+        if (google_login_enabled) {
+            signInForm.append(googleLoginDiv)
+            const redirectToGoogle = $('#googleLogin', signInForm)
+            redirectToGoogle.click(() => {
+                SHOP = encodeURIComponent(SHOP)
+                let queryParams = window.location.search
+                if (queryParams && queryParams.startsWith('?')) {
+                    queryParams = queryParams.substring(1)
+                }
+                const redirectToURL = "https://" + SERVER_DOMAIN + "/account/google?shop=" + SHOP + "&actualShopUrl=" + encodeURIComponent(window.location.hostname) + "&params=" + encodeURIComponent(queryParams)
+                initSocialPopup(redirectToURL)
+            })
+        }
+
+        if (fb_login_enabled) {
+            signInForm.append(fbLoginDiv)
+            const redirectToFB = $('#fbLogin', signInForm)
+            redirectToFB.click(() => {
+                SHOP = encodeURIComponent(SHOP)
+                let queryParams = window.location.search
+                if (queryParams && queryParams.startsWith('?')) {
+                    queryParams = queryParams.substring(1)
+                }
+                const redirectToURL = "https://" + SERVER_DOMAIN + "/account/fb?shop=" + SHOP + "&actualShopUrl=" + encodeURIComponent(window.location.hostname) + "&params=" + encodeURIComponent(queryParams)
+                initSocialPopup(redirectToURL)
+            })
+        }
+
+        const initSocialPopup = (redirectToURL) => {
+            const socialPopup = window.open(redirectToURL, "popup", "toolbar=no, menubar=no, left=300,top=300,popup=true,height=574,width=500")
+            socialPopup.focus()
+            const checkPopup = setInterval(() => {
+                if (!socialPopup || !socialPopup.window) {
+                    clearInterval(checkPopup);
+                    return
+                }
+                if (socialPopup.window.location && socialPopup.window.location.href.includes("/account/login")) {
+                    const socialLoginUrl = socialPopup.window.location.search;
+                    socialPopup.close()
+                    clearInterval(checkPopup);
+                    loginUsingSocialToken(socialLoginUrl)
+                }
+            }, 10);
+        }
+
+        signInForm.append(otherLoginMethodsHTML)
+
+        const loginWithEmailButton = $("#loginWithEmailButton", signInForm)
+        const loginWithEmailOTPButton = $("#loginWithEmailOTPButton", signInForm)
+        const loginWithBiometricButton = $('#loginWithBiometricButton', signInForm)
+        const loginWithPhoneNumberButton = $("#loginWithPhoneNumberButton", signInForm)
+        const otherLoginMethodsDiv = $('#otherLoginMethodsDiv', signInForm)
+        const continue_text = $('.continue_text', signInForm)
+
+        loginWithEmailButton.click(async () => {
+            await selectLoginMethodScreen("EMAIL_PASSWORD")
+        })
+
+        loginWithEmailOTPButton.click(async () => {
+            await selectLoginMethodScreen("EMAIL_OTP")
+        })
+
+        loginWithPhoneNumberButton.click(async () => {
+            await selectLoginMethodScreen("PHONE_OTP")
+        })
+
+        const displaySpinner = (shouldDisplay) => {
+            if (shouldDisplay) {
+                signInForm.hide()
+                $('#spinner').show();
+            } else {
+                signInForm.show()
+                $('#spinner').hide();
+            }
+        }
+
+        loginWithBiometricButton.click(async () => {
+            let webauthnCred = localStorage.getItem(CRED_KEY_STRING);
+            console.log("Found cred id in local: ", webauthnCred)
+
+            if (!webauthnCred) {
+                console.error("No cred id found, this should never happen")
+                return
+            }
+
+            webauthnCred = JSON.parse(webauthnCred)[0]
+
+            const opts = await $.ajax({
+                type: 'POST',
+                url: '/apps/sml/wan/init-auth',
+                contentType: "application/json",
+                dataType: 'json',
+                data: JSON.stringify({
+                    actual_shop_url: window.location.hostname,
+                    cred_id: webauthnCred.credId,
+                    reqtimestamp: Date.now()
+                })
+            })
+            console.log("init auth resp", opts)
+
+            if (opts.allowCredentials.length === 0) {
+                console.error('No registered credentials found., this should never happen');
+                return
+            }
+
+            const {
+                startAuthentication
+            } = SimpleWebAuthnBrowser;
+
+            let authInitResp;
+            try {
+                authInitResp = await startAuthentication(opts);
+            } catch (err) {
+                console.error("Error in starting webauthn", err);
+                return
+            }
+
+            console.log("authInitResp is: ", authInitResp)
+            displaySpinner(true)
+
+            let verificationResp
+            try {
+                verificationResp = await $.ajax({
+                    type: 'POST',
+                    url: '/apps/sml/wan/complete-auth',
+                    contentType: "application/json",
+                    dataType: 'json',
+                    data: JSON.stringify({
+                        auth_credential: authInitResp,
+                        actual_shop_url: window.location.hostname,
+                        cred_id: webauthnCred.credId,
+                        first_name: webauthnCred.firstName,
+                        last_name: webauthnCred.last_name,
+                        reqtimestamp: Date.now()
+                    })
+                })
+            } catch (ex) {
+                displaySpinner(false)
+                console.error("Error in getting verificationResp", ex)
+                errorBox.html("Error in logging in with device")
+                errorBoxOnEmailScreen.html("Error in logging in with device")
+                return
+            }
+
+            console.log("verificationResp", verificationResp)
+
+            emailInputBox.val(verificationResp.email)
+            passwordInputBox.val(verificationResp.xattr)
+            await runOnSMLEventInternal("LOGIN_SUCCESSFUL", {"email": verificationResp.email})
+            signInButton.click()
+
+            setTimeout(() => {
+                displaySpinner(false)
+            }, 3000)
+        })
+
+        const diplayEmailPasswordScreen = (shouldDisplay) => {
+            if (shouldDisplay) {
+                emailInputBox.show()
+                errorBoxOnEmailScreen.show()
+                passwordInputBox.show()
+                emailInputBoxLabel.show()
+                passwordInputBoxLabel.show()
+                signInButton.show()
+                forgotPasswordLink.show()
+
+                if (emailInputBox.parent().attr('id') != signInForm.attr('id')) {
+                    emailInputBox.parent().show()
+                }
+
+                if (passwordInputBox.parent().attr('id') != signInForm.attr('id')) {
+                    passwordInputBox.parent().show()
+                }
+
+                // hide forgot your password link on https://www.casivly.com/account/login
+                $('.additional-links').show()
+                $('.tt-required').show()
+
+                //https://tikitoro.com/account/login
+                $('#RecoverPasswordForm').show()
+                $('div.title_block').show()
+                $('div.bank_register').show()
+
+                //https://leccygenesis.com/account/login
+                if (SHOP.indexOf("leccygenesis") > -1) {
+                    $('.login-form-container').show()
+                }
+
+                //remove original login text
+                if ($('#login').length == 1 && $('#login').text() == '\n    Login\n  ') {
+                    $('#login').show()
+                }
+
+                if ($('#CustomerLoginForm').length == 1 && $('h2', '#CustomerLoginForm').text() == "Login") {
+                    $('h2', '#CustomerLoginForm').show()
+                }
+
+                //https://flourish.shop/account/login?return_url=%2Faccount
+                $('header.section-header').show()
+
+                //https://mauli-india.myshopify.com/account/login
+                $('h1.h3.mb-3:contains("Login")').show()
+
+                // https://floryo.com/
+                $('a[href$="#recover"]').attr('style', 'display:block !important')
+
+                if (SHOP.indexOf("shantibanaras") == -1) {
+                    $('a[href$="/account/register"]').attr('style', 'display:block !important')
+                    createAccountLink.show()
+                }
+
+                $('label[for="CustomerPassword"]').show()
+                $('label[for="CustomerEmail"]').show()
+                $('a[href="#recover-form"]').show()
+
+                // https://darbeauty.com/account/login
+                $('h2:contains("تسجيل الدخول")').show()
+
+                //https://www.fionadiamonds.com/account/login
+                $('h2.main-heading:contains("Customer Login")').show()
+
+                if (SHOP.indexOf("suta") > -1) {
+
+                    $('header.Form__Header').show()
+                    $('div.Form__Hint').show()
+                    $('button.Form__ItemHelp').show()
+                }
+
+                if (SHOPIFY_THEME.indexOf("Riode") > -1) {
+                    $('ul.nav.nav-tabs.align-items-center').show()
+                }
+
+                if (SHOP == "thesovereignsectprebook.myshopify.com") {
+                    continue_text.show()
+                    otherLoginMethodsDiv.insertAfter(continue_text)
+                }
+
+                if (SHOP == "app99.myshopify.com") {
+                    $('header.form__header', signInForm).show()
+                    $('div.form__secondary-action', signInForm).show()
+                }
+
+                $('h2.form__message', signInForm).show()
+                $('div.errors', signInForm).show()
+            } else {
+                emailInputBox.hide()
+                passwordInputBox.hide()
+                emailInputBoxLabel.hide()
+                passwordInputBoxLabel.hide()
+                signInButton.hide()
+                forgotPasswordLink.hide()
+
+                if (emailInputBox.parent().attr('id') != signInForm.attr('id')) {
+                    emailInputBox.parent().hide()
+                }
+
+                if (passwordInputBox.parent().attr('id') != signInForm.attr('id')) {
+                    passwordInputBox.parent().hide()
+                }
+
+                //https://mauli-india.myshopify.com/account/login
+                $('h1.h3.mb-3:contains("Login")').hide()
+
+                //https://tikitoro.com/account/login
+                $('#RecoverPasswordForm').hide()
+                $('div.title_block').hide()
+                $('div.bank_register').hide()
+
+                // https://floryo.com/
+                $('a[href$="#recover"]').attr('style', 'display:none !important')
+
+                //dont' do this for https://dev-shantibanaras.myshopify.com/password as asked by them over email
+                // if (SHOP != "doro-fashions.myshopify.com") {
+                    $('a[href$="/account/register"]').attr('style', 'display:none !important')
+                    createAccountLink.hide()
+                // }
+
+                $(':contains("Forgot your password?"):last').hide()
+
+
+                // hide forgot your password link on https://www.casivly.com/account/login
+                $('.additional-links').hide()
+                $('.tt-required').hide()
+
+                //https://flourish.shop/account/login?return_url=%2Faccount
+                $('header.section-header').hide()
+
+                $('label[for="CustomerPassword"]').hide()
+                $('label[for="CustomerEmail"]').hide()
+                $('a[href="#recover-form"]').hide()
+
+                //https://www.fionadiamonds.com/account/login
+                $('h2.main-heading:contains("Customer Login")').hide()
+
+                // https://darbeauty.com/account/login
+                $('h2:contains("تسجيل الدخول")').hide()
+
+                //remove original login text
+                if ($('#login').length == 1 && $('#login').text() == '\n    Login\n  ') {
+                    $('#login').hide()
+                }
+
+                if ($('#CustomerLoginForm').length == 1 && $('h2', '#CustomerLoginForm').text() == "Login") {
+                    $('h2', '#CustomerLoginForm').hide()
+                }
+
+                if (SHOP.indexOf("suta") > -1) {
+
+                    $('header.Form__Header').hide()
+                    $('div.Form__Hint').hide()
+                    $('button.Form__ItemHelp').hide()
+                }
+
+                if (SHOPIFY_THEME.indexOf("Riode") > -1) {
+                    $('ul.nav.nav-tabs.align-items-center').hide()
+                }
+
+                if (SHOP == "thesovereignsectprebook.myshopify.com") {
+
+                    $("#simplify-login-sign-up-text").insertBefore("#mobileOTPLoginSection")
+                    otherLoginMethodsDiv.insertBefore("#mobileOTPLoginSection")
+                    $("#troubleLoggingInDiv").show()
+                    continue_text.hide()
+                }
+
+                if (SHOP == "app99.myshopify.com") {
+                    $('header.form__header', signInForm).hide()
+                    $('div.form__secondary-action', signInForm).hide()
+                }
+
+                $('h2.form__message', signInForm).hide()
+                $('div.errors', signInForm).hide()
+            }
+        }
+
+        const selectLoginMethodScreen = async (screenType) => {
+
+            localStorage.setItem("SML_LOGIN_METHOD_SCREEN", screenType)
+
+            if (screenType == "EMAIL_OTP") {
+
+                selectEmailOTPPage("ENTER_EMAIL")
+
+                loginWithEmailOTPButton.hide()
+
+                smlEmailOTPDiv.show()
+
+                resendCountdownTimer.hide()
+                clearResendOTPTimer() // Clear SMS OTP timer when switching to email OTP
+                mobileOTPLoginSection.hide()
+
+                if (allowedLoginMethod == "EMAIL_AND_PHONE" || (allowedLoginMethod == "ONLY_EMAIL_PASSWORD" && settings.show_get_otp_on_whatsapp_button)) {
+                    loginWithEmailButton.show()
+                    loginWithPhoneNumberButton.show()
+                }
+
+                if (allowedLoginMethod == "ONLY_EMAIL_PASSWORD") {
+                    loginWithEmailButton.show()
+                }
+
+                if (allowedLoginMethod == "ONLY_PHONE") {
+                    loginWithPhoneNumberButton.show()
+                }
+
+                diplayEmailPasswordScreen(false)
+            }
+
+            if (screenType == "PHONE_OTP") {
+                loginWithPhoneNumberButton.hide()
+
+                smlEmailOTPDiv.hide()
+                clearEmailOTPTimer() // Clear email OTP timer when switching to phone OTP
+
+                // Don't automatically show countdown - it will be shown when timer starts
+                mobileOTPLoginSection.show()
+                
+                errorBoxOnEmailScreen.hide()
+
+                if (allowedLoginMethod == "EMAIL_AND_PHONE" || allowedLoginMethod == "ONLY_EMAIL_PASSWORD") {
+                    loginWithEmailButton.show()
+                }
+
+                diplayEmailPasswordScreen(false)
+
+                if (isEmailOTPLoginEnabled) {
+                    loginWithEmailOTPButton.show()
+                }
+            }
+
+            if (screenType == "EMAIL_PASSWORD") {
+                loginWithEmailButton.hide()
+
+                smlEmailOTPDiv.hide()
+                clearEmailOTPTimer() // Clear email OTP timer when switching to email password
+
+                resendCountdownTimer.hide()
+                mobileOTPLoginSection.hide()
+
+                if (allowedLoginMethod == "EMAIL_AND_PHONE" || (allowedLoginMethod == "ONLY_EMAIL_PASSWORD" && settings.show_get_otp_on_whatsapp_button)) {
+                    loginWithPhoneNumberButton.show()
+                }
+                
+                diplayEmailPasswordScreen(true)
+
+                if (isEmailOTPLoginEnabled) {
+                    loginWithEmailOTPButton.show()
+                }
+            }
+
+            await runOnSMLEventInternal("SCREEN_TYPE_CHANGE", {"screen_type": screenType})
+
+        }
+
+        let sessionInfoToken = ""
+
+        let sendOTPInProgress = false
+        const sendOTP = async (mobileNumber, recaptchaToken) => {
+
+            if (sendOTPInProgress) {
+                console.log("sendOTP already in progress, return")
+
+                //Return true here, as otherwise sometimes user presses or some auto press happens on send otp button twice
+                //first one will send user to ENTER_OTP screen
+                //second sendOTP call was earlier returning null , then the flow would take user back to ENTER_PHONE screen
+                return true
+            }
+
+            sendOTPInProgress = true
+
+            let gtoken = null
+
+            if (!recaptchaToken) {
+                try {
+                    gtoken = await grecaptcha.execute(recaptchaKey, {
+                        action: 'submit'
+                    })
+                } catch (ex) {
+                    console.error("Error in gtoken", ex)
+                }
+            }
+
+            try {
+                const data = await $.ajax({
+                    type: 'POST',
+                    url: "/apps/sml/client/send_otp",
+                    contentType: "application/json",
+                    dataType: 'json',
+                    data: JSON.stringify({
+                        mobile: mobileNumber,
+                        shop: SHOP,
+                        modifiedShopURL: window.location.hostname,
+                        type: "LOGIN",
+                        exp: LOGIN_EXP,
+                        reqtimestamp: Date.now(),
+                        gtoken: gtoken,
+                        recaptchaToken: recaptchaToken,
+                        platform: current_otp_platform
+                    })
+                })
+
+                // Always start timer for SMS OTP (force enable for testing)
+                console.log("SML: Starting resend OTP timer, RESEND_OTP_TIMER_ENABLED:", RESEND_OTP_TIMER_ENABLED)
+                getResendOTPTimer()
+
+                console.log('send otp data: ', data);
+
+                if (recaptchaToken) {
+                    sessionInfoToken = data.session_info
+                }
+
+                if (data.type == "OTP_SENT_ON_EMAIL_AND_PHONE") {
+                    successBox.html(`${OTP_SENT_SUCCESS_MESSAGE} ${data.email}, ${ENTER_IT_BELOW_TEXT}`);
+                    errorBox.html("")
+                } else {
+                    successBox.html(OTP_SENT_SUCCESSFULLY_TEXT);
+                    errorBox.html("")
+                }
+
+                //We can wait for sometime before allowing user to send otp again
+                setTimeout(() => {
+                    sendOTPInProgress = false
+                }, 8000)
+
+                return true
+
+            } catch (error) {
+
+                console.error("error in send otp api ", error)
+                if (error && error.responseJSON && error.responseJSON["msg"]) {
+                    errorBox.html(`${OTP_SEND_UNABLE}` + ` ` + error.responseJSON["msg"])
+                } else {
+                    errorBox.html(OTP_SENT_UNSUCCESSFULLY_ERROR_TEXT);
+                }
+                autoHideError(errorBox)
+                successBox.html("")
+
+                sendOTPInProgress = false
+            }
+
+
+            return false
+        }
+
+        let sendOTPEmailInProgress = false
+
+        const sendOTPEmail = async (email, mobile) => {
+
+            // This API is used to send otp on email for new user trying to register
+            // who has entered an existing email address
+
+            if (sendOTPEmailInProgress) {
+                console.log("sendOTPEmail already in progress, return")
+                return true
+            }
+
+            sendOTPEmailInProgress = true
+
+            let send_otp_email_url = "https://" + SERVER_DOMAIN + "/send_otp_email"
+            if (useProxiedUrl) {
+                send_otp_email_url = "/apps/sml/client/send_otp_email"
+            }
+
+            try {
+                const data = await $.ajax({
+                    type: 'POST',
+                    url: send_otp_email_url,
+                    contentType: "application/json",
+                    dataType: 'json',
+                    data: JSON.stringify({
+                        email: email,
+                        mobile: mobile,
+                        shop: SHOP,
+                        modifiedShopURL: window.location.hostname,
+                        reqtimestamp: Date.now()
+                    }),
+                })
+
+                console.log('send_email_otp data: ', data);
+                successBox.hide()
+                if (SHOP == "ec654b-67.myshopify.com") {
+                    successBox.html("please enter OTP sent on email " + email + " to verify email ownership")
+                } else {
+                    successBox.html(OTP_SENT_SUCCESSFULLY_TEXT_EMAIL)
+                }
+                errorBox.html("")
+
+                //We can wait for sometime before allowing user to send otp again
+                setTimeout(() => {
+                    sendOTPEmailInProgress = false
+                }, 8000)
+
+                return true
+
+            } catch (error) {
+
+                console.error("error in send email otp api ", error)
+
+                if (error && error.responseJSON && error.responseJSON["msg"]) {
+                    errorBox.html(`${OTP_SEND_UNABLE} ${error.responseJSON["msg"]}`)
+                } else {
+                    errorBox.html(OTP_SENT_UNSUCCESSFULLY_ERROR_TEXT);
+                }
+                autoHideError(errorBox)
+                successBox.html("")
+
+                sendOTPEmailInProgress = false
+            }
+
+            return false
+        }
+
+        let sendEmailOTPForEmailOTPFlowInProgress = false
+
+        const sendEmailOTPForEmailOTPFlow = async (email, startTimer = true) => {
+
+            if (sendEmailOTPForEmailOTPFlowInProgress) {
+                console.log("sendEmailOTPForEmailOTPFlow already in progress, return")
+                return true
+            }
+
+            sendEmailOTPForEmailOTPFlowInProgress = true
+            
+
+            let gtoken
+            try {
+                gtoken = await grecaptcha.execute(recaptchaKey, {
+                    action: 'submit'
+                })
+            } catch (ex) {
+                console.error("Error in gtoken", ex)
+            }
+
+            const send_otp_email_url = "/apps/sml/client/send_otp_email_for_emailotp_flow"
+
+            try {
+                const data = await $.ajax({
+                    type: 'POST',
+                    url: send_otp_email_url,
+                    contentType: "application/json",
+                    dataType: 'json',
+                    data: JSON.stringify({
+                        email: email,
+                        shop: SHOP,
+                        modifiedShopURL: window.location.hostname,
+                        reqtimestamp: Date.now(),
+                        gtoken: gtoken
+                    }),
+                })
+
+                console.log('sendEmailOTPForEmailOTPFlow data: ', data);
+                smlEmailOTPDivSuccess.show()
+                smlEmailOTPDivSuccess.html(OTP_SENT_ON_EMAIL_TEXT + " " + email);
+                smlEmailOTPDivError.html("")
+
+                // Start countdown timer for email OTP (only if requested)
+                if (startTimer) {
+                    getEmailOTPTimer()
+                }
+
+                //We can wait for sometime before allowing user to send otp again
+                setTimeout(() => {
+                    sendEmailOTPForEmailOTPFlowInProgress = false
+                }, 8000)
+
+                return true
+
+            } catch (error) {
+
+                console.error("error in sendEmailOTPForEmailOTPFlow api ", error)
+
+                if (error && error.responseJSON && error.responseJSON["msg"]) {
+                    smlEmailOTPDivError.html(`${OTP_SEND_UNABLE} ${error.responseJSON["msg"]}`)
+                } else {
+                    smlEmailOTPDivError.html(OTP_SENT_UNSUCCESSFULLY_ERROR_TEXT);
+                }
+                autoHideError(smlEmailOTPDivError)
+                smlEmailOTPDivSuccess.html("")
+
+                sendEmailOTPForEmailOTPFlowInProgress = false
+            }
+
+            return false
+        }
+
+        const selectEmailOTPPage = (page) => {
+
+            if (page == "ENTER_EMAIL") {
+                smlEmailOTPScreenGetOTPPage.show()
+                smlEmailOTPScreenSubmitOTPPage.hide()
+                smlEmailOTPDivResendOTPButton.hide()
+            }
+
+            if (page == "ENTER_EMAIL_OTP") {
+                smlEmailOTPScreenGetOTPPage.hide()
+                smlEmailOTPScreenSubmitOTPPage.show()
+                smlEmailOTPDivResendOTPButton.show()
+            }
+        }
+
+        const selectOTPScreen = (screenType, fullPhoneNumber) => {
+
+            console.log("SML:", "selectOTPScreen called with ", screenType, fullPhoneNumber)
+
+            if (screenType == "ENTER_PHONE") {
+
+                if (allowedLoginMethod == "ONLY_EMAIL_PASSWORD" && settings.show_get_otp_on_whatsapp_button) {
+                    //show the screen where user enters phone number and clicks get otp
+                    getOTPButton.hide()
+                } else {
+                    getOTPButton.show()
+                }
+
+                if (settings.show_get_otp_on_whatsapp_button) {
+                    smlGetOTPOnWhatsAppButton.show()
+                } else {
+                    smlGetOTPOnWhatsAppButton.hide()
+                }
+
+                // Show initial heading elements and hide second phase heading
+                $('#new-login-heading').show()
+                $('#new-login-sub-heading').show()
+                $('#new-login-second-heading').hide()
+                $('#phoneNumberAndEditDiv').hide()
+
+                phoneNumberInput.show()
+                mobileCountryCodeDropdown.show()
+                selectWrapper.show()
+
+                //hide  ENTER_OTP screen
+                phoneNumberDiv.html("")
+                phoneNumberDiv.hide()
+                emailDiv.html("")
+                emailDiv.hide()
+                otpInput.hide()
+                otpInputSixDigit.hide()
+                otpBoxContainer.hide()
+                otpBoxContainerSix.hide()
+                otpSubmitContainer.hide()
+                emailOtpInput.hide()
+                submitOTPButton.hide()
+                submitEmailOTPButton.hide()
+                resendOTPButton.hide()
+                resendEmailOTPButton.hide()
+                backToLoginButton.hide()
+
+                termsAndConditionsDiv.hide()
+                resendCountdownTimer.hide()
+                registerUserButton.hide()
+
+                clearResendOTPTimer()
+                resetFirebase()
+                //todo: hide 3rd screen
+
+            }
+
+            if (screenType == "ENTER_OTP") {
+
+                //hide screen ENTER_PHONE
+                getOTPButton.hide()
+                smlGetOTPOnWhatsAppButton.hide()
+                phoneNumberInput.hide()
+                mobileCountryCodeDropdown.hide()
+                selectWrapper.hide()
+
+                // Hide initial heading elements and show second phase heading
+                $('#new-login-heading').hide()
+                $('#new-login-sub-heading').hide()
+                $('#new-login-second-heading').show()
+                $('#phoneNumberAndEditDiv').css('display', 'flex')
+
+                //show screen which has option to enter OTP
+                phoneNumberDiv.show()
+                // Don't automatically show countdown - it will be shown when timer starts
+
+                //Show OTP boxes instead of single input
+                if (shouldUseFirebase(fullPhoneNumber)) {
+                    otpInputSixDigit.css("display", "none") // Keep hidden input hidden
+                    otpBoxContainerSix.css("display", "flex") // Show 6-digit OTP boxes
+                    otpBoxContainer.css("display", "none") // Hide 4-digit OTP boxes
+                    // Focus on first box
+                    setTimeout(() => {
+                        $('.otp-box', otpBoxContainerSix).first().focus()
+                    }, 100)
+                } else {
+                    otpInput.css("display", "none") // Keep hidden input hidden
+                    otpBoxContainer.css("display", "flex") // Show 4-digit OTP boxes
+                    otpBoxContainerSix.css("display", "none") // Hide 6-digit OTP boxes
+                    // Focus on first box
+                    setTimeout(() => {
+                        $('.otp-box', otpBoxContainer).first().focus()
+                    }, 100)
+                }
+
+                emailOtpInput.hide()
+                otpSubmitContainer.show() // Show the submit container with resend and submit buttons
+                submitOTPButton.show()
+                submitEmailOTPButton.hide()
+
+                // resendOTPButton.show()
+                resendOTPButton.css("display", "block")
+
+
+                resendEmailOTPButton.hide()
+                backToLoginButton.show()
+                registerUserButton.hide()
+
+                if (showTermsAndConditions) {
+                    termsAndConditionsDiv.show()
+                    submitOTPButton.attr("disabled", true);
+                }
+
+                //todo: hide ENTER_EMAIL screen
+            }
+
+            if (screenType == "ENTER_EMAIL") {
+
+                //hide screen ENTER_PHONE
+                getOTPButton.hide()
+                smlGetOTPOnWhatsAppButton.hide()
+                phoneNumberInput.hide()
+                mobileCountryCodeDropdown.hide()
+                selectWrapper.hide()
+                resendCountdownTimer.hide()
+
+                // Hide phoneNumberAndEditDiv for third phase
+                $('#phoneNumberAndEditDiv').hide()
+
+                //change heading text to second change (account creation stage)
+                const secondHeadingText = loginHeadingH2.attr('data-secondChangeTo')
+                const secondSubheadingText = loginHeadingSpan.attr('data-secondChangeTo')
+                if (secondHeadingText) {
+                    loginHeadingH2.text(secondHeadingText)
+                }
+                if (secondSubheadingText) {
+                    loginHeadingSpan.text(secondSubheadingText)
+                }
+
+                submitOTPButton.hide()
+                submitEmailOTPButton.hide()
+                resendOTPButton.hide()
+                resendEmailOTPButton.hide()
+                backToLoginButton.hide()
+                otpInput.hide()
+                otpInputSixDigit.hide()
+                otpBoxContainer.hide()
+                otpBoxContainerSix.hide()
+                otpSubmitContainer.hide()
+                emailOtpInput.hide()
+
+                phoneNumberDiv.show()
+                userEmailInput.show()
+
+                registerUserButton.show()
+
+                emailDiv.hide()
+                backToLoginButtonEmailOtp.hide()
+
+                termsAndConditionsDiv.hide()
+
+                if (fields_during_signup == "EMAIL_AND_NAME") {
+                    // Show the container divs instead of individual inputs
+                    $('.input-field-container').show()
+                    userFirstNameInput.show()
+                    userLastNameInput.show()
+                    newUserEmailInput.show()
+                    newUserEmailInput.css('display', 'block')
+                }
+
+                if (SHOP == "revamp-moto.myshopify.com" || show_gender_field_during_signup) {
+                    $('#userGenderInputDiv').show()
+                }
+
+                if (SHOP == "revamp-moto.myshopify.com" || show_birthday_field_during_signup) {
+                    $('#userBirthdayInputDiv').show()
+                }
+
+                if (ASK_PASSWORD_DURING_SIGNUP) {
+                    userPasswordInput.show()
+                }
+
+                if (show_accept_marketing_checkbox) {
+                    smlAcceptMarketingDiv.show()
+                }
+            }
+
+            if (screenType == "ENTER_OTP_EMAIL_EXISTS") {
+
+                getOTPButton.hide()
+                smlGetOTPOnWhatsAppButton.hide()
+                phoneNumberInput.hide()
+                mobileCountryCodeDropdown.hide()
+                selectWrapper.hide()
+                // Hide the container divs and individual inputs
+                $('.input-field-container').hide()
+                userFirstNameInput.hide()
+                userLastNameInput.hide()
+                newUserEmailInput.hide()
+                userPasswordInput.hide()
+                resendCountdownTimer.hide()
+                smlAcceptMarketingDiv.hide()
+
+                phoneNumberDiv.hide()
+                otpInput.hide()
+                otpInputSixDigit.hide()
+                otpBoxContainer.hide()
+                otpBoxContainerSix.hide()
+                otpSubmitContainer.hide()
+                emailOtpInput.val("")
+
+                // emailOtpInput.show()
+                emailOtpInput.css("display", "block")
+
+                submitOTPButton.hide()
+                submitEmailOTPButton.show()
+                resendOTPButton.hide()
+
+                // resendEmailOTPButton.show()
+                resendEmailOTPButton.css("display", "block")
+
+                backToLoginButton.hide()
+                backToLoginButtonEmailOtp.show()
+                registerUserButton.hide()
+
+                emailDiv.show()
+                userEmailInput.hide()
+                termsAndConditionsDiv.hide()
+
+                $('#userBirthdayInputDiv').hide()
+                $('#userGenderInputDiv').hide()
+            }
+        }
+
+        const shouldUseFirebase = (phoneNumber) => {
+            if (current_otp_platform == "WhatsApp") {
+                return false
+            }
+            return (FIREBASE_LEVEL == "ALL_NUMBERS" || (FIREBASE_LEVEL == "ONLY_INTERNATIONAL_NUMBERS" && !phoneNumber.startsWith("+91")))
+        }
+
+        function formatPhoneNumber(fullNumber) {
+            const match = fullNumber.match(/^\+(\d{2})(\d{5})(\d{5})$/);
+            if (match) {
+                return `+${match[1]}- ${match[2]} ${match[3]}`;
+            }
+            return fullNumber; // fallback if format doesn't match
+        }
+
+        const getOtpButtonClickHandler = async () => {
+            successBox.html("")
+            successBox.hide()
+
+            // Check if we're in email mode (check if email input is visible)
+            const isEmailMode = !$('#userEmailInput').hasClass('hidden');
+
+            if (isEmailMode) {
+                // Email mode - use email OTP
+                let email = userEmailInput.val()
+                email = smlSanitizeEmail(email)
+
+                if (!smlValidateEmail(email)) {
+                    errorBox.html(ENTER_VALID_EMAIL);
+                    autoHideError(errorBox);
+                    return;
+                }
+
+                // Use a dummy phone number for agent mode
+                const dummyPhoneNumber = "+911234567890"
+                phoneNumberDiv.html(email) // Show email instead of phone
+                successBox.html(OTP_SENT_ON_EMAIL_TEXT + " " + email);
+                errorBox.html("")
+                selectOTPScreen("ENTER_OTP", dummyPhoneNumber)
+
+                // Don't start email timer in agent mode, we'll use SMS timer instead
+                const result = await sendEmailOTPForEmailOTPFlow(email, false)
+
+                if (!result) {
+                    successBox.hide()
+                    selectOTPScreen("ENTER_PHONE")
+                    return
+                }
+
+                // For agent login, start the SMS OTP timer to control the visible resend button
+                getResendOTPTimer()
+                return
+            }
+
+            // Regular user mode - use phone OTP
+            const fullPhoneNumber = smlGetFullPhoneNumber(phoneNumberInput.val(), mobileCountryCodeDropdown.val())
+            const formattedNumber = formatPhoneNumber(fullPhoneNumber);
+
+            if (!smlValidatePhoneNumber(fullPhoneNumber)) {
+                errorBox.html(ENTER_VALID_NUMBER);
+                autoHideError(errorBox);
+                return;
+            }
+
+            // store is closed, keeping this code for future reference
+            if (SHOP == "opatra-5041.myshopify.com") {
+                otpInput.val("1234")
+                submitOTPButton.click()
+                return
+            }
+
+            phoneNumberDiv.html(formattedNumber)
+            successBox.html(OTP_SENT_SUCCESSFULLY_TEXT);
+            errorBox.html("")
+            selectOTPScreen("ENTER_OTP", fullPhoneNumber)
+
+            let recapchaToken
+
+            if (shouldUseFirebase(fullPhoneNumber)) {
+                recapchaToken = await recaptchaVerifier.verify()
+                console.log("token", recapchaToken)
+            }
+
+            console.log("OK THIS SEND OTP WAS CALLED")
+            const result = await sendOTP(fullPhoneNumber, recapchaToken)
+
+            if (!result) {
+                successBox.hide()
+                selectOTPScreen("ENTER_PHONE")
+                return
+            }
+
+        }
+
+        let current_otp_platform = "SMS"
+        getOTPButton.click(() => {
+            current_otp_platform = "SMS"
+            grecaptcha.ready(getOtpButtonClickHandler)
+        })
+
+        
+        smlGetOTPOnWhatsAppButton.click(() => {
+            current_otp_platform = "WhatsApp"
+            grecaptcha.ready(getOtpButtonClickHandler)
+        })
+
+        smlEmailOTPDivGetOTPButton.click(async () => {
+            smlEmailOTPDivSuccess.html("")
+            smlEmailOTPDivSuccess.show()
+
+            let email = smlEmailOTPDivUserEmailInput.val()
+            email = smlSanitizeEmail(email)
+
+            if (!smlValidateEmail(email)) {
+                smlEmailOTPDivError.html(ENTER_VALID_EMAIL);
+                autoHideError(smlEmailOTPDivError);
+                return;
+            }
+
+            smlEmailOTPDivSuccess.html(OTP_SENT_ON_EMAIL_TEXT + " " + email);
+            smlEmailOTPDivError.html("")
+            selectEmailOTPPage("ENTER_EMAIL_OTP")
+
+            const result = await sendEmailOTPForEmailOTPFlow(email)
+
+            if (!result) {
+                smlEmailOTPDivSuccess.hide()
+                selectEmailOTPPage("ENTER_EMAIL")
+                return
+            }
+        })
+
+        backToLoginButton.click(() => {
+            successBox.hide()
+            clearResendOTPTimer()
+            selectOTPScreen("ENTER_PHONE")
+        })
+
+        backToLoginButtonEmailOtp.click(() => {
+            successBox.hide()
+            selectOTPScreen("ENTER_EMAIL")
+        })
+
+        const resendOTPButtonClickHandler = async () => {
+            // Check if we're in email mode (check if email input is visible)
+            const isEmailMode = !$('#userEmailInput').hasClass('hidden');
+
+            if (isEmailMode) {
+                // Email mode - resend email OTP
+                if (sendEmailOTPForEmailOTPFlowInProgress) {
+                    console.log("Resend Email OTP clicked but sendEmailOTPForEmailOTPFlow already in progress")
+                    return;
+                }
+
+                otpInput.val("")
+                clearOTPBoxes(otpBoxContainer)
+                successBox.html("")
+
+                let email = userEmailInput.val()
+                email = smlSanitizeEmail(email)
+
+                if (!smlValidateEmail(email)) {
+                    errorBox.html(ENTER_VALID_EMAIL);
+                    autoHideError(errorBox);
+                    return;
+                }
+
+                // Disable resend button to prevent double clicks; keep text until timer updates it
+                resendOTPButton.prop('disabled', true)
+                resendOTPButton.addClass('disabled')
+
+                try {
+                    console.log("RESEND EMAIL OTP WAS CALLED")
+                    // Don't start email timer in agent mode, we'll use SMS timer instead
+                    const result = await sendEmailOTPForEmailOTPFlow(email, false)
+
+                    if (result) {
+                        successBox.html(OTP_SENT_ON_EMAIL_TEXT + " " + email);
+                        errorBox.html("")
+                        // Start the SMS OTP timer to control the visible resend button in agent mode
+                        getResendOTPTimer()
+                    }
+                } finally {
+                    // Keep text unchanged; timer will update state/text
+                    // Don't remove disabled class here - let the timer handle button state
+                }
+                return;
+            }
+
+            // Regular user mode - resend phone OTP
+            // Check if sendOTP is already in progress
+            if (sendOTPInProgress) {
+                console.log("Resend OTP clicked but sendOTP already in progress")
+                // Temporarily disable to prevent double click; keep text visible
+                resendOTPButton.prop('disabled', true)
+                resendOTPButton.addClass('disabled')
+
+                // Show feedback for a short time then restore
+                setTimeout(() => {
+                    // Check if timer should keep it disabled
+                    if (resendOTPTimerTimeLeft > 0) {
+                        resendOTPButton.prop('disabled', true)
+                        resendOTPButton.addClass('disabled')
+                    } else {
+                        resendOTPButton.prop('disabled', false)
+                        resendOTPButton.removeAttr('disabled')
+                        resendOTPButton.removeClass('disabled')
+                    }
+                }, 1000)
+                return;
+            }
+
+            otpInput.val("")
+            otpInputSixDigit.val("")
+            clearOTPBoxes(otpBoxContainer)
+            clearOTPBoxes(otpBoxContainerSix)
+            successBox.html("")
+
+            const fullPhoneNumber = smlGetFullPhoneNumber(phoneNumberInput.val(), mobileCountryCodeDropdown.val())
+
+            if (!smlValidatePhoneNumber(fullPhoneNumber)) {
+                errorBox.html(ENTER_VALID_NUMBER);
+                successBox.html("");
+                return;
+            }
+
+            // Disable resend button to prevent double clicks; keep text until timer updates it
+            resendOTPButton.prop('disabled', true)
+            resendOTPButton.addClass('disabled')
+
+            try {
+                let recapchaToken
+
+                if (shouldUseFirebase(fullPhoneNumber)) {
+                    recapchaToken = await recaptchaVerifierResendOTPButton.verify()
+                    console.log("resend token", recapchaToken)
+                }
+
+                console.log("RESEND OTP WAS CALLED")
+                const result = await sendOTP(fullPhoneNumber, recapchaToken)
+
+                if (!result) {
+                    return
+                }
+            } finally {
+                // Keep text unchanged; timer will update state/text
+                // Don't remove disabled class here - let the timer handle button state
+            }
+        }
+
+        resendOTPButton.click(async () => {
+            grecaptcha.ready(resendOTPButtonClickHandler)
+        })
+
+        resendEmailOTPButton.click(async () => {
+            otpInput.val("")
+            otpInputSixDigit.val("")
+            clearOTPBoxes(otpBoxContainer)
+            clearOTPBoxes(otpBoxContainerSix)
+            successBox.html("")
+
+            let email = userEmailInput.val()
+            email = smlSanitizeEmail(email)
+
+            const fullPhoneNumber = smlGetFullPhoneNumber(phoneNumberInput.val(), mobileCountryCodeDropdown.val())
+
+            if (!smlValidatePhoneNumber(fullPhoneNumber)) {
+                errorBox.html(ENTER_VALID_NUMBER);
+                autoHideError(errorBox);
+                successBox.html("");
+                return;
+            }
+
+            if (!smlValidateEmail(email)) {
+                errorBox.html(ENTER_VALID_EMAIL);
+                autoHideError(errorBox);
+                return;
+            }
+
+            const result = await sendOTPEmail(email, fullPhoneNumber)
+
+            if (!result) {
+                return
+            }
+
+        })
+
+        smlEmailOTPDivResendOTPButton.click(async () => {
+            smlEmailOTPDivOTPInput.val("")
+            smlEmailOTPDivSuccess.html("")
+
+            const email = smlSanitizeEmail(smlEmailOTPDivUserEmailInput.val())
+            const result = await sendEmailOTPForEmailOTPFlow(email)
+
+            // Timer is already started in sendEmailOTPForEmailOTPFlow function
+        })
+
+        let registerUserInProgress = false
+        const registerUser = async (mobile, email, firstName, lastName, customerNote, password, acceptMarketing) => {
+
+            if (registerUserInProgress) {
+                console.log("registerUserInProgress already in progress, return")
+                return
+            }
+
+            registerUserInProgress = true
+
+            let register_url = "https://" + SERVER_DOMAIN + "/register"
+            if (useProxiedUrl) {
+                register_url = "/apps/sml/client/register"
+            }
+
+            try {
+                const data = await $.ajax({
+                    type: 'POST',
+                    url: register_url,
+                    data: JSON.stringify({
+                        mobile: mobile,
+                        shop: SHOP,
+                        email: email,
+                        first_name: firstName,
+                        last_name: lastName,
+                        note: customerNote,
+                        password: password,
+                        acceptMarketing: acceptMarketing,
+                        reqtimestamp: Date.now()
+                    }),
+                    contentType: "application/json",
+                    dataType: 'json'
+                })
+
+                console.log('registerUser data: ', data);
+
+
+
+                if (data.type == "EXISTING_USER_WITH_EMAIL_FOUND") {
+                    registerUserInProgress = false
+                    successBox.html("")
+                    return {
+                        "type": data.type
+                    }
+                } else {
+                    successBox.html(SUCCESSFULLY_REGISTERED_USER)
+                    errorBox.html("")
+
+                    emailInputBox.val(data.email)
+                    passwordInputBox.val(data.xattr)
+
+                    //As Shopify login takes time user tends to press register button multiple times, causing multiple backend calls
+                    //We can wait for sometime to let succesful Shopify login complete
+                    setTimeout(() => {
+                        registerUserInProgress = false
+                    }, 8000)
+
+                    return {
+                        "type": "USER_REGISTERED_SUCCESSFULLY"
+                    }
+                }
+
+            } catch (error) {
+
+                console.error("error in registerUser otp api ", error)
+                if (error && error.responseJSON && error.responseJSON["msg"]) {
+                    let errorMessage = error.responseJSON["msg"]
+                    errorBox.html("Error: " + errorMessage)
+                } else {
+                    errorBox.html(USER_REGISTRATION_UNABLED);
+                }
+                autoHideError(errorBox)
+                successBox.html("")
+
+
+                registerUserInProgress = false
+                return {
+                    "error": error
+                }
+            }
+
+        }
+
+
+        let validateOTPInProgress = false
+        const validateOTP = async (mobileNumber, otp) => {
+
+            if (validateOTPInProgress) {
+                console.log("validateOTP already in progress, return")
+                return
+            }
+
+            validateOTPInProgress = true
+
+            let validate_otp_email_url = "https://" + SERVER_DOMAIN + "/validate_otp"
+            if (useProxiedUrl) {
+                validate_otp_email_url = "/apps/sml/client/validate_otp"
+            }
+
+            let multipass_redirect_url = null
+            const checkoutURLInput = $("input[name=checkout_url]", signInForm)
+            if (checkoutURLInput) {
+                multipass_redirect_url = checkoutURLInput.val()
+            }
+            if (multipass_redirect_url) {
+                multipass_redirect_url = window.location.origin + multipass_redirect_url
+            }
+
+            try {
+                const data = await $.ajax({
+                    type: 'POST',
+                    url: validate_otp_email_url,
+                    data: JSON.stringify({
+                        mobile: mobileNumber,
+                        shop: SHOP,
+                        otp: otp,
+                        type: "LOGIN",
+                        exp: LOGIN_EXP,
+                        reqtimestamp: Date.now(),
+                        sessionInfoToken: sessionInfoToken,
+                        actual_shop_url: window.location.hostname,
+                        multipass_redirect_url: multipass_redirect_url
+                    }),
+                    contentType: "application/json",
+                    dataType: 'json'
+                })
+
+                console.log('validateOTP data: ', data);
+
+                if (data.type == "LOGIN") {
+                    successBox.html(OTP_SUCCESSFULLY_VERIFIED)
+                    errorBox.html("")
+
+                    emailInputBox.val(data.email)
+
+                    if (data.multipass_token) {
+                        window.location.replace("/account/login/multipass/" + data.multipass_token);
+                        return
+                    }
+
+                    passwordInputBox.val(data.xattr)
+
+                    //As Shopify login takes time user tends to press register button multiple times, causing multiple backend calls
+                    //We can wait for sometime to let succesful Shopify login complete
+                    setTimeout(() => {
+                        validateOTPInProgress = false
+                    }, 8000)
+
+                    return {
+                        "type": "LOGIN_SUCCESSFUL"
+                    }
+                }
+
+                if (data.type == 'REGISTER') {
+
+                    validateOTPInProgress = false
+
+                    successBox.html(ENTER_EMAIL_REGISTER_LOGIN)
+                    errorBox.html("")
+
+                    selectOTPScreen("ENTER_EMAIL")
+
+                    return {
+                        "type": "REGISTER"
+                    }
+                }
+
+                validateOTPInProgress = false
+                console.log("validateOTP: user should never reach here")
+
+
+            } catch (error) {
+
+                console.error("error in validate otp api ", error)
+
+                otpInput.val("")
+                otpInputSixDigit.val("")
+                clearOTPBoxes(otpBoxContainer)
+                clearOTPBoxes(otpBoxContainerSix)
+
+                if (error && error.responseJSON && error.responseJSON["msg"]) {
+                    errorBox.html("Error: " + error.responseJSON["msg"])
+                } else {
+                    errorBox.html(OTP_VALIDATION_UNABLED);
+                }
+                autoHideError(errorBox)
+                successBox.html("")
+
+                validateOTPInProgress = false
+
+                return {
+                    "error": error
+                }
+            }
+
+            return false
+        }
+
+
+        let validateOTPEmailInProgress = false
+        const validateOTPEmail = async (email, phone, otp, firstName, lastName, customerNote) => {
+
+            // This API is used to send otp on email for new user trying to register
+            // who has entered an existing email address
+
+            if (validateOTPEmailInProgress) {
+                console.log("validateOTPEmail already in progress, return")
+                return
+            }
+
+            validateOTPEmailInProgress = true
+
+            let validate_otp_existing_email_url = "https://" + SERVER_DOMAIN + "/validate_otp_existing_email"
+            if (useProxiedUrl) {
+                validate_otp_existing_email_url = "/apps/sml/client/validate_otp_existing_email"
+            }
+
+            try {
+                const validateOtpEmailExistingData = await $.ajax({
+                    type: 'POST',
+                    url: validate_otp_existing_email_url,
+                    data: JSON.stringify({
+                        mobile: phone,
+                        email: email,
+                        shop: SHOP,
+                        otp: otp,
+                        first_name: firstName,
+                        last_name: lastName,
+                        note: customerNote,
+                        reqtimestamp: Date.now()
+                    }),
+                    contentType: "application/json",
+                    dataType: 'json'
+                })
+
+                console.log('validateOTPEmail data: ', validateOtpEmailExistingData);
+
+                if (validateOtpEmailExistingData.type == "USER_UPDATED_SUCCESSFULLY") {
+                    successBox.html(OTP_SUCCESSFULLY_VERIFIED)
+                    errorBox.html("")
+
+                    emailInputBox.val(validateOtpEmailExistingData.email)
+                    passwordInputBox.val(validateOtpEmailExistingData.xattr)
+
+                    //As Shopify login takes time user tends to press register button multiple times, causing multiple backend calls
+                    //We can wait for sometime to let succesful Shopify login complete
+                    setTimeout(() => {
+                        validateOTPEmailInProgress = false
+                    }, 8000)
+
+                    return true
+                }
+
+                validateOTPEmailInProgress = false
+                console.log("validateOTPEmail: This should never get called")
+
+
+            } catch (error) {
+
+                console.error("error in validate email otp api ", error)
+
+                if (error && error.responseJSON && error.responseJSON["msg"]) {
+                    errorBox.html("Error: " + error.responseJSON["msg"])
+                } else {
+                    errorBox.html(OTP_VALIDATION_UNABLED);
+                }
+                successBox.html("")
+
+                validateOTPEmailInProgress = false
+            }
+
+            return false
+        }
+
+        let validateEmailOTPForEmailOTPFlowInProgress = false
+        const validateEmailOTPForEmailOTPFlow = async (email, otp) => {
+
+            if (validateEmailOTPForEmailOTPFlowInProgress) {
+                console.log("validateEmailOTPForEmailOTPFlow already in progress, return")
+                return
+            }
+
+            validateEmailOTPForEmailOTPFlowInProgress = true
+
+            const validate_otp_email_url = "/apps/sml/client/validate_otp_for_emailotp_flow"
+
+            try {
+                const data = await $.ajax({
+                    type: 'POST',
+                    url: validate_otp_email_url,
+                    data: JSON.stringify({
+                        email: email,
+                        shop: SHOP,
+                        otp: otp,
+                        reqtimestamp: Date.now()
+                    }),
+                    contentType: "application/json",
+                    dataType: 'json'
+                })
+
+                console.log('validateEmailOTPForEmailOTPFlow: ', data);
+
+                smlEmailOTPDivSuccess.html(OTP_SUCCESSFULLY_VERIFIED)
+                smlEmailOTPDivError.html("")
+
+                emailInputBox.val(data.email)
+                passwordInputBox.val(data.xattr)
+
+                //As Shopify login takes time user tends to press register button multiple times, causing multiple backend calls
+                //We can wait for sometime to let succesful Shopify login complete
+                setTimeout(() => {
+                    validateEmailOTPForEmailOTPFlowInProgress = false
+                }, 8000)
+
+                return {
+                    "type": "LOGIN_SUCCESSFUL"
+                }
+
+            } catch (error) {
+
+                console.error("error in validateEmailOTPForEmailOTPFlow api ", error)
+
+                smlEmailOTPDivOTPInput.val("")
+
+                if (error && error.responseJSON && error.responseJSON["msg"]) {
+                    smlEmailOTPDivError.html("Error: " + error.responseJSON["msg"])
+                } else {
+                    smlEmailOTPDivError.html(OTP_VALIDATION_UNABLED);
+                }
+                smlEmailOTPDivSuccess.html("")
+
+                validateEmailOTPForEmailOTPFlowInProgress = false
+
+                return {
+                    "error": error
+                }
+            }
+        }
+
+        registerUserButton.click(async () => {
+
+            const fullPhoneNumber = smlGetFullPhoneNumber(phoneNumberInput.val(), mobileCountryCodeDropdown.val())
+
+            const newEmailValue = newUserEmailInput.val()
+            if (newEmailValue) {
+                userEmailInput.val(newEmailValue)
+            }
+
+            let email = userEmailInput.val()
+            email = smlSanitizeEmail(email)
+
+            const firstName = smlSanitizeName(userFirstNameInput.val())
+            const lastName = smlSanitizeName(userLastNameInput.val())
+            let password = userPasswordInput.val()
+            const smlAcceptMarketingCheckboxValue = smlAcceptMarketingCheckbox.is(":checked")
+
+            console.log("Value of smlAcceptMarketingCheckbox is ", smlAcceptMarketingCheckboxValue)
+
+            if (fields_during_signup == "EMAIL_AND_NAME") {
+
+                if (!firstName || !smlValidateAlphanumeric(firstName)) {
+                    successBox.html("")
+                    errorBox.html(ENTER_VALID_FIRST_NAME)
+                    autoHideError(errorBox);
+                    return
+                }
+
+                if (!lastName || !smlValidateAlphanumeric(lastName)) {
+                    successBox.html("")
+                    errorBox.html(ENTER_VALID_LAST_NAME)
+                    autoHideError(errorBox);
+                    return
+                }
+            }
+            
+
+            if (ASK_PASSWORD_DURING_SIGNUP) {
+                if (!smlValidatePassword(password)) {
+                    successBox.html("")
+                    errorBox.html("Please enter valid password")
+                    autoHideError(errorBox);
+                    return
+                }
+            } else {
+                // Sometimes browser will auto fill password input box, especially for dev sites 
+                // where we enter password for entering the Shopify dev site
+                password = null
+            }
+
+            //check if email valid
+            if (!IS_EMAIL_MANDATORY && !email) {  
+                email =  fullPhoneNumber + '@' + window.location.hostname
+                console.log("User has not provided email id and IS_EMAIL_MANDATORY is false, setting email as: ", email)
+            } else if (!smlValidateEmail(email)) {
+                errorBox.html(ENTER_VALID_EMAIL);
+                autoHideError(errorBox);
+                return;
+            }
+
+            const customerNote = getCustomerNoteValue()
+
+            console.log("Value of customer note is: ", customerNote)
+
+            showButtonLoadingAnimation(registerUserButton)
+
+            const result = await registerUser(fullPhoneNumber, email, firstName, lastName, customerNote, password, smlAcceptMarketingCheckboxValue)
+
+            console.log("SML: registerUser result:", result)
+
+            if (result.error) {
+                console.error("SML: Registration failed with error:", result.error)
+                buttonRemoveLoadingAnimation(registerUserButton, REGISTER_AND_LOGIN_TEXT)
+                return
+            }
+
+            if (result.type == "EXISTING_USER_WITH_EMAIL_FOUND") {
+                console.log("SML: Existing user found with email:", email)
+                errorBox.html("Email ID already exists.")
+                autoHideError(errorBox);
+                successBox.html("")
+                buttonRemoveLoadingAnimation(registerUserButton, REGISTER_AND_LOGIN_TEXT)
+                return
+            }
+
+            if (result.type == "USER_REGISTERED_SUCCESSFULLY") {
+                console.log("SML: User registered successfully, logging in...")
+                console.log("SML: Email set to:", emailInputBox.val())
+                console.log("SML: Password set, clicking signInButton...")
+                await runOnSMLEventInternal("USER_REGISTERED_SUCCESSFULLY", {"email": email, "phone": fullPhoneNumber})
+                signInButton.click()
+                return
+            }
+
+            console.error("SML: registerUserButton should never reach here, result:", result)
+            buttonRemoveLoadingAnimation(registerUserButton, REGISTER_AND_LOGIN_TEXT)
+        })
+
+        const getCustomerNoteValue = () => {
+
+            const customerNoteInputBox = $('input[name=customer\\[note\\]]')
+            let customerNote = customerNoteInputBox.val()
+
+            let gender = null
+            let birthday = null
+
+            if (SHOP == "revamp-moto.myshopify.com" || show_gender_field_during_signup) {
+                gender = $('[name="userGenderInput"]:checked').val()
+
+                if (!customerNote) {
+                    customerNote = ""
+                }
+
+                if (gender) {
+                    customerNote += ` [Gender]: ${gender}`
+                }
+            }
+
+            if (SHOP == "revamp-moto.myshopify.com" || show_birthday_field_during_signup) {
+                birthday = $('#userBirthdayInput').val()
+
+                if (!customerNote) {
+                    customerNote = ""
+                }
+
+                if (birthday) {
+                    customerNote += ` [Birthday]: ${birthday}`
+                }
+            }
+
+            console.log("Value of customer note is: ", customerNote)
+
+            return customerNote
+        }
+
+        const showButtonLoadingAnimation = (btn) => {
+            btn.addClass('otp-btn-loading')
+            btn.text('')
+        }
+
+        const buttonRemoveLoadingAnimation = (btn, btnText) => {
+            btn.removeClass('otp-btn-loading')
+            btn.text(btnText)
+        }
+
+
+        submitOTPButton.click(async () => {
+
+            // Check if we're in email mode (check if email input is visible)
+            const isEmailMode = !$('#userEmailInput').hasClass('hidden');
+
+            if (isEmailMode) {
+                // Email mode - validate email OTP
+                let email = userEmailInput.val()
+                email = smlSanitizeEmail(email)
+
+                if (!smlValidateEmail(email)) {
+                    errorBox.html(ENTER_VALID_EMAIL);
+                    autoHideError(errorBox);
+                    return;
+                }
+
+                let otp = otpInput.val()
+                otp = smlSanitizeOTP(otp)
+
+                if (!otp || otp.length != 4) {
+                    successBox.html("")
+                    errorBox.html(ENTER_VALID_OTP)
+                    autoHideError(errorBox);
+                    return
+                }
+
+                showButtonLoadingAnimation(submitOTPButton)
+
+                // Use the email OTP validation function
+                const result = await validateEmailOTPForEmailOTPFlow(email, otp)
+
+                if (result && result.type == "LOGIN_SUCCESSFUL") {
+                    await runOnSMLEventInternal("LOGIN_SUCCESSFUL", {"email": email})
+                    signInButton.click()
+                    return
+                } else {
+                    buttonRemoveLoadingAnimation(submitOTPButton, SUBMIT_OTP_TEXT)
+                    return
+                }
+            }
+
+            // Regular user mode - validate phone OTP
+            const fullPhoneNumber = smlGetFullPhoneNumber(phoneNumberInput.val(), mobileCountryCodeDropdown.val())
+
+            let otp
+            if (shouldUseFirebase(fullPhoneNumber)) {
+                otp = otpInputSixDigit.val()
+
+                if (!otp || otp.length != 6) {
+                    successBox.html("")
+                    errorBox.html(ENTER_VALID_SIX_DIGIT_OTP)
+                    autoHideError(errorBox);
+                    return
+                }
+            } else {
+                otp = otpInput.val()
+                otp = smlSanitizeOTP(otp)
+
+                if (!otp || otp.length != 4) {
+                    successBox.html("")
+                    errorBox.html(ENTER_VALID_OTP)
+                    autoHideError(errorBox);
+                    return
+                }
+            }
+
+            showButtonLoadingAnimation(submitOTPButton)
+
+            const result = await validateOTP(fullPhoneNumber, otp)
+
+            if (result.type == "LOGIN_SUCCESSFUL") {
+                await runOnSMLEventInternal("LOGIN_SUCCESSFUL", {"phone": fullPhoneNumber})
+                signInButton.click()
+                return
+            }
+
+            if (result.type == "REGISTER") {
+                buttonRemoveLoadingAnimation(submitOTPButton, SUBMIT_OTP_TEXT)
+                return
+            }
+
+            if (result.error) {
+                buttonRemoveLoadingAnimation(submitOTPButton, SUBMIT_OTP_TEXT)
+                return
+            }
+
+            console.log("submitOTPButton.click => We should never reach here")
+        })
+
+        submitEmailOTPButton.click(async () => {
+
+            const fullPhoneNumber = smlGetFullPhoneNumber(phoneNumberInput.val(), mobileCountryCodeDropdown.val())
+
+            const newEmailValue = newUserEmailInput.val()
+            if (newEmailValue) {
+                userEmailInput.val(newEmailValue)
+            }
+
+            let email = userEmailInput.val()
+            email = smlSanitizeEmail(email)
+
+            if (!smlValidateEmail(email)) {
+                errorBox.html(ENTER_VALID_EMAIL);
+                autoHideError(errorBox);
+                return;
+            }
+
+            let otp = emailOtpInput.val()
+            otp = smlSanitizeOTP(otp)
+
+            if (!otp || otp.length != 4) {
+                successBox.html("")
+                errorBox.html(ENTER_VALID_OTP)
+                autoHideError(errorBox);
+                return
+            }
+
+            const firstName = smlSanitizeName(userFirstNameInput.val())
+            const lastName = smlSanitizeName(userLastNameInput.val())
+
+            const customerNote = getCustomerNoteValue()
+
+            showButtonLoadingAnimation(submitEmailOTPButton)
+
+            const result = await validateOTPEmail(email, fullPhoneNumber.replace(" ", ""), otp, firstName, lastName, customerNote)
+
+            if (result) {
+                await runOnSMLEventInternal("LOGIN_SUCCESSFUL", {"email": email, "phone": fullPhoneNumber})
+                signInButton.click()
+            } else {
+                buttonRemoveLoadingAnimation(submitEmailOTPButton, SUBMIT_OTP_TEXT)
+            }
+        })
+
+        smlEmailOTPDivSubmitOTPButton.click(async () => {
+
+            let email = smlEmailOTPDivUserEmailInput.val()
+            email = smlSanitizeEmail(email)
+
+            let otp = smlEmailOTPDivOTPInput.val()
+            otp = smlSanitizeOTP(otp)
+
+            if (!otp || otp.length != 4) {
+                successBox.html("")
+                errorBox.html(ENTER_VALID_OTP)
+                return
+            }
+
+            showButtonLoadingAnimation(smlEmailOTPDivSubmitOTPButton)
+
+            const result = await validateEmailOTPForEmailOTPFlow(email, otp)
+
+            if (result.type == "LOGIN_SUCCESSFUL") {
+                await runOnSMLEventInternal("LOGIN_SUCCESSFUL", {"email": email})
+                signInButton.click()
+                return
+            }
+
+            if (result.error) {
+                buttonRemoveLoadingAnimation(smlEmailOTPDivSubmitOTPButton, SUBMIT_OTP_TEXT)
+                return
+            }
+
+            console.log("smlEmailOTPDivSubmitOTPButton.click => We should never reach here")
+        })
+
+        otpInput.keyup(async () => {
+
+            let otp = otpInput.val()     
+            otp = smlSanitizeOTP(otp)
+
+            if (!otp || otp.length != 4) {
+                return
+            }
+
+            otpInput.trigger('blur');
+
+            if (showTermsAndConditions && !termsAndConditionsCheckbox.is(":checked")) {
+                return;
+            }
+
+            submitOTPButton.click()
+
+        })
+
+        otpInputSixDigit.keyup(async () => {
+
+            const otp = otpInputSixDigit.val()
+
+            if (!otp || otp.length != 6) {
+                return
+            }
+
+            otpInputSixDigit.trigger('blur');
+
+            if (showTermsAndConditions && !termsAndConditionsCheckbox.is(":checked")) {
+                return;
+            }
+
+            submitOTPButton.click()
+        })
+
+        emailOtpInput.keyup(async () => {
+
+            let otp = emailOtpInput.val()
+            otp = smlSanitizeOTP(otp)
+
+            if (!otp || otp.length != 4) {
+                return
+            }
+
+            emailOtpInput.trigger('blur');
+
+            submitEmailOTPButton.click()
+
+        })
+
+        smlEmailOTPDivOTPInput.keyup(async () => {
+
+            let otp = smlEmailOTPDivOTPInput.val()
+            otp = smlSanitizeOTP(otp)
+
+            if (!otp || otp.length != 4) {
+                return
+            }
+
+            smlEmailOTPDivOTPInput.trigger('blur');
+            smlEmailOTPDivSubmitOTPButton.click()
+        })
+
+
+        //disable form submit on pressing enter key
+        signInForm.on('keyup keypress', function(e) {
+            var keyCode = e.keyCode || e.which
+            if (keyCode === 13) {
+                e.preventDefault()
+
+                if (getOTPButton.css('display') != 'none') {
+                    //getOtpButton is present, let's click it
+                    getOTPButton.click()
+                }
+
+                return false
+            }
+        })
+
+        let resendOTPTimerTimeLeft = RESEND_OTP_TIMER_TOTAL_TIME
+        let resendButtonTimer
+        const getResendOTPTimer = () => {
+            console.log("SML: getResendOTPTimer called, timer total time:", RESEND_OTP_TIMER_TOTAL_TIME)
+            resendOTPTimerTimeLeft = RESEND_OTP_TIMER_TOTAL_TIME;
+            if (resendButtonTimer) {
+                clearInterval(resendButtonTimer)
+            }
+
+            // Immediately disable the button and show countdown in button text
+            console.log("SML: Disabling resend button and starting countdown")
+            resendOTPButton.prop('disabled', true)
+            resendOTPButton.addClass('disabled')
+            const minutes = Math.floor(resendOTPTimerTimeLeft / 60);
+            const seconds = resendOTPTimerTimeLeft % 60;
+            const formattedTime = String(minutes).padStart(2, '0') + ':' + String(seconds).padStart(2, '0');
+            resendOTPButton.html(RESEND_OTP_TEXT + '<span style="color: #6E6E73;"> in </span><span style="color: #202020;">' + formattedTime + '</span>');
+            resendCountdownTimer.hide(); // Hide separate countdown div
+
+            resendButtonTimer = setInterval(() => {
+                resendOTPTimerTimeLeft -= 1;
+                console.log("SML: Timer tick, time left:", resendOTPTimerTimeLeft)
+                if (resendOTPTimerTimeLeft <= 0) {
+                    console.log("SML: Timer expired, enabling button")
+                    resendOTPButton.text(RESEND_OTP_TEXT); // Reset to original text
+                    resendOTPButton.prop('disabled', false)
+                    resendOTPButton.removeAttr('disabled')
+                    resendOTPButton.removeClass('disabled')
+                    clearInterval(resendButtonTimer)
+                    resendButtonTimer = null
+                    console.log("SML: Button should now be enabled")
+                } else {
+                    const minutes = Math.floor(resendOTPTimerTimeLeft / 60);
+                    const seconds = resendOTPTimerTimeLeft % 60;
+                    const formattedTime = String(minutes).padStart(2, '0') + ':' + String(seconds).padStart(2, '0');
+                    resendOTPButton.html(RESEND_OTP_TEXT + '<span style="color: #6E6E73;"> in </span><span style="color: #202020;">' + formattedTime + '</span>');
+                }
+            }, 1000);
+        }
+
+        const clearResendOTPTimer = () => {
+            if (resendButtonTimer) {
+                clearInterval(resendButtonTimer)
+                resendButtonTimer = null
+            }
+
+            // Reset button state and text
+            resendOTPButton.prop('disabled', false)
+            resendOTPButton.removeAttr('disabled')
+            resendOTPButton.removeClass('disabled')
+            resendOTPButton.text(RESEND_OTP_TEXT) // Reset to original text
+
+            // Clear countdown display and hide it
+            resendCountdownTimer.html("")
+            resendCountdownTimer.hide()
+        }
+
+        // Expose timer functions globally for agent login button access
+        window.clearResendOTPTimer = clearResendOTPTimer
+
+        // Email OTP Timer functions
+        let emailOTPTimerTimeLeft = RESEND_OTP_TIMER_TOTAL_TIME
+        let emailOTPButtonTimer
+        const getEmailOTPTimer = () => {
+            console.log("SML: getEmailOTPTimer called, timer total time:", RESEND_OTP_TIMER_TOTAL_TIME)
+            emailOTPTimerTimeLeft = RESEND_OTP_TIMER_TOTAL_TIME;
+            if (emailOTPButtonTimer) {
+                clearInterval(emailOTPButtonTimer)
+            }
+
+            // Immediately disable the button and show countdown
+            console.log("SML: Disabling email OTP resend button and starting countdown")
+            smlEmailOTPDivResendOTPButton.prop('disabled', true)
+            smlEmailOTPDivResendOTPButton.addClass('disabled')
+            emailOTPCountdownTimer.html("Please wait " + emailOTPTimerTimeLeft + " seconds to re-send OTP");
+            emailOTPCountdownTimer.show(); // Show countdown when timer starts
+
+            emailOTPButtonTimer = setInterval(() => {
+                emailOTPTimerTimeLeft -= 1;
+                console.log("SML: Email OTP Timer tick, time left:", emailOTPTimerTimeLeft)
+                if (emailOTPTimerTimeLeft <= 0) {
+                    console.log("SML: Email OTP Timer expired, enabling button")
+                    emailOTPCountdownTimer.html("");
+                    emailOTPCountdownTimer.hide(); // Hide countdown when timer ends
+                    smlEmailOTPDivResendOTPButton.prop('disabled', false)
+                    smlEmailOTPDivResendOTPButton.removeAttr('disabled')
+                    smlEmailOTPDivResendOTPButton.removeClass('disabled')
+                    clearInterval(emailOTPButtonTimer)
+                    emailOTPButtonTimer = null
+                    console.log("SML: Email OTP Button should now be enabled")
+                } else {
+                    emailOTPCountdownTimer.html("Please wait " + emailOTPTimerTimeLeft + " seconds to re-send OTP");
+                }
+            }, 1000);
+        }
+
+        const clearEmailOTPTimer = () => {
+            if (emailOTPButtonTimer) {
+                clearInterval(emailOTPButtonTimer)
+                emailOTPButtonTimer = null
+            }
+
+            // Reset button state
+            smlEmailOTPDivResendOTPButton.prop('disabled', false)
+            smlEmailOTPDivResendOTPButton.removeAttr('disabled')
+            smlEmailOTPDivResendOTPButton.removeClass('disabled')
+
+            // Clear countdown display and hide it
+            emailOTPCountdownTimer.html("")
+            emailOTPCountdownTimer.hide()
+        }
+
+        // Expose email OTP timer function globally for agent login button access
+        window.clearEmailOTPTimer = clearEmailOTPTimer
+
+
+        const initAutoOTPFill = () => {
+
+            if ('OTPCredential' in window) {
+
+                const ac = new AbortController();
+
+                // signInForm.submit('submit', e => {
+                //     ac.abort();
+                // });
+
+                navigator.credentials.get({
+                    otp: {
+                        transport: ['sms']
+                    },
+                    signal: ac.signal
+                }).then(otp => {
+                    console.log("OTP IS: ", otp)
+                    otp = otp.code
+                    otp = smlSanitizeOTP(otp)
+
+                    if (otp && otp.length == 4 && !isNaN(otp)) {
+                        otpInput.val(otp)
+                        submitOTPButton.click()
+                    }
+
+                }).catch(err => {
+                    console.error(err)
+                })
+            }
+        }
+
+        const loginUsingSocialToken = async (queryString) => {
+            const urlParams = new URLSearchParams(queryString);
+            if (urlParams.has('simplysocialtoken') && urlParams.get('email') || true) {
+                const simplysocialtoken = urlParams.get('simplysocialtoken');
+                const email = urlParams.get('email');
+
+                let validate_social_auth_token_url = "https://" + SERVER_DOMAIN + "/validate_social_auth_token"
+                if (useProxiedUrl) {
+                    validate_social_auth_token_url = "/apps/sml/client/validate_social_auth_token"
+                }
+
+                try {
+                    const data = await $.ajax({
+                        type: 'POST',
+                        url: validate_social_auth_token_url,
+                        data: JSON.stringify({
+                            simplysocialtoken: simplysocialtoken,
+                            email: email,
+                            shop: SHOP,
+                            modifiedShopURL: window.location.hostname,
+                            reqtimestamp: Date.now()
+                        }),
+                        beforeSend: function() {
+                            displaySpinner(true)
+                        },
+                        contentType: "application/json",
+                        dataType: 'json'
+                    })
+
+                    console.log('SML: loginUsingSocialToken data here is: ', data);
+
+                    emailInputBox.val(data.email)
+                    passwordInputBox.val(data.xattr)
+
+                    if (data.user_status && data.user_status == "NEW_USER") {
+                        await runOnSMLEventInternal("USER_REGISTERED_SUCCESSFULLY", {"email": email})        
+                    } else {
+                        await runOnSMLEventInternal("LOGIN_SUCCESSFUL", {"email": email})
+                    }
+                    
+                    signInButton.click()
+                    setTimeout(() => {
+                        displaySpinner(false)
+                    }, 5000)
+
+                } catch (xhr) {
+                    displaySpinner(false)
+                    console.error("error in validate social login api ", xhr)
+                    if (xhr && xhr.responseJSON && xhr.responseJSON["msg"]) {
+                        errorBox.html("Error in logging in " + xhr.responseJSON["msg"])
+                        errorBoxOnEmailScreen.html("Error in logging in " + xhr.responseJSON["msg"])
+                    } else {
+                        errorBox.html("Error in logging in")
+                        errorBoxOnEmailScreen.html("Error in logging in")
+                    }
+                    successBox.html("")
+                }
+            }
+        }
+
+        let recaptchaVerifier
+        let recaptchaVerifierResendOTPButton
+        let recaptchaVerifierWidgetId
+        let recaptchaVerifierResendOTPButtonWidgetId
+
+        const initFirebase = () => {
+
+            if (FIREBASE_LEVEL == "DISABLED") {
+                return
+            }
+
+            const app = initializeApp(FIREBASE_CONFIG);
+
+            const googleRecaptchaAuth = getAuth();
+            recaptchaVerifier = new RecaptchaVerifier('getOTPButton', {
+                'size': 'invisible',
+                'callback': (recapchaToken) => {
+                    console.log("recapcha called")
+                },
+                'expired-callback': () => {
+                    console.error("expired callback, reload page??")
+                    // Response expired. Ask user to solve reCAPTCHA again.
+                    // ...
+                }
+            }, googleRecaptchaAuth);
+
+            recaptchaVerifier.render().then(function(widgetId) {
+                // console.log("Rendered recaptchaVerifier, widget id: ", widgetId)
+                recaptchaVerifierWidgetId = widgetId
+            });
+
+            recaptchaVerifierResendOTPButton = new RecaptchaVerifier('resendOTPButton', {
+                'size': 'invisible',
+                'callback': (recapchaToken) => {
+                    console.log("recapcha called")
+                },
+                'expired-callback': () => {
+                    console.error("expired callback, reload page??")
+                    // Response expired. Ask user to solve reCAPTCHA again.
+                    // ...
+                }
+            }, googleRecaptchaAuth);
+
+            recaptchaVerifierResendOTPButton.render().then(function(widgetId) {
+                // console.log("Rendered recaptchaVerifierResendOTPButton, widget id: ", widgetId)
+                recaptchaVerifierResendOTPButtonWidgetId = widgetId
+            });
+        }
+
+        const resetFirebase = () => {
+            if (recaptchaVerifierWidgetId != null) {
+                grecaptcha.reset(recaptchaVerifierWidgetId)
+            }
+
+            if (recaptchaVerifierResendOTPButtonWidgetId != null) {
+                grecaptcha.reset(recaptchaVerifierResendOTPButtonWidgetId)
+            }
+        }
+
+        const initMobileOTPLoginSection = () => {
+            $('#simplify-login-sign-up-text').text(LOGIN_SIGN_UP_TEXT)
+            mobileCountryCodeDropdown.html(createPhoneOptions())
+            // Set default to +91 immediately to avoid showing 263 initially
+            mobileCountryCodeDropdown.val("+91")
+            phoneNumberInput.attr('placeholder', PHONE_NUMBER_TEXT)
+
+            if (settings.show_get_otp_on_whatsapp_button) {
+                getOTPButton.text(GET_OTP_ON_SMS_TEXT)
+            } else {
+                getOTPButton.text(GET_OTP_TEXT)
+            }
+
+            smlEmailOTPDivGetOTPButton.text(GET_OTP_TEXT)
+            smlEmailOTPDivSubmitOTPButton.text(SUBMIT_OTP_TEXT)
+            smlEmailOTPDivResendOTPButton.text(RESEND_OTP_TEXT)
+            
+            smlGetOTPOnWhatsAppButton.text(GET_OTP_ON_WHATSAPP_TEXT)
+            submitOTPButton.text(SUBMIT_OTP_TEXT)
+            submitEmailOTPButton.text(SUBMIT_OTP_TEXT)
+            resendOTPButton.text(RESEND_OTP_TEXT)
+            resendEmailOTPButton.text(RESEND_OTP_TEXT)
+            userFirstNameInput.attr('placeholder', FIRST_NAME_TEXT)
+            userLastNameInput.attr('placeholder', LAST_NAME_TEXT)
+
+            if (IS_EMAIL_MANDATORY) {
+                userEmailInput.attr('placeholder', EMAIL_TEXT + "*")
+                newUserEmailInput.attr('placeholder', EMAIL_TEXT + "*")
+            } else {
+                userEmailInput.attr('placeholder', EMAIL_TEXT)
+                newUserEmailInput.attr('placeholder', EMAIL_TEXT)
+            }
+            
+            userPasswordInput.attr('placeholder', PASSWORD_TEXT + "*")
+            registerUserButton.text(REGISTER_AND_LOGIN_TEXT)
+
+            smlEmailOTPDivUserEmailInput.attr('placeholder', ENTER_YOUR_EMAIL_PLACEHOLDER)
+        }
+
+        const runOnSMLEventInternal = async (event, data) => {
+            let output = null
+            if (window.runOnSMLEvent && typeof window.runOnSMLEvent === 'function') {
+                try {
+                    output = await window.runOnSMLEvent(event, data)
+                    console.log("Successfully executed window.runOnSMLEvent with event", event, "data ", data, " output is: ", output)
+                } catch (ex) {
+                    console.error("Exception when executing window.runOnSMLEvent with event " + event, ex)
+                }
+            } else {
+                console.log("You can add runOnSMLEvent(event, data) function to run on Simplify My Login app events", event, data)
+            }
+            return output
+        }
+
+        const fixPage = () => {
+            setTimeout(() => {
+                // sometimes competitor apps mess up the page and login section, we need to fix so that installation is smooth
+                if ($('#sotp-widget').length > 0) {
+                    $('#sotp-widget').hide()
+                }
+                if ($('#otp-original-login').length > 0) {
+                    $('#otp-original-login').show()
+                }
+                if (signInForm.length > 0) {
+                    signInForm.show()
+                }
+            }, 2000)
+        }
+
+        const initPage = async () => {
+
+            fixPage()
+
+            //saw on http://ustarmmcosmetics.myshopify.com/
+
+            initMobileOTPLoginSection()
+
+            const pageWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+
+
+            //Needed on few shopify stores as the margins are not showing up correctly
+            //resutling in bad looking UI , added on 18th aug 2024
+            //check stores like https://www.steezy.in/account/login and 
+            if ($("#MainContent .shopify-section").css('margin-top') == '0px') {
+                $("#MainContent .shopify-section").css('margin-top', '50px')
+            }
+
+            if ($("#MainContent .shopify-section").css('margin-bottom') == '0px') {
+                $("#MainContent .shopify-section").css('margin-bottom', '50px')
+            }
+
+
+
+            //sometimes the form is too big
+            signInForm.css("margin-left", "auto")
+            signInForm.css("margin-right", "auto")
+
+            const otpInputDirection = $('#otpInput').css("direction")
+            if (pageWidth && otpInputDirection && otpInputDirection == "rtl") {
+
+                if (pageWidth > 749) {
+                    $('#otpInput')[0].style.setProperty("letter-spacing", "70px", "important")
+                    $('#otpInputSixDigit')[0].style.setProperty("letter-spacing", "45px", "important")
+                } else {
+                    $('#otpInput')[0].style.setProperty("letter-spacing", "45px", "important")
+                    $('#otpInputSixDigit')[0].style.setProperty("letter-spacing", "30px", "important")
+                }
+            }
+
+
+            if (selected_country_code == "All") {
+                const ipInfoInterval = setInterval(() => {
+                    if (!isIpInfoRequestPending) {
+                        mobileCountryCodeDropdown.val(PHONE_CODE)
+                        clearInterval(ipInfoInterval)
+                    }
+                }, 100)
+            }
+            if (selected_country_code != "All") {
+                mobileCountryCodeDropdown.prop('disabled', true);
+                mobileCountryCodeDropdown.css('-webkit-appearance', 'none');
+                mobileCountryCodeDropdown.css('-moz-appearance', 'none');
+            }
+
+            if (autoFillOTPEnabled) {
+                initAutoOTPFill()
+            }
+
+            if (localStorage.getItem(CRED_KEY_STRING) && isBiometricLoginEnabled) {
+                loginWithBiometricButton.show()
+                const userCreds = JSON.parse(localStorage.getItem(CRED_KEY_STRING))[0]
+                var buttonText = loginWithBiometricButton.html();
+                loginWithBiometricButton.html(buttonText + " " + userCreds.userEmail);
+                if (autoPopupBiometricLogin){
+                    loginWithBiometricButton.click()
+                }
+            } else {
+                //Basically treat as isBiometricLoginEnabled is false
+                isBiometricLoginEnabled = false
+            }
+
+            if (allowedLoginMethod == "EMAIL_AND_PHONE" || fb_login_enabled || google_login_enabled || isBiometricLoginEnabled) {
+                continue_text.show()
+            } else {
+                continue_text.hide()
+            }
+
+            if (allowedLoginMethod == "EMAIL_AND_PHONE" || isBiometricLoginEnabled || isEmailOTPLoginEnabled || settings.show_get_otp_on_whatsapp_button) {
+                otherLoginMethodsDiv.show()
+            }
+
+            if (simplifyURLParams.has("checkout_url")) {
+                //there is possibility that input for checkout_url is present , only in cases where we are directly injecting form in liquid, it might not be present
+
+                const checkoutURLInput = $("input[name=checkout_url]", signInForm)
+                if (checkoutURLInput.length > 0) {
+                    //clear relative_route as checkout_url input already present
+                    relative_route = ""
+                } else {
+                    //set relative_route as checkout_url input
+                    relative_route = simplifyURLParams.get("checkout_url")
+                }
+            }
+
+            if (relative_route && relative_route.length > 0) {
+                //Redirect to a custom endpoint
+                const custom_url = `<input type="hidden" name="checkout_url" value="${relative_route}">`
+                signInForm.append(custom_url)
+                
+                // on app99 new theme, if return_url is present it's somehow not respecting checkout_url, so remove return_url when it's value is /account
+                // const returnURLInput = $("input[name=return_url]", signInForm)
+                // if (returnURLInput.length > 0 && returnURLInput.val() == "/account") {
+                //     returnURLInput.remove()   
+                // }
+                // issue was due to sign in form not being detected correctly
+            }
+
+
+            if (SHOPIFY_THEME.indexOf("Lucent PROD") > -1) {
+                $('.account-page-title').hide()
+
+                getOTPButton.addClass('button-primary')
+                submitOTPButton.addClass('button-primary')
+                submitEmailOTPButton.addClass('button-primary')
+                registerUserButton.addClass('button-primary')
+
+                smlGetOTPOnWhatsAppButton.addClass('button-primary')
+                smlEmailOTPDivGetOTPButton.addClass('button-primary')
+                smlEmailOTPDivSubmitOTPButton.addClass('button-primary')
+            }
+            
+            submitOTPButton.addClass("submitOTPButtonClass")
+            submitEmailOTPButton.addClass("submitEmailOTPButtonClass")
+
+            const submitBtnClassList = signInButton.attr('class')
+            if (submitBtnClassList) {
+                getOTPButton.addClass(submitBtnClassList)
+                submitOTPButton.addClass(submitBtnClassList)
+                submitEmailOTPButton.addClass(submitBtnClassList)
+                registerUserButton.addClass(submitBtnClassList)
+                smlGetOTPOnWhatsAppButton.addClass(submitBtnClassList)
+                smlEmailOTPDivGetOTPButton.addClass(submitBtnClassList)
+                smlEmailOTPDivSubmitOTPButton.addClass(submitBtnClassList)
+            }
+
+            if (SHOP.indexOf("therouc") > -1) {
+                $("#resendOTPButton").css("color", "black");
+                $("#resendEmailOTPButton").css("color", "black");
+            }
+
+            if (SHOP.indexOf("chickenwayindia") > -1) {
+                resendOTPButton.css("color", "#D11243")
+                resendEmailOTPButton.css("color", "#D11243")
+            }
+
+            if (SHOP == "thesovereignsectprebook.myshopify.com") {
+                getOTPButton.text("Get One Time Passcode")
+                resendOTPButton.text("Resend One Time Passcode")
+                submitOTPButton.text("Submit One Time Passcode")
+                const newDiv = `
+                <div id="troubleLoggingInDiv">
+                    <hr style="margin: 10px">
+                    <h2>Trouble Logging In / Enter Phone #</h2>
+                </div>
+                `
+                mobileOTPLoginSection.prepend(newDiv)
+            }
+
+            if (SHOP == "vannaksemshop.myshopify.com") {
+                getOTPButton.text("Get One Time Code")
+                resendOTPButton.text("Resend One Time Code")
+                submitOTPButton.text("Submit One Time Code")
+            }
+
+            if (SHOP == "app99.myshopify.com") {
+                continue_text.text("Or")
+            }
+
+            if (allowedLoginMethod == "ONLY_PHONE") {
+                signInForm.css("padding-bottom", "38px")
+            }
+
+            if (showTermsAndConditions) {
+                termsAndConditionsCheckbox.click(function() {
+                    if (termsAndConditionsCheckbox.is(":checked")) {
+                        submitOTPButton.attr("disabled", false);
+                    } else {
+                        submitOTPButton.attr("disabled", true);
+                    }
+                });
+            }
+
+            // signInForm.show()
+            signInForm.css('visibility', 'visible')
+
+            const loginMethodScreen = getLoginMethodScreen(allowedLoginMethod, isEmailOTPLoginEnabled)
+
+            if (loginMethodScreen == "PHONE_OTP") {
+                // for the first time, show user ENTER_PHONE Screen
+                selectOTPScreen("ENTER_PHONE")
+                loginWithPhoneNumberButton.click()
+            }
+
+            if (loginMethodScreen == "EMAIL_PASSWORD") {
+                loginWithEmailButton.click()
+            }
+
+            if (loginMethodScreen == "EMAIL_OTP") {
+                loginWithEmailOTPButton.click()
+            }
+
+            initFirebase()
+
+
+            //fix page on sites like https://healncure.in/account/login where js-qty encompassed input type=number phone number input
+            /**
+             * <div class="js-qty">
+              <button type="button" class="js-qty__adjust js-qty__adjust--minus quantity-increment hide" data-id="" data-qty="-1">
+                <span>−</span>
+              </button>
+              <input type="number" class="js-qty__num" value="" min="1" data-id="" aria-label="quantity" pattern="[0-9]*" name="" id="smlPhoneNumberInput" placeholder="Phone number">
+              <button type="button" class="js-qty__adjust js-qty__adjust--plus quantity-increment hide" data-id="" data-qty="1">
+                <span>+</span>
+              </button>
+            </div> 
+            */
+            if (mobileOTPLoginSection.find('div.js-qty').length == 1) {
+              console.log('SML: Found a .js-qty inside #mobileOTPLoginSection ,removing it now');
+              mobileOTPLoginSection.find('div.selectbox-wrapper').append(smlPhoneNumberInput)
+              mobileOTPLoginSection.find('div.js-qty').remove()
+            }
+
+            await runOnSMLEventInternal("APP_INIT")
+        }
+
+        const getLoginMethodScreen = (allowedLoginMethod, isEmailOTPLoginEnabled) => {
+            /**
+             * allowedLoginMethod can be ONLY_PHONE, ONLY_EMAIL_PASSWORD, EMAIL_AND_PHONE
+             * loginMethodScreen can be PHONE_OTP, EMAIL_PASSWORD, EMAIL_OTP
+             */
+
+            const loginMethodScreen = localStorage.getItem("SML_LOGIN_METHOD_SCREEN")
+
+            if (loginMethodScreen == "PHONE_OTP") {
+                // check if Phone login allowed
+                if (allowedLoginMethod == "ONLY_PHONE" || allowedLoginMethod == "EMAIL_AND_PHONE" || settings.show_get_otp_on_whatsapp_button) {
+                    return loginMethodScreen
+                }
+            }
+
+            if (loginMethodScreen == "EMAIL_PASSWORD") {
+                if (allowedLoginMethod == "ONLY_EMAIL_PASSWORD" || allowedLoginMethod == "EMAIL_AND_PHONE") {
+                    return loginMethodScreen
+                }
+            }
+
+            if (loginMethodScreen == "EMAIL_OTP" && isEmailOTPLoginEnabled) {
+                return loginMethodScreen
+            }
+            
+            if (allowedLoginMethod == "ONLY_PHONE" || allowedLoginMethod == "EMAIL_AND_PHONE") {
+                //default is login with phone number and otp
+                return "PHONE_OTP"
+            }
+
+            if (isEmailOTPLoginEnabled) {
+                return "EMAIL_OTP"
+            }
+
+            return "EMAIL_PASSWORD"
+        }
+
+        initPage()
+    }
+
+    let settings = {}
+    const loadSettings = async () => {
+
+        const data = settings
+
+        is_disabled = !data.is_enabled
+        allowedLoginMethod = data.allowed_login_method
+        STORE_LANG = data.store_lang
+        LOGIN_EXP = data.login_exp
+        fields_during_signup = data.fields_during_signup
+        fb_login_enabled = data.fb_login_enabled
+        google_login_enabled = data.google_login_enabled
+        selected_country_code = data.selected_country_code
+        relative_route = data.relative_route
+        isBiometricLoginEnabled = data.device_based_login_enabled
+        autoPopupBiometricLogin = data.auto_popup_biometric_login
+        isEmailOTPLoginEnabled = data.is_email_otp_login_enabled
+        email_and_sms_consent = data.email_and_sms_consent
+        show_accept_marketing_checkbox = data.show_accept_marketing_checkbox
+
+        if (data.selected_country_code_list) {
+            selected_country_code_list = data.selected_country_code_list
+        }
+        if (selected_country_code_list.length > 0) {
+            PHONE_CODE = selected_country_code_list[0]
+        }
+
+        if (data.show_terms_and_conditions === true || data.show_terms_and_conditions === false) {
+            showTermsAndConditions = data.show_terms_and_conditions
+        }
+
+        if (data.show_birthday_field_during_signup === true || data.show_birthday_field_during_signup === false) {
+            show_birthday_field_during_signup = data.show_birthday_field_during_signup
+        }
+
+        if (data.show_gender_field_during_signup === true || data.show_gender_field_during_signup === false) {
+            show_gender_field_during_signup = data.show_gender_field_during_signup
+        }
+
+        // check if value exists and is boolean before assigning
+        if (data.is_email_mandatory === true || data.is_email_mandatory === false) {
+            IS_EMAIL_MANDATORY = data.is_email_mandatory
+        }
+
+        if (settings.show_get_otp_on_whatsapp_button === true || settings.show_get_otp_on_whatsapp_button === false) {
+            //don't modify the value
+        } else {
+            settings.show_get_otp_on_whatsapp_button = false
+        }
+
+        // if (SHOP == "make-it-myn.myshopify.com") {
+        //     autoFillOTPEnabled = true
+        // }
+
+        if (data.firebase_level) {
+            FIREBASE_LEVEL = data.firebase_level
+        }
+
+        if (data.show_full_country_name) {
+            SHOW_FULL_COUNTRY_NAME = data.show_full_country_name
+        }
+
+        if (data.default_country_code) {
+            PHONE_CODE = data.default_country_code
+        }
+
+        if (data.firebase_config) {
+            FIREBASE_CONFIG = data.firebase_config
+        }
+
+        if (data.RESEND_OTP_TIMER_ENABLED) {
+            RESEND_OTP_TIMER_ENABLED = data.RESEND_OTP_TIMER_ENABLED
+        }
+
+        if (data.ASK_PASSWORD_DURING_SIGNUP) {
+            ASK_PASSWORD_DURING_SIGNUP = data.ASK_PASSWORD_DURING_SIGNUP
+        }
+
+        if (data.resendOTPTimerTotalTime) {
+            RESEND_OTP_TIMER_TOTAL_TIME = data.resendOTPTimerTotalTime
+        }
+
+        if (window.location.pathname && window.location.pathname.split('/')[1] == 'en') {
+            STORE_LANG = "ENGLISH"
+        }
+
+        if (window.location.pathname && window.location.pathname.split('/')[1] == 'zh') {
+            STORE_LANG = "Chinese(Traditional)"
+        }
+
+      console.log("SML: settings loaded", data)
+
+        $(document).ready(async function() {
+            console.log("SML: document ready called")
+            await initExtension()
+        })
+    }
+
+    if (window.smlSettings) {
+        settings = window.smlSettings
+        loadSettings()
+    } else {
+        $.ajax({
+            type: 'GET',
+            url: "https://" + SERVER_DOMAIN + "/settings?shop=" + SHOP,
+            success: async function(data) {
+                console.log('settings data: ', data)
+                settings = data
+                await loadSettings()
+            },
+            error: function(xhr, status, errorMessage) {
+                console.error("error in settings api ", xhr.responseJSON)
+            },
+            contentType: "application/json",
+            dataType: 'json'
+        });
+    }
+})(simplify_jQuery_3_6_0);

@@ -1,0 +1,75 @@
+<link rel="stylesheet" href="{{ 'sitemap.css' | asset_url }}">
+<div class="Container page-width-updated">
+  <header class="PageHeader">
+    <div class="SectionHeader SectionHeader--center">
+      <h1 class="SectionHeader__Heading Heading heebo-medium u-h1">{{ page.title }}</h1>
+    </div>
+  </header>
+
+  <div class="PageContent PageContent--narrow Rte">
+    <div class="sitemap_containner">
+      <div class="sitemap_list">
+        <h2 class="heebo-medium">Collections</h2>
+        <ul>
+          {% for c in collections %}
+            {% if c.handle != 'womens-new-arrival' and c.handle != 'dark-green' %}
+              <li>
+                <a href="{{ c.url }}">{{ c.title }}</a>
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+        <h2 class="heebo-medium">Pages</h2>
+        <ul>
+          {% for page in pages %}
+            {% unless page.handle == 'connect'
+              or page.handle == 'privacy-terms'
+              or page.handle == 'our-story'
+              or page.handle == 'track-order'
+              or page.handle == 'story'
+              or page.handle == 'brand-story'
+              or page.handle == 'shipping-and-refund'
+            %}
+              <li>
+                <a href="{{ page.url }}">{{ page.title }}</a>
+              </li>
+            {% endunless %}
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="sitemap_list">
+        <h2 class="heebo-medium">Products</h2>
+        <ul>
+          {% for product in collections.all.products %}
+            <li>
+              <a href="{{ product.url }}">{{ product.title }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="sitemap_list">
+        <h2 class="heebo-medium">Blogs</h2>
+        <ul>
+          {% assign blog_handles = 'capes' | split: ',' %}
+          {% for handle in blog_handles %}
+            {% for article in blogs[handle].articles %}
+              <li>
+                <a href="{{ article.url }}">{{ article.title }}</a>
+              </li>
+            {% endfor %}
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Site Map",
+  "settings": [],
+  "presets": [{ "name": "site map" }]
+}
+{% endschema %}

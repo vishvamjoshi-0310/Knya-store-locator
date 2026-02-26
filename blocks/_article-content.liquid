@@ -1,0 +1,111 @@
+
+{%- doc -%}
+  Renders the article content block with banner images support.
+{%- enddoc -%}
+
+{% liquid
+  if article != blank
+    assign current_article = article
+  elsif closest.article != blank
+    assign current_article = closest.article
+  endif
+
+  if current_article != blank
+    assign articlecontent = current_article.content | split: '[article_quotes]'
+    assign countimageList = 0
+    for bannersizeget in current_article.metafields.custom.blog_banner_image_list.value
+      assign countimageList = countimageList | plus: 1
+    endfor
+    assign banner_links = current_article.metafields.custom.blog_banner_image_list_link_url.value
+    assign banner_urls = banner_links | split: ","
+    assign mobile_banner_arr = ""
+    assign mobile_banner_width_arr = ""
+    assign mobile_banner_height_arr = ""
+    for mobile_image in current_article.metafields.custom.blog_mobile_banner_image_list.value
+      assign image = mobile_image | image_url: width: 500
+      assign image1 = image | append: ","
+      assign mobile_banner_arr = mobile_banner_arr | append: image1
+
+      assign width = mobile_image.width
+      assign width1 = width | append: ","
+      assign mobile_banner_width_arr = mobile_banner_width_arr | append: width1
+
+      assign height = mobile_image.height
+      assign height1 = height | append: ","
+      assign mobile_banner_height_arr = mobile_banner_height_arr | append: height1
+    endfor
+
+    assign image_arr = mobile_banner_arr | remove_last: ","
+    assign image_array = image_arr | split: ","
+
+    assign mobile_banner_width1 = mobile_banner_width_arr | remove_last: ","
+    assign banner_width_mob = mobile_banner_width1 | split: ","
+
+    assign mobile_banner_height_arr1 = mobile_banner_height_arr | remove_last: ","
+    assign banner_height_mob = mobile_banner_height_arr1 | split: ","
+
+    assign mobileimageSize = image_array.size | minus: 1
+  endif
+%}
+
+{% if current_article != blank %}
+  <div class="article-template__content rte" itemprop="articleBody" {{ block.shopify_attributes }}>
+    {% assign banners_exist = current_article.content | split: '[image_banner]' %}
+
+    {% if banners_exist.size > 1 and countimageList > 0 %}
+      <div class="page-width-updated">
+        {% assign banners = current_article.content | split: '[image_banner]' %}
+        {% assign sizelimit = banners.size | minus: 1 %}
+        {% for bannr in current_article.metafields.custom.blog_banner_image_list.value limit: sizelimit %}
+          {% assign banner_and_quotes = banners[forloop.index0] | split: '[article_quotes]' %}
+          {{ banner_and_quotes[0] }}
+          {% if banner_and_quotes.size > 1 and current_article.metafields.custom.article_quotes != blank %}
+            <div class="quotes quotes_custom">
+              <div class="page-width-updated">{{ current_article.metafields.custom.article_quotes | metafield_tag }}</div>
+            </div>
+          {% endif %}
+          {{ banner_and_quotes[1] }}
+          <p>
+            {% if banner_urls[forloop.index0] %}<a href="{{ banner_urls[forloop.index0] }}">{% endif %}
+            <img
+              src="{{ bannr | image_url: width: 1600 }}"
+              alt="blog banner"
+              width="{{ bannr.width }}"
+              class="desktop_banner_article"
+              height="{{ bannr.height }}"
+            >
+            {% if banner_urls[forloop.index0] %}</a>{% endif %}
+            {% if forloop.index0 <= mobileimageSize %}
+              {% if banner_urls[forloop.index0] %}<a href="{{ banner_urls[forloop.index0] }}">{% endif %}
+              <img
+                src="{{ image_array[forloop.index0] }}"
+                alt="blog banner"
+                width="{{ banner_width_mob[forloop.index0] }}"
+                class="mobile_banner_article"
+                height="{{ banner_height_mob[forloop.index0] }}"
+              >
+              {% if banner_urls[forloop.index0] %}</a>{% endif %}
+            {% endif %}
+          </p>
+        {% endfor %}
+        {{ banners | last }}
+      </div>
+    {% else %}
+      <div class="page-width-updated">{{ articlecontent[0] }}</div>
+      {% if current_article.metafields.custom.article_quotes != blank %}
+        <div class="quotes">
+          <div class="page-width-updated">{{ current_article.metafields.custom.article_quotes | metafield_tag }}</div>
+        </div>
+      {% endif %}
+      <div class="page-width-updated">{{ articlecontent[1] }}</div>
+    {% endif %}
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "t:sections.main-article.blocks.content.name",
+  "settings": []
+}
+{% endschema %}
+

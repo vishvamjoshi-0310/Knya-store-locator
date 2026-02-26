@@ -1,0 +1,369 @@
+{% style %}
+  .superhero-lookbook-{{ section.id }} {
+    padding-top: {{ section.settings.section_padding_top }}px;
+    padding-bottom: {{ section.settings.section_padding_bottom }}px;
+    background-color: {{ section.settings.background_color }};
+  }
+
+  .superhero-lookbook__header-{{ section.id }} {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .superhero-lookbook__heading-{{ section.id }} {
+    font-size: {{ section.settings.heading_size_desktop }}px;
+    color: {{ section.settings.heading_color }};
+    margin: 0 0 16px;
+    font-weight: 500;
+  }
+
+  .superhero-lookbook__subheading-{{ section.id }} {
+    font-size: {{ section.settings.subheading_size }}px;
+    color: {{ section.settings.subheading_color }};
+    max-width: 650px;
+    margin: 0 auto;
+    line-height: 120%;
+    letter-spacing: 0.6px;
+  }
+
+  .superhero-lookbook__grid-{{ section.id }} {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding-inline: 16px;
+    column-gap: {{ section.settings.grid_gap_col }}px;
+    row-gap: {{ section.settings.grid_gap_row }}px;
+
+  }
+
+  .superhero-lookbook__item-{{ section.id }} {
+    border-radius: {{ section.settings.image_border_radius }}px;
+  }
+
+  .superhero-lookbook__slider-{{ section.id }} {
+    display: none;
+  }
+
+  @media screen and (max-width: 800px) {
+    .superhero-lookbook-{{ section.id }} {
+      padding-top: {{ section.settings.section_padding_top_mobile }}px;
+      padding-bottom: {{ section.settings.section_padding_bottom_mobile }}px;
+    }
+
+    .superhero-lookbook__heading-{{ section.id }} {
+      font-size: {{ section.settings.heading_size_mobile }}px;
+    }
+
+    .superhero-lookbook__subheading-{{ section.id }} {
+      font-size: {{ section.settings.subheading_size_mobile }}px;
+    }
+    .superhero-lookbook__slider-{{ section.id }} {
+      display: block;
+      overflow-x: auto;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .superhero-lookbook__slider-{{ section.id }}::-webkit-scrollbar {
+      display: none;
+    }
+
+    .superhero-lookbook__grid-{{ section.id }} {
+      grid-template-columns: repeat(1, 1fr);
+    }
+
+    .superhero-lookbook__slider-wrapper-{{ section.id }} {
+      display: flex;
+      gap: 16px;
+      padding: 0 20px;
+    }
+
+  }
+{% endstyle %}
+
+<div class="superhero-lookbook-{{ section.id }} page-width-updated" {{ section.shopify_attributes }}>
+  <div class="superhero-lookbook__container-{{ section.id }}">
+    <div class="superhero-lookbook__header-{{ section.id }}">
+      {% if section.settings.main_heading != blank %}
+        <h2 class="superhero-lookbook__heading-{{ section.id }}">
+          {{ section.settings.main_heading }}
+        </h2>
+      {% endif %}
+
+      {% if section.settings.subheading_text != blank %}
+        <div class="superhero-lookbook__subheading-{{ section.id }}">
+          {{ section.settings.subheading_text }}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="superhero-lookbook__grid-{{ section.id }}">
+      {% content_for 'blocks' %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Superhero lookbook",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "main_heading",
+      "label": "Main heading",
+      "default": "Look & feel like a superhero"
+    },
+    {
+      "type": "range",
+      "id": "heading_size_desktop",
+      "min": 20,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Desktop size",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "min": 16,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile size",
+      "default": 32
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Subheading"
+    },
+    {
+      "type": "richtext",
+      "id": "subheading_text",
+      "label": "Text",
+      "default": "<p>It is this strength with which you operate that inspires us to honor your road to achieving greatness.</p>"
+    },
+    {
+      "type": "range",
+      "id": "subheading_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Desktop size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "subheading_size_mobile",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile size",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "subheading_color",
+      "label": "Color",
+      "default": "#666666"
+    },
+    {
+      "type": "header",
+      "content": "Button style"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button text",
+      "default": "SHOP NOW"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_background",
+      "label": "Hover background",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text_color",
+      "label": "Hover text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "button_font_size",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Desktop font size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "button_font_size_mobile",
+      "min": 10,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile font size",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Border radius",
+      "default": 4
+    },
+    {
+      "type": "header",
+      "content": "Label style"
+    },
+    {
+      "type": "color",
+      "id": "label_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "label_font_size",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Desktop font size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "label_font_size_mobile",
+      "min": 10,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile font size",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "grid_gap_col",
+      "min": 10,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Grid gap column",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "grid_gap_row",
+      "min": 10,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Grid gap row",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Image border radius",
+      "default": 8
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Section background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Desktop padding top",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Desktop padding bottom",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top_mobile",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "Mobile padding top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom_mobile",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "Mobile padding bottom",
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "_label_image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Superhero lookbook"
+    }
+  ]
+}
+{% endschema %}

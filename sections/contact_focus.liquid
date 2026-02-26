@@ -1,0 +1,135 @@
+{{ 'contact_focus.css' | asset_url | stylesheet_tag: preload: true }}
+<style>
+  .focus-div{margin-top:{{ section.settings.margintopcontact}}px;}
+  @media screen and (max-width: 640px){
+    .focus-div{margin-top:{{ section.settings.margintopcontactmob}}px;}
+  }
+</style>
+
+<div class="focus-div page-width-updated">
+  <div class="inner-focus {% if section.settings.show_padding_cf  %} page-padding-right page-padding-left{% endif %} {% if section.settings.show_paddingcf_mob %}padding-right-mob padding-left-mob{% endif %}">
+    <div class="right-content">
+      <h2 class="title-right-h2 font-heebo-medium">{{ section.settings['main-heading'] }}</h2>
+    </div>
+
+    <div class="left-content">
+      <div class="upper-left font-heebo-regular">
+        <div class="contact-adress">
+          <div class="icon-adress">{% render 'address_icon' %}</div>
+          <div class="text-adress ">
+            <span class="focus-font">{{ section.settings['adress-text'] }}</span>
+          </div>
+        </div>
+        <div class="main-call">
+          <div class="call-contact">
+            <div class="icon-call">{% render 'call-icon' %}</div>
+            <div class="text-call">
+              <a href="{{ section.settings.call-focus }}">
+                <span class="focus-font">{{ section.settings['call-text'] }}</span></a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="contact-timing">
+          <div class="icon-timing">{% render 'timing-icon' %}</div>
+          <div class="text-timing">
+            <span class="focus-font">{{ section.settings['time-text'] }}</span>
+          </div>
+        </div>
+      </div>
+      <div class="lover-left">
+        {% content_for 'blocks' %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "focus section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_padding_cf",
+      "label": "padding for section",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_paddingcf_mob",
+      "label": "padding for section in mobile",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "margintopcontact",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "margin from top for entire section",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margintopcontactmob",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "margin from top for entire section",
+      "default": 0
+    },
+    {
+      "type": "text",
+      "id": "main-heading",
+      "label": "main headinng"
+    },
+    {
+      "type": "text",
+      "id": "adress-text",
+      "label": "adress"
+    },
+    {
+      "type": "text",
+      "id": "mail-text",
+      "label": "mail"
+    },
+    {
+      "type": "text",
+      "id": "mail-focus",
+      "label": "mail id"
+    },
+    {
+      "type": "text",
+      "id": "call-text",
+      "label": "number"
+    },
+    {
+      "type": "text",
+      "id": "call-focus",
+      "label": "enter fon number"
+    },
+    {
+      "type": "text",
+      "id": "time-text",
+      "label": "Timing"
+    },
+    {
+      "type": "image_picker",
+      "id": "background-img",
+      "label": "background image for social media"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "social_icons"
+    }
+  ],
+  "presets": [
+    {
+      "name": "focus-hq"
+    }
+  ]
+}
+{% endschema %}

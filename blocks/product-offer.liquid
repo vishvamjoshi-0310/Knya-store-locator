@@ -1,0 +1,528 @@
+{% assign block_custom = block.settings %}
+{% assign customizerdata = false %}
+{% assign metaavailabledata = false %}
+{% assign pdmetaoffers = product.metafields.custom.product_offer.value %}
+{% if pdmetaoffers != blank %}
+  {% assign metaavailabledata = true %}
+{% endif %}
+{% if block_custom.offer1 != blank
+  or block_custom.offer2 != blank
+  or block_custom.offer3 != blank
+  or block_custom.offer4 != blank
+  or block_custom.offer5 != blank
+  or block_custom.offer6 != blank
+%}
+  {% assign customizerdata = true %}
+{% endif %}
+
+{% if customizerdata != false or metaavailabledata != false %}
+  <style>
+    .productoffersection {
+      width: auto;
+      display: inline-block;
+    }
+    .productoffersection .offerheading {
+      font-family: Heebo-Medium;
+      font-size: 22px;
+      font-weight: 500;
+      line-height: 28px;
+      letter-spacing: 0.04em;
+      color: #482f8f;
+      padding-bottom: 16px;
+    }
+    .productoffersection .offerlist {
+      display: flex;
+      background: linear-gradient(90deg, rgba(154, 184, 227, 0.65) 0%, rgba(154, 184, 227, 0.12) 100%);
+      border: 1px solid #cac5cd;
+      margin-bottom: 12px;
+      min-width: 411px;
+      height: 54px;
+      padding: 12px 24px 12px 24px;
+      column-gap: 4px;
+      align-items: center;
+    }
+    .productoffersection .offerlist span.list1 {
+      font-family: Heebo-Medium;
+      color: #000000;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 20px;
+      letter-spacing: 0.001em;
+      text-align: left;
+      display: flex;
+      align-items: center;
+    }
+
+    .productoffersection .offerlist span.list2 {
+      font-family: Heebo-Medium;
+      font-size: 11px;
+      font-weight: 500;
+      line-height: 16px;
+      letter-spacing: 0.004em;
+      text-align: left;
+      color: #707070;
+      display: flex;
+      align-items: center;
+    }
+    .productoffersection .offerlist span.list3 {
+      font-family: Heebo-Medium;
+      color: #000000;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 20px;
+      letter-spacing: 0.001em;
+      text-align: left;
+      display: flex;
+      align-items: center;
+    }
+    .productoffersection .offerlist span.list4 {
+      font-family: Heebo-Medium;
+      color: #462d8c;
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 16px;
+      letter-spacing: 0.005em;
+      display: flex;
+      align-items: center;
+      margin-left: auto;
+      margin-right: 10px;
+    }
+    .productoffersection .offerlist span.list5 {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      position: relative;
+      line-height: 100%;
+    }
+    .productoffersection .offerlist span.list5 span[copycodemessage] {
+      position: absolute;
+      left: 0px;
+      z-index: 1;
+      font-family: Heebo-Medium;
+      color: red;
+      font-size: 10px;
+      bottom: -15px;
+      left: -11px;
+      width: 40px;
+      text-align: center;
+    }
+
+    @media (max-width: 1200px) {
+      .productoffersection {
+        width: 100%;
+      }
+      .productoffersection .offerlist {
+        display: flex;
+        min-width: 100%;
+        flex-wrap: wrap;
+      }
+      .productoffersection .offerlist span.list4 {
+        align-items: center;
+        margin-left: auto;
+        margin-right: 10px;
+      }
+      .productoffersection .offerlist span.list1 {
+        font-size: 12px;
+      }
+      .productoffersection .offerlist span.list2 {
+        font-family: Heebo-Regular;
+        font-size: 11px;
+        font-weight: 400;
+      }
+      .productoffersection .offerlist span.list3 {
+        font-size: 12px;
+      }
+      .productoffersection .offerlist span.list4 {
+        font-size: 11px;
+      }
+      .productoffersection .offerlist span.list5 {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        position: relative;
+      }
+      .productoffersection .offerlist span.list5 span[copycodemessage] {
+        position: absolute;
+        left: 0px;
+        z-index: 1;
+        font-family: Heebo-Medium;
+        color: red;
+        font-size: 10px;
+        bottom: -15px;
+        left: -11px;
+        width: 40px;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 750px) {
+      .productoffersection .offerheading {
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 24px;
+        letter-spacing: 0.001em;
+        color: #000000;
+        padding-bottom: 8px;
+      }
+      .productoffersection .offerlist {
+        margin-bottom: 8px;
+        padding: 12px 12px 12px 12px;
+        height: unset;
+        min-height: 50px;
+      }
+    }
+  </style>
+{% endif %}
+
+{% if customizerdata != false and metaavailabledata != true %}
+  <div class="productoffersection page-width-pdp-mob">
+    {% if block_custom.headingoffer != blank %}
+      <div class="offerheading">{{ block_custom.headingoffer }}</div>
+    {% endif %}
+
+    {% if block_custom.offer1 != blank %}
+      {% assign offervalue1 = block_custom.offer1 | split: '##' %}
+      <div class="offerlist">
+        {% if offervalue1[0] != 'NULL' %}
+          <span class="list1">{{ offervalue1[0] }}</span>
+        {% endif %}
+        {% if offervalue1[1] != 'NULL' %}
+          <span class="list2">{{ offervalue1[1] }}</span>
+        {% endif %}
+        {% if offervalue1[2] != 'NULL' %}
+          <span class="list3">
+            {{- currency.symbol -}}
+            {{- offervalue1[2] -}}
+          </span>
+        {% endif %}
+        {% if offervalue1[3] != 'NULL' %}
+          <span class="list4">{{ offervalue1[3] }}</span>
+        {% endif %}
+        {% if offervalue1[3] != 'NULL' %}
+          <span class="list5">
+            <span data-couponcode="{{offervalue1[3]}}" onclick="copyCouponCode(this)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <g id="Content copy" clip-path="url(#clip0_1898_5220)">
+                <path id="Vector" d="M12 0.75H3C2.175 0.75 1.5 1.425 1.5 2.25V12.75H3V2.25H12V0.75ZM14.25 3.75H6C5.175 3.75 4.5 4.425 4.5 5.25V15.75C4.5 16.575 5.175 17.25 6 17.25H14.25C15.075 17.25 15.75 16.575 15.75 15.75V5.25C15.75 4.425 15.075 3.75 14.25 3.75ZM14.25 15.75H6V5.25H14.25V15.75Z" fill="#482F8F"/>
+                </g>
+                <defs>
+                <clipPath id="clip0_1898_5220">
+                <rect width="18" height="18" fill="white"/>
+                </clipPath>
+                </defs>
+              </svg>
+            </span>
+            <span copycodemessage></span>
+          </span>
+        {% endif %}
+      </div>
+    {% endif %}
+    {% if block_custom.offer2 != blank %}
+      {% assign offervalue2 = block_custom.offer2 | split: '##' %}
+      <div class="offerlist">
+        {% if offervalue2[0] != 'NULL' %}
+          <span class="list1">{{ offervalue2[0] }}</span>
+        {% endif %}
+        {% if offervalue2[1] != 'NULL' %}
+          <span class="list2">{{ offervalue2[1] }}</span>
+        {% endif %}
+        {% if offervalue2[2] != 'NULL' %}
+          <span class="list3">
+            {{- shop.currency.symbol -}}
+            {{- offervalue2[2] -}}
+          </span>
+        {% endif %}
+        {% if offervalue2[3] != 'NULL' %}
+          <span class="list4">{{ offervalue2[3] }}</span>
+        {% endif %}
+        {% if offervalue2[3] != 'NULL' %}
+          <span class="list5">
+            <span data-couponcode="{{offervalue2[3]}}" onclick="copyCouponCode(this)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <g id="Content copy" clip-path="url(#clip0_1898_5220)">
+                <path id="Vector" d="M12 0.75H3C2.175 0.75 1.5 1.425 1.5 2.25V12.75H3V2.25H12V0.75ZM14.25 3.75H6C5.175 3.75 4.5 4.425 4.5 5.25V15.75C4.5 16.575 5.175 17.25 6 17.25H14.25C15.075 17.25 15.75 16.575 15.75 15.75V5.25C15.75 4.425 15.075 3.75 14.25 3.75ZM14.25 15.75H6V5.25H14.25V15.75Z" fill="#482F8F"/>
+                </g>
+                <defs>
+                <clipPath id="clip0_1898_5220">
+                <rect width="18" height="18" fill="white"/>
+                </clipPath>
+                </defs>
+              </svg>
+            </span>
+            <span copycodemessage></span>
+          </span>
+        {% endif %}
+      </div>
+    {% endif %}
+    {% if block_custom.offer3 != blank %}
+      {% assign offervalue3 = block_custom.offer3 | split: '##' %}
+      <div class="offerlist">
+        {% if offervalue3[0] != 'NULL' %}
+          <span class="list1">{{ offervalue3[0] }}</span>
+        {% endif %}
+        {% if offervalue3[1] != 'NULL' %}
+          <span class="list2">{{ offervalue3[1] }}</span>
+        {% endif %}
+        {% if offervalue3[2] != 'NULL' %}
+          <span class="list3">
+            {{- shop.currency.symbol -}}
+            {{- offervalue3[2] -}}
+          </span>
+        {% endif %}
+        {% if offervalue3[3] != 'NULL' %}
+          <span class="list4">{{ offervalue3[3] }}</span>
+        {% endif %}
+        {% if offervalue3[3] != 'NULL' %}
+          <span class="list5">
+            <span data-couponcode="{{offervalue3[3]}}" onclick="copyCouponCode(this)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <g id="Content copy" clip-path="url(#clip0_1898_5220)">
+                <path id="Vector" d="M12 0.75H3C2.175 0.75 1.5 1.425 1.5 2.25V12.75H3V2.25H12V0.75ZM14.25 3.75H6C5.175 3.75 4.5 4.425 4.5 5.25V15.75C4.5 16.575 5.175 17.25 6 17.25H14.25C15.075 17.25 15.75 16.575 15.75 15.75V5.25C15.75 4.425 15.075 3.75 14.25 3.75ZM14.25 15.75H6V5.25H14.25V15.75Z" fill="#482F8F"/>
+                </g>
+                <defs>
+                <clipPath id="clip0_1898_5220">
+                <rect width="18" height="18" fill="white"/>
+                </clipPath>
+                </defs>
+              </svg>
+            </span>
+            <span copycodemessage></span>
+          </span>
+        {% endif %}
+      </div>
+    {% endif %}
+    {% if block_custom.offer4 != blank %}
+      {% assign offervalue4 = block_custom.offer4 | split: '##' %}
+      <div class="offerlist">
+        {% if offervalue4[0] != 'NULL' %}
+          <span class="list1">{{ offervalue4[0] }}</span>
+        {% endif %}
+        {% if offervalue4[1] != 'NULL' %}
+          <span class="list2">{{ offervalue4[1] }}</span>
+        {% endif %}
+        {% if offervalue4[2] != 'NULL' %}
+          <span class="list3">
+            {{- shop.currency.symbol -}}
+            {{- offervalue4[2] -}}
+          </span>
+        {% endif %}
+        {% if offervalue4[3] != 'NULL' %}
+          <span class="list4">{{ offervalue4[3] }}</span>
+        {% endif %}
+        {% if offervalue4[3] != 'NULL' %}
+          <span class="list5">
+            <span data-couponcode="{{offervalue4[3]}}" onclick="copyCouponCode(this)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <g id="Content copy" clip-path="url(#clip0_1898_5220)">
+                <path id="Vector" d="M12 0.75H3C2.175 0.75 1.5 1.425 1.5 2.25V12.75H3V2.25H12V0.75ZM14.25 3.75H6C5.175 3.75 4.5 4.425 4.5 5.25V15.75C4.5 16.575 5.175 17.25 6 17.25H14.25C15.075 17.25 15.75 16.575 15.75 15.75V5.25C15.75 4.425 15.075 3.75 14.25 3.75ZM14.25 15.75H6V5.25H14.25V15.75Z" fill="#482F8F"/>
+                </g>
+                <defs>
+                <clipPath id="clip0_1898_5220">
+                <rect width="18" height="18" fill="white"/>
+                </clipPath>
+                </defs>
+              </svg>
+            </span>
+            <span copycodemessage></span>
+          </span>
+        {% endif %}
+      </div>
+    {% endif %}
+    {% if block_custom.offer5 != blank %}
+      {% assign offervalue5 = block_custom.offer5 | split: '##' %}
+      <div class="offerlist">
+        {% if offervalue5[0] != 'NULL' %}
+          <span class="list1">{{ offervalue5[0] }}</span>
+        {% endif %}
+        {% if offervalue5[1] != 'NULL' %}
+          <span class="list2">{{ offervalue5[1] }}</span>
+        {% endif %}
+        {% if offervalue5[2] != 'NULL' %}
+          <span class="list3">
+            {{- shop.currency.symbol -}}
+            {{- offervalue5[2] -}}
+          </span>
+        {% endif %}
+        {% if offervalue5[3] != 'NULL' %}
+          <span class="list4">{{ offervalue5[3] }}</span>
+        {% endif %}
+        {% if offervalue5[3] != 'NULL' %}
+          <span class="list5">
+            <span data-couponcode="{{offervalue5[3]}}" onclick="copyCouponCode(this)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <g id="Content copy" clip-path="url(#clip0_1898_5220)">
+                <path id="Vector" d="M12 0.75H3C2.175 0.75 1.5 1.425 1.5 2.25V12.75H3V2.25H12V0.75ZM14.25 3.75H6C5.175 3.75 4.5 4.425 4.5 5.25V15.75C4.5 16.575 5.175 17.25 6 17.25H14.25C15.075 17.25 15.75 16.575 15.75 15.75V5.25C15.75 4.425 15.075 3.75 14.25 3.75ZM14.25 15.75H6V5.25H14.25V15.75Z" fill="#482F8F"/>
+                </g>
+                <defs>
+                <clipPath id="clip0_1898_5220">
+                <rect width="18" height="18" fill="white"/>
+                </clipPath>
+                </defs>
+              </svg>
+            </span>
+            <span copycodemessage></span>
+          </span>
+        {% endif %}
+      </div>
+    {% endif %}
+    {% if block_custom.offer6 != blank %}
+      {% assign offervalue6 = block_custom.offer6 | split: '##' %}
+      <div class="offerlist">
+        {% if offervalue6[0] != 'NULL' %}
+          <span class="list1">{{ offervalue6[0] }}</span>
+        {% endif %}
+        {% if offervalue6[1] != 'NULL' %}
+          <span class="list2">{{ offervalue6[1] }}</span>
+        {% endif %}
+        {% if offervalue6[2] != 'NULL' %}
+          <span class="list3">
+            {{- shop.currency.symbol -}}
+            {{- offervalue6[2] -}}
+          </span>
+        {% endif %}
+        {% if offervalue6[3] != 'NULL' %}
+          <span class="list4">{{ offervalue6[3] }}</span>
+        {% endif %}
+        {% if offervalue6[3] != 'NULL' %}
+          <span class="list5">
+            <span data-couponcode="{{offervalue6[3]}}" onclick="copyCouponCode(this)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <g id="Content copy" clip-path="url(#clip0_1898_5220)">
+                <path id="Vector" d="M12 0.75H3C2.175 0.75 1.5 1.425 1.5 2.25V12.75H3V2.25H12V0.75ZM14.25 3.75H6C5.175 3.75 4.5 4.425 4.5 5.25V15.75C4.5 16.575 5.175 17.25 6 17.25H14.25C15.075 17.25 15.75 16.575 15.75 15.75V5.25C15.75 4.425 15.075 3.75 14.25 3.75ZM14.25 15.75H6V5.25H14.25V15.75Z" fill="#482F8F"/>
+                </g>
+                <defs>
+                <clipPath id="clip0_1898_5220">
+                <rect width="18" height="18" fill="white"/>
+                </clipPath>
+                </defs>
+              </svg>
+            </span>
+            <span copycodemessage></span>
+          </span>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+{% endif %}
+
+{% if metaavailabledata %}
+  <div class="productoffersection page-width-pdp-mob">
+    {% if product.metafields.custom.product_offer_title.value != blank %}
+      <div class="offerheading">{{ product.metafields.custom.product_offer_title.value }}</div>
+    {% endif %}
+
+    {% for metavalue in pdmetaoffers %}
+      {% assign metavalues = metavalue | split: '##' %}
+
+      <div class="offerlist">
+        {% if metavalues[0] != 'NULL' %}
+          <span class="list1">{{ metavalues[0] }}</span>
+        {% endif %}
+        {% if metavalues[1] != 'NULL' %}
+          <span class="list2">{{ metavalues[1] }}</span>
+        {% endif %}
+        {% if metavalues[2] != 'NULL' %}
+          <span class="list3">
+            {{- currency.symbol -}}
+            {{- metavalues[2] -}}
+          </span>
+        {% endif %}
+        {% if metavalues[3] != 'NULL' %}
+          <span class="list4">{{ metavalues[3] }}</span>
+        {% endif %}
+        {% if metavalues[3] != 'NULL' %}
+          <span class="list5">
+            <span data-couponcode="{{metavalues[3]}}" onclick="copyCouponCode(this)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <g id="Content copy" clip-path="url(#clip0_1898_5220)">
+                <path id="Vector" d="M12 0.75H3C2.175 0.75 1.5 1.425 1.5 2.25V12.75H3V2.25H12V0.75ZM14.25 3.75H6C5.175 3.75 4.5 4.425 4.5 5.25V15.75C4.5 16.575 5.175 17.25 6 17.25H14.25C15.075 17.25 15.75 16.575 15.75 15.75V5.25C15.75 4.425 15.075 3.75 14.25 3.75ZM14.25 15.75H6V5.25H14.25V15.75Z" fill="#482F8F"/>
+                </g>
+                <defs>
+                <clipPath id="clip0_1898_5220">
+                <rect width="18" height="18" fill="white"/>
+                </clipPath>
+                </defs>
+              </svg>
+            </span>
+            <span copycodemessage></span>
+          </span>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+
+{% if customizerdata != false or metaavailabledata != false %}
+  <script>
+    function copyCouponCode(element) {
+      const textToCopy = element.getAttribute('data-couponcode');
+      navigator.clipboard
+        .writeText(textToCopy)
+        .then(() => {
+          const message = element.parentElement.querySelector('span[copycodemessage]');
+          message.innerText = 'Copied';
+          setTimeout(function () {
+            message.innerText = '';
+          }, 1500);
+        })
+        .catch((err) => {
+          console.error('Failed to copy: ', err);
+        });
+    }
+  </script>
+{% endif %}
+{% schema %}
+{
+  "name": "Product Offer",
+  "settings": [
+    {
+      "type": "header",
+      "content": "EntryEg.[Bold cont##Normal cont##Price##coupon]"
+    },
+    {
+      "type": "header",
+      "content": "EntryEg.[Use NULL for blank cont##NULL##coupon]"
+    },
+    {
+      "type": "text",
+      "id": "headingoffer",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "offer1",
+      "label": "offer 1"
+    },
+    {
+      "type": "text",
+      "id": "offer2",
+      "label": "offer 2"
+    },
+    {
+      "type": "text",
+      "id": "offer3",
+      "label": "offer 3"
+    },
+    {
+      "type": "text",
+      "id": "offer4",
+      "label": "offer 4"
+    },
+    {
+      "type": "text",
+      "id": "offer5",
+      "label": "offer 5"
+    },
+    {
+      "type": "text",
+      "id": "offer6",
+      "label": "offer 6"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Offer"
+    }
+  ]
+}
+{% endschema %}

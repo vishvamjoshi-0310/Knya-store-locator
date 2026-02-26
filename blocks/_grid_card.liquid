@@ -1,0 +1,73 @@
+  <div class="interactive-card-grid-card-image">
+    {% if block.settings.image %}
+      <picture>
+        <!-- WebP source -->
+        <source
+          srcset="{{ block.settings.image | image_url: width: 500, format: 'webp' }}"
+          type="image/webp"
+        >
+
+        <!-- Fallback (original format) -->
+        <source
+          srcset="{{ block.settings.image | image_url: width: 500 }}"
+          type="image/jpeg"
+        >
+
+        <img
+          src="{{ block.settings.image | image_url: width: 500 }}"
+          loading="lazy"
+          fetchpriority="low"
+          width="500"
+          height="auto"
+          class="interactive-card-grid-card-image"
+          srcset="
+            {{ block.settings.image | image_url: width: 375 }} 375w,
+            {{ block.settings.image | image_url: width: 550 }} 550w,
+            {{ block.settings.image | image_url: width: 750 }} 750w
+          "
+          sizes="100vw"
+          alt="{{ block.settings.title }}"
+        >
+      </picture>
+
+    {% endif %}
+  </div>
+  <div class="interactive-card-details-overlay"></div>
+  <div class="interactive-card-grid-card-content">
+    <h3 class="interactive-card-grid-card-title">{{ block.settings.title }}</h3>
+    <p class="interactive-card-grid-card-description">{{ block.settings.description }}</p>
+    <p class="interactive-card-grid-card-hidden-text">{{ block.settings.hidden_text }}</p>
+  </div>
+
+
+{% schema %}
+{
+  "name": "Grid Card",
+  "class": "interactive-card-grid-card",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "text",
+      "id": "hidden_text",
+      "label": "Hidden Text"
+    }
+  ],
+  "presets": [
+    {"name": "Card"}
+  ]
+}
+{% endschema %}

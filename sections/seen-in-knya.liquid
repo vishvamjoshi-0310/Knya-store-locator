@@ -1,0 +1,374 @@
+{{ 'seen-in-knya.css' | asset_url | stylesheet_tag }}
+<style>
+   .section-{{ section.id }}-margin{
+    margin-top: {{ section.settings.margintopseen }}px;
+    margin-bottom: {{ section.settings.marginbottomseen }}px;
+  }
+  @media screen and (max-width:640px){
+    .section-{{ section.id }}-margin{
+      margin-top: {{ section.settings.margintopseenmob }}px;
+      margin-bottom: {{ section.settings.marginbottomseenmob }}px;
+    }
+  }
+</style>
+
+<section class="seen-in-knya-section section-{{ section.id }}-margin">
+  <div class="seenHeadings page-width-updated {% if section.settings.show_padding_seen  %} page-padding-right page-padding-left{% endif %} {% if section.settings.show_padding_mob_seen %}padding-right-mob padding-left-mob{% endif %}">
+    <h2 class="headingFirst heebo-medium">{{ section.settings.H1First }}</h2>
+    <p class="secondFirst heebo-regular">{{ section.settings.H1second }}</p>
+  </div>
+
+  <div class="sliderseen page-width swiper sample-slider">
+    <div class="swiper-wrapper">
+      {% for block in section.blocks %}
+        <div class="swiper-slide" data-swiper-autoplay="0">
+          <div class="first-dicv-seen">
+            {% if block.settings.firstImG %}
+              <div class="imgFirstFull">
+                <picture>
+                    <source
+                      type="image/webp"
+                      srcset="{{ block.settings.firstImG | image_url: width: 380, format: 'webp' }}"
+                    >
+                    <source
+                      srcset="{{ block.settings.firstImG | image_url: width: 380 }}"
+                    >
+                    <img
+                      src="{{ block.settings.firstImG | image_url: width: 380 }}"
+                      alt="{{ block.settings.firstImG.alt | default: '' | escape }}"
+                      class="imagess"
+                      loading="lazy"
+                      width="380"
+                      height="auto"
+                    >
+                </picture>
+                <div class="contSeen contDiv1">
+                  <p class="titles font-heebo-regular">{{ block.settings.firsttext }}</p>
+                </div>
+              </div>
+            {% endif %}
+            <div class="secondMainDiv">
+              {% if block.settings.secImG %}
+                <div class="firstHalfImg">
+                  <picture>
+                      <source
+                        type="image/webp"
+                        srcset="{{ block.settings.secImG | image_url: width: 200, format: 'webp' }}"
+                      >
+
+                      <source
+                        srcset="{{ block.settings.secImG | image_url: width: 200 }}"
+                      >
+
+                      <img
+                        src="{{ block.settings.secImG | image_url: width: 200 }}"
+                        alt="{{ block.settings.secImG.alt | default: '' | escape }}"
+                        class="imagess"
+                        loading="lazy"
+                        width="200"
+                        height="auto"
+                      >
+                  </picture>
+                  <div class="contSeen firsrHalf">
+                    <p class="titles font-heebo-regular">{{ block.settings.secondtext }}</p>
+                  </div>
+                </div>
+              {% endif %}
+              {% if block.settings.thirdImG %}
+                <div class="secondHalfImg">
+                  <picture>
+                      <source
+                        type="image/webp"
+                        srcset="{{ block.settings.thirdImG | image_url: width: 200, format: 'webp' }}"
+                      >
+
+                      <source
+                        srcset="{{ block.settings.thirdImG | image_url: width: 200 }}"
+                      >
+
+                      <img
+                        src="{{ block.settings.thirdImG | image_url: width: 200 }}"
+                        alt="{{ block.settings.thirdImG.alt | default: '' | escape }}"
+                        class="imagess"
+                        loading="lazy"
+                        width="200"
+                        height="auto"
+                      >
+                  </picture>
+                  <div class="contSeen contDiv3">
+                    <p class="titles font-heebo-regular">{{ block.settings.thirdtext }}</p>
+                  </div>
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="sliderseen page-width swiper sample-slider slidder-seen-mob">
+    <div class="swiper-wrapper">
+      {% for block in section.blocks %}
+        <div class="swiper-slide" data-swiper-autoplay="0">
+          <div class="first-dicv-seen">
+            <div class="secondMainDiv">
+              {% if block.settings.mobfirst %}
+                <div class="firstHalfImg secon-imgfir">
+                  <picture>
+                      <source
+                        type="image/webp"
+                        srcset="{{ block.settings.mobfirst | image_url: width: 200, format: 'webp' }}"
+                      >
+
+                      <source
+                        srcset="{{ block.settings.mobfirst | image_url: width: 200 }}"
+                      >
+
+                      <img
+                        src="{{ block.settings.mobfirst | image_url: width: 200 }}"
+                        alt="{{ block.settings.mobfirst.alt | default: '' | escape }}"
+                        class="imagess"
+                        loading="lazy"
+                        width="200"
+                        height="auto"
+                      >
+                  </picture>
+                  <div class="contSeen firsrHalf">
+                    <p class="titles font-heebo-regular">{{ block.settings.firstmobtext }}</p>
+                  </div>
+                </div>
+              {% endif %}
+              {% if block.settings.mobsec %}
+                <div class="secondHalfImg">
+                  <picture>
+                      <source
+                        type="image/webp"
+                        srcset="{{ block.settings.mobsec | image_url: width: 200, format: 'webp' }}"
+                      >
+                      <source
+                        srcset="{{ block.settings.mobsec | image_url: width: 200 }}"
+                      >
+                      <img
+                        src="{{ block.settings.mobsec | image_url: width: 200 }}"
+                        alt="{{ block.settings.mobsec.alt | default: '' | escape }}"
+                        class="imagess"
+                        loading="lazy"
+                        width="200"
+                        height="auto"
+                      >
+                  </picture>
+                  <div class="contSeen contDiv3">
+                    <p class="titles font-heebo-regular">{{ block.settings.sectext }}</p>
+                  </div>
+                </div>
+              {% endif %}
+            </div>
+            {% if block.settings.mobthird %}
+              <div class="imgFirstFull mob-img">
+                <picture>
+                    <source
+                      type="image/webp"
+                      srcset="{{ block.settings.mobthird | image_url: width: 380, format: 'webp' }}"
+                    >
+                    <source
+                      srcset="{{ block.settings.mobthird | image_url: width: 380 }}"
+                    >
+                    <img
+                      src="{{ block.settings.mobthird | image_url: width: 380 }}"
+                      alt="{{ block.settings.mobthird.alt | default: '' | escape }}"
+                      class="imagess"
+                      loading="lazy"
+                      width="380"
+                      height="auto"
+                    >
+                </picture>
+                <div class="contSeen mob-connt contDiv1">
+                  <p class="titles font-heebo-regular">{{ block.settings.thirdtextmob }}</p>
+                </div>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<script>
+  window.addEventListener(
+    'DOMContentLoaded',
+    () => {
+      const swiperseen = new Swiper('.sliderseen', {
+        loop: true,
+        speed: 10000,
+        autoplay: true,
+        slidesPerView: 3,
+        allowTouchMove: false,
+        spaceBetween: 0,
+        breakpoints: {
+          0: {
+            slidesPerView: 1,
+          },
+          640: {
+            slidesPerView: 1.7,
+          },
+          1200: {
+            slidesPerView: 3,
+          },
+        },
+      });      
+
+function swiperseenInKnya() {
+          if (swiperseen) {
+                for (let i = 0; i < swiperseen.length; i++) {            
+                          swiperseen[i].autoplay.start(); 
+                }
+          }    
+}
+document.addEventListener('mousemove', swiperseenInKnya);
+document.addEventListener('touchstart', swiperseenInKnya);
+
+      
+    },
+    { once: true }
+  );
+</script>
+{% schema %}
+{
+  "name": "seen in Knya",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_padding_seen",
+      "label": "padding for section",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_padding_mob_seen",
+      "label": "padding for section in mobile",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "margintopseen",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Desktop : Margin-Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "marginbottomseen",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Desktop : Margin-Bottom",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margintopseenmob",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile : Margin-Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "marginbottomseenmob",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile : Margin-Bottom",
+      "default": 0
+    },
+    {
+      "type": "text",
+      "id": "H1First",
+      "label": "Heading1"
+    },
+    {
+      "type": "text",
+      "id": "H1second",
+      "label": "Heading2"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "firstImG",
+          "label": "first full width image size-(456x500px)"
+        },
+        {
+          "type": "text",
+          "id": "firsttext",
+          "label": "text for full width image"
+        },
+        {
+          "type": "image_picker",
+          "id": "secImG",
+          "label": "second half width image size-(250x250px)"
+        },
+        {
+          "type": "text",
+          "id": "secondtext",
+          "label": "text for 2nd half width image"
+        },
+        {
+          "type": "image_picker",
+          "id": "thirdImG",
+          "label": "third half width image size-(250x250px)"
+        },
+        {
+          "type": "text",
+          "id": "thirdtext",
+          "label": "text for 3rd half width image"
+        },
+        {
+          "type": "image_picker",
+          "id": "mobfirst",
+          "label": "first img for mobile size-(250x250px)"
+        },
+        {
+          "type": "text",
+          "id": "firstmobtext",
+          "label": "text for mob first image"
+        },
+        {
+          "type": "image_picker",
+          "id": "mobsec",
+          "label": "second img for mobile size-(250x250px)"
+        },
+        {
+          "type": "text",
+          "id": "sectext",
+          "label": "text for mob first image"
+        },
+        {
+          "type": "image_picker",
+          "id": "mobthird",
+          "label": "third img for mobile  size-(456x500px)"
+        },
+        {
+          "type": "text",
+          "id": "thirdtextmob",
+          "label": "text for mob third image"
+        }
+      ]
+    }
+  ],
+  "presets": [{ "name": "seen inKnya" }]
+}
+{% endschema %}

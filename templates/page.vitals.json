@@ -1,0 +1,171 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {}
+    },
+    "vitals_banner_qzTwLY": {
+      "type": "vitals-banner",
+      "name": "Vitals Banner",
+      "settings": {
+        "desktop_banner_image": "shopify://shop_images/HK_VITAL_BANNER_Desktop.png",
+        "mobile_banner_image": "shopify://shop_images/HK_VITAL_BANNER_Mobile.png",
+        "vitals_logo": "shopify://shop_images/vitals-logo.png",
+        "vitals_heading": "A community-first\nreality check by Knya",
+        "pdf_file": "https://cdn.shopify.com/s/files/1/0562/9247/5063/files/Knya_Vitals2025.pdf?v=1752083140"
+      }
+    },
+    "vitals_image_text_PfcVDb": {
+      "type": "vitals-image-text",
+      "name": "Vitals Image Text",
+      "settings": {
+        "image": "shopify://shop_images/vitals-text-image.png",
+        "heading": "Knya Vitals: The Report With a Heartbeat",
+        "sub-heading": "What’s it really like to be a medico in India today?<br>\n<strong>We asked over 10,000 of them</strong>, and they answered with honesty, grit, and heart. <br><br>\nKnya Vitals is not just a report. It’s a <strong>reflection of real stories</strong> from the wards, clinics, hostels, and hospitals across India. From interns in rural clinics to residents in overburdened metros, this is what <strong>life behind the scrubs</strong> actually looks like. <br><br>\nAt Knya, we’ve always believed that medicos deserve to be seen, heard, and celebrated. This report is one way we’re <strong>turning up the volume on voices</strong> too often ignored. "
+      }
+    },
+    "survey_strip_Wfz8g7": {
+      "type": "survey-strip",
+      "name": "Survey Strip",
+      "settings": {
+        "heading": "Haven’t taken the survey?  You still can. ",
+        "button_text": "Take the Survey",
+        "Survey_button_link": "https://forms.gle/KqnFmzJ9ZHtSfNTW6"
+      }
+    },
+    "vitals_sneak_section_rwXmDp": {
+      "type": "vitals-sneak-section",
+      "blocks": {
+        "block_UBUK6h": {
+          "type": "block",
+          "settings": {
+            "sneak_peek_image": "shopify://shop_images/Burnout_Has_a_Pincode_1.png"
+          }
+        },
+        "block_eYT7ti": {
+          "type": "block",
+          "settings": {
+            "sneak_peek_image": "shopify://shop_images/discouraged_medicos_ac481bb8-0924-4711-bb68-9855e4080ab5.png"
+          }
+        },
+        "block_p77L3n": {
+          "type": "block",
+          "settings": {
+            "sneak_peek_image": "shopify://shop_images/Download_report.png"
+          }
+        }
+      },
+      "block_order": [
+        "block_UBUK6h",
+        "block_eYT7ti",
+        "block_p77L3n"
+      ],
+      "name": "Vitals Sneak Section",
+      "settings": {
+        "heading": "Here’s a sneak peek "
+      }
+    },
+    "vitals_featured_content_8Wm4nQ": {
+      "type": "vitals-featured-content",
+      "blocks": {
+        "content_DhFb7C": {
+          "type": "content",
+          "settings": {
+            "content-main-image": "shopify://shop_images/Business_Standard_Main.png",
+            "content-floating-logo": "shopify://shop_images/business-standard.png",
+            "vitals-content-heading": "Business Standard",
+            "vitals-content-sub-heading": "Over 80 per cent of doctors report mental exhaustion, with young women in smaller cities among the worst affected, shows National Doctors' Day survey...",
+            "vitals-content-url": "https://www.business-standard.com/health/mental-fatigue-safety-fears-and-long-hours-india-doctor-crisis-grows-125070100646_1.html"
+          }
+        },
+        "content_BWwg3X": {
+          "type": "content",
+          "settings": {
+            "content-main-image": "shopify://shop_images/Medical_Buyer_Main.png",
+            "content-floating-logo": "shopify://shop_images/image_8.png",
+            "vitals-content-heading": "Medical Buyer",
+            "vitals-content-sub-heading": "Half of India's doctors work more than 60 hours a week...",
+            "vitals-content-url": "https://medicalbuyer.co.in/half-of-indias-doctors-work-more-than-60-hours-a-week/"
+          }
+        },
+        "content_9h4PER": {
+          "type": "content",
+          "settings": {
+            "content-main-image": "shopify://shop_images/Et_World_Health_Main.png",
+            "content-floating-logo": "shopify://shop_images/ET-World-Health_1.png",
+            "vitals-content-heading": "ET Healthworld",
+            "vitals-content-sub-heading": "83% of doctors in India Report Mental Fatigue, 70% of city workplace...",
+            "vitals-content-url": "https://health.economictimes.indiatimes.com/news/industry/high-levels-of-mental-fatigue-among-indian-doctors-knya-survey-reveals-alarming-stats/122204481?utm_source=latest_news&utm_medium=homepage"
+          }
+        },
+        "content_RyapXA": {
+          "type": "content",
+          "settings": {
+            "content-main-image": "shopify://shop_images/Dainik_Bhaskar_Main.png",
+            "content-floating-logo": "shopify://shop_images/image_8_1.png",
+            "vitals-content-heading": "Dainik Bhaskar",
+            "vitals-content-sub-heading": "हे भगवान! हमारी उम्र बढ़ाने वाले डॉक्टर्स की औसत आयु हमसे 10 साल कम...",
+            "vitals-content-url": "https://www.bhaskar.com/local/rajasthan/jaipur/news/oh-god-the-average-age-of-the-doctors-who-increase-our-lifespan-is-10-years-less-than-us-135348064.html?_branch_match_id=1407232911269405697&utm_campaign=135348064&utm_medium=sharing&_branch_referrer=H4sIAAAAAAAAA8soKSkottLXT0nMzMvM1kvKSCzOTizSS87P1c92SzNK9jTIdglNsq8rSk1LLSrKzEuPTyrKLy9OLbJ1zijKz00FABXkug1AAAAA"
+          }
+        }
+      },
+      "block_order": [
+        "content_DhFb7C",
+        "content_BWwg3X",
+        "content_9h4PER",
+        "content_RyapXA"
+      ],
+      "name": "Vitals Featured Content",
+      "settings": {
+        "vitals-content-section-heading": "In the news"
+      }
+    },
+    "vitals_floating_bar_FGJJyW": {
+      "type": "vitals-floating-bar",
+      "name": "Vitals Floating Bar",
+      "settings": {
+        "heading": "Unfiltered voices. Unexpected insights.",
+        "button_text": "Download The Report",
+        "pdf_file": "https://cdn.shopify.com/s/files/1/0562/9247/5063/files/Knya_Vitals2025.pdf?v=1752083140"
+      }
+    },
+    "read_more_section_qNPkWh": {
+      "type": "read-more-section",
+      "disabled": true,
+      "settings": {
+        "show_padding_read": false,
+        "show_padding_mob_read": false,
+        "margintopread": 0,
+        "marginbottomread": 0,
+        "margintopreadmob": 0,
+        "marginbottomreadmob": 32,
+        "main-text": "Knya’s 6sense Stethoscope: Precision meets style with a custom-engraved stethoscope for doctors - Built for daily performance.",
+        "content-text-before": "<h2>Introduction:</h2><p>The stethoscope is one of the most recognizable symbols of the medical profession.</p>",
+        "content-text": "Introducing the Knya's 6sense Stethoscope, a high-performance diagnostic instrument meticulously engineered for discerning medical professionals like you. This isn't just a stethoscope; it's a precision tool designed to deliver superior acoustics, enabling you to capture subtle sounds with unparalleled clarity. Experience enhanced performance in every auscultation, leading to more accurate diagnoses and ultimately, improved patient care.Built with durability in mind, the Knya's 6sense Stethoscope is a reliable companion for your demanding practice. Its ergonomic design ensures comfort during extended use, making it an indispensable instrument for precise auscultation, day after day.Looking for the Best Stethoscope?The Knya's 6sense stands out with its advanced features and quality construction. For doctors and healthcare professionals who demand accuracy and reliability, the 6sense is a compelling choice. Make it Your Own: Engraved and Personalized Stethoscopes: Elevate your professional identity with our engraved stethoscope option. Add a personal touch with your name or initials, making your Knya 6sense truly unique. Explore our custom stethoscope services for a personalized instrument that reflects your dedication.Understanding Stethoscope Price:Investing in a high-quality stethoscope is an investment in your practice and your patients. The Knya 6sense offers exceptional value for its advanced acoustic performance and durability. Explore our pricing options to discover a stethoscope price that aligns with its superior quality.  The Stethoscope for Doctors Who Demand Precision: The Knya 6sense is specifically designed with the needs of doctors in mind. Its advanced acoustic technology allows for confident diagnoses across various medical specialties.Your Personalized Diagnostic Tool: Beyond engraving, explore options for a truly personalized stethoscope with Knya. Choose from various colors and finishes to match your individual style and professional preference. Experience the difference with the Knya 6sense Stethoscope – where superior acoustics meet enhanced performance and lasting durability. Elevate your practice, one auscultation at a time.",
+        "read-more-text": "READ MORE",
+        "read-less-text": "READ LESS",
+        "back-img": "shopify://shop_images/Vector_e3c241a2-7b11-44f6-8e63-6dcca5fa809c.png"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "vitals_banner_qzTwLY",
+    "vitals_image_text_PfcVDb",
+    "survey_strip_Wfz8g7",
+    "vitals_sneak_section_rwXmDp",
+    "vitals_featured_content_8Wm4nQ",
+    "vitals_floating_bar_FGJJyW",
+    "read_more_section_qNPkWh"
+  ]
+}

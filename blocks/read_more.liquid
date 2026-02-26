@@ -1,0 +1,177 @@
+{{ 'read_more.css' | asset_url | stylesheet_tag }}
+
+<style>
+  .read-section{
+    margin-top:{{ block.settings.margintopread }}px;
+    margin-bottom:{{ block.settings.marginbottomread }}px;
+  }
+    @media screen and (max-width: 640px){
+    .read-section{
+      margin-top:{{ block.settings.margintopreadmob }}px ;
+      margin-bottom:{{ block.settings.marginbottomreadmob }}px ;
+    }
+  }
+</style>
+
+<div class="top-read">
+  <div class="page-width-updated read-section {% if block.settings.show_padding_read %} page-padding-right page-padding-left{% endif %} {% if block.settings.show_padding_mob_read %}padding-right-mob padding-left-mob{% endif %}">
+    <div class="read-first ">
+      {% if template.name == 'index' %}
+        <h1 class="read-h1 heebo-medium">{{ block.settings['main-text'] }}</h1>
+      {% else %}
+        <h2 class="read-h1 heebo-medium">{{ block.settings['main-text'] }}</h2>
+      {% endif %}
+
+      <div class="read-cont-before desc-clamp">
+        <span class="read-content heebo-regular">{{ block.settings['content-text-before'] }}</span>
+      </div>
+
+      <div class="read-cont heebo-regular">
+        <span class="read-content">{{ block.settings['content-text'] }}</span>
+      </div>
+      <div class="read-btns">
+        <div class="readmore-icon-container">
+          <img
+            class="readmore-icon"
+            src="https://cdn.shopify.com/s/files/1/0562/9247/5063/files/readmore-icon.svg?v=1706780289"
+            alt="readmore-icon"
+            width="18"
+            height="18"
+            loading="lazy"
+          >
+          {% render 'minus-icon' %}
+        </div>
+        <span class="read-more heebo-medium">{{ block.settings['read-more-text'] | downcase }}</span>
+        <span class="read-less heebo-medium">{{ block.settings['read-less-text'] | downcase }}</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.querySelector('.top-read .read-btns').addEventListener('click', function () {
+    let hiddenContent = document.querySelector('.read-cont');
+    let readContBefore = document.querySelector('.top-read .read-cont-before');
+
+    if (!hiddenContent.classList.contains('content-visible')) {
+      document.querySelector('.read-cont').style.display = 'block';
+      document.querySelector('.read-more').style.display = 'none';
+      document.querySelector('.readmore-icon').style.display = 'none';
+
+      document.querySelector('.read-less').style.display = 'flex';
+      document.querySelector('.readless-icon').style.display = 'block';
+      hiddenContent.classList.add('content-visible');
+      if (readContBefore.classList.contains('desc-clamp')) {
+        readContBefore.classList.remove('desc-clamp');
+      }
+    } else {
+     
+      document.querySelector('.read-cont').style.display = 'none';
+      document.querySelector('.read-less').style.display = 'none';
+      document.querySelector('.readless-icon').style.display = 'none';
+
+      document.querySelector('.read-more').style.display = 'flex';
+      document.querySelector('.readmore-icon').style.display = 'block';
+      hiddenContent.classList.remove('content-visible');
+      readContBefore.classList.add('desc-clamp');
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Read More Block",
+  "class": "shopify-read-more-section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_padding_read",
+      "label": "padding for section",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_padding_mob_read",
+      "label": "padding for section in mobile",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "margintopread",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Desktop : Margin-Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "marginbottomread",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Desktop : Margin-Bottom",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margintopreadmob",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile : Margin-Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "marginbottomreadmob",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile : Margin-Bottom",
+      "default": 0
+    },
+    {
+      "type": "text",
+      "id": "main-text",
+      "label": "Heading for main text"
+    },
+    {
+      "type": "richtext",
+      "id": "content-text-before",
+      "label": "Content for Initial text"
+    },
+    {
+      "type": "richtext",
+      "id": "content-text",
+      "label": "content for main text"
+    },
+    {
+      "type": "text",
+      "id": "read-more-text",
+      "label": "Read more"
+    },
+    {
+      "type": "text",
+      "id": "read-less-text",
+      "label": "Read lest"
+    },
+    {
+      "type": "image_picker",
+      "id": "back-img",
+      "label": "Image for background"
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "Read more section"
+    }
+  ]
+}
+{% endschema %}
+

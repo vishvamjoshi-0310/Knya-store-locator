@@ -1,0 +1,254 @@
+h2.main-heading {
+    text-align: left;
+    font-size: 3.594vw;
+    line-height: 3.594vw;
+    color: #482F8F;
+}
+
+h5 {
+    font-weight: 500;
+    font-size: 1.094vw;
+    line-height: 1.328vw;
+    color: #F4ECD0;
+    margin: 0;
+}
+
+p.main-paragraph {
+    font-size: 2.188vw;
+    line-height: 120%;
+    color: #000303;
+    opacity: 0.7;
+}
+
+.flexfit-image-container {
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    line-height: 3;
+}
+
+.left-image-container {
+    position: relative;
+    width: 50%;
+}
+
+.name-left {
+    position: absolute;
+    bottom: 18px;
+    left: 0;
+    border-top-right-radius: 44px;
+    width: 18.359vw;
+    padding: 13px 19px;
+    display: flex;
+    background: #7EA7D6;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.name-left p {
+    padding: 2px 16px;
+    margin: 0;
+    font-size: 14px;
+    line-height: 16.8px;
+    color: #F4ECD0;
+}
+
+.left-image-contains-container {
+    width: 100%;
+    height: auto;
+}
+
+.flexfit-left-image {
+    width: 100%;
+    height: auto;
+}
+
+.right-image-container {
+    width: 61%;
+}
+
+.right-image-container img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.right-up-text {
+    position: absolute;
+    bottom: 18.5px;
+    left: 0;
+    border-top-right-radius: 44px;
+    width: 13.984vw;
+    height: auto;
+    padding: 11px 10px;
+    display: flex;
+    background: #7EA7D6;
+    align-items: center;
+}
+
+.hide {
+    display: none;
+}
+
+.right-text-down {
+    position: absolute;
+    bottom: 17.7px;
+    left: 0;
+    border-top-right-radius: 44px;
+    width: 11vw;
+    height: auto;
+    padding: 8px 6px;
+    display: flex;
+    background: #7EA7D6;
+    align-items: center;
+}
+
+.main-image-class {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+/*     .fade-out {opacity: 0.8;} */
+.right-up {
+    display: flex;
+    width: 100%;
+    gap: 20px;
+}
+
+.span-sub-class {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 0.938vw;
+    line-height: 14%;
+    letter-spacing: 0.1em;
+    text-decoration-line: underline;
+    text-transform: uppercase;
+    color: #F4ECD0;
+}
+
+.relative-img {
+    position: relative;
+    width: 100%;
+}
+
+.right-down {
+    position: relative;
+    display: flex;
+    width: 100%;
+    gap: 23px;
+}
+
+.font-size-fixed {
+    font-size: 0.938vw;
+}
+
+@media screen and (max-width: 650px) {
+    .right-down {
+        gap: 8px !important;
+    }
+
+    .font-size-fixed {
+        font-size: 9.23px !important;
+        line-height: 120%;
+        font-family: 'Heebo-Regular' !important;
+    }
+
+    p.main-paragraph {
+        font-size: 20px;
+    }
+
+    h2.main-heading {
+        font-size: 42px;
+    }
+
+    .name-left {
+        bottom: 17px;
+        width: 156px !important;
+        padding: 13px 10px !important;
+    }
+
+    .span-sub-class {
+        font-size: 10px;
+        font-family: 'Heebo-Regular' !important;
+    }
+
+    .name-left h5 {
+        font-size: 12px !important;
+        font-family: 'Heebo-Regular' !important;
+        line-height: 120%;
+    }
+
+    .right-text-down {
+        bottom: 17px;
+        width: 100%;
+        font-size: 9.23129px;
+        padding: 3px 6px !important;
+        line-height: 120%;
+        ;
+    }
+
+    .main-flexthefit-container {
+        max-width: 100%
+    }
+
+    .flexfit-image-container {
+        width: 100%;
+        display: flex;
+        gap: 0px;
+        flex-flow: column;
+        line-height: 3;
+    }
+
+    .left-image-container {
+        position: relative;
+        width: 100%;
+    }
+
+    .right-image-container {
+        width: 100%;
+    }
+
+    .right-up {
+        display: flex;
+        width: 100%;
+        gap: 20px;
+        display: none;
+    }
+
+    .right-up {
+        display: flex;
+        width: 100%;
+        gap: 20px;
+        display: none;
+    }
+}
+
+@media screen and (min-width: 650px) and (max-width: 1024px) {
+
+    /*     .main-flexthefit-container{padding: 5rem 8rem 0 8rem;} */
+    .right-up-text {
+        width: 134px;
+        height: 3vh;
+    }
+
+    .right-text-down {
+        width: 80px;
+        height: 5vh;
+    }
+}
+
+@media screen and (max-width:440px) {
+    .flexfit-image-container .right-image-container .right-text-down h5 {
+        line-height: 1.15;
+    }
+
+    .flexfit-image-container .right-image-container .right-text-down {
+        height: 9vw;
+    }
+}
+
+@media screen and (max-width:640px) {
+    .flexfit-image-container .right-image-container .right-text-down h5 {
+        font-size: 10px !important
+    }
+}

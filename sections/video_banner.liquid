@@ -1,0 +1,88 @@
+{{ 'video_banner.css' | asset_url | stylesheet_tag }}
+<style>
+  video#homevideoscrub {width: 100%;height: auto;}
+  .main_vedio_ourscrub_section{width: 100%;heigth: auto;margin-top:{{ section.settings.margintop_onscrub}}px;}
+</style>
+
+<div class=" ">
+  <div class=" main_vedio_ourscrub_section {% if section.settings.behind_ourscrub  %} page-padding-right page-padding-left{% endif %} {% if section.settings.behind_ourscrub_mob %}padding-right-mob padding-left-mob{% endif %}">
+    <div class="video_container_aboutus">
+      <video
+        id="homevideoscrub"
+        width="100%"
+        controlsList="nodownload"
+        autoplay="autoplay"
+        class="desktop_vedio"
+        muted="muted"
+        playsinline=""
+        preload="metadata"
+        data-aos="fade-up"
+        allowfullscreen
+      >
+        <source src="{{ section.settings.our_scrub_video_Desktop.sources[1].url }}" id="videoId">
+      </video>
+      <video
+        id="homevideoscrub"
+        width="100%"
+        class="mobile_vedio"
+        controlsList="nodownload"
+        autoplay="autoplay"
+        muted="muted"
+        playsinline=""
+        preload="metadata"
+        data-aos="fade-up"
+        allowfullscreen
+      >
+        <source src="{{ section.settings.our_scrub_video_mobile.sources[1].url }}" id="videoId">
+      </video>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Behind our scrubs",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "behind_ourscrub",
+      "label": "Padding for Section",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "behind_ourscrub_mob",
+      "label": "Padding for Section in Mobile",
+      "default": true
+    },
+    {
+      "type": "video",
+      "id": "our_scrub_video_Desktop",
+      "label": "our Scrub Video Desktop"
+    },
+    {
+      "type": "video",
+      "id": "our_scrub_video_mobile",
+      "label": "our Scrub Video mobile"
+    },
+    {
+      "type": "range",
+      "id": "margintop_onscrub",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Margin from top for Entire Section",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": " Behind Our scrub"
+    }
+  ],
+  "enabled_on": {
+    "templates": ["page"]
+  }
+}
+{% endschema %}

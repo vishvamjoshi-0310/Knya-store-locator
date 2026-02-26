@@ -1,0 +1,213 @@
+.left-arr-pdp {
+    opacity: 1 !important;
+    pointer-events: all !important;
+}
+
+.mySwiperpdpvideo .swiper-button-next:after {
+    display: none;
+}
+
+.mySwiperpdpvideo .swiper-button-prev:after {
+    display: none;
+}
+
+.pdp-big-container {
+    background: #7ea7d6;
+}
+
+.mySwiperpdpvideo .swiper-slide {
+    background: #7ea7d6;
+}
+
+.mySwiperpdpvideo :is(.swiper-button-next, .swiper-button-prev) {
+    z-index: 3;
+}
+
+.mySwiperpdpvideo .swiper-button-next {
+    /* display: none; */
+}
+
+.mySwiperpdpvideo .swiper-button-prev {
+    /* display: none; */
+}
+
+.right-arrow {
+    display: none;
+}
+
+.left-arrow {
+    display: none;
+}
+
+.text-title {
+    margin: 24px 0 0 0;
+}
+
+.text-description {
+    margin: 5px 0 0 0;
+}
+
+.pdp-heading h2 {
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 51px;
+}
+
+.video-class {
+    display: flex;
+    flex-direction: column;
+    padding-top: 0 !important;
+}
+
+.video-container {
+    background: #7ea7d6;
+}
+
+.text-container {
+    color: #f4ecd0;
+    background: #7ea7d6;
+    width: 100%;
+    text-align: center;
+}
+
+.text-description {
+    font-size: 1.25vw;
+}
+
+.mySwiperpdpvideo .swiper-pagination {
+    display: none;
+}
+
+.mySwiperpdpvideo .swiper-wrapper .swiper-slide {
+    width: calc(350 * (100vw / 1440));
+    margin-right: 85px;
+}
+
+@media screen and (max-width: 1024px) {
+    .mySwiperpdpvideo .swiper-wrapper .swiper-slide {
+        width: calc(315 * (100vw / 900));
+        margin-right: 50px;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .pdp-main-container {
+        padding-top: 36px;
+        padding-bottom: 53px;
+        padding-left: 0px;
+        padding-right: 0px;
+        margin-bottom: 2rem;
+    }
+
+    .swiper-slide.video-class.swiper-slide-duplicate.swiper-slide-active>.video-container {
+        transform: scale(1.2);
+    }
+
+    .swiper-slide.video-class.swiper-slide-active>.video-container {
+        transform: scale(1.2);
+    }
+
+    .swiper-button-next:after,
+    .swiper-rtl .swiper-button-prev:after {
+        content: none;
+    }
+
+    .swiper-button-prev:after,
+    .swiper-rtl .swiper-button-next:after {
+        content: none;
+    }
+
+    .swiper-pagination {
+        display: block;
+        color: #f4ecd0;
+    }
+
+    .pdp-heading h2 {
+        font-size: 42px;
+        margin-bottom: 20px;
+        color: #f4ecd0;
+    }
+
+    .swiper-button-next {
+        color: transparent;
+    }
+
+    .swiper-button-prev {
+        color: transparent;
+    }
+
+    .right-arrow {
+        display: block;
+        position: absolute;
+        top: 360px;
+        right: 25px;
+    }
+
+    .left-arrow {
+        display: block;
+        position: absolute;
+        top: 360px;
+        left: 25px;
+    }
+
+    .text-title {
+        margin: 0;
+        font-size: 24px;
+        font-weight: 600;
+        position: relative;
+        right: 14%;
+        text-align: center;
+    }
+
+    .text-description {
+        font-weight: 500;
+        font-size: 14px;
+        position: relative;
+        right: 14%;
+        text-align: center;
+        font-family: "Heebo-Medium" !important;
+    }
+
+    .swiper-slide.video-class.swiper-slide-next .text-container {
+        display: none;
+    }
+
+    .swiper-slide.video-class.swiper-slide-prev .text-container {
+        display: none;
+    }
+
+    .text-container {
+        padding: 40px 0px;
+        width: 75vw;
+        margin-left: -10%;
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+        top: 75% !important;
+    }
+
+    .mySwiperpdpvideo .swiper-wrapper {
+        padding-top: 50px;
+        transform: translate3d(-1182px, 0px, 0px);
+    }
+
+    .mySwiperpdpvideo .swiper-wrapper .swiper-slide {
+        width: calc(185 * (100vw / 400));
+        margin-right: 30px;
+    }
+}
+
+@media screen and (min-width: 650px) and (max-width: 768px) {
+    .pdp-main-container {
+        padding: 0 0 3rem 0;
+    }
+}
+
+.mySwiperpdpvideo .swiper-pagination-current {
+    font-family: "Heebo-Medium";
+}
+
+.mySwiperpdpvideo .swiper-pagination-total {
+    font-family: "Heebo-Medium";
+}

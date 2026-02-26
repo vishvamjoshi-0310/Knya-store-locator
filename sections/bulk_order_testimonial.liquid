@@ -1,0 +1,214 @@
+{{ 'bulk-order-testimonials.css' | asset_url | stylesheet_tag: preload: true }}
+
+
+<div class="bulk-order-testimonials">
+  <h2 class="bulk-order-testimonials-heading">{{ section.settings.heading }}</h2>
+  <p class="bulk-order-testimonials-subheading">{{ section.settings.subheading }}</p>
+  <!-- Mobile Container (3 cards per group) -->
+  <div class="bulk-order-testimonials-cards mobile-cards">
+    {% assign mobile_groups = section.blocks | size | divided_by: 3.0 | ceil %}
+    {% for group_index in (0..mobile_groups) %}
+      {% assign start_index = group_index | times: 3 %}
+      {% assign end_index = start_index | plus: 2 %}
+      {% if start_index < section.blocks.size %}
+        <div class="testimonials-group" data-group="{{ group_index }}">
+          {% for i in (start_index..end_index) %}
+            {% if section.blocks[i] %}
+              {% assign block = section.blocks[i] %}
+              <div class="bulk-order-testimonials-card">
+                <div class="testimonial-image-rating-container">
+                  <div class="bulk-order-testimonials-image">
+                    <picture>
+                        <!-- WebP source -->
+                        <source
+                            srcset="{{ block.settings.testimonial_image | image_url: width: 300, format: 'webp' }}"
+                            type="image/webp"
+                        >
+
+                        <!-- Fallback (auto original format) -->
+                        <source
+                            srcset="{{ block.settings.testimonial_image | image_url: width: 300 }}"
+                            type="image/jpeg"
+                        >
+
+                        <img
+                            src="{{ block.settings.testimonial_image | image_url: width: 300 }}"
+                            loading="lazy"
+                            fetchpriority="low"
+                            width="300"
+                            height="auto"
+                            class="bulk-order-testimonials-image"
+                            alt="{{ block.settings.testimonial_heading }}"
+                        >
+                    </picture>
+
+                  </div>
+                  <div class="bulk-order-testimonials-rating-container">
+                    {% for j in (1..block.settings.testimonial_rating) %}
+                      <span class="rating-star">
+                        {% render 'bulk-testimonial-star-rating' %}
+                      </span>
+                    {% endfor %}
+                  </div>
+                </div>
+                <div class="bulk-order-testimonials-content">
+                  <div class="bulk-order-testimonials-heading-date-container">
+                    <h3 class="bulk-order-testimonial-heading">{{ block.settings.testimonial_heading }}</h3>
+                    <p class="bulk-order-testimonials-date">{{ block.settings.testimonial_date }}</p>
+                  </div>
+                  <p class="bulk-order-testimonials-description">{{ block.settings.testimonial_description }}</p>
+                </div>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  <!-- Desktop Container (6 cards per group) -->
+  <div class="bulk-order-testimonials-cards desktop-cards">
+    {% assign desktop_groups = section.blocks | size | divided_by: 6.0 | ceil %}
+    {% for group_index in (0..desktop_groups) %}
+      {% assign start_index = group_index | times: 6 %}
+      {% assign end_index = start_index | plus: 5 %}
+      {% if start_index < section.blocks.size %}
+        <div class="testimonials-group" data-group="{{ group_index }}">
+          {% for i in (start_index..end_index) %}
+            {% if section.blocks[i] %}
+              {% assign block = section.blocks[i] %}
+              <div class="bulk-order-testimonials-card">
+                <div class="testimonial-image-rating-container">
+                  <div class="bulk-order-testimonials-image">
+                    <picture>
+                        <!-- WebP source -->
+                        <source
+                            srcset="{{ block.settings.testimonial_image | image_url: width: 300, format: 'webp' }}"
+                            type="image/webp"
+                        >
+
+                        <!-- Fallback (auto original format) -->
+                        <source
+                            srcset="{{ block.settings.testimonial_image | image_url: width: 300 }}"
+                            type="image/jpeg"
+                        >
+
+                        <img
+                            src="{{ block.settings.testimonial_image | image_url: width: 300 }}"
+                            loading="lazy"
+                            fetchpriority="low"
+                            width="300"
+                            height="auto"
+                            class="bulk-order-testimonials-image"
+                            alt="{{ block.settings.testimonial_heading }}"
+                        >
+                    </picture>
+
+                  </div>
+                  <div class="bulk-order-testimonials-rating-container">
+                    {% for j in (1..block.settings.testimonial_rating) %}
+                      <span class="rating-star">
+                        {% render 'bulk-testimonial-star-rating' %}
+                      </span>
+                    {% endfor %}
+                  </div>
+                </div>
+                <div class="bulk-order-testimonials-content">
+                  <div class="bulk-order-testimonials-heading-date-container">
+                    <h3 class="bulk-order-testimonial-heading">{{ block.settings.testimonial_heading }}</h3>
+                    <p class="bulk-order-testimonials-date">{{ block.settings.testimonial_date }}</p>
+                  </div>
+                  <p class="bulk-order-testimonials-description">{{ block.settings.testimonial_description }}</p>
+                </div>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+  {% comment %} <div class="bulk-order-testimonials-view-all-reviews">VIEW ALL REVIEW</div> {% endcomment %}
+
+  <!-- Pagination Container -->
+  <div class="bulk-order-testimonials-pagination">
+    <div class="pagination-dot-container">
+      <div class="pagination-dots">
+        <!-- Dots will be generated by JavaScript -->
+      </div>
+      <span class="pagination-counter">
+        <span class="current-page">01</span> / <span class="total-pages">03</span>
+      </span>
+    </div>
+    <div class="pagination-navigation">
+      <button
+        class="pagination-btn pagination-prev"
+        aria-label="Previous testimonials"
+        style="transform: rotate(180deg);"
+      >
+        {% render 'pagination_btn' %}
+      </button>
+      <button class="pagination-btn pagination-next" aria-label="Next testimonials">
+        {% render 'pagination_btn' %}
+      </button>
+    </div>
+  </div>
+</div>
+
+<script src="{{ 'bulk-order-testimonial.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "bulk-order-testimonials",
+  "class": "bulk-order-testimonials-parent",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Testimonial",
+      "type": "testimonial",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "testimonial_image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "testimonial_heading",
+          "label": "Testimonial Heading"
+        },
+        {
+          "type": "text",
+          "id": "testimonial_description",
+          "label": "Testimonial Description"
+        },
+        {
+          "type": "number",
+          "id": "testimonial_rating",
+          "label": "Testimonial Rating"
+        },
+        {
+          "type": "text",
+          "id": "testimonial_date",
+          "label": "Testimonial Date"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bulk Order Testimonials"
+    }
+  ]
+}
+{% endschema %}

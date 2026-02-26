@@ -1,0 +1,149 @@
+.stetho-preoorder-overlay {
+  position: sticky;
+  width: 100%;
+  z-index: 3;
+  bottom: -10px;
+  transition: bottom 0.7s ease-in-out;
+}
+.preorder-count-wrapper {
+  line-height: 100%;
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  color: #ffffff;
+  flex-shrink: 0;
+  gap: 6px;
+}
+.preorder-count-wrapper .prebook-span {
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.preorder-stetho-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #FFFFFF;
+  padding: 8px 40px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  width: max-content;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  min-height: 40px;
+  white-space: nowrap;
+}
+
+.prebook-count {
+  margin: 0;
+  font-size: 44px;
+  line-height: 100%;
+}
+
+.preorder-stetho-button a {
+  color: #462D8C;
+  letter-spacing: 0;
+  line-height: 21.6px;
+}
+
+.preorder-text-content {
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 36px;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: 0;
+}
+.preorder-wrapper {
+  background: linear-gradient(90deg, #5c52a2, #482f8f, #3c2377);
+  z-index: 2;
+  padding: 24px 52px;
+  display: flex;
+  gap: 96px;
+  align-items: center;
+  max-width: fit-content;
+  margin: 32px auto 56px;
+  overflow: hidden;
+  position: relative;
+  border-radius: 16px;
+  min-height: 56px;
+}
+
+.preorder-wrapper:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 5%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  animation: shine 2s ease-in-out infinite;
+  z-index: -1;
+}
+
+@keyframes shine {
+  0% {
+    left: -100%;
+    transition-property: left;
+  }
+  100% {
+    left: 100%;
+    transition-property: left;
+  }
+}
+
+@media (max-width: 768px) {
+  .preorder-text-content {
+    white-space: nowrap;
+    font-size: 14px;
+    line-height: 24px;
+    text-align: center;
+  }
+
+  .stetho-preoorder-overlay {
+    bottom: 20px;
+  }
+
+  .prebook-count {
+    font-size: 50px;
+    line-height: 60px;
+  }
+  .preorder-count-wrapper .prebook-span {
+    font-size: 16px;
+    line-height: 24px;
+    width: min-content;
+  }
+
+  .preorder-wrapper {
+    flex-direction: column;
+    padding: 20px 24px;
+    margin: 24px auto 32px;
+    gap: 16px;
+    top: -23%;
+    width: 100%;
+    min-height: auto;
+  }
+
+  .preorder-count-wrapper {
+    flex-direction: row;
+    gap: 16px;
+    align-items: center;
+  }
+
+   .preorder-stetho-button {
+    padding: 0px;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    width: 100%;
+    min-height: 40px;
+  }
+}

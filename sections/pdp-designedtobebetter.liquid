@@ -1,0 +1,163 @@
+{{ 'pdp-designedtobebetter.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .pdp-main-container{width:100%;background: #7EA7D6;position: relative;padding-top: 50px;padding-bottom: 61px;margin-top:{{ section.settings.margintop_pdp_tobebetter}}px;}
+{%- endstyle -%}
+
+{% if product.metafields.custom.product_usp_video_slider != blank %}
+  <div class="pdp-big-container">
+    <div class="pdp-main-container page-width ">
+      <div class="pdp-heading font-heebo-medium {% if section.settings.pdp_tobebetter  %} page-padding-right page-padding-left{% endif %} {% if section.settings.pdp_tobebetter_mob %}padding-right-mob padding-left-mob{% endif %}">
+        <h2>{{ section.settings.tobebetter_heading }}</h2>
+      </div>
+
+      <div>
+        <div class="swiper mySwiperpdpvideo">
+          <div class="swiper-wrapper">
+            {% for videoSwiper in product.metafields.custom.product_usp_video_slider.value %}
+              {% assign allContent = videoSwiper | split: '##' %}
+              <div class="swiper-slide video-class">
+                <div class="video-container">
+                  <video
+                    id="homevideo"
+                    class="design-better-pdp-video"
+                    width="100%"
+                    loading="lazy"
+                    controlsList="nodownload"
+                    autoplay="autoplay"
+                    muted="muted"
+                    loop="loop"
+                    playsinline=""
+                    preload="metadata"
+                    data-aos="fade-up"
+                    allowfullscreen
+                  >
+                    {% comment %} <source data-src="{{ allContent[0] }}" id=""> {% endcomment %}
+                    <source src="{{ allContent[0] }}" id="">
+                  </video>
+                  {% comment %} poster="https://knyamed.com/cdn/shop/files/Mens-Classic-600x736-Side-seam.jpg?format=webp&v=1685172478&width=300" {% endcomment %}
+                </div>
+
+                <div class="text-container">
+                  <h3 class="text-title font-heebo-SemiBold">{{ allContent[1] }}</h3>
+                  <p class="text-description font-heebo-regular">{{ allContent[2] }}</p>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+          <div class="swiper-button-next right-arrow">
+            {% render 'right-arrow' %}
+          </div>
+          <div class="swiper-button-prev left-arrow left-arr-pdp">
+            {% render 'left-arrow' %}
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+<script>
+  window.addEventListener(
+    'DOMContentLoaded',
+    () => {
+      var swiper = new Swiper('.mySwiperpdpvideo', {
+        slidesPerView: 3,
+        spaceBetween: 85,
+        loop: true,
+        autoplay: {
+          delay: 2500,
+          disableOnInteraction: false,
+        },
+        pagination: {
+          el: '.swiper-pagination',
+          type: 'fraction',
+        },
+        breakpoints: {
+          0: {
+            slidesPerView: 2,
+            spaceBetween: 30,
+            loop: true,
+            centeredSlides: true,
+            roundLengths: true,
+            navigation: {
+              enabled: true,
+            },
+          },
+          650: {
+            slidesPerView: 2,
+            loop: true,
+            spaceBetween: 50,
+          },
+          1024: {
+            slidesPerView: 3,
+          },
+        },
+        navigation: {
+          enabled: false,
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+      });
+    },
+    { once: true }
+  );
+</script>
+
+{% schema %}
+{
+  "name": "PDP Designed to be better",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "pdp_tobebetter",
+      "label": "Padding for Section",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "pdp_tobebetter_mob",
+      "label": "Padding for Section in Mobile",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "margintop_pdp_tobebetter",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Margin from top for Entire Section",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "paddingtopbottomtobetter",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "rem",
+      "label": "Padding from top bottom for Entire Section",
+      "default": 0
+    },
+    {
+      "type": "text",
+      "id": "tobebetter_heading",
+      "label": "Main Heading",
+      "default": "To be better"
+    }
+  ],
+  "presets": [
+    {
+      "name": "PDP Designed to be better"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

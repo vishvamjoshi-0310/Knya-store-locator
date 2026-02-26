@@ -1,0 +1,207 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "breadcrumb_new_MwQrPG": {
+      "type": "breadcrumb-new",
+      "name": "breadcrumbs-new",
+      "settings": {
+        "margintopbread": 0,
+        "marginbottombread": 0,
+        "margintopbreadmob": 0,
+        "marginbottombreadmob": 0,
+        "margintopbread_collection": 0,
+        "marginbottombread_collection": 0,
+        "margintopbreadmob_collection": 0,
+        "marginbottombreadmob_collection": 0
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "name": "Title",
+          "settings": {
+            "text": "<h1>{{ closest.page.title }}</h1>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h2",
+            "font": "var(--font-primary--family)",
+            "font_size": "",
+            "font_size_mobile": "unset",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0,
+            "custom_font_class": ""
+          },
+          "blocks": {}
+        },
+        "page-content": {
+          "type": "page-content",
+          "settings": {},
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "heading",
+        "page-content"
+      ],
+      "disabled": true,
+      "settings": {
+        "content_direction": "column",
+        "gap": 32,
+        "color_scheme": "",
+        "padding-block-start": 40,
+        "padding-block-end": 80
+      }
+    },
+    "community_page_section_9iGx7G": {
+      "type": "community_page_section",
+      "blocks": {
+        "label_image_riGLf6": {
+          "type": "_label_image",
+          "name": "Label Image",
+          "settings": {
+            "image_key": "shopify://shop_images/UGC_01_1.jpg",
+            "label_key": "Dr. Rasha",
+            "button_url_key": "https://knyamed.com/collections/navy-women"
+          },
+          "blocks": {}
+        },
+        "label_image_dPm7zM": {
+          "type": "_label_image",
+          "name": "Label Image",
+          "settings": {
+            "image_key": "shopify://shop_images/sdfghjk.jpg",
+            "label_key": "Dr. Akshata",
+            "button_url_key": "https://knyamed.com/collections/navy-women"
+          },
+          "blocks": {}
+        },
+        "label_image_MDCYeM": {
+          "type": "_label_image",
+          "name": "Label Image",
+          "settings": {
+            "image_key": "shopify://shop_images/UGC_01_1.jpg",
+            "label_key": "Dr. Rasha",
+            "button_url_key": "https://knyamed.com/collections/navy-women"
+          },
+          "blocks": {}
+        },
+        "label_image_3dqWzb": {
+          "type": "_label_image",
+          "name": "Label Image",
+          "settings": {
+            "image_key": "shopify://shop_images/UGC_01_1.jpg",
+            "label_key": "Dr. Rasha",
+            "button_url_key": "https://knyamed.com/collections/navy-women"
+          },
+          "blocks": {}
+        },
+        "label_image_hct9LU": {
+          "type": "_label_image",
+          "name": "Label Image",
+          "settings": {
+            "image_key": "shopify://shop_images/UGC_01_1.jpg",
+            "label_key": "Dr. Rasha",
+            "button_url_key": "https://knyamed.com/collections/navy-women"
+          },
+          "blocks": {}
+        },
+        "label_image_fELKtV": {
+          "type": "_label_image",
+          "name": "Label Image",
+          "settings": {
+            "image_key": "shopify://shop_images/UGC_01_1.jpg",
+            "label_key": "Dr. Rasha",
+            "button_url_key": "https://knyamed.com/collections/navy-women"
+          },
+          "blocks": {}
+        },
+        "label_image_C7b4wJ": {
+          "type": "_label_image",
+          "name": "Label Image",
+          "settings": {
+            "image_key": "shopify://shop_images/UGC_01_1.jpg",
+            "label_key": "Dr. Rasha",
+            "button_url_key": "https://knyamed.com/collections/navy-women"
+          },
+          "blocks": {}
+        },
+        "label_image_VLCFaR": {
+          "type": "_label_image",
+          "name": "Label Image",
+          "settings": {
+            "image_key": "shopify://shop_images/UGC_01_1.jpg",
+            "label_key": "Dr. Rasha",
+            "button_url_key": "https://knyamed.com/collections/navy-women"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "label_image_riGLf6",
+        "label_image_dPm7zM",
+        "label_image_MDCYeM",
+        "label_image_3dqWzb",
+        "label_image_hct9LU",
+        "label_image_fELKtV",
+        "label_image_C7b4wJ",
+        "label_image_VLCFaR"
+      ],
+      "name": "Superhero lookbook",
+      "settings": {
+        "main_heading": "Look & feel like a superhero",
+        "heading_size_desktop": 24,
+        "heading_size_mobile": 16,
+        "heading_color": "#121212",
+        "subheading_text": "<p>It is this strength with which you operate that inspires us to honor your road to achieving greatness.</p>",
+        "subheading_size": 22,
+        "subheading_size_mobile": 14,
+        "subheading_color": "#121212",
+        "button_label": "SHOP NOW",
+        "button_background": "#d4e167",
+        "button_text_color": "#482f8f",
+        "button_hover_background": "rgba(0,0,0,0)",
+        "button_hover_text_color": "#d4e167",
+        "button_font_size": 16,
+        "button_font_size_mobile": 15,
+        "button_border_radius": 0,
+        "label_color": "#ffffff",
+        "label_font_size": 24,
+        "label_font_size_mobile": 22,
+        "grid_gap_col": 10,
+        "grid_gap_row": 24,
+        "image_border_radius": 8,
+        "background_color": "#ffffff",
+        "section_padding_top": 60,
+        "section_padding_bottom": 60,
+        "section_padding_top_mobile": 40,
+        "section_padding_bottom_mobile": 40
+      }
+    }
+  },
+  "order": [
+    "breadcrumb_new_MwQrPG",
+    "main",
+    "community_page_section_9iGx7G"
+  ]
+}

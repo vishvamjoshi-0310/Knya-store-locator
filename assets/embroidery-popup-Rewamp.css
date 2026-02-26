@@ -1,0 +1,910 @@
+.embroidery-popup-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+  @media (min-width: 1200px) {
+    .embroidery-popup-overlay {
+      margin: 0;
+    }
+  }
+  .embroidery-popup-container {
+    display: flex;
+    background: #fff;
+    width: 80%;
+    max-width: 1080px;
+    height: 640px;
+    max-height: 85%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    position: fixed;
+  }
+  
+  .embroidery-popup-container .titleembroideryformobile{display:none; align-items: center;}
+  .embroidery-popup-container .titleembroideryformobile h4 {
+    font-family: Heebo-Medium;width:100%;
+    font-weight: 500;
+    font-size:14px;
+    line-height:100%;
+    letter-spacing: 0.1px;
+    text-align: center;
+    vertical-align: middle;
+    margin: 0px;padding:0px;padding-right:50px;
+    color: #282828;
+  
+   }
+  
+  
+  @media (max-height: 640px) and (min-width: 1024px) {
+    /* .embroidery-popup-container {
+      top: 35px;
+    } */
+  }
+  .embroidery-popup-image {
+    width: 56%;
+    background: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  .embroidery-popup-image img {
+    width: 100%;
+    height: 100%;
+  }
+  .embroidery-close-popup {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #fff;
+    color: white;
+    border: none;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+  }
+  button.embroidery-close-popup svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: none;
+    cursor: pointer;
+    max-width: unset;
+  }
+  
+  .embroidery-close-popup1 {
+    position: relative;display: flex;align-items: center;justify-content: center;
+    background: #fff;
+    color: white;
+    border: none;
+    width: 50px;min-width:50px;margin:0px;padding:0px;
+    height: 42px;
+    cursor: pointer;
+  }
+  button.embroidery-close-popup1 svg {
+    position: relative;width:16px;height:16px;
+    top: 0;
+    left: 0;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .embroidery-popup-content {
+    width: 44%;
+    padding: 0 32px 15px 32px;
+  }
+  .embroidery-popup-content h4 {
+    font-family: Heebo-Medium;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 42px;
+    letter-spacing: 1.4px;
+    text-align: center;
+    vertical-align: middle;
+    text-transform: uppercase;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 15px;
+    padding-top: 15px;
+    margin: 0 0 0 0;
+    color: #282828;
+    position: sticky;
+    top: 0;
+    background: #fff;
+    z-index: 9;
+  }
+  .embroidery-popup-description.emb-padding p {
+    font-family: Heebo-Medium;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0.001px;
+    vertical-align: middle;
+    color: #282828;
+    text-align: center;
+    margin: 0;
+    margin: 15px 0 0 0;
+  }
+  .embroidery-label {
+    display: block;
+    font-family: Heebo-Medium;
+    margin-bottom: 10px;
+  }
+  #embroideryText {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #2c2c2c;
+  }
+  .emb-text-feedback {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+  }
+  .emb-char-count {
+    font-size: 12px;
+    color: #888;
+  }
+  .emb-error-message {
+    color: #ff3b30;
+    font-size: 12px;
+  }
+  .embroidery-popup-font {
+    margin-top: 20px;
+  }
+  .emb-button-group {
+    display: flex;
+    gap: 16px;
+    margin-top: 24px;
+  }
+  .emb-add-btn,
+  .emb-reset-btn {
+    flex: 1;
+    padding: 12px;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .emb-add-btn {
+    background: #462d8c;
+    color: #fff;
+    border: none;
+  }
+  .emb-reset-btn {
+    background: #fff;
+    color: #000;
+    border: 2px solid #e5e5e5;
+  }
+  .embroidery-info {
+    margin-top: 32px;
+    border-top: 1px solid #cccccc;
+  }
+  .embroidery-info p {
+    margin: 16px 0 8px;
+    font-family: Heebo-Medium;
+  }
+  .embroidery-info ul {
+    padding-left: 20px;
+  }
+  .embroidery-info ul li {
+    font-family: Heebo-Regular;
+    font-size: 14px;
+    color: #616161;
+  }
+  img.Embroidery_usp-image_mob {
+    display: none;
+  }
+  .bodyEmbhidden {
+    overflow: hidden !important;
+  }
+  .embroidery-popup-input.emb-padding label.embroidery-popup_option-label {
+    font-family: Heebo-Medium;
+    font-weight: 500;
+    font-size: 16px;
+    leading-trim: Cap height;
+    line-height: 22px;
+    letter-spacing: 0%;
+    text-align: center;
+    vertical-align: middle;
+    color: #1e192b;
+  }
+  .embroidery-popup-input.emb-padding {
+    margin-top: 16px;
+  }
+  .embroidery-popup-input.emb-padding .embroidery-popup_price {
+    font-family: Heebo-Medium;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.6;
+    letter-spacing: 1.1px;
+    text-align: center;
+    vertical-align: middle;
+    color: #616161;
+  }
+  
+  .embroidery-popup-input.emb-padding .embroidery-popup_option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 2px 16px 0;
+    cursor: pointer;
+  }
+  .embroidery-popup_option:last-child {
+    border-bottom: none;
+  }
+  .embroidery-popup_option-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    color: #333;
+  }
+  .embroidery-popup-input_iconcontainer {
+    display: flex;
+    gap: 4px;
+    align-content: center;
+  }
+  .embroidery-popup_confirm-button p {
+    font-family: Heebo-Medium;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 1.2px;
+    text-align: center;
+    vertical-align: middle;
+    text-transform: uppercase;
+    color: #2b2930;
+    margin: 0;
+  }
+  
+  .embroidery-popup_confirm-button {
+    width: 98.7%;
+    height: 56px;
+    min-height: 42px;
+    padding-top: 18px;
+    padding-bottom: 18px;
+    margin-top: 24px;
+    border: 2px solid #f7f7f7;
+    cursor: not-allowed;
+  }
+  .embroidery-popup_option-label input {
+    width: 18px;
+    height: 18px;
+    accent-color: #462d8c;
+  }
+  
+  /* Final Page */
+  .finalEmbroidery_info p {
+    font-family: "Heebo-Medium";
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.375;
+    letter-spacing: 0.001px;
+    text-align: center;
+    vertical-align: middle;
+    align-items: center;
+    display: flex;
+    gap: 8px;
+    margin: 0;
+  }
+  .finalEmbroidery_info {
+    background: #f7f7f7;
+    padding: 24px 12px;
+    display: none;
+  }
+  .finalEmbroidery_info li {
+    font-family: "Heebo-Regular";
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.04px;
+    vertical-align: middle;
+    /* text-transform: capitalize; */
+    color: #616161;
+  }
+  .finalEmbroidery_info ul {
+    padding-left: 25px;
+    margin: 9px 0 24px 0;
+  }
+  .finalEmbroidery_info_button-group {
+    justify-content: space-between;
+    gap: 24px;
+    width: 100%;
+    display: flex;
+  }
+  button.reset-btn.finalEmbroidery_info_button-group_reset {
+    width: 100%;
+    border: 2px solid #e5e5e5;
+    background: #fff;
+    min-height: 42px;
+    color: #2b2930;
+    cursor: pointer;
+    font-family: "Heebo-Medium";
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 20px;
+    letter-spacing: 1.2px;
+    text-align: center;
+    vertical-align: middle;
+    text-transform: uppercase;
+  }
+  button.add-btn.finalEmbroidery_info_button-group_add {
+    width: 100%;
+    border: 2px solid #e5e5e5;
+    background: #462d8c;
+    min-height: 42px;
+    color: #fff;
+    cursor: pointer;
+    font-family: "Heebo-Medium";
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 20px;
+    letter-spacing: 1.2px;
+    text-align: center;
+    vertical-align: middle;
+    text-transform: uppercase;
+  }
+  /* embroidery-Popup-First */
+  .embroidery-popup-content {
+    overflow-y: scroll;
+  }
+  input.engravingcontainerLineInput {
+    border: 1px solid #2c2c2c;
+    height: 42px;
+    border-radius: 0;
+    background: #fff;
+    width: 100%;
+    padding: 16px;
+  }
+  input#engravingLine1 {
+    margin-top: 4px;
+  }
+  input#engravingLine2 {
+    margin-top: 8px;
+  }
+  
+  .message-wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 4px;
+  }
+  small.error-message {
+    font-family: "Heebo-Regular";
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0.4px;
+    text-align: center;
+    vertical-align: middle;
+  }
+  .engraving-form-container span.char-count {
+    font-family: "Heebo-Regular";
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0.4px;
+    text-align: end;
+    vertical-align: middle;
+    text-transform: capitalize;
+  }
+  .embformColorcontainer span.color-swatch {
+    width: 18px;
+    height: 18px;
+    border-radius: 10px;
+    display: block;
+  }
+  .embformColorcontainer .text-color-options {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 10px;
+    padding-left: 5px;
+  }
+  span.current-selected-colorText {
+    font-family: Heebo-Medium;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0.1px;
+    vertical-align: middle;
+    text-transform: capitalize;
+    color: #332d41;
+  }
+  span#current-selected-color {
+    color: #616161;
+    font-family: "Heebo-Regular";
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0.1px;
+    vertical-align: middle;
+    text-transform: capitalize;
+    margin-left: 4px;
+  }
+  .embformColorcontainer {
+    margin-top: 20px;
+  }
+  button.style-button.block-style {
+    width: 84px;
+    height: 42px;
+    background: #482f8f;
+    padding: 11px 24px;
+    border: 1px solid #482f8f;
+  }
+  .engraving-style-buttons .fontTypeScriptBlock span {
+    font-family: "Roboto";
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    vertical-align: middle;
+    color: #462d8c;
+    margin: 0;
+    letter-spacing: 1px;
+  }
+  .engraving-style-buttons .font-type-option {
+    width: 84px;
+    height: 42px;
+    background: #fff;
+    border: 1px solid #79747e;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+  .engraving-style-buttons .font-type-selector {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 10px;
+  }
+  .engraving-style-buttons .fontTypeScriptBlock1 span {
+    font-family: Bookscript;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 20px;
+    letter-spacing: 0.1px;
+    text-align: center;
+    vertical-align: middle;
+    color: #462d8c;
+    margin: 0;
+  }
+  .engraving-style-buttons {
+    margin-top: 12px;
+    margin-bottom: 24px;
+  }
+  
+  .embformColorcontainer .text-color-options input {
+    display: none;
+  }
+  .text-color-option input[type="radio"] {
+    display: none;
+  }
+  
+  .text-color-option {
+    cursor: pointer;
+  }
+  
+  .text-color-option.activess {
+    border-radius: 50%;
+    border: 2px solid white;
+    outline: 2px solid #000;
+    outline-offset: 2px;
+    /* width: 20.5px;
+    height: 20px; */
+  }
+  
+  .font-type-selector input[type="radio"] {
+    display: none;
+  }
+  
+  .font-type-option {
+    cursor: pointer;
+  }
+  
+  .font-type-option.activess {
+    background: #482f8f;
+    border: 1px solid #482f8f;
+  }
+  
+  .font-type-option.activess span {
+    color: #ffffff !important;
+  }
+  span.current-selected-colorTextPrice {
+    font-family: "Heebo-Medium";
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 1.2px;
+    text-align: center;
+    vertical-align: middle;
+    text-transform: uppercase;
+  }
+  .second-text-color-selector {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 16px;
+  }
+  .second-text-color-selector_limited {
+    margin-top: 16px;
+  }
+  .second-text-color-selector span.current-selected-colorText {
+    margin-bottom: 6px;
+  }
+  .embroidery_classic_IconWrapper_classic
+    input[type="radio"]:checked
+    + label
+    img {
+    border: 1.5px solid #462d8c;
+  }
+  .embroidery_classic_IconWrapper_classic input[type="radio"] + label img {
+    border: 1.5px solid transparent; /* Default border */
+    transition: border 0.3s ease;
+  }
+  .embroidery_classic_IconWrapper_classic input,
+  .recustomUploadImageEmbroidery input {
+    display: none;
+  }
+  
+  /* Container for all the icon grids */
+  .embroidery_classic_IconWrapper_classic_classicked,
+  .embroidery_classic_IconWrapper_classic_limited {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .customLOGO_testSaparater .customLOGO_testSaparater_current-selected-colorText {
+    font-family: "Heebo-Medium";
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.1px;
+    vertical-align: middle;
+    color: #1e192b;
+    margin-top: 16px;
+  }
+  .customLOGO_testSaparater {
+    display: flex;
+    flex-direction: column;
+  }
+  .embroidery_classic_IconWrapper_classic label {
+    line-height: 0;
+    width: 56px;
+  }
+  .recustomUploadImageEmbroidery label {
+    border: 1px solid #2c2c2c;
+    padding: 14px 28px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: Heebo-Regular;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.04px;
+    text-align: center;
+    vertical-align: middle;
+    text-transform: capitalize;
+    color: #616161;
+  }
+  span.customLOGO_testSaparater_current-selected-colorText.customLogo {
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    margin-bottom: 6px;
+  }
+  .embroidery-popup-description.emb-padding.emb-msgupdated {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 73px;
+    background: #fff;
+    z-index: 9;
+    width: 100%;
+    padding-bottom: 5px;
+  }
+  .preview-text-overlay {
+    position: absolute;
+    top: 44%;
+    left: 77%;
+    transform: translate(-50%, -50%);
+    font-family: "Heebo-Medium";
+    color: #fff;
+    text-align: center;
+    z-index: 2;
+    pointer-events: none;
+    font-size: 14px;
+    line-height: 1.25;
+    width: 100%;
+  }
+  .preview-text-overlay-svg {
+    position: absolute;
+    top: 44%;
+    left: 75%;
+    transform: translate(-50%, -50%);
+    font-family: Heebo-Medium;
+    color: #fff;
+    text-align: center;
+    z-index: 2;
+    pointer-events: none;
+    font-size: clamp(8px, 1vw, 32px);
+    line-height: 1.25;
+  }
+  .preview-text-overlay-svg p {
+    font-family: "Heebo-Regular";
+    font-weight: 400;
+    font-size: 8px;
+    line-height: 20px;
+    letter-spacing: 0.1%;
+    text-align: center;
+    vertical-align: middle;
+    text-transform: capitalize;
+    margin: 0;
+    color: #79747e;
+  }
+  .preview-image-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+    font-family: "Heebo-Medium";
+    color: #fff;
+    text-align: center;
+    z-index: 2;
+    pointer-events: none;
+  }
+  @media (max-width: 1100px and min-width: 1024px) {
+    .embroidery-popup-description.emb-padding.emb-msgupdated {
+      flex-direction: column;
+    }
+  }
+  label.EmbSelected_title {
+    font-family: "Heebo-Regular";
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0.001px;
+    vertical-align: middle;
+  }
+  span.EmbSelected_price {
+    font-family: Heebo-Medium;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0.001px;
+    vertical-align: middle;
+    color: #282828;
+    margin: 15px 0 0;
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+  }
+  span.compare-at-price {
+    font-family: "Heebo-Regular";
+    font-weight: 400;
+    font-size: 8px;
+    leading-trim: Cap height;
+    line-height: 10px;
+    letter-spacing: 0%;
+    text-align: right;
+    vertical-align: bottom;
+    text-decoration: line-through;
+    color: #b3b3b3;
+  }
+  span#fileNameText {
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .embroidery-popup-input_iconcontainer svg {
+    transition: transform 0.3s ease;
+  }
+  
+  .emb-rotated {
+    transform: rotate(90deg);
+  }
+  
+  button.add-btn.popup-contentsecondlvl_add {
+    width: 100%;
+    border: 2px solid #e5e5e5;
+    background: #462d8c;
+    min-height: 42px;
+    color: #fff;
+    cursor: pointer;
+    font-family: "Heebo-Medium";
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 20px;
+    letter-spacing: 1.2px;
+    text-align: center;
+    vertical-align: middle;
+    text-transform: uppercase;
+  }
+  button.reset-btn.popup-contentsecondlvl_reset {
+    width: 100%;
+    border: 2px solid #e5e5e5;
+    background: #fff;
+    min-height: 42px;
+    color: #2b2930;
+    cursor: pointer;
+    font-family: "Heebo-Medium";
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 20px;
+    letter-spacing: 1.2px;
+    text-align: center;
+    vertical-align: middle;
+    text-transform: uppercase;
+  }
+  .embroidery-popup-input.emb-padding .button-group {
+    display: none;
+    justify-content: space-between;
+    gap: 24px;
+    width: 100%;
+  }
+  .engraving-info li {
+    font-family: "Heebo-Regular";
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 20px;
+    letter-spacing: 0.001px;
+    color: #999999;
+  }
+  .engraving-info ul {
+    padding-left: 15px;
+  }
+  .engraving-info {
+    display: none;
+    margin-top: 22px;
+    margin-bottom: 24px;
+  }
+  span.char-count.char-countsize {
+    text-align: end;
+  }
+  .embroidery-popup_option span.checkmark {
+    cursor: pointer;
+  }
+  .engraving-form-container_transformation {
+    position: relative;
+  }
+  .text_trasformation_name1 {
+    border: 1px solid #f2f2f7;
+    position: absolute;
+    right: 4px;
+    bottom: 4px;
+    display: flex;
+    cursor: pointer;
+    width: 36px;
+    height: 34px;
+    align-items: center;
+    justify-content: center;
+    background: #f2f2f7;
+  }
+  .text_trasformation_name1.text_trasformation_name_designation.background_text {
+    background: #462d8c;
+    border: 1px solid #462d8c;
+  }
+  .text_trasformation_name1.text_trasformation_name_designation p {
+    margin: 0;
+    font-family: "Heebo-Medium";
+    font-weight: 500;
+    font-size: 14px;
+    leading-trim: Cap height;
+    line-height: 1;
+    letter-spacing: -0.1px;
+    vertical-align: middle;
+  }
+  .text_trasformation_name1.text_trasformation_name_designation.background_text
+    p {
+    color: #fff;
+    border-bottom: 2px solid #fff;
+  }
+  p.text_trasformation_name_small {
+    border-bottom: 2px solid rgb(242, 242, 247);
+  }
+  .embroidery_classic_IconWrapper_classic img {
+    width: 100%;
+    height: auto;
+    background: #d2d1d6;
+  }
+  @media (max-width: 1024px) {
+    img.Embroidery_usp-image_desk {
+      display: none;
+    }
+    .embroidery-popup-overlay {
+      margin: 0;
+    }
+    .embroidery-popup-description.emb-padding.emb-msgupdated {
+      position: unset;
+    }
+    img.Embroidery_usp-image_mob {
+      display: block;
+    }
+    /* popup  */
+    .embroidery-popup-container {
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      padding-bottom: 32px;
+      top: 0px;
+      max-height:100%;
+      position: absolute;
+      overflow-y: scroll;
+      overflow: auto;
+      overflow-x:  hidden;
+    }
+    .embroidery-popup-image,
+    .embroidery-popup-content {
+      width: 100%;
+    }
+    .embroidery-popup-content {   
+      padding: 1px 16px 18px;
+    }
+    .embroidery-popup-content h4 {
+      display: none;
+    }
+    .embroidery-popup-description.emb-padding {
+      justify-content: center;
+    }
+    .text-color-option.activess {
+      width: 22px;
+      height: 22px;
+    }
+    .engraving-info,
+    .engraving-info ul {
+      margin-top: 0;
+    }
+    .preview-text-overlay {
+      top: 57%;
+      left: 75%;
+      font-size: 12px;
+      width: 100%;
+      letter-spacing: 0;
+    }
+    .preview-image-wrapper {
+      top: 67%;
+      left: 24%;
+    }
+    .preview-text-overlay-svg{top: 50%;}
+  .embroidery-popup-container .titleembroideryformobile{display:flex;}
+  .embroidery-close-popup{display:none;}
+  
+  
+  
+  }
+  
+  @media(max-width: 350px){
+    span#current-selected-color {font-size: 13px;margin-left: unset;}
+    span.current-selected-colorTextPrice {font-size: 12px;}
+    .embroidery-popup-description.emb-padding p {font-size: 14px;}
+  }
+  @media (min-width: 1024px) {
+    .embroidery-popup-container {
+      top: 54%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .preview-text-overlay {font-size: 15px;}
+  }
+  @media screen and (min-width: 767px) and (max-width: 1024px) {
+    .embroidery-popup-container {
+      max-height: fit-content;
+      top: unset;
+      transform: translate(0px, 0px);
+      left: unset;
+    }
+    .bodyEmbhidden:has(.embroidery-popup_input:checked) header {
+      z-index: -1 !important;
+    }
+  }

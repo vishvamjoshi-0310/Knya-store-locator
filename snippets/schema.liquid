@@ -1,0 +1,496 @@
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": {{ shop.name | json }},
+    "url": {{ request.origin | json }},
+    "logo": "https://cdn.shopify.com/s/files/1/0562/9247/5063/files/knya_logo_500x150_10e3d37e-4db1-4821-8a43-cd9d80c87dce_300x.png?v=1685012514",
+    "sameAs": [
+      "https://www.instagram.com/knyamed/",
+      "https://www.linkedin.com/company/knya-med/",
+      "https://www.facebook.com/knyamed/"
+
+    ]
+  }
+</script>
+
+{% if template.name == 'product' %}
+  {% assign judgme_review = product.metafields.judgeme.badge %}
+  {% assign judgme_widget_review = product.metafields.judgeme.widget %}
+  {% assign average_rating = judgme_review | split: "data-average-rating='" | last | split: "'" | first %}
+  {% assign number_of_reviews = judgme_review | split: "data-number-of-reviews='" | last | split: "'" | first %}
+  {% assign first_variant = product.selected_or_first_available_variant %}
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "{{ product.title | escape }}",
+      "image": [
+        "{{ product.featured_image | img_url: 'master' | absolute_url }}"
+      ],
+      "description": "{{ product.description | strip_html | escape }}",
+      "sku": "{{ first_variant.sku }}",
+      "brand": {
+        "@type": "Brand",
+        "name": "Knya"
+      },
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "{{ shop.currency }}",
+        "price": "{{ product.price | money_without_currency | replace: ',', '' }}",
+        "availability": "https://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}",
+        "url": "{{ shop.url }}{{ product.url }}"
+      }
+     {% if product.metafields.judgeme.badge %}
+      ,
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "{{ average_rating }}",
+        "reviewCount": "{{ number_of_reviews }}"
+      }
+    {% endif %}
+
+    }
+  </script>
+
+  {% if product.metafields.judgeme.badge %}
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "{{ reviewer_name }}"
+        },
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "{{ average_rating }}",
+          "bestRating": "{{ number_of_reviews }}"
+        },
+        "reviewBody": "{{ reviewBody }}"
+      }
+    </script>
+  {% endif %}
+{% endif %}
+
+{% if template.name == 'collection' %}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "{{ collection.title }}",
+      "description": "{{ collection.description | strip_html | escape }}",
+      "url": "{{ shop.url }}{{ collection.url }}",
+      "itemListElement": [
+        {% for product in collection.products %}
+        {
+          "@type": "Product",
+          "name": "{{ product.title | escape }}",
+          "image": "{{ product.featured_image | img_url: 'master' | absolute_url }}",
+          "url": "{{ shop.url }}{{ product.url }}",
+          "offers": {
+            "@type": "Offer",
+            "priceCurrency": "{{ shop.currency }}",
+            "price": "{{ product.price | money_without_currency | replace: ',', '' }}",
+            "availability": "https://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}"
+          }
+        }{% unless forloop.last %},{% endunless %}
+        {% endfor %}
+      ]
+    }
+  </script>
+{% endif %}
+
+{% if template.name == 'article' %}
+  <script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": {{ article.title | json }},
+    "image": {{ article.image | img_url: 'master' | absolute_url | json }},
+    "author": {
+    "@type": "Person",
+    "name": {{ article.author | json }}
+    },
+    "publisher": {
+    "@type": "Organization",
+    "name": {{ shop.name | json }},
+    "logo": {
+    "@type": "ImageObject",
+    "url": "https://cdn.shopify.com/s/files/1/0562/9247/5063/files/knya_logo_500x150_10e3d37e-4db1-4821-8a43-cd9d80c87dce_300x.png?v=1685012514"
+    }
+    },
+    "datePublished": "{{ article.published_at | date: '%Y-%m-%d' }}",
+    "dateModified": "{{ article.updated_at | date: '%Y-%m-%d' }}",
+    "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ shop.url }}{{ article.url }}"
+    }
+    {% if article.excerpt != blank %},
+    "description": {{ article.excerpt | strip_html | json }}
+    {% endif %}
+    }
+  </script>
+{% endif %}
+
+{% if template.name == 'blog' %}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "name": "{{ blog.title | escape }}",
+      "url": "{{ shop.url }}{{ blog.url }}",
+      "description": "{{ blog.description | strip_html | escape }}",
+      "blogPost": [
+        {% for article in blog.articles %}
+        {
+          "@type": "BlogPosting",
+          "headline": "{{ article.title | escape }}",
+          "url": "{{ shop.url }}{{ article.url }}",
+          "datePublished": "{{ article.published_at | date: '%Y-%m-%d' }}"
+        }{% unless forloop.last %},{% endunless %}
+        {% endfor %}
+      ]
+    }
+  </script>
+{% endif %}
+
+{% if template.name == 'product' %}
+  {% assign producthandle = product.handle %}
+  {% if producthandle == 'classic-womens-navy-blue-3-pocket-new-gen-scrub-top' %}
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        "name": "Classic V-Neck Women's Scrub Top with 3 Pockets & Loop | Knyamed",
+        "url": "https://knyamed.com/products/classic-womens-navy-blue-3-pocket-new-gen-scrub-top",
+        "image": [
+          "https://knyamed.com/cdn/shop/files/1_36_f708815d-e636-4d70-af59-b4c8dbdc1e7d.jpg?v=1739900782&width=700",
+          "https://knyamed.com/cdn/shop/files/2_33_05f9980a-a152-4614-a5fc-4d13d5774039.jpg?v=1739900782&width=700",
+          "https://knyamed.com/cdn/shop/files/5_31_c2087482-d2ac-4e5f-9fb8-c541f172ed34.jpg?v=1739900782&width=700"
+        ],
+        "description": "Engineered for the demands of a 12-hour shift, our Classic New Gen Scrub Top provides exceptional comfort and a professional, structured fit that's never baggy or boxy.  Crafted with our proprietary poly-viscose fabric, it offers the perfect balance of durability and soft, breathable comfort for female doctors and nurses in Indian hospitals and clinics. [cite: 324, 325]",
+        "brand": {
+          "@type": "Brand",
+          "name": "Knyamed"
+        },
+        "offers": {
+          "@type": "Offer",
+          "url": "https://knyamed.com/products/classic-womens-navy-blue-3-pocket-new-gen-scrub-top",
+          "priceCurrency": "INR",
+          "price": "1099",
+          "availability": "https://schema.org/InStock",
+          "seller": {
+            "@type": "Organization",
+            "name": "Knyamed"
+          }
+        },
+        "audience": {
+          "@type": "Audience",
+          "audienceType": "Female healthcare professionals, doctors, and nurses.",
+          "geographicArea": {
+            "@type": "Country",
+            "name": "India"
+          }
+        },
+        "material": "Poly-viscose blend",
+        "color": "Navy Blue",
+        "category": "Apparel & Accessories > Clothing > Uniforms > Scrubs",
+        "additionalProperty": [
+          {
+            "@type": "PropertyValue",
+            "name": "Number of Pockets",
+            "value": "3"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Special Feature",
+            "value": "ID Badge Loop"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Fit",
+            "value": "Structured, Tailored Fit (Non-baggy)"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Design Feature",
+            "value": "Side Slits for easy movement"
+          }
+        ]
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Does this scrub top have a loop for my ID badge?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, it includes a convenient and durable ID badge loop on the shoulder for easy access and display. [cite: 340]"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How many pockets does this V-neck top have?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "This top features three functional pockets: two spacious lower pockets and one chest pocket. [cite: 342]"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is this scrub top comfortable enough for long 12-hour shifts?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Absolutely. It's designed with a breathable poly-viscose fabric and side slits for easy movement, making it a favorite among healthcare professionals for long and demanding shifts. [cite: 344]"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Will this scrub top look baggy or boxy?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No, this top is designed with back-darts to provide a more structured and professional fit, ensuring it looks tailored and not boxy. [cite: 346]"
+            }
+          }
+        ]
+      }
+    </script>
+  {% elsif producthandle == 'ecoflex-mens-5-pocket-active-navy-blue-scrub' %}
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        "name": "EcoFlex Men's 5-Pocket Active Navy Blue Scrub | Knyamed",
+        "url": "https://knyamed.com/products/ecoflex-mens-5-pocket-active-navy-blue-scrub",
+        "image": [
+          "https://knyamed.com/cdn/shop/files/11-12392-Recovereda.jpg?v=1739900756&width=700",
+          "https://knyamed.com/cdn/shop/files/21-12407aa.jpg?v=1739900756&width=700",
+          "httpshttps://knyamed.com/cdn/shop/files/31-12443a.jpg?v=1739900756&width=700"
+        ],
+        "description": "Experience unmatched flexibility and performance with Knya’s EcoFlex Men's 5-Pocket Active Navy Blue Scrub. Designed with our premium EcoFlex™ stretch fabric, this scrub ensures all-day comfort, breathability, and durability—ideal for doctors, surgeons, and medical staff during long shifts. Its 5 functional pockets and modern athletic fit provide style and utility in equal measure.",
+        "brand": {
+          "@type": "Brand",
+          "name": "Knyamed"
+        },
+        "offers": {
+          "@type": "Offer",
+          "url": "https://knyamed.com/products/ecoflex-mens-5-pocket-active-navy-blue-scrub",
+          "priceCurrency": "INR",
+          "price": "1699",
+          "availability": "https://schema.org/InStock",
+          "seller": {
+            "@type": "Organization",
+            "name": "Knyamed"
+          }
+        },
+        "audience": {
+          "@type": "Audience",
+          "audienceType": "Male healthcare professionals, doctors, surgeons, and nurses",
+          "geographicArea": {
+            "@type": "Country",
+            "name": "India"
+          }
+        },
+        "material": "EcoFlex™ 4-way stretch polyester-spandex blend",
+        "color": "Navy Blue",
+        "category": "Apparel & Accessories > Clothing > Uniforms > Scrubs",
+        "additionalProperty": [
+          {
+            "@type": "PropertyValue",
+            "name": "Number of Pockets",
+            "value": "5"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Fit",
+            "value": "Active Athletic Fit"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Special Feature",
+            "value": "Moisture-wicking and wrinkle-resistant fabric"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Design Feature",
+            "value": "Back yoke and side vents for enhanced mobility"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Sustainability",
+            "value": "Eco-friendly fabric made with recycled polyester"
+          }
+        ]
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What makes the EcoFlex Men's Scrub different from regular scrubs?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The EcoFlex Scrub is crafted from our proprietary 4-way stretch fabric, offering enhanced flexibility, moisture-wicking comfort, and durability ideal for high-performance medical professionals."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does this scrub have enough pockets for daily use?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, it features 5 functional pockets, including two spacious lower pockets, one chest pocket, and two hidden utility pockets for essentials."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is the fabric suitable for long 12-hour hospital shifts?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Absolutely. The EcoFlex fabric ensures stretch, breathability, and comfort for long shifts, keeping you cool and comfortable throughout."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is this scrub environmentally friendly?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, the EcoFlex Scrub is made using recycled polyester fibers, promoting sustainability without compromising on performance or comfort."
+            }
+          }
+        ]
+      }
+    </script>
+
+  {% elsif producthandle == '6sense-black-stethoscope' %}
+    <script type="application/ld+json">
+      [
+        {
+          "@context": "https://schema.org/",
+          "@type": "Product",
+          "name": "Dual-Lumen Stethoscope with Free Engraving (Made in India) | Knyamed 6sense",
+          "image": "https://knyamed.com/cdn/shop/files/6SENSE_BLACK_1_1800x1800.jpg",
+          "description": "Engineered in India for general physicians and specialists who demand precision, the Knyamed 6sense is the ultimate all-around stethoscope for clear sound and reliable diagnostics.",
+          "brand": {
+            "@type": "Brand",
+            "name": "Knyamed"
+          },
+          "offers": {
+            "@type": "Offer",
+            "url": "https://knyamed.com/products/6sense-black-stethoscope",
+            "priceCurrency": "INR",
+            "price": "2499.00",
+            "availability": "https://schema.org/InStock",
+            "itemCondition": "https://schema.org/NewCondition"
+          }
+        },
+        {
+          "@context": "https://schema.org/",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Is this a good stethoscope for a general physician in India?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes, the 6sense is an ideal all-around stethoscope for general physicians. It's designed in India, offers high acoustic clarity for both adult and pediatric use, and is priced under ₹2500."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Does this stethoscope have dual-lumen tubing?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes, it features advanced dual-lumen tubing, which is crucial for reducing noise interference and ensuring diagnostic accuracy."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can I get my name engraved on it?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Absolutely. We offer free custom name engraving to personalize your stethoscope. Engraved orders require an additional 3-5 business days for dispatch."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Do you offer a trial period?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes, we offer a 7-day risk-free trial on all non-engraved stethoscopes."
+              }
+            }
+          ]
+        }
+      ]
+    </script>
+
+  {% elsif producthandle == 'women-s-focus-lab-coat-apron' %}
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        "name": "Focus Women's Short Lightweight Lab Coat (3 Pockets)",
+        "image": "https://knyamed.com/cdn/shop/files/1_95.jpg?v=1739900689&width=700",
+        "description": "The Focus Lab Coat Apron is an ultra-lightweight and breathable lab coat for medical students and professionals, featuring a modern short-length fit and three pockets.",
+        "brand": {
+          "@type": "Brand",
+          "name": "Knya"
+        },
+        "offers": {
+          "@type": "Offer",
+          "url": "https://knyamed.com/products/women-s-focus-lab-coat-apron",
+          "priceCurrency": "INR",
+          "price": "649.00",
+          "availability": "https://schema.org/InStock"
+        }
+      }
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org/",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is this lab coat lightweight enough for a student?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, it is ultra-lightweight and breathable, making it an ideal choice for medical students who need all-day comfort."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the length of this lab coat?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "This is a modern, short-length lab coat designed to sit above the knee. It comes with full-length sleeves."
+            }
+          }
+        ]
+      }
+    </script>
+  {% endif %}
+{% endif %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": {{ shop.name | json }},
+  "url": {{ request.origin | json }},
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "{{ shop.url }}/search?q={search_term_string}",   
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>

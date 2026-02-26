@@ -1,0 +1,483 @@
+{% assign block_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .horizon-language-selector-{{ block_id }} {
+    position: relative;
+    display: inline-block;
+  }
+
+  .horizon-language-button-{{ block_id }} {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: {{ block.settings.button_padding_vertical }}px {{ block.settings.button_padding_horizontal }}px;
+    background-color: {{ block.settings.button_background }};
+    color: {{ block.settings.button_text_color }};
+    border: {{ block.settings.button_border_width }}px solid {{ block.settings.button_border_color }};
+    border-radius: {{ block.settings.button_border_radius }}px;
+    cursor: pointer;
+    font-size: {{ block.settings.button_font_size }}px;
+    transition: all 0.3s ease;
+  }
+
+  .horizon-language-button-{{ block_id }}:hover {
+    background-color: {{ block.settings.button_hover_background }};
+    color: {{ block.settings.button_hover_text_color }};
+  }
+
+  .horizon-language-icon-{{ block_id }} {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .horizon-language-icon-{{ block_id }} svg {
+    width: 100%;
+    height: 100%;
+    stroke: currentColor;
+  }
+
+  .horizon-language-dropdown-{{ block_id }} {
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 0;
+    min-width: {{ block.settings.dropdown_min_width }}px;
+    background-color: {{ block.settings.dropdown_background }};
+    border: {{ block.settings.dropdown_border_width }}px solid {{ block.settings.dropdown_border_color }};
+    border-radius: {{ block.settings.dropdown_border_radius }}px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+    z-index: 1000;
+    max-height: {{ block.settings.dropdown_max_height }}px;
+    overflow-y: auto;
+  }
+
+  .horizon-language-dropdown-{{ block_id }}.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .horizon-language-list-{{ block_id }} {
+    list-style: none;
+    margin: 0;
+    padding: {{ block.settings.dropdown_padding }}px;
+  }
+
+  .horizon-language-item-{{ block_id }} {
+    padding: {{ block.settings.item_padding_vertical }}px {{ block.settings.item_padding_horizontal }}px;
+    cursor: pointer;
+    color: {{ block.settings.dropdown_text_color }};
+    font-size: {{ block.settings.dropdown_font_size }}px;
+    border-radius: {{ block.settings.item_border_radius }}px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    display: block;
+    text-decoration: none;
+  }
+
+  .horizon-language-item-{{ block_id }}:hover {
+    background-color: {{ block.settings.item_hover_background }};
+    color: {{ block.settings.item_hover_text_color }};
+  }
+
+  .horizon-language-item-{{ block_id }}.active {
+    background-color: {{ block.settings.item_active_background }};
+    color: {{ block.settings.item_active_text_color }};
+    font-weight: 600;
+  }
+
+  .horizon-language-chevron-{{ block_id }} {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.3s ease;
+  }
+
+  .horizon-language-chevron-{{ block_id }}.rotated {
+    transform: rotate(180deg);
+  }
+{% endstyle %}
+
+<localization-form-horizon-language-{{ block_id }} class="horizon-language-selector-{{ block_id }}" {{ block.shopify_attributes }}>
+  {% form 'localization', id: 'HorizonLanguageForm', class: 'localization-form' %}
+    <input type="hidden" name="locale_code" value="{{ localization.language.iso_code }}" id="horizon-language-locale-input-{{ block_id }}">
+    
+    <button
+      type="button"
+      class="horizon-language-button-{{ block_id }}"
+      aria-expanded="false"
+      aria-haspopup="true"
+      aria-label="Select language"
+    >
+      {% if block.settings.show_icon %}
+        <span class="horizon-language-icon-{{ block_id }}">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="2" y1="12" x2="22" y2="12"></line>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+          </svg>
+        </span>
+      {% endif %}
+      <span class="horizon-language-current-{{ block_id }}">{{ localization.language.endonym_name }}</span>
+      <span class="horizon-language-chevron-{{ block_id }}">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </span>
+    </button>
+
+    <div class="horizon-language-dropdown-{{ block_id }}" role="menu">
+      <ul class="horizon-language-list-{{ block_id }}">
+        {% for language in localization.available_languages %}
+          <li>
+            <a
+              href="#"
+              class="horizon-language-item-{{ block_id }} {% if language.iso_code == localization.language.iso_code %}active{% endif %}"
+              data-value="{{ language.iso_code }}"
+              lang="{{ language.iso_code }}"
+              hreflang="{{ language.iso_code }}"
+              role="menuitem"
+            >
+              {{ language.endonym_name }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endform %}
+</localization-form-horizon-language-{{ block_id }}>
+
+<script>
+  (function() {
+    class LocalizationFormHorizonLanguage{{ block_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.button = this.querySelector('.horizon-language-button-{{ block_id }}');
+        this.dropdown = this.querySelector('.horizon-language-dropdown-{{ block_id }}');
+        this.chevron = this.querySelector('.horizon-language-chevron-{{ block_id }}');
+        this.form = this.querySelector('#HorizonLanguageForm');
+        this.hiddenInput = this.querySelector('#horizon-language-locale-input-{{ block_id }}');
+        this.languageItems = this.querySelectorAll('.horizon-language-item-{{ block_id }}');
+      }
+
+      connectedCallback() {
+        this.setupEventListeners();
+      }
+
+      setupEventListeners() {
+        this.button.addEventListener('click', (e) => {
+          e.preventDefault();
+          this.toggleDropdown();
+        });
+
+        this.languageItems.forEach((item) => {
+          item.addEventListener('click', (e) => {
+            e.preventDefault();
+            const localeCode = item.getAttribute('data-value');
+            this.selectLanguage(localeCode);
+          });
+        });
+
+        document.addEventListener('click', (e) => {
+          if (!this.contains(e.target)) {
+            this.closeDropdown();
+          }
+        });
+
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') {
+            this.closeDropdown();
+          }
+        });
+      }
+
+      toggleDropdown() {
+        const isOpen = this.dropdown.classList.contains('active');
+        if (isOpen) {
+          this.closeDropdown();
+        } else {
+          this.openDropdown();
+        }
+      }
+
+      openDropdown() {
+        this.dropdown.classList.add('active');
+        this.chevron.classList.add('rotated');
+        this.button.setAttribute('aria-expanded', 'true');
+      }
+
+      closeDropdown() {
+        this.dropdown.classList.remove('active');
+        this.chevron.classList.remove('rotated');
+        this.button.setAttribute('aria-expanded', 'false');
+      }
+
+      selectLanguage(localeCode) {
+        this.hiddenInput.value = localeCode;
+        this.form.submit();
+      }
+    }
+
+    customElements.define('localization-form-horizon-language-{{ block_id }}', LocalizationFormHorizonLanguage{{ block_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Language selector",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Button style"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_icon",
+      "label": "Show globe icon",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "button_font_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Font size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "button_padding_vertical",
+      "min": 4,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Vertical padding",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "button_padding_horizontal",
+      "min": 8,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "label": "Horizontal padding",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Border radius",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "button_border_width",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "label": "Border width",
+      "default": 1
+    },
+    {
+      "type": "header",
+      "content": "Button colors"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Text",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_border_color",
+      "label": "Border",
+      "default": "#e6e6e6"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_background",
+      "label": "Hover background",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text_color",
+      "label": "Hover text",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Dropdown style"
+    },
+    {
+      "type": "range",
+      "id": "dropdown_min_width",
+      "min": 150,
+      "max": 300,
+      "step": 10,
+      "unit": "px",
+      "label": "Minimum width",
+      "default": 200
+    },
+    {
+      "type": "range",
+      "id": "dropdown_max_height",
+      "min": 200,
+      "max": 500,
+      "step": 20,
+      "unit": "px",
+      "label": "Maximum height",
+      "default": 300
+    },
+    {
+      "type": "range",
+      "id": "dropdown_padding",
+      "min": 4,
+      "max": 16,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "dropdown_border_radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Border radius",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "dropdown_border_width",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "label": "Border width",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "dropdown_font_size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Font size",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Dropdown colors"
+    },
+    {
+      "type": "color",
+      "id": "dropdown_background",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "dropdown_text_color",
+      "label": "Text",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "dropdown_border_color",
+      "label": "Border",
+      "default": "#e6e6e6"
+    },
+    {
+      "type": "header",
+      "content": "Language item style"
+    },
+    {
+      "type": "range",
+      "id": "item_padding_vertical",
+      "min": 4,
+      "max": 16,
+      "step": 2,
+      "unit": "px",
+      "label": "Vertical padding",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "item_padding_horizontal",
+      "min": 8,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "label": "Horizontal padding",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "item_border_radius",
+      "min": 0,
+      "max": 12,
+      "step": 2,
+      "unit": "px",
+      "label": "Border radius",
+      "default": 4
+    },
+    {
+      "type": "header",
+      "content": "Language item colors"
+    },
+    {
+      "type": "color",
+      "id": "item_hover_background",
+      "label": "Hover background",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "color",
+      "id": "item_hover_text_color",
+      "label": "Hover text",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "item_active_background",
+      "label": "Active background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "item_active_text_color",
+      "label": "Active text",
+      "default": "#ffffff"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Language selector"
+    }
+  ]
+}
+{% endschema %}

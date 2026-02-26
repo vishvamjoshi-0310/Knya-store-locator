@@ -1,0 +1,159 @@
+{% style %}
+  .our-fabric-section.{{ section.id }} {
+    padding-top: {{ section.settings.margin_top_desktop }}px;
+    padding-bottom: {{ section.settings.margin_bottom_desktop }}px;
+  }
+  @media only screen and (max-width: 749px) {
+    .our-fabric-section.{{ section.id }} {
+      padding-top: {{ section.settings.margin_top_mobile }}px;
+      padding-bottom: {{ section.settings.margin_bottom_mobile }}px;
+      padding-right: 0;
+    }
+  }
+{% endstyle %}
+<style>
+  .fabric-image_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 24px;
+    margin-top: 12px;
+  }
+  h2.fabric-heading{
+    font-family: 'Heebo-Medium';
+    font-weight: 500;
+    font-size: 32px;
+    margin: 0;
+    line-height: 40px;
+    color: #462D8C;
+  }
+  p.fabric-subheading{
+    font-family: 'Heebo-Regular';
+    font-size: 14px;
+    margin: 0;
+    line-height: 20px;
+    color: #4C5460;
+  }
+  .fabric-image_container img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+  .inner-fabric-image{
+    line-height: 0;
+  }
+  @media only screen and (max-width: 749px) {
+    .fabric-image_container{
+        column-gap: 12px;
+        width: max-content;
+    }
+    .fabric-image_container .image-block{
+        width: 100%;
+    }
+    .fabric-image_container img {
+        aspect-ratio: 238/370;
+        max-width: 238px;
+    }
+    h2.fabric-heading{
+        font-size: 24px;
+        line-height: 32px;
+    }
+    p.fabric-subheading{
+        font-size: 16px;
+        line-height: 24px;
+        display: none;
+    }
+    .fabric-image_container .inner-fabric-image {
+        min-width: 84.6155vw;
+    }
+    .fabric-image_container-mob-overflow{
+        overflow-x: scroll;
+    }
+
+    .fabric-image_container-mob-overflow div.image-block:last-child{
+      padding-right: 20px;
+    }
+  }
+</style>
+<div class="our-fabric-section {{section.settings.custom_text_class}} {{ section.id }}">
+  <h2 class="fabric-heading page-width">{{ section.settings.fabricheading_text }}</h2>
+  <p class="fabric-subheading page-width">{{ section.settings.fabricsubheading_text }}</p>
+  <div class="fabric-image_container-mob-overflow">
+      <div class="fabric-image_container">
+            {% content_for 'blocks' %}
+      </div>
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "Our fabric Section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "fabricheading_text",
+        "label": "Heading"
+      },
+      {
+        "type": "text",
+        "id": "fabricsubheading_text",
+        "label": "Sub heading"
+      },
+      {
+        "type": "range",
+        "id": "margin_top_desktop",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding Top Desktop",
+        "default": 24
+      },
+      {
+        "type": "range",
+        "id": "margin_bottom_desktop",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding Bottom Desktop",
+        "default": 24
+      }, {
+        "type": "range",
+        "id": "margin_top_mobile",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding Top Mobile",
+        "default": 12
+      }, {
+        "type": "range",
+        "id": "margin_bottom_mobile",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding Bottom Mobile",
+        "default": 12
+      },
+      {
+        "type": "text",
+        "id": "custom_text_class",
+        "label": "Custom Class"
+      },
+    ],
+    "blocks": [
+      {
+        "type": "image",
+      },
+      {
+        "type": "_featured_card",
+      }
+    ],
+    "presets": [
+      {
+        "name": "Our fabric Section"
+      }
+    ]
+  }
+{% endschema %}

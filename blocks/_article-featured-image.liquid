@@ -1,0 +1,76 @@
+
+{%- doc -%}
+  Renders the article featured image block.
+{%- enddoc -%}
+
+{% liquid
+  assign block_settings = block.settings
+  if article != blank
+    assign article_image = article.image
+  elsif closest.article != blank
+    assign article_image = closest.article.image
+  else
+    assign article_image = null
+  endif
+%}
+
+{%- if article_image -%}
+  <div class="article-template__hero-container" {{ block.shopify_attributes }}>
+    <div
+      class="article-template__hero-{{ block_settings.image_height }} media"
+      itemprop="image"
+    >
+      <img
+        srcset="
+          {% if article_image.width >= 350 %}{{ article_image | image_url: width: 350 }} 350w,{% endif %}
+          {% if article_image.width >= 750 %}{{ article_image | image_url: width: 750 }} 750w,{% endif %}
+          {% if article_image.width >= 1100 %}{{ article_image | image_url: width: 1100 }} 1100w,{% endif %}
+          {% if article_image.width >= 1500 %}{{ article_image | image_url: width: 1500 }} 1500w,{% endif %}
+          {% if article_image.width >= 2200 %}{{ article_image | image_url: width: 2200 }} 2200w,{% endif %}
+          {% if article_image.width >= 3000 %}{{ article_image | image_url: width: 3000 }} 3000w,{% endif %}
+          {{ article_image | image_url }} {{ article_image.width }}w
+        "
+        sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 }}px, (min-width: 750px) calc(100vw - 10rem), 100vw"
+        src="{{ article_image | image_url: width: 1100 }}"
+        loading="eager"
+        width="{{ article_image.width }}"
+        height="{{ article_image.height }}"
+        alt="{{ article_image.alt | escape }}"
+      >
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "t:sections.main-article.blocks.featured_image.name",
+  "settings": [
+    {
+      "type": "select",
+      "id": "image_height",
+      "options": [
+        {
+          "value": "adapt",
+          "label": "t:sections.main-article.blocks.featured_image.settings.image_height.options__1.label"
+        },
+        {
+          "value": "small",
+          "label": "t:sections.main-article.blocks.featured_image.settings.image_height.options__2.label"
+        },
+        {
+          "value": "medium",
+          "label": "t:sections.main-article.blocks.featured_image.settings.image_height.options__3.label"
+        },
+        {
+          "value": "large",
+          "label": "t:sections.main-article.blocks.featured_image.settings.image_height.options__4.label"
+        }
+      ],
+      "default": "adapt",
+      "label": "t:sections.main-article.blocks.featured_image.settings.image_height.label",
+      "info": "t:sections.main-article.blocks.featured_image.settings.image_height.info"
+    }
+  ]
+}
+{% endschema %}
+

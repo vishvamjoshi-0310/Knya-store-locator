@@ -1,0 +1,97 @@
+{%- assign block_settings = block.settings -%}
+<div class="product-title__share-group-container">
+<div class="product-title-group">
+    {% capture children %}
+        {% content_for 'blocks' %}
+    {% endcapture %}
+    {% render 'group', children: children, settings: block_settings, shopify_attributes: block.shopify_attributes %}
+</div>
+{% render 'product-share-button', product: closest.product %}
+</div>
+<style>
+.product-information > a + div {
+    display: none;
+}
+#priceMainContainer {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.product-title__share-group-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    @media screen and (max-width: 600px){
+        margin-top: 22px
+    }
+
+}
+.product-title-group div:has(.product_title) {
+    text-wrap: unset !important;
+}
+#priceMainContainer .discount-percentage {
+    font-family: Heebo-Regular;
+    font-size: clamp(14px, calc(16 * (100vw / 1440)), 18px);
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: .08px;
+    color: #000;
+    margin: unset;
+    background: #7ea7d6;
+    padding: 2px 8px;
+    width: max-content;
+
+    @media screen and (max-width: 749px) {
+        color: #000;
+        font-family: Heebo-Regular;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px;
+        letter-spacing: .06px;
+    }
+}
+#priceMainContainer .compare-at-price {
+    color: #707070;
+    font-family: Heebo-Medium;
+    font-size: clamp(22px, calc(24 * (100vw / 1440)), 26px);
+    line-height: 1.33;
+    font-weight: 500;
+    opacity: 1;
+
+    @media screen and (max-width: 749px) {
+        color: #707070;
+        font-family: Heebo-Regular;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 32px;
+        margin-right: 6px;
+    }
+}
+@media screen and (max-width: 749px) {
+    .product-information > a + div {
+        display: block;
+    }
+}
+</style>
+{% schema %}
+{
+    "name": "Product Title Group",
+    "settings": [],
+    "blocks": [
+        {
+            "type": "_pdp-badge"
+        },
+        {
+            "type": "_pdp-product-title"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Product Title Group"
+        }
+    ]
+}
+{% endschema %}

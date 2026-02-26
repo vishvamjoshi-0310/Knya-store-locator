@@ -1,0 +1,258 @@
+{{ 'product-features-stylesheet.css' | asset_url | stylesheet_tag }}
+
+<div class="medical-scrubs-section">
+  {% if section.settings.medicos_heading != blank %}
+    <div class="medicos-header">
+      <h2>{{ section.settings.medicos_heading }}</h2>
+    </div>
+  {% endif %}
+
+  {% assign feature_blocks = section.blocks | where: 'type', 'feature' %}
+  {% assign bottom_blocks = section.blocks | where: 'type', 'bottom_feature' %}
+
+  {% if feature_blocks.size > 0 %}
+    <div class="features-odd-even">
+      {% for block in feature_blocks %}
+        <div
+          class="feature-item-card"
+        >
+          <div class="feature-card-content">
+            <h3>{{ block.settings.title }}</h3>
+            <p>{{ block.settings.description }}</p>
+            <div class="shop-btns">
+              <a href="{{ block.settings.Shop-Women-url }}" class="shop-link"
+                ><span>{{ block.settings.Shop-Women-title }}</span>
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M6.75001 11.9062L9.66002 8.9962L6.75001 6.0862C6.45751 5.7937 6.45751 5.3212 6.75001 5.0287C7.04251 4.7362 7.51501 4.7362 7.80751 5.0287L11.25 8.4712C11.5425 8.7637 11.5425 9.2362 11.25 9.5287L7.80751 12.9712C7.51501 13.2637 7.04251 13.2637 6.75001 12.9712C6.46501 12.6787 6.45751 12.1987 6.75001 11.9062Z" fill="#482F8F"/>
+                </svg>
+              </a>
+              <a href="{{ block.settings.Shop-men-url }}" class="shop-link"
+                ><span>{{ block.settings.Shop-men-title }}</span>
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M6.75001 11.9062L9.66002 8.9962L6.75001 6.0862C6.45751 5.7937 6.45751 5.3212 6.75001 5.0287C7.04251 4.7362 7.51501 4.7362 7.80751 5.0287L11.25 8.4712C11.5425 8.7637 11.5425 9.2362 11.25 9.5287L7.80751 12.9712C7.51501 13.2637 7.04251 13.2637 6.75001 12.9712C6.46501 12.6787 6.45751 12.1987 6.75001 11.9062Z" fill="#482F8F"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div class="feature-image-wrapper">
+            {% if block.settings.image-desktop != blank or block.settings.image-mobile != blank  %}
+              <img
+                src="{{ block.settings.image-desktop | image_url: width: 1200 }}"
+                alt="{{ block.settings.title | escape }}"
+                class="feature-image-desktop"
+                loading="lazy"
+                width="1200"
+                height="auto"
+              >
+               <img
+                src="{{ block.settings.image-mobile | image_url: width: 500 }}"
+                alt="{{ block.settings.title | escape }}"
+                class="feature-image-mobile"
+                loading="lazy"
+                width="500"
+                height="auto"
+              >
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  {% if bottom_blocks.size > 0 %}
+    <div class="bottom-features">
+      {% for block in bottom_blocks %}
+        <div class="bottom-feature-item">
+          {% if block.settings.icon != blank %}
+            <div class="features-img-container">
+              <img
+                src="{{ block.settings.icon | image_url: width: 96 }}"
+                alt="{{ block.settings.title | escape }}"
+                class="bottom-feature-icon"
+                loading="lazy"
+                width="80"
+                height="auto"
+              >
+            </div>
+          {% endif %}
+          <h4>{{ block.settings.title }}</h4>
+          <p>{{ block.settings.description }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Medical Scrubs Features",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "medicos_heading",
+      "label": "Heading"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image-desktop",
+          "label": "Desktop Feature Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image-mobile",
+          "label": "Mobile Feature Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Feature Title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Feature description goes here."
+        },
+        {
+          "type": "text",
+          "id": "Shop-Women-title",
+          "label": "Shop Women's",
+          "default": "Shop Women's"
+        },
+        {
+          "type": "url",
+          "id": "Shop-Women-url",
+          "label": "Shop Women's Url",
+        },
+        {
+          "type": "text",
+          "id": "Shop-men-title",
+          "label": "Shop Men's",
+          "default": "Shop Men's"
+        },
+        {
+          "type": "url",
+          "id": "Shop-men-url",
+          "label": "Shop Men's Url"
+        }
+      ]
+    },
+    {
+      "type": "bottom_feature",
+      "name": "Bottom Feature",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Feature Title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Feature description."
+        },
+        {
+          "type": "url",
+          "id": "womens-url",
+          "label": "Shop Women's"
+        },
+        {
+          "type": "url",
+          "id": "mens-url",
+          "label": "Shop Men's"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Medical Scrubs Features",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "title": "Stay Warm. Stay Focused.",
+            "description": "Warm fleece lining that keeps you comfortable in AC-heavy wards and chilly nights."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "Carry What Matters.",
+            "description": "Stethoscope. Dairy. Pens. Cash. Designed with 6 utility pocket to keep your essentials close."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "Never Holds You Back.",
+            "description": "2-way stretch fabric that flexes as you round, bend, sprint, or scrub in."
+          }
+        },
+        {
+          "type": "bottom_feature",
+          "settings": {
+            "title": "Scrub Ready.",
+            "description": "Made to Layer Over Scrubs. No tugging. No bulking. Just pull on and go."
+          }
+        },
+        {
+          "type": "bottom_feature",
+          "settings": {
+            "title": "High Rise Collar.",
+            "description": "Cold Outside, Calm Inside. Keeps the chill out and your focus in."
+          }
+        },
+        {
+          "type": "bottom_feature",
+          "settings": {
+            "title": "Effortless Style.",
+            "description": "Shift-wear, Not Just Outerwear. Minimal. Modern. Designed to look sharp."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+
+<script>
+  document.querySelectorAll('.shop-link').forEach(link => {
+    link.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      const span = this.querySelector('span');
+      const svgPath = this.querySelector('svg path');
+      const targetUrl = this.getAttribute('href');
+
+      // Add clicked class on span (removes border)
+      span.style.borderColor = '#ffffff';
+
+      // Change colors to black
+      this.style.color = '#616161';
+      svgPath.setAttribute('fill', '#616161');
+
+      // Wait 500ms then navigate
+      setTimeout(() => {
+        window.location.href = targetUrl;
+      }, 500);
+    });
+  });
+</script>
+
+

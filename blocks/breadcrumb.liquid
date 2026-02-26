@@ -1,0 +1,475 @@
+
+
+{% style %}
+  .breadcrumb-container-{{ block.id }} {
+    padding-top: {{ block.settings.padding_top }}px;
+    padding-bottom: {{ block.settings.padding_bottom }}px;
+    background-color: {{ block.settings.background_color }};
+    width: 100%;
+  }
+
+  .breadcrumb-list-{{ block.id }} {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: {{ block.settings.item_gap }}px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: {{ block.settings.font_size }}px;
+    line-height: 1.5;
+  }
+
+  .breadcrumb-item-{{ block.id }} {
+    display: flex;
+    align-items: center;
+    gap: {{ block.settings.item_gap }}px;
+  }
+
+  .breadcrumb-link-{{ block.id }} {
+    color: {{ block.settings.link_color }};
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .breadcrumb-link-{{ block.id }}:hover {
+    color: {{ block.settings.link_hover_color }};
+    text-decoration: {{ block.settings.link_hover_underline }};
+  }
+
+  .breadcrumb-current-{{ block.id }} {
+    color: {{ block.settings.current_color }};
+    font-weight: {{ block.settings.current_font_weight }};
+  }
+
+  .breadcrumb-separator-{{ block.id }} {
+    color: {{ block.settings.separator_color }};
+    font-size: {{ block.settings.separator_size }}px;
+    user-select: none;
+  }
+
+  .breadcrumb-home-icon-{{ block.id }} {
+    width: {{ block.settings.home_icon_size }}px;
+    height: {{ block.settings.home_icon_size }}px;
+    stroke: currentColor;
+    fill: none;
+  }
+
+  @media screen and (max-width: 749px) {
+    .breadcrumb-container-{{ block.id }} {
+      padding-top: {{ block.settings.padding_top_mobile }}px;
+      padding-bottom: {{ block.settings.padding_bottom_mobile }}px;
+    }
+
+    .breadcrumb-list-{{ block.id }} {
+      font-size: {{ block.settings.font_size_mobile }}px;
+      gap: {{ block.settings.item_gap_mobile }}px;
+    }
+
+    .breadcrumb-item-{{ block.id }} {
+      gap: {{ block.settings.item_gap_mobile }}px;
+    }
+
+    .breadcrumb-separator-{{ block.id }} {
+      font-size: {{ block.settings.separator_size_mobile }}px;
+    }
+
+    .breadcrumb-home-icon-{{ block.id }} {
+      width: {{ block.settings.home_icon_size_mobile }}px;
+      height: {{ block.settings.home_icon_size_mobile }}px;
+    }
+  }
+{% endstyle %}
+
+<nav
+  class="breadcrumb-container-{{ block.id }} page-width-updated"
+  aria-label="Breadcrumb"
+  {{ block.shopify_attributes }}
+>
+  <div class="breadcrumb-nav-{{ block.id }}">
+    <ol class="breadcrumb-list-{{ block.id }}">
+      <li class="breadcrumb-item-{{ block.id }}">
+        <a
+          href="/"
+          class="breadcrumb-link-{{ block.id }}"
+          aria-label="Home"
+        >
+          {% if block.settings.show_home_icon %}
+            <svg
+              class="breadcrumb-home-icon-{{ block.id }}"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+          {% else %}
+            {{ block.settings.home_text }}
+          {% endif %}
+        </a>
+      </li>
+
+      {% if template == 'collection' and collection %}
+        <li class="breadcrumb-item-{{ block.id }}">
+          <span
+            class="breadcrumb-separator-{{ block.id }}"
+            aria-hidden="true"
+            >{{ block.settings.separator }}</span
+          >
+        </li>
+        <li class="breadcrumb-item-{{ block.id }}">
+          <span class="breadcrumb-current-{{ block.id }}">{{ collection.title }}</span>
+        </li>
+      {% elsif template == 'product' and product %}
+        {% if collection %}
+          <li class="breadcrumb-item-{{ block.id }}">
+            <span
+              class="breadcrumb-separator-{{ block.id }}"
+              aria-hidden="true"
+              >{{ block.settings.separator }}</span
+            >
+          </li>
+          <li class="breadcrumb-item-{{ block.id }}">
+            <a
+              href="{{ collection.url }}"
+              class="breadcrumb-link-{{ block.id }}"
+              >{{ collection.title }}</a
+            >
+          </li>
+        {% endif %}
+        <li class="breadcrumb-item-{{ block.id }}">
+          <span
+            class="breadcrumb-separator-{{ block.id }}"
+            aria-hidden="true"
+            >{{ block.settings.separator }}</span
+          >
+        </li>
+        <li class="breadcrumb-item-{{ block.id }}">
+          <span class="breadcrumb-current-{{ block.id }}">{{ product.title }}</span>
+        </li>
+      {% elsif page %}
+        <li class="breadcrumb-item-{{ block.id }}">
+          <span
+            class="breadcrumb-separator-{{ block.id }}"
+            aria-hidden="true"
+            >{{ block.settings.separator }}</span
+          >
+        </li>
+        <li class="breadcrumb-item-{{ block.id }}">
+          <span class="breadcrumb-current-{{ block.id }}">{{ page.title }}</span>
+        </li>
+      {% elsif blog %}
+        <li class="breadcrumb-item-{{ block.id }}">
+          <span
+            class="breadcrumb-separator-{{ block.id }}"
+            aria-hidden="true"
+            >{{ block.settings.separator }}</span
+          >
+        </li>
+        <li class="breadcrumb-item-{{ block.id }}">
+          <span class="breadcrumb-current-{{ block.id }}">{{ blog.title }}</span>
+        </li>
+      {% elsif article %}
+        <li class="breadcrumb-item-{{ block.id }}">
+          <span
+            class="breadcrumb-separator-{{ block.id }}"
+            aria-hidden="true"
+            >{{ block.settings.separator }}</span
+          >
+        </li>
+        <li class="breadcrumb-item-{{ block.id }}">
+          <a
+            href="{{ blog.url }}"
+            class="breadcrumb-link-{{ block.id }}"
+            >{{ blog.title }}</a
+          >
+        </li>
+        <li class="breadcrumb-item-{{ block.id }}">
+          <span
+            class="breadcrumb-separator-{{ block.id }}"
+            aria-hidden="true"
+            >{{ block.settings.separator }}</span
+          >
+        </li>
+        <li class="breadcrumb-item-{{ block.id }}">
+          <span class="breadcrumb-current-{{ block.id }}">{{ article.title }}</span>
+        </li>
+      {% elsif template == 'cart' %}
+        <li class="breadcrumb-item-{{ block.id }}">
+          <span
+            class="breadcrumb-separator-{{ block.id }}"
+            aria-hidden="true"
+            >{{ block.settings.separator }}</span
+          >
+        </li>
+        <li class="breadcrumb-item-{{ block.id }}">
+          <span class="breadcrumb-current-{{ block.id }}">Cart</span>
+        </li>
+      {% elsif template == 'search' %}
+        <li class="breadcrumb-item-{{ block.id }}">
+          <span
+            class="breadcrumb-separator-{{ block.id }}"
+            aria-hidden="true"
+            >{{ block.settings.separator }}</span
+          >
+        </li>
+        <li class="breadcrumb-item-{{ block.id }}">
+          <span class="breadcrumb-current-{{ block.id }}">Search</span>
+        </li>
+      {% endif %}
+    </ol>
+  </div>
+</nav>
+
+{% schema %}
+{
+  "name": "Breadcrumb",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "item_gap",
+      "min": 4,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Gap between items",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Mobile layout"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "item_gap_mobile",
+      "min": 4,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Gap between items",
+      "default": 6
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "link_color",
+      "label": "Link",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "link_hover_color",
+      "label": "Link hover",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "current_color",
+      "label": "Current page",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "separator_color",
+      "label": "Separator",
+      "default": "#cccccc"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Font size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "font_size_mobile",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile font size",
+      "default": 12
+    },
+    {
+      "type": "select",
+      "id": "current_font_weight",
+      "label": "Current page weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Normal"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "500"
+    },
+    {
+      "type": "header",
+      "content": "Link style"
+    },
+    {
+      "type": "select",
+      "id": "link_hover_underline",
+      "label": "Hover underline",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "underline",
+          "label": "Underline"
+        }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "header",
+      "content": "Home link"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_home_icon",
+      "label": "Show home icon",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "home_text",
+      "label": "Home text",
+      "default": "Home"
+    },
+    {
+      "type": "range",
+      "id": "home_icon_size",
+      "min": 12,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "label": "Icon size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "home_icon_size_mobile",
+      "min": 12,
+      "max": 28,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile icon size",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Separator"
+    },
+    {
+      "type": "text",
+      "id": "separator",
+      "label": "Separator character",
+      "default": "/"
+    },
+    {
+      "type": "range",
+      "id": "separator_size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "separator_size_mobile",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile size",
+      "default": 12
+    }
+  ],
+  "presets": [
+    {
+      "name": "Breadcrumb"
+    }
+  ]
+}
+{% endschema %}

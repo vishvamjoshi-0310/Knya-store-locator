@@ -1,0 +1,188 @@
+<style>
+  .login-section {
+    position: relative;
+  }
+  /* Note: If you make any changes to layout of this "main-login.liquid" section,
+  please implement the same in "main-register.liquid" section. As both have same layout now due to client requirement. */
+
+  .login-container {
+    max-width: 960px;
+    margin: 160px auto;
+    display: flex;
+    gap: 16.66%;
+  }
+  .register-section {
+    margin-right: 8.33%;
+  }
+
+  .sl-wrapper a.social_login.facebook,
+  .sl-wrapper a.social_login.google {
+    border-radius: 6px;
+  }
+
+  @media screen and (max-width: 768px) {
+    .login-container {
+      max-width: 768px;
+      margin: 64px auto;
+      flex-wrap: wrap;
+      width: 100%;
+    }
+
+    .login-section,
+    .register-section {
+      max-width: 768px;
+      width: 100%;
+      margin: 0 5%;
+    }
+  }
+  {% if template.name == "login" %}
+    #header-component, .top-mail, footer, .section-header{
+      display: none;
+    }
+
+    #MainContent{
+      background: linear-gradient(239deg, #dbdbdc, #f5f5f7);
+    }
+
+    .only-mob-visible-section.only-mob-visible-section-1{
+      display: none;
+    }
+
+    body:has(#appbrew-download-banner-root:not(.app-hidden)) main {
+      padding-top: 52px;
+
+    }
+
+    @media screen and (max-width: 749px) {
+      body:has(#appbrew-download-banner-root:not(.app-hidden)) main .login-back-button{
+        top: calc(3% + 52px) !important;
+      }
+    }
+  {% endif %}
+</style>
+
+<a href="/" class="login-back-button">
+  <svg width="11" height="18" viewBox="0 0 11 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path opacity="0.72" d="M9.70711 17.2929C9.31658 17.6834 8.68342 17.6834 8.29289 17.2929L0.707106 9.70711C0.316582 9.31658 0.316583 8.68342 0.707107 8.29289L8.29289 0.707106C8.68342 0.316582 9.31658 0.316582 9.70711 0.707107L10.3929 1.39289C10.7834 1.78342 10.7834 2.41658 10.3929 2.80711L4.55355 8.64645C4.35829 8.84171 4.35829 9.15829 4.55355 9.35355L10.3929 15.1929C10.7834 15.5834 10.7834 16.2166 10.3929 16.6071L9.70711 17.2929Z" fill="black"/>
+  </svg>
+</a>
+<section>
+  <div class="login-container">
+    <div class="login-section" style="width: 100%;">
+      {% render 'login' %}
+    </div>
+    {% comment %}
+      <div class="register-section">
+        {% render 'register' %}
+      </div>
+    {% endcomment %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Login",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    },
+    {
+      "type": "text",
+      "id": "login_header_title",
+      "label": "Login Header Title",
+      "default": "Become an Knya All Star!"
+    },
+    {
+      "type": "text",
+      "id": "login_header_content",
+      "label": "Login Header Content",
+      "default": "All you have to do to avail your All Star privileges is to register. Benefits include:"
+    },
+    {
+      "type": "text",
+      "id": "list_content_one",
+      "label": "First Benefit",
+      "default": "Giveaways"
+    },
+    {
+      "type": "text",
+      "id": "list_content_two",
+      "label": "Second Benefit",
+      "default": "Sale extensions"
+    },
+    {
+      "type": "text",
+      "id": "list_content_three",
+      "label": "Third Benefit",
+      "default": "Early access to special launches"
+    },
+    {
+      "type": "text",
+      "id": "list_content_four",
+      "label": "Fourth Benefit",
+      "default": "Additional member exclusive discounts"
+    },
+    {
+      "type": "text",
+      "id": "list_content_five",
+      "label": "Fifth Benefit",
+      "default": "Be the first to know the launch dates of our biggest collections"
+    },
+    {
+      "type": "header",
+      "content": "New Login Content"
+    },
+    {
+      "type": "image_picker",
+      "id": "brand-logo",
+      "label": "Brand Logo"
+    },
+    {
+      "type": "text",
+      "id": "first-heading",
+      "label": "First Heading"
+    },
+    {
+      "type": "text",
+      "id": "first-subheading",
+      "label": "First Subheading"
+    },
+    {
+      "type": "text",
+      "id": "second-heading",
+      "label": "Second Heading"
+    },
+    {
+      "type": "url",
+      "id": "policy-url",
+      "label": "Policy URL"
+    },
+    {
+      "type": "url",
+      "id": "terms-url",
+      "label": "Terms and Condition URL"
+    }
+  ]
+}
+{% endschema %}

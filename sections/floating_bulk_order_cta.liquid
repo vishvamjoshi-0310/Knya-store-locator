@@ -1,0 +1,34 @@
+<link rel="stylesheet" href="{{ 'floating-bulk-order-cta.css' | asset_url }}" media="print" onload="this.media='all'">
+
+<div class="floading-bulk-order-cta"> 
+  <a href="{{ section.settings.button-link }}" class="floading-bulk-order-cta-button">
+    {{ section.settings.button-text }}
+  </a>
+</div>
+
+
+<script src="{{ 'floating-bulk-order-cta.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+	"name": "floading-bulk-order-cta",
+	"class": "floading-bulk-order-cta-parent",
+	"settings": [
+		{
+			"type": "text",
+			"id": "button-text",
+			"label": "Button Text"
+		},
+		{
+			"type": "url",
+			"id": "button-link",
+			"label": "Button Link"
+		}
+	],
+	"presets": [
+		{
+			"name": "Floading Bulk Order Cta"
+		}
+	]
+}
+{% endschema %}

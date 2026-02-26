@@ -1,0 +1,89 @@
+{%- doc -%}
+  Renders a checkbox input and label
+
+  @param {string} id - input id attribute
+  @param {string} name - input name attribute
+  @param {string} value - input value attribute
+  @param {string} label - label text
+  @param {boolean} checked - whether the input is checked
+  @param {string} events - event attributes for the input, e.g. 'on:click="/action"'
+  @param {boolean} disabled - whether the input is disabled
+  @param {boolean} [required] - whether the input is required
+  @param {string} [formId] - form id attribute for the input
+  @param {string} [inputRef] - input ref attribute for use with component framework
+  @param {string} [labelRef] - label ref attribute for use with component framework
+  @param {boolean} [autofocus] - whether the input should be autofocused
+  @param {string} [filterLabel] - filter-label attribute for the input
+  @param {string} [filterValue] - filter-value attribute for the input
+{%- enddoc -%}
+<div
+  class="checkbox"
+  {{ events }}
+>
+  {% if filterLabel != blank %}
+    {% assign label_name = filterLabel | downcase %}
+    {% if label_name contains 'colour' %}
+      {% assign image_file_name = label | downcase | handle %}
+      {% assign image_file_name_jpg = image_file_name | append: '.jpg' %}
+      {% assign img_url = image_file_name_jpg | file_url %}
+      <div class="swatch-filter" name="{{ image_file_name }}">
+        <img
+          src="{{ img_url }}"
+          loading="lazy"
+          alt=""
+          class="swatch-filter-img"
+          width="32"
+          height="32"
+          onerror="this.style.display='none'; this.parentElement.style.display='none';"
+        >
+      </div>
+    {% endif %}
+  {% endif %}
+  <input
+    type="checkbox"
+    name="{{ name }}"
+    value="{{ value }}"
+    id="{{ id }}"
+    class="checkbox__input"
+    data-label="{{ label }}"
+    {% if filterLabel != blank %}
+      filter-label="{{ filterLabel | downcase }}"
+    {% endif %}
+    {% if filterValue != blank %}
+      filter-value="{{ filterValue | downcase }}"
+    {% endif %}
+    {% if checked %}
+      checked
+    {% endif %}
+    {% if disabled %}
+      disabled
+    {% endif %}
+    {% if required %}
+      required aria-required="true"
+    {% endif %}
+    {% if formId != blank %}
+      form="{{ formId }}"
+    {% endif %}
+    {% if inputRef != blank %}
+      ref="{{ inputRef }}"
+    {% endif %}
+    {% if autofocus %}
+      autofocus
+    {% endif %}
+  >
+  <label
+    class="checkbox__label"
+    for="{{ id }}"
+    {% if labelRef != blank %}
+      ref="{{ labelRef }}"
+    {% endif %}
+    role="checkbox"
+  >
+    {% comment %} {{ 'icon-checkmark.svg' | inline_asset_content }} {% endcomment %}
+    <div class="checkbox-svg-wrapper">
+      {% render 'checkbox-facet-icon' %}
+      {% render 'checkmark-tick-icon' %}
+    </div>
+    <span class="checkbox__label-text">{{- label -}}</span>
+  </label>
+</div>

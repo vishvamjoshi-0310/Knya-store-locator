@@ -1,0 +1,732 @@
+
+<style>
+  #{{ section.id }} {
+    margin-top: {{ section.settings.margin_top_desktop }}px;
+    margin-bottom: {{ section.settings.margin_bottom_desktop }}px;
+  }
+
+
+
+  .endless_aisle_order {
+    background: {{ section.settings.color_back3 }};
+  }
+
+  .ea-shipping-options {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .endless-aisle__customerInformation h2 {
+    margin: 0;
+  }
+
+  .ea-shipping-method {
+    flex: 1;
+    border: 1px solid #ccc;
+    padding: 10px 15px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: border 0.3s, color 0.3s;
+  }
+
+  .ea-shipping-method input[type="radio"] {
+    margin-right: 8px;
+  }
+
+  .ea-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .ea-form-full {
+    grid-column: span 2;
+  }
+
+  .ea-input,
+  .ea-select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 4px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
+
+  .ea-checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    margin-top: 12px;
+  }
+
+  .ea-checkbox-wrapper input {
+    margin-right: 8px;
+  }
+
+  .ea-button-group {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .ea-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .ea-btn-cancel {
+    background: white;
+    color: #462d8c;
+    border: 2px solid #462d8c;
+  }
+
+  .ea-btn-proceed {
+        border: 1px solid #462d8c;
+    background-color: #462d8c;
+    color: white;
+  }
+   .ea-input.invalid {
+    border-color: #ff0000;
+  }
+  
+  .ea-input:invalid {
+    border-color: #ff0000;
+  }
+  .country-code-input {
+              background-color: #f4f4f4;
+              border: 1px solid #ccc;
+              border-radius: 6px;
+              padding: 10px;
+              width: 60px;
+              text-align: center;
+              color: #666;
+              cursor: not-allowed;
+            }
+            
+            .phone-input-group {
+              display: flex;
+              gap: 8px;
+              align-items: baseline;
+            }
+  .endless-aisle__Headingcontainer__btnContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+    @media (max-width: 600px) {
+    #{{ section.id }} {
+      margin-top: {{ section.settings.margin_top_Mobile }}px;
+      margin-bottom: {{ section.settings.margin_bottom_Mobile }}px;
+    }
+    .endless-aisle__Headingcontainer__btnContainer {flex-direction: column-reverse;}
+        .ea-form-fullPhone {
+        grid-column: span 2;
+  }
+  }
+
+.ea-popup-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.ea-order-success-popup {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  min-width: 300px;
+  text-align: center;
+}
+
+.ea-order-success-popup h3 {
+  color: #462d8c;
+  margin-bottom: 20px;
+}
+
+.ea-order-success-popup p {
+  margin: 10px 0;
+  font-size: 14px;
+}
+
+.ea-order-success-popup button {
+  margin-top: 20px;
+}
+</style>
+
+<section class="{{ section.id }} page-width-updated" id="{{ section.id }}">
+  <div class="endless-aisle__maincontainer">
+    <div class="endless-aisle__subcontainer">
+      <div class="endless-aisle__Headingcontainer">
+        <div class="endless-aisle__Headingcontainer__btnContainer endless-aisle__header">
+           <div class="endless-aisle__customerInformation">
+        <h2><strong>Customer:</strong> <span id="endless-aisle__customer-order"></span></h2>
+        <h2><strong>Customer Email:</strong> <span id="endless-aisle__customer-orderEmail">Loading...</span></h2>
+           </div>
+        <div class="endless-aisle__nav-buttons">
+            <button
+              id="endless-aisle__prev-btn_order"
+              class="endless-aisle__nav-btn endless-aisle__logout-btn"
+              onclick="goBackToLogin()"
+            >
+              Prev
+            </button>
+          </div>
+        </div>
+        <h3>Shipping</h3>
+        <div class="ea-shipping-options">
+          <label class="ea-shipping-method">
+            <input type="radio" name="shipping" value="home" disabled checked />
+            Home Delivery
+          </label>
+        </div>
+
+        <label>Please select your shipping address</label>
+        <select class="ea-select" id="address-select">
+          <option>Add Your New Shipping Address</option>
+        </select>
+
+        <div class="ea-form-grid">
+          <div>
+            <label>First Name</label>
+            <input type="text" placeholder="First Name" class="ea-input" id="first-name" required 
+              pattern="[A-Za-z ]+" title="Please enter a valid name (letters only)"/>
+          </div>
+          <div>
+            <label>Last Name</label>
+            <input type="text" class="ea-input" id="last-name" required 
+              pattern="[A-Za-z ]+" title="Please enter a valid name (letters only)"/>
+          </div>
+          <div class="ea-form-full">
+            <label>Address 1</label>
+            <input type="text" placeholder="Address 1" class="ea-input" id="address1" required 
+              minlength="5" title="Please enter a valid address"/>
+          </div>
+          <div class="ea-form-full">
+            <label>Address 2</label>
+            <input type="text" placeholder="Address 2" class="ea-input" id="address2" />
+          </div>
+          <div>
+            <label>Select Country</label>
+            <input type="text" placeholder="Country" class="ea-input" value="India" id="country" disabled>
+          </div>
+          <div>
+            <div>
+    <label>State</label>
+    <select id="province" class="ea-input" required>
+    <option value="">Select State</option>
+    <option value="Andhra Pradesh">Andhra Pradesh</option>
+    <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+    <option value="Assam">Assam</option>
+    <option value="Bihar">Bihar</option>
+    <option value="Chhattisgarh">Chhattisgarh</option>
+    <option value="Goa">Goa</option>
+    <option value="Gujarat">Gujarat</option>
+    <option value="Haryana">Haryana</option>
+    <option value="Himachal Pradesh">Himachal Pradesh</option>
+    <option value="Jharkhand">Jharkhand</option>
+    <option value="Karnataka">Karnataka</option>
+    <option value="Kerala">Kerala</option>
+    <option value="Madhya Pradesh">Madhya Pradesh</option>
+    <option value="Maharashtra">Maharashtra</option>
+    <option value="Manipur">Manipur</option>
+    <option value="Meghalaya">Meghalaya</option>
+    <option value="Mizoram">Mizoram</option>
+    <option value="Nagaland">Nagaland</option>
+    <option value="Odisha">Odisha</option>
+    <option value="Punjab">Punjab</option>
+    <option value="Rajasthan">Rajasthan</option>
+    <option value="Sikkim">Sikkim</option>
+    <option value="Tamil Nadu">Tamil Nadu</option>
+    <option value="Telangana">Telangana</option>
+    <option value="Tripura">Tripura</option>
+    <option value="Uttar Pradesh">Uttar Pradesh</option>
+    <option value="Uttarakhand">Uttarakhand</option>
+    <option value="West Bengal">West Bengal</option>
+    <!-- Union Territories -->
+    <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+    <option value="Chandigarh">Chandigarh</option>
+    <option value="Dadra and Nagar Haveli and Daman and Diu">Dadra and Nagar Haveli and Daman and Diu</option>
+    <option value="Delhi">Delhi</option>
+    <option value="Lakshadweep">Lakshadweep</option>
+    <option value="Puducherry">Puducherry</option>
+    <option value="Ladakh">Ladakh</option>
+    <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+</select>
+
+  </div>
+          </div>
+          <div>
+            <label>City</label>
+            <input type="text" placeholder="City" class="ea-input" id="city" pattern="[A-Za-z\s\-]+"
+              onkeydown="return !/[0-9]/.test(event.key)" required/>
+          </div>
+          <div>
+            <label>Postal Code</label>
+            <input placeholder="Postal Code" class="ea-input" id="postal" maxlength="6" 
+              pattern="\d{6}" inputmode="numeric" required 
+              title="Please enter a valid 6-digit postal code"
+              oninput="this.value = this.value.replace(/[^0-9]/g, '')"/>
+          </div>
+            <div class="ea-form-fullPhone">
+            <label>Phone Number</label>
+            <div class="phone-input-group">
+              <input type="text" class="country-code-input" value="+91" disabled />
+              <input type="tel" class="ea-input" id="phone" required 
+                placeholder="XXXXX XXXXX"
+                maxlength="10"
+                pattern="[6-9][0-9]{9}"
+                title="Please enter a valid 10-digit Indian mobile number"
+                oninput="validateIndianPhone(this); this.value = this.value.replace(/[^0-9]/g, '')"
+                style="flex: 1;"/>
+            </div>
+            <span id="phone-error" style="color: red; display: none; font-size: 12px;">Please enter a valid Indian mobile number</span>
+          </div>
+        </div>
+
+        <div class="ea-checkbox-wrapper">
+       <input type="checkbox" id="sameBilling" checked onchange="toggleBillingAddress()" />
+          <label for="sameBilling">Billing address same as shipping address</label>
+        </div>
+<!-- Billing Address Section -->
+  <div id="billingAddressSection" style="display: none; margin-top: 24px;">
+    <h3>Billing Address</h3>
+    <div class="ea-form-grid">
+      <div>
+        <label>Billing First Name</label>
+        <input type="text" placeholder="First Name" class="ea-input" id="billing-first-name" 
+          pattern="[A-Za-z ]+" title="Please enter a valid name (letters only)" required/>
+      </div>
+      <div>
+        <label>Billing Last Name</label>
+        <input type="text" placeholder="Last Name" class="ea-input" id="billing-last-name"  required/>
+      </div>
+      <div class="ea-form-full">
+        <label>Billing Address 1</label>
+        <input type="text" placeholder="Address 1" class="ea-input" id="billing-address1"  required/>
+      </div>
+      <div class="ea-form-full">
+        <label>Billing Address 2 (Optional)</label>
+        <input type="text" placeholder="Address 2"  id="billing-address2" class="ea-input"/>
+      </div>
+      <div>
+        <label>Billing City</label>
+        <input type="text" placeholder="City" class="ea-input"  id="billing-city" pattern="[A-Za-z\s\-]+"
+              onkeydown="return !/[0-9]/.test(event.key)" required/>
+      </div>
+      <div>
+        <label>Billing State</label>
+           <div>
+    <label>State</label>
+    <select id="billing-State" class="ea-input" required>
+    <option value="">Select State</option>
+    <option value="Andhra Pradesh">Andhra Pradesh</option>
+    <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+    <option value="Assam">Assam</option>
+    <option value="Bihar">Bihar</option>
+    <option value="Chhattisgarh">Chhattisgarh</option>
+    <option value="Goa">Goa</option>
+    <option value="Gujarat">Gujarat</option>
+    <option value="Haryana">Haryana</option>
+    <option value="Himachal Pradesh">Himachal Pradesh</option>
+    <option value="Jharkhand">Jharkhand</option>
+    <option value="Karnataka">Karnataka</option>
+    <option value="Kerala">Kerala</option>
+    <option value="Madhya Pradesh">Madhya Pradesh</option>
+    <option value="Maharashtra">Maharashtra</option>
+    <option value="Manipur">Manipur</option>
+    <option value="Meghalaya">Meghalaya</option>
+    <option value="Mizoram">Mizoram</option>
+    <option value="Nagaland">Nagaland</option>
+    <option value="Odisha">Odisha</option>
+    <option value="Punjab">Punjab</option>
+    <option value="Rajasthan">Rajasthan</option>
+    <option value="Sikkim">Sikkim</option>
+    <option value="Tamil Nadu">Tamil Nadu</option>
+    <option value="Telangana">Telangana</option>
+    <option value="Tripura">Tripura</option>
+    <option value="Uttar Pradesh">Uttar Pradesh</option>
+    <option value="Uttarakhand">Uttarakhand</option>
+    <option value="West Bengal">West Bengal</option>
+    <!-- Union Territories -->
+    <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+    <option value="Chandigarh">Chandigarh</option>
+    <option value="Dadra and Nagar Haveli and Daman and Diu">Dadra and Nagar Haveli and Daman and Diu</option>
+    <option value="Delhi">Delhi</option>
+    <option value="Lakshadweep">Lakshadweep</option>
+    <option value="Puducherry">Puducherry</option>
+    <option value="Ladakh">Ladakh</option>
+    <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+</select>
+
+  </div>
+        
+      </div>
+      <div>
+        <label>Billing Country</label>
+        <input type="text" placeholder="Country" value="India" class="ea-input" id="billing-coun_ind" disabled>
+      </div>
+      <div>
+        <label>Billing Postal Code</label>
+        <input
+          type="text"
+          placeholder="Postal Code"
+          class="ea-input"
+          id="billing-postal"
+          maxlength="6"
+          inputmode="numeric"
+          pattern="\d{6}"
+          oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+          required
+        />
+      </div>
+    </div>
+  </div>
+        <div class="ea-button-group">
+          <button class="ea-btn ea-btn-cancel" onclick="handleBraeksyc()">Break Sync</button>
+          <button class="ea-btn ea-btn-proceed" onclick="handleProceed()">PROCEED TO PAYMENT</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script src="https://unpkg.com/libphonenumber-js@1.10.51/bundle/libphonenumber-js.min.js"></script>
+<script>
+  function validateIndianPhone(input) {
+    try {
+      const phoneNumber = input.value.replace(/\D/g, '');
+      const isValid = /^[6-9]\d{9}$/.test(phoneNumber);
+
+      if (isValid) {
+        input.classList.remove('invalid');
+        input.style.borderColor = '#ccc';
+        document.getElementById('phone-error').style.display = 'none';
+        input.setCustomValidity('');
+
+        const formattedNumber = phoneNumber.replace(/(\d{5})(\d{5})/, '$1 $2');
+        if (input.value !== formattedNumber) {
+          input.value = formattedNumber;
+        }
+      } else {
+        input.classList.add('invalid');
+        input.style.borderColor = '#ff0000';
+        document.getElementById('phone-error').style.display = 'block';
+        input.setCustomValidity('Please enter a valid Indian mobile number');
+      }
+    } catch (error) {
+      console.error("Error in validateIndianPhone:", error);
+    }
+  }
+
+  function toggleBillingAddress() {
+    try {
+      const billingSection = document.getElementById('billingAddressSection');
+      const checkbox = document.getElementById('sameBilling');
+      billingSection.style.display = checkbox.checked ? 'none' : 'block';
+    } catch (error) {
+      console.error("Error in toggleBillingAddress:", error);
+    }
+  }
+
+  function populateForm(address) {
+  
+    try {
+      document.getElementById("first-name").value = address.firstName || "";
+      document.getElementById("last-name").value = address.lastName || "";
+      document.getElementById("address1").value = address.address1 || "";
+      document.getElementById("address2").value = address.address2 || "";
+      document.getElementById("province").value = address.province || "";
+      document.getElementById("city").value = address.city || "";
+      document.getElementById("postal").value = address.zip || "";
+      const phoneNumber = (address.phone || "").replace("+91", "").trim();
+      document.getElementById("phone").value = phoneNumber;
+    } catch (error) {
+      console.error("Error in populateForm:", error);
+    }
+  }
+
+  function handleContinueClick() {
+    try {
+      const newUrlAdd = `${window.location.pathname}?section=endless_aisle_order`;
+      window.history.pushState({}, "", newUrlAdd);
+      showSectionFromURL();
+
+      document.querySelector("#endless-aisle__next-btn").removeAttribute("disabled");
+      let customerEdges = result;
+      if (!customerEdges) return;
+
+      const addresses = customerEdges.addresses;
+      document.getElementById("endless-aisle__customer-order").textContent = `${customerEdges.firstName} ${customerEdges.lastName}`;
+      document.getElementById("endless-aisle__customer-orderEmail").textContent = customerEdges.email;
+
+      const addressSelect = document.getElementById("address-select");
+      addressSelect.innerHTML = '<option>Add your New shipping address</option>';
+
+      addresses.forEach((address, index) => {
+        const option = document.createElement("option");
+        option.value = index;
+        option.textContent = `${address.address1}, ${address.city}`;
+        addressSelect.appendChild(option);
+      });
+
+      if (addresses[0]) {
+        populateForm(addresses[0]);
+        addressSelect.selectedIndex = 1;
+      }
+
+      addressSelect.addEventListener("change", (e) => {
+        const selected = addresses[e.target.value];
+        if (selected) populateForm(selected);
+      });
+    } catch (error) {
+      console.error("Error in handleContinueClick:", error);
+    }
+  }
+
+  function handleCancel() {
+    try {
+      const newUrlcancell = `${window.location.pathname}?section=endless_aisle_login`;
+      window.history.pushState({}, "", newUrlcancell);
+      showSectionFromURL();
+    } catch (error) {
+      console.error("Error in handleCancel:", error);
+    }
+  }
+
+    async function handleProceed() {
+    try {
+      showLoader();
+      // Fetch cart data first
+      let customerEdgeshandleProceed = result;
+      const cartResponse = await fetch('/cart.js');
+      const cartData = await cartResponse.json();
+       
+    const lineItems = cartData.items.map(item => {
+        const propertiesArray = Object.entries(item.properties || {}).map(([name, value]) => ({
+          name,
+          value: String(value)
+        }));
+        
+        return {
+          quantity: item.quantity,
+          productId: `gid://shopify/Product/${item.product_id}`,
+          sku: item.sku || "",
+          variantId: `gid://shopify/ProductVariant/${item.variant_id}`,
+          properties: propertiesArray
+        };
+      });
+  
+      const myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+  
+      // Get form values and create order data
+      const firstName = document.getElementById("first-name").value;
+      const lastName = document.getElementById("last-name").value;
+      const address1 = document.getElementById("address1").value;
+      const address2 = document.getElementById("address2").value;
+      const city = document.getElementById("city").value;
+      const province = document.getElementById("province").value;
+      const zip = document.getElementById("postal").value;
+      const phone = document.getElementById("phone").value;
+      
+      // Get billing address values if different
+      const useSameAddress = document.getElementById("sameBilling").checked;
+      const billingAddress = useSameAddress ? {
+        address1,
+        address2,
+        city,
+        countryCode: "IN",
+        firstName,
+        lastName,
+        phone,
+        provinceCode: province,
+        zip
+      } : {
+        address1: document.querySelector('#billing-address1').value,
+        address2: document.querySelector('#billing-address2').value, 
+        city: document.querySelector('#billing-city').value,
+        countryCode: "IN",
+        firstName: document.getElementById("billing-first-name").value,
+        lastName: document.getElementById("billing-last-name").value,
+        phone,
+        provinceCode: document.querySelector('#billing-State').value,
+        zip: document.getElementById("billing-postal").value
+      };
+  
+      const raw = {
+        customer: {
+          toAssociate: {
+            email: customerEdgeshandleProceed.email
+          }
+        },
+        email: customerEdgeshandleProceed.email,
+        financialStatus: "PAID",
+        billingAddress,
+        lineItems: lineItems,
+        phone: "+91" + phone.replace(/\D/g, ''),
+        tags: "",
+        Admin_mail:"{{customer.email}}",
+        shippingAddress: {
+          address1,
+          address2,
+          city,
+          countryCode: "IN",
+          firstName,
+          lastName,
+          phone,
+          provinceCode: province,
+          zip
+        }
+      };
+   const aesKey = await generateAESKey();
+    const encryptedAESKey = await encryptRSA(aesKey);
+    const { encryptedData, iv } = await encryptAES(raw, aesKey);
+    const encryptedPayloadraw = { encryptedAESKey, encryptedData, iv };
+   
+      const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: JSON.stringify(encryptedPayloadraw),  
+        redirect: "follow"
+      };
+  
+      const response = await fetch("/apps/endless/api/order/create", requestOptions);
+      const requestResponce = await response.json();
+       if (!requestResponce.error) {
+          await fetch('/cart/clear.js', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+     
+  
+    const decryptedStringorder = atob(requestResponce.data); // now it's a decrypted string 
+    const decryptedStringparsedorder = JSON.parse(decryptedStringorder);
+                 
+        const orderData = decryptedStringparsedorder;
+        const backdrop = document.createElement('div');
+        const orderGIDOrderId = orderData.id.split('/').pop();
+        backdrop.className = 'ea-popup-backdrop';
+        
+        const popupContent = `
+          <div class="ea-order-success-popup">
+            <h3>Order Placed Successfully!</h3>
+            <p><strong>Order Number:</strong> ${orderData.name}</p>
+            <p><strong>Email:</strong> ${orderData.customer.email}</p>
+            <p><strong>Total Net Amount:</strong> ₹${orderData.totalPrice}</p>
+            <button href="https://admin.shopify.com/store/knya-med/orders/${orderGIDOrderId}" class="ea-btn ea-btn-proceed">Close</button>
+          </div>
+        `;
+        backdrop.innerHTML = popupContent;
+        document.body.appendChild(backdrop);
+        document.body.classList.add('modal-open-customer');
+          setTimeout(() => {
+          window.location.href = `https://admin.shopify.com/store/knya-med/orders/${orderGIDOrderId}`;
+        }, 1500);
+      } else {
+        alert(requestResponce.message || "An error occurred while processing your order.");
+      }
+      hideLoader();
+      
+    } catch (error) {
+      console.error("Error in handleProceed:", error);
+      hideLoader();
+      alert("An error occurred while processing your order.");
+    }
+  }
+
+    async function handleBraeksyc() {
+    try {
+      await fetch('/cart/clear.js', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      location.reload()
+    } catch (error) {
+      console.error("Error in handleCancel:", error);
+      alert("An error occurred while canceling the order.");
+    }
+  }
+  document.addEventListener("DOMContentLoaded", function () {
+    try {
+      handleCancel();
+    } catch (error) {
+      console.error("Error in DOMContentLoaded:", error);
+    }
+  });
+</script>
+{% schema %}
+  {
+    "name": "Endless Aisle Order",
+    "class": "endless_aisle_order",
+    "settings": [
+       {
+          "type": "color",
+          "id": "color_back3",
+          "label": "Body background color for Address",
+          "default": "#fffefb"
+        },
+       {
+      "type": "range",
+      "id": "margin_bottom_desktop",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Bottom Desktop",
+      "default": 36
+    },
+     {
+      "type": "range",
+      "id": "margin_top_desktop",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Top Desktop",
+      "default": 36
+    },
+     {
+      "type": "range",
+      "id": "margin_bottom_Mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Bottom Mobile",
+      "default": 20
+    },
+     {
+      "type": "range",
+      "id": "margin_top_Mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Top Desktop",
+      "default": 20
+    }
+    ],
+    "presets": [{
+      "name": "Endless Aisle Order"
+    }]
+  }
+{% endschema %}

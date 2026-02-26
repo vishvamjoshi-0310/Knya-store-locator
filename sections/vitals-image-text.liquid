@@ -1,0 +1,44 @@
+{{ 'vitals-image-text-stylesheet.css' | asset_url | stylesheet_tag: preload: true }}
+
+<div class="vitals-image-text">
+  <div class="vitals-text-container">
+    <p class="vital-heading">{{ section.settings.heading }}</p>
+    <p class="vital-sub-heading">{{ section.settings['sub-heading'] }}</p>
+  </div>
+  <div class="vitals-image-container">
+    {{
+      section.settings.image
+      | image_url: width: 500
+      | image_tag: widths: '350, 400', loading: 'lazy', height: 'auto', class: ''
+    }}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "vitals-image-text",
+  "class": "vitals-image-text-parent",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "textarea",
+      "id": "sub-heading",
+      "label": "Sub Heading"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Vitals Image Text"
+    }
+  ]
+}
+{% endschema %}

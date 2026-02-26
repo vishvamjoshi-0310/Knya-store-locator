@@ -1,0 +1,577 @@
+/* ============================================
+   BREAKPOINT WHY EXISTS SECTION - RESPONSIVE VERSION
+   ============================================ */
+
+/* Section Container */
+.breakpoint-why-exists-section {
+  width: 100%;
+  padding: 3.89vw 5.56vw !important;
+  /* 56px/1440px, 80px/1440px */
+  position: relative;
+  overflow: hidden;
+  background-color: white;
+}
+
+/* Background Image */
+.breakpoint-why-exists-section .breakpoint-why-exists-background {
+    position: absolute;
+    top: 0;
+    left: -21%;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.breakpoint-why-exists-section .breakpoint-why-exists-background img {
+  width: fit-content;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Content Wrapper */
+.breakpoint-why-exists-section .breakpoint-why-exists-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* Section Heading */
+.breakpoint-why-exists-section .breakpoint-why-exists-heading {
+  font-family: Poppins-Regular;
+  font-weight: 400;
+  font-size: 2.5vw;
+  /* 36px/1440px */
+  line-height: 4.44vw;
+  /* 64px/1440px */
+  letter-spacing: 0px;
+  color: #000000;
+  margin-bottom: 2.5vw;
+  /* 36px/1440px */
+}
+
+/* Main Layout (Left + Right Sections) */
+.breakpoint-why-exists-section .breakpoint-why-exists-layout {
+  display: flex;
+  justify-content: space-between;
+}
+
+.breakpoint-why-exists-section .breakpoint-why-exists-left {
+  flex: 1;
+  max-width: 50%;
+}
+
+.breakpoint-why-exists-section .breakpoint-why-exists-right {
+  flex: 1;
+  max-width: 46%;
+  padding-top: 4.72vw;
+  /* 68px/1440px */
+}
+
+/* ============================================
+   RIGHT SECTION STYLES
+   ============================================ */
+
+/* Vitals Logo */
+.breakpoint-why-exists-section .breakpoint-why-exists-vitals img {
+  width: auto;
+  height: 3.61vw;
+  /* 52px/1440px */
+  display: block;
+}
+
+/* Description Text */
+.breakpoint-why-exists-section .breakpoint-why-exists-description-before {
+  font-family: Poppins-Regular;
+  font-weight: 400;
+  font-size: 1.53vw;
+  /* 22px/1440px */
+  line-height: 2.22vw;
+  /* 32px/1440px */
+  letter-spacing: 0px;
+  color: #616161;
+  margin-bottom: 0.69vw;
+  /* 10px/1440px */
+}
+
+.breakpoint-why-exists-section .breakpoint-why-exists-description-after {
+  font-family: Poppins-Regular;
+  font-weight: 400;
+  font-size: 1.53vw;
+  /* 22px/1440px */
+  line-height: 2.22vw;
+  /* 32px/1440px */
+  letter-spacing: 0px;
+  color: #616161;
+  margin-top: 0.69vw;
+  /* 10px/1440px */
+  margin-bottom: 2.5vw;
+  /* 36px/1440px */
+}
+
+/* Breakpoint Statement */
+.breakpoint-why-exists-section .breakpoint-why-exists-statement {
+  font-family: Poppins-SemiBold;
+  font-weight: 600;
+  font-size: 1.53vw;
+  /* 22px/1440px */
+  line-height: 2.22vw;
+  /* 32px/1440px */
+  letter-spacing: 0px;
+  color: #000000;
+  margin-bottom: 2.5vw;
+  /* 36px/1440px */
+  width: 86%;
+}
+
+/* Action Link */
+.breakpoint-why-exists-section .breakpoint-why-exists-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.69vw;
+  /* 10px/1440px */
+  font-family: Poppins-SemiBold;
+  font-weight: 600;
+  font-size: 1.53vw;
+  /* 22px/1440px */
+  line-height: 2.5vw;
+  /* 36px/1440px */
+  letter-spacing: 0px;
+  color: #4949E9;
+  text-decoration: underline !important;
+  text-underline-offset: 0.28vw;
+  /* 4px/1440px */
+}
+
+.breakpoint-why-exists-section .breakpoint-why-exists-link svg {
+  width: 2.22vw;
+  /* 32px/1440px */
+  height: 2.22vw;
+  /* 32px/1440px */
+}
+
+/* ============================================
+   LEFT SECTION - CUSTOM CAROUSEL STYLES
+   ============================================ */
+
+/* Carousel Container */
+.breakpoint-why-exists-section .breakpoint-why-exists-slider {
+  position: relative;
+  height: 34.72vw;
+  /* 500px/1440px */
+  overflow: visible;
+  touch-action: pan-y pinch-zoom;
+  user-select: none;
+}
+
+/* Carousel Wrapper */
+.breakpoint-why-exists-section .breakpoint-why-exists-slider-wrapper {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  margin-top: 2.78vw;
+}
+
+/* Stat Card - Base Styles */
+.breakpoint-why-exists-section .stat-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 2.78vw;
+  /* 40px/1440px */
+  color: #FFFFFF;
+  width: 26.35vw;
+  /* 379.46px/1440px */
+  height: 29.13vw;
+  /* 419.53px/1440px */
+  transition: all 0.3s ease;
+  transform-origin: top left;
+  cursor: pointer;
+  box-sizing: border-box;
+
+  /* Default state - hidden */
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+  transform: scale(0.8) translateY(3.61vw);
+  /* 52px/1440px */
+}
+
+/* Active Card State */
+.breakpoint-why-exists-section .stat-card.is-active {
+  transform: scale(1) translateY(0);
+  box-shadow: 0.49vw 0.49vw 2.78vw 0px #00000033;
+  /* 7px/1440px, 40px/1440px */
+  z-index: 10;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Next Card State (60% visible behind) */
+.breakpoint-why-exists-section .stat-card.is-next {
+  transform: scale(0.8) translateY(3.61vw) translateX(23.13vw);
+  /* 52px/1440px, 333px/1440px */
+  z-index: 5;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Card Content Layout */
+.breakpoint-why-exists-section .stat-top-row {
+  margin-left: 3.47vw;
+  /* 50px/1440px */
+  display: flex;
+  align-items: flex-end;
+  position: absolute;
+  top: 6.15vw;
+  /* 78px/1440px */
+}
+
+.breakpoint-why-exists-section .stat-icon-left {
+  margin-right: -1.74vw;
+  /* -25px/1440px */
+  margin-bottom: 2.6vw;
+  /* 25px/1440px */
+  z-index: 2;
+  position: relative;
+}
+
+.breakpoint-why-exists-section .stat-number {
+  font-family: 'Heebo-Regular';
+  font-weight: 400;
+  font-size: 13.61vw;
+  /* 196px/1440px */
+  line-height: 100%;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+}
+
+.breakpoint-why-exists-section .stat-meta {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 9.72vw;
+  /* 140px/1440px */
+  margin-bottom: 2.78vw;
+  /* 40px/1440px */
+}
+
+.breakpoint-why-exists-section .stat-percent-symbol {
+  font-family: 'Heebo-Regular';
+  font-weight: 400;
+  font-size: 3.27vw;
+  /* 47.09px/1440px */
+  line-height: 100%;
+  color: #F5E9CE;
+}
+
+.breakpoint-why-exists-section .stat-icon-right {
+  margin-top: auto;
+}
+
+.breakpoint-why-exists-section .stat-icon-left svg,
+.breakpoint-why-exists-section .stat-icon-right svg {
+  width: auto;
+  height: auto;
+  display: block;
+}
+
+.breakpoint-why-exists-section .stat-description {
+  position: absolute;
+  top: 17.71vw;
+  /* 255px/1440px */
+  left: 4.01vw;
+  /* 57.72px/1440px */
+  width: 18.06vw;
+  /* 260px/1440px */
+  height: 6.15vw;
+  /* 88.5px/1440px */
+  font-family: 'Heebo-Regular';
+  font-weight: 400;
+  font-size: 1.53vw;
+  /* 22px/1440px */
+  line-height: 110%;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+}
+
+/* Pagination Dots */
+.breakpoint-why-exists-section .breakpoint-why-exists-slider-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.56vw;
+  /* 8px/1440px */
+  margin-top: 1.67vw;
+  /* 24px/1440px */
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.breakpoint-why-exists-section .breakpoint-why-exists-pagination-dot {
+  width: 0.56vw;
+  /* 8px/1440px */
+  height: 0.56vw;
+  /* 8px/1440px */
+  border-radius: 50%;
+  background-color: #e0e0e0;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.breakpoint-why-exists-section .breakpoint-why-exists-pagination-dot.active {
+  background-color: #000000;
+}
+
+/* ============================================
+   RESPONSIVE - TABLET (769px - 1024px)
+   ============================================ */
+
+@media screen and (max-width: 1024px) and (min-width: 769px) {
+  .breakpoint-why-exists-section {
+    padding: 4.5vw 6vw !important;
+  }
+
+  .breakpoint-why-exists-section .breakpoint-why-exists-heading {
+    font-size: 3vw;
+    line-height: 5vw;
+    margin-bottom: 3vw;
+  }
+
+  .breakpoint-why-exists-section .breakpoint-why-exists-right {
+    padding-top: 5.5vw;
+  }
+
+  .breakpoint-why-exists-section .breakpoint-why-exists-vitals img {
+    height: 4.5vw;
+  }
+
+  .breakpoint-why-exists-section .breakpoint-why-exists-description-before,
+  .breakpoint-why-exists-section .breakpoint-why-exists-description-after,
+  .breakpoint-why-exists-section .breakpoint-why-exists-statement {
+    font-size: 2vw;
+    line-height: 2.8vw;
+  }
+
+  .breakpoint-why-exists-section .breakpoint-why-exists-link {
+    font-size: 2vw;
+    line-height: 3vw;
+  }
+
+  .breakpoint-why-exists-section .breakpoint-why-exists-link svg {
+    width: 3vw;
+    height: 3vw;
+  }
+}
+
+/* ============================================
+   RESPONSIVE - MOBILE STYLES (max-width: 768px)
+   ============================================ */
+
+@media screen and (max-width: 768px) {
+
+  /* Section Padding */
+  .breakpoint-why-exists-section {
+    padding: 9.23vw 4.62vw !important;
+    /* 36px/390px, 18px/390px */
+  }
+
+  /* Section Heading */
+  .breakpoint-why-exists-section .breakpoint-why-exists-heading {
+    font-size: 6.15vw;
+    /* 24px/390px */
+    line-height: 8.21vw;
+    /* 32px/390px */
+    margin-bottom: 5.64vw;
+    /* 22px/390px */
+  }
+
+  /* Layout Changes */
+  .breakpoint-why-exists-section .breakpoint-why-exists-layout {
+    flex-direction: column;
+    gap: 5.64vw;
+    /* 22px/390px */
+  }
+
+  .breakpoint-why-exists-section .breakpoint-why-exists-left {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .breakpoint-why-exists-section .breakpoint-why-exists-right {
+    max-width: 100%;
+    width: 100%;
+    padding-top: 0px;
+  }
+
+  /* Carousel Mobile */
+  .breakpoint-why-exists-section .breakpoint-why-exists-slider {
+    height: 76.79vw;
+    /* 280px/390px */
+  }
+
+  /* Cards Mobile */
+  .breakpoint-why-exists-section .stat-card {
+    width: 60.07vw;
+    /* 234.27px/390px */
+    height: 66.41vw;
+    /* 259px/390px */
+    position: absolute;
+    top: 0.11vw;
+    /* 0.44px/390px */
+    left: 0.24vw;
+    /* 0.92px/390px */
+    border-radius: 6.33vw;
+    /* 24.7px/390px */
+  }
+
+  /* Active Card Mobile */
+  .breakpoint-why-exists-section .stat-card.is-active {
+    transform: scale(1) translateY(0);
+  }
+
+  /* Next Card Mobile */
+  .breakpoint-why-exists-section .stat-card.is-next {
+    transform: scale(0.8) translateY(8.21vw) translateX(54.41vw);
+    /* 32px/390px, 200.5px/390px */
+  }
+
+  /* Top Row Mobile */
+
+  .breakpoint-why-exists-section .stat-top-row {
+    margin-left: 6.67vw;
+    top: 19.25vw;
+    width: 42.63vw;
+    height: 24.16vw;
+  }
+
+
+
+  /* Icon Left Mobile */
+  .breakpoint-why-exists-section .stat-icon-left {
+    margin-right: -5.96vw;
+    /* -15.45px/390px */
+    margin-bottom: 3.96vw;
+    /* 15.45px/390px */
+  }
+
+  /* Number Mobile */
+  .breakpoint-why-exists-section .stat-number {
+    font-size: 31.03vw;
+    /* 121px/390px */
+    line-height: 100%;
+  }
+
+  /* Meta Container Mobile */
+  .breakpoint-why-exists-section .stat-meta {
+    height: 22.17vw;
+    /* 86.45px/390px */
+    margin-bottom: 6.33vw;
+    /* 24.7px/390px */
+  }
+
+  /* Percent Symbol Mobile */
+  .breakpoint-why-exists-section .stat-percent-symbol {
+    font-size: 7.45vw;
+    /* 29.07px/390px */
+    line-height: 100%;
+  }
+
+  /* Description Mobile */
+  .breakpoint-why-exists-section .stat-description {
+    position: absolute;
+    top: 39.42vw;
+    /* 153.74px/390px */
+    left: 9.14vw;
+    /* 35.63px/390px */
+    width: 39.1vw;
+    /* 152.49px/390px */
+    height: 14.07vw;
+    /* 54.88px/390px */
+    font-size: 3.48vw;
+    /* 13.58px/390px */
+    line-height: 110%;
+  }
+
+  /* SVG Icons Mobile */
+  .breakpoint-why-exists-section .stat-icon-left svg,
+  .breakpoint-why-exists-section .stat-icon-right svg {
+    transform: scale(0.617);
+    transform-origin: top left;
+  }
+
+  /* Pagination Dots Mobile */
+  .breakpoint-why-exists-section .breakpoint-why-exists-slider-pagination {
+    gap: 2.05vw;
+    /* 8px/390px */
+    margin-top: 6.15vw;
+    /* 24px/390px */
+  }
+
+  .breakpoint-why-exists-section .breakpoint-why-exists-pagination-dot {
+    width: 2.05vw;
+    /* 8px/390px */
+    height: 2.05vw;
+    /* 8px/390px */
+  }
+
+  /* Right Section Mobile */
+  .breakpoint-why-exists-section .breakpoint-why-exists-vitals img {
+    height: 7.69vw;
+    /* 30px/390px */
+  }
+
+  .breakpoint-why-exists-section .breakpoint-why-exists-description-before,
+  .breakpoint-why-exists-section .breakpoint-why-exists-description-after {
+    font-size: 4.1vw;
+    /* 16px/390px */
+    line-height: 6.15vw;
+    /* 24px/390px */
+    margin-bottom: 2.56vw;
+    /* 10px/390px */
+  }
+
+  .breakpoint-why-exists-section .breakpoint-why-exists-description-after {
+    margin-bottom: 7.69vw;
+    /* 30px/390px */
+  }
+
+  .breakpoint-why-exists-section .breakpoint-why-exists-statement {
+    font-size: 4.1vw;
+    /* 16px/390px */
+    line-height: 6.15vw;
+    /* 24px/390px */
+    margin-bottom: 7.69vw;
+    /* 30px/390px */
+    width: 100%;
+  }
+
+  .breakpoint-why-exists-section .breakpoint-why-exists-link {
+    font-size: 4.1vw;
+    /* 16px/390px */
+    line-height: 6.15vw;
+    /* 24px/390px */
+    gap: 2.56vw;
+    /* 10px/390px */
+  }
+
+  .breakpoint-why-exists-section .breakpoint-why-exists-link svg {
+    width: 5.13vw;
+    /* 20px/390px */
+    height: 5.13vw;
+    /* 20px/390px */
+  }
+
+  /* Background Mobile */
+  .breakpoint-why-exists-section .breakpoint-why-exists-background {
+    left: -9%;
+    top: -0.51vw;
+    /* -2px/390px */
+  }
+
+  .breakpoint-why-exists-section .breakpoint-why-exists-background img {
+    height: 66%;
+  }
+}

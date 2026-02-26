@@ -1,0 +1,24 @@
+<script>
+  function openCartDrawer(cartDrawer) {
+    const openBtn = document.querySelector('cart-drawer-component button');
+    if (openBtn) {
+      openBtn.click();
+    }
+  }
+
+  // Check if the current page URL is the cart page
+  if (window.location.href.indexOf('/cart') > -1) {
+    localStorage.setItem('cart-redirect', 1);
+    window.location.href = '/';
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    if (localStorage.getItem('cart-redirect') == '1') {
+      const cartDrawer = document.querySelector('body .cart-drawer__dialog');
+      if (cartDrawer) {
+        openCartDrawer(cartDrawer);
+      }
+      localStorage.setItem('cart-redirect', 0);
+    }
+  });
+</script>

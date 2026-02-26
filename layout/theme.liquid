@@ -1,0 +1,196 @@
+<!doctype html>
+<html
+  class="no-js{% if request.design_mode %} shopify-design-mode{% endif %}"
+  lang="{{ request.locale.iso_code }}"
+>
+  <head>
+    {%- if settings.favicon != blank -%}
+      <link
+        rel="icon"
+        type="image/png"
+        href="{{ settings.favicon | image_url: width: 32, height: 32 }}"
+      >
+    {%- endif -%}
+
+    {% comment %} This a way to wait for main content to load when navigating to a new page so that the view transitions can work consistently {% endcomment %}
+    <link
+      rel="expect"
+      href="#MainContent"
+      blocking="render"
+      id="view-transition-render-blocker"
+    >
+
+      <link rel="alternate" hreflang="en" href="https://knyamed.global/" />
+      <link rel="alternate" hreflang="en-in" href="https://knyamed.com/" />
+      <link rel="alternate" hreflang="en-ae" href="https://knyamed.global/en-ae/" />
+
+    {{ 'swiper.css' | asset_url | stylesheet_tag }}
+    {{ 'component-loading-spinner.css' | asset_url | stylesheet_tag }}
+
+    {%- render 'meta-tags' -%}
+    {%- render 'stylesheets' -%}
+    {%- render 'fonts' -%}
+    {%- render 'scripts' -%}
+    {% render 'cart-redirection' %}
+    {%- render 'theme-styles-variables' -%}
+    {%- render 'color-schemes' -%}
+    {% render 'schema' %}
+    {% render 'schema-faq' %}
+    {% render 'custom_script_Css' %}
+    {{ 'scrub-product-style.css' | asset_url | stylesheet_tag }}
+
+    {% if request.design_mode %}
+      {%- render 'theme-editor' -%}
+    {% endif %}
+
+    {{ content_for_header }}
+  </head>
+
+  {% if template contains 'page' and page.handle == 'endless-aisle' %}
+    <script>
+      {% unless customer and customer.tags contains "Endless_Admin" %}
+        window.location.href = "{{ shop.url }}";
+      {% endunless %}
+    </script>
+  {% endif %}
+
+  <body class="page-width-{{ settings.page_width }} card-hover-effect-{{ settings.card_hover_effect }} template-{{ template.suffix }} ">
+    {% render 'skip-to-content-link', href: '#MainContent', text: 'accessibility.skip_to_text' %}
+    <div id="header-group">
+      {% sections 'header-group' %}
+    </div>
+
+    <script
+      src="{{ 'critical.js' | asset_url }}"
+      type="module"
+      async
+      blocking="render"
+    ></script>
+    <script src="{{ 'swiper.js' | asset_url }}" defer></script>
+
+    <main
+      id="MainContent"
+      class="content-for-layout {% if template.name == 'product' or template.name == 'collection' %}page-width-updated{% endif %}"
+      role="main"
+      data-page-transition-enabled="{{ settings.page_transition_enabled }}"
+      data-product-transition="{{ settings.transition_to_main_product }}"
+      data-template="{{ template }}"
+    >
+      {{ content_for_layout }}
+    </main>
+
+    {% sections 'footer-group' %}
+
+    {% render 'search-modal' %}
+
+    {% if settings.quick_add or settings.mobile_quick_add %}
+      {% render 'quick-add-modal' %}
+    {% endif %}
+    {% render 'card-product-redirection-and-modal' %}
+    {% render 'cleverTap-popup' %}
+    {% if template contains 'page' and page.handle == 'endless-aisle' %}
+      <script src="{{ 'endless-aisle-encry.js' | asset_url }}" defer="defer"></script>
+    {% endif %}
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        if (window.innerWidth > 768) return;
+        const btn = document.createElement('button');
+        btn.textContent = 'View All Reviews';
+        btn.style.cursor = 'pointer';
+        btn.style.marginTop = '10px';
+        btn.classList.add('jdgm-view-toggle-btn');
+        btn.style.display = 'none'; // hide initially
+
+        // Append the button somewhere in the page, for example to body (or any container)
+        document.body.appendChild(btn);
+
+        let expanded = false;
+        let reviews = [];
+
+        // Polling function to check for the carousel and reviews
+        const checkReviews = () => {
+          const carousel = document.querySelector('.jdgm-rev-carousel');
+          if (!carousel) return false;
+
+          reviews = carousel.querySelectorAll('.jdgm-rev');
+          if (reviews.length === 0) return false;
+
+          // If button not inside carousel, append it there now
+          if (!carousel.contains(btn)) {
+            carousel.appendChild(btn);
+          }
+
+          // If there are more than 3 reviews, show button and initialize states
+          if (reviews.length > 3) {
+            btn.style.display = 'block';
+
+            // Initially show only first 3
+            reviews.forEach((review, idx) => {
+              review.style.display = idx < 3 ? '' : 'none';
+            });
+
+            btn.textContent = 'View All Reviews';
+            expanded = false;
+            return true; // Found and ready
+          } else {
+            // If 3 or fewer, hide button
+            btn.style.display = 'none';
+            return true; // Found but no need for button
+          }
+        };
+
+        // Set up button click listener once
+        btn.addEventListener('click', () => {
+          if (!expanded) {
+            reviews.forEach((review) => (review.style.display = ''));
+            btn.textContent = 'View Less';
+            expanded = true;
+          } else {
+            reviews.forEach((review, idx) => {
+              review.style.display = idx < 3 ? '' : 'none';
+            });
+            btn.textContent = 'View All Reviews';
+            expanded = false;
+          }
+        });
+
+        // Poll every 500ms until widget loaded and processed or 20 times max (10 seconds)
+        let attempts = 0;
+        const maxAttempts = 20;
+        const intervalId = setInterval(() => {
+          attempts++;
+          if (checkReviews() || attempts >= maxAttempts) {
+            clearInterval(intervalId);
+          }
+        }, 500);
+      });
+    </script>
+     <!-- Return Prime JS to show store credit for discount code -->
+    {% render 'returnprime_js' %}
+    {% render 'returnprime_hide_refundmode' %}
+    {% render 'returnprime_question' %}
+    {% render  "remarketing" %}
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TJS6GL9"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <!-- Begin Shopify–payment-cart JavaScript -->
+<script type="text/javascript">
+ 
+  var mid = '7831';
+ 
+</script>
+<script src="https://checkout-merchant.snapmint.com/js/v1/7831" defer></script>
+<!-- End Shopify-payment JavaScript -->
+  </body>
+
+  <script>
+    const app_close_button = document.querySelector('.close-icon.appbrew-download-banner-dismiss-button');
+
+    if (app_close_button) {
+      app_close_button.addEventListener('click', () => {
+        document.querySelector('#appbrew-download-banner-root').classList.add('app-hidden');
+      });
+    }
+  </script>
+</html>

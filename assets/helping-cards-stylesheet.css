@@ -1,0 +1,134 @@
+.helping-cards-section {
+  width: 100%;
+  padding: 0px 120px;
+}
+
+.helping-cards-container {
+  padding-block: 56px;
+}
+
+.helping-cards-heading {
+  font-family: Heebo-Regular;
+  font-weight: 400;
+  font-size: 57px;
+  margin: 0;
+  line-height: 60px;
+  padding-bottom: 36px;
+  color: #000000;
+}
+
+.helping-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+}
+
+.helping-card {
+  text-decoration: none;
+  background-color: #faf9fd;
+  border-radius: 12px;
+  padding: 24px 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  /* height: 153px; */
+}
+
+.helping-card-icon svg {
+  height: 36px;
+  width: 36px;
+  display: block;
+}
+
+.helping-card-title {
+  font-family: Heebo-Medium;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 28px;
+  letter-spacing: 0;
+  color: #202020;
+  margin: 0px;
+}
+
+.helping-card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border-bottom: 1px solid #462d8c;
+  font-family: Heebo-Regular;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0;
+  color:#462D8C;
+}
+.helping-card-link:active{
+  color: #462D8C;
+}
+.helping-card-link:focus{
+  color: #462D8C;
+}
+
+.helping-card-link svg {
+  height: 16px;
+}
+
+
+@media (max-width: 768px) {
+.helping-cards-section {
+  padding: 0px 18px;
+}
+
+.helping-cards-container {
+  padding-block: 24px;
+}
+
+.helping-cards-heading {
+  font-size: 28px;
+  line-height: 40px;
+  padding-bottom: 32px;
+}
+
+.helping-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.helping-card {
+  padding: 16px 12px;
+  gap: 0px;
+  height: 110px;
+  width: auto;
+}
+
+.helping-card-icon svg {
+  height: 24px;
+  width: 24px;
+  margin-bottom: 12px;
+}
+
+.helping-card-title {
+  font-size: 14px;
+  line-height: 20px;
+  margin-bottom: 4px;
+}
+
+.helping-card-link {
+  gap: 4px;
+  font-size: 12px;
+  line-height: 16px;
+  border: none;
+}
+
+.helping-card-link svg {
+  height: 16px;
+}
+}
+
+@media only screen and (min-width: 1780px){
+  .helping-cards-section{
+    padding: 0 var(--desktop-padding);
+  }
+}

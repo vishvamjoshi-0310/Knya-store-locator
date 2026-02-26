@@ -1,0 +1,88 @@
+/* Mobile First Styles */
+.drift-in-action-video-section {
+  padding: 0;
+  padding-block: 12px 4px;
+}
+.drift-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.drift-content-wrapper {
+  padding-inline: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  /* margin-bottom: 12px; */
+}
+
+.drift-headline {
+  font-family: Heebo-Medium;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: 0.24px;
+  margin-bottom:0px;
+  color: #482f8f;
+}
+
+.drift-button-wrapper {
+  display: flex;
+}
+
+.drift-watch-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: Heebo-Medium;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0px;
+  color: #000000;
+  text-decoration: none;
+  cursor: pointer;
+}
+.drift-watch-button span{
+  border-bottom: 1px solid #ffffff;
+}
+.drift-watch-button span:hover{
+  border-bottom: 1px solid #462D8C;
+}
+
+.drift-play-icon-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+}
+
+.drift-video-container video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Desktop Styles */
+@media (min-width: 768px) {
+  .drift-in-action-video-section {
+    padding: 56px 0px 24px 0px;
+  }
+  .drift-container {
+    flex-direction: column;
+  }
+
+  .drift-content-wrapper {
+    gap: 0px;
+    margin-bottom: 24px;
+    padding-inline: 80px;
+  }
+
+  .drift-headline {
+    font-size: 32px;
+    line-height: 40px;
+    letter-spacing: 0.64px;
+    margin-bottom:0px;
+  }
+}

@@ -1,0 +1,38 @@
+
+{%- assign block_settings = block.settings -%}
+<div class="container-price__review">
+    {% capture children %}
+        {% content_for 'blocks' %}
+    {% endcapture %}
+    {% render 'group', children: children, settings: block_settings, shopify_attributes: block.shopify_attributes %}
+</div>
+<style>
+.container-price__review .group-block-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items:center;
+}
+.product-title-group .group-block-content {
+    gap: 0;
+}
+</style>
+{% schema %}
+{
+    "name": "Price & Review",
+    "settings": [],
+    "blocks": [
+        {
+            "type": "price"
+        },
+        {
+            "type": "review"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Price & Review"
+        }
+    ]
+}
+{% endschema %}

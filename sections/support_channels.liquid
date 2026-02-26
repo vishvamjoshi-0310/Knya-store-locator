@@ -1,0 +1,48 @@
+<link rel="stylesheet" href="{{ 'support-channels-stylesheet.css' | asset_url }}">
+
+<div class="support-channels page-width-updated">
+    <!-- Heading Section -->
+    <div class="support-channels-header">
+      {% if section.settings.main_heading != blank %}
+        <h2 class="support-channels-main-heading">{{ section.settings.main_heading }}</h2>
+      {% endif %}
+      {% if section.settings.sub_heading != blank %}
+        <p class="support-channels-sub-heading">{{ section.settings.sub_heading }}</p>
+      {% endif %}
+    </div>
+
+    <!-- Cards Grid -->
+    <div class="support-channels-grid">
+      {% content_for 'blocks' %}
+    </div>
+</div>
+
+{% schema %}
+{
+  "name": "Support Channels",
+  "class": "support-channels-parent",
+  "settings": [
+    {
+      "type": "text",
+      "id": "main_heading",
+      "label": "Main Heading",
+      "default": "Couldn't find what you needed?"
+    },
+    {
+      "type": "text",
+      "id": "sub_heading",
+      "label": "Sub Heading",
+      "default": "Don't worry, we've got more options for you."
+    }
+  ],
+  "blocks": [
+    {"type": "support_block"}
+  ],
+  "presets": [
+    {
+      "name": "Support Channels"
+    }
+  ]
+}
+{% endschema %}
+

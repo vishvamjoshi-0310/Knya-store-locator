@@ -1,0 +1,148 @@
+
+{%- doc -%}
+  Renders the new article title block with blog banner, title, author/date, and share icons.
+{%- enddoc -%}
+
+{% liquid
+  if article != blank
+    assign current_article = article
+  elsif closest.article != blank
+    assign current_article = closest.article
+  endif
+
+  if blog != blank
+    assign current_blog = blog
+  elsif closest.blog != blank
+    assign current_blog = closest.blog
+  endif
+%}
+
+{% if current_article != blank %}
+  {% if current_blog.metafields.custom.banner_for_desktop.value != blank
+    or current_blog.metafields.custom.banner_for_mobile.value
+  %}
+    {% assign bannerlink = current_blog.metafields.custom.banner_link.value %}
+    <div class="topcategorybanner" {{ block.shopify_attributes }}>
+      {% if current_blog.metafields.custom.banner_for_desktop.value != blank %}
+        <div class="fordesktopbanner">
+          <a
+            {% if bannerlink != blank %}
+              href="{{ bannerlink }}"
+            {% endif %}
+          >
+            {% assign desktop_banner = current_blog.metafields.custom.banner_for_desktop.value %}
+            <img
+              src="{{ desktop_banner | image_url: width: 1600 }}"
+              alt="blog banner"
+              width="{{ desktop_banner.width }}"
+              height="{{ desktop_banner.height }}"
+            >
+          </a>
+        </div>
+      {% endif %}
+      {% if current_blog.metafields.custom.banner_for_mobile.value %}
+        <div class="formobilepbanner">
+          <a
+            {% if bannerlink != blank %}
+              href="{{ bannerlink }}"
+            {% endif %}
+          >
+            {% assign mobile_banner = current_blog.metafields.custom.banner_for_mobile.value %}
+            <img
+              src="{{ mobile_banner | image_url: width: 600 }}"
+              alt="blog banner"
+              width="{{ mobile_banner.width }}"
+              height="{{ mobile_banner.height }}"
+            >
+          </a>
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  <header class="page-width-updated" {{ block.shopify_attributes }}>
+    <h1 class="article-template__title" itemprop="headline">{{ current_article.title | escape }}</h1>
+
+    <div class="maincontainner_authoror_share">
+      <div class="authorandpublishdate">
+        {%- if block.settings.blog_show_author -%}
+          <span
+            class="caption-with-letter-spacing"
+            itemprop="author"
+            itemscope
+            itemtype="http://schema.org/Person"
+          >
+            <span class="authortt_write">Written by</span>
+            <span itemprop="name" class="authortt_name">{{ current_article.author }}</span>
+          </span>
+        {%- endif -%}
+        {%- if block.settings.blog_show_date -%}
+          <span class="circle-divider caption-with-letter-spacing" itemprop="dateCreated datePublished">
+            {{- current_article.published_at | time_tag: format: 'date' -}}
+          </span>
+        {%- endif -%}
+      </div>
+
+      <div class="sharecontainner">
+        <div class="article-summary__share-icons">
+          <div class="article-share-icons-label">Share This</div>
+          <ul class="article-share-icons-list">
+            <li class="article-share-icons-list-item">
+              <a
+                href="https://twitter.com/intent/tweet?text={{ request.origin }}{{ current_article.url }}"
+                target="_blank"
+              >
+                {%- render 'icon-twitter' -%}
+              </a>
+            </li>
+            <li class="article-share-icons-list-item">
+              <a
+                href="https://www.facebook.com/sharer/sharer.php?u={{ request.origin }}{{ current_article.url }}"
+                target="_blank"
+              >
+                {%- render 'icon-facebook' -%}
+              </a>
+            </li>
+            <li class="article-share-icons-list-item">
+              <a
+                href="https://pinterest.com/pin/create/link/?url={{ request.origin }}{{ current_article.url }}&media={{ request.origin }}{{ current_article.featured_image }}"
+                target="_blank"
+              >
+                {%- render 'icon-pinterest' -%}
+              </a>
+            </li>
+            <li class="article-share-icons-list-item">
+              <a
+                href="https://www.linkedin.com/shareArticle?mini=true&url={{ request.origin }}{{ current_article.url }}"
+                target="_blank"
+              >
+                {%- render 'icon-linkd' -%}
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+{% endif %}
+
+{% schema %}
+{
+  "name": "t:sections.main-article.blocks.title.name",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "blog_show_date",
+      "default": true,
+      "label": "t:sections.main-article.blocks.title.settings.blog_show_date.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "blog_show_author",
+      "default": false,
+      "label": "t:sections.main-article.blocks.title.settings.blog_show_author.label"
+    }
+  ]
+}
+{% endschema %}
+

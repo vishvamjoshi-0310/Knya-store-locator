@@ -1,0 +1,69 @@
+{% if block.settings['get-image'] %}
+  <div class="card-get">
+    <div class="get-img">
+      <img
+        srcset="
+          {%- if block.settings.get-image.width >= 375 -%}{{ block.settings.get-image | image_url: width: 375 }} 375w,{%- endif -%}
+          {%- if block.settings.get-image.width >= 550 -%}{{ block.settings.get-image | image_url: width: 550 }} 550w,{%- endif -%}
+          {%- if block.settings.get-image.width >= 750 -%}{{ block.settings.get-image | image_url: width: 750 }} 750w,{%- endif -%}
+          {%- if block.settings.get-image.width >= 1100 -%}{{ block.settings.get-image | image_url: width: 1100 }} 1100w,{%- endif -%}
+          {%- if block.settings.get-image.width >= 1500 -%}{{ block.settings.get-image | image_url: width: 1500 }} 1500w,{%- endif -%}
+          {%- if block.settings.get-image.width >= 1780 -%}{{ block.settings.get-image | image_url: width: 1780 }} 1780w,{%- endif -%}
+          {%- if block.settings.get-image.width >= 2000 -%}{{ block.settings.get-image | image_url: width: 2000 }} 2000w,{%- endif -%}
+          {%- if block.settings.get-image.width >= 3000 -%}{{ block.settings.get-image | image_url: width: 3000 }} 3000w,{%- endif -%}
+          {%- if block.settings.get-image.width >= 3840 -%}{{ block.settings.get-image | image_url: width: 3840 }} 3840w,{%- endif -%}
+          {{ block.settings.get-image | image_url }} {{ block.settings.get-image.width }}w
+        "
+        sizes="100vw"
+        src="{{ block.settings.get-image | image_url: width: 1500 }}"
+        loading="lazy"
+        alt="{{ block.settings.get-image.alt | escape }}"
+        width="{{ block.settings.get-image.width }}"
+        height="{{ block.settings.get-image.height }}"
+      >
+    </div>
+    <h2 class="title-get heebo-medium">{{ block.settings.gettitle }}</h2>
+    <span class="content-get heebo-regular">{{ block.settings.getcontent }}</span>
+    <div class="get-url">
+      <a href="{{ block.settings.geturl }}" class="heebo-medium">
+        <span class="url-get">{{ block.settings.geturltext }}</span>
+      </a>
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Text with icon",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "get-image",
+      "label": "Image please use(101*100 size)"
+    },
+    {
+      "type": "text",
+      "id": "gettitle",
+      "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "getcontent",
+      "label": "content below heading"
+    },
+    {
+      "type": "text",
+      "id": "geturltext",
+      "label": "Enter text for URL"
+    },
+    {
+      "type": "url",
+      "id": "geturl",
+      "label": "enter URL"
+    }
+  ],
+  "presets": [
+    {"name": "Text with icon"}
+  ]
+}
+{% endschema %}

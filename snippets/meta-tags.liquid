@@ -1,0 +1,154 @@
+    {% if handle == 'connect'
+      or handle == 'womens-new-arrival'
+      or handle == 'our-story'
+      or handle == 'privacy-terms-1'
+      or handle == 'track-order'
+      or handle == 'privacy-terms'
+      or handle == 'reviews'
+      or handle == 'story'
+      or handle == 'brand-story'
+      or handle == 'shipping-and-refund'
+    %}
+      <meta name="robots" content="noindex, nofollow">
+    {% endif %}
+    {% if request.path contains '.atom' %}
+       <meta name="robots" content="noindex, nofollow">
+    {% endif %}
+{% if request.path contains 'vitals2025' %}
+  <meta property="og:title" content="Knya Vitals 2025: Voices of India’s Medicos" />
+  <meta property="og:description" content="Knya Vitals 2025 shares voices of over 10,000 Indian medical professionals: burnout, shifts, mental health & unheard realities behind the scrubs." />
+  <meta property="og:image" content="https://cdn.shopify.com/s/files/1/0562/9247/5063/files/Thumbnail.png" />
+  <meta property="og:url" content="https://knyamed.com/pages/vitals2025" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="A community-first reality check by knya" />
+  <meta name="twitter:description" content="Discover the future of medical wear with Knya’s Vitals2025 collection." />
+  <meta name="twitter:image" content="https://cdn.shopify.com/s/files/1/0562/9247/5063/files/Thumbnail.png" />
+{% endif %}
+<meta charset="utf-8">
+<meta
+  http-equiv="X-UA-Compatible"
+  content="IE=edge"
+>
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1"
+>
+<meta
+  name="view-transition"
+  content="same-origin"
+>
+<meta
+  name="theme-color"
+  content=""
+>
+
+<meta name="google-site-verification" content="vgY98XrzKxKxu2jt3epD9_uKaV2kKQRG1avm2jllLVs" />
+<meta name="google-site-verification"content="c3QnokC95WWRTuTs9wvR19FVPayLgPyPmDMWtj-BbLc" />
+
+{%- liquid
+  assign og_title = page_title | default: shop.name
+  assign og_url = canonical_url | default: request.origin
+  assign og_type = 'website'
+  assign og_description = page_description | default: shop.description | default: shop.name
+
+  if request.page_type == 'product'
+    assign og_type = 'product'
+  elsif request.page_type == 'article'
+    assign og_type = 'article'
+  elsif request.page_type == 'password'
+    assign og_url = request.origin
+  elsif request.page_type == 'collection'
+   assign collection_canon = canonical_url | split:"?"
+  assign og_url = collection_canon
+  endif
+%}
+
+<meta
+  property="og:site_name"
+  content="{{ shop.name }}"
+>
+<meta
+  property="og:url"
+  content="{{ og_url }}"
+>
+<meta
+  property="og:title"
+  content="{{ og_title | escape }}"
+>
+<meta
+  property="og:type"
+  content="{{ og_type }}"
+>
+<meta
+  property="og:description"
+  content="{{ og_description | escape }}"
+>
+
+{%- if page_image -%}
+  <meta
+    property="og:image"
+    content="http:{{ page_image | image_url }}"
+  >
+  <meta
+    property="og:image:secure_url"
+    content="https:{{ page_image | image_url }}"
+  >
+  <meta
+    property="og:image:width"
+    content="{{ page_image.width }}"
+  >
+  <meta
+    property="og:image:height"
+    content="{{ page_image.height }}"
+  >
+{%- endif -%}
+
+{%- if request.page_type == 'product' -%}
+  <meta
+    property="og:price:amount"
+    content="{{ product.price | money_without_currency | strip_html }}"
+  >
+  <meta
+    property="og:price:currency"
+    content="{{ cart.currency.iso_code }}"
+  >
+{%- endif -%}
+
+{%- if settings.social_twitter_link != blank -%}
+  <meta
+    name="twitter:site"
+    content="{{ settings.social_twitter_link | split: 'twitter.com/' | last | prepend: '@' }}"
+  >
+{%- endif -%}
+<meta
+  name="twitter:card"
+  content="summary_large_image"
+>
+<meta
+  name="twitter:title"
+  content="{{ og_title | escape }}"
+>
+<meta
+  name="twitter:description"
+  content="{{ og_description | escape }}"
+>
+
+<title>
+  {{ page_title }}
+  {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
+  {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
+  {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+</title>
+
+<link
+  rel="canonical"
+  href="{{ canonical_url }}"
+>
+
+{% if page_description %}
+  <meta
+    name="description"
+    content="{{ page_description | escape }}"
+  >
+{% endif %}

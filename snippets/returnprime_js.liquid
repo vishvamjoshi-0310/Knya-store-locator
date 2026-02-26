@@ -1,0 +1,43 @@
+{% if request.path contains 'return_prime' %}
+<style>
+   .rp_error_block {
+   max-width: 700px;
+   margin: 24px auto;
+   background: #f5e5e7;
+   padding: 28px;
+   border-radius: 10px;
+   }
+   .rp_error_block p {
+   margin: 0;
+   font-size: 23px;
+   text-align: center;
+   }
+</style>
+<script>
+
+   function checkForDeliveryStatus(obj) {
+   if(obj.order[0].shipment_status !== "delivered") {
+   var returnprimeDiv = document.querySelector(".returnprime__app");
+   let divWrapper = document.createElement('div');
+   divWrapper.classList.add("rp_error_block");
+   let nonEligibleheading = document.createElement('p');
+   nonEligibleheading.append('The order is not delivered yet, Please try again
+   after delivery.');
+   
+   divWrapper.appendChild(nonEligibleheading);
+   if(document.getElementsByClassName('rp_error_block').length === 0) {
+   returnprimeDiv.appendChild(divWrapper);
+   }
+   setTimeout(() => {
+   document.querySelector('.order_list').remove();
+   document.querySelector('.returnprime__app .customer .sidenav').remove();
+   },5)
+   }
+   }
+   if(window.location.pathname.includes('return_prime')) {
+   document.addEventListener("returnprime_orderlist_page", (e) => {
+   checkForDeliveryStatus(e.detail);
+   });
+   }
+</script>
+{% endif %}

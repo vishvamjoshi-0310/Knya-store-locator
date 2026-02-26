@@ -1,0 +1,265 @@
+.main-div-pro {
+    background-color: #482F8F;
+}
+
+.uppertab-option {
+    display: flex;
+    gap: 10px;
+}
+
+.inner-pro {
+    padding: 25px 0;
+}
+
+.detail-option {
+    font-size: 1.250vw;
+    color: #F4ECD0;
+    cursor: pointer;
+}
+
+.lowertab-options {
+    display: flex;
+    justify-content: space-between;
+}
+
+.tab-right {
+    width: 22%;
+    font-size: 1.719vw;
+    font-family: Heebo-SemiBold;
+    color: #482F8F;
+    display: flex;
+    gap: 10px;
+    line-height: 120%
+}
+
+.icon-tab {
+    padding-top: 10px;
+}
+
+.tab-left {
+    width: 75%;
+}
+
+.tab-view {
+    display: flex;
+}
+
+.right-inner {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    gap: 20px;
+}
+
+.main-grid-text-div {
+    position: absolute;
+    bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    height: max-content;
+    text-align: center;
+    line-height: 120%;
+}
+
+.grid-text {
+    font-size: 1.094vw;
+    padding: 0 17px;
+    width: 100%;
+    height: auto;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    color: #F4ECD0;
+    font-family: 'Heebo-Regular';
+}
+
+.grid-imagess img {
+    width: 100%;
+    height: auto;
+}
+
+.grid-imagess {
+    position: relative;
+}
+
+.ecxchange-content {
+    width: 50%;
+    font-family: Heebo-Regular;
+    font-size: 1.250vw;
+    color: #482F8F;
+    line-height: 120%
+}
+
+.exchange-div {
+    display: flex;
+    gap: 95px;
+}
+
+.exchange-div {
+    display: none;
+}
+
+.detail-option {
+    opacity: 0.6;
+    font-family: Heebo-Regular;
+}
+
+.opacity-color {
+    opacity: 1;
+}
+
+.lower.mainn-div-pro {
+    background-color: #F4ECD0;
+    border-radius: 0px 0px 0px 69px;
+}
+
+.ecxchange-content {
+    display: flex;
+    flex-direction: column;
+}
+
+@media screen and (min-width: 641px) and (max-width:1024px) {
+
+    .right-inner {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        gap: 20px;
+    }
+
+    .detail-option {
+        font-size: 1.563vw;
+    }
+
+    .grid-text {
+        font-size: 1.367vw !important;
+    }
+
+    .tab-right {
+        font-size: 2.148vw;
+    }
+
+    .ecxchange-content {
+        font-size: 1.563vw;
+        width: 100%;
+    }
+
+    .tab-left {
+        width: 60%;
+    }
+
+    .tab-right {
+        width: 40%;
+    }
+}
+
+.exchange-lower {
+    padding-top: 16px;
+}
+
+@media screen and (max-width: 640px) {
+    span.verticle-line {
+        font-size: 12px !important;
+    }
+
+    .icon-tab svg {
+        width: 25px !important;
+        height: 25px !important;
+    }
+
+    .exchange-lower {
+        font-family: 'Heebo-SemiBold' !important;
+    }
+
+    .exchange_width {
+        padding: 0;
+    }
+
+    .detail-option {
+        font-size: 14px;
+    }
+
+    .grid-text {
+        font-size: 14px !important;
+    }
+
+    .tab-right {
+        font-size: 20px;
+    }
+
+    .ecxchange-content {
+        font-size: 12px;
+    }
+
+    .uppertab-option {
+        justify-content: center;
+    }
+
+    .lowertab-options {
+        display: block;
+        gap: 95px;
+    }
+
+    .tab-right {
+        width: 100%;
+    }
+
+    .tab-view {
+        display: block;
+    }
+
+    .tab-left {
+        width: 100%;
+        display: flex;
+        gap: 10PX;
+        padding-top: 16px;
+    }
+
+    .ecxchange-content-icon {
+        display: flex !important;
+        padding-top: 3px !important;
+    }
+
+    .right-inner {
+        grid-template-columns: auto auto;
+    }
+
+    .ecxchange-content {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .icon-tab {
+        padding: 0;
+    }
+
+    .grid_section-1 .main-grid-text-div,
+    .grid_section-2 .main-grid-text-div {
+        top: 12px !important;
+    }
+
+    .inner-pro {
+        padding: 10px 25px !important;
+    }
+
+    .text-tab {
+        font-family: 'Heebo-Regular' !important;
+    }
+}
+
+/* .detail-option[dataid='option-one']{border-right: 2px solid;padding-right: 10px;} */
+span.verticle-line {
+    font-size: 1.25vw;
+    color: #f4ecd0;
+}
+
+.ecxchange-content-icon {
+    padding-top: 5px;
+    display: none;
+}
+
+.icon-tab svg {
+    width: 3.125vw;
+    height: 6.4vh;
+}

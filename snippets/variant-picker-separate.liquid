@@ -1,0 +1,558 @@
+{%- doc -%}
+  Renders a variant picker for separate products (top/bottom) from metafields.
+  Variants are rendered using Liquid, not JavaScript.
+
+  @param {object} product_resource - The product object from metafield.
+  @param {string} picker_type - Either 'top' or 'bottom' to identify the picker.
+  @param {object} block - The block object.
+  @param {object} section - The section object.
+{%- enddoc -%}
+
+{% assign block_settings = block.settings %}
+{% assign picker_label = picker_type | capitalize | append: ' Size' %}
+
+{% unless product_resource.has_only_default_variant %}
+  {% liquid
+    assign button_background_brightness = section.settings.color_scheme.settings.foreground | color_brightness
+    if button_background_brightness < 105
+      assign strikethrough_color_mix = '#000'
+    else
+      assign strikethrough_color_mix = '#fff'
+    endif
+  %}
+  <div
+    class="separate-product-picker variant-picker spacing-style variant-picker--{{ block_settings.alignment }}"
+    data-picker-type="{{ picker_type }}"
+    data-product-id="{{ product_resource.id }}"
+    data-section-id="{{ section.id }}"
+    style="--color-strikethrough-mix: {{ strikethrough_color_mix }}; {% render 'spacing-style', settings: block_settings %}"
+  >
+    <form class="variant-picker__form" data-picker-form="{{ picker_type }}">
+      {%- for product_option in product_resource.options_with_values -%}
+        {%- liquid
+          assign swatch_count = product_option.values | map: 'swatch' | compact | size
+          assign variant_style = block_settings.variant_style
+
+          if swatch_count > 0 and block_settings.show_swatches
+            if block_settings.variant_style == 'dropdown'
+              assign variant_style = 'swatch_dropdown'
+            else
+              assign variant_style = 'swatch'
+            endif
+          endif
+
+          if variant_style == 'buttons' and settings.variant_button_width == 'equal-width-buttons'
+            assign fieldset_id = section.id | append: '-' | append: picker_type | append: '-' | append: product_resource.id | append: '-' | append: product_option.name | handleize
+            assign option_id_attribute = 'data-option-id="' | append: fieldset_id | append: '"'
+            assign longest_value = 0
+          endif
+        -%}
+
+        {%- if variant_style == 'swatch' or block_settings.variant_style == 'buttons' -%}
+          {%- assign fieldset_index = forloop.index0 -%}
+          {%- liquid
+            assign option_type = product_option.name | downcase
+          -%}
+          <fieldset
+            class="variant-option variant-option--buttons{% if variant_style == 'swatch' %} variant-option--swatches{% else %} variant-option--{{ settings.variant_button_width }}{% endif %}"
+            data-fieldset-index="{{ fieldset_index }}"
+            data-picker-type="{{ picker_type }}"
+            option-type="{{ option_type }}"
+            {{ option_id_attribute }}
+          >
+            <div class="container_sizeguide--title">
+              {% assign sizecart_top = product.metafields.custom.size_guide.value %}
+              {% assign sizecart_bottom = product.metafields.custom.size_guide_bottom.value %}
+              <legend class="heebo-medium">
+                <span class="variant-option__name">{{ product_option.name | escape }}</span>
+                <span class="variant-option__selected-value" data-fieldset-index="{{ fieldset_index }}"></span>
+                {%- if variant_style == 'swatch' -%}
+                  <span class="variant-option__swatch-value">{{ product_option.selected_value }}</span>
+                {%- endif %}
+                <span class="please-select-size heebo-regular"><b>Please Select</b></span>
+              </legend>
+              {% if product_option.name == 'Top Size' or product_option.name == 'Top Style' %}
+                {% if sizecart_top.heading_of_size_chart != blank %}
+                  <span
+                    class="size_guide_new heebo-medium"
+                      onclick="sizeGuideModalOpenTop({{ product.id }})"
+                  >
+                    Size Chart
+                  </span>
+                {% endif %}
+              {% endif %}
+              
+              {% if product_option.name == 'Bottom Size' %}
+                {% if sizecart_bottom.heading_of_size_chart != blank %}
+                <span
+                  class="size_guide_new heebo-medium"
+                    onclick="sizeGuideModalOpenTopBottom({{ product.id }})"
+                >
+                  Size Chart
+                </span>
+                {% endif %}
+              {% endif %}
+            </div>
+            {%- for product_option_value in product_option.values -%}
+              {% if product_option_value.size > longest_value and option_id_attribute %}
+                {% assign longest_value = product_option_value.size %}
+              {% endif %}
+              <label
+                class="variant-option__button-label custom-full-width-variant-option__button-label {% if variant_style == 'swatch' %} variant-option__button-label--has-swatch{% endif %}"
+              >
+                <input
+                  type="radio"
+                  name="{{ picker_type }}-product-option-{{ product_option.position }}-{{ block.id }}-{{ product_resource.id }}"
+                  value="{{ product_option_value | escape }}"
+                  aria-label="{{ product_option_value.name }}"
+                  {% if product_option_value.available == false %}
+                    aria-disabled="true"
+                  {% endif %}
+                  data-previous-checked="false"
+                  data-fieldset-index="{{ fieldset_index }}"
+                  data-input-index="{{ forloop.index0 }}"
+                  data-input-id="{{ product_option.position }}-{{ forloop.index0 }}"
+                  data-option-value-id="{{ product_option_value.id }}"
+                  data-option-available="{{ product_option_value.available }}"
+                  data-picker-type="{{ picker_type }}"
+                  {% if product_option_value.variant.id %}
+                    data-variant-id="{{ product_option_value.variant.id }}"
+                  {% endif %}
+                  data-current-checked="false"
+                >
+                {% if variant_style == 'swatch' %}
+                  {% liquid
+                    assign featured_media = product_option_value.variant.featured_media
+
+                    # If the variant has no featured media, and we have a combined listing product, then fall back to
+                    # using the featured media of the child product that is linked to this option value.
+                    if featured_media == blank and product_option_value.product_url
+                      assign featured_media = product_option_value.variant.product.featured_media
+                    endif
+                  %}
+
+                  {% render 'swatch',
+                    swatch: product_option_value.swatch,
+                    variant_image: featured_media,
+                    mode: 'unscaled'
+                  %}
+                {% else %}
+                  {% if product_option_value.available == true %}
+                    <span class="variant-option__button-label__pill"></span>
+                  {% endif %}
+                  <span class="variant-option__button-label__text custom-full-with-variant">{{ product_option_value | escape }}</span>
+                {% endif %}
+                {% comment %} {% render 'strikethrough-variant', product_option: product_option_value %} {% endcomment %}
+              </label>
+            {%- endfor -%}
+            {% if option_id_attribute %}
+              {% style %}
+                [data-option-id="{{ fieldset_id }}"] {
+                  --variant-ch: {{ longest_value }}ch;
+                }
+              {% endstyle %}
+            {% endif %}
+          </fieldset>
+        {%- elsif block_settings.variant_style == 'dropdowns' -%}
+          {% liquid
+            assign property_being_updated = false
+            if settings.variant_swatch_width != settings.variant_swatch_height
+              assign property_being_updated = true
+              # (original width / original height) x new height (20px at the moment) = new width
+              assign new_width = settings.variant_swatch_width | times: 1.0 | divided_by: settings.variant_swatch_height | times: 20
+            endif
+          %}
+
+          <div class="variant-option variant-option--dropdowns">
+            <label for="{{ picker_type }}-Option-{{ block.id }}-{{ forloop.index0 }}">
+              {% if forloop.first %}
+                {{ picker_label | escape }}
+              {% else %}
+                {{ product_option.name | escape }}
+              {% endif %}
+            </label>
+            <div
+              class="variant-option__select-wrapper"
+              style="
+                {%- if property_being_updated  -%}
+                  --variant-picker-swatch-width: clamp(10px,{{ new_width }}px, 50px);
+                {%- endif -%}
+              "
+            >
+              <select
+                id="{{ picker_type }}-Option-{{ block.id }}-{{ forloop.index0 }}"
+                name="{{ picker_type }}-product-options[{{ product_option.name | escape }}]"
+                class="variant-option__select"
+                data-picker-type="{{ picker_type }}"
+              >
+                {%- for product_option_value in product_option.values -%}
+                  <option
+                    value="{{ product_option_value | escape }}"
+                    data-input-id="{{ product_option.position }}-{{ forloop.index0 }}"
+                    data-option-value-id="{{ product_option_value.id }}"
+                    data-variant-id="{{ product_option_value.variant.id }}"
+                  >
+                    {% if product_option_value.available == false %}
+                      {{ product_option_value | escape }} - {{ 'content.unavailable' | t }}
+                    {% else %}
+                      {{ product_option_value | escape }}
+                    {% endif %}
+                  </option>
+                {%- endfor -%}
+              </select>
+              <svg
+                aria-hidden="true"
+                focusable="false"
+                class="icon icon-caret"
+                viewBox="0 0 10 6"
+              >
+                {%- render 'icon', icon: 'caret' -%}
+              </svg>
+            </div>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+
+      {%- comment -%} Hidden input to store selected variant ID {%- endcomment -%}
+      <input
+        type="hidden"
+        name="{{ picker_type }}_product_variant_id"
+        id="{{ picker_type }}_product_variant_id"
+        value=""
+        data-picker-type="{{ picker_type }}"
+        data-sku=""
+      >
+
+      <script type="application/json" data-picker-type="{{ picker_type }}">
+        {{ product_resource.selected_or_first_available_variant | json }}
+      </script>
+      <script type="application/json" data-picker-variants="{{ picker_type }}" data-product-id="{{ product_resource.id }}">
+        {{ product_resource.variants | json }}
+      </script>
+    </form>
+  </div>
+
+  {%- comment -%} JavaScript to handle variant selection and update hidden input {%- endcomment -%}
+  <script>
+    (function() {
+      'use strict';
+      // Use unique namespace prefix to avoid conflicts
+      const separateProductPicker_pickerType = '{{ picker_type }}';
+      const separateProductPicker_form = document.querySelector(`form[data-picker-form="${separateProductPicker_pickerType}"]`);
+      if (!separateProductPicker_form) return;
+
+      const separateProductPicker_variantIdInput = separateProductPicker_form.querySelector(`#${separateProductPicker_pickerType}_product_variant_id`);
+      const separateProductPicker_errorDiv = separateProductPicker_form.querySelector(`.product-picker-error[data-picker-type="${separateProductPicker_pickerType}"]`);
+      const separateProductPicker_variantDataScript = separateProductPicker_form.querySelector(`script[data-picker-type="${separateProductPicker_pickerType}"]`);
+      const separateProductPicker_variantData = separateProductPicker_variantDataScript ? JSON.parse(separateProductPicker_variantDataScript.textContent || '{}') : {};
+      const separateProductPicker_productVariants = {{ product_resource.variants | json }};
+
+      // Don't initialize with any variant - wait for user selection
+      
+      // Initialize selected value display on page load if there are any checked inputs
+      setTimeout(function() {
+        separateProductPicker_updateSelectedValueDisplay();
+      }, 0);
+
+      // Function to update selected value display
+      function separateProductPicker_updateSelectedValueDisplay() {
+        const separateProductPicker_fieldsets = separateProductPicker_form.querySelectorAll('fieldset[data-picker-type="' + separateProductPicker_pickerType + '"]');
+        separateProductPicker_fieldsets.forEach(function(separateProductPicker_fieldset) {
+          const separateProductPicker_checkedInput = separateProductPicker_fieldset.querySelector('input[type="radio"]:checked');
+          const separateProductPicker_selectedValueSpan = separateProductPicker_fieldset.querySelector('.variant-option__selected-value');
+          const separateProductPicker_legend = separateProductPicker_fieldset.querySelector('legend');
+          
+          if (separateProductPicker_checkedInput && separateProductPicker_selectedValueSpan) {
+            // Get the selected value text
+            const separateProductPicker_label = separateProductPicker_checkedInput.closest('label');
+            const separateProductPicker_textSpan = separateProductPicker_label ? separateProductPicker_label.querySelector('.variant-option__button-label__text') : null;
+            const separateProductPicker_selectedValueText = separateProductPicker_textSpan ? separateProductPicker_textSpan.textContent.trim() : separateProductPicker_checkedInput.value || '';
+            
+            // Update the selected value span
+            if (separateProductPicker_selectedValueText) {
+              separateProductPicker_selectedValueSpan.textContent = separateProductPicker_selectedValueText;
+              
+              // Update the colon display by toggling a class on the name span
+              const separateProductPicker_nameSpan = separateProductPicker_fieldset.querySelector('.variant-option__name');
+              if (separateProductPicker_nameSpan) {
+                separateProductPicker_nameSpan.classList.add('has-selected-value');
+              }
+              
+              // Hide error messages
+              if (separateProductPicker_legend) {
+                const separateProductPicker_pleaseSelectSize = separateProductPicker_legend.querySelector('.please-select-size');
+                const separateProductPicker_embSelectOpt = separateProductPicker_legend.querySelector('.emb_select_opt');
+                if (separateProductPicker_pleaseSelectSize && separateProductPicker_pleaseSelectSize instanceof HTMLElement) {
+                  separateProductPicker_pleaseSelectSize.style.display = 'none';
+                }
+                if (separateProductPicker_embSelectOpt && separateProductPicker_embSelectOpt instanceof HTMLElement) {
+                  separateProductPicker_embSelectOpt.style.display = 'none';
+                }
+              }
+            } else {
+              separateProductPicker_selectedValueSpan.textContent = '';
+              const separateProductPicker_nameSpan = separateProductPicker_fieldset.querySelector('.variant-option__name');
+              if (separateProductPicker_nameSpan) {
+                separateProductPicker_nameSpan.classList.remove('has-selected-value');
+              }
+            }
+          } else if (separateProductPicker_selectedValueSpan) {
+            // No selection - clear the display
+            separateProductPicker_selectedValueSpan.textContent = '';
+            const separateProductPicker_nameSpan = separateProductPicker_fieldset.querySelector('.variant-option__name');
+            if (separateProductPicker_nameSpan) {
+              separateProductPicker_nameSpan.classList.remove('has-selected-value');
+            }
+          }
+        });
+      }
+
+      // Handle radio button changes
+      const separateProductPicker_radioInputs = separateProductPicker_form.querySelectorAll(`input[type="radio"][data-picker-type="${separateProductPicker_pickerType}"]`);
+      separateProductPicker_radioInputs.forEach(function(separateProductPicker_input) {
+        separateProductPicker_input.addEventListener('change', function() {
+          separateProductPicker_updateSelectedVariant();
+          separateProductPicker_updateSelectedValueDisplay();
+          separateProductPicker_updateOptionAvailability();
+        });
+      });
+
+      // Handle dropdown changes
+      const separateProductPicker_selectInputs = separateProductPicker_form.querySelectorAll(`select[data-picker-type="${separateProductPicker_pickerType}"]`);
+      separateProductPicker_selectInputs.forEach(function(separateProductPicker_select) {
+        separateProductPicker_select.addEventListener('change', function() {
+          separateProductPicker_updateSelectedVariant();
+          // For dropdowns, update selected value display
+          const separateProductPicker_fieldset = separateProductPicker_select.closest('fieldset');
+          if (separateProductPicker_fieldset) {
+            const separateProductPicker_selectedOption = separateProductPicker_select.selectedOptions[0];
+            const separateProductPicker_selectedValueSpan = separateProductPicker_fieldset.querySelector('.variant-option__selected-value');
+            const separateProductPicker_legend = separateProductPicker_fieldset.querySelector('legend');
+            
+            if (separateProductPicker_selectedOption && separateProductPicker_selectedValueSpan) {
+              const separateProductPicker_selectedValueText = separateProductPicker_selectedOption.textContent.trim().split(' - ')[0] || separateProductPicker_select.value || '';
+              
+              if (separateProductPicker_selectedValueText) {
+                separateProductPicker_selectedValueSpan.textContent = separateProductPicker_selectedValueText;
+                
+                const separateProductPicker_nameSpan = separateProductPicker_fieldset.querySelector('.variant-option__name');
+                if (separateProductPicker_nameSpan) {
+                  separateProductPicker_nameSpan.classList.add('has-selected-value');
+                }
+                
+                // Hide error messages
+                if (separateProductPicker_legend) {
+                  const separateProductPicker_pleaseSelectSize = separateProductPicker_legend.querySelector('.please-select-size');
+                  const separateProductPicker_embSelectOpt = separateProductPicker_legend.querySelector('.emb_select_opt');
+                  if (separateProductPicker_pleaseSelectSize && separateProductPicker_pleaseSelectSize instanceof HTMLElement) {
+                    separateProductPicker_pleaseSelectSize.style.display = 'none';
+                  }
+                  if (separateProductPicker_embSelectOpt && separateProductPicker_embSelectOpt instanceof HTMLElement) {
+                    separateProductPicker_embSelectOpt.style.display = 'none';
+                  }
+                }
+              }
+            }
+          }
+          separateProductPicker_updateOptionAvailability();
+        });
+      });
+
+      function separateProductPicker_getSelectedOptions() {
+        const separateProductPicker_selectedOptions = {};
+
+        // Get selected radio buttons - use fieldset index to match option position
+        separateProductPicker_radioInputs.forEach(function(separateProductPicker_input) {
+          if (separateProductPicker_input.checked) {
+            const separateProductPicker_fieldsetIndex = parseInt(separateProductPicker_input.dataset.fieldsetIndex || '0', 10);
+            separateProductPicker_selectedOptions[separateProductPicker_fieldsetIndex] = separateProductPicker_input.value;
+          }
+        });
+
+        // Get selected dropdown values - extract option position from input-id
+        separateProductPicker_selectInputs.forEach(function(separateProductPicker_select) {
+          const separateProductPicker_selectedOption = separateProductPicker_select.selectedOptions[0];
+          if (separateProductPicker_selectedOption && separateProductPicker_selectedOption.dataset.inputId) {
+            const separateProductPicker_inputIdParts = separateProductPicker_selectedOption.dataset.inputId.split('-');
+            const separateProductPicker_optionPosition = parseInt(separateProductPicker_inputIdParts[0] || '1', 10) - 1; // Convert to 0-based index
+            separateProductPicker_selectedOptions[separateProductPicker_optionPosition] = separateProductPicker_select.value;
+          }
+        });
+
+        return separateProductPicker_selectedOptions;
+      }
+
+      function separateProductPicker_isOptionValueAvailable(separateProductPicker_optionPosition, separateProductPicker_optionValue, separateProductPicker_selectedOptions) {
+        if (!Array.isArray(separateProductPicker_productVariants)) return false;
+        return separateProductPicker_productVariants.some(function(separateProductPicker_variant) {
+          if (!separateProductPicker_variant || !separateProductPicker_variant.available) return false;
+          if (!separateProductPicker_variant.options || !Array.isArray(separateProductPicker_variant.options)) return false;
+          if (separateProductPicker_variant.options[separateProductPicker_optionPosition] !== separateProductPicker_optionValue) return false;
+          return separateProductPicker_variant.options.every(function(separateProductPicker_option, separateProductPicker_index) {
+            if (separateProductPicker_index === separateProductPicker_optionPosition) return true;
+            const separateProductPicker_selectedValue = separateProductPicker_selectedOptions[separateProductPicker_index];
+            return !separateProductPicker_selectedValue || separateProductPicker_selectedValue === separateProductPicker_option;
+          });
+        });
+      }
+
+      function separateProductPicker_updateOptionAvailability() {
+        const separateProductPicker_selectedOptions = separateProductPicker_getSelectedOptions();
+        const separateProductPicker_fieldsets = separateProductPicker_form.querySelectorAll('fieldset[data-picker-type="' + separateProductPicker_pickerType + '"]');
+
+        separateProductPicker_fieldsets.forEach(function(separateProductPicker_fieldset) {
+          const separateProductPicker_fieldsetIndex = parseInt(separateProductPicker_fieldset.dataset.fieldsetIndex || '0', 10);
+          const separateProductPicker_inputs = separateProductPicker_fieldset.querySelectorAll('input[type="radio"]');
+          separateProductPicker_inputs.forEach(function(separateProductPicker_input) {
+            const separateProductPicker_isAvailable = separateProductPicker_isOptionValueAvailable(
+              separateProductPicker_fieldsetIndex,
+              separateProductPicker_input.value,
+              separateProductPicker_selectedOptions
+            );
+            separateProductPicker_input.dataset.optionAvailable = separateProductPicker_isAvailable ? 'true' : 'false';
+            if (separateProductPicker_isAvailable) {
+              separateProductPicker_input.removeAttribute('aria-disabled');
+            } else {
+              separateProductPicker_input.setAttribute('aria-disabled', 'true');
+            }
+          });
+        });
+
+        separateProductPicker_selectInputs.forEach(function(separateProductPicker_select, separateProductPicker_selectIndex) {
+          const separateProductPicker_firstOption = separateProductPicker_select.querySelector('option');
+          let separateProductPicker_optionPosition = separateProductPicker_selectIndex;
+          if (separateProductPicker_firstOption && separateProductPicker_firstOption.dataset.inputId) {
+            const separateProductPicker_inputIdParts = separateProductPicker_firstOption.dataset.inputId.split('-');
+            separateProductPicker_optionPosition = parseInt(separateProductPicker_inputIdParts[0] || '1', 10) - 1;
+          }
+
+          Array.from(separateProductPicker_select.options).forEach(function(separateProductPicker_option) {
+            const separateProductPicker_isAvailable = separateProductPicker_isOptionValueAvailable(
+              separateProductPicker_optionPosition,
+              separateProductPicker_option.value,
+              separateProductPicker_selectedOptions
+            );
+            separateProductPicker_option.disabled = !separateProductPicker_isAvailable;
+          });
+        });
+      }
+
+      function separateProductPicker_updateSelectedVariant() {
+        const separateProductPicker_selectedOptions = separateProductPicker_getSelectedOptions();
+
+        // Find matching variant
+        const separateProductPicker_matchingVariant = separateProductPicker_productVariants.find(function(separateProductPicker_variant) {
+          if (!separateProductPicker_variant.options || !Array.isArray(separateProductPicker_variant.options)) return false;
+          return separateProductPicker_variant.options.every(function(separateProductPicker_option, separateProductPicker_index) {
+            return separateProductPicker_selectedOptions[separateProductPicker_index] === separateProductPicker_option;
+          });
+        });
+
+        if (separateProductPicker_matchingVariant && separateProductPicker_variantIdInput) {
+          separateProductPicker_variantIdInput.value = separateProductPicker_matchingVariant.id.toString();
+           // Set data-sku if picker type is "top"
+          if (separateProductPicker_variantIdInput.getAttribute('data-picker-type') === 'top') {
+            separateProductPicker_variantIdInput.setAttribute('data-sku', separateProductPicker_matchingVariant.sku || '');
+            const separateProductPicker_embroideryBox = document.querySelector(".embroidery-box-rewamp");
+            if (separateProductPicker_embroideryBox) {
+              separateProductPicker_embroideryBox.setAttribute("data-selected-variant-sku", separateProductPicker_matchingVariant.sku || '');
+            }
+          }
+          if (separateProductPicker_errorDiv) {
+            separateProductPicker_errorDiv.style.display = 'none';
+          }
+        } else if (separateProductPicker_variantIdInput && separateProductPicker_productVariants.length > 0) {
+          // Fallback to first available variant if no match found
+          const separateProductPicker_firstVariant = separateProductPicker_productVariants[0];
+          if (separateProductPicker_firstVariant && separateProductPicker_firstVariant.id) {
+            separateProductPicker_variantIdInput.value = separateProductPicker_firstVariant.id.toString();
+            // Set data-sku if picker type is "top"
+            if (separateProductPicker_variantIdInput.getAttribute('data-picker-type') === 'top') {
+              separateProductPicker_variantIdInput.setAttribute('data-sku', separateProductPicker_firstVariant.sku || '');
+              const separateProductPicker_embroideryBox = document.querySelector(".embroidery-box-rewamp");
+              if (separateProductPicker_embroideryBox) {
+                separateProductPicker_embroideryBox.setAttribute("data-selected-variant-sku", separateProductPicker_firstVariant.sku || '');
+              }
+            }
+          }
+        }
+      }
+
+      // Initial update
+      separateProductPicker_updateSelectedVariant();
+      separateProductPicker_updateSelectedValueDisplay();
+      separateProductPicker_updateOptionAvailability();
+    })();
+  </script>
+{% endunless %}
+
+{{ 'variant-picker-common.css' | asset_url | stylesheet_tag }}
+
+{% stylesheet %}
+
+  .separate-product-picker {
+    width: 100%;
+  }
+
+  .separate-product-picker .variant-picker__form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--padding-lg);
+    width: 100%;
+  }
+
+  .separate-product-picker .variant-option--buttons legend {
+    padding: 0;
+    margin-block-end: 2px;
+    font-size: clamp(16px, calc(16 * (100vw / 1440)), 24px);
+    line-height: 1.272;
+    letter-spacing: .88px;
+    color: black;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    align-items: center;
+    gap: 0.25em;
+    row-gap: 0;
+    @media screen and (max-width: 749px) {
+      font-size: 14px;
+    }
+  }
+
+  .separate-product-picker .variant-option__name::after {
+    content: ':';
+    margin-left: 0.1em;
+  }
+
+  .separate-product-picker .please-select-size {
+    color: #b3261e;
+    font-size: clamp(20px, calc(22 * (100vw / 1440)), 24px);
+    line-height: 1.428;
+    letter-spacing: .014px;
+    display: none;
+    @media screen and (max-width: 749px) {
+      font-size: 14px;
+    }
+  }
+
+  .separate-product-picker fieldset:has(input:checked) .container_sizeguide--title .please-select-size {
+    display: none !important;
+  }
+
+  .separate-product-picker .variant-option__selected-value:not(:empty) {
+    display: inline;
+  }
+
+  .separate-product-picker .variant-option__selected-value:not(:empty) ~ .please-select-size {
+    display: none;
+  }
+
+  /* Smooth price transition for combo products */
+  product-price [ref="priceContainer"] {
+    transition: opacity 0.2s ease-in-out;
+  }
+
+  product-price [ref="priceContainer"] .price,
+  product-price [ref="priceContainer"] .compare-at-price {
+    transition: opacity 0.2s ease-in-out;
+  }
+{% endstylesheet %}

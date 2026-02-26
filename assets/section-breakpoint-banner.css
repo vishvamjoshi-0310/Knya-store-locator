@@ -1,0 +1,367 @@
+.breakpoint-banner-section{
+  width: 100%; 
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+.breakpoint-banner-section .breakpoint-banner-parent{
+  display: flex;
+  height: calc(100vh - 55px);
+}
+.breakpoint-banner-section .breakpoint-banner-bg{
+  display: flex;
+  width: 100%;
+}
+.breakpoint-banner-section .breakpoint-banner-bg img{
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.breakpoint-banner-section .breakpoint-banner-content{
+  position: absolute;
+  top: 72px;
+  left: 80px;
+  z-index: 1;
+  padding-block: 132px 148px;
+  padding-left: 2px;
+}
+.breakpoint-banner-section .breakpoint-banner-content .breakpoint-banner-title-svg svg{
+  width: 505px;
+  height: 155px;
+  object-fit: cover;
+  display: block;
+  margin-bottom: 36px;
+}
+.breakpoint-banner-section .breakpoint-banner-content .breakpoint-banner-text{
+  font-family: Poppins-Regular;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 52px;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+  width: 54%;  
+}
+.breakpoint-banner-section .breakpoint-banner-mobile-button{
+  position: absolute;
+  bottom: 81px;
+  right: 80px;
+  z-index: 1;
+}
+.breakpoint-banner-section .breakpoint-banner-mobile-button a{
+  display: flex;
+  gap: 22px;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  font-family: Poppins-SemiBold;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 36px;
+  letter-spacing: 0px;
+}
+.breakpoint-banner-section .breakpoint-banner-mobile-button a svg{
+  height: 84px;
+  width: 84px;
+}
+.breakpoint-banner-section .breakpoint-banner-mobile-button a svg rect {
+  fill: #FFFFFF;
+  transition: fill 0.3s ease;
+}
+.breakpoint-banner-section .breakpoint-banner-mobile-button a svg path {
+  stroke: #4949E9;
+  transition: stroke 0.3s ease;
+}
+/* .breakpoint-banner-section .breakpoint-banner-mobile-button:hover a {
+  color: #4949E9;
+  transition: color 0.3s ease;
+}
+.breakpoint-banner-section .breakpoint-banner-mobile-button:hover a svg rect {
+  fill: #4949E9;
+}
+.breakpoint-banner-section .breakpoint-banner-mobile-button:hover a svg path {
+  stroke: #FFFFFF;
+} */
+
+@media  screen and (max-width: 991px){
+  .breakpoint-banner-section .breakpoint-banner-content{
+    top: 66px;
+    left: 58px;
+    padding-block: 60px;
+  }
+  .breakpoint-banner-section .breakpoint-banner-bg{
+    display: flex;
+  }
+  .breakpoint-banner-section .breakpoint-banner-content .breakpoint-banner-title-svg svg{
+    width: 300px;
+    height: 84px;
+    margin-bottom: 18px;
+  }
+  .breakpoint-banner-section .breakpoint-banner-content .breakpoint-banner-text{
+    font-size: 22px;
+    line-height: 26px;  
+  }
+  .breakpoint-banner-section .breakpoint-banner-mobile-button{
+    bottom: 40%;
+    right: 32px;
+  }
+  .breakpoint-banner-section .breakpoint-banner-mobile-button a{
+    gap: 16px;
+    font-size: 18px;
+    line-height: 20px;
+  }
+  .breakpoint-banner-section .breakpoint-banner-mobile-button a svg{
+    height: 64px;
+    width: 64px;
+  }
+}
+
+@media  screen and (max-width: 768px){
+  .breakpoint-banner-section .breakpoint-banner-parent{
+    height: calc(539px + 65px);
+  }
+  .breakpoint-banner-section .breakpoint-banner-bg img{
+    height: 100%;
+  }
+  .breakpoint-banner-section .breakpoint-banner-content{
+    top: calc(101px - 65px);
+    left: 24px;
+    padding-block:0;
+  }
+  .breakpoint-banner-section .breakpoint-banner-content .breakpoint-banner-title-svg svg{
+    width: 170px;
+    height: 52px;
+    margin-bottom: 14px;
+  }
+  .breakpoint-banner-section .breakpoint-banner-content .breakpoint-banner-text{
+    font-size: 18px;
+    line-height: 28px;
+    width: 80%;  
+  }
+  .breakpoint-banner-section .breakpoint-banner-mobile-button{
+    bottom: 24px;
+    right: 24px;
+  }
+  .breakpoint-banner-section .breakpoint-banner-mobile-button a{
+    gap: 14px;
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .breakpoint-banner-section .breakpoint-banner-mobile-button a svg{
+    height: 60px;
+    width: 60px;
+  }
+}
+
+/* Sticky Button Styles */
+.breakpoint-banner-sticky-button {
+  position: fixed;
+  bottom: 81px;
+  right: 80px;
+  z-index: 9999;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.breakpoint-banner-sticky-button a {
+  display: flex;
+  gap: 22px;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  font-family: Poppins-SemiBold;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 36px;
+  letter-spacing: 0px;
+  text-decoration: none;
+}
+
+.breakpoint-banner-sticky-button a svg {
+  height: 84px;
+  width: 84px;
+  flex-shrink: 0;
+}
+
+.breakpoint-banner-sticky-button a svg rect {
+  fill: #FFFFFF;
+  transition: fill 0.3s ease;
+}
+
+.breakpoint-banner-sticky-button a svg path {
+  stroke: #4949E9;
+  transition: stroke 0.3s ease;
+}
+
+#anonymous-btn{
+  padding: 18px;
+  border-radius: 45px;
+  background-color: #4949E9;
+  z-index: 10;
+}
+#anonymous-btn a{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  text-decoration: none;
+}
+#anonymous-btn a svg{
+  height: 36px;
+  width: 36px;
+}
+#anonymous-btn a span{
+  font-family: Poppins-SemiBold;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 36px;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+}
+
+@media screen and (max-width: 991px) {
+  .breakpoint-banner-sticky-button {
+    bottom: 40%;
+    right: 32px;
+  }
+  .breakpoint-banner-sticky-button a {
+    gap: 16px;
+    font-size: 18px;
+    line-height: 20px;
+  }
+  .breakpoint-banner-sticky-button a svg {
+    height: 64px;
+    width: 64px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .breakpoint-banner-sticky-button {
+    bottom: 24px;
+    right: 24px;
+  }
+  .breakpoint-banner-sticky-button a {
+    gap: 14px;
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .breakpoint-banner-sticky-button a svg {
+    height: 60px;
+    width: 60px;
+  }
+  #anonymous-btn a{
+    gap: 8px;
+  }
+  #anonymous-btn a svg{
+    height: 24px;
+    width: 24px;
+  }
+  #anonymous-btn a span{
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+/* Keyframe animations for sticky CTA */
+@keyframes stickyDropIn {
+  from {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideFadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-12px) scale(0.98);
+  }
+}
+
+@keyframes slideFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-12px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes feelingFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes feelingFadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(8px) scale(0.95);
+  }
+}
+
+/* Base visibility/transition styles for sticky CTAs */
+#anonymous-btn,
+.breakpoint-banner-sticky-button {
+  opacity: 1;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity, transform;
+}
+
+/* First-time drop-in for anonymous sticky CTA */
+#anonymous-btn.sticky-btn-drop-in {
+  animation: stickyDropIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  pointer-events: auto;
+}
+
+/* Normal visible state for anonymous sticky CTA */
+#anonymous-btn.sticky-btn-original {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Merged state when support CTA is fully visible */
+#anonymous-btn.sticky-btn-merged {
+  opacity: 0;
+  transform: translateY(-12px) scale(0.98);
+  pointer-events: none;
+}
+
+/* Hidden by feeling section state for anonymous CTA */
+#anonymous-btn.sticky-btn-hidden-by-feeling {
+  opacity: 0;
+  transform: translateY(8px) scale(0.95);
+  pointer-events: none;
+}
+
+/* Feeling variant active (cloned banner CTA) */
+.breakpoint-banner-sticky-button.sticky-btn-feeling-active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+  animation: feelingFadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+
+.template-breakpoint .section{
+  display: block;
+}

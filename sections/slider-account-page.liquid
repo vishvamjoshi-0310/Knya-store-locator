@@ -1,0 +1,305 @@
+{{ 'swiper.css' | asset_url | stylesheet_tag }}
+
+{{ 'template-collection.css' | asset_url | stylesheet_tag }}
+{{ 'component-loading-overlay.css' | asset_url | stylesheet_tag }}
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'best-collection-slider.css' | asset_url | stylesheet_tag }}
+{{ 'shop-bestseller-slider-custom.css' | asset_url | stylesheet_tag }}
+
+<style>
+    /*    .new-color{background-image:url('{{ 'Vector.svg' | asset_url }}');} */
+
+    .coll-home{
+      margin-top : {{ section.settings.marginTopslidd }}px;
+      margin-bottom : {{ section.settings.marginBottomslidd }}px;
+    }
+    .shop-our-bestsellers .card__heading.name-page {
+      display: -webkit-box !important;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      height: unset;
+      line-height: 26.44px;
+    }
+    .shop-our-bestsellers .swatch-ic-active .is-active img{
+      padding: 0;
+    }
+    .shop-collection-cta {
+      background: #462D8C;
+      width: 287px;
+      height: 42px;
+      margin: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 24px;
+      margin-bottom: 36px;
+    }
+    .shop-collection-cta a {
+      color: white;
+      font-size: 14px;
+      font-family: 'Heebo-Medium';
+      font-weight: 500;
+      letter-spacing: 0.6px;
+      line-height: 15.84px;
+      text-transform: uppercase;
+    }
+    .main-collection-home .swiper-slide{font-size: initial;}
+    .HorizontalList .desktopcolorhide {display: none;}
+    .plus-swatch.show-plus-desktop {display: flex;}
+    .plus-swatch.show-plus-desktop a{ width: 20px;
+      height: 20px !important;
+      display: flex;
+      align-items: center;}
+    .mySwiper-{{ section.id }} .swiper-slide .card-information .imaged-swatch img{height:auto;}
+    @media screen and (max-width: 989px) {
+    .plus-swatch.show-plus-desktop a{width:16px;height:17px !important;}
+  }
+     @media screen and (max-width: 640px){
+      .coll-home{
+        margin-top:{{ section.settings.marginTopsliddmob }}px;
+        margin-bottom:{{ section.settings.marginBottomsliddmob }}px;
+      }
+      .shop-collection-cta{
+        margin-top: 12px;
+        margin-bottom: 24px;
+        width: 180px;
+        height: 36px;
+      }
+      .shop-our-bestsellers .card__heading.name-page{
+        line-height: 23.6px;
+      }
+       .plus-swatch.show-plus-mobile {display: block;}
+         .HorizontalList :is(.desktopcolorhide,.mobilecolorhide){display: none;}
+        .mySwiper-{{ section.id }}:not(.swiper-initialized) .swiper-slide{display:none;}
+        .mySwiper-{{ section.id }}:not(.swiper-initialized) .swiper-slide:first-child{display:block;}
+    }
+    @media screen and (max-width: 350px) {
+      .HorizontalList :is(.desktopcolorhide, .mobilecolorhide, .extrasmallhide) {
+      display: none;
+    }
+  }
+</style>
+
+<link
+  rel="preload"
+  href="{{ 'component-rte.css' | asset_url }}"
+  as="style"
+  onload="this.onload=null;this.rel='stylesheet'"
+>
+
+{%- if section.settings.enable_quick_add -%}
+  <link rel="stylesheet" href="{{ 'quick-add.css' | asset_url }}" media="print" onload="this.media='all'">
+  <script src="{{ 'quick-add.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
+<noscript>{{ 'component-rte.css' | asset_url | stylesheet_tag }}</noscript>
+{{ 'component-rating.css' | asset_url | stylesheet_tag }}
+
+{% if section.settings.collection != blank %}
+  <div class="main-collection-home shop-our-bestsellers page-width coll-home conditional-class">
+    <div class="div-padding{% if section.settings.show_padding_slidd  %} page-padding-right page-padding-left{% endif %} {% if section.settings.show_padding_mob_slidd %}padding-right-mob padding-left-mob{% endif %}">
+      <div class="content-home">
+        <h2 class="first-line-home font-heebo-medium">{{ section.settings.headText }}</h2>
+        <p class="second-line-home font-heebo-regular">{{ section.settings.secondText }}</p>
+      </div>
+
+      <div class="swiper mySwiper-{{ section.id }} home-slider ">
+        <div class="swiper-wrapper">
+          {%- for product in section.settings.collection.products limit: 10 -%}
+            <div class="swiper-slide">
+              <div class="main-div">
+                {% assign card_index = forloop.index0 %}
+                {% render 'card-product',
+                  card_product: product,
+                  media_aspect_ratio: section.settings.image_ratio,
+                  show_secondary_image: section.settings.show_secondary_image,
+                  show_vendor: section.settings.show_vendor,
+                  show_rating: section.settings.show_rating,
+                  show_quick_add: section.settings.enable_quick_add,
+                  section_id: section.id,
+                  card_index: card_index
+                %}
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+        <div class="swiper-button-next home-next">{% render 'next-icon-home' %}</div>
+        <div class="swiper-button-prev home-prev">{% render 'prev-icon-home' %}</div>
+        {% if section.settings.pagination %}
+          <div class="swiper-pagination"></div>
+        {% endif %}
+      </div>
+      {% if section.settings.shop_collection_text != blank and section.settings.shop_collection_url != blank %}
+        <div class="shop-collection-cta">
+          <a href="{{ section.settings.shop_collection_url }}">{{ section.settings.shop_collection_text }}</a>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+{% endif %}
+
+<script>
+  window.addEventListener(
+    'DOMContentLoaded',
+    () => {
+      var swiper = new Swiper('.mySwiper-{{ section.id }}', {
+        slidesPerView: 4.5,
+        spaceBetween: 12,
+        slidesPerGroup: 1,
+        loop: true,
+        loopFillGroupWithBlank: true,
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        },
+        breakpoints: {
+          0: {
+            slidesPerView: 1.5,
+            spaceBetween: 12,
+          },
+          500: {
+            slidesPerView: 1.5,
+            spaceBetween: 12,
+          },
+          660: {
+            slidesPerView: 2.2,
+            spaceBetween: 12,
+          },
+          900: {
+            slidesPerView: 2.5,
+            spaceBetween: 24,
+          },
+          1100: {
+            slidesPerView: 4.5,
+            spaceBetween: 24,
+          },
+          2100: {
+            slidesPerView: 3.5,
+            spaceBetween: 24,
+          },
+        },
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+      });
+    },
+    { once: true }
+  );
+</script>
+
+{% schema %}
+{
+  "name": "Best Seller Collection",
+  "settings": [
+    {
+      "type": "text",
+      "id": "shop-now-cont",
+      "label": "Shop now text"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_padding_slidd",
+      "label": "padding for section",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "pagination",
+      "label": "show dot on slider",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_secondary_image",
+      "default": false,
+      "label": "t:sections.main-collection-product-grid.settings.show_secondary_image.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_padding_mob_slidd",
+      "label": "padding for section in mobile",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "shop_collection_text",
+      "label": "Shop Collection CTA Text"
+    },
+    {
+      "type": "url",
+      "id": "shop_collection_url",
+      "label": "Shop Collection CTA URL"
+    },
+    {
+      "type": "range",
+      "id": "marginTopslidd",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Desktop : Margin-Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "marginBottomslidd",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Desktop : Margin-Bottom",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "marginTopsliddmob",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile : Margin-Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "marginBottomsliddmob",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile : Margin-Bottom",
+      "default": 0
+    },
+
+    {
+      "type": "text",
+      "id": "headText",
+      "label": "enter heading"
+    },
+    {
+      "type": "image_picker",
+      "id": "new-color-bg",
+      "label": "tag background image"
+    },
+    {
+      "type": "text",
+      "id": "secondText",
+      "label": "enter content"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    }
+  ],
+  "presets": [
+    {
+      "name": "slider"
+    }
+  ]
+}
+{% endschema %}

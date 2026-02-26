@@ -1,0 +1,38 @@
+<link rel="stylesheet" href="{{ 'helping-cards-stylesheet.css' | asset_url }}">
+
+<div class="helping-cards-section page-width-updated">
+  <div class="helping-cards-container">
+    {% if section.settings.heading != blank %}
+      <h1 class="helping-cards-heading">Hello{% if customer.first_name != blank %} {{customer.first_name}}{% endif %}, {{ section.settings.heading }}</h1>
+    {% endif %}
+
+    <div class="helping-cards-grid">
+      {% content_for 'blocks' %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Helping Cards",
+  "class": "helping-cards-parent",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Hello, how can we help?"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "help_card",
+    }
+  ],
+  "presets": [
+    {
+      "name": "Helping Cards"
+    }
+  ]
+}
+{% endschema %}

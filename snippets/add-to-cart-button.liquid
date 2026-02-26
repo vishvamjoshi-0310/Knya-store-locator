@@ -1,0 +1,334 @@
+{%- doc -%}
+  Renders an "Add to cart" button with dynamic text and state. It shows different text based on whether the product can be added to the cart and provides visual feedback when an item is added.
+
+  @param {boolean} can_add_to_cart - Whether the product can be added to the cart.
+  @param {string} add_to_cart_text - The text to display on the button.
+  @param {object} product - The product object to be added to the cart.
+  @param {boolean} [icon_only_on_mobile] - If `true`, only the icon is shown on mobile devices.
+  @param {string} [class] - Additional CSS classes to apply to the button.
+  @param {string} [id] - The ID attribute for the button.
+{%- enddoc -%}
+
+{%- liquid
+  assign default_add_to_cart_text = 'actions.add_to_cart' | t
+  assign product_variant_media = product.selected_or_first_available_variant.featured_media.preview_image | image_url: width: 100
+  if product.selected_or_first_available_variant.featured_media.preview_image == blank
+    assign product_variant_media = product.featured_media.preview_image | image_url: width: 100
+  endif
+-%}
+
+<add-to-cart-component
+  ref="addToCartButtonContainer"
+  data-product-variant-media="{{ product_variant_media }}"
+  data-add-to-cart-animation="{{ settings.add_to_cart_animation }}"
+  class="product-add-to-cart-button"
+>
+  <button
+    id="{{ id }}"
+    type="submit"
+    name="add"
+    ref="addToCartButton"
+    on:click="/handleClick"
+    class="button {{ class }}"
+    {% unless can_add_to_cart %}
+      disabled
+    {% endunless %}
+  >
+    <span
+      class="add-to-cart-text"
+    >
+      {% comment %} {% if can_add_to_cart %}
+        <span class="svg-wrapper add-to-cart-icon">
+          {{- 'icon-add-to-cart.svg' | inline_asset_content -}}
+        </span>
+      {% endif %} {% endcomment %}
+      <span class="add-to-cart-text__content{% if icon_only_on_mobile %} is-visually-hidden-mobile{% endif %}">
+        {{- add_to_cart_text | default: default_add_to_cart_text -}}
+      </span>
+    </span>
+    <span
+      aria-hidden="true"
+      class="add-to-cart-text--added"
+    >
+      <span class="svg-wrapper add-to-cart-icon--added">
+        {{- 'icon-checkmark.svg' | inline_asset_content -}}
+      </span>
+      <span class="{% if icon_only_on_mobile %}is-visually-hidden-mobile{% endif %}">
+        {{- 'actions.added' | t -}}
+      </span>
+    </span>
+  </button>
+</add-to-cart-component>
+<div class="custom-add-to-cart-button" {% unless can_add_to_cart %}disabled{% endunless %}>
+  <div id="customAddToCartButton" class="{% if icon_only_on_mobile %} is-visually-hidden-mobile{% endif %}" onclick="handleVariantSelection()">{{- add_to_cart_text | default: default_add_to_cart_text -}}</div>
+</div>
+<script>
+  function handleVariantSelection() {
+    const fieldsets = document.querySelectorAll('fieldset');
+    const pleaseSelectSize = document.querySelectorAll('.please-select-size')
+    const embroideryBoxError = document.querySelector('.embroidery-box-rewamp .emb_select_opt');
+    const embroideryInputField = document.querySelector('.embroidery-box-rewamp .embMaiDiv');
+    const engravingBoxError = document.querySelector('.engraving-box .emb_select_opt');
+    const engravingInputField = document.querySelector('.engraving-box .embMaiDiv');
+    pleaseSelectSize.forEach(item=> item.style.display = 'none');
+    pleaseSelectSize.forEach(item=> item.classList.remove('css-animation'));
+    let shouldBreak = false;
+    Array.from(fieldsets).forEach((fieldset, index) => {
+      if (shouldBreak) return;
+      const checkedInputs = fieldset.querySelectorAll('input[type="radio"]:checked, input[type="checkbox"]:checked');
+      if (checkedInputs.length === 0) {
+        pleaseSelectSize[index].style.display = 'block';
+        pleaseSelectSize[index].classList.add('css-animation');
+        shouldBreak = true;
+        const topScrollError = pleaseSelectSize[index];
+        if(topScrollError){
+          topScrollError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        setTimeout(() => {
+          pleaseSelectSize[index].classList.remove('css-animation');
+        }, 1000);
+      }
+    });
+    
+    // Check embroidery selection
+    if(!shouldBreak && embroideryInputField && embroideryInputField.querySelectorAll('input:checked').length === 0) {
+      if(embroideryBoxError) {
+        embroideryBoxError.style.display = 'block';
+        embroideryBoxError.classList.add('css-animation');
+      }
+      shouldBreak = true;
+      if(embroideryBoxError){
+        embroideryBoxError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+      setTimeout(() => {
+        embroideryBoxError.classList.remove('css-animation');
+      }, 1000);
+    }
+    
+    // Check engraving selection
+    if(!shouldBreak && engravingInputField && engravingInputField.querySelectorAll('input:checked').length === 0) {
+      if(engravingBoxError) {
+        engravingBoxError.style.display = 'block';
+        engravingBoxError.classList.add('css-animation');
+      }
+      shouldBreak = true;
+      if(engravingBoxError){
+        engravingBoxError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+      setTimeout(() => {
+        engravingBoxError.classList.remove('css-animation');
+      }, 1000);
+    }
+  }
+
+  // Function to check if all variants and embroidery/engraving are selected
+  function checkAllSelections() {
+    const fieldsets = document.querySelectorAll('fieldset');
+    const embroideryInputField = document.querySelector('.embroidery-box-rewamp .embMaiDiv');
+    const engravingInputField = document.querySelector('.engraving-box .embMaiDiv');
+    const addToCartComponent = document.querySelector('.product-add-to-cart-button');
+    
+    if (!addToCartComponent) return;
+    
+    // Get the button using the ref attribute selector
+    const originalButton = addToCartComponent.querySelector('[ref="addToCartButton"]');
+    if (!originalButton) return;
+    
+    // Check if all fieldsets have selections
+    let allVariantsSelected = true;
+    Array.from(fieldsets).forEach((fieldset) => {
+      const checkedInputs = fieldset.querySelectorAll('input[type="radio"]:checked, input[type="checkbox"]:checked');
+      if (checkedInputs.length === 0) {
+        allVariantsSelected = false;
+      }
+    });
+    
+    // Check if embroidery section exists and is selected
+    const embroideryExists = embroideryInputField !== null;
+    const embroiderySelected = !embroideryExists || embroideryInputField.querySelectorAll('input:checked').length > 0;
+    
+    // Check if engraving section exists and is selected
+    const engravingExists = engravingInputField !== null;
+    // Check both radio buttons in embMaiDiv AND the engraving_filled checkbox
+    const engravingBox = document.querySelector('.engraving-box');
+    const engravingFilledCheckbox = engravingBox ? engravingBox.querySelector('input.engraving_filled') : null;
+    const engravingRadioSelected = engravingInputField ? engravingInputField.querySelectorAll('input:checked').length > 0 : false;
+    const engravingFilledSelected = engravingFilledCheckbox ? engravingFilledCheckbox.checked === true : false;
+    const engravingSelected = !engravingExists || engravingRadioSelected || engravingFilledSelected;
+    
+    // Enable original button if all are selected
+    const customButton = document.querySelector('.custom-add-to-cart-button');
+    
+    if (allVariantsSelected && embroiderySelected && engravingSelected) {
+      originalButton.disabled = false;
+      addToCartComponent.classList.add('enabled');
+      if (customButton) {
+        customButton.classList.add('hidden');
+      }
+      
+      // Call allCheckedInput() if function exists
+      if(typeof allCheckedInput === 'function') {
+        allCheckedInput();
+      }
+    } else {
+      originalButton.disabled = true;
+      addToCartComponent.classList.remove('enabled');
+      if (customButton) {
+        customButton.classList.remove('hidden');
+      }
+    }
+  }
+
+  // Listen for variant changes using event delegation
+  function setupEventListeners() {
+    // Use event delegation to catch all changes
+    document.addEventListener('change', function(e) {
+      if (e.target.matches('fieldset input[type="radio"], fieldset input[type="checkbox"], .embroidery-box-rewamp input, .engraving-box input, input.engraving_filled')) {
+        checkAllSelections();
+      }
+    });
+    
+    // Also listen to click events for radio buttons and checkboxes (in case change event doesn't fire)
+    document.addEventListener('click', function(e) {
+      if (e.target.matches('input[type="radio"], input[type="checkbox"], input.engraving_filled')) {
+        setTimeout(checkAllSelections, 10);
+      }
+    });
+  }
+
+  // Initialize when DOM is ready
+  function initialize() {
+    // Wait a bit for custom elements to initialize
+    setTimeout(function() {
+      checkAllSelections();
+      setupEventListeners();
+    }, 100);
+  }
+  
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initialize);
+  } else {
+    initialize();
+  }
+</script>
+{% stylesheet %}
+  .add-to-cart-text {
+    display: flex;
+    gap: var(--gap-2xs);
+    align-items: center;
+    justify-content: center;
+    animation-duration: var(--animation-speed);
+    animation-timing-function: var(--animation-easing);
+    animation-fill-mode: forwards;
+    transition: opacity var(--animation-speed) var(--animation-easing);
+  }
+
+  .atc-added .add-to-cart-text {
+    animation-name: atc-slide-out;
+  }
+
+  .add-to-cart-text--added {
+    position: absolute;
+    inset: 0;
+    animation-duration: var(--animation-speed);
+    animation-timing-function: var(--animation-easing);
+    animation-fill-mode: forwards;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: width var(--animation-speed) var(--animation-easing),
+      opacity var(--animation-speed) var(--animation-easing);
+  }
+  .product-add-to-cart-button {
+    display: none;
+  }
+  .product-add-to-cart-button.enabled {
+    display: block;
+  }
+  .custom-add-to-cart-button {
+    display: block;
+  }
+  .custom-add-to-cart-button.hidden {
+    display: none;
+  }
+  .product-add-to-cart-button button, #customAddToCartButton {
+    font-family: 'Heebo-Medium';
+    font-weight: 500;
+    font-size: clamp(12px, calc(14 * (100vw / 1440)), 14px);
+    line-height: 1.131;
+    text-align: center;
+    color: #f4ecd0;
+    background: #482f8f;
+    text-transform: uppercase;
+    position: relative;
+    letter-spacing: .6px;
+    box-shadow: none;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    height: 41px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .please-select-size.css-animation {
+    animation-name: horizontalShake;
+    animation-iteration-count: 1;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+  }
+  product-card quick-add-component .custom-add-to-cart-button {
+    display: none;
+  }
+  .custom-add-to-cart-button[disabled] {
+    opacity: .5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+  
+  @keyframes horizontalShake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(5px);
+  }
+  50% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+  .atc-added .add-to-cart-text--added {
+    animation-name: atc-slide-in;
+  }
+
+  @keyframes atc-slide-in {
+    from {
+      opacity: 0;
+      transform: translateY(0.5em);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes atc-slide-out {
+    from {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    to {
+      transform: translateY(-1em);
+      opacity: 0;
+    }
+  }
+{% endstylesheet %}

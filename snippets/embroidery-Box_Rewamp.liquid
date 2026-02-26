@@ -1,0 +1,319 @@
+<link rel="stylesheet" href="{{ 'embroidery-box-new.css' | asset_url }}">
+<style>
+  .embroidery-box .priceDiv {
+    display: flex;
+    flex-direction: column;
+    color: #F5EBD2;
+    align-items: start;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .embroidery-box .addNamePara {
+    font-size: {{ section.settings.add_emb_desktop_sub_font_size }}px;
+    font-weight: 400;
+    line-height: 17.63px;
+    letter-spacing: 0.001em;
+    font-family: 'Heebo-Regular';
+    text-align: left;
+    margin: 0 0 0 24px;
+    color: {{ section.settings.subHeading_font_text }};
+  }
+
+  .embroidery-box .popupbtnembroideryAdd,
+  .embroidery-box .popupbtnembroideryDontAdd {
+    font-size: {{ section.settings.add_emb_desktop_font_size }}px;
+    font-weight: 500;
+    font-family: 'Heebo-Medium';
+    line-height: 20px;
+    letter-spacing: 0.001em;
+    text-align: center;
+    color: {{ section.settings.heading_font_text }};
+    margin-left: 24px;
+    cursor: pointer;
+  }
+
+  .embroidery-box .popupbtnembroideryDontAdd {
+    margin-left: 0;
+  }
+
+  .embroidery-box .embMaiDiv {
+    margin-top: 0;
+    padding-top: 6px;
+    padding-bottom: 12px;
+    background: #F7F7F7;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 1px 2px 1px rgb(0 0 0 / 30%);
+  }
+
+  .embroidery-box .showEmb.checked,
+  .embroidery-box .dontShowEmbroidery.checked {
+    background: {{ section.settings.selected_background_color }};
+  }
+
+  .embroidery-box .emb_select_opt {
+    font-size: 16px;
+    font-weight: 400;
+    color: #FF0C00;
+    font-family: 'Heebo-Regular' !important;
+    line-height: 24px;
+    letter-spacing: 0.5px;
+    display: none;
+  }
+
+  .embroidery-box .priceDiv-txt.error-shown ~ .priceDiv-price {
+    display: none;
+  }
+
+  .embroidery-box .priceDiv-txt {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .embroidery-box .wrapp .btn_pack h3 {
+    text-decoration: none;
+    margin: 0;
+    font-size: clamp(22px, calc(22 * (100vw / 1440)), 18px);
+    font-weight: 500;
+    line-height: 28px;
+    letter-spacing: 0.024px;
+  }
+
+  .embroidery-box .wrapp .btn_pack p.priceDivStart {
+    font-size: clamp(11px, calc(11 * (100vw / 1440)), 14px);
+    line-height: 16px;
+    letter-spacing: 0.5px;
+    color: #B0A7C0;
+    font-weight: 500;
+  }
+
+.added_list .added_list_contents .list_row .list_row_containerFill {
+  padding-top: 10px;
+  margin-bottom: 2%;
+  border: 1px solid transparent;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  column-gap: 24px;
+  padding-right: 16px;
+}
+
+  @media screen and (max-width: 768px) {
+    .embroidery-box .priceDiv-txt {
+      gap: 2px;
+    }
+
+    .embroidery-box .emb_select_opt {
+      font-size: 11px;
+      line-height: 16px;
+    }
+
+    .embroidery-box .wrapp .btn_pack h3 {
+      font-size: 14px;
+      line-height: 20px;
+    }
+
+    .embroidery-box .btn_pack {
+      min-width: 100%;
+      margin-left: 0%;
+    }
+  }
+
+  @media screen and (max-width: 750px) {
+    .embroidery-box .popupbtnembroideryAdd,
+    .embroidery-box .popupbtnembroideryDontAdd {
+      font-size: {{ section.settings.add_emb_mobile_font_size }}px;
+    }
+
+    .embroidery-box .addNamePara {
+      font-size: {{ section.settings.add_emb_mobile_sub_font_size }}px;
+    }
+  }
+</style>
+
+{% assign embroidery = block.settings.EmbroideryProductHandlepicker %}
+{% assign max_price = 0 %}
+{% for variant in embroidery.variants %}
+  {% if variant.price > max_price %}
+    {% assign max_price = variant.price %}
+  {% endif %}
+{% endfor %}
+{% assign min_price = max_price %}
+{% for variant in embroidery.variants %}
+  {% if variant.price < min_price %}
+    {% assign min_price = variant.price %}
+  {% endif %}
+{% endfor %}
+
+{% if block.settings.showEmbroidery %}
+  <div class="embroidery-box-rewamp page-width-pdp-mob" data-product-pair="">
+    <div class="wrapp">
+      <div class="btn_pack" data-close="false">
+        <div class="first_div">
+          <div class="first_div_container">
+            <div class="imagDivss">
+              <div class="imagDivss_containers">
+                <img
+                  src="https://cdn.shopify.com/s/files/1/0562/9247/5063/files/45ca03565c864a8c101204c858fb01fc.gif?v=1710307477&width=60"
+                  width="34px"
+                  height="39px"
+                  loading="lazy"
+                >
+                <div class="priceDiv font-heebo-medium">
+                  <div class="priceDiv-txt">
+                    <h3>Custom Embroidery</h3>
+                    <span class="emb_select_opt">*Please Select</span>
+                  </div>
+                  <div class="priceDiv-price">
+                    {% assign custom_text = product.metafields.custom.embroidery_text %}
+                    {% assign price_text = min_price | money_without_trailing_zeros | replace: '₹ ', '₹' %}
+                    {% if custom_text != blank %}
+                      {% assign display_text = custom_text | replace: '|amount|', price_text %}
+                    {% else %}
+                      {% assign display_text = settings.embroidery_text_subheading | replace: '|amount|', price_text %}
+                    {% endif %}
+                    {% comment %} Remove quotes around price if they exist {% endcomment %}
+                    {% assign display_text = display_text | replace: "'|amount|'", price_text %}
+                    {% comment %} Remove any remaining quotes around the actual price {% endcomment %}
+                    {% assign display_text = display_text | replace: "'₹", "₹" %}
+                    {% assign display_text = display_text | replace: "'", "" %}
+                    <p class="priceDivStart">{{ display_text }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="embMaiDiv">
+        <div class="showEmb embMaiDivInner">
+          <input
+            type="radio"
+            id="showEmb"
+            class="popupbtnembroidery embMaiDivpopupbtnembroidery embMaiDivPopupbtn"
+            name="embroidery"
+            value=""
+          >
+          <label class="popupbtnembroideryAdd" for="showEmb">{{ block.settings.heading_text_embroidery }}</label>
+          <p class="addNamePara">{{ block.settings.subheading_text_embroidery }}</p>
+        </div>
+
+        <div class="dontShowEmbroidery embMaiDivInner">
+          <input
+            type="radio"
+            class="embMaiDivpopupbtnembroidery embMaiDivPopupbtn"
+            id="dontShowEmbroidery"
+            name="embroidery"
+            value=""
+          >
+          <label class="popupbtnembroideryDontAdd" for="dontShowEmbroidery">
+            {{- block.settings.heading_second_text_embroidery -}}
+          </label>
+          <p class="addNamePara">{{ block.settings.subheading_second_text_embroidery }}</p>
+        </div>
+      </div>
+
+      <div class="added_list" data-added="false">
+        <div class="wrap">
+          <div class="left">
+            <input type="checkbox" class="embroidery_filled">
+            <label> Custom Embroidery </label>
+          </div>
+          <div class="right asdf">
+            <span class="box_price">{{ min_price | money_without_trailing_zeros | replace: '₹ ', '₹' }}</span>
+            <label class="edit_box" style="display:none;">EDIT</label> |
+            <label class="delete_box" onclick="EmbroideryDelete()">{% render 'icon-delete' %}</label>
+          </div>
+        </div>
+
+        <div class="added_list_contents gg">
+          <div class="list_row">
+            <div class="list_row_only_Text list_row_containerFill">
+              <div class="left" style="background-color: rgb(0, 0, 128)">
+                <div class="selected-Name-centered">
+                  <p class="emb_first_Maind">First Name</p>
+                  <p class="emb_sec_opt">Second Name</p>
+                </div>
+              </div>
+              <div class="right property_line__textEmbWrapper">
+                <h4>My Name</h4>
+                <div class="property_line property_line_Position">
+                  <span> Text Position </span>: <span class="property_line_TextPositionPlacement"> Left Chest </span>
+                </div>
+                <div class="property_line property_line_textPrev">
+                  <span>text</span>:
+                  <span class="property_line__textEmb property_line__textEmbfirst"></span>
+                </div>
+                <div class="property_line property_line_color">
+                  <span> color </span> : <span class="property_line property_line_colorValue"> </span>
+                </div>
+                <div class="property_line property_line_Font"><span> font </span> : <span class="property_line_FontStyle"> </span></div>
+              </div>
+            </div>
+            <div class="list_row_only_Image list_row_containerFill">
+              <div class="left" style="background-color: rgb(0, 0, 128)">
+                <span class="showIcon" style="background:rgb(0, 0, 128)"
+                  ><img
+                    src="//knyamed.com/cdn/shop/t/84/assets/new-caduceus_100x.png?v=49101863882549526131681824265"
+                    height="50px"
+                ></span>
+              </div>
+              <div class="right property_line__textEmbWrapper">
+                <h4>Icon/Logo</h4>
+                <div class="property_line property_line_IconPosition">
+                  <span> Icon Placement </span>: <span class="property_line_Iconname_NamePlacement" > Right Chest </span>
+                </div>
+                <div class="property_line property_line_Iconname"><span> Icon </span>: <span class="property_line property_line_Iconname_Name"> </span></div>
+              </div>
+            </div>
+            <div class="list_row_both list_row_containerFill">
+              <div class="left" style="background-color: rgb(0, 0, 128)">
+                <div class="selected-Name-centered">
+                  <p class="emb_first_Maind">First Name</p>
+                  <p class="emb_sec_opt">Second Name</p>
+                </div>
+              </div>
+              <div class="right property_line__textEmbWrapper">
+                <h4>Both</h4>
+                <div class="property_line property_line_IconPosition">
+                  <span> Icon Placement </span>: <span class="property_line_Iconname_NamePlacement"> Right Chest </span>
+                </div>
+                <div class="property_line property_line_TextPosition">
+                  <span> Text Position </span>: <span class="property_line_TextPositionPlacement"> Left Chest </span>
+                </div>
+                  <div class="property_line property_line_textPrev">
+                  <span>text</span>:
+                  <span class="property_line__textEmb property_line__textEmbfirst">First Name, second Name</span>
+                </div>
+                <div class="property_line property_line_color">
+                  <span> color </span> : <span class="property_line property_line_colorValue">  </span>
+                </div>
+                <div class="property_line property_line_Font"><span> font </span> : <span class="property_line_FontStyle">  </span></div>
+                <div class="property_line property_line_Iconname"><span> Icon </span>: <span class="property_line property_line_Iconname_Name">  </span></div>
+              </div>
+                <div class="left" style="background-color: rgb(0, 0, 128)">
+                <span class="showIcon" style="background:rgb(0, 0, 128)"
+                  ><img
+                    src="//knyamed.com/cdn/shop/t/84/assets/new-caduceus_100x.png?v=49101863882549526131681824265"
+                    height="50px"
+                ></span>
+              </div>
+            </div>
+          </div>
+          <div class="added_list custom-edit-placement" data-added="false">
+            <label class="edit_box" onclick="EmbroideryEdited()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M19.06 3.59L20.41 4.94C21.2 5.72 21.2 6.99 20.41 7.77L7.18 21H3V16.82L13.4 6.41L16.23 3.59C17.01 2.81 18.28 2.81 19.06 3.59ZM5 19L6.41 19.06L16.23 9.23L14.82 7.82L5 17.64V19Z" fill="#462D8C"/>
+              </svg>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+<script>
+  document.querySelector('.btn_pack')?.addEventListener('click', ()=>{
+    document.querySelector('#showEmb')?.click();
+  });
+</script>

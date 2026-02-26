@@ -1,0 +1,297 @@
+{{ 'section-breakpoint-difference.css' | asset_url | stylesheet_tag }}
+
+<section class="breakpoint-difference-section">
+  {%- if section.settings.heading != blank -%}
+    <h2 class="breakpoint-difference-heading">{{ section.settings.heading }}</h2> 
+  {%- endif -%}
+
+  {%- assign blocks_count = section.blocks.size -%}
+  <div class="breakpoint-difference-slider breakpoint-difference-slider-{{ section.id }}{% if blocks_count <= 3 %} breakpoint-difference-slider-static{% endif %}">
+    <div class="breakpoint-difference-slider-wrapper">
+      {%- for block in section.blocks -%}
+        <div class="breakpoint-difference-slider-slide">
+          <div class="breakpoint-difference-stat">
+            {%- if block.settings.stat_number != blank -%}
+              <div class="breakpoint-difference-stat-number">{{ block.settings.stat_number }}</div>
+            {%- endif -%}
+
+            <div class="breakpoint-difference-stat-subtitle">
+              {%- if block.settings.subtitle_text_1 != blank -%}
+                <span class="breakpoint-difference-subtitle-text">{{ block.settings.subtitle_text_1 }}</span>
+              {%- endif -%}
+              {%- if block.settings.subtitle_text_2 != blank -%}
+                <span class="breakpoint-difference-subtitle-text breakpoint-difference-underline-wrapper">
+                  {{ block.settings.subtitle_text_2 }}
+                  {%- if block.settings.underline_image != blank -%}
+                    <img
+                      src="{{ block.settings.underline_image | image_url: width: 200 }}"
+                      alt=""
+                      class="breakpoint-difference-underline"
+                      loading="lazy"
+                      width="{{ block.settings.underline_image.width }}"
+                      height="{{ block.settings.underline_image.height }}"
+                    >
+                  {%- endif -%}
+                </span>
+              {%- endif -%}
+              {%- if block.settings.subtitle_text_3 != blank -%}
+                <span class="breakpoint-difference-subtitle-text">{{ block.settings.subtitle_text_3 }}</span>
+              {%- endif -%}
+            </div>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+    <div class="breakpoint-difference-slider-pagination"></div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Breakpoint Difference",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section Heading",
+      "default": "The difference it's already making"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "difference_stat",
+      "name": "Statistic",
+      "settings": [
+        {
+          "type": "text",
+          "id": "stat_number",
+          "label": "Statistic Number/Text",
+          "default": "1,200+"
+        },
+        {
+          "type": "text",
+          "id": "subtitle_text_1",
+          "label": "Subtitle Text 1 (Before underline)",
+          "default": "Doctors"
+        },
+        {
+          "type": "text",
+          "id": "subtitle_text_2",
+          "label": "Subtitle Text 2 (Underlined part)",
+          "default": "reached out"
+        },
+        {
+          "type": "image_picker",
+          "id": "underline_image",
+          "label": "Underline Image"
+        },
+        {
+          "type": "text",
+          "id": "subtitle_text_3",
+          "label": "Subtitle Text 3 (After underline)",
+          "default": "quietly"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Breakpoint Difference",
+      "blocks": [
+        {
+          "type": "difference_stat",
+          "settings": {
+            "stat_number": "1,200+",
+            "subtitle_text_1": "Doctors",
+            "subtitle_text_2": "reached out",
+            "subtitle_text_3": "quietly"
+          }
+        },
+        {
+          "type": "difference_stat",
+          "settings": {
+            "stat_number": "68%",
+            "subtitle_text_1": "Say this was their",
+            "subtitle_text_2": "first safe space",
+            "subtitle_text_3": "to talk"
+          }
+        },
+        {
+          "type": "difference_stat",
+          "settings": {
+            "stat_number": "4 in 5",
+            "subtitle_text_1": "Doctors report feeling",
+            "subtitle_text_2": "'Lighter'",
+            "subtitle_text_3": "After a Session"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<script>
+  (function() {
+    var slider = document.querySelector('.breakpoint-difference-slider-{{ section.id }}');
+    if (!slider) return;
+    
+    var wrapper = slider.querySelector('.breakpoint-difference-slider-wrapper');
+    var slides = slider.querySelectorAll('.breakpoint-difference-slider-slide');
+    var pagination = slider.querySelector('.breakpoint-difference-slider-pagination');
+    var currentIndex = 0;
+    var isDragging = false;
+    var startX = 0;
+    var currentX = 0;
+    var translateX = 0;
+    var isMobile = window.innerWidth <= 768;
+    
+    if (slides.length === 0) return;
+    
+    // Create pagination dots
+    function createPagination() {
+      if (!pagination || !isMobile) return;
+      pagination.innerHTML = '';
+      for (var i = 0; i < slides.length; i++) {
+        var dot = document.createElement('span');
+        dot.className = 'breakpoint-difference-pagination-dot';
+        if (i === 0) dot.classList.add('active');
+        dot.addEventListener('click', function(index) {
+          return function() {
+            goToSlide(index);
+          };
+        }(i));
+        pagination.appendChild(dot);
+      }
+    }
+    
+    // Update pagination
+    function updatePagination() {
+      if (!pagination || !isMobile) return;
+      var dots = pagination.querySelectorAll('.breakpoint-difference-pagination-dot');
+      dots.forEach(function(dot, index) {
+        dot.classList.toggle('active', index === currentIndex);
+      });
+    }
+    
+    // Go to specific slide
+    function goToSlide(index) {
+      if (index < 0 || index >= slides.length) return;
+      currentIndex = index;
+      updateSlider();
+      updatePagination();
+    }
+    
+    // Update slider position
+    function updateSlider() {
+      if (!isMobile) {
+        wrapper.style.transform = 'none';
+        return;
+      }
+      var slideWidth = wrapper.offsetWidth;
+      translateX = -currentIndex * slideWidth * 1.07;
+      wrapper.style.transform = 'translateX(' + translateX + 'px)';
+    }
+    
+    // Touch start
+    function handleTouchStart(e) {
+      if (!isMobile) return;
+      isDragging = true;
+      startX = e.touches ? e.touches[0].clientX : e.clientX;
+      wrapper.style.transition = 'none';
+    }
+    
+    // Touch move
+    function handleTouchMove(e) {
+      if (!isMobile || !isDragging) return;
+      currentX = e.touches ? e.touches[0].clientX : e.clientX;
+      var diff = currentX - startX;
+      var slideWidth = wrapper.offsetWidth;
+      var newTranslateX = translateX + diff;
+      
+      // Prevent dragging beyond boundaries
+      var minTranslate = -(slides.length - 1) * slideWidth;
+      if (newTranslateX > 0) newTranslateX = 0;
+      if (newTranslateX < minTranslate) newTranslateX = minTranslate;
+      
+      wrapper.style.transform = 'translateX(' + newTranslateX + 'px)';
+    }
+    
+    // Touch end
+    function handleTouchEnd(e) {
+      if (!isMobile || !isDragging) return;
+      isDragging = false;
+      wrapper.style.transition = 'transform 0.3s ease';
+      
+      var slideWidth = wrapper.offsetWidth;
+      var diff = currentX - startX;
+      var threshold = slideWidth * 0.3;
+      
+      if (Math.abs(diff) > threshold) {
+        if (diff > 0 && currentIndex > 0) {
+          goToSlide(currentIndex - 1);
+        } else if (diff < 0 && currentIndex < slides.length - 1) {
+          goToSlide(currentIndex + 1);
+        } else {
+          updateSlider();
+        }
+      } else {
+        updateSlider();
+      }
+    }
+    
+    // Mouse events for desktop testing
+    function handleMouseDown(e) {
+      if (!isMobile) return;
+      handleTouchStart(e);
+      document.addEventListener('mousemove', handleMouseMove);
+      document.addEventListener('mouseup', handleMouseUp);
+    }
+    
+    function handleMouseMove(e) {
+      handleTouchMove(e);
+    }
+    
+    function handleMouseUp(e) {
+      handleTouchEnd(e);
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
+    }
+    
+    // Initialize
+    function init() {
+      isMobile = window.innerWidth <= 768;
+      createPagination();
+      updateSlider();
+      
+      // Touch events
+      wrapper.addEventListener('touchstart', handleTouchStart);
+      wrapper.addEventListener('touchmove', handleTouchMove);
+      wrapper.addEventListener('touchend', handleTouchEnd);
+      
+      // Mouse events for desktop testing
+      wrapper.addEventListener('mousedown', handleMouseDown);
+      
+      // Handle resize
+      window.addEventListener('resize', function() {
+        var wasMobile = isMobile;
+        isMobile = window.innerWidth <= 768;
+        if (wasMobile !== isMobile) {
+          createPagination();
+          updateSlider();
+        } else {
+          updateSlider();
+        }
+      });
+    }
+    
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  })();
+</script>
+

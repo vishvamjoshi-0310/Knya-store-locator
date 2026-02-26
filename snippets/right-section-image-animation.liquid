@@ -1,0 +1,25 @@
+<div class="swiper-wrapper">
+  {% for block in section.blocks limit: 6 %}
+    <div class="swiper-slide abt-slide-{{ forloop.index }}">
+      <div class="image_div  relative-img abt-{{ forloop.index }}">
+        <img
+          srcset="
+            {%- if block.settings.desktop_image.width >= 165 -%}{{ block.settings.desktop_image | img_url: '165x' }} 165w,{%- endif -%}
+            {%- if block.settings.desktop_image.width >= 360 -%}{{ block.settings.desktop_image | img_url: '214x' }} 360w,{%- endif -%}
+            {%- if block.settings.desktop_image.width >= 533 -%}{{ block.settings.desktop_image | img_url: '533x' }} 533w,{%- endif -%}
+            {%- if block.settings.desktop_image.width >= 720 -%}{{ block.settings.desktop_image | img_url: '720x' }} 720w,{%- endif -%}
+            {%- if block.settings.desktop_image.width >= 940 -%}{{ block.settings.desktop_image | img_url: '940x' }} 940w,{%- endif -%}
+            {%- if block.settings.desktop_image.width >= 1066 -%}{{ block.settings.desktop_image | img_url: '1066x' }} 1066w,{%- endif -%}
+            {{ block.settings.desktop_image | img_url: '1440x' }} {{ block.settings.desktop_image.width }}w
+          "
+          src="{{ block.settings.desktop_image | img_url: '1440x' }}"
+          size="auto"
+          alt="{% if block.settings.desktop_image.alt != blank %}{{ block.settings.desktop_image.alt | escape }} {% else %} home banner mobile {% endif %}"
+          class="main-image-class"
+          width="{{ block.settings.desktop_image.width }}"
+          height="{{ block.settings.desktop_image.height }}"
+        >
+      </div>
+    </div>
+  {% endfor %}
+</div>

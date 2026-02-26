@@ -1,0 +1,62 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-account", 
+      "disabled": true,
+      "settings": {
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "main_account_page_8JPP3F": {
+      "type": "main-account-page",
+      "name": "Main Account Page",
+      "settings": {
+        "user_profile_image": "shopify://shop_images/Frame_427319516_612a1a41-004c-4644-8a45-019f8fba3778.png",
+        "user_profile_image_mobile": "shopify://shop_images/Group_2_e4a274e1-ba9c-4bd5-aef7-f863ad587cae.png",
+        "help_support_link": "https://knyamed.com/pages/exchanges-returns",
+        "reorder_url": "https://knyamed.com/",
+        "return_and_exchange_url": "https://returns.logisy.tech/returns?encipherencode=gAAAAABmlRY2MxcXkU9ozThBD6MPxixuF0bFtNPATiotkFL4FPhmcba381GcFb1NrUAxuSoUK6wOduaBrFlDnTORBHQWWEA95w==",
+        "chat_support_link": "https://wa.me/919987200005?text=Hi%20there,%20can%20you%20help?",
+        "terms_policies_link": "https://knyamed.com/pages/terms-and-conditions",
+        "empty_orders_image": "shopify://shop_images/KANYA9THMAY2022-31672_10_18_51_PM_png_3a25c331-9ea3-4408-bf08-9651147b264f.png",
+        "empty_shopnow_link": "https://knyamed.com/",
+        "track_order_link": "https://knyamed.clickpost.ai/en",
+        "cancel_order_link": ""
+      }
+    },
+    "slider_iVNcjA": {
+      "type": "slider",
+      "settings": {
+        "shop-now-cont": "ADD TO CART",
+        "show_padding_slidd": false,
+        "pagination": false,
+        "show_secondary_image": false,
+        "show_padding_mob_slidd": false,
+        "shop_collection_text": "",
+        "shop_collection_url": "",
+        "marginTopslidd": 48,
+        "marginBottomslidd": 50,
+        "marginTopsliddmob": 0,
+        "marginBottomsliddmob": 48,
+        "headText": "You May Also like",
+        "secondText": "",
+        "collection": "all-ecoflex"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "main_account_page_8JPP3F",
+    "slider_iVNcjA"
+  ]
+}

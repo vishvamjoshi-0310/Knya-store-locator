@@ -1,0 +1,59 @@
+.floading-bulk-order-cta-button{
+    background: #482F8F;
+    color: #fff;
+    padding: 12px 105px;
+    display: flex;
+    justify-content: center;
+    width: max-content;
+    font-size: 14px;
+    font-family: 'Heebo-Medium';
+    line-height: 12px;
+    text-transform: uppercase;
+    margin: 0 auto;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 6px;
+}
+
+.floading-bulk-order-cta{
+    padding: 24px 0;
+}
+
+.floading-bulk-order-cta-parent{
+    position: sticky;
+    bottom: 5%;
+    z-index: 5;
+}
+.floading-bulk-order-cta-button:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 5%;
+    background: linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);
+    animation: shine 2s ease-in-out infinite;
+    z-index: 0;
+}
+
+@media(min-width: 768px){
+  .floading-bulk-order-cta-parent{
+    position: static;
+  }
+    .floading-bulk-order-cta-button{
+      line-height: 16px;
+      border-radius: 8px;
+    }
+}
+
+@keyframes shine {
+    0% {
+       left: -100%;
+      transition-property: left;
+    }
+    100% {
+        left: 100%;
+    transition-property: left;
+    }
+}

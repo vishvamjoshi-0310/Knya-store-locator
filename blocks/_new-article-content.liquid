@@ -1,0 +1,29 @@
+
+
+{%- doc -%}
+  Renders the new article content block (simple version).
+{%- enddoc -%}
+
+{% liquid
+  if article != blank
+    assign current_article = article
+  elsif closest.article != blank
+    assign current_article = closest.article
+  endif
+%}
+
+{% if current_article != blank %}
+  <div class="article-template__content rte" itemprop="articleBody" {{ block.shopify_attributes }}>
+    <div class="page-width-updated">
+      {{ current_article.content }}
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "t:sections.main-article.blocks.content.name",
+  "settings": []
+}
+{% endschema %}
+

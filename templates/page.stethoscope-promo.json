@@ -1,0 +1,952 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "name": "Title",
+          "settings": {
+            "text": "<h1>{{ closest.page.title }}</h1>",
+            "width": "100%",
+            "max_width": "none",
+            "alignment": "left",
+            "type_preset": "custom",
+            "font": "var(--font-heading--family)",
+            "font_size": "2rem",
+            "font_size_mobile": "1.5rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground-heading)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 24,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0,
+            "custom_font_class": ""
+          },
+          "blocks": {}
+        },
+        "page-content": {
+          "type": "page-content",
+          "settings": {},
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "heading",
+        "page-content"
+      ],
+      "disabled": true,
+      "settings": {
+        "content_direction": "column",
+        "gap": 0,
+        "color_scheme": "scheme-4a76643a-9223-4c3b-a8eb-634a27a0a48a",
+        "padding-block-start": 24,
+        "padding-block-end": 24
+      }
+    },
+    "home_page_banner_with_text_Y7EXHe": {
+      "type": "Home-page-banner-with-text",
+      "blocks": {
+        "text_6weJfz": {
+          "type": "text",
+          "settings": {
+            "image": "shopify://shop_images/Web_Banner_Steth_Desktop.png",
+            "image_2": "shopify://shop_images/Web_Banner_Steth_Mobile.png",
+            "button_link_banner": "https://knyamed.com/collections/shop-6sense-stethoscope?utm_source=website&utm_medium=steth-page&utm_campaign=4thsept-herobanner",
+            "show_custom_text": false,
+            "subheading": "",
+            "subheading_color": "#ffffff",
+            "heading": "",
+            "heading_color": "#ffffff",
+            "heading_size": "h1",
+            "text": "",
+            "text_color": "#ffffff",
+            "text_style": "body",
+            "button_label_1": "Button label",
+            "button_link_1": "",
+            "button_label_2": "Button label",
+            "button_link_2": "",
+            "button_style_secondary_1": false,
+            "button-backgroundcolor": "",
+            "button-color": "",
+            "hpbox1": "HpBANNER-1"
+          }
+        }
+      },
+      "block_order": [
+        "text_6weJfz"
+      ],
+      "name": "Banner with text",
+      "settings": {
+        "enable_autoplay": false,
+        "margin-top-desktop": 0,
+        "margin-bottom-desktop": 0,
+        "margin-top-mobile": 0,
+        "margin-bottom-mobile": 0,
+        "desktop_content_position": "middle-center",
+        "show_text_box": true,
+        "desktop_content_alignment": "center",
+        "text-backgroundcolor": "",
+        "text-color": "",
+        "box-padding": 0,
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": true,
+        "show_text_below": true
+      }
+    },
+    "stethoscope_features_qmYYm6": {
+      "type": "stethoscope-features",
+      "blocks": {
+        "block_TYTWtR": {
+          "type": "block",
+          "settings": {
+            "feature_name": "Superior Acoustics ",
+            "feature_heading": "High acoustic sensitivity and    noise cancellation."
+          }
+        },
+        "block_rXQMHd": {
+          "type": "block",
+          "disabled": true,
+          "settings": {
+            "feature_name": "Superior Acoustics ",
+            "feature_heading": "High acoustic sensitivity and    noise cancellation."
+          }
+        },
+        "block_AiKb9U": {
+          "type": "block",
+          "settings": {
+            "feature_name": "Enhanced Performance ",
+            "feature_heading": "Crafted alongside top Indian medicos, with    excellence and precision."
+          }
+        },
+        "block_dEPCK7": {
+          "type": "block",
+          "settings": {
+            "feature_name": "Scratch Resistant ",
+            "feature_heading": "Anodised aluminium enhances   scratch resistance and longevity."
+          }
+        },
+        "block_wLbeEL": {
+          "type": "block",
+          "disabled": true,
+          "settings": {
+            "feature_name": "Scratch Resistant ",
+            "feature_heading": "Anodised aluminium enhances   scratch resistance and longevity."
+          }
+        },
+        "block_cMqgxD": {
+          "type": "block",
+          "settings": {
+            "feature_name": "High Flexibility ",
+            "feature_heading": "Engineered for optimal flexibility with   latex-free PVC material."
+          }
+        }
+      },
+      "block_order": [
+        "block_TYTWtR",
+        "block_rXQMHd",
+        "block_AiKb9U",
+        "block_dEPCK7",
+        "block_wLbeEL",
+        "block_cMqgxD"
+      ],
+      "name": "Stethoscope Features",
+      "settings": {
+        "feature_subheading": "Reinventing the Stethoscope",
+        "stetho-preorder-count": "126+",
+        "stetho-preorder-text": "Hurry! The first 1500 pre-bookings get FREE engraving.",
+        "stetho-preorder-url": "shopify://collections"
+      }
+    },
+    "6sense_XYhbKW": {
+      "type": "6sense",
+      "name": "6sense",
+      "settings": {
+        "sence_logo": "shopify://shop_images/Group_1_93754e4e-37a6-40bd-9df5-a558f3111e09.png",
+        "premium_title": "<p>High precision. <br/>Lets you hear every beat.</p>",
+        "premium_price": "₹2499/-",
+        "premium_shop_text": "Shop Now",
+        "premium_shop_link": "shopify://collections/shop-6sense",
+        "premium_image": "shopify://shop_images/homepod__eam53jjm772a_large_jpg_049962c3-8b94-4a2e-924b-dafe8ab08d5d.png",
+        "secondary_logo": "shopify://shop_images/Group_eceab7f8-3b73-49e7-a96b-05d41c34b639.png",
+        "lite_title": "<p>Light in weight.<br/>More affordable.</p>",
+        "lite_price": "₹1999/-",
+        "lite_shop_text": "Shop Now",
+        "lite_shop_link": "shopify://collections/shop-6sense-lite",
+        "lite_learn_link": "https://knyamed.com/blogs/resources",
+        "lite_image": "shopify://shop_images/Steth_Lite_2X_99c401ad-ff18-4898-93ad-b76ee1e20870.png"
+      }
+    },
+    "our_fabric_7dk38c": {
+      "type": "our_fabric",
+      "blocks": {
+        "featured_card_ww8hVU": {
+          "type": "_featured_card",
+          "name": "Stethoscope Feature Cards",
+          "settings": {
+            "feature_card_image": "shopify://shop_images/Chest_Piece_1.png",
+            "feature_name": "Chest Piece ",
+            "feature_description": "Diaphragm that easily switches between adult and paediatric diaphragm to hear high and low frequency sounds. "
+          },
+          "blocks": {}
+        },
+        "featured_card_tKVjCX": {
+          "type": "_featured_card",
+          "name": "Stethoscope Feature Cards",
+          "settings": {
+            "feature_card_image": "shopify://shop_images/Earpiece_1.png",
+            "feature_name": "Earpieces",
+            "feature_description": "Soft-sealing earpieces make for a comfortable fit, providing sound occlusion and blocking out external noise. "
+          },
+          "blocks": {}
+        },
+        "featured_card_hhzUUi": {
+          "type": "_featured_card",
+          "name": "Stethoscope Feature Cards",
+          "settings": {
+            "feature_card_image": "shopify://shop_images/Chest_Piece_1.png",
+            "feature_name": "Chest Piece ",
+            "feature_description": "Diaphragm that easily switches between adult and paediatric diaphragm to hear high and low frequency sounds. "
+          },
+          "blocks": {}
+        },
+        "featured_card_nVeaBT": {
+          "type": "_featured_card",
+          "name": "Stethoscope Feature Cards",
+          "settings": {
+            "feature_card_image": "shopify://shop_images/Chest_Piece_1.png",
+            "feature_name": "Tubes",
+            "feature_description": "Tubing provides a high-quality sound transmission by minimising interference, ensuring clear auscultation. "
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "featured_card_ww8hVU",
+        "featured_card_tKVjCX",
+        "featured_card_hhzUUi",
+        "featured_card_nVeaBT"
+      ],
+      "name": "Our fabric Section",
+      "settings": {
+        "fabricheading_text": "",
+        "fabricsubheading_text": "",
+        "margin_top_desktop": 24,
+        "margin_bottom_desktop": 24,
+        "margin_top_mobile": 12,
+        "margin_bottom_mobile": 12,
+        "custom_text_class": ""
+      }
+    },
+    "product_list_KGkF7b": {
+      "type": "product-list",
+      "blocks": {
+        "custom_button_GYxxKL": {
+          "type": "custom_button",
+          "name": "Custom button",
+          "disabled": true,
+          "settings": {
+            "button_text": "SHOP COLLECTION",
+            "button_link": "",
+            "background_color": "#462d8c",
+            "text_color": "#ffffff",
+            "hover_background_color": "#462d8c",
+            "hover_text_color": "#ffffff",
+            "border_radius": 0,
+            "font_size_desktop": 14,
+            "padding_horizontal_desktop": 32,
+            "padding_vertical_desktop": 14,
+            "font_size_mobile": 14,
+            "padding_horizontal_mobile": 24,
+            "padding_vertical_mobile": 12
+          },
+          "blocks": {}
+        },
+        "static-header": {
+          "type": "_product-list-content",
+          "name": "t:names.header",
+          "static": true,
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": false,
+            "horizontal_alignment": "space-between",
+            "vertical_alignment": "flex-end",
+            "align_baseline": true,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 0,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "product_list_text_7xBarW": {
+              "type": "_product-list-text",
+              "name": "t:names.collection_title",
+              "settings": {
+                "text": "<p>Shop 6sense</p>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h3",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground-heading)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_cLVXtY": {
+              "type": "text",
+              "name": "t:names.text",
+              "settings": {
+                "text": "<p>High Precision. Lets you hear every beat.</p>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "custom",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "font_size_mobile": "0.75rem",
+                "line_height": "normal",
+                "letter_spacing": "loose",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 8,
+                "padding-block-end": 20,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0,
+                "custom_font_class": "stethoscope-page-featured-collection"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "product_list_text_7xBarW",
+            "text_cLVXtY"
+          ]
+        },
+        "static-product-card": {
+          "type": "_product-card",
+          "name": "t:names.product_card",
+          "static": true,
+          "settings": {
+            "product_card_gap": 4,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "product_card_gallery_cmjNk3": {
+              "type": "_product-card-gallery",
+              "name": "t:names.product_card_media",
+              "settings": {
+                "image_ratio": "adapt",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "product_title_NEyAyc": {
+              "type": "product-title",
+              "name": "t:names.product_title",
+              "settings": {
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 4,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "price_rYDHtD": {
+              "type": "price",
+              "name": "t:names.product_price",
+              "settings": {
+                "show_sale_price_first": true,
+                "show_installments": false,
+                "show_tax_info": false,
+                "show_tax_info_product_card": false,
+                "tax_info_product_card_text": "*Incl of taxes",
+                "type_preset": "h6",
+                "width": "100%",
+                "alignment": "left",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "color": "var(--color-foreground)",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "custom_color_swatch_zGaBGT": {
+              "type": "custom-color-swatch",
+              "name": "Color swatches",
+              "settings": {
+                "title": "",
+                "title_font_size": 16,
+                "title_font_size_mobile": 14,
+                "title_font_weight": "Heebo-Medium",
+                "title_padding": 0,
+                "title_padding_mobile": 0,
+                "title_bottom_spacing": 0,
+                "title_text_color": "#000000",
+                "use_product_image": false,
+                "swatch_size": 22,
+                "swatch_size_mobile": 20,
+                "swatch_spacing": 8,
+                "swatch_spacing_mobile": 6,
+                "top_spacing": 12,
+                "swatch_border_radius": 40,
+                "color-swatches-show-desktop": 5,
+                "color-swatches-show-mobile": 3,
+                "swatch_border_width": 1,
+                "swatch_border_color": "#e6e6e6",
+                "current_swatch_border_width": 2,
+                "current_swatch_border_color": "#000000",
+                "placeholder_color": "#f5f5f5",
+                "placeholder_text_color": "#666666"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "product_card_gallery_cmjNk3",
+            "product_title_NEyAyc",
+            "price_rYDHtD",
+            "custom_color_swatch_zGaBGT"
+          ]
+        }
+      },
+      "block_order": [
+        "custom_button_GYxxKL"
+      ],
+      "name": "t:names.products_carousel",
+      "settings": {
+        "collection": "shop-6sense-stethoscope",
+        "layout_type": "carousel",
+        "carousel_on_mobile": false,
+        "max_products": 6,
+        "columns": 4,
+        "mobile_columns": "2",
+        "tablet_columns": 3,
+        "mobile_card_size": "44cqw",
+        "columns_gap": 24,
+        "rows_gap": 24,
+        "icons_style": "none",
+        "icons_shape": "circle",
+        "show_custom_navigation": false,
+        "show_infinite_carousel": false,
+        "section_width": "full-width",
+        "horizontal_alignment": "center",
+        "gap": 0,
+        "color_scheme": "scheme-d665027f-05ad-4662-8e95-46211fd0e7ce",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
+    "product_list_aYdNDM": {
+      "type": "product-list",
+      "blocks": {
+        "custom_button_zFR7Uq": {
+          "type": "custom_button",
+          "name": "Custom button",
+          "disabled": true,
+          "settings": {
+            "button_text": "SHOP COLLECTION",
+            "button_link": "",
+            "background_color": "#462d8c",
+            "text_color": "#ffffff",
+            "hover_background_color": "#462d8c",
+            "hover_text_color": "#ffffff",
+            "border_radius": 0,
+            "font_size_desktop": 14,
+            "padding_horizontal_desktop": 32,
+            "padding_vertical_desktop": 14,
+            "font_size_mobile": 14,
+            "padding_horizontal_mobile": 24,
+            "padding_vertical_mobile": 12
+          },
+          "blocks": {}
+        },
+        "static-header": {
+          "type": "_product-list-content",
+          "name": "t:names.header",
+          "static": true,
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": false,
+            "horizontal_alignment": "space-between",
+            "vertical_alignment": "flex-end",
+            "align_baseline": true,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 0,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "product_list_text_NQDUY3": {
+              "type": "_product-list-text",
+              "name": "t:names.collection_title",
+              "settings": {
+                "text": "<p>Shop 6sense Lite</p>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h3",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground-heading)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_nVEtL4": {
+              "type": "text",
+              "name": "t:names.text",
+              "settings": {
+                "text": "<p>Light in weight. More affordable.</p>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "custom",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "font_size_mobile": "0.75rem",
+                "line_height": "normal",
+                "letter_spacing": "loose",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 8,
+                "padding-block-end": 24,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0,
+                "custom_font_class": "stethoscope-page-featured-collection"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "product_list_text_NQDUY3",
+            "text_nVEtL4"
+          ]
+        },
+        "static-product-card": {
+          "type": "_product-card",
+          "name": "t:names.product_card",
+          "static": true,
+          "settings": {
+            "product_card_gap": 4,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "product_card_gallery_LAeXnC": {
+              "type": "_product-card-gallery",
+              "name": "t:names.product_card_media",
+              "settings": {
+                "image_ratio": "adapt",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "product_title_JjzetW": {
+              "type": "product-title",
+              "name": "t:names.product_title",
+              "settings": {
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 4,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "price_M3bz4n": {
+              "type": "price",
+              "name": "t:names.product_price",
+              "settings": {
+                "show_sale_price_first": true,
+                "show_installments": false,
+                "show_tax_info": false,
+                "show_tax_info_product_card": false,
+                "tax_info_product_card_text": "*Incl of taxes",
+                "type_preset": "h6",
+                "width": "100%",
+                "alignment": "left",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "color": "var(--color-foreground)",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "custom_color_swatch_F3R3Jf": {
+              "type": "custom-color-swatch",
+              "name": "Color swatches",
+              "settings": {
+                "title": "",
+                "title_font_size": 16,
+                "title_font_size_mobile": 14,
+                "title_font_weight": "Heebo-Medium",
+                "title_padding": 0,
+                "title_padding_mobile": 0,
+                "title_bottom_spacing": 0,
+                "title_text_color": "#000000",
+                "use_product_image": false,
+                "swatch_size": 22,
+                "swatch_size_mobile": 20,
+                "swatch_spacing": 8,
+                "swatch_spacing_mobile": 6,
+                "top_spacing": 12,
+                "swatch_border_radius": 40,
+                "color-swatches-show-desktop": 5,
+                "color-swatches-show-mobile": 3,
+                "swatch_border_width": 1,
+                "swatch_border_color": "#e6e6e6",
+                "current_swatch_border_width": 2,
+                "current_swatch_border_color": "#000000",
+                "placeholder_color": "#f5f5f5",
+                "placeholder_text_color": "#666666"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "product_card_gallery_LAeXnC",
+            "product_title_JjzetW",
+            "price_M3bz4n",
+            "custom_color_swatch_F3R3Jf"
+          ]
+        }
+      },
+      "block_order": [
+        "custom_button_zFR7Uq"
+      ],
+      "name": "t:names.products_carousel",
+      "settings": {
+        "collection": "shop-6sense-stethoscope",
+        "layout_type": "carousel",
+        "carousel_on_mobile": false,
+        "max_products": 6,
+        "columns": 4,
+        "mobile_columns": "2",
+        "tablet_columns": 3,
+        "mobile_card_size": "44cqw",
+        "columns_gap": 24,
+        "rows_gap": 24,
+        "icons_style": "none",
+        "icons_shape": "circle",
+        "show_custom_navigation": false,
+        "show_infinite_carousel": false,
+        "section_width": "full-width",
+        "horizontal_alignment": "center",
+        "gap": 0,
+        "color_scheme": "scheme-d665027f-05ad-4662-8e95-46211fd0e7ce",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
+    "slider_Wg3x3z": {
+      "type": "slider",
+      "name": "Best Seller Collection",
+      "settings": {
+        "shop-now-cont": "",
+        "show_padding_slidd": true,
+        "pagination": false,
+        "show_secondary_image": false,
+        "show_padding_mob_slidd": true,
+        "shop_collection_text": "",
+        "shop_collection_url": "",
+        "marginTopslidd": 0,
+        "marginBottomslidd": 0,
+        "marginTopsliddmob": 0,
+        "marginBottomsliddmob": 0,
+        "headText": "",
+        "secondText": "",
+        "collection": ""
+      }
+    },
+    "preorder_popup_AXgiip": {
+      "type": "preorder_popup",
+      "name": "Preorder Popup",
+      "settings": {
+        "enable_preorder_counter": false,
+        "present_count": 126,
+        "update_interval": 5,
+        "update_count": 30,
+        "upper_limit": 500,
+        "preorder_content": "Medicos are loving 6sense. Get custom engraving.",
+        "button_text": "Shop Now",
+        "preorder_button_url": "shopify://collections/shop-6sense-stethoscope"
+      }
+    },
+    "stethoscope_video_VaKiBJ": {
+      "type": "stethoscope_video",
+      "name": "Stethoscope Video Section",
+      "settings": {
+        "headline": "Never miss a Beat",
+        "description": "Experience precision like never before with the 6sense stethoscope.",
+        "video_url": "shopify://files/videos/KNYA_Stethoscope_Landscape_a338b56a-fb45-4918-acbe-49f8a3e12eb4.mp4",
+        "thumbnail": "shopify://shop_images/video-thumbnail_jpg.png",
+        "button_text": "Watch the film",
+        "button_link": "https://youtu.be/D8KViqHnRr0"
+      }
+    },
+    "custom_faq_accordian_9kH38m": {
+      "type": "custom_faq_accordian",
+      "blocks": {
+        "faq_GLy9ME": {
+          "type": "faq",
+          "settings": {
+            "question": "What makes the Knya 6sense stethoscope stand out?",
+            "answer": "· Made in India with global quality standards.\n\n· Noise cancellation for clearer sound in noisy environments.\n\n· Chest piece for both adult and pediatric use.\n\n· Engraving option for personalization."
+          }
+        },
+        "faq_UwDyjK": {
+          "type": "faq",
+          "settings": {
+            "question": "Who can use the 6sense stethoscope?",
+            "answer": "It’s designed for medical professionals of all levels-from students to senior physicians."
+          }
+        },
+        "faq_7ycJt7": {
+          "type": "faq",
+          "settings": {
+            "question": "What comes in the box?",
+            "answer": "· 1 Pc. Stethoscope\n\n· 1 Extra adult & pediatric diaphragm\n\n· 2 Extra ear knobs\n\n· Instruction & warranty card"
+          }
+        },
+        "faq_TVdwNc": {
+          "type": "faq",
+          "settings": {
+            "question": "What is the warranty coverage?",
+            "answer": "· 3-year warranty covering material and manufacturing defects.\n\n· Accidental damage or misuse is not covered."
+          }
+        }
+      },
+      "block_order": [
+        "faq_GLy9ME",
+        "faq_UwDyjK",
+        "faq_7ycJt7",
+        "faq_TVdwNc"
+      ],
+      "name": "FAQ Accordion",
+      "settings": {
+        "heading": "FAQs"
+      }
+    },
+    "section_CVpQYe": {
+      "type": "section",
+      "blocks": {
+        "read_more_acVNBD": {
+          "type": "read_more",
+          "name": "Read more section",
+          "settings": {
+            "show_padding_read": false,
+            "show_padding_mob_read": false,
+            "margintopread": 0,
+            "marginbottomread": 0,
+            "margintopreadmob": 0,
+            "marginbottomreadmob": 0,
+            "main-text": "Knya’s 6sense Stethoscope: Precision meets style with a custom-engraved stethoscope for doctors - Built for daily performance.",
+            "content-text-before": "<h2>Introduction:</h2><p>The stethoscope is one of the most recognizable symbols of the medical profession.</p>",
+            "content-text": "<h2>Introduction:</h2><p>The stethoscope is one of the most recognizable symbols of the medical profession.</p><p>Introducing the Knya's 6sense Stethoscope, a high-performance diagnostic instrument meticulously engineered for discerning medical professionals like you. This isn't just a stethoscope; it's a precision tool designed to deliver superior acoustics, enabling you to capture subtle sounds with unparalleled clarity. Experience enhanced performance in every auscultation, leading to more accurate diagnoses and ultimately, improved patient care.<br/>Built with durability in mind, the Knya's 6sense Stethoscope is a reliable companion for your demanding practice. Its ergonomic design ensures comfort during extended use, making it an indispensable instrument for precise auscultation, day after day.</p><h2>Looking for the Best Stethoscope?</h2><p>The Knya's 6sense stands out with its advanced features and quality construction. For doctors and healthcare professionals who demand accuracy and reliability, the 6sense is a compelling choice. </p><h2>Make it Your Own: Engraved and Personalized Stethoscopes:</h2><p>Elevate your professional identity with our engraved stethoscope option. Add a personal touch with your name or initials, making your Knya 6sense truly unique. Explore our custom stethoscope services for a personalized instrument that reflects your dedication.</p><h2>Understanding Stethoscope Price:</h2><p>Investing in a high-quality stethoscope is an investment in your practice and your patients. The Knya 6sense offers exceptional value for its advanced acoustic performance and durability. Explore our pricing options to discover a stethoscope price that aligns with its superior quality.</p><h2> The Stethoscope for Doctors Who Demand Precision:</h2><p>The Knya 6sense is specifically designed with the needs of doctors in mind. Its advanced acoustic technology allows for confident diagnoses across various medical specialties.</p><h2>Your Personalized Diagnostic Tool:</h2><p>Beyond engraving, explore options for a truly personalized stethoscope with Knya. Choose from various colors and finishes to match your individual style and professional preference.<br/>Experience the difference with the Knya 6sense Stethoscope – where superior acoustics meet enhanced performance and lasting durability. Elevate your practice, one auscultation at a time.</p>",
+            "read-more-text": "READ MORE",
+            "read-less-text": "READ LESS",
+            "back-img": "shopify://shop_images/Vector_e3c241a2-7b11-44f6-8e63-6dcca5fa809c.png"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "read_more_acVNBD"
+      ],
+      "name": "t:names.custom_section",
+      "settings": {
+        "content_direction": "row",
+        "vertical_on_mobile": false,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "flex-start",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 0,
+        "section_width": "full-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 0,
+        "padding-block-end": 0,
+        "custom_section_class": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "home_page_banner_with_text_Y7EXHe",
+    "stethoscope_features_qmYYm6",
+    "6sense_XYhbKW",
+    "our_fabric_7dk38c",
+    "product_list_KGkF7b",
+    "product_list_aYdNDM",
+    "slider_Wg3x3z",
+    "preorder_popup_AXgiip",
+    "stethoscope_video_VaKiBJ",
+    "custom_faq_accordian_9kH38m",
+    "section_CVpQYe"
+  ]
+}

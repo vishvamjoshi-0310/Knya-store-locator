@@ -1,0 +1,14 @@
+{{ 'overflow-list.css' | asset_url | preload_tag: as: 'style' }}
+{{ 'base.css' | asset_url | stylesheet_tag: preload: true }}
+{% if template.name == 'product' %}
+    {{ 'component-loading-overlay.css' | asset_url | stylesheet_tag: preload: true }}
+{% endif %}
+{% if handle == 'ecoflex' %}
+      {{ 'judgeme-reviews.css' | asset_url | stylesheet_tag }}
+    {% endif %}
+    {% if template.name == 'product' %}
+      {{ 'judgeme-product-reviews.css' | asset_url | stylesheet_tag }}
+    {% endif %}
+    {% if template.name == 'product.scrub' %}
+      {{ 'judgeme-product-reviews.css' | asset_url | stylesheet_tag }}
+    {% endif %}

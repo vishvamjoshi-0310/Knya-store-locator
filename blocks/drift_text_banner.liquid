@@ -1,0 +1,582 @@
+
+
+{% style %}
+  .hero-drift-{{ block.id }} {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background-color: {{ block.settings.background_color }};
+    overflow: hidden;
+  }
+
+  .hero-drift-container-{{ block.id }} {
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+
+  .hero-drift-image-wrapper-{{ block.id }} {
+    flex: 0 0 32.2%;
+    width: 32.2%;
+    height: auto;
+    position: relative;
+  }
+
+  .hero-drift-image-{{ block.id }} {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    aspect-ratio: 463/556;
+  }
+
+  .hero-drift-image-placeholder-{{ block.id }} {
+    width: 100%;
+    height: 100%;
+    background-color: #2a2a2a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .hero-drift-image-placeholder-{{ block.id }} svg {
+    width: 100%;
+    height: 100%;
+    max-width: 600px;
+    max-height: 600px;
+    opacity: 0.3;
+  }
+
+  .hero-drift-empty-state-{{ block.id }} {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 16px 24px;
+    font-size: 16px;
+    color: #ffffff;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    pointer-events: none;
+  }
+
+  .hero-drift-content-wrapper-{{ block.id }} {
+    position: absolute;
+    right: 0px;
+    left: 30%;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+  }
+
+  .hero-drift-content-box-{{ block.id }} {
+    background-color: {{ block.settings.content_bg_color }};
+    padding: {{ block.settings.content_padding }}px;
+    box-shadow: {{ block.settings.shadow_x }}px {{ block.settings.shadow_y }}px {{ block.settings.shadow_blur }}px {{ block.settings.shadow_color }};
+    max-width: calc(100% + 40px);
+    width: 100%;
+  }
+
+  .hero-drift-heading-{{ block.id }} {
+    font-size: {{ block.settings.heading_size }}px;
+    line-height: 1.2;
+    color: {{ block.settings.heading_color }};
+    margin: 0 0 {{ block.settings.heading_spacing }}px 0;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .hero-drift-description-{{ block.id }} {
+    font-size: {{ block.settings.text_size }}px;
+    line-height: 1.6;
+    color: {{ block.settings.text_color }};
+    margin: 0 0 {{ block.settings.text_spacing }}px 0;
+  }
+
+  .hero-drift-button-{{ block.id }} {
+    display: inline-block;
+    padding: {{ block.settings.button_padding_vertical }}px {{ block.settings.button_padding_horizontal }}px;
+    background-color: {{ block.settings.button_bg_color }};
+    color: {{ block.settings.button_text_color }};
+    text-decoration: none;
+    border-radius: {{ block.settings.button_border_radius }}px;
+    font-size: {{ block.settings.button_text_size }}px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+  }
+
+  .hero-drift-button-{{ block.id }}:hover {
+    background-color: {{ block.settings.button_hover_bg_color }};
+    color: {{ block.settings.button_hover_text_color }};
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  @media screen and (max-width: 989px) {
+    .hero-drift-heading-{{ block.id }} {
+      font-size: 20px;
+    }
+
+    .hero-drift-description-{{ block.id }} {
+      font-size: 13px;
+    }
+
+    .hero-drift-button-{{ block.id }} {
+      font-size: 11px;
+    }
+  }
+  
+  @media screen and (max-width: 549px) {
+    .hero-drift-{{ block.id }} {
+      min-height: auto;
+    }
+  
+    .hero-drift-container-{{ block.id }} {
+      flex-direction: column;
+    }
+  
+    .hero-drift-image-wrapper-{{ block.id }} {
+      flex: 0 0 auto;
+      width: 100%;
+      height: auto;
+      min-height: 400px;
+    }
+  
+    .hero-drift-content-wrapper-{{ block.id }} {
+      position: relative;
+      right: auto;
+      top: -50px;
+      left: unset;
+      transform: none;
+      width: 100%;
+      padding: 32px 20px;
+      display: flex;
+      justify-content: center;
+    }
+  
+    .hero-drift-content-box-{{ block.id }} {
+      max-width: 100%;
+      padding: {{ block.settings.content_padding_mobile }}px;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+    }
+  
+    .hero-drift-heading-{{ block.id }} {
+      font-size: {{ block.settings.heading_size_mobile }}px;
+      margin-bottom: {{ block.settings.heading_spacing_mobile }}px;
+      text-align: center;
+    }
+  
+    .hero-drift-description-{{ block.id }} {
+      font-size: {{ block.settings.text_size_mobile }}px;
+      margin-bottom: {{ block.settings.text_spacing_mobile }}px;
+      text-align: center;
+    }
+  
+    .hero-drift-button-{{ block.id }} {
+      display: block;
+    }
+
+    .hero-drift-content-wrapper-{{ block.id }} {
+      padding: 24px 16px;
+    }
+
+    .hero-drift-image-{{ block.id }} {
+      aspect-ratio: 428/513;
+    }
+  }
+
+  {% if page.handle == 'about-us' %}
+    .hero-drift-image-wrapper-{{ block.id }} {
+      flex: 0 0 50%;
+    }
+
+    .hero-drift-image-{{ block.id }} {
+      aspect-ratio: 720/405;
+    }
+
+    .hero-drift-content-wrapper-{{ block.id }} {
+      left: 48%;
+    }
+
+    .hero-drift-content-box-{{ block.id }} {
+      text-align: center;
+    }
+
+    .hero-drift-heading-{{ block.id }} {
+      text-align: left;
+      font-weight: 500;
+      margin: 0;
+    }
+
+  @media only screen and (max-width: 750px){
+    .hero-drift-image-{{ block.id }} {
+      aspect-ratio: unset;
+    }
+
+    .hero-drift-content-wrapper-{{ block.id }} {
+      left: 0%;
+    }
+
+    .hero-drift-image-wrapper-{{ block.id }} {
+      min-height: unset;
+    }
+
+    .hero-drift-heading-{{ block.id }} {
+      text-align: center;
+    }
+  }
+  {% endif %}
+{% endstyle %}
+
+<div class="hero-drift-{{ block.id }}" {{ block.shopify_attributes }}>
+  <div class="hero-drift-container-{{ block.id }}">
+    <div class="hero-drift-image-wrapper-{{ block.id }}">
+      {% if block.settings.hero_image %}
+        <img
+          src="{{ block.settings.hero_image | image_url: width: 2000 }}"
+          alt="{{ block.settings.hero_image.alt | escape }}"
+          loading="lazy"
+          width="{{ block.settings.hero_image.width }}"
+          height="{{ block.settings.hero_image.height }}"
+          class="hero-drift-image-{{ block.id }}"
+        >
+      {% else %}
+        <div class="hero-drift-image-placeholder-{{ block.id }}">
+          {{ 'hero-apparel-1' | placeholder_svg_tag }}
+          <div class="hero-drift-empty-state-{{ block.id }}">
+            Add your hero image featuring medical professionals
+          </div>
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="hero-drift-content-wrapper-{{ block.id }}">
+      <div class="hero-drift-content-box-{{ block.id }}">
+        {% if block.settings.heading != blank %}
+          <h1 class="hero-drift-heading-{{ block.id }}">
+            {{ block.settings.heading }}
+          </h1>
+        {% endif %}
+
+        {% if block.settings.description != blank %}
+          <div class="hero-drift-description-{{ block.id }}">
+            {{ block.settings.description }}
+          </div>
+        {% endif %}
+
+        {% if block.settings.button_text != blank %}
+          <a
+            href="{{ block.settings.button_link }}"
+            class="hero-drift-button-{{ block.id }}"
+          >
+            {{ block.settings.button_text }}
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Medical hero - DRIFT",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Hero image"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Image"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>DRIFT: A Jacket for Medicos</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>India's first winter jacket for medicos – made for warmth, movement, and focus. Fleece-bonded fabric, stretch back panels, and functional pockets for everything your shift demands. Built for layering over scrubs.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Content box style"
+    },
+    {
+      "type": "color",
+      "id": "content_bg_color",
+      "label": "Background color",
+      "default": "#F5F1E8"
+    },
+    {
+      "type": "range",
+      "id": "content_padding",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding (desktop)",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "content_padding_mobile",
+      "min": 15,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding (mobile)",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Shadow"
+    },
+    {
+      "type": "range",
+      "id": "shadow_x",
+      "min": -20,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Horizontal offset",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "shadow_y",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Vertical offset",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "shadow_blur",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "Blur",
+      "default": 40
+    },
+    {
+      "type": "color",
+      "id": "shadow_color",
+      "label": "Shadow color",
+      "default": "rgba(0, 0, 0, 0.15)"
+    },
+    {
+      "type": "header",
+      "content": "Typography - Desktop"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 24,
+      "max": 72,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading size",
+      "default": 48
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "range",
+      "id": "heading_spacing",
+      "min": 10,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading spacing",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Text size",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#4a4a4a"
+    },
+    {
+      "type": "range",
+      "id": "text_spacing",
+      "min": 15,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Text spacing",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Typography - Mobile"
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "min": 20,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading size",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "heading_spacing_mobile",
+      "min": 10,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading spacing",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "text_size_mobile",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Text size",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "text_spacing_mobile",
+      "min": 15,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "label": "Text spacing",
+      "default": 25
+    },
+    {
+      "type": "header",
+      "content": "Button style"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Background color",
+      "default": "#7C3AED"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_bg_color",
+      "label": "Hover background color",
+      "default": "#6D28D9"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text_color",
+      "label": "Hover text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "button_text_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Text size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "button_padding_vertical",
+      "min": 8,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Vertical padding",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "button_padding_horizontal",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "Horizontal padding",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Border radius",
+      "default": 8
+    }
+  ],
+  "presets": [
+    {
+      "name": "Medical hero - DRIFT"
+    }
+  ]
+}
+{% endschema %}

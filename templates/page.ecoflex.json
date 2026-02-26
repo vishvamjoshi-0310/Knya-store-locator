@@ -1,0 +1,1221 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "name": "Title",
+          "settings": {
+            "text": "<h1>{{ closest.page.title }}</h1>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h2",
+            "font": "var(--font-primary--family)",
+            "font_size": "",
+            "font_size_mobile": "unset",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0,
+            "custom_font_class": ""
+          },
+          "blocks": {}
+        },
+        "page-content": {
+          "type": "page-content",
+          "settings": {},
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "heading",
+        "page-content"
+      ],
+      "disabled": true,
+      "settings": {
+        "content_direction": "column",
+        "gap": 32,
+        "color_scheme": "",
+        "padding-block-start": 40,
+        "padding-block-end": 80
+      }
+    },
+    "home_page_banner_with_text_qkhD3p": {
+      "type": "Home-page-banner-with-text",
+      "blocks": {
+        "text_gLMypb": {
+          "type": "text",
+          "settings": {
+            "image": "shopify://shop_images/Ecoflex_Homepage_Banner.png",
+            "image_2": "shopify://shop_images/Ecolfex_App_Banner.png",
+            "button_link_banner": "shopify://collections/ecoflex",
+            "show_custom_text": false,
+            "subheading": "",
+            "subheading_color": "#ffffff",
+            "heading": "",
+            "heading_color": "#ffffff",
+            "heading_size": "h1",
+            "text": "",
+            "text_color": "#ffffff",
+            "text_style": "body",
+            "button_label_1": "Button label",
+            "button_link_1": "",
+            "button_label_2": "Button label",
+            "button_link_2": "",
+            "button_style_secondary_1": false,
+            "button-backgroundcolor": "",
+            "button-color": "",
+            "hpbox1": "HpBANNER-1"
+          }
+        }
+      },
+      "block_order": [
+        "text_gLMypb"
+      ],
+      "name": "Banner with text",
+      "settings": {
+        "enable_autoplay": false,
+        "margin-top-desktop": 0,
+        "margin-bottom-desktop": 0,
+        "margin-top-mobile": 0,
+        "margin-bottom-mobile": 0,
+        "desktop_content_position": "middle-center",
+        "show_text_box": true,
+        "desktop_content_alignment": "center",
+        "text-backgroundcolor": "",
+        "text-color": "",
+        "box-padding": 0,
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": true,
+        "show_text_below": true
+      }
+    },
+    "section_N8gWdr": {
+      "type": "section",
+      "blocks": {
+        "text_dtQHkC": {
+          "type": "text",
+          "name": "t:names.heading",
+          "settings": {
+            "text": "<p>Tested for Expertise</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h3",
+            "font": "var(--font-heading--family)",
+            "font_size": "2rem",
+            "font_size_mobile": "0.875rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground-heading)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0,
+            "custom_font_class": ""
+          },
+          "blocks": {}
+        },
+        "text_yXeyLU": {
+          "type": "text",
+          "name": "t:names.text",
+          "settings": {
+            "text": "<p>Our Ecoflex scrubs undergo rigorous lab testing to ensure they meet the highest standards for performance.</p>",
+            "width": "100%",
+            "max_width": "none",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "font_size_mobile": "unset",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0,
+            "custom_font_class": ""
+          },
+          "blocks": {}
+        },
+        "group_93Nhp7": {
+          "type": "group",
+          "name": "t:names.group",
+          "settings": {
+            "content_direction": "row",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 12,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_custom_class": "",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0,
+            "custom_class": ""
+          },
+          "blocks": {
+            "group_DednCe": {
+              "type": "group",
+              "name": "t:names.group",
+              "settings": {
+                "content_direction": "row",
+                "vertical_on_mobile": false,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "center",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap": 12,
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "custom_height": 100,
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "background_media": "none",
+                "video_position": "cover",
+                "background_image_position": "cover",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_custom_class": "",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "link": "",
+                "open_in_new_tab": false,
+                "placeholder": "",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0,
+                "custom_class": ""
+              },
+              "blocks": {
+                "group_4GwwV4": {
+                  "type": "group",
+                  "settings": {
+                    "content_direction": "column",
+                    "vertical_on_mobile": true,
+                    "horizontal_alignment": "flex-start",
+                    "vertical_alignment": "center",
+                    "align_baseline": false,
+                    "horizontal_alignment_flex_direction_column": "center",
+                    "vertical_alignment_flex_direction_column": "center",
+                    "gap": 16,
+                    "width": "fill",
+                    "custom_width": 100,
+                    "width_mobile": "fill",
+                    "custom_width_mobile": 100,
+                    "height": "fit",
+                    "custom_height": 100,
+                    "inherit_color_scheme": false,
+                    "color_scheme": "scheme-d665027f-05ad-4662-8e95-46211fd0e7ce",
+                    "background_media": "none",
+                    "video_position": "cover",
+                    "background_image_position": "cover",
+                    "border": "none",
+                    "border_width": 1,
+                    "border_opacity": 100,
+                    "border_radius": 0,
+                    "toggle_overlay": false,
+                    "overlay_color": "#00000026",
+                    "overlay_custom_class": "",
+                    "overlay_style": "solid",
+                    "gradient_direction": "to top",
+                    "link": "",
+                    "open_in_new_tab": false,
+                    "placeholder": "",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0,
+                    "custom_class": ""
+                  },
+                  "blocks": {
+                    "icon_jt43nf": {
+                      "type": "icon",
+                      "settings": {
+                        "icon": "breathability",
+                        "width": 32,
+                        "add_custom_svg": true,
+                        "custom_svg_code": "<svg xmlns=\"http://www.w3.org/2000/svg\" id=\"Layer_1\" data-name=\"Layer 1\" viewbox=\"0 0 600 600\">\n  <defs>\n    <style>\n      .cls-1 {\n        fill: #000;\n        stroke-width: 0px;\n      }\n    </style>\n  </defs>\n  <path class=\"cls-1\" d=\"M582.11,589.67c-1.62,0-3.24-.39-4.74-1.2-60.66-32.7-127.4-53.17-198.37-60.82-56.94-6.14-116.75-4.11-177.75,6.05-104.21,17.35-176.69,52.88-177.41,53.24-3.88,1.92-8.57,1.13-11.6-1.97-3.03-3.1-3.71-7.8-1.7-11.64,35.39-67.24,57.33-137.71,65.2-209.46,6.3-57.43,3.67-115.84-7.83-173.6C48.27,91.64,9.05,28.25,8.66,27.62c-2.34-3.74-1.96-8.57.95-11.9,2.9-3.32,7.64-4.35,11.66-2.53,71.45,32.43,145.14,52.54,219.01,59.77,59.11,5.79,118.49,3.39,176.49-7.12,79.17-14.35,139.94-41.68,161.01-54.13,3.8-2.24,8.62-1.74,11.87,1.26,3.24,2.99,4.15,7.75,2.22,11.72-33.41,68.77-54.27,140.42-62,212.97-6.19,58.07-4.03,116.87,6.42,174.77,14.26,79.06,41.86,140.65,54.47,162.17,2.27,3.87,1.68,8.78-1.43,12-1.93,2-4.55,3.06-7.2,3.06ZM39.66,42.92c13.82,28.05,34.66,77.58,47.7,142.6,12,59.86,14.81,120.41,8.32,179.98-7.14,65.62-25.62,130.16-55,192.23,30.46-12.32,86-31.82,156.63-43.65,62.88-10.53,124.59-12.67,183.43-6.36,63.26,6.78,123.3,23.39,178.92,49.46-12.74-28.16-31.35-76.69-42.92-140.33-10.88-59.86-13.18-120.67-6.83-180.73,6.96-65.86,24.38-130.96,51.86-193.92-27.64,12.64-76.08,31.4-140.55,43.17-59.91,10.95-121.25,13.49-182.31,7.57-67.09-6.51-134-23.31-199.26-50.02Z\"></path>\n  <g>\n    <path class=\"cls-1\" d=\"M198.79,140.43l-63.94-16.46c-2.97-.77-5.97-.11-8.29,1.54-3.76,2.26-5.72,6.81-4.48,11.24l17.71,63.61c1.48,5.32,7,8.43,12.32,6.95,1.75-.49,3.26-1.41,4.45-2.62,2.42-2.47,3.49-6.12,2.5-9.69l-8.01-28.76,70.82,69.45c3.94,3.87,10.27,3.8,14.14-.14s3.8-10.27-.14-14.14l-70.22-68.85,28.15,7.25c3.59.92,7.22-.22,9.64-2.69,1.19-1.21,2.08-2.74,2.54-4.5,1.38-5.35-1.84-10.8-7.19-12.18Z\"></path>\n    <path class=\"cls-1\" d=\"M401.21,140.43l63.94-16.46c2.97-.77,5.97-.11,8.29,1.54,3.76,2.26,5.72,6.81,4.48,11.24l-17.71,63.61c-1.48,5.32-7,8.43-12.32,6.95-1.75-.49-3.26-1.41-4.45-2.62-2.42-2.47-3.49-6.12-2.5-9.69l8.01-28.76-70.82,69.45c-3.94,3.87-10.27,3.8-14.14-.14s-3.8-10.27.14-14.14l70.22-68.85-28.15,7.25c-3.59.92-7.22-.22-9.64-2.69-1.19-1.21-2.08-2.74-2.54-4.5-1.38-5.35,1.84-10.8,7.19-12.18Z\"></path>\n    <path class=\"cls-1\" d=\"M198.79,459.57l-63.94,16.46c-2.97.77-5.97.11-8.29-1.54-3.76-2.26-5.72-6.81-4.48-11.24l17.71-63.61c1.48-5.32,7-8.43,12.32-6.95,1.75.49,3.26,1.41,4.45,2.62,2.42,2.47,3.49,6.12,2.5,9.69l-8.01,28.76,70.82-69.45c3.94-3.87,10.27-3.8,14.14.14s3.8,10.27-.14,14.14l-70.22,68.85,28.15-7.25c3.59-.92,7.22.22,9.64,2.69,1.19,1.21,2.08,2.74,2.54,4.5,1.38,5.35-1.84,10.8-7.19,12.18Z\"></path>\n    <path class=\"cls-1\" d=\"M401.21,459.57l63.94,16.46c2.97.77,5.97.11,8.29-1.54,3.76-2.26,5.72-6.81,4.48-11.24l-17.71-63.61c-1.48-5.32-7-8.43-12.32-6.95-1.75.49-3.26,1.41-4.45,2.62-2.42,2.47-3.49,6.12-2.5,9.69l8.01,28.76-70.82-69.45c-3.94-3.87-10.27-3.8-14.14.14s-3.8,10.27.14,14.14l70.22,68.85-28.15-7.25c-3.59-.92-7.22.22-9.64,2.69-1.19,1.21-2.08,2.74-2.54,4.5-1.38,5.35,1.84,10.8,7.19,12.18Z\"></path>\n  </g>\n</svg>",
+                        "custom_svg_width": 64,
+                        "custom_svg_width_mobile": 44,
+                        "link": "",
+                        "open_in_new_tab": false
+                      },
+                      "blocks": {}
+                    },
+                    "text_YQeafJ": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p><strong>Stretch Tested:</strong>  Engineered for lasting  cross  functional  flexibility </p>",
+                        "width": "fit-content",
+                        "max_width": "normal",
+                        "alignment": "left",
+                        "type_preset": "custom",
+                        "font": "var(--font-heebo-regular)",
+                        "font_size": "1rem",
+                        "font_size_mobile": "0.75rem",
+                        "line_height": "tight",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "color": "var(--color-foreground)",
+                        "background": false,
+                        "background_color": "#00000026",
+                        "corner_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0,
+                        "custom_font_class": ""
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "icon_jt43nf",
+                    "text_YQeafJ"
+                  ]
+                },
+                "group_LDy6Xq": {
+                  "type": "group",
+                  "settings": {
+                    "content_direction": "column",
+                    "vertical_on_mobile": true,
+                    "horizontal_alignment": "flex-start",
+                    "vertical_alignment": "center",
+                    "align_baseline": false,
+                    "horizontal_alignment_flex_direction_column": "center",
+                    "vertical_alignment_flex_direction_column": "center",
+                    "gap": 16,
+                    "width": "fill",
+                    "custom_width": 100,
+                    "width_mobile": "fill",
+                    "custom_width_mobile": 100,
+                    "height": "fit",
+                    "custom_height": 100,
+                    "inherit_color_scheme": false,
+                    "color_scheme": "scheme-d665027f-05ad-4662-8e95-46211fd0e7ce",
+                    "background_media": "none",
+                    "video_position": "cover",
+                    "background_image_position": "cover",
+                    "border": "none",
+                    "border_width": 1,
+                    "border_opacity": 100,
+                    "border_radius": 0,
+                    "toggle_overlay": false,
+                    "overlay_color": "#00000026",
+                    "overlay_custom_class": "",
+                    "overlay_style": "solid",
+                    "gradient_direction": "to top",
+                    "link": "",
+                    "open_in_new_tab": false,
+                    "placeholder": "",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0,
+                    "custom_class": ""
+                  },
+                  "blocks": {
+                    "icon_rRFcQk": {
+                      "type": "icon",
+                      "settings": {
+                        "icon": "breathability",
+                        "width": 32,
+                        "add_custom_svg": true,
+                        "custom_svg_code": "<svg xmlns=\"http://www.w3.org/2000/svg\" id=\"Layer_1\" data-name=\"Layer 1\" viewbox=\"0 0 600 600\">\n  <defs>\n    <style>\n      .cls-1 {\n        fill: #231f20;\n        stroke-width: 0px;\n      }\n    </style>\n  </defs>\n  <path class=\"cls-1\" d=\"M300.59,423.87c-1.44,0-2.88-.31-4.22-.93L5.66,287.59c-3.6-1.68-5.87-5.33-5.78-9.31.1-3.97,2.54-7.51,6.22-9.02l141.23-57.67c5.11-2.09,10.95.37,13.04,5.48,2.09,5.11-.36,10.95-5.48,13.04l-120.03,49.01,265.92,123.81,265.11-112.08-128.43-62.18c-4.97-2.41-7.05-8.39-4.64-13.36,2.41-4.97,8.39-7.05,13.36-4.64l148.3,71.79c3.53,1.71,5.74,5.33,5.64,9.25-.1,3.92-2.49,7.43-6.1,8.96l-289.53,122.4c-1.25.53-2.57.79-3.89.79Z\"></path>\n  <path class=\"cls-1\" d=\"M300.59,486.25c-1.44,0-2.88-.31-4.22-.93L5.66,349.96c-3.57-1.66-5.83-5.27-5.78-9.21.06-3.94,2.42-7.48,6.04-9.04l68.26-29.42c5.07-2.19,10.96.15,13.14,5.23,2.19,5.07-.15,10.96-5.23,13.14l-47.77,20.59,266.45,124.06,266.39-112.62-44.23-24.2c-4.84-2.65-6.62-8.73-3.97-13.57,2.65-4.85,8.73-6.62,13.57-3.97l62.38,34.13c3.36,1.84,5.38,5.44,5.19,9.28s-2.56,7.21-6.09,8.71l-289.53,122.4c-1.25.53-2.57.79-3.89.79Z\"></path>\n  <path class=\"cls-1\" d=\"M231.44,187.6c-2.52,0-5.05-.95-6.99-2.85l-40.6-39.72c-3.95-3.86-4.02-10.19-.16-14.14,3.86-3.95,10.19-4.02,14.14-.16l33.47,32.74,41.56-42.31c1.92-1.96,4.56-3.06,7.3-2.99,2.74.05,5.34,1.22,7.2,3.23l32.53,35.42,38.52-40.01c1.87-1.95,4.45-3.05,7.16-3.06h.05c2.68,0,5.26,1.08,7.14,3l46.78,47.67c3.87,3.94,3.81,10.27-.13,14.14-3.94,3.87-10.27,3.81-14.14-.13l-39.58-40.33-38.77,40.26c-1.91,1.99-4.57,3.08-7.32,3.06-2.76-.03-5.38-1.2-7.25-3.24l-32.6-35.5-41.17,41.92c-1.96,1.99-4.55,2.99-7.13,2.99Z\"></path>\n  <path class=\"cls-1\" d=\"M231.44,253.36c-2.52,0-5.05-.95-6.99-2.85l-40.6-39.72c-3.95-3.86-4.02-10.19-.16-14.14,3.86-3.95,10.19-4.02,14.14-.16l33.47,32.74,41.56-42.31c1.92-1.96,4.56-3.04,7.3-2.99,2.74.05,5.34,1.22,7.2,3.23l32.53,35.42,38.52-40.01c1.87-1.95,4.45-3.05,7.16-3.06,2.72,0,5.29,1.07,7.18,3l46.78,47.67c3.87,3.94,3.81,10.27-.13,14.14-3.94,3.87-10.27,3.81-14.14-.13l-39.58-40.33-38.77,40.26c-1.91,1.99-4.57,3.07-7.32,3.06-2.76-.03-5.38-1.2-7.25-3.24l-32.6-35.5-41.17,41.92c-1.96,1.99-4.55,2.99-7.13,2.99Z\"></path>\n  <path class=\"cls-1\" d=\"M231.44,319.12c-2.52,0-5.05-.95-6.99-2.85l-40.6-39.72c-3.95-3.86-4.02-10.19-.16-14.14,3.86-3.95,10.19-4.02,14.14-.16l33.47,32.74,41.56-42.31c1.92-1.96,4.56-3.05,7.3-2.99,2.74.05,5.34,1.22,7.2,3.23l32.53,35.42,38.52-40.01c1.87-1.95,4.45-3.05,7.16-3.06,2.72-.03,5.29,1.07,7.18,3l46.78,47.67c3.87,3.94,3.81,10.27-.13,14.14-3.94,3.87-10.27,3.81-14.14-.13l-39.58-40.33-38.77,40.26c-1.91,1.99-4.57,3.13-7.32,3.06-2.76-.03-5.38-1.2-7.25-3.24l-32.6-35.5-41.17,41.92c-1.96,1.99-4.55,2.99-7.13,2.99Z\"></path>\n</svg>",
+                        "custom_svg_width": 64,
+                        "custom_svg_width_mobile": 44,
+                        "link": "",
+                        "open_in_new_tab": false
+                      },
+                      "blocks": {}
+                    },
+                    "text_xrKhWx": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p><strong>Abrasion Resistant: </strong> Resists  pilling, built to last </p>",
+                        "width": "fit-content",
+                        "max_width": "normal",
+                        "alignment": "left",
+                        "type_preset": "custom",
+                        "font": "var(--font-heebo-regular)",
+                        "font_size": "1rem",
+                        "font_size_mobile": "0.75rem",
+                        "line_height": "tight",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "color": "var(--color-foreground)",
+                        "background": false,
+                        "background_color": "#00000026",
+                        "corner_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0,
+                        "custom_font_class": ""
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "icon_rRFcQk",
+                    "text_xrKhWx"
+                  ]
+                }
+              },
+              "block_order": [
+                "group_4GwwV4",
+                "group_LDy6Xq"
+              ]
+            },
+            "group_NJRbPV": {
+              "type": "group",
+              "name": "t:names.group",
+              "settings": {
+                "content_direction": "row",
+                "vertical_on_mobile": false,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "center",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap": 12,
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "custom_height": 100,
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "background_media": "none",
+                "video_position": "cover",
+                "background_image_position": "cover",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_custom_class": "",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "link": "",
+                "open_in_new_tab": false,
+                "placeholder": "",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0,
+                "custom_class": ""
+              },
+              "blocks": {
+                "group_ztEMh4": {
+                  "type": "group",
+                  "settings": {
+                    "content_direction": "column",
+                    "vertical_on_mobile": true,
+                    "horizontal_alignment": "flex-start",
+                    "vertical_alignment": "center",
+                    "align_baseline": false,
+                    "horizontal_alignment_flex_direction_column": "center",
+                    "vertical_alignment_flex_direction_column": "center",
+                    "gap": 16,
+                    "width": "fill",
+                    "custom_width": 100,
+                    "width_mobile": "fill",
+                    "custom_width_mobile": 100,
+                    "height": "fit",
+                    "custom_height": 100,
+                    "inherit_color_scheme": false,
+                    "color_scheme": "scheme-d665027f-05ad-4662-8e95-46211fd0e7ce",
+                    "background_media": "none",
+                    "video_position": "cover",
+                    "background_image_position": "cover",
+                    "border": "none",
+                    "border_width": 1,
+                    "border_opacity": 100,
+                    "border_radius": 0,
+                    "toggle_overlay": false,
+                    "overlay_color": "#00000026",
+                    "overlay_custom_class": "",
+                    "overlay_style": "solid",
+                    "gradient_direction": "to top",
+                    "link": "",
+                    "open_in_new_tab": false,
+                    "placeholder": "",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0,
+                    "custom_class": ""
+                  },
+                  "blocks": {
+                    "icon_HpQF36": {
+                      "type": "icon",
+                      "settings": {
+                        "icon": "breathability",
+                        "width": 32,
+                        "add_custom_svg": true,
+                        "custom_svg_code": "<svg xmlns=\"http://www.w3.org/2000/svg\" id=\"Layer_1\" data-name=\"Layer 1\" viewbox=\"0 0 600 600\">\n  <path class=\"cls-1\" d=\"M386.87,378.86c-54.86,0-84.71-22.18-168.54-84.45C135.31,232.74,8.71,253.56,7.45,253.78c-4.89.84-9.66-2.04-11.2-6.76-1.54-4.72.62-9.85,5.07-12.06l136.12-67.43c4.95-2.45,10.95-.43,13.4,4.52,2.45,4.95.43,10.95-4.52,13.4l-90.27,44.72c8.27-.07,17.26.1,26.77.65,41.24,2.36,100.3,12.52,147.44,47.54,87.49,64.99,111.03,81.05,158.8,80.49l167.43-88.95c-26.1-3.89-62.03-13.23-91.03-35.53-4.38-3.37-5.2-9.65-1.83-14.02,3.37-4.38,9.65-5.2,14.02-1.83,45.4,34.93,112.92,34.15,113.61,34.14,4.58-.07,8.7,3.02,9.86,7.5,1.16,4.48-.91,9.16-4.99,11.33l-199.81,106.15c-1.38.73-2.9,1.13-4.46,1.17-1.69.04-3.35.06-4.99.06Z\"></path>\n  <path class=\"cls-1\" d=\"M383.13,468.41c-36.12,0-96.81-20.97-161.03-81.73-65.04-61.53-205.92-45.27-207.34-45.1-4.76.59-9.26-2.31-10.73-6.87s.52-9.53,4.73-11.83l90.85-49.64c4.85-2.65,10.92-.87,13.57,3.98,2.65,4.85.87,10.92-3.98,13.57l-52.44,28.65c11.69-.03,25.07.36,39.34,1.54,62.29,5.16,109.31,22.38,139.74,51.17,67.07,63.45,125.75,77.67,151.4,76.13l175.73-91.89c-11.57-2.05-23.84-4.48-31.48-6.71-5.3-1.55-8.34-7.11-6.79-12.41,1.55-5.3,7.1-8.34,12.41-6.79,16.21,4.74,58.15,10.88,58.57,10.94,4.29.62,7.69,3.94,8.42,8.22.73,4.27-1.38,8.53-5.22,10.54l-204.18,106.77c-1.14.6-2.39.97-3.67,1.09-2.48.24-5.12.37-7.9.37Z\"></path>\n  <path class=\"cls-1\" d=\"M214.98,239.13c-1.52,0-3.07-.35-4.52-1.08-4.93-2.5-6.89-8.52-4.39-13.44,23.34-46.01,28.57-95.2,15.54-146.2-4.42-17.29-10.3-31.88-15.46-42.73l-4.33,16.73c-1.38,5.35-6.84,8.56-12.19,7.17-5.35-1.38-8.56-6.84-7.17-12.19l10.61-41c.98-3.79,4.08-6.65,7.93-7.34,3.85-.69,7.75.94,9.97,4.15.77,1.11,19.02,27.77,29.81,69.46,9.99,38.57,15.16,97.81-16.88,160.98-1.76,3.48-5.28,5.48-8.93,5.48Z\"></path>\n  <path class=\"cls-1\" d=\"M288.4,278.37c-1.24,0-2.49-.23-3.71-.72-5.13-2.05-7.62-7.87-5.57-13,29.58-73.96,27.08-137.61,19.77-177.98-3.21-17.71-7.59-32.62-11.7-44.14l-2.88,12.51c-1.24,5.38-6.6,8.74-11.99,7.5-5.38-1.24-8.74-6.61-7.5-11.99l9.68-42.04c.92-4,4.19-7.03,8.25-7.65,4.06-.61,8.08,1.32,10.14,4.87.68,1.18,16.83,29.38,25.5,76.42,7.95,43.15,10.81,111.12-20.7,189.91-1.56,3.91-5.32,6.29-9.29,6.29Z\"></path>\n  <path class=\"cls-1\" d=\"M361.24,324.12c-1.38,0-2.78-.29-4.12-.9-5.03-2.28-7.26-8.21-4.98-13.24,19.52-43.03,31.74-85.34,36.35-125.73,3.67-32.18,2.53-63.25-3.38-92.34-4.95-24.36-12.48-43.28-18.88-56.26l-4.9,21.85c-1.21,5.39-6.56,8.78-11.95,7.57-5.39-1.21-8.78-6.56-7.57-11.95l10.41-46.41c.84-3.77,3.78-6.71,7.54-7.56,3.77-.85,7.68.53,10.07,3.57.95,1.21,23.43,30.2,34.61,83.91,6.5,31.24,7.86,64.53,4.03,98.96-4.76,42.76-17.58,87.4-38.11,132.67-1.67,3.69-5.31,5.87-9.11,5.87Z\"></path>\n  <path class=\"cls-1\" d=\"M337.25,599.97c-3.55,0-6.99-1.89-8.8-5.23-28.65-52.83-16.66-100.97-16.14-103,1.39-5.35,6.84-8.56,12.19-7.17,5.34,1.38,8.55,6.83,7.18,12.17-.18.73-10.31,42.99,14.35,88.46,2.63,4.85.83,10.92-4.02,13.56-1.51.82-3.15,1.21-4.76,1.21Z\"></path>\n  <path class=\"cls-1\" d=\"M257.42,601.1c-3.47,0-6.83-1.8-8.68-5.02-37.19-64.8-20.52-138.3-19.79-141.4,1.26-5.38,6.65-8.71,12.02-7.45,5.37,1.26,8.71,6.64,7.45,12.01h0c-.16.68-15.51,69.08,17.67,126.88,2.75,4.79,1.09,10.9-3.7,13.65-1.57.9-3.28,1.33-4.97,1.33Z\"></path>\n  <path class=\"cls-1\" d=\"M178.74,599.71c-4.05,0-7.86-2.48-9.36-6.49-51.35-136.75-10.14-201.92-8.36-204.62,3.03-4.62,9.23-5.9,13.85-2.86,4.6,3.02,5.89,9.19,2.9,13.8-.23.36-9.41,15.23-12.78,45.14-5.73,50.82,9.41,105.01,23.12,141.52,1.94,5.17-.68,10.94-5.85,12.88-1.16.44-2.35.64-3.51.64Z\"></path>\n  <path class=\"cls-1\" d=\"M242.08,39.51c-1.56,0-3.15-.37-4.63-1.14l-39.34-20.6c-4.89-2.56-6.78-8.61-4.22-13.5,2.56-4.89,8.61-6.78,13.5-4.22l39.34,20.6c4.89,2.56,6.78,8.61,4.22,13.5-1.79,3.41-5.27,5.36-8.87,5.36Z\"></path>\n  <path class=\"cls-1\" d=\"M325.33,42.42c-1.57,0-3.16-.37-4.65-1.15l-41.11-21.65c-4.89-2.57-6.76-8.62-4.19-13.51,2.57-4.89,8.62-6.76,13.51-4.19l41.11,21.65c4.89,2.57,6.76,8.62,4.19,13.51-1.79,3.4-5.26,5.34-8.86,5.34Z\"></path>\n  <path class=\"cls-1\" d=\"M407.34,41.17c-1.48,0-2.98-.33-4.4-1.03l-45.37-22.27c-4.96-2.43-7-8.43-4.57-13.38,2.43-4.96,8.43-7,13.38-4.57l45.37,22.27c4.96,2.43,7,8.43,4.57,13.38-1.74,3.54-5.29,5.6-8.98,5.6Z\"></path>\n</svg>",
+                        "custom_svg_width": 64,
+                        "custom_svg_width_mobile": 44,
+                        "link": "",
+                        "open_in_new_tab": false
+                      },
+                      "blocks": {}
+                    },
+                    "text_kHKien": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p><strong>Breathability Tested:</strong>  Enhanced airflow for comfort </p>",
+                        "width": "fit-content",
+                        "max_width": "normal",
+                        "alignment": "left",
+                        "type_preset": "custom",
+                        "font": "var(--font-heebo-regular)",
+                        "font_size": "1rem",
+                        "font_size_mobile": "0.75rem",
+                        "line_height": "tight",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "color": "var(--color-foreground)",
+                        "background": false,
+                        "background_color": "#00000026",
+                        "corner_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0,
+                        "custom_font_class": ""
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "icon_HpQF36",
+                    "text_kHKien"
+                  ]
+                },
+                "group_XfJzJR": {
+                  "type": "group",
+                  "settings": {
+                    "content_direction": "column",
+                    "vertical_on_mobile": true,
+                    "horizontal_alignment": "flex-start",
+                    "vertical_alignment": "center",
+                    "align_baseline": false,
+                    "horizontal_alignment_flex_direction_column": "center",
+                    "vertical_alignment_flex_direction_column": "center",
+                    "gap": 16,
+                    "width": "fill",
+                    "custom_width": 100,
+                    "width_mobile": "fill",
+                    "custom_width_mobile": 100,
+                    "height": "fit",
+                    "custom_height": 100,
+                    "inherit_color_scheme": false,
+                    "color_scheme": "scheme-d665027f-05ad-4662-8e95-46211fd0e7ce",
+                    "background_media": "none",
+                    "video_position": "cover",
+                    "background_image_position": "cover",
+                    "border": "none",
+                    "border_width": 1,
+                    "border_opacity": 100,
+                    "border_radius": 0,
+                    "toggle_overlay": false,
+                    "overlay_color": "#00000026",
+                    "overlay_custom_class": "",
+                    "overlay_style": "solid",
+                    "gradient_direction": "to top",
+                    "link": "",
+                    "open_in_new_tab": false,
+                    "placeholder": "",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0,
+                    "custom_class": ""
+                  },
+                  "blocks": {
+                    "icon_gWTiDA": {
+                      "type": "icon",
+                      "settings": {
+                        "icon": "breathability",
+                        "width": 32,
+                        "add_custom_svg": true,
+                        "custom_svg_code": "<svg xmlns=\"http://www.w3.org/2000/svg\" id=\"Layer_1\" data-name=\"Layer 1\" viewbox=\"0 0 600 600\">\n  <defs>\n    <style>\n      .cls-1 {\n        fill: #000;\n        stroke-width: 0px;\n      }\n    </style>\n  </defs>\n  <g>\n    <path class=\"cls-1\" d=\"M302.44,270.42c-48.51,0-87.97-39.46-87.97-87.97s39.46-87.97,87.97-87.97,87.97,39.46,87.97,87.97-39.46,87.97-87.97,87.97ZM302.44,114.48c-37.48,0-67.97,30.49-67.97,67.97s30.49,67.97,67.97,67.97,67.97-30.49,67.97-67.97-30.49-67.97-67.97-67.97Z\"></path>\n    <path class=\"cls-1\" d=\"M299.86,78.2c-5.52,0-10-4.48-10-10V13.13c0-5.52,4.48-10,10-10s10,4.48,10,10v55.07c0,5.52-4.48,10-10,10Z\"></path>\n    <path class=\"cls-1\" d=\"M299.86,358.73c-5.52,0-10-4.48-10-10v-55.07c0-5.52,4.48-10,10-10s10,4.48,10,10v55.07c0,5.52-4.48,10-10,10Z\"></path>\n    <path class=\"cls-1\" d=\"M187.13,190.93h-55.07c-5.52,0-10-4.48-10-10s4.48-10,10-10h55.07c5.52,0,10,4.48,10,10s-4.48,10-10,10Z\"></path>\n    <path class=\"cls-1\" d=\"M467.66,190.93h-55.07c-5.52,0-10-4.48-10-10s4.48-10,10-10h55.07c5.52,0,10,4.48,10,10s-4.48,10-10,10Z\"></path>\n    <path class=\"cls-1\" d=\"M181.01,309.39c-2.56,0-5.13-.98-7.08-2.94-3.9-3.91-3.89-10.24.02-14.14l39-38.88c3.91-3.9,10.24-3.89,14.14.02,3.9,3.91,3.89,10.24-.02,14.14l-39,38.88c-1.95,1.95-4.51,2.92-7.06,2.92Z\"></path>\n    <path class=\"cls-1\" d=\"M379.7,111.35c-2.56,0-5.13-.98-7.08-2.94-3.9-3.91-3.89-10.24.02-14.14l39-38.88c3.91-3.9,10.24-3.89,14.14.02,3.9,3.91,3.89,10.24-.02,14.14l-39,38.88c-1.95,1.95-4.51,2.92-7.06,2.92Z\"></path>\n    <path class=\"cls-1\" d=\"M220.02,111.35c-2.55,0-5.11-.97-7.06-2.92l-39-38.88c-3.91-3.9-3.92-10.23-.02-14.14,3.9-3.91,10.23-3.92,14.14-.02l39,38.88c3.91,3.9,3.92,10.23.02,14.14-1.95,1.96-4.52,2.94-7.08,2.94Z\"></path>\n    <path class=\"cls-1\" d=\"M418.7,309.39c-2.55,0-5.11-.97-7.06-2.92l-39-38.88c-3.91-3.9-3.92-10.23-.02-14.14,3.9-3.91,10.23-3.92,14.14-.02l39,38.88c3.91,3.9,3.92,10.23.02,14.14-1.95,1.96-4.52,2.94-7.08,2.94Z\"></path>\n  </g>\n  <g>\n    <path class=\"cls-1\" d=\"M301.55,447.23c-1.44,0-2.88-.31-4.21-.93l-221.36-102.78c-5.01-2.33-7.18-8.27-4.86-13.28s8.27-7.19,13.28-4.86l217.21,100.85,191.28-86.23-36.33-13.09c-5.2-1.87-7.89-7.6-6.02-12.8,1.87-5.2,7.6-7.89,12.8-6.02l59.58,21.46c3.83,1.38,6.45,4.95,6.6,9.02s-2.17,7.83-5.88,9.5l-217.98,98.26c-1.31.59-2.71.88-4.11.88Z\"></path>\n    <path class=\"cls-1\" d=\"M500.61,405.45c-1.05,0-2.12-.17-3.18-.52-5.24-1.75-8.06-7.42-6.31-12.66l18.92-56.47c1.75-5.24,7.42-8.06,12.66-6.31,5.24,1.75,8.06,7.42,6.31,12.66l-18.92,56.47c-1.4,4.18-5.3,6.83-9.48,6.83Z\"></path>\n  </g>\n  <path class=\"cls-1\" d=\"M590.66,520.64c-1.34,0-2.71-.27-4.02-.85-68.22-30-140.75-49.54-215.58-58.08-59.94-6.84-121.5-6.67-182.96.49-83.89,9.78-150.91,31.27-174.63,41.27-5.09,2.15-10.95-.24-13.1-5.33-2.15-5.09.23-10.95,5.32-13.1,2.88-1.22,71.89-30,179.37-42.62,63.06-7.41,126.25-7.62,187.8-.64,76.99,8.74,151.62,28.82,221.82,59.69,5.06,2.22,7.35,8.12,5.13,13.18-1.65,3.75-5.31,5.98-9.16,5.98Z\"></path>\n  <path class=\"cls-1\" d=\"M590.41,596.87c-1.26,0-2.54-.24-3.77-.74-107.03-43.65-214.02-63.58-309.41-57.62-1.45.09-2.61.53-3.12,1.17l-6.35,8.04c-7.58,9.6-21.36,11.59-31.35,4.54l-12.65-8.92c-1.22-.86-2.86-.71-3.91.35l-15.56,15.75c-8.17,8.27-21.27,9.15-30.48,2.04l-7.83-6.05c-1.21-.94-2.94-.82-4.02.27l-13.06,13.22c-7.17,7.26-18.43,8.92-27.39,4.05l-15.32-8.34c-1.22-.67-2.74-.42-3.68.61l-17.25,18.71c-7.46,8.08-19.66,9.76-29.03,3.99l-21.91-13.51c-.73-.45-1.61-.57-2.43-.33l-18.91,7.42c-5.14,2.02-10.94-.51-12.96-5.66-2.02-5.14.51-10.94,5.66-12.96l19.2-7.54c.14-.06.29-.11.43-.16,6.53-2.22,13.64-1.42,19.51,2.2l21.91,13.51c1.23.76,2.84.54,3.83-.53l17.25-18.71c7.16-7.77,18.66-9.67,27.94-4.62l15.32,8.33c1.18.64,2.67.42,3.61-.53l13.06-13.22c8.17-8.27,21.27-9.15,30.48-2.04l7.83,6.05c1.21.94,2.94.82,4.02-.27l15.56-15.75c7.95-8.04,20.42-9.15,29.66-2.63l12.65,8.92c1.32.93,3.13.67,4.13-.6l6.35-8.03c4.09-5.18,10.33-8.28,17.57-8.73,98.38-6.14,208.4,14.28,318.21,59.06,5.11,2.09,7.57,7.92,5.48,13.04-1.58,3.88-5.32,6.23-9.26,6.23Z\"></path>\n</svg>",
+                        "custom_svg_width": 64,
+                        "custom_svg_width_mobile": 44,
+                        "link": "",
+                        "open_in_new_tab": false
+                      },
+                      "blocks": {}
+                    },
+                    "text_B7gzc6": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p><strong>Fade & Shrink Resistant:</strong> Vibrant color, perfect fit always </p>",
+                        "width": "fit-content",
+                        "max_width": "normal",
+                        "alignment": "left",
+                        "type_preset": "custom",
+                        "font": "var(--font-heebo-regular)",
+                        "font_size": "1rem",
+                        "font_size_mobile": "0.75rem",
+                        "line_height": "tight",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "color": "var(--color-foreground)",
+                        "background": false,
+                        "background_color": "#00000026",
+                        "corner_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0,
+                        "custom_font_class": "heebo-regular"
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "icon_gWTiDA",
+                    "text_B7gzc6"
+                  ]
+                }
+              },
+              "block_order": [
+                "group_ztEMh4",
+                "group_XfJzJR"
+              ]
+            }
+          },
+          "block_order": [
+            "group_DednCe",
+            "group_NJRbPV"
+          ]
+        }
+      },
+      "block_order": [
+        "text_dtQHkC",
+        "text_yXeyLU",
+        "group_93Nhp7"
+      ],
+      "name": "t:names.icons_with_text",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 8,
+        "section_width": "full-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "scheme-d665027f-05ad-4662-8e95-46211fd0e7ce",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 48,
+        "padding-block-end": 48,
+        "custom_section_class": "page-width-updated"
+      }
+    },
+    "our_fabric_dWbrJ3": {
+      "type": "our_fabric",
+      "blocks": {
+        "image_pFcqhQ": {
+          "type": "image",
+          "name": "t:names.image",
+          "settings": {
+            "image": "shopify://shop_images/Moisture_Control_06d82296-42a0-4af2-8119-146f36241c86.png",
+            "link": "",
+            "image_ratio": "adapt",
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "custom",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "image_7Xbitb": {
+          "type": "image",
+          "name": "t:names.image",
+          "settings": {
+            "image": "shopify://shop_images/Anti-Wrinkle.png",
+            "link": "",
+            "image_ratio": "adapt",
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "image_GwBmBk": {
+          "type": "image",
+          "name": "t:names.image",
+          "settings": {
+            "image": "shopify://shop_images/4-Way_Stretch.png",
+            "link": "",
+            "image_ratio": "adapt",
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "image_fGrpcJ": {
+          "type": "image",
+          "name": "t:names.image",
+          "settings": {
+            "image": "shopify://shop_images/5_Stylish_Colors.png",
+            "link": "",
+            "image_ratio": "adapt",
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "image_pFcqhQ",
+        "image_7Xbitb",
+        "image_GwBmBk",
+        "image_fGrpcJ"
+      ],
+      "name": "Our fabric Section",
+      "settings": {
+        "fabricheading_text": "Our Fabric",
+        "fabricsubheading_text": "Backed by science, our fabric technology has undergone rigorous testing to ensure durability, comfort, and performance you can trust.",
+        "margin_top_desktop": 24,
+        "margin_bottom_desktop": 24,
+        "margin_top_mobile": 12,
+        "margin_bottom_mobile": 12,
+        "custom_text_class": "page-width-updated"
+      }
+    },
+    "product_list_Kh4cYm": {
+      "type": "product-list",
+      "blocks": {
+        "group_7MjR83": {
+          "type": "group",
+          "name": "t:names.group",
+          "settings": {
+            "content_direction": "row",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "center",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 0,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_custom_class": "",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0,
+            "custom_class": ""
+          },
+          "blocks": {
+            "ai_gen_block_3029881_q7hdja": {
+              "type": "custom_button",
+              "settings": {
+                "button_text": "SHOP COLLECTION",
+                "button_link": "https://knyamed.com/collections/ecoflex",
+                "background_color": "#462d8c",
+                "text_color": "#ffffff",
+                "hover_background_color": "#462d8c",
+                "hover_text_color": "#ffffff",
+                "border_radius": 0,
+                "font_size_desktop": 14,
+                "padding_horizontal_desktop": 78,
+                "padding_vertical_desktop": 14,
+                "font_size_mobile": 14,
+                "padding_horizontal_mobile": 24,
+                "padding_vertical_mobile": 10
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "ai_gen_block_3029881_q7hdja"
+          ]
+        },
+        "static-header": {
+          "type": "_product-list-content",
+          "name": "t:names.header",
+          "static": true,
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": false,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": true,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 8,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "inherit_color_scheme": false,
+            "color_scheme": "scheme-4a76643a-9223-4c3b-a8eb-634a27a0a48a",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "product_list_text_t8VrLq": {
+              "type": "_product-list-text",
+              "name": "t:names.collection_title",
+              "settings": {
+                "text": "<p>In the spotlight</p>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h3",
+                "font": "var(--font-heading--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground-heading)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_W9YrUh": {
+              "type": "text",
+              "name": "t:names.text",
+              "settings": {
+                "text": "<p>Shop the Ecoflex range</p>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "custom",
+                "font": "var(--font-heebo-regular)",
+                "font_size": "0.875rem",
+                "font_size_mobile": "0.75rem",
+                "line_height": "tight",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0,
+                "custom_font_class": "heebo-regular"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "product_list_text_t8VrLq",
+            "text_W9YrUh"
+          ]
+        },
+        "static-product-card": {
+          "type": "_product-card",
+          "name": "t:names.product_card",
+          "static": true,
+          "settings": {
+            "product_card_gap": 4,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "product_card_gallery_3aGWxr": {
+              "type": "_product-card-gallery",
+              "name": "t:names.product_card_media",
+              "settings": {
+                "image_ratio": "adapt",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "product_title_EYFJhg": {
+              "type": "product-title",
+              "name": "t:names.product_title",
+              "settings": {
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 4,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "price_K7KjMa": {
+              "type": "price",
+              "name": "t:names.product_price",
+              "settings": {
+                "show_sale_price_first": true,
+                "show_installments": false,
+                "show_tax_info": true,
+                "show_tax_info_product_card": false,
+                "tax_info_product_card_text": "*Incl of taxes",
+                "type_preset": "h6",
+                "width": "100%",
+                "alignment": "left",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "color": "var(--color-foreground)",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "product_card_gallery_3aGWxr",
+            "product_title_EYFJhg",
+            "price_K7KjMa"
+          ]
+        }
+      },
+      "block_order": [
+        "group_7MjR83"
+      ],
+      "name": "t:names.products_carousel",
+      "settings": {
+        "collection": "all-ecoflex",
+        "layout_type": "carousel",
+        "carousel_on_mobile": false,
+        "max_products": 16,
+        "columns": 4,
+        "mobile_columns": "2",
+        "tablet_columns": 3,
+        "mobile_card_size": "60cqw",
+        "columns_gap": 24,
+        "rows_gap": 24,
+        "icons_style": "none",
+        "icons_shape": "circle",
+        "show_custom_navigation": false,
+        "show_infinite_carousel": true,
+        "section_width": "full-width",
+        "horizontal_alignment": "flex-start",
+        "gap": 28,
+        "color_scheme": "scheme-1",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
+    "our_vs_theirs_Aj6GFr": {
+      "type": "our_vs_theirs",
+      "blocks": {
+        "block_L7w87P": {
+          "type": "block",
+          "settings": {
+            "feature_text": "Mix of Sizes in a pair ",
+            "ecoflex_text": "Option of selecting different sizes amongst a pair  ",
+            "theirs_text": "Standard Size options for both Top & Bottom "
+          }
+        },
+        "block_6x9CAA": {
+          "type": "block",
+          "settings": {
+            "feature_text": "Stretch 4-way stretch",
+            "ecoflex_text": " 4-way stretch, absolute flexibility ",
+            "theirs_text": "Basic stretch, restricted movement. "
+          }
+        },
+        "block_RKQfRf": {
+          "type": "block",
+          "settings": {
+            "feature_text": "Durability    ",
+            "ecoflex_text": "Built to last, withstands daily wear & tear",
+            "theirs_text": "Prone to wear, loses integrity fast "
+          }
+        },
+        "block_w7WQ4G": {
+          "type": "block",
+          "settings": {
+            "feature_text": "Lab tested ",
+            "ecoflex_text": "Fade & Shrink resistance test, Breathability test, Abrasion test  ",
+            "theirs_text": "Limited or no testing "
+          }
+        },
+        "block_NmmDbJ": {
+          "type": "block",
+          "settings": {
+            "feature_text": "Sustainability ",
+            "ecoflex_text": "100% recycled bottles, GRS-certified ",
+            "theirs_text": "High carbon footprint, chemicals "
+          }
+        }
+      },
+      "block_order": [
+        "block_L7w87P",
+        "block_6x9CAA",
+        "block_RKQfRf",
+        "block_w7WQ4G",
+        "block_NmmDbJ"
+      ],
+      "name": "Our vs Theirs Section",
+      "settings": {
+        "ourvstheirs_heading_text": "Ours vs. Theirs",
+        "feature_Heading": "Feature",
+        "ecoflex_heading": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"56\" height=\"15\" viewbox=\"0 0 56 15\" fill=\"none\">\n<g clip-path=\"url(#clip0_4409_4134)\">\n<path d=\"M2.36988 9.96126C2.43936 11.7928 3.77307 12.8874 5.39823 12.5616C5.92105 12.4566 6.30866 12.177 6.62903 11.7447C6.74171 11.5928 6.9742 11.4613 7.15936 11.4501C7.77194 11.4139 8.38828 11.4366 9.06659 11.4366C8.90997 12.2305 8.54415 12.8389 7.98941 13.3074C6.47955 14.5851 4.75598 14.6982 2.99185 14.0651C1.31448 13.4636 0.417202 12.1359 0.129502 10.3586C-0.0958499 8.96626 0.0780468 7.64049 0.807436 6.43087C1.81701 4.75626 3.58678 3.98895 5.65251 4.38395C7.59354 4.75433 8.5926 6.12587 9.04556 7.9901C9.14496 8.42613 9.21238 8.86916 9.24725 9.31549C9.30509 9.95356 9.28856 9.9601 8.66809 9.96049C6.7849 9.96254 4.90183 9.96254 3.01889 9.96049L2.36988 9.96126ZM2.4341 8.32895H6.76762C6.80518 7.05972 5.92856 6.11626 4.71391 6.0851C3.42603 6.05241 2.45701 6.99741 2.4341 8.32895Z\" fill=\"#443088\"></path>\n<path d=\"M20.0244 9.33826C20.0244 6.39249 22.0627 4.2748 24.8984 4.27441C27.7529 4.27441 29.7833 6.39826 29.778 9.38172C29.7728 12.3363 27.7574 14.4013 24.88 14.4002C22.0267 14.399 20.024 12.3113 20.0244 9.33826ZM27.5038 9.46364C27.5202 8.83929 27.3495 8.36288 27.2165 7.8898C26.9082 6.79249 26.0931 6.11672 25.0543 6.03788C24.5731 5.99774 24.0919 6.1141 23.6791 6.37037C23.2663 6.62665 22.9431 7.00978 22.7553 7.46518C22.2336 8.69288 22.2321 9.9548 22.7392 11.1833C23.1268 12.1225 23.8753 12.6279 24.874 12.6367C25.8911 12.6456 26.6648 12.1563 27.0524 11.186C27.2789 10.6144 27.4857 10.1583 27.5038 9.46364Z\" fill=\"#443088\"></path>\n<path d=\"M19.0354 7.65996C18.3071 7.65996 17.6608 7.67458 17.0166 7.64612C16.9039 7.64112 16.747 7.47843 16.6944 7.35227C16.007 5.69843 13.8775 5.9115 13.1026 7.10496C12.3823 8.21458 12.3515 10.4757 13.0884 11.5784C13.5838 12.3196 14.3011 12.6169 15.1541 12.5315C16.007 12.4461 16.5986 11.9884 16.8619 11.1307C16.8859 11.0538 16.9171 10.9769 16.9588 10.8615H19.1255C19.0696 12.0634 18.5396 12.9384 17.6649 13.5896C15.5038 15.2 11.0715 14.6538 10.291 10.5338C9.99052 8.96073 10.1986 7.45689 11.1349 6.11958C12.5708 4.07266 15.8414 3.6365 17.7411 5.23996C18.4514 5.84073 18.8777 6.61881 19.0354 7.65996Z\" fill=\"#443088\"></path>\n<path d=\"M47.3074 9.50821H39.9531C39.9993 10.8613 40.2825 12.0674 41.3627 12.8817C42.3861 13.6528 43.5557 13.7347 44.6731 13.1544C45.1429 12.9101 45.5399 12.4132 45.8318 11.9417C46.2633 11.2455 46.222 11.2059 47.1242 11.3678C46.8808 12.5582 46.2821 13.4682 45.2147 14.0117C42.5585 15.364 39.4975 13.7747 38.9458 10.7532C38.6941 9.37321 38.7471 8.00628 39.3315 6.70744C40.6701 3.73129 43.9452 3.7109 45.4911 4.85436C46.536 5.62782 46.9747 6.75052 47.1707 7.99744C47.2428 8.46821 47.2579 8.94898 47.3074 9.50821ZM40.0143 8.61475C40.2021 8.62475 40.3899 8.64282 40.5777 8.64321C42.1509 8.64552 43.7243 8.64552 45.2981 8.64321C46.1792 8.64321 46.1995 8.63898 46.041 7.74205C45.8314 6.56552 45.318 5.57205 44.1071 5.23475C41.5828 4.53128 40.0864 6.47936 40.0143 8.61475Z\" fill=\"#443088\"></path>\n<path d=\"M47.4949 14.1478C47.5873 14.0032 47.668 13.8662 47.7578 13.7362C48.7629 12.2862 49.7612 10.8308 50.7828 9.39277C50.9818 9.11238 50.9736 8.92892 50.7794 8.65546C49.9103 7.43238 49.0637 6.19392 48.21 4.95892C48.1176 4.82508 48.032 4.68585 47.9411 4.54585C48.6066 4.24238 49.0964 4.37546 49.4746 4.94661C50.1837 6.017 50.8921 7.08738 51.6462 8.22623C52.0218 7.66546 52.3617 7.16469 52.6979 6.66123C53.0637 6.112 53.4276 5.56161 53.7897 5.01008C54.2179 4.35623 54.4699 4.27046 55.3334 4.51008C55.2357 4.67085 55.1512 4.82546 55.0524 4.97161C54.2412 6.15508 53.4374 7.34431 52.6074 8.51354C52.3922 8.817 52.3786 9.022 52.6025 9.33431C53.6376 10.7828 54.6453 12.252 55.6613 13.7143C55.7525 13.8458 55.8352 13.9835 55.9741 14.2001C55.5632 14.2001 55.2252 14.2362 54.8999 14.1847C54.7414 14.1597 54.5687 13.9997 54.468 13.8535C53.6338 12.6439 52.8188 11.4228 51.9963 10.2078C51.9061 10.0747 51.8085 9.947 51.6695 9.75508C51.5343 9.94315 51.4295 10.0801 51.3341 10.2232C50.6205 11.2932 49.8539 12.3324 49.2124 13.4466C48.7888 14.1808 48.2566 14.3247 47.4949 14.1478Z\" fill=\"#443088\"></path>\n<path d=\"M30.5814 5.32307V4.41537C30.9367 4.41537 31.2713 4.4073 31.6052 4.41807C31.8944 4.4273 32.0135 4.30576 32.0018 4.0046C31.9861 3.58999 32.0187 3.17268 31.9954 2.75883C31.9004 1.09768 32.8037 0.528834 34.2366 0.53845C34.3973 0.53845 34.5581 0.570757 34.7646 0.593065V1.5273C34.5299 1.5273 34.2922 1.51691 34.0555 1.52922C33.4369 1.56076 33.0861 1.88768 33.0542 2.5196C33.0246 3.11422 33.0478 3.71191 33.0478 4.41883C33.5072 4.41883 33.9357 4.43345 34.3624 4.4146C34.7128 4.39883 34.8529 4.52691 34.8537 4.90037C34.8544 5.27383 34.6873 5.33537 34.3752 5.3296C33.9579 5.32191 33.3611 5.1996 33.1688 5.42268C32.9434 5.68307 33.0482 6.26268 33.0467 6.70345C33.0388 8.99614 33.043 11.2885 33.043 13.5808V14.1619H32V13.5746C32 11.0161 31.9898 8.45922 32.009 5.89999C32.0123 5.44153 31.8813 5.26422 31.4313 5.3173C31.1616 5.34883 30.8863 5.32307 30.5814 5.32307Z\" fill=\"#443088\"></path>\n<path d=\"M37.2485 14.1764H36.2205C36.21 13.9906 36.1916 13.8149 36.1912 13.6379C36.1897 9.50127 36.1897 5.36486 36.1912 1.2287C36.1912 0.675625 36.5608 0.431394 37.0738 0.654086C37.1459 0.68524 37.2132 0.784855 37.2349 0.866009C37.2639 0.974471 37.2488 1.09678 37.2488 1.21216C37.2488 5.36601 37.2488 9.51909 37.2488 13.6714L37.2485 14.1764Z\" fill=\"#443088\"></path>\n</g>\n<defs>\n<clippath id=\"clip0_4409_4134\">\n<rect width=\"56\" height=\"14\" fill=\"white\" transform=\"translate(0 0.5)\"></rect>\n</clippath>\n</defs>\n</svg>",
+        "theirs_heading": "Theirs",
+        "margin_top_desktop": 24,
+        "margin_bottom_desktop": 24,
+        "margin_top_mobile": 12,
+        "margin_bottom_mobile": 12
+      }
+    },
+    "home_page_banner_with_text_4UcQXb": {
+      "type": "Home-page-banner-with-text",
+      "blocks": {
+        "text_WPzMNd": {
+          "type": "text",
+          "settings": {
+            "image": "shopify://shop_images/Sustainable_Banner_32BIT.png",
+            "image_2": "shopify://shop_images/Mobie_sustainable_banner_32BIT.png",
+            "button_link_banner": "https://knyamed.com/collections/ecoflex",
+            "show_custom_text": false,
+            "subheading": "",
+            "subheading_color": "#ffffff",
+            "heading": "",
+            "heading_color": "#ffffff",
+            "heading_size": "h1",
+            "text": "",
+            "text_color": "#ffffff",
+            "text_style": "body",
+            "button_label_1": "Button label",
+            "button_link_1": "",
+            "button_label_2": "Button label",
+            "button_link_2": "",
+            "button_style_secondary_1": false,
+            "button-backgroundcolor": "",
+            "button-color": "",
+            "hpbox1": "HpBANNER-1"
+          }
+        }
+      },
+      "block_order": [
+        "text_WPzMNd"
+      ],
+      "name": "Banner with text",
+      "settings": {
+        "enable_autoplay": false,
+        "margin-top-desktop": 0,
+        "margin-bottom-desktop": 0,
+        "margin-top-mobile": 0,
+        "margin-bottom-mobile": 0,
+        "desktop_content_position": "middle-center",
+        "show_text_box": true,
+        "desktop_content_alignment": "center",
+        "text-backgroundcolor": "",
+        "text-color": "",
+        "box-padding": 0,
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": true,
+        "show_text_below": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "home_page_banner_with_text_qkhD3p",
+    "section_N8gWdr",
+    "our_fabric_dWbrJ3",
+    "product_list_Kh4cYm",
+    "our_vs_theirs_Aj6GFr",
+    "home_page_banner_with_text_4UcQXb"
+  ]
+}

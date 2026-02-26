@@ -1,0 +1,134 @@
+.support-channels {
+  width: 100%;
+  padding: 56px 120px 126px 120px;
+}
+
+.support-channels-header {
+  text-align: left;
+  margin-bottom: 32px;
+}
+
+.support-channels-main-heading {
+  font-family: Heebo-Medium;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 40px;
+  letter-spacing: 0.6px;
+  margin-bottom: 4px;
+  color: #202020;
+}
+
+.support-channels-sub-heading {
+  font-family: Heebo-Regular;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.6px;
+  margin: 0px;
+  color: rgba(18, 18, 18, 0.75);
+}
+
+/* Cards Grid */
+.support-channels-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.support-channel-card {
+  text-decoration: none;
+  height: 100%;
+  background-color: #f8f7fa;
+  border-radius: 12px;
+  padding: 24px 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.support-channel-icon svg {
+  width: 32px;
+  height: 32px;
+  display: block;
+}
+
+.support-channel-description {
+  font-family: Heebo-Regular;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0;
+  margin: 0px;
+  color: #616161;
+}
+
+.support-channel-link {
+  font-family: Heebo-Medium;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 28px;
+  letter-spacing: 0;
+  color: #462d8c;
+}
+
+@media (max-width: 768px) {
+  .support-channels {
+    padding: 16px 18px;
+  }
+
+  .support-channels-header {
+    margin-bottom: 22px;
+  }
+
+  .support-channels-main-heading {
+    font-size: 22px;
+    line-height: 30px;
+    letter-spacing: 0px;
+    margin-bottom: 2.7px;
+  }
+
+  .support-channels-sub-heading {
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0px;
+  }
+
+  /* Cards Grid */
+  .support-channels-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 22px;
+  }
+
+  .support-channel-card {
+    height: 156px;
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .support-channel-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .support-channel-description {
+    font-family: Heebo-Regular;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0;
+    margin: 0px;
+  }
+
+  .support-channel-link {
+    font-size: 16px;
+    line-height: 28px;
+  }
+}
+
+@media only screen and (min-width: 1780px){
+    .support-channels{
+        padding-inline: 80px;
+    }
+}

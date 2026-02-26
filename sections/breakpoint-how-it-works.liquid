@@ -1,0 +1,180 @@
+{{ 'section-breakpoint-how-it-works.css' | asset_url | stylesheet_tag }}
+
+<section class="breakpoint-how-it-works-section">
+  {%- if section.settings.background_image_desktop != blank or section.settings.background_image_mobile != blank -%}
+    <div class="breakpoint-how-it-works-background">
+      {%- liquid
+        assign bg_image_desktop = section.settings.background_image_desktop
+        assign bg_image_mobile = section.settings.background_image_mobile | default: bg_image_desktop
+        assign bg_image_desktop = bg_image_desktop | default: bg_image_mobile
+
+        # Determine which image to use for the fallback/default src
+        assign master_image = bg_image_desktop
+      -%}
+
+      <picture>
+        {%- if section.settings.background_image_mobile != blank -%}
+          <source
+            media="(max-width: 768px)"
+            srcset="{{ section.settings.background_image_mobile | image_url: width: 800 }}"
+          >
+        {%- endif -%}
+
+        {%- if section.settings.background_image_desktop != blank -%}
+          <source
+            media="(min-width: 769px)"
+            srcset="{{ section.settings.background_image_desktop | image_url: width: 2000 }}"
+          >
+        {%- endif -%}
+
+        {{
+          master_image
+          | image_url: width: 2000
+          | image_tag:
+            loading: 'lazy',
+            width: '100%',
+            height: '100%',
+            alt: master_image.alt,
+            class: 'how-it-works-bg-img'
+        }}
+      </picture>
+    </div>
+  {%- endif -%}
+
+  {%- if section.settings.heading != blank -%}
+    <h2 class="breakpoint-how-it-works-heading">{{ section.settings.heading }}</h2>
+  {%- endif -%}
+
+  <div class="breakpoint-how-it-works-parent">
+    <div class="breakpoint-how-it-works-steps">
+      {%- for block in section.blocks -%}
+        {%- assign step_number = forloop.index -%}
+        <div
+          class="breakpoint-how-it-works-step"
+          style="--step-bg-color: {{ block.settings.number_bg_color }}; --number-color: {{ block.settings.number_color }}; --heading-color: {{ block.settings.heading_color }};"
+        >
+          <div class="breakpoint-how-it-works-number-circle">
+            <span class="breakpoint-how-it-works-number">{{ step_number }}</span>
+          </div>
+          <div class="breakpoint-how-it-works-step-content">
+            {%- if block.settings.heading != blank -%}
+              <h3 class="breakpoint-how-it-works-step-heading">{{ block.settings.heading }}</h3>
+            {%- endif -%}
+            {%- if block.settings.subheading != blank -%}
+              <p class="breakpoint-how-it-works-step-subheading">{{ block.settings.subheading }}</p>
+            {%- endif -%}
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Breakpoint How It Works",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section Heading",
+      "default": "How It works"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image_desktop",
+      "label": "Background image for Desktop"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image_mobile",
+      "label": "Background image for Mobile"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Colors"
+        },
+        {
+          "type": "color",
+          "id": "number_bg_color",
+          "label": "Number Background Color",
+          "default": "#90EE90"
+        },
+        {
+          "type": "color",
+          "id": "number_color",
+          "label": "Number Text Color",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "heading_color",
+          "label": "Heading Text Color",
+          "default": "#000000"
+        },
+        {
+          "type": "header",
+          "content": "Content"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Step Heading",
+          "default": "You reach out Anonymously"
+        },
+        {
+          "type": "textarea",
+          "id": "subheading",
+          "label": "Step Subheading",
+          "default": "Connect with experts from on a dedicated Knya line."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Breakpoint How It Works",
+      "blocks": [
+        {
+          "type": "step",
+          "settings": {
+            "number_bg_color": "#90EE90",
+            "number_color": "#000000",
+            "heading_color": "#000000",
+            "heading": "You reach out Anonymously",
+            "subheading": "Connect with experts from on a dedicated Knya line."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "number_bg_color": "#90EE90",
+            "number_color": "#000000",
+            "heading_color": "#000000",
+            "heading": "A trained professional listens to you",
+            "subheading": "You speak freely to a trained professional who listens with care, discretion, and trust."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "number_bg_color": "#4949E9",
+            "number_color": "#FFFFFF",
+            "heading_color": "#4949E9",
+            "heading": "You experience immediate emotional relief",
+            "subheading": "A space to offload, breathe, and feel lighter without judgment."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

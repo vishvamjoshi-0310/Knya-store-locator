@@ -1,0 +1,762 @@
+<style>
+    body.activeforsizemodal {
+        height: 100%;
+        margin: 0px;
+        overflow: hidden;
+    }
+
+    .sizeguidmodal {
+        display: none;
+        position: fixed;
+        z-index: 99;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        overflow: scroll;
+    }
+
+    .shadowmodalformobile {
+        display: none;
+        background-color: rgba(0, 0, 0, 0.5);
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        z-index: 9;
+    }
+
+    .shadowmodalformobile.active_bg_shadow {
+        display: block;
+    }
+
+    .sizeguidmodal.activemodal {
+        display: flex;
+    }
+
+    .sizeguidmodal .modal-content {
+        font-family: Heebo-Regular;
+        background: #F5F4F4;
+        margin: auto;
+        padding: 0px;
+        max-width: 760px;
+        min-width: 760px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+        max-height: 90%;
+        overflow: unset;
+    }
+
+    .sizeguidmodal .modal-content .modalheader {
+        width: 100%;
+        min-height: 52px;
+        display: flex;
+        place-content: space-between;
+        padding: 12px 24px;
+        align-items: center;
+    }
+
+    .sizeguidmodal .modal-content .modalheader span {
+        font-family: Heebo-Medium;
+        font-size: 22px;
+        font-weight: 500;
+        line-height: 28px;
+        letter-spacing: 0.04em;
+        text-align: left;
+        display: flex;
+        align-items: center;
+    }
+
+    .sizeguidmodal .modal-content .modalheader span:first-child {
+        color: #462D8C;
+    }
+
+    .sizeguidmodal .modal-content .modalheader span:last-child {
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        font-size: 42px;
+        line-height: 42px;
+    }
+
+    .sizeguidmodal .closemodal {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .sizeguidmodal .closemodal:hover,
+    .sizeguidmodal .closemodal:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .sizeguidmodal .tabs {
+        display: flex;
+    }
+
+    .sizeguidmodal .tabs button {
+        width: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+    }
+
+    .sizeguidmodal .tab-button {
+        border: none;
+        padding: 10px 20px;
+        min-height: 56px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        border: none;
+        outline: none;
+        font-family: Heebo-Medium;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 20px;
+        letter-spacing: 0.001em;
+        color: #605D64;
+    }
+
+    .sizeguidmodal .tab-button span:last-child {
+        display: none;
+    }
+
+    .sizeguidmodal .tab-button:hover span:last-child {
+        display: block;
+    }
+
+    .sizeguidmodal .tab-button:hover span:first-child {
+        display: none;
+    }
+
+    .sizeguidmodal .tab-button.active {
+        background-color: #ffffff;
+        border: none;
+        outline: none;
+        border: 0px !important;
+        color: #462D8C;
+        border-bottom: 1px #462D8C solid !important;
+    }
+
+    .sizeguidmodal .tab-content {
+        display: none;
+    }
+
+    .sizeguidmodal .tab-content.active {
+        display: block;
+        border: none;
+        outline: none;
+        border: 0px !important;
+    }
+
+    .swicherarea {
+        display: flex;
+        padding: 0px 24px;
+        min-height: 40px;
+    }
+
+    .swicherarea_left {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        font-family: Heebo-Regular;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 20px;
+        letter-spacing: 0.20px;
+        color: #000000;
+    }
+
+    .swicherarea_right {
+        width: 100%;
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        column-gap: 5px;
+    }
+
+    .swicherarea_right span {
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 16px;
+        letter-spacing: 0.20px;
+        color: #737373;
+        cursor: pointer;
+    }
+
+    .swicherarea_right span.activecus {
+        color: #000000;
+        pointer-events: none;
+    }
+
+    .switchbutton {
+        position: relative;
+        display: inline-block;
+        width: 44px;
+        height: 26px;
+    }
+
+    .switchbutton input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .switchbutton .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        background-color: #462D8C;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 20px;
+        width: 20px;
+        left: 3px;
+        bottom: 3px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+    .switchbutton input:checked+.slider {
+        background-color: #462D8C;
+    }
+
+    .switchbutton input:focus+.slider {
+        box-shadow: 0 0 1px #462D8C;
+    }
+
+    .switchbutton input:checked+.slider:before {
+        -webkit-transform: translateX(18px);
+        -ms-transform: translateX(18px);
+        transform: translateX(18px);
+    }
+
+    .switchbutton .slider.round {
+        border-radius: 34px;
+    }
+
+    .switchbutton .slider.round:before {
+        border-radius: 50%;
+    }
+
+    .sizeguidmodal .tab-content .tablecontentdata {
+        width: 100%;
+        height: auto;
+    }
+
+    .sizeguidmodal .tab-content .tablecontentdata table {
+        width: 100%;
+        border: none;
+        box-shadow: none;
+        border-collapse: collapse;
+    }
+
+    .sizeguidmodal .tab-content .tablecontentdata table>thead tr th,
+    .sizeguidmodal .tab-content .tablecontentdata table>tbody tr td {
+        border: 1px solid #E1E0E0;
+    }
+
+
+    #sizeguidmodal_1- {
+            {
+            pdid
+        }
+    }
+
+    .tablecontentdata.inches table.tabledesktopscroll {
+        display: table-caption;
+    }
+
+    #sizeguidmodal_1- {
+            {
+            pdid
+        }
+    }
+
+    .tablecontentdata.centimetres table.tabledesktopscroll {
+        display: table-caption;
+    }
+
+    #sizeguidmodal_2- {
+            {
+            pdid
+        }
+    }
+
+    .tablecontentdata.inches table.tabledesktopscroll {
+        display: table-caption;
+    }
+
+    #sizeguidmodal_2- {
+            {
+            pdid
+        }
+    }
+
+    .tablecontentdata.centimetres table.tabledesktopscroll {
+        display: table-caption;
+    }
+
+    .sizeguidmodal .tab-content .tablecontentdata table>thead {
+        background: #ffffff;
+        height: 52px;
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 33.01px;
+        text-align: center;
+        color: #482F8F;
+    }
+
+    .sizeguidmodal .tab-content .tablecontentdata table>thead>tr>th {
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 33.01px;
+        color: #482F8F;
+        height: 52px;
+    }
+
+    .sizeguidmodal .tab-content .tablecontentdata table>tbody>tr>td {
+        height: 46px;
+        padding: 9.5px 24px;
+        font-size: 12px;
+        font-family: Heebo-Regular;
+        color: #000000;
+        font-weight: 400;
+        line-height: 16px;
+        letter-spacing: 0.20px;
+    }
+
+    .sizeguidmodal .tab-content .tablecontentdata table>tbody>tr>td:first-child {
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 24px;
+    }
+
+    .sizeguidmodal .tab-content .tablecontentdata table>tbody>tr:nth-child(even) {
+        background: #fff;
+    }
+
+    .sizeguidmodal .modal-content .footercontent {
+        width: 100%;
+        padding: 0px 24px;
+        background: #462D8C;
+        color: #FFFFFF;
+        min-height: 64px;
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 20px;
+        letter-spacing: 0.20px;
+    }
+
+    .sizeguidmodal .modal-content .footercontent span {
+        margin: 0 4px;
+        color: #F5EBD2;
+        display: contents;
+    }
+
+    .sizeguidmodal .tab-content .tablecontentdata.inches {
+        display: block;
+        transition: all 0.3s ease 0s;
+        width: 100%;
+        height: 280px;
+        padding-bottom: 30px;
+        overflow-y: scroll;
+    }
+
+    .sizeguidmodal .tab-content .tablecontentdata.centimetres {
+        display: none;
+        transition: all 0.3s ease 0s;
+        width: 100%;
+        height: 326px;
+        overflow-y: scroll;
+    }
+
+    #sizeguidmodal_1- {
+            {
+            pdid
+        }
+    }
+
+    .tablecontentdata.inches.scroll_fordesktop {
+        overflow: scroll;
+    }
+
+    #sizeguidmodal_1- {
+            {
+            pdid
+        }
+    }
+
+    .tablecontentdata.centimetres.scroll_fordesktop {
+        overflow: scroll;
+    }
+
+    #sizeguidmodal_2- {
+            {
+            pdid
+        }
+    }
+
+    .tablecontentdata.inches.scroll_fordesktop {
+        overflow: scroll;
+    }
+
+    #sizeguidmodal_2- {
+            {
+            pdid
+        }
+    }
+
+    .tablecontentdata.centimetres.scroll_fordesktop {
+        overflow: scroll;
+    }
+
+
+
+
+
+
+
+
+
+    .sizeguidmodal .tab-content .tablecontentdata_second {
+        width: 100%;
+        height: auto;
+        display: flex;
+        align-items: center;
+        column-gap: 5px;
+        padding: 24px;
+        height: 366px;
+        overflow-y: scroll;
+    }
+
+    .sizeguidmodal .tab-content .tablecontentdata_second .leftsidecontent {
+        width: 100%;
+        height: auto;
+    }
+
+    .sizeguidmodal .tab-content .tablecontentdata_second .leftsidecontent .contlist {
+        width: 100%;
+        height: auto;
+        padding-bottom: 50px;
+    }
+
+    .sizeguidmodal .tab-content .tablecontentdata_second .leftsidecontent .contlist:first-child {
+        padding-top: 50px;
+    }
+
+    .sizeguidmodal .tab-content .tablecontentdata_second .leftsidecontent .contlist:last-child {
+        padding-bottom: 15px;
+    }
+
+    .sizeguidmodal .tab-content .tablecontentdata_second .leftsidecontent .contlist p {
+        letter-spacing: 0.0015em;
+        margin: 0px;
+    }
+
+    .sizeguidmodal .tab-content .tablecontentdata_second .leftsidecontent .contlist p:first-child {
+        font-family: Heebo-Medium;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 24px;
+        letter-spacing: 0.0015em;
+        color: #482F8F;
+        display: flex;
+        align-items: center;
+        column-gap: 5px;
+        margin-bottom: 0px;
+    }
+
+    .sizeguidmodal .tab-content .tablecontentdata_second .leftsidecontent .contlist p>span:first-child {
+        background: #482F8F;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .sizeguidmodal .tab-content .tablecontentdata_second .leftsidecontent .contlist p>span:last-child {
+        font-family: Heebo-Medium;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 24px;
+        letter-spacing: 0.0015em;
+        color: #482F8F;
+    }
+
+    .sizeguidmodal .tab-content .tablecontentdata_second .leftsidecontent .contlist p:last-child {
+        font-family: Heebo-Regular;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 20px;
+        letter-spacing: 0.0025em;
+        color: #48464C;
+        margin-top: 5px;
+    }
+
+    .sizeguidmodal .tab-content .tablecontentdata_second .rightsidecontent {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .sizeguidmodal .tab-content .tablecontentdata_second .rightsidecontent img {
+        height: auto;
+        max-height: 100%;
+    }
+
+    @media screen and (max-width:820px) {
+
+        .sizeguidmodal {
+            display: block !important;
+            transform: translateY(100%);
+            transform-origin: bottom;
+            transition: transform 0.3s ease-in-out;
+            /* Use transform-specific transition */
+            background: none;
+        }
+
+        .sizeguidmodal.activemodal {
+            transform: translateY(0%);
+        }
+
+        .sizeguidmodal .modal-content .footercontent {
+            background: #FFFFFF;
+            color: #79767D;
+            margin-bottom: 0px;
+        }
+
+        .sizeguidmodal .modal-content .footercontent span {
+            color: #000000;
+        }
+
+        .sizeguidmodal .modal-content {
+            margin: auto;
+            max-width: 760px;
+            width: 100%;
+            min-width: auto;
+            position: absolute;
+            bottom: 0px;
+            left: 0;
+            right: 0;
+            max-height: 85%;
+            overflow: auto;
+        }
+
+        .sizeguidmodal .modal-content .modalheader {
+            min-height: 46px;
+            padding: 10px 24px;
+        }
+
+        .sizeguidmodal .modal-content .modalheader span {
+            font-size: 14px;
+            line-height: 20px;
+            letter-spacing: 0.01em;
+        }
+
+        .sizeguidmodal .modal-content .modalheader span:last-child {
+            font-size: 24px;
+            line-height: 24px;
+        }
+
+        .sizeguidmodal .tab-button {
+            padding: 10px 20px;
+            min-height: 42px;
+            font-size: 12px;
+            line-height: 16px;
+        }
+
+        .sizeguidmodal .tab-button span:last-child {
+            display: none;
+        }
+
+        .sizeguidmodal .tab-button:hover span:last-child {
+            display: none;
+        }
+
+        .sizeguidmodal .tab-button:hover span:first-child {
+            display: block;
+        }
+
+        .swicherarea_left {
+            font-size: 12px;
+            line-height: 15px;
+        }
+
+        .sizeguidmodal .tab-content .tablecontentdata table>thead {
+            height: 42px;
+            font-size: 14px;
+            line-height: 20px;
+        }
+
+        .sizeguidmodal .tab-content .tablecontentdata table>thead>tr>th {
+            height: 42px;
+            font-size: 14px;
+            line-height: 20px;
+        }
+
+        .sizeguidmodal .tab-content .tablecontentdata table>tbody>tr>td {
+            height: 38px;
+            padding: 6px 24px;
+            font-size: 11px;
+        }
+
+        .sizeguidmodal .tab-content .tablecontentdata table>tbody>tr>td:first-child {
+            font-size: 12px;
+            line-height: 18px;
+        }
+
+
+        .sizeguidmodal .tab-content .tablecontentdata_second .leftsidecontent .contlist {
+            padding-bottom: 44px;
+        }
+
+        .sizeguidmodal .tab-content .tablecontentdata_second .leftsidecontent .contlist:first-child {
+            padding-top: 30px;
+        }
+
+        .sizeguidmodal .tab-content .tablecontentdata_second .leftsidecontent .contlist:last-child {
+            padding-bottom: 15px;
+        }
+
+
+
+        .sizeguidmodal .tab-content .tablecontentdata_second .leftsidecontent .contlist p:first-child {
+            font-size: 14px;
+            line-height: 20px;
+            align-items: unset;
+        }
+
+        .sizeguidmodal .tab-content .tablecontentdata_second .leftsidecontent .contlist p:last-child {
+            font-size: 12px;
+            line-height: 16px;
+        }
+
+        .sizeguidmodal .tab-content .tablecontentdata_second .leftsidecontent .contlist p>span:last-child {
+            font-size: 14px;
+            line-height: 20px;
+        }
+
+        .sizeguidmodal .tab-content .tablecontentdata_second .leftsidecontent .contlist p>span:first-child {
+            width: 19px;
+            height: 19px;
+        }
+
+        .sizeguidmodal .tab-content .tablecontentdata.inches {
+            padding: 0;
+        }
+
+        .sizeguidmodal .modal-content .footercontent {
+            margin-top: 30px;
+        }
+
+    }
+
+    @media screen and (max-width:390px) {
+
+        #sizeguidmodal_1- {
+                {
+                pdid
+            }
+        }
+
+        .tablecontentdata.inches table.tablemobilescroll {
+            display: table-caption;
+        }
+
+        #sizeguidmodal_1- {
+                {
+                pdid
+            }
+        }
+
+        .tablecontentdata.centimetres table.tablemobilescroll {
+            display: table-caption;
+        }
+
+        #sizeguidmodal_2- {
+                {
+                pdid
+            }
+        }
+
+        .tablecontentdata.inches table.tablemobilescroll {
+            display: table-caption;
+        }
+
+        #sizeguidmodal_1- {
+                {
+                pdid
+            }
+        }
+
+        .tablecontentdata.centimetres table.tablemobilescroll {
+            display: table-caption;
+        }
+
+        #sizeguidmodal_1- {
+                {
+                pdid
+            }
+        }
+
+        .tablecontentdata.inches.scroll_formobile {
+            overflow: scroll;
+        }
+
+        #sizeguidmodal_1- {
+                {
+                pdid
+            }
+        }
+
+        .tablecontentdata.centimetres.scroll_formobile {
+            overflow: scroll;
+        }
+
+        #sizeguidmodal_2- {
+                {
+                pdid
+            }
+        }
+
+        .tablecontentdata.inches.scroll_formobile {
+            overflow: scroll;
+        }
+
+        #sizeguidmodal_2- {
+                {
+                pdid
+            }
+        }
+
+        .tablecontentdata.centimetres.scroll_formobile {
+            overflow: scroll;
+        }
+
+    }
+</style>

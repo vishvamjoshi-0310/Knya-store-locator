@@ -1,0 +1,500 @@
+{{ 'store_locator.css' | asset_url | stylesheet_tag }}
+
+{% style %}
+  .new--store-locator-wrapper.store-locator-wrapper-{{ section.id }} {
+      margin-top:{{ section.settings.margin_top_desktop }}px;
+      margin-bottom:{{ section.settings.margin_bottom_desktop }}px;
+  }
+
+  @media only screen and (max-width: 600px) {
+      .new--store-locator-wrapper.store-locator-wrapper-{{ section.id }} {
+          margin-top:{{ section.settings.margin_top_mobile }}px;
+          margin-bottom:{{ section.settings.margin_bottom_mobile }}px;
+      }
+  }
+
+  .new--store-locator-wrapper-active.new--store-locator-wrapper .store-image-info-card-wrapper {
+    scrollbar-gutter: stable;
+  }
+
+  .new--store-locator-wrapper-active.new--store-locator-wrapper .store-image-info-card-wrapper {
+    overflow-x: scroll !important;
+    overflow-y: hidden !important;
+  }
+{% endstyle %}
+
+<div class="new--store-locator-wrapper page-width-updated store-locator-wrapper-{{ section.id }}">
+  {% assign var_metaobj = shop.metaobjects.store_locator.values %}
+  <div class="store-locator-heading">
+    <div class="main-heading-store-locator">
+      <div class="backpage-back-page" onclick="backPage(this)">
+         {% render 'back-icon' %}
+      </div>
+      <div class="backpage-back-page">
+        <h3 id="main-heading-section">{{ section.settings.mainheading }}</h3>
+        <h4>
+          {{ section.settings.submainheading }}
+          {{ var_metaobj.count }}
+          {{ section.settings.submainheading2 }}
+        </h4>
+      </div>
+    </div>
+  </div>
+  <div class="store-locator-section-wrapper">
+    <div class="store-locator-section-heading">
+      <h3>{{ section.settings.sectionmainheading }}</h3>
+    </div>
+
+    <div class="store-image-info-card-wrapper">
+      {% for main_metaObj in var_metaobj %}
+        <div class="store-image-info-card" onclick="showStoreLocation(this)" onchange="changeStoreHeading(this)">
+          <div class="store-image">
+            {{
+              main_metaObj.city_image.value
+              | image_url: width: 400
+              | image_tag: class: 'offer-image', loading: 'lazy'
+            }}
+          </div>
+          <div class="store-information">
+            <p class="store-title-main">{{ main_metaObj.city_name.value }}</p>
+            <p class="store-count">
+              {% if main_metaObj.store_handles.value != blank -%}
+                {{- main_metaObj.store_handles.value.count }}
+                {% if main_metaObj.store_handles.value.count > 1 %}Stores{% else %}Store{% endif %}
+              {% else %}
+                Coming soon
+              {% endif %}
+            </p>
+          </div>
+        </div>
+        {% if main_metaObj.store_handles.value != blank %}
+          <div class="store-information-card-wraper-main-wrapper">
+            {% for store in main_metaObj.store_handles.value %}
+              <div class="store-information-card-wraper">
+                <div class="store-card-image">
+                  {{
+                    store.store_image.value
+                    | image_url: width: 400
+                    | image_tag: class: 'offer-image', loading: 'lazy'
+                  }}
+                </div>
+                <div class="store-care-info-wrapper">
+                  <h4>{{ store.store_name.value }}</h4>
+                  <p class="store-address">{{ store.store_address.value }}</p>
+
+                  <div class="dropdown-store-close-open">
+                    <h4>Hours:</h4>
+                    {% assign days_of_week = 'Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday' | split: ',' %}
+                    {% assign current_day_index = now | date: '%w' %}
+                    {% assign adjusted_day_index = current_day_index | plus: 1 %}
+
+                    {%- assign rotated_days_of_week = '' -%}
+                    {%- for i in (adjusted_day_index..6) -%}
+                      {%- assign rotated_days_of_week = rotated_days_of_week | append: days_of_week[i] | append: ',' -%}
+                    {%- endfor -%}
+                    {%- for i in (0..adjusted_day_index-1) -%}
+                      {%- assign rotated_days_of_week = rotated_days_of_week | append: days_of_week[i] | append: ',' -%}
+                    {%- endfor -%}
+
+                    {% assign rotated_days_of_week = rotated_days_of_week | split: ',' | where: '', '' %}
+
+                    <div class="dropdown-store-close-open-days" id="dropdown-content">
+                      {% assign split_values = '' %}
+                      {% assign split_valuesopen = '' %}
+
+                      {% for storetime in store.store_time.value %}
+                        {% assign split_value = storetime | split: '-' | last %}
+                        {% assign split_valuesopen = storetime | split: '-' | first %}
+                        {% if forloop.first %}
+                          {% assign split_valuesopen = split_valuesopen %}
+                          {% assign split_values = split_value %}
+                        {% endif %}
+                      {% endfor %}
+                      <div class="store-time-dropdown-open">
+                        <p class="weekdays-name-open">open</p>
+                        <p
+                          class="store-status"
+                          data-close-time="{{ split_values }}"
+                          data-open-time="{{ split_valuesopen }}"
+                        >
+                          Closes {{ split_values }}
+                        </p>
+                      </div>
+                      {% for storetime in store.store_time.value %}
+                        <div class="select-time-{{ forloop.index }} store-time-dropdown">
+                          <p class="weekdays-name select-time-weekdays-name-{{ forloop.index }}">
+                            {{ rotated_days_of_week[forloop.index0] }}
+                          </p>
+                          <p>{{ storetime }}</p>
+                        </div>
+                      {% endfor %}
+                    </div>
+                    <p class="clickdropdownicon" onclick="opendropdown(this)">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="10" height="6" viewBox="0 0 10 6" fill="none">
+                        <path d="M0 0.76001L5 5.76001L10 0.76001H0Z" fill="black"/>
+                      </svg>
+                    </p>
+                  </div>
+
+                  <p class="phonestorenumber">
+                    <a href="tel:{{ store.store_phone.value }}">{{ store.store_phone.value }}</a>
+                  </p>
+                  <div class="store-cards-button-wrapper">
+                    <a class="store-cards-button" href="{{ store.store_button_link.value }}" target="_blank">
+                      <div>
+                        {{ section.settings.viewonmap }}
+                      </div>
+                    </a>
+                    <div class="store-cards-button-call">
+                      <a href="tel:{{ store.store_phone.value }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="19" height="17" viewBox="0 0 19 17" fill="none">
+                          <path d="M17.6209 12.5424L15.2225 10.3096C14.3659 9.51213 12.9098 9.83114 12.5672 10.8677C12.3102 11.5855 11.4536 11.9842 10.6827 11.8247C8.9696 11.426 6.65689 9.35265 6.22861 7.67801C5.97164 6.96028 6.48558 6.16283 7.25648 5.92363C8.37001 5.60465 8.71264 4.249 7.85608 3.45155L5.45771 1.21871C4.77246 0.660496 3.74459 0.660496 3.14499 1.21871L1.51753 2.73385C-0.109932 4.32874 1.68885 8.5552 5.71468 12.3031C9.74051 16.0511 14.2803 17.8055 15.9934 16.2106L17.6209 14.6955C18.2205 14.0575 18.2205 13.1006 17.6209 12.5424Z" fill="#462D8C"/>
+                        </svg>
+                      </a>
+                    </div>
+                    <div class="store-cards-button-share" onclick="copyCodeClocation(this)">
+                      <p class="copylinkcode">{{ store.store_button_link.value }}</p>
+                      <p>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="19" height="21" viewBox="0 0 19 21" fill="none">
+                          <path fill-rule="evenodd" clip-rule="evenodd" d="M12.9545 6.17455L7.29534 9.48341C7.475 9.90327 7.56777 10.356 7.56789 10.8135C7.56802 11.2711 7.4755 11.7239 7.29607 12.1438L12.9545 15.4521C13.4588 14.7677 14.2024 14.3044 15.033 14.1571C15.8635 14.0098 16.7183 14.1897 17.4222 14.6598C18.1261 15.13 18.6259 15.8549 18.8192 16.6861C19.0126 17.5174 18.8848 18.392 18.4622 19.1309C18.0395 19.8699 17.3539 20.4172 16.5457 20.6609C15.7376 20.9046 14.868 20.8261 14.1151 20.4416C13.3622 20.0571 12.7829 19.3956 12.4959 18.5927C12.2088 17.7897 12.2357 16.906 12.5711 16.1225L6.91262 12.8139C6.49736 13.3803 5.91636 13.7998 5.25219 14.0127C4.58803 14.2255 3.87452 14.2209 3.21309 13.9995C2.55167 13.7781 1.976 13.3511 1.56792 12.7793C1.15984 12.2075 0.940122 11.52 0.940006 10.8145C0.939891 10.1091 1.15938 9.42149 1.56727 8.84958C1.97517 8.27766 2.5507 7.85052 3.21205 7.62888C3.8734 7.40724 4.58691 7.40239 5.25115 7.61501C5.91538 7.82763 6.49652 8.24691 6.91196 8.81322L12.5711 5.50409C12.2334 4.71646 12.2059 3.82789 12.4942 3.02039C12.7825 2.21289 13.3647 1.54758 14.1217 1.16076C14.8786 0.773945 15.7529 0.694888 16.5656 0.939788C17.3782 1.18469 18.0676 1.73501 18.4926 2.47802C18.9176 3.22103 19.0459 4.10049 18.8514 4.93623C18.6568 5.77198 18.1541 6.50076 17.4462 6.97328C16.7382 7.4458 15.8787 7.62629 15.0436 7.47779C14.2086 7.32928 13.4612 6.86306 12.9545 6.17455Z" fill="#462D8C"/>
+                        </svg>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        {% else %}
+          <p class="nofounddtore">{{ section.settings.cantfoundstore }}</p>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+  <div class="show-store-card-wrapper"></div>
+  {% if section.settings['desk-image'] != blank or section.settings['mob-image'] != blank %}
+    <div class="custom-banner-wrapper">
+      <a href="javascript:void(0);" class="image-link">
+        {% if section.settings['desk-image'] != blank %}
+          <div class="custom-banner-desk-image small-hide">
+            {% assign desk_alt = section.settings['desk-image'].alt | default: 'Banner' %}
+            {{
+              section.settings['desk-image']
+              | image_url: width: 2000
+              | image_tag: class: 'banner-image', loading: 'lazy', alt: desk_alt
+            }}
+          </div>
+        {% endif %}
+        {% if section.settings['mob-image'] != blank %}
+          <div class="custom-banner-mob-image  medium-hide">
+            {% assign mob_alt = section.settings['mob-image'].alt | default: 'Banner' %}
+            {{
+              section.settings['mob-image']
+              | image_url: width: 900
+              | image_tag: class: 'banner-image', loading: 'lazy', alt: mob_alt
+            }}
+          </div>
+        {% endif %}
+      </a>
+    </div>
+  {% endif %}
+</div>
+
+{% assign indexloop = 0 %}
+{% for main_metaObj in var_metaobj %}
+  {% for store in main_metaObj.store_handles.value %}
+    {% assign indexloop = indexloop | plus: 1 %}
+  {% endfor %}
+{% endfor %}
+<script type="application/ld+json">
+   {% assign indexloopinner = 0 %}
+
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+
+  {% for main_metaObj in var_metaobj  %}
+    {% for store in main_metaObj.store_handles.value %}
+    {% assign days_of_week = "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday" | split: "," %}
+  {% assign current_day_index = now | date: "%w" %}
+  {% assign adjusted_day_index = current_day_index | plus: 1 %}
+  {%- assign rotated_days_of_week = "" -%}
+  {%- for i in (adjusted_day_index..6) -%}
+    {%- assign rotated_days_of_week = rotated_days_of_week | append: days_of_week[i] | append: "," -%}
+  {%- endfor -%}
+  {%- for i in (0..adjusted_day_index-1) -%}
+    {%- assign rotated_days_of_week = rotated_days_of_week | append: days_of_week[i] | append: "," -%}
+  {%- endfor -%}
+  {% assign rotated_days_of_week = rotated_days_of_week | split: "," | where: "", "" %}
+        {% assign stateandpincode = store.state_and_pincode %}
+        {% assign stateandpincodes = stateandpincode | split: "##" %}
+       {% assign indexloopinner = indexloopinner | plus:1 %}
+      {
+        "@type": "LocalBusiness",
+        "name": {{ store.store_name.value | json }} ,
+        "image": "{{ store.store_image.value | image_url:width: 400 }}",
+        "url": "{{ shop.url }}{{ page.url }}",
+        "telephone": "{{ store.store_phone.value }} {{ main_metaObj.store_handles.length }}",
+        "address": {
+        "@type": "PostalAddress",
+        "streetAddress": {{ store.store_address.value | escape | json }},
+        "addressLocality":  {{ store.store_name.value | json }},
+        {% if stateandpincodes[0] != blank %} "addressRegion": {{ stateandpincodes[0] | json }}, {% endif %}
+        {% if stateandpincodes[1] != blank %}  "postalCode": {{ stateandpincodes[1] | json }}, {% endif %}
+        "addressCountry": "IN"
+        },
+        "openingHours": "Monday-Sunday 10:00AM-10:00PM"
+      }  {% if indexloop > indexloopinner %} ,{% endif %}
+    {% endfor %}
+  {% endfor %}
+  ]
+  }
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const storeStatusElements = document.querySelectorAll('.store-status');
+      storeStatusElements.forEach(function (statusElement) {
+          const openTimeText = statusElement.dataset.openTime.trim();
+          const closeTimeText = statusElement.dataset.closeTime.trim();
+          function parseTime(timeText) {
+              const match = timeText.match(/^(\d+)(am|pm)$/i);
+              if (!match) {
+                  console.error('Invalid time format:', timeText);
+                  return null;
+              }
+              let [_, hour, period] = match;
+              hour = parseInt(hour);
+
+              if (period.toLowerCase() === 'pm' && hour !== 12) {
+                  hour += 12; // Convert PM hours to 24-hour format
+              }
+              if (period.toLowerCase() === 'am' && hour === 12) {
+                  hour = 0; // Midnight hour
+              }
+
+              return hour;
+          }
+          const openHour = parseTime(openTimeText);
+          const closeHour = parseTime(closeTimeText);
+          if (openHour === null || closeHour === null) {
+              return;
+          }
+          const now = new Date();
+          const currentHour = now.getHours();
+          if (currentHour >= openHour && currentHour < closeHour) {
+              statusElement.previousElementSibling.innerText = 'Open';
+              statusElement.previousElementSibling.style.color = "#34C759";
+          } else {
+              statusElement.previousElementSibling.innerText = 'Closed';
+              statusElement.previousElementSibling.style.color = "#D93025";
+          }
+      });
+  });
+
+    function showStoreLocation(show) {
+    const allCards = document.querySelectorAll('.background-card-color');
+    const backsection = document.querySelector('.backpage-back-page');
+    const appenddElement = document.querySelector('.show-store-card-wrapper');
+
+    if (allCards) {
+      allCards.forEach(card => card.classList.remove('background-card-color'));
+    }
+
+    if (backsection) {
+      backsection.classList.add('backpage-back-page-remove-class');
+    }
+
+    const wrapperSection = document.querySelector('.new--store-locator-wrapper');
+    if (wrapperSection) {
+      wrapperSection.classList.add('new--store-locator-wrapper-active');
+    }
+
+    show.classList.add('background-card-color');
+
+    {% comment %} =====================  Heading change code ========================  {% endcomment %}
+    let childText = show.querySelector(".store-title-main").innerText;
+    let storeTitle = document.querySelector('#main-heading-section');
+    if (storeTitle) {
+      storeTitle.innerText = childText;
+    }
+
+    {% comment %} =====================  Store card append code ========================  {% endcomment %}
+    const nextSibling = show.nextElementSibling;
+    if (nextSibling && appenddElement) {
+      appenddElement.innerHTML = '';
+      appenddElement.appendChild(nextSibling.cloneNode(true));
+    }
+  }
+
+          {% comment %} =====================  back page functio ==================== {% endcomment %}
+
+     function backPage(back) {
+    if (back.classList.contains("backpage-back-page-remove-class")) {
+      const cardRemoveClass = document.querySelector('.store-image-info-card.background-card-color');
+      if (cardRemoveClass) {
+        cardRemoveClass.classList.remove("background-card-color");
+        back.classList.remove("backpage-back-page-remove-class")
+        document.querySelector('#main-heading-section').innerText = "{{ section.settings.mainheading }}";
+      }
+    } else {
+      if (window.history.length > 1) {
+        window.history.back();
+      } else if(!window.appbrew){
+        window.location.href = '/';
+      }
+    }
+           const wrapperSectionn = document.querySelector('.new--store-locator-wrapper.new--store-locator-wrapper-active');
+    if (wrapperSectionn) {
+      wrapperSectionn.classList.remove('new--store-locator-wrapper-active');
+    }
+  }
+
+
+    function opendropdown(cli) {
+      const dropdownStore = cli.closest(".dropdown-store-close-open");
+     cli.classList.toggle("rotateicon");
+      if (!dropdownStore) {
+          console.error("Parent '.dropdown-store-close-open' not found for the clicked element.");
+          return;
+      }
+      const dropdownContent = dropdownStore.querySelector(".dropdown-store-close-open-days");
+      const dropdownContentfirst = dropdownStore.querySelector(".store-time-dropdown-open");
+
+      if (!dropdownContent) {
+          console.error("Dropdown content '.dropdown-content' not found in the card.");
+          return;
+      }
+      if (dropdownContent.classList.contains("open")) {
+          dropdownContent.style.maxHeight = "20px";
+          dropdownContentfirst.style.display = "flex";
+
+      } else {
+          dropdownContent.style.maxHeight = dropdownContent.scrollHeight + "px";
+          dropdownContentfirst.style.display = "none";
+      }
+      dropdownContent.classList.toggle("open");
+  }
+
+    {% comment %} =============------------------- copy code ---------------====================== {% endcomment %}
+
+    function copyCodeClocation(copycode) {
+      const textNode = copycode.childNodes[1];
+      const feedbackNode = copycode.childNodes[3];
+      if (textNode && feedbackNode) {
+          const textToCopy = textNode.textContent.trim();
+          navigator.clipboard.writeText(textToCopy)
+              .then(() => {
+                  const originalFeedback = feedbackNode.innerHTML;
+                  feedbackNode.textContent = 'Copied!';
+                feedbackNode.style.lineHeight = "20px";
+                  setTimeout(() => {
+                    feedbackNode.style.lineHeight = "14px";
+                      feedbackNode.innerHTML = originalFeedback;
+                  }, 2000);
+              })
+              .catch(err => {
+                  console.error('Failed to copy text:', err);
+              });
+      } else {
+          console.error('Invalid nodes for copying or feedback.');
+      }
+  }
+</script>
+{% schema %}
+{
+  "name": "New Store Locator",
+  "settings": [
+    {
+      "type": "range",
+      "id": "margin_bottom_desktop",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Margin Bottom Desktop",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_top_desktop",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Margin Top Desktop",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Margin Top Mobile",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Margin Bottom Mobile",
+      "default": 0
+    },
+    {
+      "type": "image_picker",
+      "id": "desk-image",
+      "label": "Desktop Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mob-image",
+      "label": "Mobile Image"
+    },
+    {
+      "type": "text",
+      "id": "mainheading",
+      "label": "Heading",
+      "default": "Our Stores"
+    },
+    {
+      "type": "text",
+      "id": "submainheading",
+      "label": "Sub Heading",
+      "default": "Now we are available in"
+    },
+    {
+      "type": "text",
+      "id": "submainheading2",
+      "label": "Sub Heading End",
+      "default": "Cities"
+    },
+    {
+      "type": "text",
+      "id": "sectionmainheading",
+      "label": "Section Heading",
+      "default": "Browse By Cities"
+    },
+    {
+      "type": "text",
+      "id": "viewonmap",
+      "label": "Location Button",
+      "default": " View On Map"
+    },
+    {
+      "type": "text",
+      "id": "cantfoundstore",
+      "label": "No Store Disclamer",
+      "default": "Sorry, we couldn't find any stores."
+    }
+  ],
+  "presets": [
+    {
+      "name": "New Store Locator"
+    }
+  ]
+}
+{% endschema %}

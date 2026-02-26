@@ -1,0 +1,96 @@
+{%- doc -%}
+  @param {object} [block] - The section that can be used to provide settings
+{%- enddoc -%}
+
+{% assign block_settings = block.settings %}
+
+<div class="mobile_drawer-app-container">
+  <div class="mobile_drawer-app-wrapper">
+    <div class="mobile_drawer-app-msg">
+      <p class="heebo-medium">{{ block_settings.mobile_banner_text }}</p>
+    </div>
+    <div class="mobile_drawer-img-app-container">
+      {% if block_settings.mobile_banner_image_android != blank %}
+        <div class="mobile_drawer-app-img">
+          <a href="{{ block_settings.mobile_banner_url_android }}">
+            <picture>
+              {%- if block_settings.mobile_banner_image_android != blank -%}
+                <source 
+                  srcset="{{ block_settings.mobile_banner_image_android | img_url: '300x300', crop: 'center', format: 'webp' }}" 
+                  type="image/webp"
+                >
+                <source 
+                  srcset="{{ block_settings.mobile_banner_image_android | img_url: '300x300', crop: 'center' }}" 
+                  type="image/jpeg"
+                >
+              {%- endif -%}
+              <img
+                src="{{ block_settings.mobile_banner_image_android | img_url: '300x300', crop: 'center' }}"
+                width="100"
+                height="35"
+                loading="lazy"
+                alt=""
+              >
+            </picture>
+
+          </a>
+        </div>
+      {% endif %}
+      {% if block_settings.mobile_banner_image_ios != blank %}
+        <div class="mobile_drawer-app-img">
+          <a href="{{ block_settings.mobile_banner_url_ios }}">
+            <picture>
+              {%- if block_settings.mobile_banner_image_ios != blank -%}
+                <source
+                  srcset="{{ block_settings.mobile_banner_image_ios | img_url: '900x300', crop: 'center', format: 'webp' }}"
+                  type="image/webp"
+                >
+                <source
+                  srcset="{{ block_settings.mobile_banner_image_ios | img_url: '900x300', crop: 'center' }}"
+                  type="image/jpeg"
+                >
+              {%- endif -%}
+
+              <img
+                src="{{ block_settings.mobile_banner_image_ios | img_url: '900x300', crop: 'center' }}"
+                width="100"
+                height="35"
+                loading="lazy"
+                alt=""
+              >
+            </picture>
+
+          </a>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+
+{% style %}
+
+    .mobile_drawer-app-container {
+        background-color: #F6917E;
+    }
+    .mobile_drawer-app-container .mobile_drawer-app-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        padding: 15px;
+    }
+
+    .mobile_drawer-app-container .mobile_drawer-img-app-container {
+        display: flex;
+        align-items: center;
+    }
+
+    .mobile_drawer-app-container .mobile_drawer-img-app-container .mobile_drawer-app-img{
+      max-width: 90px;
+    }
+
+    .mobile_drawer-app-wrapper .mobile_drawer-app-msg p {
+        font-size: 14px;
+        color: rgb(244, 236, 208);
+    }
+{% endstyle %}

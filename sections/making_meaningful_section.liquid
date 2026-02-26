@@ -1,0 +1,134 @@
+{{ 'making-meaningfull.css' | asset_url | stylesheet_tag }}
+{%- style -%}
+  .making_meanigfull_main {max-width: 100%;margin-top:{{ section.settings.margintop_making_meaningfull}}px;}
+{%- endstyle -%}
+<div class="making_meanigfull_main ">
+  <div class="{% if section.settings.making_meanigfull_main_Desktop  %} page-padding-right page-padding-left{% endif %} {% if section.settings.making_meanigfull_main_mob %}padding-right-mob padding-left-mob{% endif %}">
+    <div class="flex_div">
+      <div class="making_meanigfull_left_div">
+        <div class="meanigful_heading">{{ section.settings.making_meanigfull_Heading }}</div>
+        <div class="meanigful_subheading">{{ section.settings.making_meanigfull_subHeading }}</div>
+        <!-- bullet points section -->
+        <div class="pointer_flex">
+          {% for block in section.blocks %}
+            {% if block.settings.pointers != blank %}
+              <div class="pointer_texts">
+                <span class="pointer-svg">{% render 'abt-points' %}</span>
+                <p class="point-text-abt">{{ block.settings.pointers }}</p>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+      <div class="making_meanigfull_right_div">
+        <div class="swiper-abt swiper">
+          <!-- slider 5 images div -->
+          {% render 'right-section-image-animation' %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  window.addEventListener(
+    'DOMContentLoaded',
+    () => {
+      const swiperabt = new Swiper('.swiper-abt', {
+        loop: true,
+        speed: 10000,
+        slidesPerView: 4,
+        spaceBetween: 6,
+        autoplay: {
+          delay: 0,
+        },
+        breakpoints: {
+          0: {
+            slidesPerView: 3,
+            spaceBetween: 3,
+          },
+          640: {
+            slidesPerView: 3.7,
+          },
+          1200: {
+            slidesPerView: 4,
+          },
+        },
+      });
+    },
+    { once: true }
+  );
+</script>
+
+
+{% schema %}
+{
+  "name": "Making Meanigfull",
+  "settings": [
+    {
+      "type": "range",
+      "id": "margintop_making_meaningfull",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Margin from top for Entire Section",
+      "default": 0
+    },
+    {
+      "type": "checkbox",
+      "id": "making_meanigfull_main_Desktop",
+      "label": "Padding for Section",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "making_meanigfull_main_mob",
+      "label": "Padding for Section in Mobile",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "making_meanigfull_Heading",
+      "label": " Heading",
+      "default": " Type Heading Here"
+    },
+    {
+      "type": "text",
+      "id": "making_meanigfull_subHeading",
+      "label": " Heading",
+      "default": " Type Sub Heading Here"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "pointers",
+      "name": "pointers ",
+      "settings": [
+        {
+          "type": "text",
+          "id": "pointers",
+          "label": " Pointers",
+          "default": " Pointers"
+        },
+        {
+          "type": "image_picker",
+          "id": "desktop_image",
+          "label": "right Image",
+          "info": "Recommended Image Size : 800X734px"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": " Making Meanigfull section"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

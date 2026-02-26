@@ -1,0 +1,196 @@
+{%- comment -%}
+  Receives:
+  - tip_tiles_array: List of tip tiles strings passed from collection template
+{%- endcomment -%}
+
+<style>
+  ul.product-grid li.desktopgrid{display:none;}
+  ul.product-grid li.mobilegrid{display:block;padding-bottom:32px;}
+  .tip-card{
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;position:relative;
+    }
+    .tip-card-image img {
+      width: 100%;
+      max-width: 247px;
+      border-radius: 6px;
+      display: block;
+      aspect-ratio: 247/308
+    }
+    .tip-card-title {
+      color:#f0f0f0;margin:0px;font-size:12px !important;line-height:1.1;
+    }
+    .tip-card-subtitle {
+      font-size: 18px;
+      font-weight: 500;
+      line-height:1.1;
+      letter-spacing: .005em;
+      color:#f5f5f5;
+      padding-top: 2px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin:0px;
+    }
+    .tip-card-price {
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 14px;
+      letter-spacing: .005em;
+      color:#f0f0f0;
+      padding-top:0px;
+      margin-block: 0.63em;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .tip-card-button {
+      width:auto;
+      color:#ffffff;
+      border: none;
+      padding:0px;
+      font-size: 14px;background:none;
+    }
+    .tip-card .media--transparent .desktopimg_tiptile{display:block;}
+    .tip-card .media--transparent .mobileimg_tiptile{display:none;}
+    .tip-card .tip-card-content{position:absolute;top:0px; left:0px; z-index:1;width:100%;height:100%; display:flex; flex-direction:column; justify-content: space-between;
+      padding: 15px 0px 36px 0px;
+    }
+    .tip-card .tip-card-content .topcontent-tiptile{ color:#ffffff; text-align:center;}
+    .tip-card .tip-card-content .bottomcontent-tiptile{color:#ffffff; display:flex; column-gap: 10px; align-items: center;}
+    .tip-card .tip-card-content .bottomcontent-tiptile .tip-card-button{flex:50%;}
+    .tip-card .tip-card-content .bottomcontent-tiptile .tip-card-button>a{color:#ffffff;}
+    .tip-card .tip-card-content .bottomcontent-tiptile .tip-card-button:first-child{display:flex;justify-content:end;}
+    .tip-card .tip-card-content .bottomcontent-tiptile .tip-card-button:first-child a{background:#ffffff; color:#462D8C; padding:7px 10px; border-radius:5px;
+  font-family: Heebo-Medium;
+  font-weight: 500;
+  font-style: Medium;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0px;
+  text-align: center;
+  transition: 0.3s ease;
+  }
+  .tip-card .tip-card-content .bottomcontent-tiptile .tip-card-button:first-child a:hover {opacity: .85;}
+  .tip-card .tip-card-content .bottomcontent-tiptile .tip-card-button:first-child a:active {opacity: .85;}
+
+    .tip-card .tip-card-content .bottomcontent-tiptile .tip-card-button:last-child{display:flex;justify-content:start;}
+    .tip-card .tip-card-content .bottomcontent-tiptile .tip-card-button:last-child a{
+      font-family: Heebo-Regular;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 16px;
+      letter-spacing: 0.12px;
+      vertical-align: middle;
+    }
+  .tip-card .tip-card-content .bottomcontent-tiptile .tip-card-button:last-child a:hover,
+  .tip-card .tip-card-content .bottomcontent-tiptile .tip-card-button:last-child a:active{text-decoration:underline !important;}
+
+
+    @media only screen and (min-width: 769px){
+      ul.product-grid li.desktopgrid{display:block;}
+      ul.product-grid li.mobilegrid{display:none;}
+    }
+
+    @media only screen and (max-width: 768px){
+      .tip-card-title{
+        line-height:1.1;
+        font-size: 12px !important;
+        font-family: Heebo-Regular !important;
+
+
+      }
+
+      .tip-card-subtitle{
+        font-size: 18px;
+      }
+
+      .tip-card-content{
+        padding-top: 8px;
+      }
+        .tip-card .media--transparent .desktopimg_tiptile{display:none;}
+        .tip-card .media--transparent .mobileimg_tiptile{display:block; opacity:1;}
+
+
+
+    .tip-card .tip-card-content{padding:30px 20px 22px 24px;}
+    .tip-card .tip-card-content .topcontent-tiptile{ color:#ffffff; text-align:left;}
+     .tip-card .tip-card-content .bottomcontent-tiptile .tip-card-button{flex:unset;}
+
+    .tip-card .tip-card-content .bottomcontent-tiptile .tip-card-button:first-child{display:flex;justify-content:start;}
+    .tip-card .tip-card-content .bottomcontent-tiptile .tip-card-button:first-child a{padding:5px 25px; font-size: 11px;line-height: 14px;text-align: center;}
+    .tip-card .tip-card-content .bottomcontent-tiptile .tip-card-button:last-child a{font-size: 11px;line-height: 14px;letter-spacing: 0.12px;}
+
+    ul.product-grid li:has(.tip-card) {
+      max-width:100%;
+      width:100%;
+        grid-column: 1 / -1;
+        margin: 0;
+    }
+
+    }
+</style>
+
+{% assign tip_tiles_content = tip_tiles_array | split: '#' %}
+{% assign image_link = tip_tiles_content[0] %}
+{% assign image_desktop_mobile = image_link | split: '@' %}
+{% assign image_desktop = image_desktop_mobile[0] %}
+{% assign image_mobile = image_desktop_mobile[1] %}
+
+{% assign cta_text1 = tip_tiles_content[1] %}
+{% assign cta_link1 = tip_tiles_content[2] %}
+{% assign cta_text2 = tip_tiles_content[3] %}
+{% assign cta_link2 = tip_tiles_content[4] %}
+{% assign title = tip_tiles_content[5] %}
+{% assign subtitle = tip_tiles_content[6] %}
+{% assign price = tip_tiles_content[7] %}
+
+<div class="tip-card ">
+  <div class="card__media media-slider">
+    <div class="media media--transparent media--hover-effect">
+      {% if image_desktop != blank %}
+        <img src="{{ image_desktop }}" class="desktopimg_tiptile" loading="{{ lazy_load }}" width="100%" height="auto">
+      {% endif %}
+      {% if image_mobile != blank %}
+        <img src="{{ image_mobile }}" class="mobileimg_tiptile" loading="{{ lazy_load }}" width="100%" height="auto">
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="tip-card-content font-heebo-regular">
+    <div class="topcontent-tiptile">
+      {% if title != blank %}
+        <h4 class="tip-card-title card__heading  h5 name-collection">{{ title }}</h4>
+      {% endif %}
+
+      {% if subtitle != blank %}
+        <p class="tip-card-subtitle ">{{ subtitle }}</p>
+      {% endif %}
+      {% if price != blank %}
+        <p class="tip-card-price">{{ price }}</p>
+      {% endif %}
+    </div>
+
+    <div class="bottomcontent-tiptile">
+      {% if cta_link1 != blank and cta_text1 != blank %}
+        <div class="tip-card-button">
+          <a href="{{ cta_link1 }}" class="tip-card-button-link">
+            {{ cta_text1 }}
+          </a>
+        </div>
+      {% endif %}
+      {% if cta_link2 != blank and cta_text2 != blank %}
+        <div class="tip-card-button">
+          <a href="{{ cta_link2 }}" class="tip-card-button-link">
+            {{ cta_text2 }}
+          </a>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>

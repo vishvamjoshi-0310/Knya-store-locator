@@ -1,0 +1,92 @@
+{{ 'section-breakpoint-privacy.css' | asset_url | stylesheet_tag }}
+
+<section class="breakpoint-privacy-section">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="breakpoint-privacy-heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+
+    <div class="breakpoint-privacy-cards">
+      {%- for block in section.blocks -%}
+        <div class="breakpoint-privacy-card">
+          {%- if block.settings.icon_image != blank -%}
+            <div class="breakpoint-privacy-card-icon">
+              <img
+                src="{{ block.settings.icon_image | image_url: width: 400 }}"
+                alt="{{ block.settings.icon_image.alt | escape }}" 
+                loading="lazy"
+                width="{{ block.settings.icon_image.width }}"
+                height="{{ block.settings.icon_image.height }}"
+              >
+            </div>
+          {%- endif -%}
+
+          {%- if block.settings.card_text != blank -%}
+            <div class="breakpoint-privacy-card-text">
+              {{ block.settings.card_text }}
+            </div>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+</section>
+
+{% schema %}
+{
+  "name": "Breakpoint Privacy",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section Heading",
+      "default": "Your privacy. Your space."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "privacy_card",
+      "name": "Privacy Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon_image",
+          "label": "Icon Image"
+        },
+        {
+          "type": "text",
+          "id": "card_text",
+          "label": "Card Text",
+          "default": "Anonymous"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Breakpoint Privacy",
+      "blocks": [
+        {
+          "type": "privacy_card",
+          "settings": {
+            "card_text": "Anonymous"
+          }
+        },
+        {
+          "type": "privacy_card",
+          "settings": {
+            "card_text": "Secure"
+          }
+        },
+        {
+          "type": "privacy_card",
+          "settings": {
+            "card_text": "Empathetic"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+

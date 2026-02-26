@@ -1,0 +1,67 @@
+{{ 'vitals-sneak-section-stylesheet.css' | asset_url | stylesheet_tag: preload: true }}
+
+<div class="vitals-sneak-section">
+  <p>{{ section.settings.heading }}</p>
+  <div class="sneak-peek-cards">
+    {% for block in section.blocks %}
+      <div class="sneak-peek-card">
+        {{
+          block.settings.sneak_peek_image
+          | image_url: width: 600
+          | image_tag: widths: '420, 600', loading: 'lazy', height: 'auto', class: ''
+        }}
+      </div>
+    {% endfor %}
+  </div>
+  <div class="sneak-navigation-container">
+    <div class="sneak-navigation-dot-container">
+      {% for block in section.blocks %}
+        <span class="sneak-navigation-dot" data-tab="feature-{{ forloop.index }}">
+          {{- block.settings.feature_name -}}
+        </span>
+      {% endfor %}
+    </div>
+    <div class="sneak-navigation-button-container">
+      <div class="sneak-navigation-button prev">
+        {% render 'stetho-feature-prev-icon' %}
+      </div>
+      <div class="sneak-navigation-button next">
+        {% render 'stetho-feature-next-icon' %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="{{ 'vitals-sneak-section-stylesheet.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "vitals-sneak-section",
+  "class": "vitals-sneak-section-parent",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "block",
+      "name": "Sneak Peek Cards",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "sneak_peek_image",
+          "label": "Sneak Peek Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Vitals Sneak Section"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,109 @@
+{{ 'section-breakpoint-feeling.css' | asset_url | stylesheet_tag }}
+
+<section id="BreakpointFeeling-{{ section.id }}" class="breakpoint-feeling-section">
+  <div class="breakpoint-feeling-parent">
+    {%- if section.settings.background_image_desktop != blank or section.settings.background_image_mobile != blank -%}
+      <picture class="breakpoint-feeling-bg">
+          <source
+            media="(max-width: 768px)"
+            srcset="{{ section.settings.background_image_mobile | image_url: width: 800 }}"
+          >
+          <source
+            media="(min-width: 769px)"
+            srcset="{{ section.settings.background_image_desktop | image_url: width: 3000 }}"
+          >
+        {%- liquid
+          if section.settings.background_image_desktop != blank
+            assign bg_image = section.settings.background_image_desktop
+            assign bg_width = 2000
+          else
+            assign bg_image = section.settings.background_image_mobile
+            assign bg_width = 800
+          endif
+          assign bg_height = bg_width | divided_by: bg_image.aspect_ratio | round
+        -%}
+        <img
+          loading="lazy"
+          src="{{ bg_image | image_url: width: bg_width }}"
+          width="{{ bg_width }}"
+          height="{{ bg_height }}"
+          alt="{{ bg_image.alt | escape }}"
+        >
+      </picture>
+    {%- endif -%}
+
+    <div class="breakpoint-feeling-content">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="breakpoint-feeling-heading">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.text != blank -%}
+        <div class="breakpoint-feeling-text">
+          {{ section.settings.text }}
+        </div>
+      {%- endif -%}
+    </div>
+
+    {% comment %} <div class="breakpoint-feeling-button">
+      {%- if section.settings.cta_text != blank or section.settings.cta_icon_svg != blank -%}
+        <a href="{{ section.settings.cta_link }}" class="breakpoint-feeling-cta">
+          {{ section.settings.cta_text }} {{ section.settings.cta_icon_svg }}
+        </a>
+      {%- endif -%}
+    </div> {% endcomment %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Breakpoint Feeling",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "background_image_desktop",
+      "label": "Desktop Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image_mobile",
+      "label": "Mobile Background Image"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "What I might be feeling?"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text Content",
+      "default": "It's not one moment. It's the constant drop after drop that weighs you down."
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA Text",
+      "default": "Speak Anonymously"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA Link"
+    },
+    {
+      "type": "html",
+      "id": "cta_icon_svg",
+      "label": "CTA Icon SVG",
+      "info": "Paste SVG code for the phone icon" 
+    }
+  ],
+  "presets": [
+    {
+      "name": "Breakpoint Feeling"
+    }
+  ]
+}
+{% endschema %}
+

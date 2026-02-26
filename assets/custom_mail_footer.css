@@ -1,0 +1,199 @@
+.footerInitial {
+  border-radius: 0 100px 0 0;
+}
+.footer__blocks-wrapper.grid.grid--1-col.grid--2-col.grid--4-col-tablet {
+  padding-top: 20px;
+}
+.first-flex-div {
+  width: 22%;
+}
+.foot-cust {
+  justify-content: space-between;
+}
+
+.address-text {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 120%;
+}
+.footer .footer-block__heading {
+  line-height: 30px !important;
+}
+@media screen and (max-width: 1024px) and (min-width: 768px) {
+  .address-text {
+    font-size: 1.367vw;
+  }
+}
+@media screen and (max-width: 767px) {
+  .address-text {
+    font-size: 11px;
+    margin-bottom: 0;
+  }
+}
+.top-mail {
+  border-radius: 0 0 120px;
+  background: #482f8f;
+}
+.email-custom {
+  background: #482f8f;
+  color: #fff;
+}
+.emailDiv {
+  color: #fff;
+}
+.emailDiv,
+label.field__label {
+  color: #fff;
+}
+.opacity-email {
+  opacity: 0.3;
+}
+.mob-mail {
+  display: none;
+}
+.emailDiv {
+  display: flex;
+  align-items: center;
+  left: 0;
+  top: 0;
+  margin-bottom: 20px;
+}
+.text-email {
+  width: 78%;
+  font-weight: 600;
+  font-size: 1.719vw;
+  line-height: 120%;
+}
+.email-custom {
+  font-size: 1.094vw;
+  padding-top: 30px !important;
+  font-family: "Heebo-SemiBold";
+}
+.eMailForm {
+  align-items: center;
+  display: flex;
+  width: 50%;
+}
+.footer__newsletter .field {
+  border-bottom: 1.42857px solid #ffffff;
+  padding-bottom: 0 !important;
+}
+.footer__newsletter .field .email-custom {
+  padding: 25px 0;
+  box-shadow: unset;
+}
+.footer__newsletter .field .opacity-email {
+  left: 0 !important;
+  font-size: 1.719vw;
+}
+.footer__newsletter .field .newsletter-form__button {
+  position: static;
+  height: auto;
+  width: auto;
+  border: none;
+  background-color: transparent;
+  width: 60px;
+}
+@media screen and (min-width: 750px) {
+  .footerContainerCustom {
+    width: 70%;
+  }
+}
+@media screen and (max-width: 749px) {
+  .first-flex-div {
+    width: 80%;
+  }
+  .footerContainerCustom {
+    display: flex;
+    width: 100%;
+    grid-template-columns: auto auto;
+  }
+}
+@media screen and (max-width: 1103px) {
+  .eMailText {
+    width: 50%;
+  }
+}
+@media screen and (max-width: 750px) {
+  .eMailForm {
+    width: 100%;
+  }
+  .emailDiv {
+    display: block;
+    height: auto;
+  }
+  .newsletter-form {
+    width: 49% !important;
+  }
+  .text-email {
+    width: 100%;
+    font-weight: 400;
+  }
+}
+/*   @media screen and (max-width:800px){.text-email{margin-left:83px}} */
+@media screen and (max-width: 600px) {
+  .newsletter-form {
+    width: 81% !important;
+  }
+}
+@media screen and (max-width: 500px) {
+  .text-email {
+    padding-top: 12px;
+  }
+  .eMailText {
+    width: 100% !important;
+  }
+}
+@media screen and (max-width: 640px) {
+  .footer__newsletter .field .email-custom {
+    padding: 20px 0 !important;
+  }
+  .footer__newsletter .field .opacity-email {
+    font-size: 14px;
+  }
+  .upper-news-letter {
+    font-family: "Heebo-Regular" !important;
+  }
+  .email-custom {
+    font-size: 14px;
+  }
+  .desk-mail {
+    display: none;
+  }
+  .mob-mail {
+    display: block;
+  }
+  .text-email {
+    margin-top: 0;
+  }
+  .text-email {
+    font-size: 18px !important;
+  }
+  .eMailText {
+    padding-top: 18px;
+  }
+}
+@media screen and (min-width: 640px) and (max-width: 1024px) {
+  .footer__newsletter .field .opacity-email {
+    font-size: 2.148vw;
+  }
+  .text-email {
+    font-size: 2.148vw !important;
+  }
+  .eMailText {
+    width: 100%;
+  }
+}
+@media screen and (min-width: 2000px) {
+  .footer__newsletter .field .email-custom {
+    padding: 31px 0;
+  }
+}
+/* input#NewsletterForm--footer.field__input.email-custom{background-color:transparent !important;} */
+.field__input:focus ~ .field__label {
+  display: none !important;
+}
+.footerContainerCustom .rte img {
+  border: none;
+  box-shadow: none;
+}

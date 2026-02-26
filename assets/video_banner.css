@@ -1,0 +1,40 @@
+
+@media screen and (min-width:767px){
+  .desktop_title{
+      position: absolute;
+    left: 10%;
+    width: 30%;
+    font-size: 3.594vw;
+    color: #F4ECD0;
+      font-family: "Heebo-Medium";
+}
+.mobile_vedio{
+  display:none;
+}
+  .desktop_vedio{
+    display:block;
+  }
+  
+}
+
+@media screen and (max-width:768px){
+   .desktop_title{
+     position: relative;
+    width: 100%;
+     left:0;
+    font-size: 42px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    color: #482F8F;
+    font-family: "Heebo-Medium";
+    margin:60px 0px 10px 0px;
+    padding-left:10px;padding-right:10px;
+   }
+  .mobile_vedio{
+  display:block;
+}
+  .desktop_vedio{
+    display:none;
+  }
+}

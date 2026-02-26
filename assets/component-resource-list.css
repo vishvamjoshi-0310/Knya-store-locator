@@ -1,0 +1,40 @@
+/* Tablet column support for resource-list grid and carousel */
+.resource-list-component-wrapper {
+  .resource-list--grid {
+    @media screen and (min-width: 650px) and (max-width: 1099px) {
+      grid-template-columns: var(--resource-list-columns-tablet, var(--resource-list-columns-mobile));
+    }
+
+    @container resource-list(min-width: 650px) and (max-width: 1099px) {
+      grid-template-columns: var(--resource-list-columns-tablet, var(--resource-list-columns-mobile));
+    }
+  }
+
+  @container resource-list-carousel (max-width: 649px) {
+    .resource-list__carousel .resource-list__slide {
+      --slide-width: clamp(150px, var(--mobile-card-size, 60cqw), var(--slide-width-max));
+    }
+  }
+
+  @container resource-list-carousel (min-width: 650px) and (max-width: 1099px) {
+    .resource-list__carousel .resource-list__slide {
+      --section-slide-width: calc(
+        (100% - (var(--resource-list-column-gap) * (var(--column-count-tablet, var(--column-count)) - 1)) - var(--peek-next-slide-size)) /
+          var(--column-count-tablet, var(--column-count))
+      );
+      --fallback-slide-width: clamp(150px, var(--mobile-card-size, 60cqw), var(--slide-width-max));
+      --slide-width: var(--section-slide-width, var(--fallback-slide-width));
+    }
+  }
+
+  @container resource-list-carousel (min-width: 1100px) {
+    .resource-list__carousel .resource-list__slide {
+      --section-slide-width: calc(
+        (100% - (var(--resource-list-column-gap) * (var(--column-count) - 1)) - var(--peek-next-slide-size)) /
+          var(--column-count)
+      );
+      --fallback-slide-width: clamp(150px, var(--mobile-card-size, 60cqw), var(--slide-width-max));
+      --slide-width: var(--section-slide-width, var(--fallback-slide-width));
+    }
+  }
+}

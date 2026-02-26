@@ -1,0 +1,160 @@
+
+{% if request.path contains 'return_prime' %}
+ <style>
+ .returnprime_modal {
+ display: block;
+ position: fixed;
+ z-index: 1;
+ padding-top: 200px;
+ left: 0;
+ top: 0;
+ width: 100%;
+ height: 100%;
+ overflow: auto;
+ background-color: rgb(0,0,0);
+ background-color: rgba(0,0,0,0.4);
+ }
+ .returnprime_modal_content {
+ background-color: #fefefe;
+ margin: auto;
+ padding: 20px;
+ border: 1px solid #888;
+ width: 30%;
+ }
+ .returnprime_close {
+ color: #aaaaaa;
+ float: right;
+ font-size: 28px;
+ font-weight: bold;
+ } .returnprime_close:hover,
+ .returnprime_close:focus {
+ color: #000;
+ text-decoration: none;
+ cursor: pointer;
+ }
+ .returnprime_feedback_form input[type=text] {
+ width: 100%;
+ padding: 12px 20px;
+ margin: 8px 0;
+ display: inline-block;
+ border: 1px solid #ccc;
+ border-radius: 4px;
+ box-sizing: border-box;
+ }
+ .returnprime_feedback_form button {
+ width: 100%;
+ background-color: #000;
+ color: white;
+ padding: 14px 20px;
+ margin: 8px 0;
+ border: none;
+ border-radius: 4px;
+ cursor: pointer;
+ }
+@media only screen and (max-width: 600px) {
+  .returnprime_modal_content {
+     width: 90%;
+  }
+}
+ </style>
+   
+  <script>
+   function sendPayload(payload) {
+    let returnprime_custom_event = new CustomEvent("returnprime_custom_field", {
+        detail: payload,
+    });
+    document.dispatchEvent(returnprime_custom_event);
+}
+
+function modalScript() {
+    var modal = document.getElementById("ReturnprimeModal");
+    // var span = document.getElementsByClassName("returnprime_close")[0];
+    // span.onclick = function() {
+    //     modal.style.display = "none";
+    // }
+
+    // When the user clicks anywhere outside of the modal, close it
+    // window.onclick = function(event) {
+    //     if (event.target == modal) {
+    //         modal.style.display = "none";
+    //     }
+    // }
+}
+
+    function showHtmlContent() {
+    let htmlContent = `<div class="returnprime_question_content"> 
+        <div id="ReturnprimeModal" class="returnprime_modal">
+            <div class="returnprime_modal_content">
+                <p style="font-size:15px;"></p>
+                <div class="returnprime_feedback_form">
+                    <div class="returnprime_feedback_item"> 
+                      <label style="font-size: 16px;">Please confirm if you have selected the correct quantity of the product?</label>
+                        <input type="text" name="answer" placeholder="Yes/No" required>
+                    </div>
+                    
+                    <button type="button" id="submit__feedback" style="margin-top: 20px;">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>`;
+
+    return htmlContent;
+  }
+
+ function addQuestions(details,selectedReasontext) {
+     let htmlContent = null;
+   if(selectedReasontext) {
+     htmlContent = showHtmlContent();
+   }
+     
+
+
+    document.querySelector('.returnprime-custom-widget').innerHTML = htmlContent;
+    modalScript();
+   console.log("submit__feedback",document.querySelector("#submit__feedback"));
+
+    // onclick of submit button send payload to custom event
+    let payload = [];
+    document.querySelector("#submit__feedback").addEventListener('click', () => {
+        const allFieldsValid = Array.from(document.querySelectorAll(".returnprime_feedback_item input[required]")).every(field => field.value.trim() !== '');
+        if (allFieldsValid) {
+            document.querySelectorAll(".returnprime_feedback_item").forEach((el, i) => {
+            const key = el.querySelector('label').innerHTML;
+            const value = el.querySelector('input').value;
+            payload.push({
+                key: key,
+                value: value
+            })
+            sendPayload(payload)
+            document.getElementById("ReturnprimeModal").style.display = "none";
+
+        });
+        } else {
+           alert("Please fill in all required fields.");
+        }
+
+      
+    });
+}
+
+   function showModalOnReasonChange(detail) {
+         document.querySelector('.reason__field .select__field select').addEventListener('change', function(event) {
+           let selectedValue = this.value;          
+           let selectedReasontext = event.target.options[event.target.options.selectedIndex].innerHTML;
+            addQuestions(detail,selectedReasontext);
+        });
+    }
+
+if (window.location.pathname.includes('return_prime')) {
+    document.addEventListener("returnprime_return_page", (e) => {
+        showModalOnReasonChange(e.detail);
+    });
+    document.addEventListener("returnprime_exchange_page", (e) => {
+      setTimeout(() => {
+        showModalOnReasonChange(e.detail);
+      },500);
+    });
+}
+   //<span class="returnprime_close">&times;</span>
+   </script>
+{% endif %}

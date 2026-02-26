@@ -1,0 +1,16 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "banner": { "type": "main-login-banner-section", "disabled": true, "settings": { "desktop_banner_image": "shopify://shop_images/login-banner_3000x_f18274dc-8eec-414e-b6a0-59da5486a76a.webp", "mobile_banner_image": "shopify://shop_images/login-banner_3000x_f18274dc-8eec-414e-b6a0-59da5486a76a.webp", "banner_text": "My Account" } },
+    "main": { "type": "main-register", "settings": { "padding_top": 0, "padding_bottom": 0, "login_header_title": "Become an Knya All Star!", "login_header_content": "All you have to do to avail your All Star privileges is to register. Benefits include:", "list_content_one": "Giveaways", "list_content_two": "Sale extensions", "list_content_three": "Early access to special launches", "list_content_four": "Additional member exclusive discounts", "list_content_five": "Be the first to know the launch dates of our biggest collections" } }
+  },
+  "order": ["banner", "main"]
+}

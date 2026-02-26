@@ -1,0 +1,262 @@
+.main-div-pro {
+    background-color: #482f8f;
+}
+
+.grid-grad_details {
+    background: linear-gradient(180deg, rgba(96, 96, 96, 0) 0%, #1d1b1b 100%);
+    position: absolute;
+    width: 100%;
+    height: 31%;
+    bottom: 0;
+    left: 0;
+    border-radius: 0px 0px 0px 14.913px;
+}
+
+.grid-text {
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-align: center;
+}
+
+.detail-option.opacity-color {
+    color: var(--Knya-Palette-Secondary, #f5ebd2);
+    text-align: center;
+    font-family: Heebo-Medium;
+    font-size: clamp(30px, calc(32 * (100vw / 1440)), 34px);
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: 0.64px;
+}
+
+.uppertab-option {
+    display: flex;
+    gap: 10px;
+}
+
+.inner-pro {
+    padding: 25px 0;
+}
+
+.lowertab-options {
+    display: flex;
+    justify-content: space-between;
+}
+
+.icon-tab {
+    padding-top: 10px;
+}
+
+.tab-left {
+    width: 66%;
+}
+
+.tab-view {
+    display: flex;
+}
+
+.right-inner {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    gap: 40px;
+    line-height: 0;
+}
+
+.main-grid-text-div {
+    position: absolute;
+    bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    height: max-content;
+    text-align: center;
+    line-height: 120%;
+}
+
+.grid-text {
+    font-size: clamp(12px, calc(14 * (100vw / 1440)), 16px);
+    padding: 0 17px;
+    width: 100%;
+    height: auto;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    color: #f4ecd0;
+    font-family: "Heebo-Regular";
+    letter-spacing: 0.497px;
+}
+
+.grid-imagess img {
+    width: 100%;
+    height: auto;
+    border-radius: 0px 0px 0px 14.913px;
+}
+
+.grid-imagess {
+    position: relative;
+}
+
+.ecxchange-content {
+    width: 50%;
+    font-family: Heebo-Regular;
+    font-size: 1.25vw;
+    color: #482f8f;
+    line-height: 120%;
+}
+
+.exchange-div {
+    display: flex;
+    gap: 95px;
+}
+
+.exchange-div {
+    display: none;
+}
+
+/* .lower.mainn-div-pro {
+    background-color: #f4ecd0;
+    border-radius: 0px 0px 0px 69px;
+  } */
+.ecxchange-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.tab-right {
+    width: 32%;
+}
+
+.tab-right-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+span.text-tab {
+    color: var(--Knya-Purple, #462d8c);
+    font-family: Heebo-Medium;
+    font-size: clamp(30px, calc(32 * (100vw / 1440)), 34px);
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: 0.64px;
+}
+
+@media screen and (min-width: 641px) and (max-width: 1024px) {
+    .right-inner {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        gap: 20px;
+    }
+
+    .grid-text {
+        font-size: 1.367vw !important;
+    }
+
+    .ecxchange-content {
+        font-size: 1.563vw;
+        width: 100%;
+    }
+}
+
+.exchange-lower {
+    padding-top: 16px;
+}
+
+@media screen and (max-width: 640px) {
+    .right-inner {
+        gap: 24px;
+    }
+
+    span.verticle-line {
+        font-size: 12px !important;
+    }
+
+    .icon-tab svg {
+        width: 25px !important;
+        height: 25px !important;
+    }
+
+    .exchange-lower {
+        font-family: "Heebo-SemiBold" !important;
+    }
+
+    .exchange_width {
+        padding: 0;
+    }
+
+    .ecxchange-content {
+        font-size: 12px;
+    }
+
+    .uppertab-option {
+        justify-content: center;
+    }
+
+    .lowertab-options {
+        display: block;
+        gap: 95px;
+    }
+
+    .tab-right {
+        width: 100%;
+    }
+
+    .tab-view {
+        display: block;
+    }
+
+    .tab-left {
+        width: 100%;
+        display: flex;
+        gap: 10px;
+        padding-top: 12px;
+    }
+
+    .ecxchange-content-icon {
+        display: flex !important;
+        padding-top: 3px !important;
+    }
+
+    .right-inner {
+        grid-template-columns: auto auto;
+    }
+
+    .ecxchange-content {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .icon-tab {
+        padding: 0;
+    }
+
+    .inner-pro {
+        padding: 10px 25px !important;
+    }
+
+    .text-tab {
+        font-family: "Heebo-Regular" !important;
+    }
+}
+
+/* .detail-option[dataid='option-one']{border-right: 2px solid;padding-right: 10px;} */
+span.verticle-line {
+    font-size: 1.25vw;
+    color: #f4ecd0;
+}
+
+.ecxchange-content-icon {
+    padding-top: 5px;
+    display: none;
+}
+
+.icon-tab svg {
+    width: 3.125vw;
+    height: 6.4vh;
+}

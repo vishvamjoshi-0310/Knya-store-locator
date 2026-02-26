@@ -1,0 +1,218 @@
+<div class="labelandtype">
+  {% assign product_type = product.metafields.custom.product_type.value %}
+  {% if product_type.product_type_name != blank
+    and product_type.redirection_url != blank
+    and product_type.pop_up_image != blank
+  %}
+    {% assign redirectionurl = product_type.redirection_url %}
+    {% assign imageModal = product_type.pop_up_image | img_url: '490x' %}
+    <div class="producttypebox font-heebo-medium">
+      <span class="icondesktop" onClick="productTypeModal.redirectionUrl('{{ redirectionurl }}')">
+        <span> {{ product_type.product_type_name }}</span>
+        <span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path
+                d="M7.56543 12.0079H9.06543V7.50793H7.56543V12.0079ZM8.31543 6.00793C8.52793 6.00793 8.70618 5.93593 8.85018 5.79193C8.99418 5.64793 9.06593 5.46993 9.06543 5.25793C9.06493 5.04593 8.99293 4.86793 8.84943 4.72393C8.70593 4.57993 8.52793 4.50793 8.31543 4.50793C8.10293 4.50793 7.92493 4.57993 7.78143 4.72393C7.63793 4.86793 7.56593 5.04593 7.56543 5.25793C7.56493 5.46993 7.63693 5.64818 7.78143 5.79268C7.92593 5.93718 8.10393 6.00893 8.31543 6.00793ZM8.31543 15.7579C7.27793 15.7579 6.30293 15.5609 5.39043 15.1669C4.47793 14.7729 3.68418 14.2387 3.00918 13.5642C2.33418 12.8897 1.79993 12.0959 1.40643 11.1829C1.01293 10.2699 0.815931 9.29493 0.815431 8.25793C0.814931 7.22093 1.01193 6.24593 1.40643 5.33293C1.80093 4.41993 2.33518 3.62618 3.00918 2.95168C3.68318 2.27718 4.47693 1.74293 5.39043 1.34893C6.30393 0.954935 7.27893 0.757935 8.31543 0.757935C9.35193 0.757935 10.3269 0.954935 11.2404 1.34893C12.1539 1.74293 12.9477 2.27718 13.6217 2.95168C14.2957 3.62618 14.8302 4.41993 15.2252 5.33293C15.6202 6.24593 15.8169 7.22093 15.8154 8.25793C15.8139 9.29493 15.6169 10.2699 15.2244 11.1829C14.8319 12.0959 14.2977 12.8897 13.6217 13.5642C12.9457 14.2387 12.1519 14.7732 11.2404 15.1677C10.3289 15.5622 9.35393 15.7589 8.31543 15.7579ZM8.31543 14.2579C9.99043 14.2579 11.4092 13.6767 12.5717 12.5142C13.7342 11.3517 14.3154 9.93293 14.3154 8.25793C14.3154 6.58293 13.7342 5.16418 12.5717 4.00168C11.4092 2.83918 9.99043 2.25793 8.31543 2.25793C6.64043 2.25793 5.22168 2.83918 4.05918 4.00168C2.89668 5.16418 2.31543 6.58293 2.31543 8.25793C2.31543 9.93293 2.89668 11.3517 4.05918 12.5142C5.22168 13.6767 6.64043 14.2579 8.31543 14.2579Z"
+                fill="#49454F" />
+          </svg>
+        </span>
+      </span>
+      <span
+        class="iconmobile"
+        onclick="productTypeModal.openModal('{{ redirectionurl }}','{{ imageModal }}',event);return false;"
+      >
+        <span> {{ product_type.product_type_name }}</span>
+        <span class="iconmobile">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path
+                d="M7.56543 12.0079H9.06543V7.50793H7.56543V12.0079ZM8.31543 6.00793C8.52793 6.00793 8.70618 5.93593 8.85018 5.79193C8.99418 5.64793 9.06593 5.46993 9.06543 5.25793C9.06493 5.04593 8.99293 4.86793 8.84943 4.72393C8.70593 4.57993 8.52793 4.50793 8.31543 4.50793C8.10293 4.50793 7.92493 4.57993 7.78143 4.72393C7.63793 4.86793 7.56593 5.04593 7.56543 5.25793C7.56493 5.46993 7.63693 5.64818 7.78143 5.79268C7.92593 5.93718 8.10393 6.00893 8.31543 6.00793ZM8.31543 15.7579C7.27793 15.7579 6.30293 15.5609 5.39043 15.1669C4.47793 14.7729 3.68418 14.2387 3.00918 13.5642C2.33418 12.8897 1.79993 12.0959 1.40643 11.1829C1.01293 10.2699 0.815931 9.29493 0.815431 8.25793C0.814931 7.22093 1.01193 6.24593 1.40643 5.33293C1.80093 4.41993 2.33518 3.62618 3.00918 2.95168C3.68318 2.27718 4.47693 1.74293 5.39043 1.34893C6.30393 0.954935 7.27893 0.757935 8.31543 0.757935C9.35193 0.757935 10.3269 0.954935 11.2404 1.34893C12.1539 1.74293 12.9477 2.27718 13.6217 2.95168C14.2957 3.62618 14.8302 4.41993 15.2252 5.33293C15.6202 6.24593 15.8169 7.22093 15.8154 8.25793C15.8139 9.29493 15.6169 10.2699 15.2244 11.1829C14.8319 12.0959 14.2977 12.8897 13.6217 13.5642C12.9457 14.2387 12.1519 14.7732 11.2404 15.1677C10.3289 15.5622 9.35393 15.7589 8.31543 15.7579ZM8.31543 14.2579C9.99043 14.2579 11.4092 13.6767 12.5717 12.5142C13.7342 11.3517 14.3154 9.93293 14.3154 8.25793C14.3154 6.58293 13.7342 5.16418 12.5717 4.00168C11.4092 2.83918 9.99043 2.25793 8.31543 2.25793C6.64043 2.25793 5.22168 2.83918 4.05918 4.00168C2.89668 5.16418 2.31543 6.58293 2.31543 8.25793C2.31543 9.93293 2.89668 11.3517 4.05918 12.5142C5.22168 13.6767 6.64043 14.2579 8.31543 14.2579Z"
+                fill="#49454F" />
+          </svg>
+        </span>
+      </span>
+      <div class="popupproducttypeimg">
+        <div class="innerimgcont">
+          <a href="{{ redirectionurl }}"
+            ><img
+              src="{{ imageModal }}"
+              width="490"
+              height="auto"
+              alt="product type"
+              loading="lazy"
+          ></a>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
+  <div class="productrattingbox font-heebo-regular">
+    <div class="ratinng-div">
+      <span class="star-rating"> {% render 'star-rating' %} </span>
+      <span class="rating-custom font-heebo-regular rating-{{ template.name }}">
+        {{- product.metafields.reviews.rating.value | slice: 0, 3 }}
+      </span>
+    </div>
+  </div>
+</div>
+<style>
+  product-card {
+    overflow: visible !important;
+  }
+  product-card .product-card__content {
+    overflow: visible !important;
+  }
+  product-card .labelandtype {
+    width: 100%;
+    display: flex;
+    position: relative;
+    align-items: center;
+    column-gap: 12px;
+    overflow: visible;
+    margin-top: 8px;
+    @media screen and (max-width: 749px) {
+      margin-top: 9px;
+    }
+  }
+  product-card .labelandtype .producttypebox,
+  product-card .labelandtype .producttypebox .icondesktop {
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+    cursor: pointer;
+    line-height: 100%;
+  }
+  product-card .labelandtype .producttypebox .iconmobile {
+    display: none;
+    align-items: center;
+    column-gap: 5px;
+    cursor: pointer;
+    line-height: 100%;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  product-card .labelandtype .producttypebox {
+    position: relative;
+    overflow: visible;
+  }
+  product-card .labelandtype .producttypebox .popupproducttypeimg {
+    max-width: 490px;
+    min-width: 490px;
+    width: 490px;
+    height: auto;
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    margin-bottom: 10px;
+    z-index: 9999;
+    display: none;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    background: #fff;
+    overflow: hidden;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+  product-card .labelandtype .producttypebox .popupproducttypeimg .innerimgcont {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  product-card .labelandtype .producttypebox .popupproducttypeimg img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  product-card .labelandtype .producttypebox:hover .popupproducttypeimg {
+    display: block;
+    opacity: 1;
+    pointer-events: auto;
+  }
+  @media screen and (max-width: 1024px) {
+    product-card .labelandtype .producttypebox .icondesktop {
+      display: none;
+    }
+    product-card .labelandtype .producttypebox .iconmobile {
+      display: flex;
+    }
+    product-card .labelandtype .producttypebox .popupproducttypeimg {
+      display: none !important;
+    }
+  }
+  product-card .labelandtype .productrattingbox {
+    margin-left: auto;
+  }
+  .ratinng-div {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+  }
+  product-card .labelandtype .productrattingbox span {
+    font-size: 12px !important;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0.01em;
+    color: #f6917e !important;
+  }
+  product-card .labelandtype .productrattingbox .star-rating {
+    width: 14px;
+    height: 14px;
+    display: flex;
+    align-items: center;
+  }
+  product-card .labelandtype .productrattingbox span svg {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0.01em;
+    color: #f6917e;
+    width: 12px;
+    height: 11px;
+    min-width: 12px;
+    min-height: 11px;
+  }
+  product-card .labelandtype .productrattingbox span {
+    font-size: 12px !important;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0.01em;
+    color: #f6917e !important;
+  }
+  product-card .labelandtype .producttypebox .icondesktop span:nth-child(1) {
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 14px;
+    letter-spacing: 0.005em;
+    color: #49454f;
+    text-transform: capitalize;
+    padding-top: 2px;
+    text-decoration: underline;
+    font-family: 'Heebo-Medium';
+    font-weight: 500;
+  }
+  product-card .labelandtype .producttypebox .icondesktop span:nth-child(2) {
+    line-height: 18px;
+    display: flex;
+    align-items: center;
+  }
+  product-card .labelandtype .producttypebox .iconmobile span:nth-child(1) {
+    font-size: 12px;
+    font-weight: 500;
+    font-family: 'Heebo-Medium';
+    line-height: 100%;
+    letter-spacing: 0.005em;
+    color: #49454f;
+    text-transform: capitalize;
+    padding-top: 2px;
+    text-decoration: underline;
+    @media screen and (max-width: 1024px) {
+      font-size: 11px;
+      font-weight: 400;
+      line-height: 100%;
+    }
+  }
+  product-card .labelandtype .producttypebox .iconmobile span:nth-child(2) {
+    line-height: 18px;
+    display: flex;
+    align-items: center;
+  }
+</style>

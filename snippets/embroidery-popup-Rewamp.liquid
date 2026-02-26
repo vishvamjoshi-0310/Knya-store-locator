@@ -1,0 +1,141 @@
+{{ 'embroidery-popup-Rewamp.css' | asset_url | stylesheet_tag }}
+
+<!-- HTML + Liquid -->
+<div id="embroideryPopup" class="embroidery-popup-overlay">
+  <div class="embroidery-popup-container">
+    <div class="titleembroideryformobile">
+     <button class="embroidery-close-popup1" onclick="closeEmbroideryPopup()">
+        {% render 'svg-EmbroideryClodeIcon1' %}
+      </button>
+      <h4>Add Personalisation</h4>
+    </div>
+    <div class="embroidery-popup-image">
+      <button class="embroidery-close-popup" onclick="closeEmbroideryPopup()">
+        {% render 'svg-EmbroideryClodeIcon' %}
+      </button>
+      <div class="preview-text-overlay-svg">
+        <p>Your Text Goes Here</p>
+       {% render "preview-text-overlay-svg" %}
+      </div>
+      <div class="preview-text-overlay">
+        <div class="preview-text-line1"></div>
+        <div class="preview-text-line2"></div>
+      </div>
+
+      <div class="preview-image-wrapper" style="display: none;">
+      </div>
+      {% if product.metafields.custom.engraving_product_desk_image != blank %}
+        <img
+          src="{{ product.metafields.custom.engraving_product_desk_image | file_url }}&width=620"
+          class="Embroidery_usp-image_desk"
+          loading="lazy"
+          alt="Embroidery-section-image"
+        >
+      {% else %}
+        {{
+          block.settings.EmbroideryLeftImage_desk
+          | image_url: width: 620
+          | image_tag: class: 'Embroidery_usp-image_desk', loading: 'lazy', alt: 'Embroidery-section-image'
+        }}
+      {% endif %}
+
+      {% if product.metafields.custom.engraving_product_mob_image != blank %}
+        <img
+          src="{{ product.metafields.custom.engraving_product_mob_image | file_url }}&width=420"
+          class="Embroidery_usp-image_mob"
+          loading="lazy"
+          alt="Embroidery-section-image"
+        >
+      {% else %}
+        {{
+          block.settings.EmbroideryLeftImage_mob
+          | image_url: width: 420
+          | image_tag: class: 'Embroidery_usp-image_mob', loading: 'lazy', alt: 'Embroidery-section-image'
+        }}
+      {% endif %}
+    </div>
+
+    <div class="embroidery-popup-content">
+      <h4>ADD PERSONALISATION</h4>
+      <div class="embroidery-popup-description emb-padding">
+        <p>Embroidery Selected</p>
+      </div>
+
+      <div class="embroidery-popup-input emb-padding">
+        <!-- first -->
+
+        {% render 'embroidery-Popup-First',section: section, block: block %}
+        <!-- first -->
+      </div>
+      <!-- second page -->
+      {% if block.settings.EmbroideryFinalbullets != blank %}
+        <div class="finalEmbroidery_info">
+            <p>
+                {% render 'EmbroideryFinal_info_svg' %}
+                <strong>Here’s your final personalised look!</strong>
+            </p>
+            {{ block.settings.EmbroideryFinalbullets }}
+
+          
+<div class="finalEmbroidery_info_button-group">
+  <button class="reset-btn finalEmbroidery_info_button-group_reset" onclick="gobackEmbroidery()">GO BACK</button>
+  <button class="add-btn finalEmbroidery_info_button-group_add" onclick="handleEmbroideryConfirmation()">CONFIRM</button>
+</div>
+        </div>
+    {% endif %}
+      <!-- second page end -->
+    </div>
+  </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const showEmbRadio = document.getElementById("showEmb");
+      const popup = document.getElementById("embroideryPopup");
+      const closeBtn = document.querySelector(".embroidery-close-popup");
+      const bodyEmb = document.querySelector("body");
+
+       const radioButtons = document.querySelectorAll("input[name='embroidery']");
+      const embSelectOpt = document.querySelector(".emb_select_opt");
+
+      radioButtons.forEach(radio => {
+          radio.addEventListener("change", function () {
+            radioButtons.forEach(rb => rb.parentElement.classList.remove("checked"));
+              if (this.checked) {
+                this.parentElement.classList.add("checked")
+                  embSelectOpt.style.display = "none";
+              
+              }
+          });
+      });
+
+      showEmbRadio.addEventListener("change", function () {
+        if (this.checked) {
+          popup.style.display = "flex"; // Show popup
+          bodyEmb.classList.add("bodyEmbhidden");
+             
+        }
+      });
+
+      // Hide popup if user clicks outside
+      popup.addEventListener("click", function (e) {
+        if (e.target === popup) {
+          popup.style.display = "none";
+           bodyEmb.classList.remove("bodyEmbhidden");
+      closeEmbroideryPopup();
+        }
+      });
+    });
+       function closeEmbroideryPopup() {
+    try {
+       const engravingBox = document.querySelector(".embroidery-box");
+           const radioButtonsAlls = document.querySelectorAll("input[name='embroidery']");
+            radioButtonsAlls.forEach(rb => rb.parentElement.classList.remove("checked"));
+      document.getElementById("embroideryPopup").style.display = "none";
+      document.body.classList.remove("bodyEmbhidden");      
+        engravingBox.querySelector(".popupbtnembroidery").checked = false;
+    } catch (error) {
+      console.error("Error closing popup:", error.message);
+    }
+  }
+</script>

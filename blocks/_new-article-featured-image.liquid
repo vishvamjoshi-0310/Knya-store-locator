@@ -1,0 +1,72 @@
+
+{%- doc -%}
+  Renders the new article featured image block with metafields for desktop/mobile images.
+{%- enddoc -%}
+
+{% liquid
+  if article != blank
+    assign current_article = article
+  elsif closest.article != blank
+    assign current_article = closest.article
+  endif
+%}
+
+{% if current_article != blank %}
+  {% if current_article.metafields.custom.desktop_featured_image.value != blank
+    or current_article.metafields.custom.mobile_featured_image_.value != blank
+  %}
+    <div class="featureImage_containner page-width" {{ block.shopify_attributes }}>
+      {% if current_article.metafields.custom.desktop_featured_image.value != blank %}
+        <div class="featureImgDesktop">
+          <img
+            src="{{ current_article.metafields.custom.desktop_featured_image.value | image_url: width: 1600 }}"
+            alt="blog banner"
+            width="{{ current_article.metafields.custom.desktop_featured_image.value.width }}"
+            height="{{ current_article.metafields.custom.desktop_featured_image.value.height }}"
+          >
+        </div>
+      {% endif %}
+      {% if current_article.metafields.custom.mobile_featured_image_.value != blank %}
+        <div class="featureImgMobile">
+          <img
+            src="{{ current_article.metafields.custom.mobile_featured_image_.value | image_url: width: 600 }}"
+            alt="blog banner"
+            width="{{ current_article.metafields.custom.mobile_featured_image_.value.width }}"
+            height="{{ current_article.metafields.custom.mobile_featured_image_.value.height }}"
+          >
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  {% if current_article.author or current_article.published_at %}
+    <div class="page-width-updated formobile_only_author" {{ block.shopify_attributes }}>
+      <div class="authorandpublishdate">
+        {% if current_article.author %}
+          <span
+            class="caption-with-letter-spacing"
+            itemprop="author"
+            itemscope
+            itemtype="http://schema.org/Person"
+          >
+            <span class="authortt_write">Written by</span>
+            <span itemprop="name" class="authortt_name">{{ current_article.author }}</span>
+          </span>
+        {% endif %}
+        {% if current_article.published_at %}
+          <span class="circle-divider caption-with-letter-spacing" itemprop="dateCreated datePublished">
+            {{- current_article.published_at | time_tag: format: 'date' -}}
+          </span>
+        {% endif %}
+      </div>
+    </div>
+  {% endif %}
+{% endif %}
+
+{% schema %}
+{
+  "name": "t:sections.main-article.blocks.featured_image.name",
+  "settings": []
+}
+{% endschema %}
+

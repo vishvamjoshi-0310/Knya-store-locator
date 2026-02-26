@@ -1,0 +1,163 @@
+.breakpoint-difference-section {
+  width: 100%;
+  padding: 56px 80px;
+}
+.breakpoint-difference-section .breakpoint-difference-heading {
+  font-family: Poppins-Regular;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 64px;
+  letter-spacing: 0px;
+  margin-bottom: 22px;
+  color: #000000;
+}
+.breakpoint-difference-section .breakpoint-difference-slider {
+  overflow: visible;
+}
+.breakpoint-difference-section .breakpoint-difference-slider-wrapper {
+  display: flex;
+  align-items: stretch;
+}
+.breakpoint-difference-section .breakpoint-difference-slider-slide {
+  height: auto;
+  display: flex;
+  flex-shrink: 0;
+}
+.breakpoint-difference-section .breakpoint-difference-slider-static .breakpoint-difference-slider-wrapper {
+  display: flex;
+  gap: 14px;
+}
+.breakpoint-difference-section .breakpoint-difference-slider-static .breakpoint-difference-slider-slide {
+  flex: 1;
+  flex-shrink: 0;
+}
+.breakpoint-difference-section .breakpoint-difference-stat {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  flex: 1;
+  padding-top: 36px;
+  width: 100%;
+}
+.breakpoint-difference-section .breakpoint-difference-stat-number {
+  font-family: Poppins-Medium;
+  font-weight: 500;
+  font-size: 84px;
+  line-height: 102px;
+  letter-spacing: -0.25px;
+  text-align: center;
+  vertical-align: bottom;
+  color: #000000;
+  margin-bottom: 3px;
+}
+.breakpoint-difference-section .breakpoint-difference-stat-subtitle {
+  font-family: Poppins-Regular;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 36px;
+  letter-spacing: 0px;
+  color: #616161;
+  vertical-align: middle;
+  text-align: center;
+}
+.breakpoint-difference-section .breakpoint-difference-subtitle-text {
+  display: inline;
+}
+.breakpoint-difference-section .breakpoint-difference-underline-wrapper {
+  position: relative;
+  display: inline-block;
+  color: #4949e9;
+  font-family: Poppins-Italic;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 40px;
+  letter-spacing: 0%;
+}
+.breakpoint-difference-section .breakpoint-difference-underline {
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  pointer-events: none;
+}
+@media screen and (max-width: 768px) {
+  .breakpoint-difference-section {
+    padding: 36px 18px;
+  }
+  .breakpoint-difference-section .breakpoint-difference-heading {
+    font-size: 24px;
+    line-height: 32px;
+  }
+  .breakpoint-difference-section .breakpoint-difference-slider {
+    overflow: hidden;
+  }
+  
+  .breakpoint-difference-section .breakpoint-difference-slider-wrapper {
+    display: flex;
+    transition: transform 0.3s ease;
+    will-change: transform;
+  }
+  
+  .breakpoint-difference-section .breakpoint-difference-slider-slide {
+    width: 100%;
+    flex-shrink: 0;
+    min-width: 100%;
+    height: 124px;
+  }
+  
+  .breakpoint-difference-section .breakpoint-difference-slider-static .breakpoint-difference-slider-wrapper {
+    display: flex;
+    gap: 22px;
+  }
+  
+  .breakpoint-difference-section .breakpoint-difference-slider-static .breakpoint-difference-slider-slide {
+    flex: unset;
+    flex-shrink: 0;
+    min-width: auto;
+  }
+  
+  .breakpoint-difference-section .breakpoint-difference-slider-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 22px;
+  }
+  
+  .breakpoint-difference-section .breakpoint-difference-pagination-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #E0E0E0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .breakpoint-difference-section .breakpoint-difference-pagination-dot.active {
+    background-color: #000000;
+  }
+  
+  .breakpoint-difference-section .breakpoint-difference-stat {
+    padding-top: 0px;
+  }
+  .breakpoint-difference-section .breakpoint-difference-stat-number {
+    font-size: 56px;
+    line-height: 60px;
+    white-space: nowrap;
+  }
+  .breakpoint-difference-section .breakpoint-difference-stat-subtitle {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .breakpoint-difference-section .breakpoint-difference-underline-wrapper {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .breakpoint-difference-section .breakpoint-difference-underline {
+    bottom: -2px;
+    left: 0;
+  }
+}

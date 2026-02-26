@@ -1,0 +1,183 @@
+{{ 'ecoflex-flexthefit.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .main-flexthefitpdp-container {max-width: 100%;margin-top:{{ section.settings.margintop_pdp}}px;}
+   @media screen and (max-width: 640px){
+      .main-flexthefitpdp-container {max-width: 100%;margin-top:{{ section.settings.margintop_pdpmob}}px;}
+   }
+{%- endstyle -%}
+
+{% assign flex_img = product.metafields.custom.flex_fit_image.value %}
+{% assign flex_name = product.metafields.custom.flex_fit_name.value %}
+{% assign flex_designation = product.metafields.custom.flex_fit_designation.value %}
+{% if flex_img %}
+  <div class="main-flexthefitpdp-container font-heebo-medium">
+    <div class="page-width">
+      <div class="{% if section.settings.ecoflex_flexthefit  %} page-padding-right page-padding-left{% endif %} {% if section.settings.ecoflex_flexthefit_mob %}padding-right-mob padding-left-mob{% endif %}">
+        <div class="text-conatiner">
+          <h2 class="main-heading">{{ section.settings.pdp_heading }}</h2>
+          <p class="main-paragraph">{{ section.settings.pdp_para }}</p>
+        </div>
+        <div class="flexfit-image-container">
+          <div class="left-image-container">
+            <div class="left-image-contains-container relative-img ">
+              {% for img-pdp in flex_img limit: 1 %}
+                {{ img-pdp | image_url: width: 360 | image_tag: class: 'main-image-class', loading: 'lazy' }}
+                <div class="name-left">
+                  <h5 class="">{{ flex_name[forloop.index0] }}</h5>
+                  <!-- <span class="span-sub-class">{{ flex_designation[forloop.index0] }}</span> -->
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+          <div class="right-image-container">
+            <div class="right-up relative-img">
+              {% for img-pdp in flex_img limit: 3 %}
+                {% if forloop.first %}
+                  {% continue %}
+                {% endif %}
+                <div class="relative-img ">
+                  {{ img-pdp | image_url: width: 360 | image_tag: class: 'main-image-class', loading: 'lazy' }}
+                  <div class="right-up-text">
+                    <h5 class="">{{ flex_name[forloop.index0] }}</h5>
+                    <span class="span-sub-class">{{ flex_designation[forloop.index0] }}</span>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+            <div class="right-down relative-img">
+              {% for img-pdp in flex_img limit: 6 %}
+                {% if forloop.index0 < 3 %}
+                  {% continue %}
+                {% endif %}
+                <div class="relative-img">
+                  {{ img-pdp | image_url: width: 360 | image_tag: class: 'main-image-class', loading: 'lazy' }}
+                  <div class="right-text-down">
+                    <h5 class="">{{ flex_name[forloop.index0] }}</h5>
+                    <span class="span-sub-class">{{ flex_designation[forloop.index0] }}</span>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+<script>
+
+
+
+
+
+  let imgCount1 = 0;
+  window.imgArray = [];
+
+  {% for imgg in flex_img %}
+    imgArray.push({
+      img: "{{ imgg | img_url: '600x' }}",
+      name: "{{ flex_name[forloop.index0] }}",
+      designation: "{{ flex_designation[forloop.index0] }}"
+    });
+  {% endfor %}
+
+  function shiftImage() {
+    const mainImageElems = document.querySelectorAll('.main-image-class');
+
+    for (let i = 0; i < mainImageElems.length; i++) {
+      if (window.innerWidth < 768 && (i == 1 || i == 2)) {
+        continue;
+      }
+
+      const imgIndex = (imgCount1 + i) % imgArray.length;
+      const imgObj = imgArray[imgIndex];
+
+      const relativeImgElem = mainImageElems[i].closest('.relative-img');
+      relativeImgElem.querySelector("h5").innerText = imgObj.name;
+
+      const spanElem = relativeImgElem.querySelector("span");
+      if (spanElem) {
+        spanElem.innerText = imgObj.designation;
+      }
+
+      mainImageElems[i].classList.toggle('fade-out', false); // Remove fade-out
+      setTimeout(() => {
+        mainImageElems[i].removeAttribute('srcset');
+        mainImageElems[i].src = imgObj.img;
+        mainImageElems[i].classList.toggle('fade-out', true); // Add fade-out
+      }, 500);
+    }
+
+    imgCount1 = (imgCount1 + 1) % imgArray.length;
+  }
+  window.addEventListener('load', (event) => {
+  setInterval(() => {
+    shiftImage();
+  }, 4000);
+  })
+</script>
+
+{% schema %}
+{
+  "name": "pdp Flex the fit",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "ecoflex_pdp",
+      "label": "Padding for Section",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "ecoflex_pdp_mob",
+      "label": "Padding for Section in Mobile",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "margintop_pdp",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Margin from top for Entire Section",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margintop_pdpmob",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Margin from top for Entire Section mobile",
+      "default": 0
+    },
+    {
+      "type": "text",
+      "id": "pdp_heading",
+      "label": "Flex the Fit Heading",
+      "default": "Flex the Fit"
+    },
+    {
+      "type": "text",
+      "id": "pdp_para",
+      "label": "Flex the fit Text",
+      "default": "Reviews"
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "pdp Flex the fit"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

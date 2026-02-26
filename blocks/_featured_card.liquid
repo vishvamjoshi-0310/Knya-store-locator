@@ -1,0 +1,130 @@
+{{ 'stethoscope-feature-cards.css' | asset_url | stylesheet_tag }}
+
+<div class="feature-image-wrapper">
+  {{
+    block.settings.feature_card_image
+    | image_url: width: 300, format: 'webp'
+    | image_tag:
+      loading: 'lazy',
+      fetchpriority: 'low',
+      width: '300',
+      height: 'auto',
+      class: 'feature-card-image',
+      widths: '375, 550, 750, 1100, 1500, 1780, 2000',
+      alt: block.settings.feature_name
+  }}
+  <div class="feature-card-content heebo-regular">
+    <div class="heading-with-svg">
+      <h3 class="heebo-regular">{{ block.settings.feature_name }}</h3>
+      <div class="icon-wrapper">{{ 'icon-plus.svg' | inline_asset_content }}</div>
+    </div>
+    <p>{{ block.settings.feature_description }}</p>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+  const isMobile = window.matchMedia('(max-width: 1200px)').matches;
+
+  /* ================= MOBILE ================= */
+  if (isMobile) {
+    document.querySelectorAll('.feature-card-content').forEach((card, index) => {
+
+      const paragraph = card.querySelector('p');
+      const iconWrapper = card.querySelector('.icon-wrapper');
+
+      if (!paragraph || !iconWrapper) return;
+
+      card.addEventListener('click', function (e) {
+        e.stopImmediatePropagation();
+
+        const isIconClick = e.target.closest('.icon-wrapper');
+        const isOpen = paragraph.classList.contains('visible');
+
+        // Close all other cards
+        document.querySelectorAll('.feature-card-content').forEach((otherCard, i) => {
+          if (otherCard !== card) {
+            const feature_card_p = otherCard.querySelector('p');
+            const feature_card_icon = otherCard.querySelector('.icon-wrapper');
+
+            feature_card_p?.classList.remove('visible');
+            feature_card_icon?.classList.remove('active');
+          }
+        });
+
+        // ICON CLICK LOGIC
+        if (isIconClick) {
+          if (isOpen) {
+            paragraph.classList.remove('visible');
+            iconWrapper.classList.remove('active');
+          } else {
+            paragraph.classList.add('visible');
+            iconWrapper.classList.add('active');
+            
+          }
+          return;
+        }
+
+        // CARD CLICK (NON-ICON)
+
+        paragraph.classList.add('visible');
+        iconWrapper.classList.add('active');
+      });
+    });
+  }
+
+
+  /* ================= DESKTOP ================= */
+  if (!isMobile) {
+
+    document.querySelectorAll('.feature-card').forEach((card, index) => {
+
+      const feature_card_icon = card.querySelector('.icon-wrapper svg');
+      const feature_card_content = card.querySelector('.feature-card-content');
+
+      if (!feature_card_icon || !feature_card_content) {
+        return;
+      }
+
+      content.addEventListener('mouseenter', () => {
+        feature_card_icon.style.display = 'none';
+      });
+
+      content.addEventListener('mouseleave', () => {
+        feature_card_icon.style.display = '';
+      });
+    });
+  }
+});
+
+</script>
+
+{% schema %}
+{
+  "name": "Stethoscope Feature Cards",
+  "class": "feature-card_with_description",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "feature_card_image",
+      "label": "Feature Card Image"
+    },
+    {
+      "type": "text",
+      "id": "feature_name",
+      "label": "Feature Name"
+    },
+    {
+      "type": "text",
+      "id": "feature_description",
+      "label": "Feature Description"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Stethoscope Feature Cards"
+    }
+  ]
+}
+{% endschema %}

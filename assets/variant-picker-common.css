@@ -1,0 +1,102 @@
+/* Common CSS for variant picker components */
+
+.container_sizeguide--title {
+  display: flex;
+  justify-content: space-between;
+  grid-column: 1 / -1;
+}
+
+.container_sizeguide--title .size_guide_new {
+  font-size: clamp(14px, .875vw, 16px);
+  line-height: 1.42;
+  letter-spacing: .035px;
+  color: #482f8f;
+  cursor: pointer;
+}
+
+fieldset[option-type]:not([option-type="top style"]):not([option-type="bottom style"]) label {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  min-width: 33px;
+  min-height: 33px;
+  font-size: 12px;
+  line-height: 120%;
+  padding: 4px;
+  color: #482f8f;
+  border-color: #482f8f;
+}
+
+form fieldset[option-type="bottom style"] {
+  column-gap: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  --variant-ch: 5ch;
+
+  .container_sizeguide--title{
+    width: 100%;
+  }
+}
+form fieldset[option-type="top style"] {
+  column-gap: 0;
+  --variant-ch: 14ch;
+}
+
+form fieldset[option-type="bottom style"] label, form fieldset[option-type='top style'] label {
+  padding: 8px 12px;
+  border-radius: 8px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-height:unset;
+  height: 32px;
+  font-size: 12px;
+  letter-spacing: 0rem;
+  font-family: Heebo-Regular;
+  line-height: 100%;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  color: #482f8f;
+  border-color: #482f8f;
+  background: transparent;
+  max-width: 65px;
+}
+
+form fieldset[option-type="bottom style"] label:hover,
+form fieldset[option-type='top style'] label:hover {
+  background: transparent;
+  border-color: #482f8f;
+  color: #482f8f;
+}
+form fieldset .variant-option__button-label:has(:checked) {
+  color: #fff !important;
+  border-color: #482f8f !important;
+  background: #482f8f !important;
+}
+@media (max-width: 749px) {
+  fieldset[option-type]:not([option-type="top style"]):not([option-type="bottom style"]) label {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    min-height: 32px;
+  }
+  
+  .variant-option--buttons legend {
+    font-size: 14px;
+    line-height: 1.428;
+    letter-spacing: .014px;
+  }
+  .variant-option--equal-width-buttons {
+    padding: 0px 0px;
+  }
+  fieldset[option-type]:not([option-type="bottom style"]):not([option-type="top style"]) {
+    --variant-ch: 2ch;
+  }
+  .container_sizeguide--title .size_guide_new {
+    font-size: 12px;
+    line-height: 1.5;
+    letter-spacing: .048px;
+  }
+}
+

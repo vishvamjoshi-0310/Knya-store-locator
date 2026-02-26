@@ -1,0 +1,139 @@
+@media screen and (max-width: 767px) {
+  .mySwiper_focusonyou{
+    min-height: 530px;
+  }
+  .aboutus_focuson_you .swiper-wrapper .swiper-slide {
+    width: calc(393 * (100vw / 1440));
+    margin-right: 20px;
+  }
+
+  .how_wefocus_mobileimg {
+    display: block !important;
+  }
+  .how_wefocus_Desktopimg {
+    display: none !important;
+  }
+  .main_bg {
+    background: #f4ecd0;
+  }
+  .center_div img {
+    border-top-left-radius: 25%;
+    border-bottom-right-radius: 25%;
+  }
+  .aboutus_focuson_you .swiper-slide-prev {
+    -webkit-filter: blur(8px);
+    top: 20px;
+    transform: translateX(30%);
+  }
+  .aboutus_focuson_you .swiper-slide-next {
+    -webkit-filter: blur(8px);
+  }
+  .card_title {
+    font-size: 24px;
+    color: #000303;
+    font-family: 'Heebo-SemiBold';
+    line-height: 29px;
+  }
+
+  .card_description {
+    font-family: 'Heebo-Regular';
+    color: #000303;
+    font-size: 14px;
+    line-height: 17px;
+  }
+  .main_heading {
+    font-size: 42px;
+    color: #482f8f;
+    font-family: 'Heebo-Medium';
+    line-height: 42px;
+    padding: 6%;
+    margin: 0;
+  }
+  .aboutus_focuson_you {
+    padding: 40px 0px;
+    overflow: visible;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .aboutus_focuson_you .swiper-wrapper .swiper-slide {
+    width: calc(303 * (100vw / 400));
+    margin-right: 10px;
+  }
+
+  .swiper-slide-active .card_title {
+    display: block !important;
+  }
+  .card_title {
+    display: none;
+    padding-top: 51px;
+  }
+  .swiper-slide-active .card_description {
+    display: block !important;
+  }
+  .card_description {
+    display: none;
+  }
+  .swiper-slide-next .center_div {
+    width: 86%;
+  }
+  .swiper-slide-prev .center_div {
+    width: 86%;
+  }
+  .swiper-slide-active .center_div {
+    margin-top: 26px;
+    text-align: center;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .aboutus_focuson_you .swiper-wrapper .swiper-slide {
+    width: calc(220 * (100vw / 700));
+    margin-right: 20px;
+  }
+
+  .how_wefocus_Desktopimg {
+    display: block !important;
+  }
+  .how_wefocus_mobileimg {
+    display: none !important;
+  }
+  .main_bg {
+    background: #f4ecd0;
+  }
+  .main_heading {
+    font-size: 46px;
+    color: #482f8f;
+    font-family: 'Heebo-Medium';
+    line-height: 46px;
+    padding-left: 7%;
+    padding-top: 3%;
+    margin: 0;
+  }
+  .card_title {
+    font-size: 1.719vw;
+    color: #000303;
+    font-family: 'Heebo-SemiBold';
+    line-height: 2.031vw;
+    text-align: center;
+  }
+
+  .card_description {
+    font-family: 'Heebo-Regular';
+    color: #000303;
+    font-size: 1.25vw;
+    line-height: 1.328vw;
+    text-align: center;
+  }
+  .center_div {
+    background: #f4ecd0;
+    padding: 18%;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .center_div img {
+    border-top-left-radius: 25%;
+    border-bottom-right-radius: 25%;
+  }
+}

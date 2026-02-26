@@ -1,0 +1,129 @@
+footer.shopify-section-group-footer-group div.Lower-footer-overlay-color{ border-top-right-radius: 100px;}
+footer.shopify-section-group-footer-group div.upper-footer-overlay-color{ border-bottom-right-radius: 100px;}
+
+footer.shopify-section-group-footer-group .lower-footer-child-3 accordion-custom.menu{max-width: 190px}
+footer.shopify-section-group-footer-group .h3,footer.shopify-section-group-footer-group h3{font-size: 1.719vw; font-family: 'Heebo-Semibold'; line-height: 30px; font-weight: 500; letter-spacing: 0.6px;}
+footer.shopify-section-group-footer-group .lower-footer-child-1 rte-formatter.footer-corporate-office p{letter-spacing: 0.6px; font-size: 12px; font-family: 'Heebo-Regular'; font-weight: 500; color: rgba(255,255,255,0.75); line-height: 18px;}
+footer.shopify-section-group-footer-group .lower-footer-child-1 rte-formatter.footer-corporate-office p::first-line{font-size: 16px; line-height: 18.9px; color: rgba(255,255,255,1);}
+footer.shopify-section-group-footer-group ul li.paragraph a, footer.shopify-section-group-footer-group .lower-footer-grandchild-2-child-1 rte-formatter p,
+footer.shopify-section-group-footer-group .lower-footer-grandchild-2-child-2 rte-formatter p{font-size: 16px; color: rgba(255, 255, 255); opacity: 0.75; letter-spacing: 0.25px;}
+
+footer.shopify-section-group-footer-group .lower-footer-child-1 p, footer.shopify-section-group-footer-group .only-mobile-visible-privacy-policy p {font-family: 'Heebo-Regular'; color: #ffffffbf;}
+footer.shopify-section-group-footer-group .lower-footer-child-1 p a[title="Privacy & Terms"] {color: rgb(50, 157, 255); font-family: 'Heebo-Medium';}
+footer.shopify-section-group-footer-group input.email-signup__input {color: rgb(255, 255, 255); box-shadow: none; border-bottom: 1px solid rgb(255, 255, 255); font-family: 'Heebo-Semibold'; font-size: 1.094vw;}
+footer.shopify-section-group-footer-group button.email-signup__button{width: 55px;}
+footer.shopify-section-group-footer-group button.email-signup__button svg * {color: rgba(255, 255, 255,0.3); }
+footer.shopify-section-group-footer-group input.email-signup__input::placeholder {color: rgb(255, 255, 255); font-size: 1.719vw; opacity: 0.3;}
+.only-mob-visible-section-1 {display: none;}
+footer.shopify-section-group-footer-group .upper-footer-third-child-title-container p{font-size: 1.719vw; margin-block: 1em; width: 55%; line-height: 120%; font-family: 'Heebo-SemiBold'; font-weight: 600;}
+footer.shopify-section-group-footer-group .lower-footer-child-1 .desktop-only-visible-policy{color: #ffffffbf;}
+.mob-only-bottom-footer p{color: #ffffffbf; font-family: 'Heebo-Regular';}
+footer.shopify-section-group-footer-group .lower-footer-child-1 > a.link {
+  width: 100%;
+  text-align: left;
+  color: rgba(255, 255, 255);
+  background-color: #f7f7f742;
+  opacity: 75%;
+  padding-inline-start: 12px;
+  text-decoration: underline;
+  padding-block: 6px;
+  max-width: 230px;
+}
+
+footer.shopify-section-group-footer-group .lower-footer-child-1 > a.link::after {
+  content: url('arrow-svg.svg');
+  width: 12px;
+  display: inline-block;
+  position: absolute;
+  left: 213px;
+  padding-block-start: 1px;
+}
+
+footer.shopify-section-group-footer-group .lower-footer-grandchild-2 a{text-decoration: none;}
+footer.shopify-section-group-footer-group .lower-footer-grandchild-2 h3 {
+  font-family: Heebo-Semibold;
+  font-weight: 500;
+  font-size: 1.719vw;
+  line-height: 30px;
+  letter-spacing: 0.6px;
+}
+
+@media only screen and (max-width: 1040px){
+  footer.shopify-section-group-footer-group .lower-footer-child-1 > a.link::after {
+    left: unset;
+    right: 6px;
+  }
+}
+
+@media screen and (max-width: 1025px){
+
+  footer.shopify-section-group-footer-group .lower-footer-child-3 accordion-custom.menu{max-width: 140px}
+  footer.shopify-section-group-footer-group .lower-footer div.group-block:nth-child(1) {max-width: 120px;}
+  footer.shopify-section-group-footer-group .lower-footer-child-2 {gap: 8px;}
+
+}
+
+@media screen and (min-width: 750px) and (max-width: 1000px){
+  
+  footer.shopify-section-group-footer-group .lower-footer{display: grid; grid-template-columns: repeat(2, 1fr);}
+  footer.shopify-section-group-footer-group .lower-footer div.group-block:nth-child(1){max-width: unset; grid-column: 1 / -1;}
+  footer.shopify-section-group-footer-group ul li.paragraph a, footer.shopify-section-group-footer-group .lower-footer-grandchild-2-child-1 rte-formatter p,
+  footer.shopify-section-group-footer-group .lower-footer-grandchild-2-child-2 rte-formatter p{font-size: 13px;}
+  footer.shopify-section-group-footer-group .lower-footer-child-1 > a.link {width: 284px; max-width: unset;}
+  footer.shopify-section-group-footer-group .lower-footer-child-1 > a.link::after {right: unset; left: 264px;}
+  footer.shopify-section-group-footer-group .lower-footer-child-2, footer.shopify-section-group-footer-group .lower-footer-child-3 {gap: var(--gap);}
+}
+
+@media screen and (max-width:750px){
+  footer.shopify-section-group-footer-group ul li.paragraph a, footer.shopify-section-group-footer-group .lower-footer-grandchild-2-child-1 rte-formatter p,
+  footer.shopify-section-group-footer-group .lower-footer-grandchild-2-child-2 rte-formatter p{font-size: 13px;}
+  footer.shopify-section-group-footer-group .lower-footer div.group-block:nth-child(1) {max-width: unset;}
+  footer.shopify-section-group-footer-group .lower-footer-child-3 accordion-custom.menu{max-width: unset}
+  footer.shopify-section-group-footer-group .lower-footer-grandchild-1 {display: none;}
+  footer.shopify-section-group-footer-group .lower-footer-child-1 .desktop-only-visible-policy {display: none;}
+  .mob-only-bottom-footer a[title="Privacy & Terms"] {color: rgb(50, 157, 255); font-family: 'Heebo-Medium';}
+  .only-mob-visible-section-1 {display: block;}
+  .only-mob-visible-section-14 > div.group-block {padding-inline-start: 17px;}
+  footer.shopify-section-group-footer-group .h3,footer.shopify-section-group-footer-group h3 {font-size: 14px !important;}
+  footer.shopify-section-group-footer-group .first-footer-group{max-width: 100vw;}
+  footer.shopify-section-group-footer-group .first-footer-group > div.group-block:nth-child(1),
+  footer.shopify-section-group-footer-group .first-footer-group > div.group-block:nth-child(2) {
+    padding-inline: 17px;
+    padding-block: 20px 10px;
+  }
+  footer.shopify-section-group-footer-group .first-footer-group > div.group-block:nth-child(1) .upper-footer-third-child p{font-size: 18px;}
+  footer.shopify-section-group-footer-group .upper-footer-third-child-title-container p{font-size: 18px; width: 100%;}
+  footer.shopify-section-group-footer-group .lower-footer-child-1 rte-formatter.footer-corporate-office p{font-size: 11px;}
+  footer.shopify-section-group-footer-group .lower-footer-child-1 rte-formatter.footer-corporate-office p::first-line{font-size: 14px; line-height: 22.9px;}
+
+  footer.shopify-section-group-footer-group .lower-footer-child-1{width: 84%;}
+  footer.shopify-section-group-footer-group .footer-corporate-office p{width: 100%; max-width: 100%;}
+  footer.shopify-section-group-footer-group input.email-signup__input {font-size: 14px;}
+  footer.shopify-section-group-footer-group input.email-signup__input::placeholder {font-size: 14px;}
+  footer.shopify-section-group-footer-group button.email-signup__button{width: unset; padding-block-end: 15px;}
+  footer.shopify-section-group-footer-group button.email-signup__button svg {width: 38px; height: 38px; max-width: unset; }
+  footer.shopify-section-group-footer-group .lower-footer-child-1 > a.link {width: 284px; max-width: unset;}
+  footer.shopify-section-group-footer-group .lower-footer-child-1 > a.link::after {right: unset; left: 264px;}
+  footer.shopify-section-group-footer-group .email-signup__input-group {width: 82%; padding-block-end: 20px;}
+  footer.shopify-section-group-footer-group .lower-footer-grandchild-2{width: 170px;}
+  footer.shopify-section-group-footer-group .lower-footer > div.group-block:nth-child(3){width: 100%;}
+  footer.shopify-section-group-footer-group .lower-footer .lower-footer-child-3 > div.group-block{ flex: unset;}
+
+}
+
+@media only screen and (max-width: 400px){
+  footer.shopify-section-group-footer-group .lower-footer-grandchild-2{
+    width: 150px;
+  }
+}
+ 
+/* --------------Side padding of footer---------------- */
+
+footer.shopify-section-group-footer-group .second-child-footer-group,
+footer.shopify-section-group-footer-group .lower-footer {
+  max-width: var(--page-width-updated);
+  
+  @media screen and (min-width: 1780px){
+    margin: 0 auto;
+  }
+}

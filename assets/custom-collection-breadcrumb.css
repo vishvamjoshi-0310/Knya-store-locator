@@ -1,0 +1,68 @@
+/* custom-collection-breadcrumb.css */
+
+/* Custom style */
+
+.breadcrumbs.Collection .breadcrumbs__list {
+    align-items: baseline;
+    margin-left: 0;
+}
+
+.breadcrumbs.Collection .breadcrumbs__item {
+    display: inline-block;
+    line-height: initial;
+    display: flex;
+    align-items: baseline;
+    gap: 3px;
+}
+
+.breadcrumbs.Collection :is(.breadcrumbs__link[aria-current="page"], .breadcrumbs__link_home) {
+    color: #000;
+}
+
+.breadcrumbs.Collection .breadcrumbs__link_home {
+    font-family: "Heebo-Regular", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0.07px;
+    text-transform: capitalize;
+}
+
+.breadcrumbs.Collection .breadcrumbs__link[aria-current="page"] {
+    font-family: "Heebo-Medium", sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: 0.016px;
+    text-transform: capitalize;
+}
+
+/* .breadcrumbs.Collection .breadcrumbs__item:not(:last-child):after {
+    content: ">";
+    font-size: 14px !important;
+    color: #000;
+    font-family: "Heebo-Medium";
+} */
+
+/* Media Queries */
+
+@media (max-width: 768px) {
+    .breadcrumbs.Collection .breadcrumbs__item {
+        line-height: initial;
+    }
+
+    .breadcrumbs.Collection .breadcrumbs__list {
+        display: flex;
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 640px) {
+    .breadcrumbs.Collection .breadcrumbs__link[aria-current="page"] {
+        font-size: 14px;
+        max-width: 220px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}

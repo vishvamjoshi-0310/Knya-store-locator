@@ -1,0 +1,375 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {}
+    },
+    "breakpoint_banner_fUc6Ab": {
+      "type": "breakpoint-banner",
+      "name": "Breakpoint Banner",
+      "settings": {
+        "background_image_desktop": "shopify://shop_images/Frame_1686555407.png",
+        "background_image_mobile": "shopify://shop_images/Frame_1686555461.png",
+        "title_svg": "<svg width=\"505\" height=\"155\" viewbox=\"0 0 505 155\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M49.9667 46.057C52.2925 48.9545 53.1648 52.1418 53.1648 55.6189C53.1648 60.8344 51.4204 64.891 47.6409 68.0783C43.8615 71.2656 38.9192 72.7143 32.2325 72.7143H2.86914V10.1274H31.0695C37.4655 10.1274 42.4079 11.5762 45.8967 14.4738C49.3854 17.3713 51.4203 21.4278 51.4203 26.3537C51.4203 31.2795 50.5482 33.018 48.5131 35.6258C46.478 37.9439 43.8614 39.6824 40.6635 40.8414C44.1522 41.7106 47.3501 43.4492 49.3852 46.3467L49.9667 46.057ZM18.5684 35.3361H28.4531C31.0697 35.3361 32.814 34.7565 34.2676 33.5975C35.7213 32.4385 36.3026 30.9897 36.3026 28.6717C36.3026 26.3537 35.7213 24.9049 34.2676 23.7459C32.814 22.5869 31.0697 22.0073 28.4531 22.0073H18.5684V35.0463V35.3361ZM35.7213 58.5164C37.1749 57.3574 37.7562 55.6189 37.7562 53.5906C37.7562 51.5623 36.8841 49.534 35.4304 48.375C33.9768 47.216 31.9418 46.6365 29.3253 46.6365H18.2777V60.5447H29.6159C32.2324 60.5447 34.2675 59.9652 35.4304 58.8062L35.7213 58.5164Z\" fill=\"white\"></path>\n<path d=\"M84.0951 24.318C86.7116 22.8693 89.6189 22 93.1077 22V38.2263H89.0374C85.258 38.2263 82.3507 39.0955 80.3157 40.5443C78.2806 42.2828 77.4084 45.1803 77.4084 49.2369V72.4172H62V22.5795H77.4084V30.9824C79.1528 28.3746 81.4785 26.0565 84.0951 24.6078V24.318Z\" fill=\"white\"></path>\n<path d=\"M148.569 51.5622H113.973C113.973 54.7495 115.135 57.0675 116.88 58.5163C118.624 59.9651 120.659 60.8343 123.276 60.8343C127.055 60.8343 129.672 59.0958 131.125 55.9085H147.406C146.534 59.0958 145.08 61.9934 142.754 64.6011C140.719 67.2089 137.812 69.2372 134.614 70.686C131.416 72.1347 127.637 73.004 123.566 73.004C119.496 73.004 114.263 71.845 110.484 69.8167C106.704 67.7884 103.797 64.8909 101.471 60.8343C99.4363 57.0675 98.2734 52.4315 98.2734 47.2159C98.2734 42.0003 99.4363 37.654 101.471 33.5974C103.506 29.8306 106.414 26.6433 110.484 24.615C114.263 22.5868 118.624 21.4277 123.566 21.4277C128.509 21.4277 132.579 22.297 136.358 24.3253C140.138 26.3536 143.045 29.2511 145.08 33.0179C147.115 36.7847 148.278 41.131 148.278 46.0568C148.278 50.9827 148.278 48.9544 148.278 50.4032L148.569 51.5622ZM133.16 42.8696C133.16 40.2618 132.288 38.2335 130.544 36.4949C128.8 35.0462 126.474 34.1769 123.857 34.1769C121.241 34.1769 119.206 35.0462 117.461 36.4949C115.717 37.9437 114.554 39.972 114.263 42.8696H133.451H133.16Z\" fill=\"white\"></path>\n<path d=\"M156.708 34.177C158.743 30.4102 161.36 27.2229 164.558 25.1946C167.756 23.1664 171.535 22.0073 175.605 22.0073C179.675 22.0073 182.292 22.5869 184.908 24.0356C187.525 25.4844 189.56 27.2229 191.014 29.541V22.5869H206.422V72.4246H191.014V65.4705C189.56 67.7885 187.525 69.527 184.908 70.9758C182.292 72.4246 179.094 73.0041 175.605 73.0041C172.116 73.0041 167.756 71.8451 164.558 69.8168C161.36 67.7885 158.452 64.6012 156.708 60.8344C154.673 57.0676 153.801 52.4316 153.801 47.216C153.801 42.0004 154.673 37.6541 156.708 33.8873V34.177ZM188.106 38.8131C186.071 36.495 183.455 35.6258 180.257 35.6258C177.059 35.6258 174.733 36.7848 172.407 38.8131C170.081 40.8414 169.209 44.0287 169.209 47.7955C169.209 51.5623 170.372 54.7496 172.407 56.7778C174.442 58.8061 177.059 60.2549 180.257 60.2549C183.455 60.2549 185.781 59.0959 188.106 57.0676C190.141 54.7496 191.304 51.852 191.304 48.0852C191.304 44.3184 190.141 41.4209 188.106 39.1029V38.8131Z\" fill=\"white\"></path>\n<path d=\"M247.997 72.7146L232.879 51.8523V72.7146H217.471V6.94043H232.879V43.4495L247.997 23.1667H266.894L246.252 48.0855L267.185 72.7146H248.288H247.997Z\" fill=\"white\"></path>\n<path d=\"M294.221 24.3256C296.837 22.8769 300.035 22.2974 303.524 22.2974C307.013 22.2974 311.373 23.4564 314.571 25.4847C317.769 27.513 320.677 30.4105 322.421 34.467C324.456 38.2338 325.328 42.8699 325.328 47.7958C325.328 52.7216 324.456 57.3576 322.421 61.4142C320.386 65.181 317.769 68.3683 314.571 70.3966C311.373 72.4249 307.594 73.5839 303.524 73.5839C299.454 73.5839 297.128 73.0044 294.221 71.5556C291.604 70.1068 289.569 68.3683 288.115 66.0503V96.7642H272.707V23.4564H288.115V30.4105C289.569 28.0925 291.604 26.3539 294.221 24.9051V24.3256ZM306.722 38.8134C304.687 36.7851 302.07 35.6261 298.872 35.6261C295.674 35.6261 293.348 36.7851 291.023 38.8134C288.988 41.1314 287.825 44.0289 287.825 47.7958C287.825 51.5626 288.988 54.4601 291.023 56.7781C293.058 59.0961 295.674 59.9654 298.872 59.9654C302.07 59.9654 304.396 58.8064 306.722 56.4884C308.757 54.1703 309.92 51.2728 309.92 47.506C309.92 43.7392 308.757 40.8417 306.722 38.5236V38.8134Z\" fill=\"white\"></path>\n<path d=\"M343.061 70.1067C339.282 68.0784 336.084 65.1809 333.758 61.1243C331.432 57.3575 330.27 52.7215 330.27 47.5059C330.27 42.2903 331.432 37.944 333.758 33.8874C336.084 30.1206 338.991 26.9333 343.061 24.905C347.132 22.8768 351.492 21.7178 356.144 21.7178C360.796 21.7178 365.447 22.8768 369.227 24.905C373.297 26.9333 376.204 29.8309 378.53 33.8874C380.856 37.6542 382.019 42.2903 382.019 47.5059C382.019 52.7215 380.856 57.0678 378.53 61.1243C376.204 64.8911 373.006 68.0784 369.227 70.1067C365.156 72.135 360.796 73.294 355.853 73.294C350.911 73.294 346.55 72.135 342.771 70.1067H343.061ZM363.703 57.0678C365.738 55.0395 366.901 51.8522 366.901 47.7957C366.901 43.7391 366.029 40.8416 363.994 38.5235C361.959 36.4952 359.633 35.3362 356.725 35.3362C353.818 35.3362 351.202 36.4952 349.167 38.5235C347.132 40.5518 346.259 43.7391 346.259 47.7957C346.259 51.8522 347.132 54.7498 349.167 57.0678C351.202 59.0961 353.528 60.2551 356.435 60.2551C359.342 60.2551 361.959 59.0961 363.994 57.0678H363.703Z\" fill=\"white\"></path>\n<path d=\"M391.614 15.3433C389.87 13.8945 388.998 11.8662 388.998 9.54819C388.998 7.23015 389.87 5.20187 391.614 3.7531C393.359 2.30433 395.394 1.43506 398.301 1.43506C401.208 1.43506 402.953 2.30433 404.697 3.7531C406.441 5.20187 407.314 7.23015 407.314 9.54819C407.314 11.8662 406.441 13.8945 404.697 15.3433C402.953 16.792 400.918 17.6613 398.301 17.6613C395.685 17.6613 393.359 16.792 391.614 15.3433ZM405.86 22.8769V72.7146H390.452V22.8769H405.86Z\" fill=\"white\"></path>\n<path d=\"M461.098 28.0924C464.587 31.8593 466.331 37.0748 466.331 43.7392V72.7146H451.213V45.7675C451.213 42.5802 450.341 39.9724 448.597 37.9441C446.853 36.2056 444.527 35.0465 441.619 35.0465C438.712 35.0465 436.386 35.9158 434.642 37.9441C432.898 39.9724 432.026 42.2904 432.026 45.7675V72.7146H416.617V22.8769H432.026V29.5412C433.479 27.2232 435.514 25.4847 438.422 24.3256C441.038 23.1666 443.945 22.2974 447.143 22.2974C452.958 22.2974 457.609 24.3256 461.098 28.0924Z\" fill=\"white\"></path>\n<path d=\"M505 59.6755V72.7144H497.15C491.626 72.7144 487.265 71.2657 484.067 68.6579C480.869 66.0501 479.416 61.414 479.416 55.3292V35.6259H473.311V22.8767H479.416V10.707H494.824V22.8767H504.709V35.6259H494.824V55.619C494.824 57.0677 495.115 58.2268 495.987 58.8063C496.569 59.3858 498.022 59.6755 499.476 59.6755H505Z\" fill=\"white\"></path>\n<path d=\"M263.763 128.557C276.555 128.557 288.765 125.08 301.267 123.052C329.467 118.416 370.391 118.706 398.591 118.995C427.373 119.575 455.864 118.995 484.646 118.995H493.368C495.403 118.995 497.729 118.995 499.473 119.575C501.217 120.154 502.962 122.183 502.962 124.211C502.962 126.239 501.217 127.688 499.473 128.557C497.729 129.427 495.694 129.427 493.949 129.427C462.551 130.296 431.443 128.847 400.045 128.557C373.008 128.557 333.537 127.398 306.79 131.455C292.545 133.483 277.718 138.409 263.472 137.829C262.019 137.829 260.274 137.829 258.821 137.829C250.971 149.13 238.761 156.664 225.678 152.317C220.154 150.289 216.666 145.943 213.758 140.727C201.257 141.596 189.628 135.801 178.58 129.716C167.533 123.632 165.139 111.172 150.893 121.313C140.136 129.137 125.309 151.158 110.482 143.914C103.505 140.437 101.761 132.034 100.307 124.501C99.7256 121.024 99.7256 116.388 97.9812 113.49C96.2369 113.2 79.0841 136.67 75.5954 139.858C72.1067 143.045 66.0015 147.102 61.6406 144.784C53.5003 140.727 56.6983 118.995 53.5003 111.752C51.756 111.462 40.7085 124.501 38.6734 126.529C34.0218 131.165 28.7886 136.67 23.8463 140.437C15.4152 147.391 4.36774 152.607 3.20484 136.381C2.62339 130.006 2.91412 120.154 3.20484 113.78C3.49557 107.405 3.4956 109.434 3.78633 108.275C4.94923 104.218 11.9265 104.797 12.2173 110.303C12.7987 118.126 11.3451 127.688 12.2173 135.222C13.0894 142.755 13.0894 137.25 14.543 136.381C16.8688 134.932 22.3926 129.427 24.7184 127.398C30.8236 121.313 36.3475 113.78 42.7434 107.985C47.6858 103.059 56.4075 96.3946 61.6406 104.798C66.8736 113.2 63.9664 122.473 64.5478 128.557C65.1293 133.193 65.1293 137.829 69.4902 133.193C75.8862 125.95 88.3874 106.536 96.237 103.349C113.971 96.3946 104.668 133.193 116.006 135.222C123.856 136.67 135.485 122.183 141.299 116.967C154.091 105.957 162.232 105.087 177.64 111.172C189.851 116.098 198.931 132.324 211.142 130.875C223.352 129.427 212.886 127.688 213.467 125.66C214.921 121.024 221.026 118.416 224.806 116.967C230.039 99.5819 254.169 89.1507 263.182 108.564C272.194 127.978 265.507 116.388 265.217 120.734C264.926 125.08 264.054 126.239 263.472 128.847L263.763 128.557ZM254.169 126.239C260.856 107.985 244.284 101.32 235.563 116.677L236.435 117.836L253.878 126.239H254.169ZM232.946 126.529C231.492 126.529 230.039 130.586 228.876 132.324C227.422 134.352 225.387 135.511 223.643 136.96C229.167 147.971 243.703 143.914 249.227 134.932L233.237 126.239L232.946 126.529Z\" fill=\"#D7E169\" stroke=\"#D7E169\" stroke-width=\"0.833334\" stroke-miterlimit=\"10\"></path>\n</svg>",
+        "text": "24/7 free mental health support for India's medical community",
+        "cta_text": "Speak Anonymously",
+        "cta_link": "tel:+917969799504",
+        "cta_icon_svg": "<svg width=\"84\" height=\"84\" viewbox=\"0 0 84 84\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect width=\"84\" height=\"84\" rx=\"42\" fill=\"white\"></rect>\n<path d=\"M57.0001 49.3801V53.8801C57.0018 54.2979 56.9163 54.7114 56.7489 55.0942C56.5816 55.4769 56.3361 55.8205 56.0283 56.1029C55.7204 56.3854 55.357 56.6004 54.9613 56.7342C54.5655 56.868 54.1462 56.9177 53.7301 56.8801C49.1144 56.3786 44.6806 54.8014 40.7851 52.2751C37.1609 49.9721 34.0881 46.8994 31.7851 43.2751C29.2501 39.362 27.6725 34.9066 27.1801 30.2701C27.1427 29.8553 27.192 29.4373 27.3249 29.0426C27.4578 28.6479 27.6715 28.2852 27.9523 27.9776C28.2331 27.67 28.5749 27.4242 28.9558 27.2559C29.3368 27.0876 29.7487 27.0005 30.1651 27.0001H34.6651C35.3931 26.993 36.0988 27.2508 36.6508 27.7254C37.2027 28.2001 37.5633 28.8593 37.6651 29.5801C37.8551 31.0202 38.2073 32.4342 38.7151 33.7951C38.917 34.332 38.9606 34.9155 38.841 35.4765C38.7214 36.0374 38.4434 36.5523 38.0401 36.9601L36.1351 38.8651C38.2705 42.6205 41.3798 45.7298 45.1351 47.8651L47.0401 45.9601C47.448 45.5569 47.9629 45.2789 48.5238 45.1593C49.0848 45.0397 49.6683 45.0833 50.2051 45.2851C51.5661 45.793 52.98 46.1452 54.4201 46.3351C55.1488 46.4379 55.8142 46.805 56.2899 47.3664C56.7656 47.9278 57.0184 48.6445 57.0001 49.3801Z\" stroke=\"#4949E9\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path>\n</svg>"
+      }
+    },
+    "breakpoint_available_tTYYVK": {
+      "type": "breakpoint-available",
+      "name": "Breakpoint Available",
+      "settings": {
+        "available_image_desktop": "shopify://shop_images/Frame_1686555420_15a69e1e-1377-4b31-8137-00ff0bbc3a42.png",
+        "available_image_mobile": "shopify://shop_images/Frame_1686555420.png",
+        "description_text": "Breakpoint is completely free. No charges, no hidden costs and no limits on how many times you can reach out.",
+        "knya_logo_desktop": "shopify://shop_images/Frame_1686555416.png",
+        "knya_logo_mobile": "shopify://shop_images/Frame_1686555416_1.png",
+        "mpower_logo_desktop": "shopify://shop_images/Frame_1686555417.png",
+        "mpower_logo_mobile": "shopify://shop_images/Frame_1686555417_1.png"
+      }
+    },
+    "breakpoint_why_exists_4xDTVR": {
+      "type": "breakpoint-why-exists",
+      "blocks": {
+        "stat_card_4qcC9f": {
+          "type": "stat_card",
+          "settings": {
+            "primary_background_color": "#5e5eec",
+            "secondary_background_color": "#6767a5",
+            "percentage": 83,
+            "symbol": "%",
+            "left_svg": "",
+            "right_svg": "<svg width=\"50\" height=\"79\" viewbox=\"0 0 50 79\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M0.850006 21.6122C0.910006 20.9322 1.49001 20.4222 2.17001 20.4522C2.18001 20.4522 2.2 20.4522 2.22 20.4522C2.92 20.5122 3.43003 21.1222 3.37003 21.8222L2.77002 28.9522L9.80002 28.5522C10.5 28.5122 11.09 29.0422 11.13 29.7422C11.17 30.4422 10.64 31.0322 9.94 31.0722L0 31.6322L0.850006 21.6022V21.6122Z\" fill=\"#D4E051\"></path>\n<path d=\"M43.57 2.16215L24.82 20.6321L18.59 15.2821L4.77003 28.9121C4.27003 29.4021 3.47003 29.3921 2.98003 28.9021C2.49003 28.4021 2.50004 27.6022 2.99004 27.1122L18.46 11.8521L24.7 17.2022L41.8 0.362159C42.06 0.102159 42.41 -0.0178574 42.75 0.00214263C43.06 0.0221426 43.36 0.142148 43.59 0.382148C44.08 0.882148 44.07 1.68216 43.58 2.17216\" fill=\"#D4E051\"></path>\n<path d=\"M49.4297 67.8021C49.4297 70.7021 48.2497 73.3121 46.3597 75.2221C44.4597 77.1121 41.8396 78.2921 38.9396 78.2921C35.3096 78.2921 31.9397 76.4121 30.0297 73.3321L25.8997 66.6621L21.4597 75.7221C20.6897 77.2921 19.0996 78.2821 17.3496 78.2821C13.9596 78.2821 11.7497 74.7321 13.2397 71.6821L18.8897 60.1521C19.7297 58.4421 21.2097 57.1421 23.0297 56.5321C25.9197 55.5721 29.0897 56.5521 30.9297 58.9721L33.1197 61.8421V53.8021C33.1197 49.3021 36.7597 45.6521 41.2697 45.6521C45.7797 45.6521 49.4197 49.3021 49.4197 53.8021V67.7821L49.4297 67.8021Z\" fill=\"#D4E051\"></path>\n</svg>",
+            "description": "of medicos report feeling emotionally or mentally fatigued from work"
+          }
+        },
+        "stat_card_ERxMjn": {
+          "type": "stat_card",
+          "settings": {
+            "primary_background_color": "#5e5eec",
+            "secondary_background_color": "#6767a5",
+            "percentage": 60,
+            "symbol": "%",
+            "left_svg": "<svg width=\"25\" height=\"26\" viewbox=\"0 0 25 26\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M24.33 6.56L7.87 12.82L24.33 18.99V25.58L0 14.4V11.15L24.33 0V6.56Z\" fill=\"#D4E051\"></path>\n</svg>",
+            "right_svg": "<svg width=\"62\" height=\"37\" viewbox=\"0 0 62 37\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M18.5814 36.2299H0V24.3194C0 21.3929 2.37694 19.0159 5.30345 19.0159H13.2651C16.1916 19.0159 18.5686 21.3929 18.5686 24.3194V36.2299H18.5814Z\" fill=\"#D4E051\"></path>\n<path d=\"M16.997 7.70604C16.997 11.9616 13.5465 15.4121 9.29096 15.4121C5.03539 15.4121 1.58496 11.9616 1.58496 7.70604C1.58496 3.45046 5.03539 0 9.29096 0C13.5465 0 16.997 3.45046 16.997 7.70604Z\" fill=\"#D4E051\"></path>\n<g opacity=\"0.4\">\n<mask id=\"mask0_9_111\" style=\"mask-type:luminance\" maskunits=\"userSpaceOnUse\" x=\"21\" y=\"0\" width=\"19\" height=\"37\">\n<path d=\"M39.8094 0.0127258H21.228V36.2298H39.8094V0.0127258Z\" fill=\"white\"></path>\n</mask>\n<g mask=\"url(#mask0_9_111)\">\n<path d=\"M38.2251 7.70601C38.2251 11.9616 34.7746 15.412 30.5191 15.412C26.2635 15.412 22.813 11.9616 22.813 7.70601C22.813 3.45043 26.2635 -3.05176e-05 30.5191 -3.05176e-05C34.7746 -3.05176e-05 38.2251 3.45043 38.2251 7.70601Z\" fill=\"#D4E051\"></path>\n<path d=\"M39.8094 36.2299H21.228V24.3194C21.228 21.3928 23.605 19.0159 26.5316 19.0159H34.4932C37.4324 19.0159 39.7967 21.3928 39.7967 24.3194V36.2299H39.8094Z\" fill=\"#D4E051\"></path>\n</g>\n</g>\n<g opacity=\"0.4\">\n<mask id=\"mask1_9_111\" style=\"mask-type:luminance\" maskunits=\"userSpaceOnUse\" x=\"42\" y=\"0\" width=\"20\" height=\"37\">\n<path d=\"M61.048 0.0127258H42.4667V36.2298H61.048V0.0127258Z\" fill=\"white\"></path>\n</mask>\n<g mask=\"url(#mask1_9_111)\">\n<path d=\"M59.4499 7.70601C59.4499 11.9616 55.9995 15.412 51.7439 15.412C47.4883 15.412 44.0378 11.9616 44.0378 7.70601C44.0378 3.45043 47.4883 -3.05176e-05 51.7439 -3.05176e-05C55.9995 -3.05176e-05 59.4499 3.45043 59.4499 7.70601Z\" fill=\"#D4E051\"></path>\n<path d=\"M61.048 36.2299H42.4667V24.3194C42.4667 21.3928 44.8437 19.0159 47.7702 19.0159H55.7318C58.6711 19.0159 61.0353 21.3928 61.0353 24.3194V36.2299H61.048Z\" fill=\"#D4E051\"></path>\n</g>\n</g>\n</svg>",
+            "description": "of medicos report feeling emotionally or mentally fatigued from work"
+          }
+        },
+        "stat_card_Y7efbc": {
+          "type": "stat_card",
+          "settings": {
+            "primary_background_color": "#5e5eec",
+            "secondary_background_color": "#6767a5",
+            "percentage": 70,
+            "symbol": "%",
+            "left_svg": "",
+            "right_svg": "<svg width=\"50\" height=\"79\" viewbox=\"0 0 50 79\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M0.850006 21.6119C0.910006 20.9319 1.49001 20.4219 2.17001 20.4519C2.18001 20.4519 2.2 20.4519 2.22 20.4519C2.92 20.5119 3.43003 21.1219 3.37003 21.8219L2.77002 28.9519L9.80002 28.5519C10.5 28.5119 11.09 29.042 11.13 29.742C11.17 30.4419 10.64 31.0319 9.94 31.0719L0 31.6319L0.850006 21.6019V21.6119Z\" fill=\"#D4E051\"></path>\n<path d=\"M43.5697 2.16215L24.8197 20.6321L18.5897 15.2821L4.76973 28.9121C4.26973 29.4021 3.46972 29.3921 2.97972 28.9021C2.48972 28.4021 2.49973 27.6022 2.98973 27.1122L18.4597 11.8521L24.6997 17.2022L41.7997 0.362159C42.0597 0.102159 42.4097 -0.0178574 42.7497 0.00214263C43.0597 0.0221426 43.3597 0.142148 43.5897 0.382148C44.0797 0.882148 44.0697 1.68216 43.5797 2.17216\" fill=\"#D4E051\"></path>\n<path d=\"M49.4287 67.8024C49.4287 70.7024 48.2487 73.3124 46.3587 75.2224C44.4587 77.1124 41.8387 78.2924 38.9387 78.2924C35.3087 78.2924 31.9387 76.4124 30.0287 73.3324L25.8987 66.6624L21.4587 75.7224C20.6887 77.2924 19.0987 78.2823 17.3487 78.2823C13.9587 78.2823 11.7487 74.7324 13.2387 71.6824L18.8887 60.1523C19.7287 58.4423 21.2087 57.1423 23.0287 56.5323C25.9187 55.5723 29.0887 56.5524 30.9287 58.9724L33.1187 61.8423V53.8024C33.1187 49.3024 36.7587 45.6523 41.2687 45.6523C45.7787 45.6523 49.4187 49.3024 49.4187 53.8024V67.7823L49.4287 67.8024Z\" fill=\"#D4E051\"></path>\n</svg>",
+            "description": "of medicos report feeling emotionally or mentally fatigued from work"
+          }
+        }
+      },
+      "block_order": [
+        "stat_card_4qcC9f",
+        "stat_card_ERxMjn",
+        "stat_card_Y7efbc"
+      ],
+      "name": "Breakpoint Why Exists",
+      "settings": {
+        "heading": "Why Breakpoint exists",
+        "background_image_desktop": "shopify://shop_images/Vector_4_ac423f7f-69f6-419a-80df-2049cef1d49e.png",
+        "background_image_mobile": "shopify://shop_images/Vector_5_6b7c18bc-5a8b-498f-bb69-fa548802d093.png",
+        "vitals_logo_desktop": "shopify://shop_images/Group_2_ed4a3803-6f72-49ea-ac45-90e801e95180.png",
+        "vitals_logo_mobile": "shopify://shop_images/Group_2_ed4a3803-6f72-49ea-ac45-90e801e95180.png",
+        "description_text_before": "In 2025, Knya conducted,",
+        "description_text_after": "a nationwide study built on responses from 10,000+ medical professionals across India.",
+        "breakpoint_statement": "Breakpoint is our way of acting on what we observed and heard.",
+        "action_text": "Read Vital 2025",
+        "action_link": "https://knyamed.com/pages/vitals2025",
+        "action_icon_svg": "<svg width=\"32\" height=\"32\" viewbox=\"0 0 32 32\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M9.33398 22.6668L22.6673 9.3335M22.6673 9.3335H9.33398M22.6673 9.3335V22.6668\" stroke=\"#4949E9\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path>\n</svg>"
+      }
+    },
+    "breakpoint_support_jLgCVx": {
+      "type": "breakpoint-support",
+      "blocks": {
+        "support_card_VEHfe4": {
+          "type": "support_card",
+          "settings": {
+            "card_title": "I'm not<br> okay right now",
+            "card_subtitle": "Speak to someone<br>\n immediately.<br>\nAnonymously. No<br>\npressure to explain or<br>\nfix anything. ",
+            "card_background_image": "shopify://shop_images/I_m_not_okay_right_now_1.png"
+          }
+        },
+        "support_card_L4CwED": {
+          "type": "support_card",
+          "settings": {
+            "card_title": "I don't feel <br>like myself <br>anymore",
+            "card_subtitle": "Understand what<br> \nyou’re experiencing,<br> \nand what kind <br>\nof support can<br> \nactually<br> \nhelp.",
+            "card_background_image": "shopify://shop_images/I_don_t_feel_like_myself_anymore.png"
+          }
+        },
+        "support_card_iwCNBx": {
+          "type": "support_card",
+          "settings": {
+            "card_title": "I'm scared <br>I'm going to <br>break",
+            "card_subtitle": "Immediate emotional<br> \nde-stress to help this<br> \nmoment pass without<br> \nbecoming your<br>\nbreakpoint.",
+            "card_background_image": "shopify://shop_images/I_m_scared_I_m_going_to_break.png"
+          }
+        }
+      },
+      "block_order": [
+        "support_card_VEHfe4",
+        "support_card_L4CwED",
+        "support_card_iwCNBx"
+      ],
+      "name": "Breakpoint Support",
+      "settings": {
+        "heading": "How can we support you?",
+        "background_image_desktop": "shopify://shop_images/Vector_1_36d03373-e05c-47c9-9901-dd45d361e79f.png",
+        "background_image_mobile": "shopify://shop_images/Vector_2_4324a7e5-bb27-45dd-be6a-19422c4aaad9.png",
+        "cta_text": "Speak Anonymously",
+        "cta_link": "tel:+91 7969799504",
+        "cta_icon_svg": "<svg width=\"36\" height=\"36\" viewbox=\"0 0 36 36\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M33.0001 25.3799V29.8799C33.0018 30.2977 32.9163 30.7112 32.7489 31.0939C32.5816 31.4767 32.3361 31.8203 32.0283 32.1027C31.7204 32.3851 31.357 32.6001 30.9613 32.734C30.5655 32.8678 30.1462 32.9175 29.7301 32.8799C25.1144 32.3784 20.6806 30.8011 16.7851 28.2749C13.1609 25.9719 10.0881 22.8992 7.78514 19.2749C5.25011 15.3617 3.67251 10.9064 3.18014 6.2699C3.14266 5.8551 3.19196 5.43704 3.32489 5.04234C3.45783 4.64763 3.6715 4.28494 3.95229 3.97733C4.23309 3.66973 4.57485 3.42397 4.95583 3.25568C5.33681 3.0874 5.74866 3.00029 6.16514 2.9999H10.6651C11.3931 2.99274 12.0988 3.25052 12.6508 3.7252C13.2027 4.19988 13.5633 4.85907 13.6651 5.5799C13.8551 7.02 14.2073 8.43399 14.7151 9.7949C14.917 10.3318 14.9606 10.9153 14.841 11.4762C14.7214 12.0372 14.4434 12.5521 14.0401 12.9599L12.1351 14.8649C14.2705 18.6202 17.3798 21.7296 21.1351 23.8649L23.0401 21.9599C23.448 21.5566 23.9629 21.2787 24.5238 21.159C25.0848 21.0394 25.6683 21.0831 26.2051 21.2849C27.5661 21.7927 28.98 22.145 30.4201 22.3349C31.1488 22.4377 31.8142 22.8047 32.2899 23.3661C32.7656 23.9276 33.0184 24.6443 33.0001 25.3799Z\" stroke=\"white\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path>\n</svg>"
+      }
+    },
+    "breakpoint_feeling_tDbRRi": {
+      "type": "breakpoint-feeling",
+      "name": "Breakpoint Feeling",
+      "settings": {
+        "background_image_desktop": "shopify://shop_images/Frame_1686555412.png",
+        "background_image_mobile": "shopify://shop_images/Frame_1686555381.png",
+        "heading": "What I might be feeling?",
+        "text": "It's not one moment. It's the constant drop after drop that weighs you down.",
+        "cta_text": "Speak Anonymously",
+        "cta_link": "shopify://blogs/resources/what-are-the-most-comfortable-medical-scrubs-for-long-hospital-shifts",
+        "cta_icon_svg": "<svg width=\"84\" height=\"84\" viewbox=\"0 0 84 84\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect width=\"84\" height=\"84\" rx=\"42\" fill=\"white\"></rect>\n<path d=\"M57.0001 49.3799V53.8799C57.0018 54.2977 56.9163 54.7112 56.7489 55.0939C56.5816 55.4767 56.3361 55.8203 56.0283 56.1027C55.7204 56.3851 55.357 56.6001 54.9613 56.734C54.5655 56.8678 54.1462 56.9175 53.7301 56.8799C49.1144 56.3784 44.6806 54.8011 40.7851 52.2749C37.1609 49.9719 34.0881 46.8992 31.7851 43.2749C29.2501 39.3617 27.6725 34.9064 27.1801 30.2699C27.1427 29.8551 27.192 29.437 27.3249 29.0423C27.4578 28.6476 27.6715 28.2849 27.9523 27.9773C28.2331 27.6697 28.5749 27.424 28.9558 27.2557C29.3368 27.0874 29.7487 27.0003 30.1651 26.9999H34.6651C35.3931 26.9927 36.0988 27.2505 36.6508 27.7252C37.2027 28.1999 37.5633 28.8591 37.6651 29.5799C37.8551 31.02 38.2073 32.434 38.7151 33.7949C38.917 34.3318 38.9606 34.9153 38.841 35.4762C38.7214 36.0372 38.4434 36.5521 38.0401 36.9599L36.1351 38.8649C38.2705 42.6202 41.3798 45.7296 45.1351 47.8649L47.0401 45.9599C47.448 45.5566 47.9629 45.2787 48.5238 45.159C49.0848 45.0394 49.6683 45.0831 50.2051 45.2849C51.5661 45.7927 52.98 46.145 54.4201 46.3349C55.1488 46.4377 55.8142 46.8047 56.2899 47.3661C56.7656 47.9276 57.0184 48.6443 57.0001 49.3799Z\" stroke=\"#4949E9\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path>\n</svg>"
+      }
+    },
+    "breakpoint_privacy_TmRmEV": {
+      "type": "breakpoint-privacy",
+      "blocks": {
+        "privacy_card_3UVk46": {
+          "type": "privacy_card",
+          "settings": {
+            "icon_image": "shopify://shop_images/Subtract.png",
+            "card_text": "Anonymous"
+          }
+        },
+        "privacy_card_g4qABd": {
+          "type": "privacy_card",
+          "settings": {
+            "icon_image": "shopify://shop_images/yu4ekoja-gPZ7MWAotRARIYZqkxanHEIzQXNHZC_4_Traced.png",
+            "card_text": "Secure"
+          }
+        },
+        "privacy_card_JwwMrP": {
+          "type": "privacy_card",
+          "settings": {
+            "icon_image": "shopify://shop_images/yu4ekoja-gPZ7MWAotRARIYZqkxanHEIzQXNHZC_4_Traced_1.png",
+            "card_text": "Empathetic"
+          }
+        }
+      },
+      "block_order": [
+        "privacy_card_3UVk46",
+        "privacy_card_g4qABd",
+        "privacy_card_JwwMrP"
+      ],
+      "name": "Breakpoint Privacy",
+      "settings": {
+        "heading": "Your privacy. Your space."
+      }
+    },
+    "breakpoint_difference_RQ4ETQ": {
+      "type": "breakpoint-difference",
+      "blocks": {
+        "difference_stat_6ygbik": {
+          "type": "difference_stat",
+          "settings": {
+            "stat_number": "1,200+",
+            "subtitle_text_1": "Doctors ",
+            "subtitle_text_2": "reached ",
+            "underline_image": "shopify://shop_images/SL-062323-60550-29_1_Traced_1.png",
+            "subtitle_text_3": "out quietly"
+          }
+        },
+        "difference_stat_eFCEa8": {
+          "type": "difference_stat",
+          "settings": {
+            "stat_number": "68%",
+            "subtitle_text_1": "Say this was their<br>",
+            "subtitle_text_2": "first safe space ",
+            "underline_image": "shopify://shop_images/SL-062323-60550-29_1_Traced.png",
+            "subtitle_text_3": "to talk"
+          }
+        },
+        "difference_stat_PRrNPd": {
+          "type": "difference_stat",
+          "settings": {
+            "stat_number": "4 in 5",
+            "subtitle_text_1": "Doctors report feeling<br>",
+            "subtitle_text_2": "'Lighter' ",
+            "underline_image": "shopify://shop_images/SL-062323-60550-29_1_Traced_1.png",
+            "subtitle_text_3": "After a Session"
+          }
+        }
+      },
+      "block_order": [
+        "difference_stat_6ygbik",
+        "difference_stat_eFCEa8",
+        "difference_stat_PRrNPd"
+      ],
+      "disabled": true,
+      "name": "Breakpoint Difference",
+      "settings": {
+        "heading": "The difference it's already making"
+      }
+    },
+    "breakpoint_how_it_works_qz8CyR": {
+      "type": "breakpoint-how-it-works",
+      "blocks": {
+        "step_j6Qyic": {
+          "type": "step",
+          "settings": {
+            "number_bg_color": "#dcf343",
+            "number_color": "#211e1f",
+            "heading_color": "#211e1f",
+            "heading": "You reach out Anonymously",
+            "subheading": "Connect with experts from on a<br>dedicated Knya line."
+          }
+        },
+        "step_Udt44L": {
+          "type": "step",
+          "settings": {
+            "number_bg_color": "#dcf343",
+            "number_color": "#211e1f",
+            "heading_color": "#211e1f",
+            "heading": "A trained professional listens to you",
+            "subheading": "You speak freely to a trained <br>professional who listens with care,<br> discretion, and trust."
+          }
+        },
+        "step_RW86Mq": {
+          "type": "step",
+          "settings": {
+            "number_bg_color": "#5e5eec",
+            "number_color": "#ffffff",
+            "heading_color": "#5353ea",
+            "heading": "You experience immediate emotional relief",
+            "subheading": "A space to offload, breathe, and feel <br>lighter without judgment."
+          }
+        }
+      },
+      "block_order": [
+        "step_j6Qyic",
+        "step_Udt44L",
+        "step_RW86Mq"
+      ],
+      "name": "Breakpoint How It Works",
+      "settings": {
+        "heading": "How It works",
+        "background_image_desktop": "shopify://shop_images/Vector_3_6a87678c-18e4-4f46-ac9a-d128f5d6e9bf.png",
+        "background_image_mobile": "shopify://shop_images/Vector_4_036f323a-ca28-47d8-bedf-b310b513c374.png"
+      }
+    },
+    "breakpoint_faq_JceCrX": {
+      "type": "breakpoint-faq",
+      "blocks": {
+        "faq_item_DjA4EH": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What is Breakpoint?",
+            "answer": "Breakpoint is a 24/7, completely free mental health helpline for India’s medical community.  <br>\n\nThere is no cost to call, no limit on usage, and no requirement to justify why you’re reaching out. It’s designed for moments when things feel heavy and you need to talk to a trained professional immediately."
+          }
+        },
+        "faq_item_gY6jPw": {
+          "type": "faq_item",
+          "disabled": true,
+          "settings": {
+            "question": "Help with how I'm feeling right now",
+            "answer": "Breakpoint is a 24/7, completely free mental health helpline for India's medical community. There is no cost to call, no limit on usage, and no requirement to justify why you're reaching out. It's designed for moments when things feel heavy and you need to talk to a trained professional immediately."
+          }
+        },
+        "faq_item_CLyAYW": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is this therapy?",
+            "answer": "No. Breakpoint is not therapy or long-term treatment.  <br>\n\nIt offers immediate emotional support to help you offload, ground yourself, and feel lighter in the moment without diagnosis or judgement. \n\nYou can call as many times as you need; every call is free."
+          }
+        },
+        "faq_item_BRPWeg": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Who will I speak to?",
+            "answer": "A trained mental health counsellor from Mpower, a mental health initiative of the Aditya Birla Education Trust.  <br>\n\nSomeone experienced in emotional de‑stress conversations, who listens first and supports you calmly and safely."
+          }
+        },
+        "faq_item_MUQPpA": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is my identity confidential?",
+            "answer": "Yes. Completely.  <br>\n\nNo personal details are required. Nothing you share is recorded, reported, or shared with Knya, hospitals, employers, or anyone else."
+          }
+        },
+        "faq_item_7wywgc": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Who is this helpline for?",
+            "answer": "Exclusively for India’s medical community including interns, residents, doctors, nurses, paramedics, and allied healthcare professionals across specializations."
+          }
+        },
+        "faq_item_7xnVVF": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What if I'm not sure my problem is \"serious enough\"?",
+            "answer": "If it’s affecting you, it’s reason enough.  <br>\n\nYou don’t need a breakdown or a crisis to call. Sometimes, being heard at the right moment is enough to change how the day feels."
+          }
+        }
+      },
+      "block_order": [
+        "faq_item_DjA4EH",
+        "faq_item_gY6jPw",
+        "faq_item_CLyAYW",
+        "faq_item_BRPWeg",
+        "faq_item_MUQPpA",
+        "faq_item_7wywgc",
+        "faq_item_7xnVVF"
+      ],
+      "name": "Breakpoint FAQ",
+      "settings": {
+        "heading": "FAQ'S"
+      }
+    },
+    "breakpoint_confidential_Abc12": {
+      "type": "breakpoint-confidential",
+      "name": "Breakpoint Confidential",
+      "settings": {
+        "main_text": "No personal information is recorded or shared.",
+        "sub_text": "Breakpoint offers confidential emotional support, not therapy or medical treatment, and is not a crisis service. Calls are handled by Mpower counsellors."
+      }
+    }
+  },
+  "order": [
+    "main",
+    "breakpoint_banner_fUc6Ab",
+    "breakpoint_available_tTYYVK",
+    "breakpoint_why_exists_4xDTVR",
+    "breakpoint_support_jLgCVx",
+    "breakpoint_feeling_tDbRRi",
+    "breakpoint_privacy_TmRmEV",
+    "breakpoint_difference_RQ4ETQ",
+    "breakpoint_how_it_works_qz8CyR",
+    "breakpoint_faq_JceCrX",
+    "breakpoint_confidential_Abc12"
+  ]
+}

@@ -1,0 +1,117 @@
+<link rel="stylesheet" href="{{ 'drift-difference-stylesheet.css' | asset_url }}">
+
+<div class="drift-difference"> 
+    <h2 class="drift-title">{{ section.settings.section_title }}</h2>
+    
+    <div class="drift-content">
+      <div class="drift-left">
+        <h3 class="drift-heading">{{ section.settings.main_heading }}</h3>
+        
+        <div class="drift-features">
+          {% for block in section.blocks %}
+            <div class="drift-feature" {{ block.shopify_attributes }}>
+              {% if block.settings.icon_image %}
+                <div class="drift-icon">
+                  <img src="{{ block.settings.icon_image | image_url: width: 100 }}" alt="{{ block.settings.feature_text }}" width="100px" height="auto">
+                </div>
+              {% endif %}
+              <p class="drift-feature-text">{{ block.settings.feature_text }}</p>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+      
+      <div class="drift-right">
+        {% if section.settings.desktop_image %}
+          <img src="{{ section.settings.desktop_image | image_url: width: 900 }}" 
+               alt="{{ section.settings.desktop_image.alt | escape }}" 
+               class="drift-desktop-image"
+			   width="900"
+			   height="auto">
+        {% endif %}
+        
+        {% if section.settings.mobile_image %}
+          <img src="{{ section.settings.mobile_image | image_url: width: 500 }}" 
+               alt="{{ section.settings.mobile_image.alt | escape }}" 
+               class="drift-mobile-image"
+			   width="500"
+			   height="auto">
+        {% endif %}
+      </div>
+    </div>
+</div>
+
+{% schema %}
+{
+  "name": "Drift Difference",
+  "class": "drift-difference-parent",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "The DRIFT Difference"
+    },
+    {
+      "type": "textarea",
+      "id": "main_heading",
+      "label": "Main Heading",
+      "default": "Made for the coldest wards and the longest shifts."
+    },
+    {
+      "type": "image_picker",
+      "id": "desktop_image",
+      "label": "Desktop Image (Right Side)"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile Image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon_image",
+          "label": "Icon Image"
+        },
+        {
+          "type": "text",
+          "id": "feature_text",
+          "label": "Feature Text",
+          "default": "6 Pocket"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Drift Difference",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "feature_text": "6 Pocket"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "feature_text": "AC Friendly"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "feature_text": "Comfort fit"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

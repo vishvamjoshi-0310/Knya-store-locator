@@ -1,0 +1,106 @@
+
+.shop-by-color-main {
+  position: relative;
+  width: 100%;
+  }
+
+.sbc-swiper .swiper-wrapper {
+  transform: translate3d(0px, 0px, 0px);
+}
+
+.sbc-swiper .swiper-slide {
+  width: calc(305 * (100vw / 1470));
+  margin-right: 24px;
+}
+
+.shop-by-color-main .swiper-button-prev:after,
+.shop-by-color-main .swiper-rtl .swiper-button-next:after {
+  display: none;
+}
+
+.shop-by-color-main .swiper-button-next:after,
+.shop-by-color-main .swiper-rtl .swiper-button-prev:after {
+  display: none;
+}
+
+.shop-by-color-parent .swiper-button-next {
+  transform: rotate(180deg);
+  right: 24px;
+}
+.shop-by-color-parent .swiper-button-prev {
+  left: 24px;
+}
+
+.shop-by-color-parent :is(.swiper-button-next, .swiper-button-prev) {
+  z-index: 1;
+}
+
+.sbc-card-img-div {
+  width: 100%;
+}
+.sbc-card-img-div img{width:100%;height:auto;}
+img.ideimg {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+.shop-by-color-parent .sbc-card{padding-bottom:4px;}
+
+.sbc-card a {
+  text-decoration: none;
+}
+.sbc-card-title-div {
+  text-align: center;
+}
+.sbc-card-title {
+  padding-top: 12px;
+  color: #000303;
+  font-family: 'Heebo-Medium'; 
+  font-size: 14px;
+  line-height:20px;
+  font-weight: 500;
+  letter-spacing: 0.024px; 
+  text-align: left;
+}
+
+
+
+
+
+
+.sbc-heading {
+  color: #482f8f;
+  font-family: 'Heebo-Medium';
+  font-size: clamp(28px, calc(32 * (100vw / var(--viewportDesktop))), 35px);
+  line-height: clamp(35px, calc(40 * (100vw / var(--viewportDesktop))), 43px);
+  margin-bottom: 19px;
+}
+
+.shop-by-color-parent {
+  margin-top: 85px;
+}
+
+/* ------------Media Queries------------- */
+
+/* Small screen */
+@media (max-width: 1024px) {
+
+  .sbc-heading {   
+    font-size: 24px;
+    line-height: 32px;  
+    letter-spacing: 0.24px;
+  }
+
+  .sbc-swiper .swiper-slide {
+    width: calc(277 * (100vw / 400));
+  }
+  .shop-by-color-parent .swiper-button-prev, .shop-by-color-parent .swiper-button-next {
+    display: none;
+  }
+
+}
+
+@media (max-width: 640px) {
+  .shop-by-color-parent {margin-top: 50px;}
+ .sbc-card-title {font-size: 12px;line-height:16px;padding-top: 11px;}
+}

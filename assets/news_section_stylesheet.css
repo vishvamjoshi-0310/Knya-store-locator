@@ -1,0 +1,96 @@
+.logo-slider-section {
+  padding: 56px 0;
+  text-align: center;
+}
+
+.logo-slider-section h2 {
+    font-size: 32px;
+    line-height: 40px;
+    font-family: 'Heebo-Regular';
+    font-weight: 400;
+    text-align: left;
+    color: #1D1D1F;
+}
+
+.logo-slider-section p {
+    font-size: 14px;
+    line-height: 22px;
+    color: #6E6E73;
+    font-family: 'Heebo-Regular';
+    font-weight: 400;
+    margin: 4px 0 0;
+    text-align: left;
+}
+
+.logo-slider-wrapper {
+  overflow: hidden;
+  position: relative;
+  margin-top: 36px;
+}
+
+.logo-slider-track {
+  display: flex;
+  width: max-content;
+  gap: 24px;
+  animation: infiniteScroll 20s linear infinite;
+}
+
+@keyframes infiniteScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.logo-slider-item {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: max-content;
+  max-height: 80px;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+.logo-slider-item img {
+  max-height: 60px;
+  max-width: 100%;
+  object-fit: contain;
+  filter: grayscale(0);
+  transition: filter 0.3s ease;
+}
+
+.logo-slider-item img:hover {
+  filter: grayscale(0) brightness(1.1);
+}
+
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .logo-slider-item {
+    padding: 0 5px;
+  }
+  .logo-slider-section{
+    padding: 48px 0 64px;
+  }
+
+  .logo-slider-item img {
+    max-height: 50px;
+  }
+  .logo-slider-section h2{
+    font-size: 22px;
+    line-height: 28px;
+  }
+  .logo-slider-section p{
+    font-size: 13px;
+    line-height: 18px;
+  }
+  .logo-slider-wrapper{
+    margin-top: 18px;
+  }
+
+}

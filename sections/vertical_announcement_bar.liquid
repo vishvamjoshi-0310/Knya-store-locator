@@ -1,0 +1,265 @@
+{% assign section_id = section.id | replace: '_', '' | downcase %}
+
+{% style %}
+/* Container */
+.vertical-announcement-{{ section_id }} {
+  width: 100%;
+  height: {{ section.settings.bar_height }}px;
+  overflow: hidden;
+  position: relative;
+  background-color: {{ section.settings.background_color | default: '#462d8c' }};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Items - default start position (forward: bottom, reverse: top) */
+.vertical-announcement__item-{{ section_id }} {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: {{ section.settings.text_size }}px;
+  color: {{ section.settings.text_color | default: '#ffffff' }};
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Forward: start from bottom */
+.vertical-announcement-{{ section_id }}[data-direction="forward"] .vertical-announcement__item-{{ section_id }} {
+  transform: translateY(100%);
+}
+
+/* Reverse: start from top */
+.vertical-announcement-{{ section_id }}[data-direction="reverse"] .vertical-announcement__item-{{ section_id }} {
+  transform: translateY(-100%);
+}
+
+/* Active item - forward (bottom to top) */
+.vertical-announcement-{{ section_id }}[data-direction="forward"] .vertical-announcement__item-{{ section_id }}.active {
+  animation: slide-up-{{ section_id }} var(--anim-duration-{{ section_id }}) ease-in-out forwards;
+}
+
+/* Active item - reverse (top to bottom) */
+.vertical-announcement-{{ section_id }}[data-direction="reverse"] .vertical-announcement__item-{{ section_id }}.active {
+  animation: slide-down-{{ section_id }} var(--anim-duration-{{ section_id }}) ease-in-out forwards;
+}
+
+@keyframes slide-up-{{ section_id }} {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  16.67% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  83.33% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+}
+
+@keyframes slide-down-{{ section_id }} {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  16.67% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  83.33% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+/* First item visible initially (both directions) */
+.vertical-announcement-{{ section_id }}[data-direction="forward"] .vertical-announcement__item-{{ section_id }}:first-child,
+.vertical-announcement-{{ section_id }}[data-direction="reverse"] .vertical-announcement__item-{{ section_id }}:first-child {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive text size */
+@media screen and (max-width: 749px) {
+  .vertical-announcement__item-{{ section_id }} {
+    font-size: {{ section.settings.text_size | times: 0.9 }}px;
+    padding: 0 1rem;
+  }
+}
+{% endstyle %}
+
+{% assign anim_direction = section.settings.animation_direction | default: 'forward' %}
+<div id="vertical-announcement--bar" class="vertical-announcement-{{ section_id }}" data-speed="{{ section.settings.scroll_speed }}" data-direction="{{ anim_direction }}">
+  {% for i in (1..5) %}
+    {% assign setting_key = "announcement_" | append: i %}
+    {% assign announcement = section.settings[setting_key] %}
+    {% if announcement != blank %}
+      <div class="vertical-announcement__item-{{ section_id }}">
+        {{ announcement }}
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
+
+<script>
+(function() {
+  const vabContainer = document.querySelector('.vertical-announcement-{{ section_id }}');
+  if (!vabContainer) return;
+
+  const vabItems = Array.from(vabContainer.querySelectorAll('.vertical-announcement__item-{{ section_id }}'));
+  if (vabItems.length <= 1) {
+    // If only one item, keep it visible
+    if (vabItems[0]) {
+      vabItems[0].classList.add('active');
+    }
+    return;
+  }
+
+  const vabSpeed = vabContainer.dataset.speed || 'medium';
+  // Animation timing: 0.5s slide in + 2s pause + 0.5s slide out = 3s total
+  const vabDurations = {
+    slow: 4000,   // 0.5s in + 3s pause + 0.5s out
+    medium: 3000, // 0.5s in + 2s pause + 0.5s out
+    fast: 2500    // 0.4s in + 1.7s pause + 0.4s out
+  };
+  const vabAnimDuration = vabDurations[vabSpeed] || 3000;
+  const vabIsReverse = vabContainer.dataset.direction === 'reverse';
+  const vabStartPos = vabIsReverse ? 'translateY(-100%)' : 'translateY(100%)';
+
+  // Set CSS variable for animation duration
+  vabContainer.style.setProperty('--anim-duration-{{ section_id }}', vabAnimDuration + 'ms');
+
+  let vabCurrent = 0;
+
+  // Reset all items to start position (bottom for forward, top for reverse)
+  vabItems.forEach(function(vabItem) {
+    vabItem.classList.remove('active');
+    vabItem.style.opacity = '0';
+    vabItem.style.transform = vabStartPos;
+    vabItem.style.animation = 'none';
+  });
+
+  // Show first item with animation
+  function vabStartFirstItem() {
+    if (vabItems[0]) {
+      // Reset to start position first
+      vabItems[0].style.opacity = '0';
+      vabItems[0].style.transform = vabStartPos;
+      vabItems[0].style.animation = 'none';
+
+      // Force reflow
+      void vabItems[0].offsetHeight;
+
+      // Start animation
+      vabItems[0].style.animation = '';
+      vabItems[0].classList.add('active');
+    }
+
+    // Start rotation after first animation completes
+    setTimeout(function() {
+      vabStartRotation();
+    }, vabAnimDuration);
+  }
+
+  function vabStartRotation() {
+    // Calculate when to trigger next item (at 83.33% - when current starts exiting)
+    // This creates overlap: next item enters while current exits
+    const vabTriggerTime = Math.floor(vabAnimDuration * 0.8333);
+
+    // Set up interval - trigger at 83.33% of animation duration for smooth overlap
+    setInterval(function() {
+      vabShowNext();
+    }, vabTriggerTime);
+
+    // Trigger first transition at the right time
+    setTimeout(function() {
+      vabShowNext();
+    }, vabTriggerTime);
+  }
+
+  function vabShowNext() {
+    // Start next item entering from bottom immediately
+    // (current item is still exiting to top, creating overlap)
+    vabCurrent = (vabCurrent + 1) % vabItems.length;
+    const vabNext = vabItems[vabCurrent];
+
+    if (vabNext) {
+      // Ensure it starts from correct position (bottom for forward, top for reverse)
+      vabNext.style.opacity = '0';
+      vabNext.style.transform = vabStartPos;
+      vabNext.style.animation = 'none';
+
+      // Force reflow to ensure reset is applied
+      void vabNext.offsetHeight;
+
+      // Trigger animation
+      requestAnimationFrame(function() {
+        vabNext.style.animation = '';
+        vabNext.classList.add('active');
+      });
+    }
+
+    // Reset previous item after a short delay (it's already exiting)
+    const vabPrevIndex = (vabCurrent - 1 + vabItems.length) % vabItems.length;
+    const vabPrev = vabItems[vabPrevIndex];
+    if (vabPrev) {
+      // Wait for animation to complete, then reset to start position
+      setTimeout(function() {
+        vabPrev.classList.remove('active');
+        vabPrev.style.opacity = '0';
+        vabPrev.style.transform = vabStartPos;
+        vabPrev.style.animation = 'none';
+      }, 200);
+    }
+  }
+
+  // Start the animation sequence
+  vabStartFirstItem();
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Vertical announcement bar",
+  "enabled_on": { "groups": ["header"] },
+  "settings": [
+    { "type": "header", "content": "Announcements" },
+    { "type": "inline_richtext", "id": "announcement_1", "label": "Announcement 1", "default": "Free shipping on orders over $50" },
+    { "type": "inline_richtext", "id": "announcement_2", "label": "Announcement 2", "default": "New arrivals just landed - Shop now" },
+    { "type": "inline_richtext", "id": "announcement_3", "label": "Announcement 3", "default": "Limited time offer - 20% off sitewide" },
+    { "type": "inline_richtext", "id": "announcement_4", "label": "Announcement 4" },
+    { "type": "inline_richtext", "id": "announcement_5", "label": "Announcement 5" },
+    { "type": "header", "content": "Settings" },
+    { "type": "select", "id": "animation_direction", "label": "Animation direction", "options": [
+      { "value": "forward", "label": "Forward (bottom to top)" },
+      { "value": "reverse", "label": "Reverse (top to bottom)" }
+    ], "default": "forward" },
+    { "type": "select", "id": "scroll_speed", "label": "Animation speed", "options": [
+      { "value": "slow", "label": "Slow" },
+      { "value": "medium", "label": "Medium" },
+      { "value": "fast", "label": "Fast" }
+    ], "default": "medium" },
+    { "type": "range", "id": "bar_height", "label": "Bar height", "min": 40, "max": 100, "step": 5, "unit": "px", "default": 60 },
+    { "type": "range", "id": "text_size", "label": "Text size", "min": 12, "max": 24, "step": 1, "unit": "px", "default": 14 },
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#462d8c" },
+    { "type": "color", "id": "text_color", "label": "Text", "default": "#ffffff" }
+  ],
+  "presets": [{ "name": "Vertical announcement bar" }]
+}
+{% endschema %}

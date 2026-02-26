@@ -1,0 +1,717 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "name": "Title",
+          "settings": {
+            "text": "<h1>{{ closest.page.title }}</h1>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h2",
+            "font": "var(--font-primary--family)",
+            "font_size": "",
+            "font_size_mobile": "unset",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0,
+            "custom_font_class": ""
+          },
+          "blocks": {}
+        },
+        "page-content": {
+          "type": "page-content",
+          "settings": {},
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "heading",
+        "page-content"
+      ],
+      "disabled": true,
+      "settings": {
+        "content_direction": "column",
+        "gap": 32,
+        "color_scheme": "",
+        "padding-block-start": 40,
+        "padding-block-end": 80
+      }
+    },
+    "home_page_banner_with_text_7jxTjB": {
+      "type": "Home-page-banner-with-text",
+      "blocks": {
+        "text_GCqXTa": {
+          "type": "text",
+          "settings": {
+            "image": "shopify://shop_images/Link_About_Desktop_1440x_png.jpg",
+            "image_2": "shopify://shop_images/About_Mobile.png",
+            "button_link_banner": "shopify://blogs/capes",
+            "show_custom_text": false,
+            "subheading": "",
+            "subheading_color": "#ffffff",
+            "heading": "",
+            "heading_color": "#ffffff",
+            "heading_size": "h1",
+            "text": "",
+            "text_color": "#ffffff",
+            "text_style": "body",
+            "button_label_1": "Button label",
+            "button_link_1": "",
+            "button_label_2": "Button label",
+            "button_link_2": "",
+            "button_style_secondary_1": false,
+            "button-backgroundcolor": "",
+            "button-color": "",
+            "hpbox1": "HpBANNER-1"
+          }
+        }
+      },
+      "block_order": [
+        "text_GCqXTa"
+      ],
+      "name": "Banner with text",
+      "settings": {
+        "enable_autoplay": true,
+        "margin-top-desktop": 0,
+        "margin-bottom-desktop": 0,
+        "margin-top-mobile": 0,
+        "margin-bottom-mobile": 0,
+        "desktop_content_position": "middle-center",
+        "show_text_box": true,
+        "desktop_content_alignment": "center",
+        "text-backgroundcolor": "",
+        "text-color": "",
+        "box-padding": 0,
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": true,
+        "show_text_below": true
+      }
+    },
+    "video_banner_LgxHnV": {
+      "type": "video_banner",
+      "name": " Behind Our scrub",
+      "settings": {
+        "behind_ourscrub": false,
+        "behind_ourscrub_mob": false,
+        "our_scrub_video_Desktop": "shopify://files/videos/7th June_Aboutusanimation_desktop.mp4",
+        "our_scrub_video_mobile": "shopify://files/videos/7th June_Aboutusanimation_phone.mp4",
+        "margintop_onscrub": 0
+      }
+    },
+    "focus_on_you_yBgQzR": {
+      "type": "focus_on_you",
+      "blocks": {
+        "focus_on_you_slide_RNQHTt": {
+          "type": "focus_on_you_slide",
+          "name": "focus on you Slide",
+          "settings": {
+            "howwe_focus_image_desktop": "shopify://shop_images/3_31b545f2-54c4-490b-b5ed-716e6888329d.jpg",
+            "howwe_focus_image_mobile": "shopify://shop_images/3_9ee38326-57d6-4e58-bd42-6641498fcced.jpg",
+            "card_title": "Greener scrubs",
+            "card_Description": "Our Ecoflex scrubs are India's most flexible, comfortable, and eco conscious scrubs. They're good for you, and the planet."
+          },
+          "blocks": {}
+        },
+        "focus_on_you_slide_tfUzJF": {
+          "type": "focus_on_you_slide",
+          "name": "focus on you Slide",
+          "settings": {
+            "howwe_focus_image_desktop": "shopify://shop_images/2_f7bdc52f-b940-4a56-86f0-898676a586bb.jpg",
+            "howwe_focus_image_mobile": "shopify://shop_images/2_3ed7adcc-0e69-4687-927f-2d99a5e7add5.jpg",
+            "card_title": "Anti-pilling and anti-wrinkle fabric",
+            "card_Description": "Stays lint-free and wrinkle free for round-the-clock sharpness."
+          },
+          "blocks": {}
+        },
+        "focus_on_you_slide_VFB4zb": {
+          "type": "focus_on_you_slide",
+          "name": "focus on you Slide",
+          "settings": {
+            "howwe_focus_image_desktop": "shopify://shop_images/1_ce2fe1f3-f328-43fc-a813-26e539799b06.jpg",
+            "howwe_focus_image_mobile": "shopify://shop_images/1_ce2fe1f3-f328-43fc-a813-26e539799b06.jpg",
+            "card_title": "Thoughtfully designed pockets",
+            "card_Description": "Angled, side-slit, and sideseam pockets — for easier access to your tools."
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "focus_on_you_slide_RNQHTt",
+        "focus_on_you_slide_tfUzJF",
+        "focus_on_you_slide_VFB4zb"
+      ],
+      "name": "How we focus",
+      "settings": {
+        "margintop_focuson_you": 0,
+        "main_heading": "How we focus on you",
+        "how_wefocus_desktop": false,
+        "how_wefocus_mob": false,
+        "autoplay_inMobile": true
+      }
+    },
+    "making_meaningful_section_nVmnmN": {
+      "type": "making_meaningful_section",
+      "blocks": {
+        "pointers_8DbEyQ": {
+          "type": "pointers",
+          "settings": {
+            "pointers": "We manufacture all our products locally across 10 factories in Maharashtra.",
+            "desktop_image": "shopify://shop_images/250x250px-Dr-Shivani-Agarwal-OBGYN-Resident_b2b80249-328c-4def-8586-69e27aea3814.jpg"
+          }
+        },
+        "pointers_Y7icKP": {
+          "type": "pointers",
+          "settings": {
+            "pointers": "At each factory, we employ up to 200 trained individuals.",
+            "desktop_image": "shopify://shop_images/250x250px-Dr-Hardik-Pawar--Orthopaedic_70d2b07e-2a87-476c-accd-e27ce71425db.jpg"
+          }
+        },
+        "pointers_9idkny": {
+          "type": "pointers",
+          "settings": {
+            "pointers": "Our aim is to compensate every worker fairly, and boost their productivity.",
+            "desktop_image": "shopify://shop_images/250x250px-Dr-Prateek-Makwana-Fertility-Specialist_a197c02e-7b83-4940-9671-8086c30a1ba4.jpg"
+          }
+        },
+        "pointers_98KAKb": {
+          "type": "pointers",
+          "settings": {
+            "pointers": "As we grow, it is our promise to you that we will continue to find more avenues to contribute to the local economy in socially just ways.",
+            "desktop_image": "shopify://shop_images/250x250px-Hema-Rawat-RN-_Registered-Nurse_3b45a6ee-e518-4fa4-9d0b-5e78859cdbef.jpg"
+          }
+        },
+        "pointers_XPFJ7G": {
+          "type": "pointers",
+          "settings": {
+            "pointers": "",
+            "desktop_image": "shopify://shop_images/250x250px-Dr-Romain-Rajan-MBBS_dc02b3d2-954a-436f-8f0d-af15701b79d2.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "pointers_8DbEyQ",
+        "pointers_Y7icKP",
+        "pointers_9idkny",
+        "pointers_98KAKb",
+        "pointers_XPFJ7G"
+      ],
+      "name": " Making Meanigfull section",
+      "settings": {
+        "margintop_making_meaningfull": 0,
+        "making_meanigfull_main_Desktop": false,
+        "making_meanigfull_main_mob": true,
+        "making_meanigfull_Heading": "Making meaningful moves",
+        "making_meanigfull_subHeading": "Positive and meaningful change is at the heart of everything we do at Knya."
+      }
+    },
+    "home_page_banner_with_text_BNfBdh": {
+      "type": "Home-page-banner-with-text",
+      "blocks": {
+        "text_zhVHHp": {
+          "type": "text",
+          "settings": {
+            "image": "shopify://shop_images/Desktop_Banner_with_Text.png",
+            "image_2": "shopify://shop_images/Mobile_Banner_with_Text.png",
+            "button_link_banner": "https://forms.office.com/Pages/ResponsePage.aspx?id=SmYqZN04j0uF1LfYx9s2BkyPlk30tr5DqmkOvq8MQxhUMFhTRzJUVlZZRzk4N1RVQ1NDWlRBVUQzSy4u",
+            "show_custom_text": false,
+            "subheading": "",
+            "subheading_color": "#ffffff",
+            "heading": "",
+            "heading_color": "#ffffff",
+            "heading_size": "h1",
+            "text": "",
+            "text_color": "#ffffff",
+            "text_style": "body",
+            "button_label_1": "Button label",
+            "button_link_1": "",
+            "button_label_2": "Button label",
+            "button_link_2": "",
+            "button_style_secondary_1": false,
+            "button-backgroundcolor": "",
+            "button-color": "",
+            "hpbox1": "HpBANNER-1"
+          }
+        }
+      },
+      "block_order": [
+        "text_zhVHHp"
+      ],
+      "name": "Banner with text",
+      "settings": {
+        "enable_autoplay": true,
+        "margin-top-desktop": 0,
+        "margin-bottom-desktop": 0,
+        "margin-top-mobile": 0,
+        "margin-bottom-mobile": 0,
+        "desktop_content_position": "middle-center",
+        "show_text_box": true,
+        "desktop_content_alignment": "center",
+        "text-backgroundcolor": "",
+        "text-color": "",
+        "box-padding": 0,
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": true,
+        "show_text_below": true
+      }
+    },
+    "marquee_7JeRiy": {
+      "type": "marquee",
+      "blocks": {
+        "icon_zabxfC": {
+          "type": "icon",
+          "name": "t:names.icon",
+          "settings": {
+            "icon": "price_tag",
+            "image_upload": "shopify://shop_images/bhatia-hospital.png",
+            "width": 102,
+            "add_custom_svg": false,
+            "custom_svg_code": "",
+            "custom_svg_width": 64,
+            "custom_svg_width_mobile": 44,
+            "link": "",
+            "open_in_new_tab": false
+          },
+          "blocks": {}
+        },
+        "icon_L4xb7n": {
+          "type": "icon",
+          "name": "t:names.icon",
+          "settings": {
+            "icon": "price_tag",
+            "image_upload": "shopify://shop_images/global-hospital.png",
+            "width": 102,
+            "add_custom_svg": false,
+            "custom_svg_code": "",
+            "custom_svg_width": 64,
+            "custom_svg_width_mobile": 44,
+            "link": "",
+            "open_in_new_tab": false
+          },
+          "blocks": {}
+        },
+        "icon_igLwVt": {
+          "type": "icon",
+          "name": "t:names.icon",
+          "settings": {
+            "icon": "price_tag",
+            "image_upload": "shopify://shop_images/fortis.png",
+            "width": 102,
+            "add_custom_svg": false,
+            "custom_svg_code": "",
+            "custom_svg_width": 64,
+            "custom_svg_width_mobile": 44,
+            "link": "",
+            "open_in_new_tab": false
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "icon_zabxfC",
+        "icon_L4xb7n",
+        "icon_igLwVt"
+      ],
+      "custom_css": [],
+      "name": "t:names.marquee_section",
+      "settings": {
+        "movement_direction": "normal",
+        "show_bullet_dots": false,
+        "ticker_text_style": false,
+        "color_scheme": "scheme-b8135577-30d6-4cd4-86d1-cfae53c4788a",
+        "on_image_settings": false,
+        "marquee_image_width": 100,
+        "marquee_image_height": 60,
+        "padding-block-start": 0,
+        "padding-block-end": 0,
+        "gap_between_elements": 46,
+        "gap_between_elements_mob": 24,
+        "desktop-margin-top": 0,
+        "mobile-margin-top": 0
+      }
+    },
+    "news_section_RDFRgH": {
+      "type": "news-section",
+      "blocks": {
+        "news_UXizzD": {
+          "type": "_news",
+          "name": "News",
+          "settings": {
+            "logo": "shopify://shop_images/The_times_of_India_3cf079a2-df21-4c58-9a83-37a019ac310d.png",
+            "summary": "How technology is democratising healthcare",
+            "url": "https://timesofindia.indiatimes.com/blogs/voices/how-technology-is-democratising-healthcare/",
+            "read_more": "READ MORE"
+          },
+          "blocks": {}
+        },
+        "news_6JmQyV": {
+          "type": "_news",
+          "name": "News",
+          "settings": {
+            "logo": "shopify://shop_images/Daink_Jagran_578f88d2-089f-4182-8913-dadbc2980693.png",
+            "summary": "National Doctor's Day 2022: नेशनल डॉक्टर्स डे पर भेजें ये शुभकामना संदेश",
+            "url": "https://www.jagran.com/lifestyle/miscellaneous-national-doctors-day-2022-national-doctors-day-wishes-inspirational-quotes-slogans-in-hindi-whatsapp-stickers-facebook-status-22852397.html",
+            "read_more": "READ MORE"
+          },
+          "blocks": {}
+        },
+        "news_FaHNYq": {
+          "type": "_news",
+          "name": "News",
+          "settings": {
+            "logo": "shopify://shop_images/The_times_of_India_3cf079a2-df21-4c58-9a83-37a019ac310d.png",
+            "summary": "How technology is democratising healthcare",
+            "url": "https://timesofindia.indiatimes.com/blogs/voices/how-technology-is-democratising-healthcare/",
+            "read_more": "READ MORE"
+          },
+          "blocks": {}
+        },
+        "news_tjLAcM": {
+          "type": "_news",
+          "name": "News",
+          "settings": {
+            "logo": "shopify://shop_images/Daink_Jagran_578f88d2-089f-4182-8913-dadbc2980693.png",
+            "summary": "National Doctor's Day 2022: नेशनल डॉक्टर्स डे पर भेजें ये शुभकामना संदेश",
+            "url": "https://www.jagran.com/lifestyle/miscellaneous-national-doctors-day-2022-national-doctors-day-wishes-inspirational-quotes-slogans-in-hindi-whatsapp-stickers-facebook-status-22852397.html",
+            "read_more": "READ MORE"
+          },
+          "blocks": {}
+        },
+        "news_nWYRdh": {
+          "type": "_news",
+          "name": "News",
+          "settings": {
+            "logo": "shopify://shop_images/Economic_Times_c3084695-b663-4d59-b006-ee1820deecbe.png",
+            "summary": "The Evolution of Medical Apparel in India",
+            "url": "https://health.economictimes.indiatimes.com/amp/news/industry/the-evolution-of-medical-apparel-in-india/92663873",
+            "read_more": "READ MORE"
+          },
+          "blocks": {}
+        },
+        "news_FkM9fq": {
+          "type": "_news",
+          "name": "News",
+          "settings": {
+            "logo": "shopify://shop_images/Daink_Jagran_578f88d2-089f-4182-8913-dadbc2980693.png",
+            "summary": "National Doctor's Day 2022: नेशनल डॉक्टर्स डे पर भेजें ये शुभकामना संदेश",
+            "url": "https://www.jagran.com/lifestyle/miscellaneous-national-doctors-day-2022-national-doctors-day-wishes-inspirational-quotes-slogans-in-hindi-whatsapp-stickers-facebook-status-22852397.html",
+            "read_more": "READ MORE"
+          },
+          "blocks": {}
+        },
+        "news_mTLqmp": {
+          "type": "_news",
+          "name": "News",
+          "settings": {
+            "logo": "shopify://shop_images/Economic_Times_c3084695-b663-4d59-b006-ee1820deecbe.png",
+            "summary": "The Evolution of Medical Apparel in India",
+            "url": "https://health.economictimes.indiatimes.com/amp/news/industry/the-evolution-of-medical-apparel-in-india/92663873",
+            "read_more": "READ MORE"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "news_UXizzD",
+        "news_6JmQyV",
+        "news_FaHNYq",
+        "news_tjLAcM",
+        "news_nWYRdh",
+        "news_FkM9fq",
+        "news_mTLqmp"
+      ],
+      "name": "News Carousel",
+      "settings": {
+        "pad_desktop": true,
+        "pad_mobile": true,
+        "mt_desktop": 71,
+        "mb_desktop": 0,
+        "mt_mobile": 59,
+        "mb_mobile": 0,
+        "title": "In the news",
+        "background": "shopify://shop_images/Speech_bubble_2_1.png"
+      }
+    },
+    "section_xqPjt6": {
+      "type": "section",
+      "blocks": {
+        "text_63GNpR": {
+          "type": "text",
+          "name": "t:names.heading",
+          "settings": {
+            "text": "<h1>Join the Knya club</h1>",
+            "width": "100%",
+            "max_width": "none",
+            "alignment": "left",
+            "type_preset": "custom",
+            "font": "var(--font-body--family)",
+            "font_size": "2rem",
+            "font_size_mobile": "1.5rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground-heading)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0,
+            "custom_font_class": "join-knya-club-heading join-knya-club-heading-about-us"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_63GNpR"
+      ],
+      "name": "t:names.custom_section",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 0,
+        "section_width": "full-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "scheme-d665027f-05ad-4662-8e95-46211fd0e7ce",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 0,
+        "padding-block-end": 0,
+        "custom_section_class": "page-width-updated"
+      }
+    },
+    "section_fYLGPP": {
+      "type": "section",
+      "blocks": {
+        "quinn_shoppable_videos_app_cards_block_kgjREB": {
+          "type": "shopify://apps/quinn-shoppable-videos/blocks/app-cards-block/150d2781-732b-4020-a9fb-1368e974e6bb",
+          "settings": {
+            "layer_number": 1,
+            "card_margins_desktop": "0",
+            "card_margins_mobile": "0",
+            "custom_metaobject_handle": "null",
+            "heading": "",
+            "heading_alignment": "center",
+            "heading_font_size_desktop": "16px",
+            "heading_letter_spacing_desktop": "normal",
+            "heading_font_size_mobile": "16px",
+            "heading_letter_spacing_mobile": "normal",
+            "heading_line_height_desktop": "1.2",
+            "heading_line_height_mobile": "1.2",
+            "heading_font_weight_desktop": "400",
+            "heading_font_weight_mobile": "400",
+            "heading_font": "sans_serif_n4",
+            "heading_color": "#000000",
+            "heading_background_color": "#ffffff",
+            "heading_padding": "0px",
+            "heading_margin": "0px",
+            "subheading": "",
+            "subheading_alignment": "center",
+            "subheading_font": "sans_serif_n4",
+            "subheading_color": "#000000",
+            "subheading_background_color": "#ffffff",
+            "subheading_padding": "0px",
+            "subheading_margin": "0px"
+          }
+        }
+      },
+      "block_order": [
+        "quinn_shoppable_videos_app_cards_block_kgjREB"
+      ],
+      "name": "t:names.custom_section",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "full-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 0,
+        "padding-block-end": 0,
+        "custom_section_class": "join-the-knya-club-app-section"
+      }
+    },
+    "section_ny8DW3": {
+      "type": "section",
+      "blocks": {
+        "drift_text_banner_DwQJTz": {
+          "type": "drift_text_banner",
+          "name": "Medical hero - DRIFT",
+          "settings": {
+            "hero_image": "shopify://shop_images/Team_Image_7307fcda-11ec-441b-8561-b72fbb02f3b9.jpg",
+            "background_color": "#ffffff",
+            "heading": "<p>Build a career empowering medical professionals!</p>",
+            "description": "",
+            "button_text": "Join the team",
+            "button_link": "mailto:hr@knya.in",
+            "content_bg_color": "#f4ecd0",
+            "content_padding": 45,
+            "content_padding_mobile": 15,
+            "shadow_x": 0,
+            "shadow_y": 0,
+            "shadow_blur": 0,
+            "shadow_color": "#00000026",
+            "heading_size": 32,
+            "heading_color": "#482f8f",
+            "heading_spacing": 24,
+            "text_size": 16,
+            "text_color": "#6d28d9",
+            "text_spacing": 30,
+            "heading_size_mobile": 24,
+            "heading_spacing_mobile": 20,
+            "text_size_mobile": 15,
+            "text_spacing_mobile": 25,
+            "button_bg_color": "#482f8f",
+            "button_text_color": "#ffffff",
+            "button_hover_bg_color": "#6d28d9",
+            "button_hover_text_color": "#ffffff",
+            "button_text_size": 12,
+            "button_padding_vertical": 8,
+            "button_padding_horizontal": 40,
+            "button_border_radius": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "drift_text_banner_DwQJTz"
+      ],
+      "disabled": true,
+      "name": "t:names.custom_section",
+      "settings": {
+        "content_direction": "row",
+        "vertical_on_mobile": false,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 0,
+        "section_width": "full-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 36,
+        "padding-block-end": 36,
+        "custom_section_class": ""
+      }
+    },
+    "image_with_text_AxJjBc": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_CUCVDg": {
+          "type": "heading",
+          "settings": {
+            "heading": "Build a career empowering medical professionals!",
+            "heading_size": "h1"
+          }
+        },
+        "button_r8YLTD": {
+          "type": "button",
+          "settings": {
+            "button_label": "Join the team",
+            "button_link": "mailto:hr@knya.in"
+          }
+        }
+      },
+      "block_order": [
+        "heading_CUCVDg",
+        "button_r8YLTD"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/Team_Image_7307fcda-11ec-441b-8561-b72fbb02f3b9.jpg",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "content_layout": "overlap",
+        "color_scheme": "background-1",
+        "mobile_content_alignment": "center",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "main",
+    "home_page_banner_with_text_7jxTjB",
+    "video_banner_LgxHnV",
+    "focus_on_you_yBgQzR",
+    "making_meaningful_section_nVmnmN",
+    "home_page_banner_with_text_BNfBdh",
+    "marquee_7JeRiy",
+    "news_section_RDFRgH",
+    "section_xqPjt6",
+    "section_fYLGPP",
+    "section_ny8DW3",
+    "image_with_text_AxJjBc"
+  ]
+}

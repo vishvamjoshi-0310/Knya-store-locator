@@ -1,0 +1,28 @@
+<div class="step">
+  <div class="step-number {% if block.settings.steps == '1' %}active{% endif %}">
+    <span>{{ block.settings.steps }}</span>
+  </div>
+  <div class="step-text">{{ block.settings.title }}</div>
+</div>
+
+{% schema %}
+{
+  "name": "Step",
+  "settings": [
+    {
+        "type": "text",
+        "id": "steps",
+        "label": "Step Count",
+    },
+    {
+        "type": "text",
+        "id": "title",
+        "label": "Step Title",
+        "default": "Fill out the form with details"
+    }
+  ],
+  "presets": [
+    {"name": "Step"}
+  ]
+}
+{% endschema %}

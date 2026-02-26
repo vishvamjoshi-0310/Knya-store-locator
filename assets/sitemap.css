@@ -1,0 +1,18 @@
+.sitemap_containner{display:flex; gap:1%; flex-wrap: wrap;}
+.sitemap_containner .sitemap_list{flex:32%;}
+.sitemap_containner .sitemap_list h2{font-size:1.094vw; color:#1d1d1f; font-family: 'Heebo-Medium';margin-top:10px; margin-bottom:10px;}
+.SectionHeader__Heading{font-size: 1.696vw;text-align: center;font-family: "Heebo-Medium";color: #000;}
+.sitemap_containner .sitemap_list ul{list-style:none; margin:0px;padding:0px;}
+.sitemap_containner .sitemap_list ul li{list-style:none; line-height:35px;}
+.sitemap_containner .sitemap_list ul li a{color:#482f8f; font-weight:400; text-decoration:none; font-family: 'Heebo-Regular';font-size:.924vw;}
+.sitemap_containner .sitemap_list ul li a>center{text-align:left;}
+.sitemap_containner .sitemap_list ul li a{display:inline-block;line-height:150%;}
+header.PageHeader{margin-top:20px; margin-bottom:10px;}
+.PageContent--narrow{max-width:100%;}
+@media screen and (max-width:767px){
+    .sitemap_containner .sitemap_list ul li{line-height:25px;}
+    .sitemap_containner .sitemap_list{flex:100%;}
+    .sitemap_containner .sitemap_list ul li a{font-size:14px;}
+    .SectionHeader__Heading{font-size:24px;}
+    .sitemap_containner .sitemap_list h2{font-size:16px;}
+}

@@ -1,0 +1,126 @@
+  .page-width-content .text-block h1 {
+    font-family: Heebo-Medium;
+    font-weight: 500;
+    letter-spacing: 0.25px;
+    line-height: 40px;
+    margin-bottom: 24px;
+
+    @media only screen and (max-width: 700px){
+      margin-bottom: 12px;
+      line-height: 32px;
+    }
+  }
+  
+  .page-width-content rte-formatter {
+    * {
+        font-size: clamp(12px, calc(14 * (100vw / 1440)), 16px);
+        line-height: 20px;
+        letter-spacing: 0.04px;
+        color: #000000;
+        font-family: 'Heebo-Regular';
+    }
+
+    h1 {
+        margin-bottom: 0;
+    }
+
+    h2 {
+      margin: 16px 0 0 0;
+    }
+
+    h2 span{
+        font-weight: 400;
+    }
+
+    h2 strong{
+      font-size: 22px;
+      font-weight: 500;
+      font-family: 'Heebo-Medium';
+
+      @media only screen and (max-width: 700px){
+        font-size: 14px;
+      }
+    }
+
+    p {
+      padding: 8px 0 0 0;
+      margin: 0 !important;
+
+      @media only screen and (max-width: 700px){
+        padding: 4px 0 0;
+      }
+    }
+
+    p:last-child{
+      padding: 16px 0 0;
+    }
+
+    ul {
+      padding: 8px 0 0 20px;
+      margin: 0 !important;
+    }
+
+    p a.link-btn, p a.link-bg-btn {
+      min-width: 299px;
+      @media only screen and (max-width: 700px){
+        min-width: unset;
+      }
+    }
+
+    p a.link-bg-btn {
+    font-family: 'Heebo-Medium';
+    font-weight: 500;
+    display: inline-block;
+    padding: 15px 0;
+    background-color: #462D8C;
+    color: #FFFFFF;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: clamp(14px, calc(14 * (100vw / 1440)), 16px);
+    line-height: 15.84px;
+    letter-spacing: 0.6px;
+    border: 1px solid #462D8C;
+    margin-top: 16px;
+    min-height: 48px;
+    text-decoration: none;
+    }
+
+    p a.link-btn {
+          background-color: transparent;
+    border: 1px solid #79747E;
+    color: #482F8F;
+    text-transform: inherit;
+    margin-left: 16px;
+                font-family: 'Heebo-Medium';
+    font-weight: 500;
+    display: inline-block;
+    padding: 15px 0;
+        text-align: center;
+        font-size: clamp(14px, calc(14 * (100vw / 1440)), 16px);
+    line-height: 15.84px;
+    letter-spacing: 0.6px;
+        margin-top: 16px;
+    min-height: 48px;
+    text-decoration: none;
+    }
+
+    p a.link-btn:hover {
+      color: #482F8F;
+      text-decoration-color: #482F8F;
+      
+    }
+
+    p a.link-bg-btn:hover {
+      color: white;
+      text-decoration-color: white;
+    }
+
+    @media only screen and (max-width: 700px){
+        p a.link-bg-btn, p a.link-btn{
+          padding: 15px 22px;
+          font-size: clamp(14px, calc(14 * (100vw / 390)), 16px);
+          width: 100%;
+          margin-left: 0px;
+        }
+      }
+}

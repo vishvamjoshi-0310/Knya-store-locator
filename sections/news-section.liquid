@@ -1,0 +1,172 @@
+<style>
+  .newsSec {
+    margin-top: {{ section.settings.mt_desktop }}px;
+    margin-bottom: {{ section.settings.mb_desktop }}px;
+  }
+
+  .newsSec-heading {
+    padding-bottom: 24px;
+  }
+
+  .newsSec-title {
+    color: #482F8F;
+    font-size: clamp(24px, 3vw, 32px);
+    line-height: 1.2;
+  }
+
+  .newsSwiper {
+    overflow: hidden;
+    width: 100%;
+    max-width: 1780px;
+    margin: 0 auto;
+  }
+
+  /* Slide base */
+  .newsSlide {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    transition: transform .3s ease;
+  }
+
+  /* Background */
+  .newsSlide-bg {
+    background-image: url('{{ section.settings.background | image_url: width: 600 }}');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    padding: 3rem;
+    width: 100%;
+  }
+
+  /* Logo */
+  .newsSlide-logo {
+    max-height: 76px;
+    display: flex;
+    align-items: end;
+    width: 40%;
+  }
+
+  .swiper-slide-active .newsSlide-logo { width: 60%; }
+  .swiper-slide-next .newsSlide-logo { width: 50%; }
+  .swiper-slide-prev .newsSlide-logo { width: 75%; }
+
+  /* Summary text */
+  .newsSlide-summary {
+    margin: 20px 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    color: #000303;
+    font-size: clamp(14px, 1vw, 18px);
+    line-height: 1.4;
+  }
+
+  /* Read More */
+  .newsSlide-read a {
+    text-decoration: none;
+  }
+  .newsSlide-read p {
+    margin: 0;
+    color: #482F8F;
+    font-size: clamp(12px, .9vw, 16px);
+  }
+
+  .newsSec .myNewsSwiper .swiper-wrapper.newsWrapper {align-items: center;}
+  .newsSec .myNewsSwiper .swiper-wrapper.newsWrapper .newsSlide.swiper-slide{max-width: 400px;}
+
+  /* Mobile */
+  @media (max-width: 640px) {
+    .newsSec {
+      margin-top: {{ section.settings.mt_mobile }}px;
+      margin-bottom: {{ section.settings.mb_mobile }}px;
+    }
+
+    .newsSlide-bg {
+      padding: 2rem !important;
+    }
+
+    .newsSlide-summary {
+      font-size: 10.8px;
+      line-height: 16px;
+    }
+
+    .newsSlide-read p {
+      font-size: 11px !important;
+      line-height: 14px;
+    }
+  }
+</style>
+
+<div class="newsSec">
+  <div class="newsSec-heading page-width-updated {% if section.settings.pad_desktop %} page-padding-right page-padding-left {% endif %} {% if section.settings.pad_mobile %} padding-right-mob padding-left-mob {% endif %}">
+    <h2 class="newsSec-title heebo-medium">{{ section.settings.title }}</h2>
+  </div>
+
+  <div class="newsSwiper myNewsSwiper">
+    <div class="swiper-wrapper newsWrapper">
+      {% content_for 'blocks' %}
+    </div>
+  </div>
+</div>
+
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const swiper = new Swiper('.myNewsSwiper', {
+      loop: true,
+      slidesPerGroup: 1,
+      spaceBetween: 45,
+      pagination: { el: '.swiper-pagination', clickable: true },
+
+      breakpoints: {
+        0: {
+          slidesPerView: 1.6,
+          spaceBetween: 24,
+          centeredSlides: true
+        },
+        640: {
+          slidesPerView: 3.2
+        },
+        1000: {
+          slidesPerView: 4.11,
+          centeredSlides: false
+        }
+      }
+    });
+
+    function autoStart() {
+      swiper.autoplay?.start();
+    }
+
+    document.addEventListener('mousemove', autoStart, { once: true });
+    document.addEventListener('touchstart', autoStart, { once: true });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "News Carousel",
+  "settings": [
+    { "type": "checkbox", "id": "pad_desktop", "label": "Enable desktop padding", "default": true },
+    { "type": "checkbox", "id": "pad_mobile", "label": "Enable mobile padding", "default": true },
+
+    { "type": "range", "id": "mt_desktop", "label": "Desktop Margin Top", "min": 0, "max": 100, "default": 0 },
+    { "type": "range", "id": "mb_desktop", "label": "Desktop Margin Bottom", "min": 0, "max": 100, "default": 0 },
+
+    { "type": "range", "id": "mt_mobile", "label": "Mobile Margin Top", "min": 0, "max": 100, "default": 0 },
+    { "type": "range", "id": "mb_mobile", "label": "Mobile Margin Bottom", "min": 0, "max": 100, "default": 0 },
+
+    { "type": "text", "id": "title", "label": "Heading" },
+
+    { "type": "image_picker", "id": "background", "label": "Background Image" }
+  ],
+
+  "blocks": [
+    { "type": "_news" }
+  ],
+
+  "presets": [
+    { "name": "News Carousel" }
+  ]
+}
+{% endschema %}

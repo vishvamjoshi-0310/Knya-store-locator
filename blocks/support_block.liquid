@@ -1,0 +1,46 @@
+<a href="{{ block.settings.link_url }}" class="support-channel-card">
+  <div class="support-channel-icon">
+    {{ block.settings.icon_svg }}
+  </div>
+  {% if block.settings.description != blank %}
+    <p class="support-channel-description">{{ block.settings.description }}</p>
+  {% endif %}
+  {% if block.settings.link_text != blank %}
+    <sapn class="support-channel-link">
+      {{ block.settings.link_text }}
+    </sapn>
+  {% endif %}
+</a>
+
+{% schema %}
+{
+  "name": "Support Channel",
+  "settings": [
+    {
+      "type": "html",
+      "id": "icon_svg",
+      "label": "Icon SVG",
+      "default": "<svg width='48' height='48' viewBox='0 0 48 48' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M14 16C14 13.7909 15.7909 12 18 12H30C32.2091 12 34 13.7909 34 16V28C34 30.2091 32.2091 32 30 32H26L20 36V32H18C15.7909 32 14 30.2091 14 28V16Z' stroke='#5b47db' stroke-width='2' fill='none'/></svg>",
+      "info": "Paste your SVG icon code here"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Get instant answers to your questions with our live chat support."
+    },
+    {
+      "type": "text",
+      "id": "link_text",
+      "label": "Link Text",
+      "default": "Contact us"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Link URL"
+    }
+  ],
+  "presets": [{ "name": "Support Channel" }]
+}
+{% endschema %}

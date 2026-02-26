@@ -1,0 +1,194 @@
+{% render 'new-size-guide-top-bottom-style', pdid: pdid %}
+
+{% comment %}{% assign sizeChartData = product.metafields.custom.size_guide.value %}{% endcomment %}
+{% assign sizeChartData = sizeCart_bottom %}
+{% assign headingOfcart = sizeChartData.heading_of_size_chart | split: '##' %}
+{% assign headingOfcart_hover = sizeChartData.heading_of_size_chart_hover | split: '##' %}
+{% assign heading_of_inch = sizeChartData.heading_of_inches | split: '##' %}
+{% assign heading_of_cm = sizeChartData.heading_of_cms | split: '##' %}
+
+<div class="shadowmodalformobile"></div>
+<div id="sizeguidmodal_2-{{ pdid }}" class="modal sizeguidmodal ">
+  <div class="modal-content">
+    <div class="modalheader">
+      <span>Size Chart</span
+      ><span class="closemodal manish">
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="14" viewBox="0 0 15 14" fill="none">
+          <path d="M14.9299 1.41L13.5199 0L7.92993 5.59L2.33993 0L0.929932 1.41L6.51993 7L0.929932 12.59L2.33993 14L7.92993 8.41L13.5199 14L14.9299 12.59L9.33993 7L14.9299 1.41Z" fill="black"/>
+        </svg>
+      </span>
+    </div>
+    <div class="bodycontent">
+      <div class="tabs">
+        <button class="tab-button tab-button-bottom active" onclick="openTabModalTopBottom(event, 'tab1_bottom')">
+          <span>{{ headingOfcart[0] }}</span><span>{{ headingOfcart_hover[0] }}</span>
+        </button>
+        <button class="tab-button tab-button-bottom" onclick="openTabModalTopBottom(event, 'tab2_bottom')">
+          <span>{{ headingOfcart[1] }}</span> <span>{{ headingOfcart_hover[1] }}</span>
+        </button>
+      </div>
+      <div id="tab1_bottom" class="tab-content tab-content-bottom active">
+        <div class="swicherarea">
+          <div class="swicherarea_left">{{ sizeChartData.type_of_size_chart }}</div>
+          <div class="swicherarea_right">
+            <span class="inclass activecus" onclick="checkCentimeterAndInchesTopBottomcm(this)">IN</span>
+            <label class="switchbutton">
+              <input type="checkbox" id="check-box-checked-bottom" onclick="checkCentimeterAndInchesTopBottom(this)">
+              <span class="slider round"></span>
+            </label>
+            <span class="cmclass" onclick="checkCentimeterAndInchesTopBottomcm(this)">CM</span>
+          </div>
+        </div>
+
+        <div class="tablecontentdata inches {% if heading_of_inch.size > 6 %} scroll_formobile {% endif %} {% if heading_of_inch.size > 8 %} scroll_fordesktop {% endif %}">
+          <table class="{% if heading_of_inch.size > 6 %} tablemobilescroll {% endif %} {% if heading_of_inch.size > 8 %} tabledesktopscroll {% endif %}">
+            <thead>
+              <tr>
+                {% for headInch in heading_of_inch %}
+                  <th>{{ headInch }}</th>
+                {% endfor %}
+              </tr>
+            </thead>
+            <tbody>
+              {% for inchlist in sizeChartData.value_of_inches.value %}
+                {% assign value_of_inch = inchlist | split: '##' %}
+                <tr>
+                  {% for value in value_of_inch %}
+                    <td vertical-align="center">{{ value }}</td>
+                  {% endfor %}
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+
+        <div class="tablecontentdata centimetres {% if heading_of_inch.size > 6 %} scroll_formobile {% endif %} {% if heading_of_inch.size > 8 %} scroll_fordesktop {% endif %}">
+          <table class="{% if heading_of_cm.size > 6 %} tablemobilescroll {% endif %} {% if heading_of_cm.size > 8 %} tabledesktopscroll {% endif %}">
+            <thead>
+              <tr>
+                {% for headcm in heading_of_cm %}
+                  <th>{{ headcm }}</th>
+                {% endfor %}
+              </tr>
+            </thead>
+            <tbody>
+              {% for cmlist in sizeChartData.value_of_cms.value %}
+                {% assign value_of_cm = cmlist | split: '##' %}
+                <tr>
+                  {% for valuecm in value_of_cm %}
+                    <td vertical-align="center">{{ valuecm }}</td>
+                  {% endfor %}
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="tab2_bottom" class="tab-content tab-content-bottom" style="display:none;">
+        <div class="tablecontentdata_second">
+          <div class="leftsidecontent">
+            {% for measurevaluecontent in sizeChartData.measures_values_content.value %}
+              {% assign measure_content = measurevaluecontent | split: '##' %}
+              <div class="contlist">
+                <p>
+                  <span>{{ forloop.index }}</span> <span>{{ measure_content[0] }}</span>
+                </p>
+                <p>{{ measure_content[1] }}</p>
+              </div>
+            {% endfor %}
+          </div>
+          {% if sizeChartData.how_to_measures_image != blank %}
+            <div class="rightsidecontent">
+              {{
+                sizeChartData.how_to_measures_image
+                | image_url: width: 160, format: 'webp'
+                | image_tag: class: 'motion-reduce firstimage', widths: '160', loading: lazy
+              }}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+      {% if sizeChartData.footer_content != blank %}
+        <div class="footercontent">{{ sizeChartData.footer_content }}</div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<script>
+  function sizeGuideModalOpenTopBottom(pdid) {
+    try {
+      let modal = document.getElementById(`sizeguidmodal_2-${pdid}`);
+      let previousElem = modal.previousElementSibling;
+      let spanclose = modal.getElementsByClassName('closemodal')[0];
+      modal.classList.add('activemodal');
+      if (window.innerWidth < 820) {
+        if (previousElem && previousElem.classList.contains('shadowmodalformobile')) {
+          previousElem.classList.add('active_bg_shadow');
+        }
+      }
+      spanclose.onclick = function () {
+        modal.classList.remove('activemodal');
+        if (window.innerWidth < 820) {
+          setTimeout(function () {
+            if (previousElem && previousElem.classList.contains('shadowmodalformobile')) {
+              previousElem.classList.remove('active_bg_shadow');
+            }
+          }, 300);
+        }
+      };
+      window.onclick = function (event) {
+        if (event.target == modal) {
+          modal.classList.remove('activemodal');
+          if (window.innerWidth < 750) {
+            setTimeout(function () {
+              if (previousElem && previousElem.classList.contains('shadowmodalformobile')) {
+                previousElem.classList.remove('active_bg_shadow');
+              }
+            }, 300);
+          }
+        }
+      };
+    } catch (err) {
+      alert('Something went wrong please try to refresh your page.');
+    }
+  }
+
+  function openTabModalTopBottom(evt, tabName) {
+    let bodycontent = evt.target.closest('.bodycontent');
+    let i, tabcontent_b, tabbuttons_b;
+    tabcontent_b = bodycontent.getElementsByClassName('tab-content-bottom');
+    for (i = 0; i < tabcontent_b.length; i++) {
+      tabcontent_b[i].style.display = 'none';
+    }
+    tabbuttons_b = bodycontent.getElementsByClassName('tab-button-bottom');
+    for (i = 0; i < tabbuttons_b.length; i++) {
+      tabbuttons_b[i].className = tabbuttons_b[i].className.replace(' active', '');
+    }
+    bodycontent.querySelector('#' + tabName).style.display = 'block';
+    evt.currentTarget.className += ' active';
+  }
+
+  function checkCentimeterAndInchesTopBottom(checkbox) {
+    try {
+      if (checkbox.checked) {
+        checkbox.closest('.bodycontent').querySelector('.centimetres').style.display = 'block';
+        checkbox.closest('.bodycontent').querySelector('.inches').style.display = 'none';
+        checkbox.closest('.swicherarea_right').querySelector('.inclass').classList.remove('activecus');
+        checkbox.closest('.swicherarea_right').querySelector('.cmclass').classList.add('activecus');
+      } else {
+        checkbox.closest('.bodycontent').querySelector('.centimetres').style.display = 'none';
+        checkbox.closest('.bodycontent').querySelector('.inches').style.display = 'block';
+        checkbox.closest('.swicherarea_right').querySelector('.cmclass').classList.remove('activecus');
+        checkbox.closest('.swicherarea_right').querySelector('.inclass').classList.add('activecus');
+      }
+    } catch (err) {
+      alert('Something went wrong please try to refresh your page.');
+    }
+  }
+  function checkCentimeterAndInchesTopBottomcm() {
+    let checkboxShow = document.querySelector('#check-box-checked-bottom');
+    checkboxShow.click();
+  }
+</script>

@@ -1,0 +1,60 @@
+{{ 'stetho-video-stylesheet.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'stetho-video-javascript.js' | asset_url }}" defer="defer"></script>
+
+<section id="stethoscope-video-section" class="stethoscope-video-section">
+  <div class="stethoscope-video-container">
+     {{ section.settings.video_url | media_tag: autoplay: true, muted: true, controls: true }}
+  </div>
+  <div class="stethoscope-content">
+    <h2 class="heebo-medium">{{ section.settings.headline }}</h2>
+    <p class="heebo-regular">{{ section.settings.description }}</p>
+    <span class="heebo-medium stethoscope-button">{{ section.settings.button_text }} <a style="display: flex;" href="{{ section.settings.button_link }}">{% render 'video-play-icon-black' %}</a></span>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Stethoscope Video Section",
+  "class": "stethoscope-video-parent",
+  "settings": [
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Headline",
+      "default": "NEVER MISS A BEAT"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Experience precision like never before with the 6sense stethoscope."
+    },
+    {
+      "type": "video",
+      "id": "video_url",
+      "label": "Stethoscope Video"
+    },
+    {
+      "type": "image_picker",
+      "id": "thumbnail",
+      "label": "Thumbnail"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "WATCH THE FILM"
+    },
+    {
+      "type": "text",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Stethoscope Video Section"
+    }
+  ]
+}
+{% endschema %}

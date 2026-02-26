@@ -1,0 +1,185 @@
+<style>
+  .main-container {
+    width: 100%;
+    position: relative;
+  }
+
+  .main-container .desktop-banner-image-container,
+  .main-container .mobile-banner-image-container {
+    width: 100%;
+    height: 17vh;
+    padding: 0;
+    margin: 0;
+  }
+
+  .main-container .desktop-banner-image-container {
+    display: block;
+  }
+
+  .main-container .mobile-banner-image-container {
+    display: none;
+  }
+
+  .main-container .desktop-banner-image,
+  .main-container .mobile-banner-image {
+    width: 100%;
+    height: inherit;
+    object-fit: cover;
+  }
+
+  /*     .main-container .desktop-banner-image{
+       object-position: center center;
+     } */
+
+  .content-container {
+    position: absolute;
+    top: 0;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /*       font-family: "Playfair Display", "MillerBanner", serif; */
+    font-family: 'Heebo-Regular';
+    color: #fff;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+  }
+
+  .container-heading {
+    font-size: 2.08vw;
+    color: #111;
+    font-weight: 300;
+    letter-spacing: 0.03vw;
+  }
+
+  @media screen and (max-width: 768px) {
+    .main-container {
+      max-width: 768px;
+      min-width: 350px;
+    }
+
+    .main-container .page-width {
+      padding: 0%;
+    }
+
+    .main-container .desktop-banner-image-container {
+      display: none;
+    }
+
+    .main-container .mobile-banner-image-container {
+      display: block;
+    }
+
+    .main-container .mobile-banner-image {
+      object-position: center left;
+    }
+
+    .container-heading {
+      color: #fff;
+    }
+  }
+</style>
+
+<section>
+  <div class="main-container">
+    <figure class="desktop-banner-image-container">
+      <img
+        class="desktop-banner-image"
+        srcset="
+          {%- if section.settings.desktop_banner_image.width >= 375 -%}{{ section.settings.desktop_banner_image | image_url: width: 375 }} 375w,{%- endif -%}
+          {%- if section.settings.desktop_banner_image.width >= 550 -%}{{ section.settings.desktop_banner_image | image_url: width: 550 }} 550w,{%- endif -%}
+          {%- if section.settings.desktop_banner_image.width >= 750 -%}{{ section.settings.desktop_banner_image | image_url: width: 750 }} 750w,{%- endif -%}
+          {%- if section.settings.desktop_banner_image.width >= 1100 -%}{{ section.settings.desktop_banner_image | image_url: width: 1100 }} 1100w,{%- endif -%}
+          {%- if section.settings.desktop_banner_image.width >= 1500 -%}{{ section.settings.desktop_banner_image | image_url: width: 1500 }} 1500w,{%- endif -%}
+          {%- if section.settings.desktop_banner_image.width >= 1780 -%}{{ section.settings.desktop_banner_image | image_url: width: 1780 }} 1780w,{%- endif -%}
+          {%- if section.settings.desktop_banner_image.width >= 2000 -%}{{ section.settings.desktop_banner_image | image_url: width: 2000 }} 2000w,{%- endif -%}
+          {%- if section.settings.desktop_banner_image.width >= 3000 -%}{{ section.settings.desktop_banner_image | image_url: width: 3000 }} 3000w,{%- endif -%}
+          {%- if section.settings.desktop_banner_image.width >= 3840 -%}{{ section.settings.desktop_banner_image | image_url: width: 3840 }} 3840w,{%- endif -%}
+          {{ section.settings.desktop_banner_image | image_url }} {{ section.settings.desktop_banner_image.width }}w
+        "
+        sizes="100vw"
+        src="{{ section.settings.desktop_banner_image | image_url: width: 1500 }}"
+
+        {% if forloop.index0 == 0 %}
+          loading="none"
+        {% else %}
+          loading="lazy"
+        {% endif %}
+        alt="{{ section.settings.desktop_banner_image.alt | escape }}"
+        width="{{ section.settings.desktop_banner_image.width }}"
+        height="{{ section.settings.desktop_banner_image.height }}"
+      >
+    </figure>
+    <figure class="mobile-banner-image-container">
+      <img
+        class="mobile-banner-image"
+        srcset="
+          {%- if section.settings.mobile_banner_image.width >= 375 -%}{{ section.settings.mobile_banner_image | image_url: width: 375 }} 375w,{%- endif -%}
+          {%- if section.settings.mobile_banner_image.width >= 550 -%}{{ section.settings.mobile_banner_image | image_url: width: 550 }} 550w,{%- endif -%}
+          {%- if section.settings.mobile_banner_image.width >= 750 -%}{{ section.settings.mobile_banner_image | image_url: width: 750 }} 750w,{%- endif -%}
+          {%- if section.settings.mobile_banner_image.width >= 1100 -%}{{ section.settings.mobile_banner_image | image_url: width: 1100 }} 1100w,{%- endif -%}
+          {%- if section.settings.mobile_banner_image.width >= 1500 -%}{{ section.settings.mobile_banner_image | image_url: width: 1500 }} 1500w,{%- endif -%}
+          {%- if section.settings.mobile_banner_image.width >= 1780 -%}{{ section.settings.mobile_banner_image | image_url: width: 1780 }} 1780w,{%- endif -%}
+          {%- if section.settings.mobile_banner_image.width >= 2000 -%}{{ section.settings.mobile_banner_image | image_url: width: 2000 }} 2000w,{%- endif -%}
+          {%- if section.settings.mobile_banner_image.width >= 3000 -%}{{ section.settings.mobile_banner_image | image_url: width: 3000 }} 3000w,{%- endif -%}
+          {%- if section.settings.mobile_banner_image.width >= 3840 -%}{{ section.settings.mobile_banner_image | image_url: width: 3840 }} 3840w,{%- endif -%}
+          {{ section.settings.mobile_banner_image | image_url }} {{ section.settings.mobile_banner_image.width }}w
+        "
+        sizes="100vw"
+        src="{{ section.settings.mobile_banner_image | image_url: width: 1500 }}"
+
+        {% if forloop.index0 == 0 %}
+          loading="none"
+        {% else %}
+          loading="lazy"
+        {% endif %}
+        alt="{{ section.settings.mobile_banner_image.alt | escape }}"
+        width="{{ section.settings.mobile_banner_image.width }}"
+        height="{{ section.settings.mobile_banner_image.height }}"
+      >
+    </figure>
+
+    <!-- <div class="page-width"> -->
+    <div class="content-container">
+      <h1 class="container-heading">{{ section.settings.banner_text }}</h1>
+    </div>
+    <!-- </div> -->
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "desktop_banner_image",
+      "label": "Banner Image - Desktop"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_banner_image",
+      "label": "Banner Image - Mobile"
+    },
+    {
+      "type": "text",
+      "id": "banner_text",
+      "label": "Banner Text",
+      "default": "My Account"
+    }
+  ],
+  "enabled_on": {
+    "templates": ["customers/login", "customers/register"]
+  }
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

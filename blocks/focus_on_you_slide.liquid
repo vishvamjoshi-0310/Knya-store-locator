@@ -1,0 +1,63 @@
+  <div class=" center_div">
+    <div>
+      <picture class="how_wefocus_Desktopimg">
+        <source 
+            srcset="{{ block.settings.howwe_focus_image_desktop | image_url: width: 480 }}" 
+            media="(min-width: 768px)"
+        >
+        <img 
+            src="{{ block.settings.howwe_focus_image_desktop | image_url: width: 480 }}" 
+            loading="lazy" 
+            alt="{{ block.settings.howwe_focus_image_desktop.alt | escape }}"
+        >
+        </picture>
+        <picture class="how_wefocus_mobileimg">
+        <source 
+            srcset="{{ block.settings.howwe_focus_image_mobile | image_url: width: 480 }}" 
+            media="(max-width: 767px)"
+        >
+        <img 
+            src="{{ block.settings.howwe_focus_image_mobile | image_url: width: 480 }}" 
+            loading="lazy" 
+            alt="{{ block.settings.howwe_focus_image_mobile.alt | escape }}"
+        >
+        </picture>
+
+    </div>
+    <div class="card_title">{{ block.settings.card_title }}</div>
+    <div class="card_description">{{ block.settings.card_Description }}</div>
+  </div>
+
+{% schema %}
+{
+  "name": "slider ",
+  "class": "swiper-slide",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "howwe_focus_image_desktop",
+      "label": "image for desktop"
+    },
+    {
+      "type": "image_picker",
+      "id": "howwe_focus_image_mobile",
+      "label": "image for mobile"
+    },
+    {
+      "type": "text",
+      "id": "card_title",
+      "label": " Title",
+      "default": " Title"
+    },
+    {
+      "type": "text",
+      "id": "card_Description",
+      "label": " card Description",
+      "default": " Description"
+    }
+  ],
+  "presets": [
+    {"name": "focus on you Slide"}
+  ]
+}
+{% endschema %}

@@ -1,0 +1,93 @@
+{{ 'judgeme-reviews.css' | asset_url | stylesheet_tag }}
+<style>
+  .main-div-reviews{
+    margin-top:{{ section.settings.margintoprev}}px;
+    @media only screen and (min-width:750px){
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  }
+   @media only screen and (max-width:640px){
+    .main-div-reviews{margin-top:{{ section.settings.margintoprevmob}}px}
+  }
+</style>
+
+<div class="main-div-reviews" id="main-div-review">
+  <div class="page-width">
+    <div class="inner-div-reviews review-upper {% if section.settings.show_padding_rev  %} page-padding-right page-padding-left{% endif %} {% if section.settings.show_padding_mob_rev %}padding-right-mob padding-left-mob{% endif %}">
+      <div>
+        <h2 class="title-reviews font-heebo-medium">{{ section.settings['review-title'] }}</h2>
+
+        <span class="title-sub-title font-heebo-regular">{{ section.settings['review-sub-title'] }}</span>
+      </div>
+      <div class="review-btn font-heebo-medium"><span>Write a review</span></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.querySelector('.review-btn').addEventListener('click', function () {
+    document.querySelector('.jdgm-write-rev-link').click();
+  });
+</script>
+
+{% schema %}
+{
+  "name": "title reviews",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_padding_rev",
+      "label": "padding for section",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_padding_mob_rev",
+      "label": "padding for section in mobile",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "margintoprev",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "margin from top for entire section",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margintoprevmob",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "margin from top for entire section",
+      "default": 0
+    },
+    {
+      "type": "text",
+      "id": "review-title",
+      "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "review-sub-title",
+      "label": "sub-Title"
+    }
+  ],
+  "presets": [
+    {
+      "name": "title-reviews"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,495 @@
+{{ 'section-blog-post.css' | asset_url | stylesheet_tag }}
+{{ 'section-blog-post-new.css' | asset_url | stylesheet_tag }}
+<article class="article-template newarticledetails" itemscope itemtype="http://schema.org/BlogPosting">
+  {%- for block in section.blocks -%}
+    {%- case block.type -%}
+      {%- when '@app' -%}
+        <div class="page-width--narrow">
+          {% render block %}
+        </div>
+
+      {%- when 'featured_image' -%}
+        {% if article.metafields.custom.desktop_featured_image.value != blank
+          or article.metafields.custom.mobile_featured_image_.value != blank
+        %}
+          <div class="featureImage_containner page-width">
+            {% if article.metafields.custom.desktop_featured_image.value != blank %}
+              <div class="featureImgDesktop">
+                <img
+                  src="{{ article.metafields.custom.desktop_featured_image.value | image_url: width: 1600  }}"
+                  alt="blog banner"
+                  width="{{ article.metafields.custom.desktop_featured_image.value.width }}"
+                  height="{{ article.metafields.custom.desktop_featured_image.value.height }}"
+                >
+              </div>
+            {% endif %}
+            {% if article.metafields.custom.mobile_featured_image_.value != blank %}
+              <div class="featureImgMobile">
+                <img
+                  src="{{ article.metafields.custom.mobile_featured_image_.value | image_url: width: 600  }}"
+                  alt="blog banner"
+                  width="{{ article.metafields.custom.mobile_featured_image_.value.width }}"
+                  height="{{ article.metafields.custom.mobile_featured_image_.value.height }}"
+                >
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+
+        {% if article.author or article.published_at %}
+          <div class="page-width-updated formobile_only_author">
+            <div class="authorandpublishdate">
+              {% if article.author %}
+                <span
+                  class="caption-with-letter-spacing"
+                  itemprop="author"
+                  itemscope
+                  itemtype="http://schema.org/Person"
+                >
+                  <span class="authortt_write">Written by</span>
+                  <span itemprop="name" class="authortt_name">{{ article.author }}</span>
+                </span>
+              {% endif %}
+              {% if article.published_at %}
+                <span class="circle-divider caption-with-letter-spacing" itemprop="dateCreated  datePublished">
+                  {{- article.published_at | time_tag: format: 'date' -}}
+                </span>
+              {% endif %}
+            </div>
+          </div>
+        {% endif %}
+
+      {%- when 'title' -%}
+        {% if blog.metafields.custom.banner_for_desktop.value != blank
+          or blog.metafields.custom.banner_for_mobile.value
+        %}
+          {% assign bannerlink = blog.metafields.custom.banner_link.value %}
+          <div class="topcategorybanner">
+            {% if blog.metafields.custom.banner_for_desktop.value != blank %}
+              <div class="fordesktopbanner">
+                <a
+                  {% if bannerlink != blank %}
+                    href="{{ bannerlink }}"
+                  {% endif %}
+                >
+                  <img
+                    src="{{blog.metafields.custom.banner_for_desktop.value | image_url: width: 1600  }}"
+                    alt="blog banner"
+                    width="{{ bannr.width }}"
+                    height="{{ bannr.height }}"
+                  >
+                </a>
+              </div>
+            {% endif %}
+            {% if blog.metafields.custom.banner_for_mobile.value %}
+              <div class="formobilepbanner">
+                <a
+                  {% if bannerlink != blank %}
+                    href="{{ bannerlink }}"
+                  {% endif %}
+                >
+                  <img
+                    src="{{blog.metafields.custom.banner_for_mobile.value | image_url: width: 600  }}"
+                    alt="blog banner"
+                    width="{{ bannr.width }}"
+                    height="{{ bannr.height }}"
+                  >
+                </a>
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+
+        <header class="page-width-updated " {{ block.shopify_attributes }}>
+          <h1 class="article-template__title" itemprop="headline">{{ article.title | escape }}</h1>
+
+          <div class="maincontainner_authoror_share">
+            <div class="authorandpublishdate">
+              {%- if block.settings.blog_show_author -%}
+                <span
+                  class="caption-with-letter-spacing"
+                  itemprop="author"
+                  itemscope
+                  itemtype="http://schema.org/Person"
+                >
+                  <span class="authortt_write">Written by</span>
+                  <span itemprop="name" class="authortt_name">{{ article.author }}</span>
+                </span>
+              {%- endif -%}
+              {%- if block.settings.blog_show_date -%}
+                <span class="circle-divider caption-with-letter-spacing" itemprop="dateCreated datePublished">
+                  {{- article.published_at | time_tag: format: 'date' -}}
+                </span>
+              {%- endif -%}
+            </div>
+
+            <div class="sharecontainner">
+              <div class="article-summary__share-icons">
+                <div class="article-share-icons-label">Share This</div>
+                <ul class="article-share-icons-list">
+                  <li class="article-share-icons-list-item">
+                    <a
+                      href="https://twitter.com/intent/tweet?text={{ request.origin }}{{ article.url }}"
+                      target="_blank"
+                    >
+                      {%- render 'icon-twitter' -%}
+                    </a>
+                  </li>
+                  <li class="article-share-icons-list-item">
+                    <a
+                      href="https://www.facebook.com/sharer/sharer.php?u={{ request.origin }}{{ article.url }}"
+                      target="_blank"
+                    >
+                      {%- render 'icon-facebook' -%}
+                    </a>
+                  </li>
+                  <li class="article-share-icons-list-item">
+                    <a
+                      href="https://pinterest.com/pin/create/link/?url={{ request.origin }}{{ article.url }}&media={{ request.origin }}{{ product.featured_image }}"
+                      target="_blank"
+                    >
+                      {%- render 'icon-pinterest' -%}
+                    </a>
+                  </li>
+                  <li class="article-share-icons-list-item">
+                    <a
+                      href="https://www.linkedin.com/shareArticle?mini=true&url={{ request.origin }}{{ article.url }}"
+                      target="_blank"
+                    >
+                      {%- render 'icon-linkd' -%}
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </header>
+
+      {%- when 'content' -%}
+        <div class="article-template__content  rte" itemprop="articleBody" {{ block.shopify_attributes }}>
+          <div class="page-width-updated">
+            {{ article.content }}
+          </div>
+        </div>
+
+      {%- when 'share' -%}
+        <div class="article-template__social-sharing page-width page-width--narrow" {{ block.shopify_attributes }}>
+          <share-button class="share-button" {{ block.shopify_attributes }}>
+            <button class="share-button__button hidden">
+              {% render 'icon-share' %}
+              {{ block.settings.share_label | escape }}
+            </button>
+            <details id="Details-{{ block.id }}-{{ section.id }}">
+              <summary class="share-button__button">
+                {% render 'icon-share' %}
+                {{ block.settings.share_label | escape }}
+              </summary>
+              <div id="Article-share-{{ section.id }}" class="share-button__fallback motion-reduce">
+                <div class="field">
+                  <span id="ShareMessage-{{ section.id }}" class="share-button__message hidden" role="status"> </span>
+                  <input
+                    type="text"
+                    class="field__input"
+                    id="url"
+                    value="{{ request.origin | append: article.url }}"
+                    placeholder="{{ 'general.share.share_url' | t }}"
+                    onclick="this.select();"
+                    readonly
+                  >
+                  <label class="field__label" for="url">{{ 'general.share.share_url' | t }}</label>
+                </div>
+                <button class="share-button__close hidden no-js-hidden">
+                  {% render 'icon-close' %}
+                  <span class="visually-hidden">{{ 'general.share.close' | t }}</span>
+                </button>
+                <button class="share-button__copy no-js-hidden">
+                  {% render 'icon-clipboard' %}
+                  <span class="visually-hidden">{{ 'general.share.copy_to_clipboard' | t }}</span>
+                </button>
+              </div>
+            </details>
+          </share-button>
+          <script src="{{ 'share.js' | asset_url }}" defer="defer"></script>
+        </div>
+    {%- endcase -%}
+  {%- endfor -%}
+
+</article>
+
+<script>
+
+  const bannerinContent = ()=>{
+
+    try{
+
+  // category intermediat banner start
+
+
+        let imgList_array_intermediat = [];
+       {%  for categorylink in blog.metafields.custom.category_intermediate_banner_link.value  %}
+            imgList_array_intermediat.push(
+              {
+                link:"{{ categorylink }}"
+              }
+            )
+      {% endfor %}
+
+
+
+        let desktopImg_intermediat = [];
+    {%  for dimage in blog.metafields.custom.category_intermediate_banner_desktop.value  %}
+        desktopImg_intermediat.push(
+          {
+          image:"{{ dimage | image_url: width: 1600 }}",
+          width:"{{ dimage.width }}",
+          height:"{{ dimage.height }}"
+          }
+        )
+    {% endfor %}
+
+     let mobileImg_intermediat = [];
+    {%  for mimage in blog.metafields.custom.category_intermediate_banner_mobile.value  %}
+        mobileImg_intermediat.push(
+          {
+          image:"{{ mimage | image_url: width: 500 }}",
+          width:"{{ mimage.width }}",
+          height:"{{ mimage.height }}"
+          }
+        )
+    {% endfor %}
+
+   let banner_code_category = document.querySelectorAll('div[category="category"]');
+
+    banner_code_category.forEach((element,i) => {
+      if(desktopImg_intermediat[i]){
+                if(imgList_array_intermediat[i]){
+                      let desktopAlink = document.createElement("a");
+                      desktopAlink.setAttribute("href", imgList_array_intermediat[i].link);
+                      desktopAlink.setAttribute("class", "desktop_image");
+                      let desktopimg = document.createElement("img");
+                      desktopimg.setAttribute("src", desktopImg_intermediat[i].image);
+                      desktopimg.setAttribute("width", desktopImg_intermediat[i].width);
+                      desktopimg.setAttribute("height", desktopImg_intermediat[i].height);
+                      desktopimg.setAttribute("class", "desktop_image");
+                      desktopimg.setAttribute("alt", "banner image");
+                      desktopAlink.append(desktopimg);
+                      element.append(desktopAlink);
+                }else{
+                      let desktopimg = document.createElement("img");
+                      desktopimg.setAttribute("src", desktopImg_intermediat[i].image);
+                      desktopimg.setAttribute("width", desktopImg_intermediat[i].width);
+                      desktopimg.setAttribute("height", desktopImg_intermediat[i].height);
+                      desktopimg.setAttribute("class", "desktop_image");
+                      desktopimg.setAttribute("alt", "banner image");
+                      element.append(desktopimg);
+                }
+       }
+       if(mobileImg_intermediat[i]){
+
+                if(imgList_array_intermediat[i]){
+                      let mobileAlink = document.createElement("a");
+                      mobileAlink.setAttribute("href", imgList_array_intermediat[i].link);
+                      mobileAlink.setAttribute("class", "mobile_image");
+                      let mobileimg = document.createElement("img");
+                      mobileimg.setAttribute("src", mobileImg_intermediat[i].image);
+                      mobileimg.setAttribute("width", mobileImg_intermediat[i].width);
+                      mobileimg.setAttribute("height", mobileImg_intermediat[i].height);
+                      mobileimg.setAttribute("class", "mobile_image");
+                      mobileimg.setAttribute("alt", "banner image");
+                      mobileAlink.append(mobileimg);
+                      element.append(mobileAlink);
+                 }else{
+                      let mobileimg = document.createElement("img");
+                      mobileimg.setAttribute("src", mobileImg_intermediat[i].image);
+                      mobileimg.setAttribute("width", mobileImg_intermediat[i].width);
+                      mobileimg.setAttribute("height", mobileImg_intermediat[i].height);
+                      mobileimg.setAttribute("class", "mobile_image");
+                      mobileimg.setAttribute("alt", "banner image");
+                      element.append(mobileimg);
+                 }
+       }
+    })
+
+
+
+  // category intermediat banner end
+
+
+
+        let imgLink = "{{ article.metafields.custom.blog_banner_image_list_link_url.value }}";
+        let imgList_array = [];
+            imgList_array = imgLink.split(",");
+        let desktopImg = [];
+    {%  for dimage in article.metafields.custom.blog_banner_image_list.value  %}
+        desktopImg.push(
+          {
+          image:"{{ dimage | image_url: width: 1600 }}",
+          width:"{{ dimage.width }}",
+          height:"{{ dimage.height }}"
+          }
+        )
+    {% endfor %}
+
+     let mobileImg = [];
+    {%  for mimage in article.metafields.custom.blog_mobile_banner_image_list.value  %}
+        mobileImg.push(
+          {
+          image:"{{ mimage | image_url: width: 500 }}",
+          width:"{{ mimage.width }}",
+          height:"{{ mimage.height }}"
+          }
+        )
+    {% endfor %}
+
+   let banner_code = document.querySelectorAll('div[banner="banner"]');
+
+    banner_code.forEach((element,i) => {
+      if(desktopImg[i]){
+                if(imgList_array[i]){
+                      let desktopAlink = document.createElement("a");
+                      desktopAlink.setAttribute("href", imgList_array[i]);
+                      desktopAlink.setAttribute("class", "desktop_image");
+                      let desktopimg = document.createElement("img");
+                      desktopimg.setAttribute("src", desktopImg[i].image);
+                      desktopimg.setAttribute("width", desktopImg[i].width);
+                      desktopimg.setAttribute("height", desktopImg[i].height);
+                      desktopimg.setAttribute("class", "desktop_image");
+                      desktopimg.setAttribute("alt", "banner image");
+                      desktopAlink.append(desktopimg);
+                      element.append(desktopAlink);
+                }else{
+                      let desktopimg = document.createElement("img");
+                      desktopimg.setAttribute("src", desktopImg[i].image);
+                      desktopimg.setAttribute("width", desktopImg[i].width);
+                      desktopimg.setAttribute("height", desktopImg[i].height);
+                      desktopimg.setAttribute("class", "desktop_image");
+                      desktopimg.setAttribute("alt", "banner image");
+                      element.append(desktopimg);
+                }
+       }
+       if(mobileImg[i]){
+
+                if(imgList_array[i]){
+                      let mobileAlink = document.createElement("a");
+                      mobileAlink.setAttribute("href", imgList_array[i]);
+                      mobileAlink.setAttribute("class", "mobile_image");
+                      let mobileimg = document.createElement("img");
+                      mobileimg.setAttribute("src", mobileImg[i].image);
+                      mobileimg.setAttribute("width", mobileImg[i].width);
+                      mobileimg.setAttribute("height", mobileImg[i].height);
+                      mobileimg.setAttribute("class", "mobile_image");
+                      mobileimg.setAttribute("alt", "banner image");
+                      mobileAlink.append(mobileimg);
+                      element.append(mobileAlink);
+                 }else{
+                      let mobileimg = document.createElement("img");
+                      mobileimg.setAttribute("src", mobileImg[i].image);
+                      mobileimg.setAttribute("width", mobileImg[i].width);
+                      mobileimg.setAttribute("height", mobileImg[i].height);
+                      mobileimg.setAttribute("class", "mobile_image");
+                      mobileimg.setAttribute("alt", "banner image");
+                      element.append(mobileimg);
+                 }
+       }
+    })
+
+
+
+    }catch{
+      alert('Something went wrong please try to refresh your page.')
+    }
+
+  }
+  document.addEventListener("DOMContentLoaded", (event) => {
+      bannerinContent();
+  });
+</script>
+{% schema %}
+{
+  "name": "t:sections.main-article.name",
+  "tag": "section",
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "featured_image",
+      "name": "t:sections.main-article.blocks.featured_image.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "select",
+          "id": "image_height",
+          "options": [
+            {
+              "value": "adapt",
+              "label": "t:sections.main-article.blocks.featured_image.settings.image_height.options__1.label"
+            },
+            {
+              "value": "small",
+              "label": "t:sections.main-article.blocks.featured_image.settings.image_height.options__2.label"
+            },
+            {
+              "value": "medium",
+              "label": "t:sections.main-article.blocks.featured_image.settings.image_height.options__3.label"
+            },
+            {
+              "value": "large",
+              "label": "t:sections.main-article.blocks.featured_image.settings.image_height.options__4.label"
+            }
+          ],
+          "default": "adapt",
+          "label": "t:sections.main-article.blocks.featured_image.settings.image_height.label",
+          "info": "t:sections.main-article.blocks.featured_image.settings.image_height.info"
+        }
+      ]
+    },
+    {
+      "type": "title",
+      "name": "t:sections.main-article.blocks.title.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "blog_show_date",
+          "default": true,
+          "label": "t:sections.main-article.blocks.title.settings.blog_show_date.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "blog_show_author",
+          "default": false,
+          "label": "t:sections.main-article.blocks.title.settings.blog_show_author.label"
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "name": "t:sections.main-article.blocks.content.name",
+      "limit": 1
+    },
+    {
+      "type": "share",
+      "name": "t:sections.main-article.blocks.share.name",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "text",
+          "id": "share_label",
+          "label": "t:sections.main-article.blocks.share.settings.text.label",
+          "default": "Share"
+        },
+        {
+          "type": "paragraph",
+          "content": "t:sections.main-article.blocks.share.settings.featured_image_info.content"
+        },
+        {
+          "type": "paragraph",
+          "content": "t:sections.main-article.blocks.share.settings.title_info.content"
+        }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Article section" }]
+}
+{% endschema %}

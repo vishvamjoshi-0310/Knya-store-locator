@@ -1,0 +1,123 @@
+.breakpoint-feeling-section{
+    padding: 56px 40px !important;
+}
+.breakpoint-feeling-section .breakpoint-feeling-parent {
+  position: relative;
+  height: 809px;
+}
+.breakpoint-feeling-bg {
+    display: unset;
+}
+.breakpoint-feeling-section .breakpoint-feeling-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 36px;
+}
+.breakpoint-feeling-section .breakpoint-feeling-content {
+  position: absolute;
+  bottom: 56px;
+  left: 60px;
+  z-index: 1;
+}
+.breakpoint-feeling-section .breakpoint-feeling-heading {
+  font-family: Poppins-Regular;
+  font-size: 44px;
+  line-height: 100%;
+  letter-spacing: 0px;
+  font-weight: 400;
+  color: #ffffff;
+  margin-bottom: 4px;
+}
+.breakpoint-feeling-section .breakpoint-feeling-text {
+  font-family: Poppins-Regular;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 100%;
+  letter-spacing: 0px;
+  color: #ABC3FF;
+  width: 58%;
+}
+.breakpoint-feeling-section .breakpoint-feeling-button {
+  position: absolute;
+  bottom: 65px;
+  right: 52px;
+  z-index: 1;
+}
+.breakpoint-feeling-section .breakpoint-feeling-button a {
+  display: flex;
+  gap: 22px;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-family: Poppins-Semibold;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 36px;
+  letter-spacing: 0px;
+  text-decoration: none;
+}
+.breakpoint-feeling-section .breakpoint-feeling-button a svg {
+  height: 84px;
+  width: 84px;
+}
+.breakpoint-feeling-section .breakpoint-feeling-button a svg rect {
+  fill: #ffffff;
+  transition: fill 0.3s ease;
+}
+.breakpoint-feeling-section .breakpoint-feeling-button a svg path {
+  stroke: #4949e9;
+  transition: stroke 0.3s ease;
+}
+/* .breakpoint-feeling-section .breakpoint-feeling-button:hover a {
+  color: #4949e9;
+  transition: color 0.3s ease;
+}
+.breakpoint-feeling-section .breakpoint-feeling-button:hover a svg rect {
+  fill: #4949e9;
+}
+.breakpoint-feeling-section .breakpoint-feeling-button:hover a svg path {
+  stroke: #ffffff;
+} */
+@media screen and (max-width: 768px) {
+    .breakpoint-feeling-section{
+        padding: 0px 12px 36px 12px !important;
+    }
+  .breakpoint-feeling-section .breakpoint-feeling-parent {
+    height: 702px;
+  }
+  .breakpoint-feeling-bg {
+    display: unset;
+}
+  .breakpoint-feeling-section .breakpoint-feeling-bg img {
+    border-radius: 22px;
+  }
+  .breakpoint-feeling-section .breakpoint-feeling-content {
+    bottom: 116px;
+    left: 18px;
+  }
+  .breakpoint-feeling-section .breakpoint-feeling-heading {
+    font-size: 36px;
+    line-height: 40px;
+    margin-bottom: 8px;
+  }
+  .breakpoint-feeling-section .breakpoint-feeling-text {
+    font-size: 16px;
+    line-height: 28px;
+    width: 90%;
+  }
+  .breakpoint-feeling-section .breakpoint-feeling-button {
+    bottom: 12px;
+    right: 12px;
+  }
+  .breakpoint-feeling-section .breakpoint-feeling-button a {
+    gap: 14px;
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .breakpoint-feeling-section .breakpoint-feeling-button a svg {
+    height: 60px;
+    width: 60px;
+  }
+}

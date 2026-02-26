@@ -1,0 +1,1601 @@
+.option_row.color_match,
+.text-color-options .color_match {
+    display: none;
+}
+
+.icon_swatches_for_both {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+/* Change the background color of the checked radio button */
+.embMaiDivPopupbtn[type="radio"]:checked {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: black;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    top: 3px;
+    position: relative;
+}
+
+/* Add a border around the custom radio button */
+.embMaiDivPopupbtn[type="radio"]:checked::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 16px;
+    height: 16px;
+    border: 1.5px solid black;
+    border-radius: 50%;
+    background-color: white;
+}
+
+.embMaiDivPopupbtn[type="radio"]::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 16px;
+    height: 16px;
+    border: 1.5px solid black;
+    border-radius: 50%;
+    background-color: white;
+}
+
+/* Add the inner circle for the checked state */
+.embMaiDivPopupbtn[type="radio"]:checked::after {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 8px;
+    height: 8px;
+    background-color: black;
+    border-radius: 50%;
+}
+
+.embMaiDivPopupbtn {
+    width: 16px;
+    height: 16px;
+    top: 3px;
+    position: relative;
+    margin-left: 0;
+}
+
+.embMaiDivInner {
+    padding: 8px 0;
+    cursor: pointer;
+    margin: 0;
+    position: relative;
+    padding-left: 12px;
+    border: 0 !important;
+}
+
+#showEmb {
+    position: absolute;
+    top: 20px;
+    margin: 0;
+}
+
+.showEmb {
+    margin-bottom: 2px;
+}
+
+.embroidery-box {
+    background: #fff;
+    color: #000;
+    position: relative;
+}
+
+.embroidery-hidden-message p {
+    font-size: 17px;
+    font-weight: inherit;
+    color: #5c5c5c;
+}
+
+.embroidery-box .embroidery-popup {
+    padding: 2% 0;
+    background: grey;
+    color: black;
+}
+
+.positionbox span {
+    border: 1px solid grey;
+    color: grey;
+}
+
+.option_row.position input:checked+label {
+    padding: 0 2%;
+    cursor: pointer;
+}
+
+.variant_box .form_content {
+    margin: 2% 0 0 4%;
+}
+
+.variant_box h4 {
+    align-items: center;
+    margin: 0;
+    font-size: 14px !important;
+    line-height: 120%;
+    color: #482f8f;
+    text-transform: capitalize;
+    display: flex;
+}
+
+.optionbox {
+    margin-bottom: 1%;
+}
+
+.icon-swatches {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.icon-swatches .icon_box {
+    width: 30%;
+}
+
+.icon-swatches img {
+    width: 40%;
+}
+
+.icon-swatches .option_row input+label+input {
+    display: none;
+}
+
+.icon-swatches .option_row input:checked+label+input {
+    display: block;
+    margin-top: 5%;
+}
+
+.optionbox .option_row label {
+    cursor: pointer;
+}
+
+.variant_box .variant_selection_wrap {
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+}
+
+.btn_row {
+    display: none;
+    justify-content: space-between;
+}
+
+.addition_btns .wrap {
+    display: flex;
+    justify-content: space-around;
+}
+
+.variant_box .btn_row *,
+.variant_box .btn_row {
+    cursor: pointer;
+    align-items: center;
+}
+
+.embroidery-box .btn_pack {
+    display: flex;
+    justify-content: space-between;
+    background: #462D8C;
+    position: relative;
+    cursor: pointer;
+    border-radius: 8px 8px 0 0;
+    box-shadow: 0 0 3px 1px rgb(0 0 0 / 15%);
+}
+
+.variant_box .btn_row div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.embroidery-popup {
+    display: none;
+    overflow-y: auto;
+    z-index: 10;
+    position: fixed;
+    top: 10%;
+    bottom: 10%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    inset: 0px;
+    justify-content: center;
+    align-items: center;
+}
+
+.embroidery-box .added_list .wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 9px 0;
+}
+
+.embroidery-box .added_list {
+    display: none;
+    cursor: pointer;
+}
+
+/* .embroidery-popup .popupbtn {font-weight:800;text-align:right;margin-left:98%;font-size:20px;
+  position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+  } */
+.added_list_contents .right .property_line {
+    color: #707070;
+    margin: 1px 0;
+}
+
+/* .added_list_contents .right .property_line span:first-child{ text-transform:capitalize;} */
+
+.embroidery-box .added_list * {
+    cursor: pointer;
+    text-align: left;
+    line-height: 120%;
+    text-transform: capitalize;
+}
+
+/* .added_list .added_list_contents .list_row {
+    padding-top: 10px;
+    margin-bottom: 2%;
+    border: 1px solid transparent;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    column-gap: 24px;
+    padding-right: 16px;
+  } */
+.added_list_contents .right h4 {
+    text-align: left;
+    margin-bottom: 1px;
+    margin-top: 0;
+    color: #462d8c;
+    font-family: 'Heebo-Medium';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: 0.024px;
+}
+
+.embroidery-popup .popup-wrap {
+    display: flex;
+    height: 80%;
+}
+
+.embroidery-box .added_list .wrap .right label {
+    text-transform: uppercase;
+}
+
+.embroidery-box .added_list .wrap .right {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+}
+
+.embroidery-box .added_list .wrap .left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.embroidery_filled {
+    width: 2rem !important;
+    height: 2rem !important;
+}
+
+.embroidery-popup .embroidery-popup-inner {
+    inset: initial;
+    border: 0px solid rgb(204, 204, 204);
+    background: #f2edd8;
+    overflow: initial;
+    border-radius: 0px;
+    outline: none;
+    padding: initial;
+    box-sizing: border-box;
+    transform: translate3d(0px, 0px, 0px);
+    height: unset;
+    margin: auto;
+    position: absolute;
+    width: 100%;
+    max-width: 663px;
+    max-height: 650px;
+    height: 100%;
+    top: 10%;
+}
+
+.main-image_ImageWrapper,
+.variants_wrap {
+    flex: 50;
+    overflow: hidden;
+}
+
+.popup-wrap .variants_wrap {
+    font-weight: bold;
+    font-size: 12px;
+    border: 1px solid transparent;
+    height: 100%;
+    overflow: auto;
+}
+
+.form_content .form_wrapper,
+.form_content .form_wrapper * {
+    margin: 0;
+}
+
+.form_wrapper {
+    max-width: 90%;
+}
+
+.form_content .form_wrapper .optionbox.swatch,
+.form_content .form_wrapper .optionbox {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.2rem 0 1rem 0;
+}
+
+.main-image_ImageWrapper-inner img {
+    max-width: 400px;
+    max-height: 400px;
+    object-fit: contain;
+}
+
+.popup-wrap .variants_wrap input[type="radio"] {
+    visibility: hidden;
+}
+
+.option_row input[type="radio"] {
+    visibility: hidden;
+    display: none;
+}
+
+.option_row input[type="radio"]+label {
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    outline: none;
+    padding: 5px;
+    text-transform: capitalize;
+    font-weight: 400 !important;
+    /*     font-size: 12px !important; */
+    line-height: 120%;
+    color: #482f8f;
+}
+
+.option_row input[type="radio"]:checked+label {
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    outline: none;
+    white-space: nowrap;
+    /*   font-family: Heebo-Regular; */
+}
+
+h4.lableForTitle {
+    margin-bottom: 0.5rem;
+}
+
+.option_row input[type="radio"]+label.colorBoxB {
+    display: inline-block;
+    position: relative;
+    padding: 0;
+    width: 2rem;
+    height: 2rem;
+    background-color: #000000;
+    border-radius: 50rem;
+}
+
+.option_row input[type="radio"]+label.colorBoxW {
+    display: inline-block;
+    position: relative;
+    padding: 0;
+    width: 2rem;
+    height: 2rem;
+    background-color: #ffffff;
+    border-radius: 50rem;
+}
+
+.option_row input[type="radio"]+label.colorBoxWP {
+    display: inline-block;
+    position: relative;
+    padding: 0;
+    width: 2rem;
+    height: 2rem;
+    background-color: #ee90a0;
+    border-radius: 50rem;
+}
+
+.option_row input[type="radio"]+label.colorBoxSG {
+    display: inline-block;
+    position: relative;
+    padding: 0;
+    width: 2rem;
+    height: 2rem;
+    background-color: #fcc201;
+    border-radius: 50rem;
+}
+
+.option_row input[type="radio"]+label.colorBoxR {
+    display: inline-block;
+    position: relative;
+    padding: 0;
+    width: 2rem;
+    height: 2rem;
+    background-color: #ff0000;
+    border-radius: 50rem;
+}
+
+.option_row input[type="radio"]:checked+label.colorEmbroidery::after {
+    content: "";
+    width: 30px;
+    height: 31px;
+    position: absolute;
+    top: -74%;
+    left: -80%;
+    border: 1px solid;
+    transform: translate(50%, 50%);
+    border-radius: 0px 0px 4px 0px !important;
+}
+
+.option_row input[type="radio"]:checked+label.colorEmbroidery {
+    border-width: 0;
+    boder-color: none;
+}
+
+.embroidery-box .wrapp .added_list_contents .list_row .left .showIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.wrapp .btn_pack h3 {
+    text-decoration: none;
+    margin: 0;
+    line-height: 1.5;
+    font-size: clamp(16px, calc(16 * (100vw / 1440)), 18px);
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: 0.024px;
+}
+
+.wrapp .btn_pack p {
+    text-decoration: none;
+    margin: 0;
+    line-height: 1.428;
+    font-size: clamp(14px, calc(14 * (100vw / 1440)), 16px);
+    font-family: Heebo-Regular;
+    letter-spacing: 0;
+    font-weight: 400;
+    letter-spacing: 0.35px;
+}
+
+quantity-input.quantity {
+    border: 1px solid rgba(72, 47, 143, 0.70);
+    background: #F1F1F1;
+}
+
+.wrapp .btn_pack p.priceDivStart {
+    font-size: clamp(12px, calc(12*(100vw / 1440)), 14px);
+    line-height: 1.333;
+    letter-spacing: .048px;
+}
+
+.imagDivss {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding-left: 12px;
+    padding-right: 20px;
+}
+
+.text_trasformation_name_wrapper {
+    position: relative;
+    border-color: #000;
+    border-style: solid;
+    border-width: 0 0 1px 0;
+    box-sizing: border-box;
+}
+
+.text_trasformation_name {
+    border: 1px solid;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    padding: 4px 8px;
+    cursor: pointer;
+    border-bottom: none;
+}
+
+.fullnameInput .lastName.text_trasformation_name_wrapper input {
+    width: 75%;
+}
+
+.text_trasformation_name p {
+    font-size: 12px;
+    color: rgba(179, 179, 179, 1);
+    font-family: 'Heebo-Medium';
+    font-weight: 500;
+}
+
+.text_trasformation_name_captaln {
+    display: none;
+}
+
+p.text_trasformation_name_captal {
+    border-bottom: 2px solid rgba(179, 179, 179, 1);
+}
+
+.text_trasformation_name_designation_capital p.text_trasformation_name_captal {
+    border-bottom: none;
+}
+
+.text_trasformation_name_designation_capital p.text_trasformation_name_small {
+    border-bottom: 2px solid rgba(179, 179, 179, 1);
+}
+
+.background_text {
+    background: rgba(70, 45, 140, 1);
+    color: #fff;
+}
+
+.background_text.text_trasformation_name p {
+    color: #fff;
+    border-bottom: 2px solid #fff;
+}
+
+.text_trasformation_name_designation_capital .background_text p.text_trasformation_name_captal {
+    border-bottom: none;
+}
+
+.text_trasformation_name_designation_capital .background_text p.text_trasformation_name_small {
+    /* border-bottom: 2px solid rgba(179, 179, 179, 1); */
+    border-bottom: 2px solid #fff;
+}
+
+@media screen and (max-width: 768px) {
+    .wrapp .btn_pack h3 {
+        text-decoration: none;
+        margin: 0;
+        line-height: 1.5;
+        font-size: clamp(14px, calc(14 * (100vw / 1440)), 16px);
+        font-weight: 500;
+        line-height: 20px;
+        letter-spacing: 0.024px;
+    }
+
+    .wrapp .btn_pack p.priceDivStart {
+        font-size: clamp(11px, calc(11 * (100vw / 1440)), 14px);
+        line-height: 16px;
+        letter-spacing: 0.048px;
+    }
+}
+
+@media(min-width: 1400px) {
+    .imagDivss {
+        gap: 11px;
+    }
+}
+
+.priceDiv {
+    /* margin-left: 20px; */
+    display: flex;
+    /* flex-direction: column; */
+    color: #f4ecd0;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 2px;
+}
+
+.imagDivss_containers {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 12px;
+}
+
+.imagDivss_containers img {
+    width: 60px;
+    height: 60px;
+}
+
+.main-image_ImageWrapper-inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media(max-width: 600px) {
+    .wrapp .btn_pack h3 {
+        font-size: 14px;
+        line-height: 1.42;
+        /* 142.857% */
+        letter-spacing: 0.014px;
+    }
+
+    .wrapp .btn_pack p {
+        font-family: Heebo-Regular;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 1.5
+            /* 150% */
+        ;
+        letter-spacing: 0.048px;
+    }
+}
+
+/* @media(max-width:385px){
+    .priceDiv {flex-direction: column;align-items: flex-start;}
+  } */
+.fullnameInput {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.fullnameInput input {
+    /* border-color: #000;
+    border-style: solid;
+    border-width: 0 0 1px 0;
+    box-sizing: border-box; */
+    display: flex;
+    height: 25px;
+    padding: 0px;
+    transition: border-color 0.2s ease 0s;
+    background: transparent;
+    border: none;
+    text-transform: capitalize;
+    width: 75%;
+}
+
+/* .fullnameInput input:focus { border:2px solid #000;} */
+.OptionBox-Inner {
+    display: flex;
+    gap: 1rem;
+}
+
+.addition_btns {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2% 0 0 4%;
+}
+
+.addition_btns .wrap {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    gap: 2rem;
+    width: 95%;
+}
+
+.flex-wrap-lined {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 2rem;
+}
+
+.initialsWrap input {
+    height: 30px;
+}
+
+.iconWrap-no-bg input[type="radio"]+label {
+    border: none;
+}
+
+.iconWrap-no-bg input[type="radio"]+label img {
+    max-width: 50px;
+    max-height: 50px;
+    width: 60px;
+    height: 60px;
+    aspect-ratio: 1/1;
+}
+
+.iconWrap-no-bg input[type="radio"]:checked+label {
+    border: none;
+}
+
+.iconWrap-no-bg input[type="radio"]:checked+label img {
+    border: 2px solid #000;
+}
+
+.customUploadImageEmbroidery {
+    flex: 100;
+    border: 1px solid transparent;
+    margin-top: 0.5rem;
+    font-size: 14px;
+    padding: 0;
+}
+
+.customUploadImageEmbroidery label {
+    padding: 0;
+}
+
+.btn_row .arrow-icon {
+    transform: rotate(90deg);
+}
+
+.VarsityScriptJF {
+    font-family: VarsityScriptJF;
+    font-style: italic;
+}
+
+.selected-Name-centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+}
+
+.selected-Name-centered p {
+    margin: 0;
+    padding: 0;
+    line-height: 1rem;
+}
+
+.embroideryIconsWrap {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-wrap: nowrap !important;
+    gap: 1rem;
+}
+
+.option_row.customImageUploadDivision {
+    margin-top: 0.5rem;
+    margin-bottom: -0.5rem;
+}
+
+.customupload_input {
+    display: none;
+}
+
+.customupload_input::-webkit-file-upload-button {
+    display: none;
+}
+
+/* .embroideryIconsWrap .option_row { width:25%; } */
+.embroideryIconsWrap .option_row {
+    width: 10%;
+}
+
+.embroideryIconsWrap .option_row input[type="radio"]+label {
+    padding: 0;
+}
+
+.customLineAttribute {
+    display: none;
+}
+
+.customUploadImageEmbroidery .custom-image-value {
+    display: none;
+    max-width: 130px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding-left: 0.5rem;
+    margin-bottom: -0.5rem;
+}
+
+/* .right h4{ text-align:left; font-weight:normal;text-decoration:capitalize;} */
+.variants_wrap .embroidery-product-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    text-transform: initial;
+    font-size: 17px;
+    margin-top: 25px;
+}
+
+.variants_wrap .embroidery-product-message p {
+    font-weight: 400;
+    font-size: 14px;
+    color: #482f8f;
+    line-height: 120%;
+    opacity: 1;
+    margin: 0% 0 0 4%;
+}
+
+.embroidery-popup::-webkit-scrollbar {
+    display: none !important;
+}
+
+.first_div {
+    /* display: flex;
+    align-items: center;
+    justify-content: space-between; */
+    width: 100%;
+    background: #482f8f;
+    margin: 14px 0;
+    /* padding: 5px 15px; */
+    /* border-top: 1px dashed #F4ECD0;
+    border-bottom: 1px dashed #F4ECD0; */
+}
+
+.popupbtn1 {
+    cursor: pointer;
+    line-height: 0;
+}
+
+.first_div_container {
+    font-size: 0;
+}
+
+.first_div p {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 120%;
+    margin: 0;
+}
+
+@media (max-width: 880px) {
+    .embroideryIconsWrap {
+        flex-wrap: wrap;
+    }
+
+    .embroideryIconsWrap .option_row.embroideryIcon {
+        width: 20%;
+    }
+
+    .embroidery-popup .popup-wrap {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    /* .addition_btns .wrap { .5rem;} */
+    .embroidery-box .wrapp .popupbtn {
+        font-size: 17px;
+    }
+
+    /*   .popup-wrap .variants_wrap { padding-right:.5rem;} */
+    /*   .embroidery-popup .popup-wrap { padding :2rem 1rem;} */
+}
+
+.popup_steps {
+    font-size: 14px !important;
+}
+
+.color-box {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 0.5rem;
+    line-height: 0;
+}
+
+.popup_steps {
+    font-family: "Heebo-Regular";
+    color: #000303;
+}
+
+.customLogosss {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+h4.lableForTitle {
+    width: 40%;
+}
+
+@media (max-width: 640px) {
+    span.font_name {
+        font-size: 12px !important;
+    }
+
+    .popup_steps {
+        font-size: 10px !important;
+    }
+
+    .optionbox .option_row label {
+        font-size: 12px !important;
+    }
+
+    .form_wrapper_header h3 {
+        font-size: 14px !important;
+        font-family: "Heebo-Regular" !important;
+    }
+
+    .customLogosss {
+        display: flex;
+        align-items: flex-start;
+        justify-content: initial;
+        gap: 6px;
+        flex-direction: column;
+    }
+
+    h4.lableForTitle {
+        width: 100%;
+    }
+
+    /*     .error_embroideryFieldf{font-size:12px !important;} */
+    .error_embroideryFieldc {
+        justify-content: flex-start !important;
+    }
+
+    .error_embroideryFieldi {
+        justify-content: flex-start !important;
+    }
+
+    /* .error_embroideryFieldb{font-size:12px !important;}
+  .error_embroideryFieldcb{font-size:12px !important;} */
+    .error_embroideryFieldib {
+        float: left !important;
+    }
+
+    .embroidery-popup .embroidery-popup-inner {
+        max-height: 100% !important;
+    }
+
+    .variants_wrap .embroidery-product-message {
+        min-height: auto !important;
+    }
+
+    /* .first_div p {
+      font-size: 14px !important;
+    } */
+    .option-iconCustomUpload {
+        font-family: "Heebo-Medium" !important;
+        font-size: 10px !important;
+    }
+
+    .icon_text {
+        font-family: "Heebo-Medium" !important;
+        font-size: 12px !important;
+    }
+
+    .emb-price {
+        font-family: "Heebo-Regular" !important;
+    }
+
+    .embroidery-product-message p {
+        font-family: "Heebo-Regular" !important;
+    }
+
+    .popup_steps {
+        font-family: "Heebo-Medium" !important;
+    }
+
+    .embroidery-box .btn_pack {
+        background-color: #462d8c !important;
+    }
+
+    .first_div {
+        background-color: #482f8f !important;
+    }
+
+    .priceDiv {
+        color: #f5ebd2 !important;
+    }
+
+    .popup_title h3 {
+        font-size: 18px !important;
+        font-family: "Heebo-Medium" !important;
+    }
+
+    .duplicate_varient_title p {
+        font-size: 1.367vw !important;
+    }
+
+    .duplicate_varient_title p {
+        font-size: 14px !important;
+        font-family: "Heebo-Regular" !important;
+    }
+
+    .form_wrapper_header p {
+        font-size: 14px !important;
+        font-family: "Heebo-Regular" !important;
+    }
+
+    .variant_box h4 {
+        font-size: 14px !important;
+    }
+
+    .option_row input[type="radio"]+label,
+    .popup_steps {
+        font-size: 10px;
+        width: 85%;
+    }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+    .variant_box h4 {
+        font-size: 1.367vw !important;
+    }
+
+    .option_row input[type="radio"]+label,
+    .popup_steps {
+        font-size: 1.367vw !important;
+    }
+
+    .popup_title h3 {
+        font-size: 1.758vw !important;
+    }
+
+    .duplicate_varient_title p {
+        font-size: 1.367vw !important;
+    }
+
+    .form_wrapper_header p,
+    .form_wrapper_header h3 {
+        font-size: 18px !important;
+    }
+
+    /*   .error_embroideryFieldf{font-size:1.172vw !important;}
+  .error_embroideryFieldc{font-size:1.172vw !important;}
+  .error_embroideryFieldi{font-size:1.172vw !important;}
+  .error_embroideryFieldb{font-size:1.172vw !important;}
+  .error_embroideryFieldcb{font-size:1.172vw !important;}
+  .error_embroideryFieldib{font-size:1.172vw !important;} */
+}
+
+@media (min-width: 640px) {
+
+    /*   .customUploadImageEmbroidery{display:flex;justify-content:space-between} */
+    .custom_uploads label {
+        margin: 0 !important;
+    }
+
+    .customUploadImageEmbroidery label {
+        width: 100% !important;
+    }
+
+    .custom_uploads {
+        max-width: 172px;
+    }
+
+    .font-group {
+        flex-direction: row !important;
+        align-items: center;
+    }
+
+    .name-box {
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: space-between;
+    }
+
+    .color-box {
+        flex-direction: row !important;
+    }
+}
+
+@media (max-width: 475px) {
+    .variants_wrap .embroidery-product-message {
+        padding: 1rem 0;
+    }
+
+    .addition_btns .wrap {
+        gap: 1rem;
+        width: 100%;
+    }
+
+    .OptionBox-Inner {
+        flex-wrap: wrap;
+    }
+
+    .popupbtn,
+    .embroidery-box .added_list * {
+        font-size: 14px;
+    }
+
+    .embroidery-box .wrapp .popupbtn {
+        font-size: 14px;
+    }
+
+    /*   .variants_wrap .embroidery-product-message p {color:#5c5c5c;font-size:14px;} */
+}
+
+@media (max-width: 360px) {
+
+    .popupbtn,
+    .embroidery-box .added_list * {
+        font-size: 12px;
+    }
+
+    .embroidery-box .added_list .wrap .left input,
+    .embroidery_filled {
+        width: 0.8rem;
+        height: 0.8rem;
+    }
+
+    .embroidery-popup .popup-wrap {
+        height: 65% !important;
+    }
+}
+
+.popup_heaer {
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #482f8f;
+    height: 78px;
+}
+
+.popup_title {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.popup_title h3 {
+    font-weight: 300;
+    font-size: 1.406vw;
+    line-height: 120%;
+    color: #f4ecd0;
+    font-family: Heebo-light;
+}
+
+.duplicate_varient_title p {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 120%;
+    text-transform: uppercase;
+    color: #482f8f;
+    margin: 0;
+    font-family: "Heebo-Medium";
+}
+
+.duplicate_varient_titles {
+    display: flex;
+    gap: 2rem;
+    padding: 1.6rem 2rem;
+    background: #d4e167;
+}
+
+.duplicate_varient_title {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    cursor: pointer;
+}
+
+path.innerSVG {
+    fill: transparent;
+}
+
+.is-open path.innerSVG {
+    fill: rgb(72, 47, 143);
+}
+
+.optionbox-color .OptionBox-Inner .option_row label {
+    border-radius: 0px 0px 4px 0px !important;
+    transform: matrix(-1, 0, 0, 1, 0, 0);
+    width: 23px !important;
+    height: 25px !important;
+}
+
+/* .optionbox.swatch:nth-child(1){flex-direction:row !important;align-items: center;gap: 0.5rem !important;} */
+.container_one {
+    flex-direction: row !important;
+    align-items: center;
+}
+
+.font_wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.icon_change path.innerSVG {
+    fill: rgb(72, 47, 143);
+}
+
+.font_wrapper label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+h4.reset_btn,
+h4.adtn_btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h4.reset_btn {
+    background: url("https://cdn.shopify.com/s/files/1/0562/9247/5063/files/Vector_1_5defa9a4-5ba0-4d6f-8c7e-2e76071e34da.png?v=1682679995");
+    width: 142px;
+    height: 37px;
+    cursor: pointer;
+}
+
+h4.adtn_btn {
+    background: url("https://cdn.shopify.com/s/files/1/0562/9247/5063/files/Vector_2_be9f9791-0804-4f8b-8d30-7687a64d5ebd.png?v=1682680293");
+    width: 157px;
+    height: 37px;
+    cursor: pointer;
+}
+
+span.font_name,
+.colorName {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 120%;
+    margin-left: 5px !important;
+}
+
+.form_wrapper_header p,
+.form_wrapper_header h3 {
+    font-family: "Heebo-Medium";
+    font-weight: 400 !important;
+    font-size: 1.406vw;
+    line-height: 120%;
+    text-transform: uppercase;
+    color: #482f8f;
+}
+
+.form_wrapper_header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.icon_container {
+    flex-direction: row !important;
+}
+
+.icon_text {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 120%;
+}
+
+.customUploadImageEmbroidery label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    border: 1px solid #000303;
+    width: 75%;
+    color: #000303 !important;
+    margin-top: 1rem;
+}
+
+.custon_icon_guide {
+    font-style: normal;
+    font-weight: 400 !important;
+    font-size: 10px;
+    line-height: 120%;
+    color: #000000;
+    opacity: 0.6;
+}
+
+.form_wrapper_header {
+    padding: 2rem 0;
+}
+
+span.icon_text {
+    font-weight: 500;
+    font-size: 14px !important;
+    line-height: 120%;
+}
+
+.bothPlacement {
+    flex-direction: row !important;
+}
+
+.font_wrapper1 label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+}
+
+.color-box h4 {
+    font-family: "Heebo-Medium";
+}
+
+.colorName4 {
+    font-family: "Heebo-Regular";
+}
+
+.optionbox h4 {
+    font-family: "Heebo-Medium";
+}
+
+.optionbox .option_row position {
+    font-family: "Heebo-Regular";
+}
+
+.icon_container {
+    align-items: center;
+}
+
+.firstname1 {
+    font-family: "Heebo-Regular";
+}
+
+.custon_icon_guide {
+    font-family: "Heebo-Regular";
+}
+
+.option_row label,
+.bothColorName,
+.font_name,
+.colorName,
+.choosedIconPlacement,
+.bothFont {
+    font-family: "Heebo-Regular" !important;
+}
+
+.icon_text {
+    font-family: "Heebo-Medium" !important;
+}
+
+.emb-price {
+    font-family: "Heebo-Regular" !important;
+}
+
+.VarsityScriptJF {
+    font-family: "Fraunces-Italic" !important;
+}
+
+.bothPlacement {
+    align-items: baseline;
+}
+
+.custom_icon_text {
+    font-size: 10px !important;
+}
+
+span.font_name,
+span.bothFont {
+    min-width: 40px;
+    display: inline-block;
+}
+
+.swatch-titlee-emb {
+    display: none;
+}
+
+.option_row:hover .swatch-titlee-emb {
+    position: absolute;
+    display: block;
+    bottom: 37px;
+    font-family: "Heebo-Regular";
+    text-transform: capitalize;
+    left: 0;
+    background: #482f8f;
+    color: #f4ecd0;
+    z-index: 5;
+    width: auto;
+    height: 46px;
+    line-height: 120%;
+    display: flex;
+    align-items: center;
+    font-weight: 400;
+    -webkit-box-shadow: 0 2px 12px 1px rgb(0 0 0 / 22%);
+    -moz-box-shadow: 0 2px 12px 1px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 2px 12px 1px rgb(0 0 0 / 22%);
+    padding: 7px 8px;
+    font-size: 14px;
+    border-radius: 4px;
+}
+
+.swatch-titlee-emb:after {
+    content: "";
+    position: absolute;
+    bottom: -6px;
+    right: 0;
+    margin: 0 auto;
+    border-width: 12px 12px 0;
+    border-style: solid;
+    border-color: #482f8f transparent;
+    display: block;
+    width: 0;
+    left: -50%;
+}
+
+.error_embroideryFieldf {
+    color: red;
+    font-size: 11px;
+    font-family: "Heebo-Regular";
+    display: none;
+    justify-content: end;
+    padding-top: 6px;
+}
+
+.error_embroideryFieldc {
+    color: red;
+    font-size: 11px;
+    font-family: "Heebo-Regular";
+    display: none;
+    justify-content: end;
+    padding-top: 1px;
+}
+
+.error_embroideryFieldi {
+    color: red;
+    font-size: 11px;
+    font-family: "Heebo-Regular";
+    display: none;
+    justify-content: flex-start;
+    padding-left: 15px;
+}
+
+.error_embroideryFieldb {
+    color: red;
+    font-size: 11px;
+    font-family: "Heebo-Regular";
+    display: none;
+    justify-content: end;
+    padding-top: 6px;
+}
+
+.error_embroideryFieldcb {
+    color: red;
+    font-size: 11px;
+    font-family: "Heebo-Regular";
+    display: none;
+    justify-content: end;
+    padding-top: 2px;
+}
+
+.error_embroideryFieldib {
+    color: red;
+    font-size: 11px;
+    font-family: "Heebo-Regular";
+    display: none;
+    justify-content: end;
+    padding-left: 15px;
+}
+
+/* .error_embroideryField{color:red;font-size:0.938vw;font-family: 'Heebo-Regular';display:none;justify-content: end;} */
+.option_row {
+    position: relative;
+}
+
+.error_embroideryFieldb {
+    display: none;
+}
+
+.error_embroideryFieldi {
+    display: none;
+}
+
+/* .error_embroideryFieldib{float:right;} */
+.option_row input[type="radio"]:checked+.error_embroideryFieldc {
+    display: block;
+}
+
+/* .option-row-both{line-height:0;} */
+
+.property_line span:first-child {
+    color: #462d8c;
+    font-family: 'Heebo-Regular';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0.035px;
+}
+
+.property_line span:last-child {
+    color: #000;
+    font-family: 'Heebo-Regular';
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0.048px;
+}
+
+.added_list_contents.gg .left {
+    min-width: 120px;
+    width: 8.333vw;
+}
+
+.embroidery-box .added_list .wrap .left label {
+    font-family: 'Heebo-Medium';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    letter-spacing: 0.024px;
+    text-transform: capitalize;
+    line-height: 24px;
+
+}
+
+.embroidery-box .added_list .wrap .right.asdf {
+    color: #462d8c;
+    font-family: 'Heebo-Medium';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: 0.014px;
+    padding-right: 14px;
+}
+
+.embroidery-box .added_list .wrap .right.asdf svg {
+    width: 24px;
+    height: 24px;
+}
+
+.embroidery-box .added_list .wrap .right.asdf svg g {
+    stroke: #462d8c;
+}
+
+.added_list .added_list_contents .list_row .selected-Name-centered p {
+    color: #fff;
+    text-align: center;
+    font-family: 'Heebo-Regular';
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0.048px;
+}
+
+.added_list_contents.gg {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: auto;
+}
+
+.embroidery-box .added_list.custom-edit-placement {
+    padding-right: 14px;
+    display: flex;
+    justify-content: right;
+    min-width: max-content;
+}
+
+.embroidery-box .added_list .wrap .right.asdf span.box_price {
+    line-height: 20px;
+}
+
+.embroidery-box .added_list input.embroidery_filled {
+    accent-color: #191B6B;
+    width: 18px !important;
+    height: 18px !important;
+}
+
+@media (max-width: 749px) {
+    .property_line span:first-child {
+        font-size: 12px;
+        line-height: 18px;
+        letter-spacing: 0.048px;
+    }
+
+    .property_line span:last-child {
+        line-height: 18px;
+        letter-spacing: 0.048px;
+    }
+
+    .embroidery-box .added_list .wrap .left label {
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+    .added_list_contents .right h4 {
+        font-size: 14px;
+        letter-spacing: 0.014px;
+    }
+
+    .embroidery-box .added_list.custom-edit-placement {
+        padding: 0;
+    }
+}

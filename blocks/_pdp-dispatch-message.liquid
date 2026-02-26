@@ -1,0 +1,53 @@
+<style>
+.customtextMsg {
+    font-size: {{ block.settings.textMgFontSizeDesktop }}px;
+    color: #E46962;
+    line-height: 24px;
+    letter-spacing: 0.08px;
+    margin-top: 14px;
+    font-family: 'Heebo';
+}
+@media(max-width: 600px){
+    .customtextMsg {
+        font-size: {{ block.settings.textMgFontSizeMobile }}px;
+        line-height: 20px; /* 142.857% */
+        letter-spacing: 0.014px;
+    }
+}
+</style>
+<div class="customtextMsg">
+  <div>
+    {% assign alert_text = product.metafields.custom.alert_text.value %}
+    {{ alert_text | default: block.settings.textMg }}
+  </div>
+</div>
+{% schema %}
+{
+  "name": "PDP Dispatch Message",
+  "settings": [
+    {
+      "type": "html",
+      "id": "textMg",
+      "label": "Text Message",
+      "default": "3-5 days dispatch for embroidered orders."
+    },
+    {
+      "type": "number",
+      "id": "textMgFontSizeDesktop",
+      "label": "dispatch message font size on desktop",
+      "default": 16
+    },
+    {
+      "type": "number",
+      "id": "textMgFontSizeMobile",
+      "label": "dispatch message font size on mobile",
+      "default": 14
+    }
+  ],
+  "presets": [
+    {
+      "name": "PDP Dispatch Message"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,85 @@
+.breakpoint-privacy-section {
+  width: 100%;
+  padding: 36px 80px 80px 80px !important;
+}
+.breakpoint-privacy-section .breakpoint-privacy-heading {
+  font-family: Poppins-Regular;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 64px;
+  letter-spacing: 0px;
+  color: #000000;
+  margin-bottom: 22px;
+}
+
+.breakpoint-privacy-section .breakpoint-privacy-cards {
+  display: flex;
+  gap: 36px;
+  flex-wrap: wrap;
+}
+
+.breakpoint-privacy-section .breakpoint-privacy-card {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding-inline: 24px;
+  padding-block: auto;
+  border: 1px solid var(--color-black-16, #00000029);
+  border-radius: 14px;
+  flex: 1;
+  height: 145px;
+}
+
+.breakpoint-privacy-section .breakpoint-privacy-card-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.breakpoint-privacy-section .breakpoint-privacy-card-icon img {
+  width: auto;
+  max-height: 103px;
+  object-fit: contain;
+  display: block;
+}
+
+.breakpoint-privacy-section .breakpoint-privacy-card-text {
+  font-family: Poppins-Medium;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 36px;
+  color: #2c2c2c;
+}
+
+@media screen and (max-width: 768px) {
+  .breakpoint-privacy-section {
+    padding: 36px 18px !important;
+  }
+  .breakpoint-privacy-section .breakpoint-privacy-heading {
+    font-size: 24px;
+    line-height: 32px;
+    margin-bottom: 36px;
+  }
+
+  .breakpoint-privacy-section .breakpoint-privacy-cards {
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .breakpoint-privacy-section .breakpoint-privacy-card {
+      gap: 14px;
+      padding-inline: 24px;
+    padding-block: 14px;
+    border: 1px solid var(--color-black-16, #00000029);
+    height: 80.67px;
+  }
+
+  .breakpoint-privacy-section .breakpoint-privacy-card-icon img {
+    max-height: 61px;
+  }
+
+  .breakpoint-privacy-section .breakpoint-privacy-card-text {
+    font-size: 16px;
+  }
+}

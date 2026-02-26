@@ -1,0 +1,754 @@
+{%- liquid
+  assign colorswatch_id = block.id | replace: '_', '' | downcase
+  assign product_resource = closest.product
+  assign desktop_limit = block.settings['color-swatches-show-desktop'] | plus: 0
+  assign mobile_limit = block.settings['color-swatches-show-mobile'] | plus: 0
+  assign desktop_count = 0
+  assign mobile_count = 0
+  assign total_swatches = 0
+
+  assign main_product_color_text = product_resource.metafields.custom.colour
+  if main_product_color_text != blank
+    assign total_swatches = total_swatches | plus: 1
+  endif
+
+  if product_resource.metafields.custom.color_swatches_product.value
+    for productv in product_resource.metafields.custom.color_swatches_product.value
+      assign skip_in_count = false
+      if productv.id == product_resource.id and main_product_color_text != blank
+        assign skip_in_count = true
+      endif
+      unless skip_in_count
+        assign color_swatches_text = productv.metafields.custom.colour
+        if color_swatches_text != blank
+          assign total_swatches = total_swatches | plus: 1
+        endif
+      endunless
+    endfor
+  endif
+-%}
+
+{% style %}
+  .color-swatches-wrapper-{{ colorswatch_id }} {
+    margin-top: {{ block.settings.top_spacing }}px;
+    padding: 0px 24px 0px 0px;
+    border-radius: 0 0 20px;
+  }
+
+  .color-swatches-title-{{ colorswatch_id }} {
+    display: block;
+    text-align: left;
+    padding: {{ block.settings.title_padding }}px;
+    margin-bottom: {{ block.settings.title_bottom_spacing }}px;    
+    color: {{ block.settings.title_text_color }};
+    font-size: clamp(16px, calc({{ block.settings.title_font_size }} * (100vw / 1440)), 24px);
+    font-family: {{ block.settings.title_font_weight }};
+    line-height: 1.272;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .color-swatches-title-{{ colorswatch_id }} > * {
+    font-size: clamp(14px, calc(16 * (100vw / 1440)), 18px);
+    line-height: 1.5;
+    color: #707070;
+    letter-spacing: .88px;
+    @media screen and (max-width: 749px) {
+      line-height: 16px;
+      font-size: 12px;
+      font-weight: 400;
+      font-family: 'Heebo-Regular';
+    }
+  }
+  .color-swatches-{{ colorswatch_id }} {
+    display: flex;
+    flex-wrap: wrap;
+    gap: {{ block.settings.swatch_spacing }}px;
+    align-items: center;
+  }
+
+  .color-swatch-{{ colorswatch_id }} {
+    position: relative;
+    display: block;
+    width: {{ block.settings.swatch_size }}px;
+    height: {{ block.settings.swatch_size }}px;
+    border-radius: {{ block.settings.swatch_border_radius }}px;   
+    cursor: pointer;
+    border: {{ block.settings.swatch_border_width }}px solid {{ block.settings.swatch_border_color }};
+  }
+
+  .color-swatch-{{ colorswatch_id }} .imageswatch {
+    position: relative;
+    display: block;
+    width:100%;
+    height:100%;
+    border-radius: {{ block.settings.swatch_border_radius }}px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+   
+  }
+
+  .color-swatch-{{ colorswatch_id }}:hover {
+    transform: scale(1.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    border-color: #000000;
+    border-width: 2px;
+  }
+
+  .color-swatch-{{ colorswatch_id }}--current {
+    border-color: {{ block.settings.current_swatch_border_color }};
+    border-width: {{ block.settings.current_swatch_border_width }}px;
+  }
+  .color-swatch-{{ colorswatch_id }}--current img {
+    padding: 2px;
+    border-radius: 50%;
+  }
+
+  .color-swatch-image-{{ colorswatch_id }} {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .color-swatch-placeholder-{{ colorswatch_id }} {
+    width: 100%;
+    height: 100%;
+    background-color: {{ block.settings.placeholder_color }};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: {{ block.settings.placeholder_text_color }};
+    text-align: center;
+    padding: 2px;
+  }
+  .color-swatch-{{ colorswatch_id }}--hidden-desktop {
+    display: none !important;
+  }
+
+  @media screen and (max-width: 749px) {
+    .color-swatches-title-{{ colorswatch_id }} {
+      font-size: {{ block.settings.title_font_size_mobile }}px;
+      padding: {{ block.settings.title_padding_mobile }}px;
+      line-height: 1.428;
+    }
+
+    .color-swatches-{{ colorswatch_id }} {
+      gap: {{ block.settings.swatch_spacing_mobile }}px;
+    }
+
+    .color-swatch-{{ colorswatch_id }} {
+      width: {{ block.settings.swatch_size_mobile }}px;
+      height: {{ block.settings.swatch_size_mobile }}px;
+    }
+    .color-swatch-{{ colorswatch_id }}--hidden-desktop {
+      display: block !important;
+    }
+
+    .color-swatch-{{ colorswatch_id }}--hidden-mobile {
+      display: none !important;
+    }
+  }
+
+  @media screen and (min-width: 750px) {
+    .color-swatch-{{ colorswatch_id }}--hidden-mobile {
+      display: block !important;
+    }
+  }
+
+  .color-swatch-{{ colorswatch_id }}--hidden-desktop.color-swatch-{{ colorswatch_id }}--hidden-mobile {
+    display: none !important;
+  }
+
+  .color-swatches-more-{{ colorswatch_id }} {
+    display: inline-block;
+    margin-left:0px;
+    color: rgb(var(--text-color) / 0.64);
+    font-size: 14px;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .color-swatches-more-{{ colorswatch_id }}--desktop {
+    display: inline-block;
+  }
+
+  .color-swatches-more-{{ colorswatch_id }}--mobile {
+    display: none;
+  }
+
+  @media screen and (max-width: 749px) {
+    .color-swatches-more-{{ colorswatch_id }}--desktop {
+      display: none;
+    }
+    .color-swatches-more-{{ colorswatch_id }}--mobile {
+      display: inline-block;
+      margin-left: {{ block.settings.swatch_spacing_mobile }}px;
+      font-size: 13px;
+    }
+  }
+
+  /* Tooltip for color name on hover */
+  .color-swatch-tooltip-{{ colorswatch_id }} {
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translate(-50%, -100%);
+    background: #5b3cc4;
+    color: #fff;
+    font-size: 12px;
+    line-height: 1;
+    padding: 6px 8px;
+    border-radius: 6px;
+    white-space: nowrap;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.15s ease, visibility 0.15s ease, transform 0.15s ease;
+    pointer-events: none;
+    z-index: 2;
+    text-transform: capitalize;
+  }
+  .color-swatch-tooltip-{{ colorswatch_id }}::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid #5b3cc4;
+  }
+
+    product-card  .color-swatch-tooltip-{{ colorswatch_id }} {
+    position: absolute;
+    top: -8px;
+    left: 108%;
+    transform: translate(-50%, -100%);
+    background: #5b3cc4;
+    color: #fff;
+    font-size: 12px;
+    line-height: 1;
+    padding: 6px 8px;
+    border-radius: 6px;
+    white-space: nowrap;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.15s ease, visibility 0.15s ease, transform 0.15s ease;
+    pointer-events: none;
+    z-index: 2;
+  }
+  product-card .color-swatch-tooltip-{{ colorswatch_id }}::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left:26%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid #5b3cc4;
+  }
+
+
+
+
+  .color-swatch-{{ colorswatch_id }}:hover .color-swatch-tooltip-{{ colorswatch_id }} {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -110%);
+  }
+  @media screen and (max-width: 749px) {
+    /* Optional: keep tooltip hidden on mobile to avoid overlap */
+    .color-swatch-{{ colorswatch_id }}:hover .color-swatch-tooltip-{{ colorswatch_id }} {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+
+
+  /* product card color swatch */
+  product-card .color-swatches-wrapper-{{ colorswatch_id }} {
+    padding: 0;
+    border-radius: 0;
+    background: transparent;
+  }
+  product-card .color-swatches-more-{{ colorswatch_id }}--desktop{
+    color: #8E8E93;
+    font-size: 16px;
+    line-height: 24px;
+  }
+  product-card .color-swatches-more-{{ colorswatch_id }}--mobile {
+    color: #8E8E93;
+    font-size: 14px;
+    line-height: 24px;
+  }
+{% endstyle %}
+{% assign swatch_count = product_resource.metafields.custom.color_swatches_product.value %}
+{% if swatch_count != blank %}
+<div class="color-swatches-wrapper-{{ colorswatch_id }}" {{ block.shopify_attributes }}>
+  {% if block.settings.title != blank and product_resource.metafields.custom.colour != blank %}
+    <div class="color-swatches-title-{{ colorswatch_id }}">
+      {{ block.settings.title }}
+      {% if main_product_color_text != blank %}
+        <div class="heebo-regular" style="text-transform: uppercase; display: inline-block; font-size: 12px;">
+          {{ main_product_color_text }}
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
+  
+  <div class="color-swatches-{{ colorswatch_id }}">
+  {%- liquid
+    assign main_product_color_text = product_resource.metafields.custom.colour
+    assign main_product_shown_desktop = false
+    assign main_product_shown_mobile = false
+  -%}
+  
+  {% if main_product_color_text != blank %}
+    {%- liquid
+      assign color_name = main_product_color_text | downcase | strip | handle
+      assign image_filename = color_name | append: '.jpg'
+      assign can_show_desktop = false
+      if desktop_limit == 0 or desktop_count < desktop_limit
+        assign can_show_desktop = true
+        assign main_product_shown_desktop = true
+      endif
+      assign can_show_mobile = false
+      if mobile_limit == 0 or mobile_count < mobile_limit
+        assign can_show_mobile = true
+        assign main_product_shown_mobile = true
+      endif
+    -%}
+    {% if can_show_desktop or can_show_mobile %}
+      {% if can_show_desktop %}
+        {% assign desktop_count = desktop_count | plus: 1 %}
+      {% endif %}
+      {% if can_show_mobile %}
+        {% assign mobile_count = mobile_count | plus: 1 %}
+      {% endif %}
+      {% capture swatch_classes %}
+        color-swatch-{{ colorswatch_id }} color-swatch-{{ colorswatch_id }}--current{% unless can_show_desktop %} color-swatch-{{ colorswatch_id }}--hidden-desktop{% endunless %}{% unless can_show_mobile %} color-swatch-{{ colorswatch_id }}--hidden-mobile{% endunless %}
+      {% endcapture %}
+    
+      <a 
+        href="{{ product_resource.url }}" 
+        class="{{ swatch_classes | strip }}"
+        title="{{ main_product_color_text }}"
+        aria-label="View {{ product_resource.title }} in {{ main_product_color_text }}"
+      >
+        {% if block.settings.use_product_image %}
+          {% if product_resource.featured_image %}
+            <div class="imageswatch">
+            <img 
+              src="{{ product_resource.featured_image | image_url: width: 100 }}" 
+              alt="{{ main_product_color_text }}"
+              class="color-swatch-image-{{ colorswatch_id }}"
+              loading="lazy"
+              width="100"
+              height="100"
+            >
+            </div>
+          {% else %}
+            <div class="color-swatch-placeholder-{{ colorswatch_id }}">
+               {{ main_product_color_text | truncate: 0, '' }} 
+            </div>
+          {% endif %}
+        {% else %}
+           <div class="imageswatch">
+          <img 
+            src="{{ image_filename | file_url }}" 
+            alt="{{ main_product_color_text }}"
+            class="color-swatch-image-{{ colorswatch_id }}"
+            loading="lazy"
+            width="100"
+            height="100"
+            onerror="this.onerror=null;this.style.display='none';var ph=this.nextElementSibling;if(ph)ph.style.display='flex';"
+          >
+          <div class="color-swatch-placeholder-{{ colorswatch_id }}" style="display:none;">
+            {{ main_product_color_text | truncate: 0, '' }}
+          </div>
+          </div>
+        {% endif %}
+        <span class="color-swatch-tooltip-{{ colorswatch_id }}">
+          {{ main_product_color_text }}
+        </span>
+      </a>
+    {% endif %}
+  {% endif %}
+
+  {% if product_resource.metafields.custom.color_swatches_product.value %}
+    {% for productv in product_resource.metafields.custom.color_swatches_product.value %}
+      {%- liquid
+        assign skip_product = false
+        if productv.id == product_resource.id and main_product_color_text != blank
+          assign skip_product = true
+        endif
+      -%}
+      
+      {% unless skip_product %}
+        {% assign color_swatches_text = productv.metafields.custom.colour %}
+        {% assign is_current = false %}
+        
+        {% if color_swatches_text != blank %}
+        {% assign color_name = color_swatches_text | downcase | strip | handle %}
+        {% assign image_filename = color_name | append: '.jpg' %}
+        {% assign can_show_desktop = false %}
+        {% if desktop_limit == 0 or desktop_count < desktop_limit %}
+          {% assign can_show_desktop = true %}
+        {% endif %}
+        {% assign can_show_mobile = false %}
+        {% if mobile_limit == 0 or mobile_count < mobile_limit %}
+          {% assign can_show_mobile = true %}
+        {% endif %}
+        {% if can_show_desktop or can_show_mobile %}
+          {% if can_show_desktop %}
+            {% assign desktop_count = desktop_count | plus: 1 %}
+          {% endif %}
+          {% if can_show_mobile %}
+            {% assign mobile_count = mobile_count | plus: 1 %}
+          {% endif %}
+          {% capture swatch_classes %}
+            color-swatch-{{ colorswatch_id }}{% if is_current %} color-swatch-{{ colorswatch_id }}--current{% endif %}{% unless can_show_desktop %} color-swatch-{{ colorswatch_id }}--hidden-desktop{% endunless %}{% unless can_show_mobile %} color-swatch-{{ colorswatch_id }}--hidden-mobile{% endunless %}
+          {% endcapture %}
+        
+          <a 
+            href="{{ productv.url }}" 
+            class="{{ swatch_classes | strip }}"
+            title="{{ color_swatches_text }}"
+            aria-label="View {{ productv.title }} in {{ color_swatches_text }}"
+          >
+            {% if block.settings.use_product_image %}
+              {% if productv.featured_image %}
+                <div class="imageswatch">
+                <img 
+                  src="{{ productv.featured_image | image_url: width: 100 }}" 
+                  alt="{{ color_swatches_text }}"
+                  class="color-swatch-image-{{ colorswatch_id }}"
+                  loading="lazy"
+                  width="100"
+                  height="100"
+                >
+                </div>
+              {% else %}
+                <div class="color-swatch-placeholder-{{ colorswatch_id }}">
+                   {{ color_swatches_text | truncate: 0, '' }} 
+                </div>
+              {% endif %}
+            {% else %}
+               <div class="imageswatch">
+              <img 
+                src="{{ image_filename | file_url }}" 
+                alt="{{ color_swatches_text }}"
+                class="color-swatch-image-{{ colorswatch_id }}"
+                loading="lazy"
+                width="100"
+                height="100"
+                onerror="this.onerror=null;this.style.display='none';var ph=this.nextElementSibling;if(ph)ph.style.display='flex';"
+              >
+              <div class="color-swatch-placeholder-{{ colorswatch_id }}" style="display:none;">
+                {{ color_swatches_text | truncate: 0, '' }}
+              </div>
+              </div>
+            {% endif %}
+            <span class="color-swatch-tooltip-{{ colorswatch_id }}">
+              {{ color_swatches_text }}
+            </span>
+          </a>
+        {% endif %}
+      {% endif %}
+      {% endunless %}
+      {% if desktop_limit == 0 or desktop_count >= desktop_limit %}
+        {% if mobile_limit == 0 or mobile_count >= mobile_limit %}
+          {% break %}
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+
+    {%- liquid
+      assign remaining_desktop = total_swatches
+      if desktop_limit > 0
+        assign remaining_desktop = total_swatches | minus: desktop_limit
+      endif
+      if remaining_desktop < 0
+        assign remaining_desktop = 0
+      endif
+
+      assign remaining_mobile = total_swatches
+      if mobile_limit > 0
+        assign remaining_mobile = total_swatches | minus: mobile_limit
+      endif
+      if remaining_mobile < 0
+        assign remaining_mobile = 0
+      endif
+    -%}
+
+    {% if remaining_desktop > 0 %}
+      <a href="{{ product_resource.url }}" class="color-swatches-more-{{ colorswatch_id }} color-swatches-more-{{ colorswatch_id }}--desktop" aria-label="View more color options">+{{ remaining_desktop }} more</a>
+    {% endif %}
+    {% if remaining_mobile > 0 %}
+      <a href="{{ product_resource.url }}" class="color-swatches-more-{{ colorswatch_id }} color-swatches-more-{{ colorswatch_id }}--mobile" aria-label="View more color options">+{{ remaining_mobile }} more</a>
+    {% endif %}
+  {% endif %}
+  </div>
+</div>
+{% endif %}
+{% schema %}
+{
+  "name": "Color swatches",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Title settings"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Color"
+    },
+    {
+      "type": "range",
+      "id": "title_font_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Title font size (desktop)",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "title_font_size_mobile",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Title font size (mobile)",
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "title_font_weight",
+      "label": "Title Font Family",
+      "options": [
+        {
+          "value": "Heebo-Regular",
+          "label": "Heebo-Regular"
+        },
+        {
+          "value": "Heebo-Medium",
+          "label": "Heebo-Medium"
+        },
+        {
+          "value": "Heebo-SemiBold",
+          "label": "Heebo-SemiBold"
+        },
+        {
+          "value": "Heebo-Bold",
+          "label": "Heebo-Bold"
+        }
+      ],
+      "default": "Heebo-Medium"
+    },
+    {
+      "type": "range",
+      "id": "title_padding",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Title padding (desktop)",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "title_padding_mobile",
+      "min": 0,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "label": "Title padding (mobile)",
+      "default": 6
+    },
+    {
+      "type": "range",
+      "id": "title_bottom_spacing",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Title bottom spacing",
+      "default": 8
+    },  
+      
+   {
+      "type": "color",
+      "id": "title_text_color",
+      "label": "Title text color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Swatch settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_product_image",
+      "label": "Use product featured image",
+      "info": "If enabled, uses the product's featured image instead of color file",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "swatch_size",
+      "min": 20,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Swatch size (desktop)",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "swatch_size_mobile",
+      "min": 18,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Swatch size (mobile)",
+      "default": 34
+    },
+    {
+      "type": "range",
+      "id": "swatch_spacing",
+      "min": 4,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Spacing (desktop)",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "swatch_spacing_mobile",
+      "min": 4,
+      "max": 16,
+      "step": 2,
+      "unit": "px",
+      "label": "Spacing (mobile)",
+      "default": 6
+    },
+    {
+      "type": "range",
+      "id": "top_spacing",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Top spacing",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "swatch_border_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Border radius",
+      "default": 4
+    },
+
+    {
+      "type": "header",
+      "content": "Color Swatches show Limit"
+    },
+
+    {
+      "type": "range",
+      "id": "color-swatches-show-desktop",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "label": "Color Swatches show Desktop",
+      "default": 1
+    },
+     {
+      "type": "range",
+      "id": "color-swatches-show-mobile",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "label": "Color Swatches show mobile",
+      "default": 1
+    },
+    {
+      "type": "header",
+      "content": "Border style"
+    },
+    {
+      "type": "range",
+      "id": "swatch_border_width",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "label": "Border width",
+      "default": 1
+    },
+    {
+      "type": "color",
+      "id": "swatch_border_color",
+      "label": "Border color",
+      "default": "#e6e6e6"
+    },
+    {
+      "type": "range",
+      "id": "current_swatch_border_width",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "label": "Current product border width",
+      "default": 2
+    },
+    {
+      "type": "color",
+      "id": "current_swatch_border_color",
+      "label": "Current product border color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Placeholder"
+    },
+    {
+      "type": "color",
+      "id": "placeholder_color",
+      "label": "Background color",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "color",
+      "id": "placeholder_text_color",
+      "label": "Text color",
+      "default": "#666666"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Color swatches"
+    }
+  ]
+}
+{% endschema %}

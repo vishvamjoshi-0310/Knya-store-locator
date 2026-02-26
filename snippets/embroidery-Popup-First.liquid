@@ -1,0 +1,1459 @@
+{% assign embroideryproducthandlepicker = block.settings.EmbroideryProductHandlepicker %}
+
+<div class="embroidery-popup_option embroidery-popup_optionText" onclick="toggleCheckbox('text')">
+  <label class="embroidery-popup_option-label">
+    <input type="checkbox" class="embroidery-popup_input" id="text" onchange="toggleCheckbox('text')">
+    <span class="checkmark" onclick="toggleCheckbox('text')">ADD TEXT</span>
+  </label>
+  <div class="embroidery-popup-input_iconcontainer">
+    <span class="embroidery-popup_price">+₹250</span>
+    {% comment %} <!-- {% render 'Embroidery_Selected_icon' %} --> {% endcomment %}
+  </div>
+</div>
+
+<!-- First Text content r -->
+<div class="engraving-form-container">
+  <div class="engraving-form-container_transformation">
+    <input
+      type="text"
+      id="engravingLine1"
+      class="engravingcontainerLineInput"
+      placeholder="Line 1 (e.g., Dr. Aditi Sharma)"
+      maxlength="22"
+    >
+    <div class="text_trasformation_name1 text_trasformation_name_designation" onclick="chnageTextTransformation(this)">
+      <p class="text_trasformation_name_captal">A</p>
+      <p class="text_trasformation_name_captaln" style="display: none;">A</p>
+      <p class="text_trasformation_name_small" style="display: block;">a</p>
+    </div>
+  </div>
+  <div class="message-wrapper">
+    <small class="error-message" style="display: none; color: #FF3B30;">*Line 1 is required</small>
+    <span class="char-count" style="width: 100%;">0/22</span>
+  </div>
+  <div class="engraving-form-container_transformation">
+    <input
+      type="text"
+      id="engravingLine2"
+      class="engravingcontainerLineInput"
+      placeholder="Line 2 (e.g., MBBS)"
+      maxlength="22"
+    >
+    <div class="text_trasformation_name1 text_trasformation_name_designation" onclick="chnageTextTransformation(this)">
+      <p class="text_trasformation_name_captal">A</p>
+      <p class="text_trasformation_name_captaln" style="display: none;">A</p>
+      <p class="text_trasformation_name_small" style="display: block;">a</p>
+    </div>
+  </div>
+  <div class="message-wrapper">
+    <small class="error-message" style="display: block; color: #79747E;">*Line 2 is optional</small>
+    <span class="char-count char-count2">0/22</span>
+  </div>
+
+  <div class="embformColorcontainer">
+    <div class="text-color-selector">
+      <span class="current-selected-colorText"
+        >Text Color:
+        <span id="current-selected-color">
+          {%- if product.tags contains 'Lab Coat' %}Black{% else %}White{% endif -%}
+        </span></span
+      >
+      <div class="text-color-options">
+        <div class="text-color-option  {% if product.tags contains 'Lab Coat' %}color_match {% else %}color_not_match{% endif %}">
+          {% comment %}  <!-- <input type="radio" name="textColor" value="White" id="textColorWhite" data-color="#ffffff" {% if request.path  contains 'black' or request.path  contains 'wine' or request.path  contains 'maroon' or request.path  contains 'navy-blue' or request.path  contains 'navy' or request.path  contains 'dark-green'  or request.path  contains 'green' or request.path  contains 'grey' %} checked {% endif %} > --> {% endcomment %}
+          <input
+            type="radio"
+            name="textColor"
+            value="White"
+            id="textColorWhite"
+            data-color="#ffffff"
+            {% unless product.tags contains 'Lab Coat' %}
+              checked
+            {% endunless %}
+          >
+          <span class="color-swatch color-white" style="background: #ffffff; border: 1px solid #000;"><p></p></span>
+        </div>
+        <!--
+          <div class="text-color-option {% if request.path  contains 'black' or request.path  contains 'wine' or request.path  contains 'maroon' or request.path  contains 'navy-blue' or request.path  contains 'navy' or request.path  contains 'dark-green' %}color_match {% else %}color_not_match{% endif %}">
+            <input type="radio" name="textColor" value="black" id="textColorblack" data-color="#000" {% if product.tags contains 'Lab Coat' %}checked {% endif %}>
+            <span class="color-swatch color-black" style="background: #000000; border: 1px solid #000;"><p></p></span>
+          </div>
+        -->
+        <div class="text-color-option {% if request.path  contains 'black' %}color_match {% else %}color_not_match{% endif %}">
+          <input
+            type="radio"
+            name="textColor"
+            value="black"
+            id="textColorblack"
+            data-color="#000"
+            {% if product.tags contains 'Lab Coat' %}
+              checked
+            {% endif %}
+          >
+          <span class="color-swatch color-black" style="background: #000000; border: 1px solid #000;"><p></p></span>
+        </div>
+        <div class="text-color-option">
+          <input type="radio" name="textColor" value="Gold" id="textColorGold" data-color="#FCC202">
+          <span class="color-swatch color-gold" style="background: #FCC202;"><p></p></span>
+        </div>
+        <div class="text-color-option">
+          <input type="radio" name="textColor" value="Silver" id="textColorSilver" data-color="#949497">
+          <span class="color-swatch color-silver" style="background: #949497;"><p></p></span>
+        </div>
+        <div class="text-color-option">
+          <input type="radio" name="textColor" value="Fluorescent Neon" id="textColorNeon" data-color="#dfff00">
+          <span class="color-swatch color-silver" style="background: #dfff00;"><p></p></span>
+        </div>
+        <div class="text-color-option">
+          <input type="radio" name="textColor" value="Pink" id="textColorNeon" data-color="#EE90A0">
+          <span class="color-swatch color-pink" style="background: #EE90A0;"><p></p></span>
+        </div>
+        <!--
+          <div class="text-color-option {% if request.path  contains 'dusty-pink' or request.path  contains 'mauve' or request.path  contains 'hot-pink' or request.path  contains 'pastel-lilac'%}color_match {% else %}color_not_match{% endif %}">
+            <input type="radio" name="textColor" value="Pink" id="textColorPink" data-color="#EE90A0">
+            <span class="color-swatch color-pink" style="background: #EE90A0;"><p></p></span>
+          </div>
+          <div class="text-color-option {% if request.path  contains 'maroon' or request.path  contains 'mauve' or request.path  contains 'wine' or request.path  contains 'hot-pink' or request.path  contains 'dusty-pink' or request.path  contains 'rust'%}color_match {% else %}color_not_match{% endif %}">
+            <input type="radio" name="textColor" value="Red" id="textColorRed" data-color="#FF0000">
+            <span class="color-swatch color-red" style="background: #FF0000;"><p></p></span>
+          </div>
+        -->
+      </div>
+    </div>
+  </div>
+
+  <div class="engraving-style-buttons">
+    <span class="current-selected-colorText">Font Type: </span>
+    <div class="font-type-selector">
+      <input type="radio" name="fontType" value="Block" id="fontTypeBlock" data-fontStyle="Heebo-Medium" checked>
+      <div class="font-type-option fontTypeScriptBlock">
+        <span for="fontTypeBlock">Block</span>
+      </div>
+      <input type="radio" name="fontType" value="Script" id="fontTypeScript" data-fontStyle="Bookscript">
+      <div class="font-type-option fontTypeScriptBlock1">
+        <span for="fontTypeScript">Script</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- First Text content endc -->
+
+<div
+  class="embroidery-popup_option embroidery-popup_optionIcon"
+  onclick="toggleCheckbox('icon')"
+  style="border-top: 1px solid #E9E8E8;"
+>
+  <label class="embroidery-popup_option-label">
+    <input type="checkbox" class="embroidery-popup_input" id="icon" onchange="toggleCheckbox('icon')">
+    <span class="checkmark" onclick="toggleCheckbox('icon')">ADD ICON/LOGO</span>
+  </label>
+  <div class="embroidery-popup-input_iconcontainer">
+    <span class="embroidery-popup_price">+ ₹250</span>
+    {% comment %}<!-- {% render 'Embroidery_Selected_icon' %} --> {% endcomment %}
+  </div>
+</div>
+
+<!-- Second Text content r -->
+<div class="second-engraving-form-container">
+  <div class="second-embformColorcontainer">
+    <!-- image -->
+    <div class="embroidery_classic_IconWrapper">
+      <div class="embroidery_classic_IconWrapper_classic">
+        {% assign unique_icons = '' %}
+
+        {% if embroideryproducthandlepicker.metafields.custom.embroidery_limited_edition_icons.value %}
+          <div class="second-text-color-selector second-text-color-selector_limited">
+            <span class="current-selected-colorText"
+              >Limited Edition Icons: <span id="current-selected-color"></span
+            ></span>
+            <span class="current-selected-colorTextPrice">+ ₹250</span>
+          </div>
+          <div class="embroidery_classic_IconWrapper_classic_limited embroidery_classic_IconWrapper_targetClose">
+            {% for limitediconimage in embroideryproducthandlepicker.metafields.custom.embroidery_limited_edition_icons.value %}
+              {% assign limitediconUrl = limitediconimage | img_url: '100x' %}
+              {% assign limitediconName = 'limitedIcon ' | append: forloop.index %}
+
+              {% unless unique_icons contains limitediconName %}
+                {% assign unique_icons = unique_icons | append: limitediconName %}
+                <input
+                  type="radio"
+                  id="{{ limitediconName | remove: " " | downcase }}"
+                  name="icon"
+                  class="icon-emb-for"
+                  value="{{ limitediconName }}"
+                  data-icon-url="{{ limitediconUrl }}"
+                  data-alt="{{ limitediconimage.alt }}"
+                  data-class="icon"
+                  onchange="handleEmbroiderySelect(event);"
+                >
+                <label
+                  for="{{ limitediconName | remove: " " | downcase }}"
+                  class="embroidery-icon"
+                  data-iconname="{{ limitediconName }}"
+                >
+                  <img
+                    data-name="{{ limitediconUrl }} {{ limitediconName }}"
+                    src="{{ limitediconUrl }}"
+                    alt="{{ limitediconimage.alt }}"
+                    loading="lazy"
+                  >
+                </label>
+              {% endunless %}
+            {% endfor %}
+          </div>
+        {% endif %}
+        <div class="second-text-color-selector">
+          <span class="current-selected-colorText">Classic Icon: <span id="current-selected-color"></span></span>
+        </div>
+        <div class="embroidery_classic_IconWrapper_classic_classicked embroidery_classic_IconWrapper_targetClose">
+          {% for classiciconimage in embroideryproducthandlepicker.metafields.custom.embroidery_classic_icon.value %}
+            {% assign iconUrl = classiciconimage | img_url: '100x' %}
+            {% assign iconName = classiciconimage.alt | default: 'Icon ' | append: forloop.index %}
+
+            {% unless unique_icons contains iconName %}
+              {% assign unique_icons = unique_icons | append: iconName %}
+              <input
+                type="radio"
+                id="{{ iconName | remove: " " | downcase }}"
+                name="icon"
+                class="icon-emb-for"
+                value="{{ iconName }}"
+                data-icon-url="{{ iconUrl }}"
+                data-class="icon"
+                data-alt="{{ classiciconimage.alt }}"
+                onchange="handleEmbroiderySelect(event);"
+                {% if forloop.first %}
+                  checked
+                {% endif %}
+              >
+              <label
+                for="{{ iconName | remove: " " | downcase }}"
+                class="embroidery-icon"
+                data-iconname="{{ iconName }}"
+              >
+                <img
+                  data-name="{{ iconUrl }} {{ iconName }}"
+                  src="{{ iconUrl }}"
+                  alt="{{ classiciconimage.alt }}"
+                  loading="lazy"
+                >
+              </label>
+            {% endunless %}
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- custom -->
+      <div class="customLOGO_testSaparater">
+        <span class="customLOGO_testSaparater_current-selected-colorText">Or</span>
+        <span class="customLOGO_testSaparater_current-selected-colorText customLogo"
+          >Custom Logo <span class="current-selected-colorTextPrice">+ ₹500</span></span
+        >
+      </div>
+      <!-- custom -->
+      <div class="reicon_box reoption_row recustomImageUploadDivision recustomUploadImageEmbroidery">
+        <input type="radio" name="icon" value="customupload" data-class="icon" id="inputClickedd">
+
+        <label for="customLogoUpload" id="customUploadLabel" style="cursor: pointer;">
+          <div id="previewWrapper" style="display: flex; align-items: center; gap: 10px;">
+            <div id="imagePreview" style="display: flex; align-items: center; gap: 8px;">
+              <!-- SVG placeholder shown until image is uploaded -->
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <path d="M18 15V18H6V15H4V18C4 19.1 4.9 20 6 20H18C19.1 20 20 19.1 20 18V15H18ZM7 9L8.41 10.41L11 7.83V16H13V7.83L15.59 10.41L17 9L12 4L7 9Z" fill="#616161"/>
+              </svg>
+            </div>
+            <span id="fileNameText">Upload Your custom Logo</span>
+          </div>
+        </label>
+
+        <div class="message-wrapper message-wrapper-customUpload">
+          <small class="error-message error-message-uploded" style="display: block; color: rgb(255, 59, 48);"
+            >*Maximum size: 5 MB.</small
+          >
+          <span class="char-count char-countsize" style="width: unset text-align: end;">0/5MB</span>
+        </div>
+      </div>
+      <!-- custom -->
+    </div>
+  </div>
+</div>
+
+<!-- Second Text content r -->
+{% if block.settings.Embroiderybullets != blank %}
+  <div class="engraving-info">
+    {{ block.settings.Embroiderybullets }}
+  </div>
+{% endif %}
+<button class="embroidery-popup_confirm-button" disabled><p>CONFIRM</p></button>
+
+<div class="button-group">
+  <button class="reset-btn popup-contentsecondlvl_reset" onclick="validateEmbroidery()">RESET</button>
+  <button class="add-btn popup-contentsecondlvl_add" onclick="handleEmbroideryAddedToCart()">ADD</button>
+</div>
+
+<script>
+  function setupCharCounter(inputId, countClass, errorClass = null) {
+    try {
+      const input = document.getElementById(inputId);
+      const counter = document.querySelector(`.${countClass}`);
+      const error = errorClass ? document.querySelector(`.${errorClass}`) : null;
+       const previewSvg = document.querySelector('.preview-text-overlay-svg');
+
+      if (!input || !counter) throw new Error(`Missing elements for ${inputId}`);
+
+      input.addEventListener("input", function () {
+        try {
+          const len = this.value.length;
+          counter.textContent = `${len}/22`;
+
+          if (error) {
+            if (len > 0) {
+              error.style.display = "none";
+              counter.style.width = "100%";
+            } else {
+              error.style.display = "block";
+              counter.style.width = "unset";
+            }
+          }
+         if (previewSvg && inputId !== "engravingLine2") {
+          if (len > 0) {
+            previewSvg.style.display = "none";
+          } else {
+            previewSvg.style.display = "block";
+          }
+        }
+        } catch (innerError) {
+          console.error(`Input handler error for ${inputId}:`, innerError);
+        }
+      });
+    } catch (error) {
+      console.error(`Char counter init error for ${inputId}:`, error);
+    }
+  }
+function setupInputSanitization(inputId) {
+  const input = document.getElementById(inputId);
+
+  const previewSelector = inputId === "engravingLine1" 
+    ? ".preview-text-line1" 
+    : inputId === "engravingLine2" 
+    ? ".preview-text-line2" 
+    : null;
+
+  const previewElement = previewSelector ? document.querySelector(previewSelector) : null;
+
+  function applyCasing(text, inputElement) {
+    const style = window.getComputedStyle(inputElement);
+    const transform = style.textTransform;
+
+    if (transform === "uppercase") {
+      return text.toUpperCase();
+    }
+    // Default to capitalize
+   return text
+    .toLowerCase()
+    .split(' ')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+  }
+
+  input.addEventListener("input", function () {
+    let sanitized = this.value.replace(/[^a-zA-Z0-9 .]/g, '');
+    sanitized = applyCasing(sanitized, this);
+    this.value = sanitized;
+
+    if (previewElement) {
+      previewElement.textContent = sanitized;
+    }
+  });
+
+  input.addEventListener("paste", function (e) {
+    const pastedData = (e.clipboardData || window.clipboardData).getData("text");
+    if (/[^a-zA-Z0-9 .]/.test(pastedData)) {
+      e.preventDefault();
+    }
+  });
+}
+
+
+
+
+  document.addEventListener('DOMContentLoaded', function () {
+    try {
+      const textSection = document.querySelector('.engraving-form-container');
+      const iconSection = document.querySelector('.embroidery_classic_IconWrapper');
+      const textChk = document.getElementById('text');
+      const iconChk = document.getElementById('icon');
+      const descBox = document.querySelector('.embroidery-popup-description');
+
+      textSection.style.display = 'none';
+      iconSection.style.display = 'none';
+
+      document.querySelectorAll('.text-color-option').forEach(option => {
+        option.addEventListener('click', function () {
+          try {
+            document.querySelectorAll('.text-color-option').forEach(opt => opt.classList.remove('activess'));
+            this.classList.add('activess');
+            const radio = this.querySelector('input[type="radio"]');
+            radio.checked = true;
+            document.getElementById('current-selected-color').textContent = radio.value;
+            document.querySelector(".preview-text-overlay").style.color = radio.getAttribute("data-color")
+          } catch (err) {
+            console.error('Color selection error:', err);
+          }
+        });
+      });
+
+      document.querySelectorAll('.font-type-option').forEach(option => {
+        option.addEventListener('click', function () {
+          try {
+            document.querySelectorAll('.font-type-option').forEach(opt => opt.classList.remove('activess'));
+            this.classList.add('activess');
+            const radio = this.previousElementSibling;
+            radio.checked = true;
+             const fontStyle = radio.getAttribute("data-fontstyle");
+      const previewText = document.querySelector(".preview-text-overlay");
+
+      if (previewText) {
+        previewText.style.fontFamily = fontStyle;
+
+        // Apply fontSize conditionally
+                const screenWidth = window.innerWidth;
+        if (fontStyle === "Bookscript") {
+          if (screenWidth < 1024) {
+            previewText.style.fontSize = "18px";
+            previewText.style.lineHeight = "1";
+          } else {
+            previewText.style.fontSize = "24px";
+             previewText.style.lineHeight = "1";
+          }
+        } else {
+          previewText.style.fontSize = ""; // Reset or set default if needed
+        }
+      }
+          } catch (err) {
+            console.error('Font selection error:', err);
+          }
+        });
+      });
+
+      const selectedColor = document.querySelector('.text-color-option input[type="radio"]:checked');
+      if (selectedColor) selectedColor.closest('.text-color-option').classList.add('activess');
+      if (selectedColor) document.querySelector(".preview-text-overlay").style.color = selectedColor.getAttribute("data-color");
+
+      const selectedFont = document.querySelector('.font-type-selector input[type="radio"]:checked');
+      if (selectedFont) selectedFont.nextElementSibling.classList.add('activess');
+      updatefeedImage();
+       // Setup character counters
+      setupCharCounter("engravingLine1", "char-count", "error-message");
+      setupCharCounter("engravingLine2", "char-count2");
+      setupInputSanitization("engravingLine1");
+    setupInputSanitization("engravingLine2");
+
+    } catch (err) {
+      console.error('DOMContentLoaded error:', err);
+    }
+
+  });
+
+  function toggleCheckbox(type) {
+    try {
+      const checkbox = document.getElementById(type);
+      const section = type === 'text' ? document.querySelector('.engraving-form-container') : document.querySelector('.embroidery_classic_IconWrapper');
+      const sectionPreview = type === 'text' ? document.querySelector('.preview-text-overlay') : document.querySelector('.preview-image-wrapper');
+      const priceEl = checkbox.closest('.embroidery-popup_option')?.querySelector('.embroidery-popup_price');
+       const iconContainer = checkbox.closest('.embroidery-popup_option')?.querySelector('.embroidery-popup-input_iconcontainer svg');
+
+      checkbox.checked = !checkbox.checked;
+      section.style.display = checkbox.checked ? 'block' : 'none';
+      sectionPreview.style.display = checkbox.checked ? 'block' : 'none';
+      if (priceEl) {
+      priceEl.style.display = checkbox.checked ? 'none' : 'block';
+    }
+       if (iconContainer) {
+      iconContainer.classList.toggle('emb-rotated', checkbox.checked);
+    }
+
+      // Handle icon option unchecked - remove attribute if it exists and reset custom upload
+      if (type === 'icon' && !checkbox.checked) {
+        console.log("icon option unchecked");
+        const embroideryBox = document.querySelector(".embroidery-box-rewamp");
+        if (embroideryBox && embroideryBox.hasAttribute("data-selected-variant-img")) {
+          embroideryBox.removeAttribute("data-selected-variant-img");
+        }
+        
+        // Reset custom upload section
+        const customUploadSection = document.querySelector('.reicon_box.reoption_row.recustomImageUploadDivision.recustomUploadImageEmbroidery');
+        if (customUploadSection) {
+          const fileInput = document.getElementById('customLogoUpload');
+          const preview = document.getElementById('imagePreview');
+          const fileNameLabel = document.getElementById('fileNameText');
+          const charCountSize = document.querySelector('.char-countsize');
+          const errorMessage = document.querySelector('.error-message-uploded');
+          
+          if (fileInput) fileInput.value = '';
+          if (preview) {
+            preview.innerHTML = `
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <path d="M18 15V18H6V15H4V18C4 19.1 4.9 20 6 20H18C19.1 20 20 19.1 20 18V15H18ZM7 9L8.41 10.41L11 7.83V16H13V7.83L15.59 10.41L17 9L12 4L7 9Z" fill="#616161"/>
+              </svg>`;
+          }
+          if (fileNameLabel) fileNameLabel.textContent = 'Upload Your custom Logo';
+          if (charCountSize) charCountSize.textContent = '0/5MB';
+          if (errorMessage) errorMessage.style.display = 'none';
+          
+          // Clear live preview image
+          const LivepreviewIcon = document.querySelector('.preview-image-wrapper');
+          if (LivepreviewIcon) LivepreviewIcon.innerHTML = '';
+        }
+        
+        // Reset all icon radios and check default icon
+        const reseticonRadios = document.querySelectorAll('.embroidery_classic_IconWrapper_classic input[type="radio"]');
+        reseticonRadios.forEach(radio => radio.checked = false);
+        
+        // Re-check default icon radio
+        const resetDefaultIconRadio = document.querySelectorAll(".embroidery_classic_IconWrapper_classic_classicked input")[0];
+        if (resetDefaultIconRadio) resetDefaultIconRadio.checked = true;
+      }
+
+      updateDescription();
+       updateActionButtons();
+if( document.querySelector(".embroidery_classic_IconWrapper_classic input:checked")){
+  const data_SelectedAlt = document.querySelector(".embroidery_classic_IconWrapper_classic input:checked").getAttribute("data-alt");
+
+    if(data_SelectedAlt){
+      const wrapper = document.querySelector(".embroidery_classic_IconWrapper_classic input:checked").closest(".embroidery_classic_IconWrapper_targetClose");
+      const colorDisplay =  wrapper?.previousElementSibling.querySelector(".current-selected-colorText #current-selected-color")
+        if (colorDisplay) {
+          colorDisplay.textContent = data_SelectedAlt || "";
+        }
+    }
+}
+
+    } catch (err) {
+      console.error('toggleCheckbox error:', err);
+    }
+  }
+
+function updateActionButtons() {
+  try {
+    const isTextChecked = document.getElementById('text')?.checked;
+    const isIconChecked = document.getElementById('icon')?.checked;
+
+    const buttonGroup = document.querySelector('.embroidery-popup-input.emb-padding .button-group');
+    const confirmButton = document.querySelector('.embroidery-popup_confirm-button');
+    const engravingInfo = document.querySelector('.engraving-info');
+
+    if (buttonGroup && confirmButton) {
+      if (isTextChecked || isIconChecked) {
+        buttonGroup.style.display = 'flex';
+        confirmButton.style.display = 'none';
+      } else {
+        buttonGroup.style.display = 'none';
+        confirmButton.style.display = 'block';
+      }
+    }
+
+    if (engravingInfo) {
+      engravingInfo.style.display = isIconChecked ? 'block' : 'none';
+    }
+  } catch (err) {
+    console.error('updateActionButtons error:', err);
+  }
+}
+
+
+  function updateDescription() {
+    try {
+      const textChecked = document.getElementById('text').checked;
+      const iconChecked = document.getElementById('icon').checked;
+      const desc = document.querySelector('.embroidery-popup-description');
+      const isClassicIcon = document.querySelector('.embroidery_classic_IconWrapper_classic input:checked');
+
+      let price = 0;
+      let label = '';
+
+      if (textChecked && iconChecked) {
+        price = isClassicIcon ? 450 : 700;
+        label = isClassicIcon ? 'Text + Icon' : 'Text + Logo';
+        updatefeedImage();
+      } else if (textChecked) {
+        price = 250;
+        label = 'Text';
+      } else if (iconChecked) {
+        price = isClassicIcon ? 250 : 500;
+        label = isClassicIcon ? 'Icon' : 'Custom Icon';
+        updatefeedImage();
+      } else {
+        desc.innerHTML = '<p>Embroidery Selected</p>';
+        desc.classList.remove('emb-msgupdated');
+        return;
+      }
+      let compareAtPrice = null;
+    if (price === 700) compareAtPrice = 750;
+    else if (price === 450) compareAtPrice = 500;
+      desc.innerHTML = `
+      <p>Embroidery Selected: <label class="EmbSelected_title">${label}</label></p>
+      <span class="EmbSelected_price">
+        ₹ ${price}
+        ${compareAtPrice ? `<span class="compare-at-price">₹ ${compareAtPrice}</span>` : ''}
+      </span>
+    `;
+      desc.classList.add('emb-msgupdated');
+    } catch (err) {
+      console.error('updateDescription error:', err);
+    }
+  }
+
+  function handleFileUpload(event) {
+    try {
+      const classicIcon = document.querySelector('.embroidery_classic_IconWrapper_classic input:checked');
+      const preview = document.getElementById('imagePreview');
+      const LivepreviewIcon = document.querySelector('.preview-image-wrapper');
+      const fileNameLabel = document.getElementById('fileNameText');
+      const desc = document.querySelector('.embroidery-popup-description');
+      const isTextChecked = document.getElementById('text').checked;
+      const charCountSize = document.querySelector('.char-countsize');
+       const errorMessage = document.querySelector('.error-message-uploded');
+
+      if (classicIcon) classicIcon.checked = false;
+      const elements = document.querySelectorAll("#current-selected-color");
+
+if (elements.length > 0) {
+  // At least one element exists
+  elements.forEach(el => {
+    el.innerText = ""; // or whatever action you need
+  });
+}
+
+
+      const file = event.target.files[0];
+      if (file) {
+        fileNameLabel.textContent = file.name;
+
+         const fileSizeMB = (file.size / 1024 / 1024).toFixed(2); // File size in MB
+    const maxFileSize = 5; 
+    charCountSize.textContent = `${fileSizeMB}MB / ${maxFileSize}MB`;
+      if (fileSizeMB > maxFileSize) {
+  if (errorMessage) {
+    errorMessage.textContent = `File size exceeds the maximum limit of ${maxFileSize}MB.`;
+    errorMessage.style.color = 'red';
+    errorMessage.style.display = 'block';
+  }
+  charCountSize.innerHTML = `<span style="color: red;">${fileSizeMB}MB</span> / ${maxFileSize}MB`;
+  charCountSize.style.width = 'unset';
+} else {
+  if (errorMessage) {
+    errorMessage.style.display = 'none';
+  }
+  charCountSize.innerHTML = `${fileSizeMB}MB / ${maxFileSize}MB`;
+  charCountSize.style.width = '100%';
+}
+
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          preview.innerHTML = '';
+          LivepreviewIcon.innerHTML = '';
+           const imgPreview = document.createElement('img');
+  imgPreview.src = e.target.result;
+  Object.assign(imgPreview.style, { width: '24px', height: '24px', objectFit: 'cover' });
+  preview.appendChild(imgPreview);
+
+  const imgLivePreview = document.createElement('img');
+  imgLivePreview.src = e.target.result;
+           const isMobile = window.innerWidth < 1024;
+  Object.assign(imgLivePreview.style, {
+    width: isMobile ? '105px' : '160px',
+    height: isMobile ? '105px' : '160px',
+    objectFit: 'cover'
+  });
+  LivepreviewIcon.appendChild(imgLivePreview);
+            
+            // Upload image to API and get CDN link
+            const base64Data = e.target.result;
+            const base64String = base64Data.split(',')[1]; // Remove data:image/png;base64, prefix
+            const mimeType = base64Data.match(/data:([^;]+);/)?.[1] || 'image/png';
+            const imageName = file.name || 'embroidery-image.png';
+            
+            // Get the ADD button and disable it with loading state
+            const addButton = document.querySelector('.add-btn.popup-contentsecondlvl_add');
+            const originalButtonText = addButton ? addButton.textContent : 'ADD';
+            
+            if (addButton) {
+              addButton.disabled = true;
+              addButton.textContent = 'Loading...';
+              addButton.style.opacity = '0.6';
+              addButton.style.cursor = 'not-allowed';
+            }
+            
+            // Disable embroidery option clicks
+            const embroideryOptions = document.querySelectorAll('.embroidery-popup_option, .embroidery-popup_optionIcon');
+            embroideryOptions.forEach(option => {
+              option.style.pointerEvents = 'none';
+              option.style.opacity = '0.6';
+              option.style.cursor = 'not-allowed';
+            });
+            
+            // Disable embroidery icon clicks
+            const embroideryIcons = document.querySelectorAll(".embroidery-icon");
+            embroideryIcons.forEach(icon => {
+              icon.style.pointerEvents = 'none';
+              icon.style.opacity = '0.6';
+              icon.style.cursor = 'not-allowed';
+            });
+            
+            const myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+
+            const raw = JSON.stringify({
+              "imageName": imageName,
+              "mimeType": mimeType,
+              "imageData": base64String
+            });
+
+            const requestOptions = {
+              method: "POST",
+              headers: myHeaders,
+              body: raw,
+              redirect: "follow"
+            };
+
+            fetch("https://51pupuk2pk.execute-api.ap-south-1.amazonaws.com/image?type=uploadImage", requestOptions)
+              .then((response) => response.json())
+              .then((result) => {
+                // Extract CDN link from response - check originalSrc first
+                const cdnLink = result.originalSrc || result.url || result.imageUrl || result.cdnUrl || result.link || result.data?.originalSrc || result.data?.url || result.data?.imageUrl || result.data?.cdnUrl || result.data?.link;
+                
+                // Check if icon option is checked before setting attribute
+                const isIconChecked = document.getElementById('icon')?.checked;
+                const embroideryBox = document.querySelector(".embroidery-box-rewamp");
+                
+                if (cdnLink) {
+                  // Set CDN link in data attribute only if icon option is checked
+                  if (isIconChecked && embroideryBox && document.querySelector("#customLogoUpload").value) {
+
+                    embroideryBox.setAttribute("data-selected-variant-img", cdnLink);
+                  }
+                  // Update preview images to use CDN link
+                  imgPreview.src = cdnLink;
+                  imgLivePreview.src = cdnLink;
+                } else {
+                  // Fallback to base64 if CDN link not found
+                  console.warn('CDN link not found in API response, using base64:', result);
+                }
+                
+                // Re-enable button after successful upload
+                if (addButton) {
+                  addButton.disabled = false;
+                  addButton.textContent = originalButtonText;
+                  addButton.style.opacity = '1';
+                  addButton.style.cursor = 'pointer';
+                }
+                
+                // Re-enable embroidery option clicks
+                const embroideryOptions = document.querySelectorAll('.embroidery-popup_option, .embroidery-popup_optionIcon');
+                embroideryOptions.forEach(option => {
+                  option.style.pointerEvents = '';
+                  option.style.opacity = '';
+                  option.style.cursor = '';
+                });
+                
+                // Re-enable embroidery icon clicks
+                const embroideryIcons = document.querySelectorAll(".embroidery-icon");
+                embroideryIcons.forEach(icon => {
+                  icon.style.pointerEvents = '';
+                  icon.style.opacity = '';
+                  icon.style.cursor = '';
+                });
+              })
+              .catch((error) => {
+                console.error('Error uploading image to API:', error);
+                // Fallback to base64 on error - only if icon option is checked
+      // Select all checked radios inside the wrapper
+var checkedRadios = document.querySelectorAll(
+  ".embroidery_classic_IconWrapper_classic input[type=radio]:checked"
+);
+
+// If at least one radio is checked and embroideryBox has the attribute
+if (checkedRadios.length > 0 && embroideryBox?.hasAttribute("data-selected-variant-img")) {
+  console.log("--------->>>>>>>>>>>>>>>>>>>>>")
+  embroideryBox.removeAttribute("data-selected-variant-img");
+}
+
+
+                
+                // Re-enable button after error
+                if (addButton) {
+                  addButton.disabled = false;
+                  addButton.textContent = originalButtonText;
+                  addButton.style.opacity = '1';
+                  addButton.style.cursor = 'pointer';
+                }
+                
+                // Re-enable embroidery option clicks
+                const embroideryOptions = document.querySelectorAll('.embroidery-popup_option, .embroidery-popup_optionIcon');
+                embroideryOptions.forEach(option => {
+                  option.style.pointerEvents = '';
+                  option.style.opacity = '';
+                  option.style.cursor = '';
+                });
+                
+                // Re-enable embroidery icon clicks
+                const embroideryIcons = document.querySelectorAll(".embroidery-icon");
+                embroideryIcons.forEach(icon => {
+                  icon.style.pointerEvents = '';
+                  icon.style.opacity = '';
+                  icon.style.cursor = '';
+                });
+              });
+           
+        };
+        reader.readAsDataURL(file);
+
+        const price = isTextChecked ? 700 : 500;
+        const compareAtPrice = price === 700 ? 750 : null;
+        const label = isTextChecked ? 'Text + Logo' : 'Custom Icon';
+        desc.innerHTML = `<p>Embroidery Selected: <label class="EmbSelected_title">${label}</label></p>
+        <span class="EmbSelected_price">
+          ₹ ${price}
+          ${compareAtPrice ? `<span class="compare-at-price">₹ ${compareAtPrice}</span>` : ''}
+        </span>`;
+        desc.classList.add('emb-msgupdated');
+      }
+    } catch (err) {
+      console.error('handleFileUpload error:', err);
+    }
+  }
+
+  function handleEmbroiderySelect(event) {
+    try {
+      const fileInput = document.getElementById('customLogoUpload');
+      const fileNameLabel = document.getElementById('fileNameText');
+      const preview = document.getElementById('imagePreview');
+      const desc = document.querySelector('.embroidery-popup-description');
+      const textCheckbox = document.getElementById('text');
+      const isTextChecked = textCheckbox ? textCheckbox.checked : false;
+
+      // Clear custom logo upload if it exists and has a value
+      if (fileInput && fileInput.value) {
+        fileInput.value = '';
+        if (preview) {
+          preview.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+              <path d="M18 15V18H6V15H4V18C4 19.1 4.9 20 6 20H18C19.1 20 20 19.1 20 18V15H18ZM7 9L8.41 10.41L11 7.83V16H13V7.83L15.59 10.41L17 9L12 4L7 9Z" fill="#616161"/>
+            </svg>`;
+        }
+        if (fileNameLabel) {
+          fileNameLabel.textContent = 'Upload Your custom Logo';
+        }
+        const errorMessageUploaded = document.querySelector(".error-message-uploded");
+        if (errorMessageUploaded) {
+          errorMessageUploaded.style.display = "none";
+        }
+        const charCountSize = document.querySelector('.char-countsize');
+        if (charCountSize) {
+          charCountSize.textContent = `0 / 5MB`;
+        }
+        const charCountSizeSpan = document.querySelector('span.char-count.char-countsize');
+        if (charCountSizeSpan) {
+          charCountSizeSpan.style.width = `100%`;
+        }
+      }
+       var checkedRadios11 = document.querySelectorAll(
+        ".embroidery_classic_IconWrapper_classic input[type=radio]:checked"
+      );
+
+      // If at least one radio is checked and embroideryBox has the attribute
+      const embroideryBox11 = document.querySelector(".embroidery-box-rewamp");
+      if (checkedRadios11.length > 0 && embroideryBox11?.hasAttribute("data-selected-variant-img")) {
+        console.log("--------->>>>>>>>>>>>>>>>>>>>>")
+        embroideryBox11.removeAttribute("data-selected-variant-img");
+      }
+      // Update description if it exists
+      if (desc) {
+        const price = isTextChecked ? 450 : 250;
+        const compareAtPrice = price === 450 ? 500 : null;
+        const label = isTextChecked ? 'Text + Icon' : 'Icon';
+
+        desc.innerHTML = `
+        <p>Embroidery Selected: <label class="EmbSelected_title">${label}</label></p>
+        <span class="EmbSelected_price">
+          ₹ ${price}
+          ${compareAtPrice ? `<span class="compare-at-price">₹ ${compareAtPrice}</span>` : ''}
+        </span>
+      `;
+        desc.classList.add('emb-msgupdated');
+      }
+
+      // Update the icon display in the preview
+      updatefeedImage();
+    } catch (err) {
+      console.error('handleEmbroiderySelect error:', err);
+    }
+  }
+
+//   function scrollToElement(el) {
+//     console.log(el)
+//   if (el && typeof el.scrollIntoView === 'function') {
+//     el.scrollIntoView({ behavior: "smooth", block: "center" });
+//   }
+// }
+  function scrollToElement(el) {
+  if (
+    el &&
+    typeof el.scrollIntoView === 'function' &&
+    !el.classList.contains('message-wrapper-customUpload')
+  ) {
+    el.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+}
+
+
+function handleEmbroideryAddedToCart() {
+  try {
+    const selectedTextOption = document.querySelector(".embroidery-popup_option.embroidery-popup_optionText input:checked");
+    const selectedIconOption = document.querySelector(".embroidery-popup_option.embroidery-popup_optionIcon input:checked");
+
+    const engravingLine1 = document.querySelector("#engravingLine1");
+    const isEngravingValid = engravingLine1 && engravingLine1.value.trim() !== "";
+
+    const isClassicOptionSelected = document.querySelector('.embroidery_classic_IconWrapper_classic input:checked');
+    const customLogoUpload = document.querySelector('#customLogoUpload');
+    const uploadedFile = customLogoUpload && customLogoUpload.files && customLogoUpload.files[0];
+    const isFileValid = uploadedFile && uploadedFile.size <= 5 * 1024 * 1024;
+
+    if (selectedTextOption && selectedIconOption) {
+
+      if (!isEngravingValid) {
+        const container = engravingLine1.closest(".engraving-form-container");
+        container.querySelector(".error-message").style.display = "block";
+        container.querySelector(".char-count").style.width = "unset";
+        scrollToElement(container.querySelector(".error-message"));
+      }
+
+      if (!isClassicOptionSelected && !(uploadedFile && isFileValid)) {
+        const errorMessage = document.querySelector("small.error-message.error-message-uploded");
+        if (errorMessage) {
+          errorMessage.style.display = "block";
+          if (uploadedFile && uploadedFile.size > 5 * 1024 * 1024) {
+            errorMessage.textContent = "Uploaded file must be smaller than 5MB.";
+          }
+          scrollToElement(errorMessage);
+        }
+      }
+
+      // Proceed only if BOTH conditions are valid
+      if (isEngravingValid && (isClassicOptionSelected || (uploadedFile && isFileValid))) {
+        const embroideryInput = document.querySelector(".embroidery-popup-input.emb-padding");
+        const embroideryInputdescription = document.querySelector(".embroidery-popup-description.emb-padding");
+        if (embroideryInput) embroideryInput.style.display = "none";
+        if (embroideryInputdescription) embroideryInputdescription.style.display = "none";
+
+        const finalEmbroideryInfo = document.querySelector(".finalEmbroidery_info");
+        if (finalEmbroideryInfo) finalEmbroideryInfo.style.display = "block";
+      }
+
+      return; 
+    }
+
+
+    if (selectedTextOption) {
+      const customLogoUploadInput = document.querySelector("#customLogoUpload");
+      if (customLogoUploadInput) {
+        customLogoUploadInput.value = "";
+      }
+      if (!isEngravingValid) {
+        const container = engravingLine1.closest(".engraving-form-container");
+        container.querySelector(".error-message").style.display = "block";
+        container.querySelector(".char-count").style.width = "unset";
+        scrollToElement(container.querySelector(".error-message"));
+        return;
+      }
+
+      const embroideryInput = document.querySelector(".embroidery-popup-input.emb-padding");
+      const embroideryInputdescription = document.querySelector(".embroidery-popup-description.emb-padding");
+      if (embroideryInput) embroideryInput.style.display = "none";
+      if (embroideryInputdescription) embroideryInputdescription.style.display = "none";
+
+      const finalEmbroideryInfo = document.querySelector(".finalEmbroidery_info");
+      if (finalEmbroideryInfo) finalEmbroideryInfo.style.display = "block";
+    }
+
+    // --- Handle single icon option ---
+    else if (selectedIconOption) {
+      if (isClassicOptionSelected || (uploadedFile && isFileValid)) {
+        const embroideryInput = document.querySelector(".embroidery-popup-input.emb-padding");
+        const embroideryInputdescription = document.querySelector(".embroidery-popup-description");
+        if (embroideryInput) embroideryInput.style.display = "none";
+        if (embroideryInputdescription) embroideryInputdescription.style.display = "none";
+
+        const finalEmbroideryInfo = document.querySelector(".finalEmbroidery_info");
+        if (finalEmbroideryInfo) finalEmbroideryInfo.style.display = "block";
+      } else {
+        const errorMessage = document.querySelector("small.error-message.error-message-uploded");
+        if (errorMessage) {
+          errorMessage.style.display = "block";
+          if (uploadedFile && uploadedFile.size > 5 * 1024 * 1024) {
+            errorMessage.textContent = "Uploaded file must be smaller than 5MB.";
+          }
+          scrollToElement(errorMessage);
+
+        }
+      }
+    }
+
+  } catch (error) {
+    console.error("Error in handleEmbroideryAddedToCart:", error);
+  }
+}
+
+
+
+function gobackEmbroidery() {
+  try{
+      const finalInfo = document.querySelector(".finalEmbroidery_info");
+      if (finalInfo) finalInfo.style.display = "none";  
+     const popupInput = document.querySelector(".embroidery-popup-input.emb-padding");
+      if (popupInput) popupInput.style.display = "block";
+    const embroideryInputdescription = document.querySelector(".embroidery-popup-description.emb-padding");
+    if (embroideryInputdescription) embroideryInputdescription.style.display = "flex";
+  } catch (error) {
+    console.error("Error in EmbroideryAdded_to_cart:", error);
+  }
+}
+
+window.validateEmbroidery = function() {
+  const textOptionCheckbox = document.getElementById('text');
+  const isTextSelected = textOptionCheckbox?.checked;
+  const isIconSelected = document.querySelector(".embroidery-popup_option.embroidery-popup_optionIcon input:checked");
+   const previewSvg1 = document.querySelector('.preview-text-overlay-svg');
+
+  // === Reset Text Engraving Option ===
+  if (isTextSelected) {
+    const line1Input = document.getElementById('engravingLine1');
+    const line2Input = document.getElementById('engravingLine2');
+
+    if (line1Input) line1Input.value = '';
+    if (line2Input) line2Input.value = '';
+    if (previewSvg1) previewSvg1.style.display = "block";
+
+
+    textOptionCheckbox.checked = false;
+
+    const textEngravingContainer = document.querySelector('.engraving-form-container');
+    if (textEngravingContainer) textEngravingContainer.style.display = 'none';
+
+    const priceElement = textOptionCheckbox.closest('.embroidery-popup_option')?.querySelector('.embroidery-popup_price');
+    if (priceElement) priceElement.style.display = 'block';
+
+    const iconToggle = textOptionCheckbox.closest('.embroidery-popup_option')?.querySelector('.embroidery-popup-input_iconcontainer svg');
+    if (iconToggle) iconToggle.classList.remove('emb-rotated');
+
+    updateDescription();
+    updateActionButtons();
+  }
+
+  // === Reset Icon/Logo Upload Option ===
+  if (isIconSelected) {
+    const logoInput = document.getElementById('customLogoUpload');
+    const logoPreview = document.querySelector('#imagePreview');
+    const fileNameLabel = document.querySelector('#fileNameText');
+
+    if (logoInput) logoInput.value = '';
+    if (logoPreview) {
+      logoPreview.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+          <path d="M18 15V18H6V15H4V18C4 19.1 4.9 20 6 20H18C19.1 20 20 19.1 20 18V15H18ZM7 9L8.41 10.41L11 7.83V16H13V7.83L15.59 10.41L17 9L12 4L7 9Z" fill="#616161"/>
+        </svg>`;
+    }
+    if (fileNameLabel) fileNameLabel.textContent = 'Upload Your custom Logo';
+
+    const uploadError = document.querySelector(".error-message-uploded");
+    if (uploadError) uploadError.style.display = "none";
+
+    const sizeText = document.querySelector('.char-countsize');
+    if (sizeText) sizeText.textContent = `0 / 5MB`;
+
+    const sizeBar = document.querySelector('span.char-count.char-countsize');
+    if (sizeBar) sizeBar.style.width = `100%`;
+
+    const iconRadios = document.querySelectorAll('.embroidery_classic_IconWrapper_classic input[type="radio"]');
+    iconRadios.forEach(radio => radio.checked = false);
+
+    // Re-check default icon radio
+    const defaultIconRadio = document.querySelectorAll(".embroidery_classic_IconWrapper_classic_classicked input")[0];
+    if (defaultIconRadio) defaultIconRadio.checked = true;
+
+    // Uncheck the icon option checkbox and update UI
+    const iconCheckbox = document.getElementById('icon');
+    if (iconCheckbox) {
+      toggleCheckbox('icon', true);
+    }
+  }
+    // Clear preview text and image
+    const previewTextLine1 = document.querySelector(".preview-text-line1");
+    const previewTextLine2 = document.querySelector(".preview-text-line2");
+    const previewImageWrapper = document.querySelector(".preview-image-wrapper");
+
+    if (previewTextLine1) previewTextLine1.innerHTML = '';
+    if (previewTextLine2) previewTextLine2.innerHTML = '';
+    if (previewImageWrapper) previewImageWrapper.innerHTML = '';
+}
+function handleEmbroideryConfirmation() {
+  const isTextOptionSelected = document.querySelector(".embroidery-popup_option.embroidery-popup_optionText input").checked;
+  const isIconOptionSelected = document.querySelector(".embroidery-popup_option.embroidery-popup_optionIcon input").checked;
+  const logoUploadValue = document.querySelector("#customLogoUpload")?.value?.trim();
+   window.embroideryProduct = {
+    variants: {{ embroideryproducthandlepicker.variants | json }}
+  };
+
+  const embroiderySection = document.querySelector(".embroidery-box-rewamp");
+  embroiderySection.querySelector("input.embroidery_filled").checked = true;
+  embroiderySection.querySelector(".popupbtnembroidery").checked = false;
+  embroiderySection.querySelector(".added_list").style.display = "block";
+  embroiderySection.querySelector(".embMaiDiv").style.display = "none";
+  embroiderySection.querySelector(".btn_pack").style.display = "none";
+
+  // Hide all views initially
+  embroiderySection.querySelector(".list_row_only_Text").style.display = "none";
+  embroiderySection.querySelector(".list_row_only_Image").style.display = "none";
+  embroiderySection.querySelector(".list_row_both").style.display = "none";
+
+  window.selectedVariant = null;
+
+  if (isTextOptionSelected && isIconOptionSelected) {
+    applyBothEmbroidery(embroiderySection);
+
+    // ✅ Both selected: check for Custom Logo
+    if (logoUploadValue) {
+      selectedVariant = window.embroideryProduct.variants.find(variant =>
+        variant.title.toLowerCase().includes("my name and custom logo")
+      );
+    } else {
+      selectedVariant = window.embroideryProduct.variants.find(variant =>
+        variant.title.toLowerCase().includes("both")
+      );
+    }
+
+  } else if (isTextOptionSelected) {
+    applyTextEmbroidery(embroiderySection);
+
+    // ✅ Text only
+    selectedVariant = window.embroideryProduct.variants.find(variant =>
+      variant.title.toLowerCase() === "my name" 
+    );
+
+  } else if (isIconOptionSelected) {
+    applyIconEmbroidery(embroiderySection);
+
+    // ✅ Icon only: check for Custom Logo
+    if (logoUploadValue) {
+      selectedVariant = window.embroideryProduct.variants.find(variant =>
+        variant.title.toLowerCase() === "custom logo"
+      );
+    } else {
+      selectedVariant = window.embroideryProduct.variants.find(variant =>
+        variant.title.toLowerCase() === "icon/logo"
+      );
+    }
+  }
+
+  if (selectedVariant) {
+    document.querySelector(".embroidery-box-rewamp").setAttribute("data-selected-variant-id", selectedVariant.id);
+    {% comment %} document.querySelector(".embroidery-box-rewamp").setAttribute("data-selected-variant-sku", selectedVariant.sku); {% endcomment %}
+// ✅ Set price based on variant title
+    const priceElement = embroiderySection.querySelector(".box_price");
+    const title = selectedVariant.title.toLowerCase();
+    let price = 0;
+
+ if (title === "my name") price = "₹ 250";
+    else if (title === "custom logo") price = "₹ 500";
+    else if (title === "icon/logo") price = "₹ 250";
+    else if (title.includes("my name and custom logo")) price = "₹ 700";
+    else if (title.includes("both")) price = "₹ 450";
+
+    if (priceElement) {
+      priceElement.innerText = price;
+    }
+    
+  } else {
+    console.warn("No matching variant found.");
+  }
+
+  closeEmbroideryPopup();
+  document.querySelector(".popupbtnembroidery").checked = true;
+}
+
+
+function applyTextEmbroidery(section) {
+  const textSection = section.querySelector(".list_row_only_Text");
+
+  const line1 = document.getElementById("engravingLine1").value;
+  const line2 = document.getElementById("engravingLine2").value || "";
+  const textColor = document.querySelector(".text-color-options input:checked")?.value || "";
+  const fontStyle = document.querySelector(".font-type-selector input:checked")?.value || "";
+
+  textSection.querySelector(".selected-Name-centered .emb_first_Maind").innerText = line1;
+  textSection.querySelector(".selected-Name-centered .emb_sec_opt").innerText = line2;
+  // Only show line2 if it has a value, otherwise just show line1
+  const displayText = line2.trim() ? `${line1}, ${line2}` : line1;
+  section.querySelector("span.property_line__textEmb.property_line__textEmbfirst").innerText = displayText;
+  textSection.querySelector("span.property_line.property_line_colorValue").innerText = textColor;
+  textSection.querySelector("span.property_line_FontStyle").innerText = fontStyle;
+
+  textSection.style.display = "grid";
+}
+
+function applyIconEmbroidery(section) {
+  const iconSection = section.querySelector(".list_row_only_Image");
+  const selectedIcon = document.querySelector(".embroidery_classic_IconWrapper_classic input:checked");
+  const customUpload = document.querySelector("#customLogoUpload");
+
+  if (selectedIcon) {
+    const iconUrl = selectedIcon.getAttribute("data-icon-url");
+    
+    iconSection.querySelector(".showIcon").innerHTML = `<img src="${iconUrl}" height="50">`; 
+    iconSection.querySelector(".property_line_Iconname_Name").innerText = selectedIcon.getAttribute("data-alt");
+  } else if (customUpload?.value) {
+    const iconUrl = customUpload.getAttribute("data-icon-url");
+    iconSection.querySelector(".showIcon").innerHTML = "customupload";
+    iconSection.querySelector(".property_line_Iconname_Name").innerText = "customupload";
+  }
+
+  iconSection.style.display = "grid";
+}
+
+function applyBothEmbroidery(section) {
+  const bothSection = section.querySelector(".list_row_both");
+
+  const line1 = document.getElementById("engravingLine1").value;
+  const line2 = document.getElementById("engravingLine2").value || "";
+  const textColor = document.querySelector(".text-color-options input:checked")?.value || "";
+  const fontStyle = document.querySelector(".font-type-selector input:checked")?.value || "";
+
+  const selectedIcon = document.querySelector(".embroidery_classic_IconWrapper_classic input:checked");
+  const customUpload = document.querySelector("#customLogoUpload");
+
+  // Fill text side
+  bothSection.querySelector(".selected-Name-centered .emb_first_Maind").innerText = line1;
+  bothSection.querySelector(".selected-Name-centered .emb_sec_opt").innerText = line2;
+  // Only show line2 if it has a value, otherwise just show line1
+  const displayText = line2.trim() ? `${line1}, ${line2}` : line1;
+  bothSection.querySelector(".property_line__textEmb.property_line__textEmbfirst").innerText = displayText;
+  bothSection.querySelector(".property_line_color span:last-child").innerText = textColor;
+  bothSection.querySelector(".property_line_Font span:last-child").innerText = fontStyle;
+
+  // Fill icon side
+  if (selectedIcon) {
+    const iconUrl = selectedIcon.getAttribute("data-icon-url"); 
+    bothSection.querySelector(".showIcon").innerHTML = `<img src="${iconUrl}" height="50">`;
+    bothSection.querySelector(".property_line_Iconname span:last-child").innerText = selectedIcon.getAttribute("data-alt") || "Selected Icon";
+  } else if (customUpload?.value) {
+    const iconUrl = customUpload.getAttribute("data-icon-url");
+    bothSection.querySelector(".showIcon").innerHTML = "customupload";
+    bothSection.querySelector(".property_line_Iconname span:last-child").innerText = "customupload";
+  }
+
+  bothSection.style.display = "grid"; // or "block" based on layout
+}
+  
+window.EmbroideryDelete = function () {
+  try {
+    const embroideryBox = document.querySelector(".embroidery-box-rewamp");
+
+    // Uncheck the filled checkbox and popup selector
+    embroideryBox.querySelector("input.embroidery_filled").checked = false;
+    embroideryBox.querySelector(".popupbtnembroidery").checked = false;
+
+    // Reset visibility
+    embroideryBox.querySelector(".added_list").style.display = "none";
+    embroideryBox.querySelector(".embMaiDiv").style.display = "block";
+    embroideryBox.querySelector(".btn_pack").style.display = "flex";
+    embroideryBox.querySelector(".list_row_only_Text").style.display = "none";
+    embroideryBox.querySelector(".list_row_only_Image").style.display = "none";
+    embroideryBox.querySelector(".list_row_both").style.display = "none";
+
+    // Clear text inputs
+    document.getElementById("engravingLine1").value = "";
+    document.getElementById("engravingLine2").value = "";
+
+    // Clear text section fields
+    const textSection = embroideryBox.querySelector(".list_row_only_Text .selected-Name-centered");
+    if (textSection) {
+      textSection.querySelector(".emb_first_Maind").innerText = "";
+      textSection.querySelector(".emb_sec_opt").innerText = "";
+    }
+    embroideryBox.querySelector("span.property_line__textEmb.property_line__textEmbfirst").innerText = "";
+    const textColorSpan = embroideryBox.querySelector("span.property_line.property_line_colorValue");
+    if (textColorSpan) textColorSpan.innerText = "";
+    const fontStyleSpan = embroideryBox.querySelector("span.property_line_FontStyle");
+    if (fontStyleSpan) fontStyleSpan.innerText = "";
+
+    // Clear icon section fields
+    const iconImg = embroideryBox.querySelector(".list_row_only_Image .showIcon img");
+    if (iconImg) iconImg.src = "";
+    const iconNameSpan = embroideryBox.querySelector(".property_line_Iconname_Name");
+    if (iconNameSpan) iconNameSpan.innerText = "";
+
+    // Clear 'both' section fields
+    const bothSection = embroideryBox.querySelector(".list_row_both");
+    if (bothSection) {
+      bothSection.querySelector(".emb_first_Maind").innerText = "";
+      bothSection.querySelector(".emb_sec_opt").innerText = "";
+      bothSection.querySelector(".property_line__textEmb.property_line__textEmbfirst").innerText = "";
+      bothSection.querySelector(".property_line_color span:last-child").innerText = "";
+      bothSection.querySelector(".property_line_Font span:last-child").innerText = "";
+      bothSection.querySelector(".property_line_Iconname span:last-child").innerText = "";
+      const bothIconImg = bothSection.querySelector(".showIcon img");
+      if (bothIconImg) bothIconImg.src = "";
+    }
+
+    // Hide selector UI
+    const selector = document.querySelector(".emb_select_opt");
+    if (selector) selector.style.display = "none";
+    validateEmbroidery()
+    gobackEmbroidery()
+
+  } catch (error) {
+    console.error("Error in EmbroideryDelete:", error.message);
+  }
+};
+
+
+  function EmbroideryEdited() {
+  try {
+    const body = document.querySelector("body");
+    const popup = document.getElementById("embroideryPopup");
+
+    if (popup) {
+      popup.style.display = "flex"; // Show the embroidery popup
+    }
+
+    body.classList.add("bodyEmbhidden"); // Prevent background scroll or interactions
+    gobackEmbroidery()
+  } catch (error) {
+    console.error("Error in EmbroideryEdited:", error.message);
+  }
+}
+
+function chnageTextTransformation(trigger) {
+  const container = trigger.closest('.engraving-form-container_transformation');
+  const input = container.querySelector('input');
+
+  if (!input) return;
+
+  const isUpperCase = input.style.textTransform === "uppercase";
+  let newValue;
+
+  if (isUpperCase) {
+    // Switch to Capitalize
+    input.style.textTransform = "capitalize";
+    newValue = input.value.toLowerCase().replace(/\b\w/g, char => char.toUpperCase());
+    input.value = newValue;
+
+    trigger.querySelector(".text_trasformation_name_captaln").style.display = "none";
+    trigger.querySelector(".text_trasformation_name_small").style.display = "block";
+    trigger.classList.remove("background_text");
+  } else {
+    // Switch to Uppercase
+    input.style.textTransform = "uppercase";
+    newValue = input.value.toUpperCase();
+    input.value = newValue;
+
+    trigger.querySelector(".text_trasformation_name_captaln").style.display = "block";
+    trigger.querySelector(".text_trasformation_name_small").style.display = "none";
+    trigger.classList.add("background_text");
+  }
+  setupInputSanitization("engravingLine1");
+    setupInputSanitization("engravingLine2");
+  // 🔁 Update preview text
+  if (input.id === "engravingLine1") {
+    document.querySelector(".preview-text-line1").textContent = input.value;
+  } else if (input.id === "engravingLine2") {
+    document.querySelector(".preview-text-line2").textContent = input.value;
+  }
+    setupInputSanitization("engravingLine1");
+    setupInputSanitization("engravingLine2");
+}
+
+
+  const engravingLine1Input = document.getElementById('engravingLine1');
+if (engravingLine1Input) {
+  engravingLine1Input.addEventListener('input', function(e) {
+    const previewText = e.target.value;
+    const previewLine1 = document.querySelector('.preview-text-line1');
+    if (previewLine1) {
+      previewLine1.innerText = previewText;
+    }
+  });
+}
+
+const engravingLine2Input = document.getElementById('engravingLine2');
+if (engravingLine2Input) {
+  engravingLine2Input.addEventListener('input', function(e) {
+    const previewText = e.target.value;
+    const previewLine2 = document.querySelector('.preview-text-line2');
+    if (previewLine2) {
+      previewLine2.innerText = previewText;
+    }
+  });
+}
+
+
+  function updatefeedImage() {
+  try {
+    const LivepreviewIcon = document.querySelector('.preview-image-wrapper');
+    if (!LivepreviewIcon) return;
+
+    LivepreviewIcon.innerHTML = '';
+
+    const isMobile = window.innerWidth < 1024;
+   let imageUrl = '';
+   let imageALT = '';
+    document.querySelectorAll("#current-selected-color").forEach(el => {
+  el.innerText = "";
+});
+
+
+const previewImg = document.querySelector("#imagePreview img");
+const selectedIconInput = document.querySelector(".embroidery_classic_IconWrapper_classic input:checked");
+
+if (previewImg && previewImg.getAttribute("src")) {
+  imageUrl = previewImg.getAttribute("src");
+} else if (selectedIconInput) {
+  imageUrl = selectedIconInput.getAttribute("data-icon-url");
+  imageALT = selectedIconInput.getAttribute("data-alt");
+}
+
+    if (imageUrl) {
+      const img = document.createElement('img');
+      img.src = imageUrl;
+      Object.assign(img.style, {
+        width: isMobile ? '105px' : '160px',
+        height: isMobile ? '105px' : '160px',
+        objectFit: 'cover'
+      });
+      LivepreviewIcon.appendChild(img);
+    }
+    if(imageALT){
+      // Try to find the wrapper from the event if available, otherwise search for the selected icon's parent
+      let wrapper = null;
+      if (typeof event !== 'undefined' && event && event.target && event.target instanceof Element) {
+        wrapper = event.target.closest(".embroidery_classic_IconWrapper_targetClose");
+      }
+      if (!wrapper && selectedIconInput) {
+        wrapper = selectedIconInput.closest(".embroidery_classic_IconWrapper_targetClose");
+      }
+      if (wrapper) {
+        const colorDisplay = wrapper.previousElementSibling?.querySelector(".current-selected-colorText #current-selected-color");
+        if (colorDisplay) {
+          colorDisplay.textContent = imageALT || "";
+        }
+      }
+    }
+
+  } catch (error) {
+    console.error("updatefeedImage in EmbroideryEdited:", error.message);
+  }
+}
+</script>

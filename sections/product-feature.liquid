@@ -1,0 +1,93 @@
+{% if product.metafields.custom.product_key_feature_icons != blank %}
+  <div class="product-key-feature-wrapper force-full-width">
+    <div class="product-key-feature">
+      {% assign featureicons = product.metafields.custom.product_key_feature_icons | split: ',' %}
+      {% assign featuretext = product.metafields.custom.product_key_feature_text | split: '##' %}
+      {% assign sizes = featuretext.size | minus: 1 %}
+      {% for i in (0..sizes) %}
+        <div class="productfeature">
+          <img loading="lazy" class="lazyload" src="{{featureicons[i]}}" width="100" height="100">
+          <p class="featuretext">{{ featuretext[i] }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}
+<style>
+  .product-key-feature-wrapper {
+    width: 99.5vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+  }
+  .product-key-feature {
+    display: flex;
+    background-color: #7ea7d6;
+    padding: 42px 48px;
+    justify-content: center;
+  }
+  .product-key-feature .productfeature {
+    width: 25%;
+    text-align: center;
+    padding: 10px 47px 10px 48px;
+    border-right: 1px solid #000;
+  }
+  .product-key-feature .productfeature:nth-child(4) {
+    border: none;
+  }
+  .product-key-feature .featuretext {
+    color: var(--www-wearfigs-com-emperor, #525252);
+    text-align: center;
+
+    /* Header 4/Large */
+    font-family: Heebo-Medium;
+    font-size: clamp(14px, calc(16 * (100vw / 1440)), 18px);
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px; /* 150% */
+    letter-spacing: 0.016px;
+    text-transform: capitalize;
+    margin: 11px 0;
+  }
+  .productfeature img.lazyload {
+    width: 100%;
+    height: auto;
+  }
+  @media screen and (max-width: 768px) {
+    img.lazyload {
+      width: 100%;
+      height: auto;
+    }
+    .product-key-feature .productfeature {
+      border: none;
+      padding: unset;
+    }
+    .product-key-feature .featuretext {
+      color: #f5ebd2;
+      text-align: center;
+      font-family: Heebo-Regular;
+      font-size: 11px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 16px; /* 145.455% */
+      letter-spacing: 0.044px;
+      margin: 8px 0;
+    }
+    .product-key-feature {
+      padding: 24px 18px;
+      /* background: #7EA7D6; */
+      box-shadow: 0px 1px 17.6px 1px rgba(0, 0, 0, 0.12);
+    }
+    /* .product-key-feature .productfeature{margin:10px;} */
+  }
+</style>
+
+{% schema %}
+{
+  "name": "product-key-feature",
+  "settings": [],
+  "presets": [{ "name": "product-key-feature" }]
+}
+{% endschema %}

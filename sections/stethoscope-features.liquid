@@ -1,0 +1,83 @@
+{{ 'stethoscope-features.css' | asset_url | stylesheet_tag: preload: true }}
+<script src="{{ 'stethoscope-features.js' | asset_url }}" defer="defer"></script>
+
+<section class="stethoscope-features-wrapper">
+  {% if section.blocks.size > 0 %}
+  <div class="stethoscope-features">
+    <div class="feature-content-wrapper">
+      <h3 class="heebo-regular">{{ section.settings.feature_subheading }}</h3>
+      {% for block in section.blocks %}
+        <div class="feature-content" id="feature-{{ forloop.index }}" {% if forloop.first %}style="display:flex;"{% else %}style="display:none;"{% endif %}>
+          <span>{{ block.settings.feature_heading  }}</span>
+        </div>
+      {% endfor %}
+    </div>
+    <div class="heebo-regular feature-tabs">
+      {% for block in section.blocks %}
+        <span class="feature-tab active" data-tab="feature-{{ forloop.index }}">{{ block.settings.feature_name }}</span>
+      {% endfor %}
+    </div>
+    <div class="stetho-feature-navigation">
+      <div class="stetho-feature-icon stetho-feature-prev-icon">
+       {% render 'stetho-feature-prev-icon' %}
+      </div>
+      <div class="dots-container"></div>
+      <div class="stetho-feature-icon stetho-feature-next-icon">
+        {% render 'stetho-feature-next-icon' %}
+      </div>
+    </div>
+  </div>
+  {% endif %}
+</section>
+
+{% schema %}
+  {
+    "name": "Stethoscope Features",
+    "class": "stethoscope-features-parent",
+    "settings": [
+      {
+        "type": "text",
+        "id": "feature_subheading",
+        "label": "Feature Subheading",
+      },
+      {
+        "type": "text",
+        "id": "stetho-preorder-count",
+        "label": "Stetho Preorder Count"
+      },
+      {
+        "type": "text",
+        "id": "stetho-preorder-text",
+        "label": "Stetho Preorder Text"
+      },
+      {
+        "type": "url",
+        "id": "stetho-preorder-url",
+        "label": "Redirection Link For CTA"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "block",
+        "name": "Feature",
+        "settings": [
+          {
+            "type": "text",
+            "id": "feature_name",
+            "label": "Feature Name"
+          },
+          {
+            "type": "text",
+            "id": "feature_heading",
+            "label": "Feature Heading",
+          },
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Stethoscope Features"
+      }
+    ]
+  }
+{% endschema %}

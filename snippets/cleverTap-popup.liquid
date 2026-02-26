@@ -1,0 +1,86 @@
+<style>
+  .wzrk-alert {
+    right: unset !important;
+    top: unset !important;
+    bottom: 0 !important;
+  }
+</style>
+
+<script>
+  function updateAlertHeadingText() {
+      const alertMianDiv = document.querySelector('.wzrk-alert');
+      const mainDiv = document.querySelector('.wzrk-alert.wiz-show-animate');
+      const alertHeading = document.querySelector('.wzrk-alert-heading');
+      const alertPara = document.querySelector('.wzrk-alert-body');
+      const alertconfirm = document.querySelector('#wzrk-confirm');
+      const alertcancel = document.querySelector('#wzrk-cancel');
+      const alertcontainer = document.querySelector('.wzrk-button-container');
+      if (alertHeading) {
+          alertMianDiv.style.padding = "18px 40px";
+          alertMianDiv.style.width = "30%";
+          alertHeading.textContent = 'NEVER MISS AN OFFER!';
+          alertHeading.style.marginBottom = '0px';
+          alertHeading.style.fontFamily = 'Heebo-Medium';
+          alertHeading.style.marginLeft = '0px';
+          alertHeading.style.color = '#2F3032';
+          alertHeading.style.textAlign = 'left';
+          alertHeading.style.fontSize = '14px';
+          alertHeading.style.marginBottom = '6px';
+          alertHeading.style.lineHeight = '18px';
+          alertPara.textContent = 'Subscribe to get updates on our new products and exclusive promotions';
+          alertPara.style.color = '#79767D';
+          alertPara.style.fontFamily = 'Heebo-Regular';
+          alertPara.style.textAlign = 'left';
+          alertPara.style.fontSize = '13px';
+          alertPara.style.lineHeight = '19px';
+          alertconfirm.textContent = 'Allow';
+          alertconfirm.style.background = '#553C8D';
+          alertconfirm.style.color = '#FFFFFF';
+          alertconfirm.style.width = '50%';
+          alertconfirm.style.margin = '0';
+          alertcancel.textContent = "Don't Allow";
+          alertcancel.style.backgroundColor = '#fff';
+          alertcancel.style.color = '#553C8D';
+          alertcancel.style.width = '50%';
+          alertcancel.style.margin = '0';
+          alertcancel.style.lineHeight = '17.5px';
+          alertcontainer.style.display = 'flex';
+          alertcontainer.style.lineHeight = '17.5px';
+          alertcontainer.style.display = 'justify-content';
+          alertcontainer.style.gap = '12px';
+          alertcontainer.style.marginBottom = '12px';
+          alertcancel.setAttribute(
+              'style',
+              alertcancel.getAttribute('style') + '; border: 1px solid #79767D !important;'
+          );
+          if (alertconfirm) {
+            alertconfirm.addEventListener('mouseover', () => {
+                alertconfirm.style.backgroundColor = '#553C8D';
+            });
+            alertconfirm.addEventListener('mouseout', () => {
+                alertconfirm.style.backgroundColor = '#553C8D';
+            });
+          }
+          newObserver.disconnect();
+          if (window.innerWidth > 750 && window.innerWidth < 1200 ) {
+            document.querySelector('.wzrk-alert.wiz-show-animate').style.width = '50%';
+          }
+          if (window.innerWidth < 750  ) {
+            document.querySelector('.wzrk-alert.wiz-show-animate').style.width = '95%';
+            document.querySelector('.wzrk-alert.wiz-show-animate').style.left = '2.5%';
+          }
+      }
+  }
+
+  const newObserver = new MutationObserver(() => {
+      updateAlertHeadingText();
+  });
+
+  newObserver.observe(document.body, {
+      childList: true,
+      subtree: true,
+  });
+
+  updateAlertHeadingText();
+
+</script>

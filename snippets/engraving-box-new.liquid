@@ -1,0 +1,270 @@
+<link rel="stylesheet" href="{{ 'embroidery-box-new.css' | asset_url }}">
+<style>
+  .priceDiv {
+    /* margin-left: 20px; */
+    display: flex;
+    flex-direction: column;
+    color: #F5EBD2;
+    align-items: start;
+    flex-direction: column;
+    justify-content: space-between;
+      width: 100%;
+  }
+  .addNamePara {
+    font-size: {{ section.settings.add_emb_desktop_sub_font_size }}px;;
+    font-weight: 400;
+    line-height: 17.63px;
+    letter-spacing: 0.001em;
+    font-family: 'Heebo-Regular';
+    text-align: left;
+    margin: 0;
+    margin-left: 24px;
+    color: {{ section.settings.subHeading_font_text }};
+  }
+
+  .popupbtnengravingAdd, .popupbtnengravingDontAdd {
+    font-size: {{ section.settings.add_emb_desktop_font_size }}px;
+    font-weight: 500;
+    font-family: 'Heebo-Medium';
+    line-height: 20px;
+    letter-spacing: 0.001em;
+    text-align: center;
+    color: {{ section.settings.heading_font_text }};
+    margin-left: 24px;
+    cursor: pointer;
+  }
+  .popupbtnengravingDontAdd {
+    margin-left: 0rem;
+  }
+
+  .embMaiDiv {
+    margin-top: 0;
+    padding-top: 6px;
+    padding-bottom: 12px;
+    background: #F7F7F7;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 1px 2px 1px rgb(0 0 0 / 30%);
+  }
+
+
+  .showEmb.checked {
+    background: {{ section.settings.selected_background_color}};
+  }
+  .dontShowEngrave.checked {
+    background: {{ section.settings.selected_background_color}};
+  }
+
+  .dontShowEngrave {
+    /* padding: 13px 5px; */
+  }
+
+  .emb_select_opt {
+    font-size: 16px;
+    font-weight: 400;
+    color: #FF0C00;
+    font-family: 'Heebo-Regular' !important;
+    line-height: 24px;
+    letter-spacing: 0.5px;
+    display: none;
+  }
+  .priceDiv-txt.error-shown ~ .priceDiv-price {
+    display: none;
+  }
+  .priceDiv-txt {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .wrapp .btn_pack h3 {
+    text-decoration: none;
+    margin: 0;
+    line-height: 1.5;
+    font-size: clamp(22px, calc(22 * (100vw / 1440)), 18px);
+    font-weight: 500;
+    line-height: 28px;
+    letter-spacing: 0.024px;
+  }
+  .wrapp .btn_pack p.priceDivStart {
+    font-size: clamp(11px, calc(11 * (100vw / 1440)), 14px);
+    line-height: 16px;
+    letter-spacing: 0.5px;
+    color: #B0A7C0;
+    font-weight: 500;
+  }
+
+  @media screen and (max-width: 768px) {
+    .priceDiv-txt {
+      gap: 2px;
+    }
+    .emb_select_opt {
+      font-size: 11px;
+      line-height: 16px;
+    }
+    .wrapp .btn_pack h3 {
+      text-decoration: none;
+      margin: 0;
+      line-height: 1.5;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 20px;
+      letter-spacing: 0.024px;
+    }
+    .btn_pack {
+      min-width: 100%;
+      margin-left:0%;
+    }
+  }
+
+  @media screen and (max-width: 750px) {
+    .popupbtnengravingAdd, .popupbtnengravingDontAdd {
+      font-size: {{ section.settings.add_emb_mobile_font_size }}px;
+    }
+    .popupbtnengravingDontAdd {
+      margin-left: 0rem;
+    }
+    .embMaiDiv {
+      margin-top: 0;
+    }
+    .addNamePara {
+      font-size: {{ section.settings.add_emb_mobile_sub_font_size }}px;;
+    }
+  }
+</style>
+{% assign engraving = block.settings.EngravingProductHandlepicker %}
+{% assign max_price = 0 %}
+{% for variant in engraving.variants %}
+  {% if variant.price > max_price %}
+    {% assign max_price = variant.price %}
+  {% endif %}
+{% endfor %}
+{% assign min_price = max_price %}
+{% for variant in engraving.variants %}
+  {% if variant.price < min_price %}
+    {% assign min_price = variant.price %}
+  {% endif %}
+{% endfor %}
+
+{% if block.settings.showEngraving %}
+  {% assign engraving = block.settings.EngravingProductHandlepicker %}
+  <div
+    class="engraving-box page-width-pdp-mob"
+    data-product-pair=""
+    data-engraving-variant-id="{{ engraving.selected_or_first_available_variant.id }}"
+    data-engraving-variant-sku="{{ engraving.selected_or_first_available_variant.sku }}"
+  >
+    <div class="wrapp">
+      <div class="btn_pack" data-close="false">
+        <div class="first_div">
+          <div class="first_div_container">
+            <div class="imagDivss">
+              <div class="imagDivss_containers">
+                <img
+                  src="https://cdn.shopify.com/s/files/1/0562/9247/5063/files/45ca03565c864a8c101204c858fb01fc.gif?v=1710307477&width=60"
+                  width="34px"
+                  height="39px"
+                  loading="lazy"
+                >
+                <div class="priceDiv font-heebo-medium">
+                  <div class="priceDiv-txt">
+                    <h3>Custom Engraving</h3>
+                    <span class="emb_select_opt">*Please Select</span>
+                  </div>
+
+                  <div class="priceDiv-price">
+                    {% assign custom_text = product.metafields.custom.embroidery_text %}
+                    {% assign price_text = min_price | money_without_trailing_zeros | replace: '₹ ', '₹' %}
+                    {% if custom_text != blank %}
+                      {% assign display_text = custom_text | replace: '|amount|', price_text %}
+                    {% else %}
+                      {% assign display_text = settings.embroidery_text_subheading | replace: '|amount|', price_text %}
+                    {% endif %}
+                    {% comment %} Remove quotes around price if they exist {% endcomment %}
+                    {% assign display_text = display_text | replace: "'|amount|'", price_text %}
+                    {% comment %} Remove any remaining quotes around the actual price {% endcomment %}
+                    {% assign display_text = display_text | replace: "'₹", '₹' %}
+                    {% assign display_text = display_text | replace: "'", '' %}
+                    <p class="priceDivStart">{{ display_text }}</p>
+                  </div>
+
+                  {% comment %}
+                    <div class="priceDiv-price">
+                      {% comment %} <p class="priceDivStart">Starting at {{ min_price | money_without_trailing_zeros | replace: '₹ ', '₹'  }} personalise your stethoscope</p> {% endcomment %}
+                      <p class="priceDivStart">Complimentary for a limited period</p>
+                    </div>
+                  {% endcomment %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="embMaiDiv">
+        <div class="showEmb embMaiDivInner">
+          <input
+            type="radio"
+            id="showEmb"
+            class="popupbtnengraving embMaiDivpopupbtnengraving embMaiDivPopupbtn"
+            name="engraving"
+            value=""
+          >
+          <label class="popupbtnengravingAdd" for="showEmb">{{ block.settings.heading_text_emgrav }}</label>
+          <p class="addNamePara">{{ block.settings.subheading_text_emgrav }}</p>
+        </div>
+
+        <div class="dontShowEngrave embMaiDivInner">
+          <input
+            type="radio"
+            class="embMaiDivpopupbtnengraving embMaiDivPopupbtn"
+            id="dontShowEngrave"
+            name="engraving"
+            value=""
+          >
+          <label class="popupbtnengravingDontAdd" for="dontShowEngrave">
+            {{- block.settings.heading_second_text_emgrav -}}
+          </label>
+          <p class="addNamePara">{{ block.settings.subheading_second_text_emgrav }}</p>
+        </div>
+      </div>
+
+      <div class="added_list" data-added="false">
+        <div class="wrap">
+          <div class="left"><input type="checkbox" class="engraving_filled"> <label> Custom engraving </label></div>
+
+          <div class="right asdf">
+            <span class="box_price">{{ min_price | money_without_trailing_zeros | replace: '₹ ', '₹' }} </span>
+
+            <label class="edit_box" style="display:none;"> EDIT </label> |
+            <label class="delete_box" onclick="Engravingdelete()"> {% render 'icon-delete' %} </label>
+          </div>
+        </div>
+
+        <div class="added_list_contents gg">
+          <div class="list_row">
+            <div class="left" style="background-color: rgb(0, 0, 128)">
+              <div class="selected-Name-centered">
+                <p>d</p>
+              </div>
+            </div>
+            <div class="right property_line__textEngWrapper">
+              <h4>My Name</h4>
+              <div class="property_line"><span> text </span> : <span class="property_line__textEng"> d </span></div>
+            </div>
+          </div>
+          <div class="added_list custom-edit-placement" data-added="false">
+            <label class="edit_box" onclick="Engravingedited()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M19.06 3.59L20.41 4.94C21.2 5.72 21.2 6.99 20.41 7.77L7.18 21H3V16.82L13.4 6.41L16.23 3.59C17.01 2.81 18.28 2.81 19.06 3.59ZM5 19L6.41 19.06L16.23 9.23L14.82 7.82L5 17.64V19Z" fill="#462D8C"></path>
+              </svg>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+<script>
+  document.querySelector('.btn_pack')?.addEventListener('click', () => {
+    document.querySelector('#showEmb')?.click();
+  });
+</script>

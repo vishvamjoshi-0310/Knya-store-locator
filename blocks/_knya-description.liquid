@@ -1,0 +1,177 @@
+<style>
+  .clickme {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    /* transition: 0.4s; */
+    margin: 0;
+  }
+  p.clickme {
+    color: #000;
+    font-family: var(--font-heebo-medium);
+    font-size: clamp(20px, calc(22 * (100vw / 1440)), 24px);
+    line-height: 1.272;
+    letter-spacing: 0.11px;
+    padding: 24px 0;
+    border-bottom: 1px solid #e5e5e5;
+  }
+  .clickme:after {
+    content: url(/cdn/shop/files/SVG.svg?v=1711001842);
+  }
+  .active1:after {
+    content: url(/cdn/shop/files/SVG_1.svg?v=1711002003);
+  }
+  .panels {
+    max-height: 0;
+    overflow: hidden;
+  }
+  .panels p,
+  .tab-section.page-width-pdp-mob .panels ul li {
+    color: #2d2d2d;
+    font-family: Heebo-Regular;
+    font-size: clamp(12px, calc(14 * (100vw / 1440)), 16px);
+    font-weight: 400;
+    line-height: 1.428;
+    letter-spacing: 0.056px;
+    margin: 0;
+    padding: 0 30px;
+    width: 95%;
+  }
+  .tab-section.page-width-pdp-mob .panels ul li {
+    padding: 0;
+  }
+  p.clickme.active1 {
+    padding-bottom: 12px;
+    border-bottom: unset;
+  }
+  .panels.panel1.active12 {
+    max-height: max-content;
+  }
+  @media (max-width: 749px) {
+    p.clickme {
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: 0.07px;
+      padding: 24px 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .panels p,
+    .tab-section.page-width-pdp-mob .panels ul li {
+      padding: 0px;
+      font-size: 12px;
+      line-height: 16px;
+      letter-spacing: 0.048px;
+      width: 90%;
+    }
+  }
+  @media (min-width: 750px) {
+    .img-des-pdp {
+      display: none;
+    }
+  }
+</style>
+{% assign my_description = product.description | split: '<!-- split -->' %}
+
+<div class="tab-section page-width-pdp-mob">
+  {% if my_description != blank %}
+    <p class="clickme">{{ block.settings.des2 }}</p>
+
+    <div class="panels">
+      <p>
+        {{ my_description }}
+        <p></p>
+      </p>
+    </div>
+  {% endif %}
+
+  {% if product.metafields.custom.fabric_details != blank %}
+    <p class="clickme">{{ block.settings.des3 }}</p>
+
+    <div class="panels">
+      <p>
+        {{ product.metafields.custom.fabric_details }}
+        <p></p>
+      </p>
+    </div>
+  {% endif %}
+
+  {% if product.metafields.custom.return_policy != blank %}
+    <p class="clickme">{{ block.settings.des4 }}</p>
+    <div class="panels">
+      <p>{{ product.metafields.custom.return_policy }}</p>
+    </div>
+  {% endif %}
+  {% if product.metafields.custom.product_details_image.value != blank or product.metafields.custom.product_details_image_over_text.value != blank %}
+  <p class="clickme active1 img-des-pdp">{{ block.settings.des5 }}</p>
+  {% endif %}
+  <div class="panels panel1 active12 img-des-pdp">
+    {% render 'pdp-des-img' %}
+  </div>
+<script>
+  var acc = document.querySelectorAll('.clickme');
+  var active = null;
+
+  acc?.forEach((item, i) => {
+    item.addEventListener('click', function () {
+      acc?.forEach((el) => el.classList.remove('active1'));
+      var panel = this.nextElementSibling;
+
+      if (active) {
+        active.parentElement.querySelector('.panel1').classList.remove('active12');
+        active.style.maxHeight = null;
+      }
+
+      if (panel !== active) {
+        this.classList.add('active1');
+        this.parentElement.querySelector('.panel1').classList.add('active12');
+        panel.style.maxHeight = panel.scrollHeight + 'px';
+        active = panel;
+      } else {
+        this.parentElement.querySelector('.panel1').classList.remove('active12');
+        active = null;
+      }
+    });
+  });
+</script>
+{% schema %}
+{
+  "name": "Knyamed Description",
+  "settings": [
+    {
+      "type": "text",
+      "id": "des1",
+      "label": "For Description",
+      "default": "DESCRIPTION"
+    },
+    {
+      "type": "text",
+      "id": "des2",
+      "label": "For Details",
+      "default": "DETAILS"
+    },
+    {
+      "type": "text",
+      "id": "des3",
+      "label": "For Fabric",
+      "default": "FABRIC"
+    },
+    {
+      "type": "text",
+      "id": "des4",
+      "label": "for Return",
+      "default": "RETURN POLICY"
+    },
+    {
+      "type": "text",
+      "id": "des5",
+      "label": "The Anatomy Of Knya Scrubs",
+      "default": "The Anatomy Of Knya Scrubs"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Knyamed Description"
+    }
+  ]
+}
+{% endschema %}

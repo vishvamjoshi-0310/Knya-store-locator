@@ -1,0 +1,15 @@
+{%- doc -%}
+  Renders block content for all blocks that extend the group block.
+
+  @param {string} children - The DOM content of the group block.
+  @param {string} swiper_class - Custom Swiper Class.
+
+
+  @example
+  {% render 'swiper-wrapper', children: children, swiper_class: "class_name" %}
+{%- enddoc -%}
+
+
+<div class="{{ swiper_class }} swiper-wrapper">
+    {{- children -}}
+</div>

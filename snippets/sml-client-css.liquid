@@ -1,0 +1,350 @@
+/* ===== GENERAL LAYOUT ===== */ .template-login main { background: linear-gradient(239deg, #dbdbdc, #f5f5f7); position:
+relative; }
+
+#whole-login-container { display: flex; flex-direction: column; justify-content: space-between; gap: 26px; align-items:
+stretch; background: white; border-radius: 20px; padding: 12px; 
+    @media only screen and (max-width: 400px){
+        max-width: 320px;
+    }
+}
+
+.new-login-content-container { margin-bottom: 16px; }
+
+#new-login-heading, #new-login-second-heading { font-family: 'Heebo-Medium'; font-weight: 500; font-size: 20px;
+line-height: 28px; text-align: center; vertical-align: middle; color: #211A1E; }
+
+#new-login-sub-heading { font-family: 'Heebo-Regular'; font-weight: 400; font-size: 12px; line-height: 16px; text-align:
+center; vertical-align: middle; margin: 0; color: #0000008F; }
+
+.new-login-box { width: 100%; padding-bottom: 16px; }
+
+.customer.login { box-shadow: 0px 0px 10px #00000030; border-radius: 10px; padding: 20px 30px !important; }
+
+/* ===== BRANDING & LOGO ===== */ .login-page-brand-logo-desktop { justify-content: flex-start; align-items: center; }
+
+.login-page-brand-logo-mobile { display: flex; justify-content: center; align-items: center; margin-bottom: 50px; }
+
+/* ===== HEADINGS ===== */ #simplify-login-sign-up-text { text-align: center; font-size: 32px; }
+
+#mobileOTPLoginSection h2 { font-weight: 500; font-size: 24px; line-height: 32px; color: #000000B2; font-family:
+'Heebo-Medium'; }
+
+#mobileOTPLoginSection span { font-weight: 400; font-size: 11px; line-height: 16px; color: #86868B; font-family:
+'Heebo-Regular'; margin: 0; }
+
+/* ===== PHONE INPUT SECTION ===== */ .selectbox-wrapper { display: flex; flex-direction: column; align-items:
+flex-start; border-radius: 6px; overflow: hidden; gap: 8px; }
+
+.selectbox-wrapper label { font-family: 'Heebo-Medium'; font-weight: 500; font-size: 14px; line-height: 20px;
+letter-spacing: 0.2px; color: #2C2C2C; }
+
+.selectbox-wrapper select { max-height: 90vh; overflow-y: auto; }
+
+#parody-country-code{ font-family: "Heebo-Regular"; background: #FAFAFA; width: min-content; padding: 7.5px 12px;
+border-radius: 6px; margin-bottom: 0px; margin-top: unset; font-size: 16px; line-height: 24px; border: 1px solid
+#D2D2D7; color: #000000B8; }
+
+.selectbox-wrapper #mobileCountryCodeDropdown { display: none !important; padding: 8px; text-align: center;
+text-align-last: center; margin-top: unset; flex: unset; width: 48px; height: 40px; color: #000000B8; box-shadow: none;
+outline: none; border: none; -webkit-appearance: none; -moz-appearance: none; appearance: none; position: relative;
+margin-bottom: 0px; border: 1px solid var(--color-grey-83, #D2D2D7); background: transparent; font-size: 16px;
+line-height: 20px; border-radius: 6px; }
+
+.selectbox-wrapper-fields { display: flex; align-items: center; border-radius: 6px; overflow: hidden; gap: 8px; width:
+100%; }
+
+.selectbox-wrapper #smlPhoneNumberInput { background: #FAFAFA; width: 82%; padding: 7.5px 12px; border-radius: 6px;
+margin-bottom: 0px; margin-top: unset; font-size: 16px; border: 1px solid #D2D2D7; }
+
+.selectbox-wrapper #smlPhoneNumberInput:focus { outline: none; box-shadow: none; }
+
+@media(max-width: 768px){ .selectbox-wrapper #mobileCountryCodeDropdown{ height: 36px; font-size: 14px; }
+.selectbox-wrapper #smlPhoneNumberInput{ padding: 5.3px 12px; } #parody-country-code{ padding: 5.3px 12px; } }
+
+#smlPhoneNumberInput::-webkit-inner-spin-button, #smlPhoneNumberInput::-webkit-outer-spin-button { -webkit-appearance:
+none; margin: 0; }
+
+#smlPhoneNumberInput { -moz-appearance: textfield; }
+
+#mobileOTPLoginSection input::placeholder { color: #999999; font-family: 'Heebo-Regular'; font-size: 16px; line-height:
+1; }
+
+#mobileOTPLoginSection input { font-family: 'Heebo-Regular'; }
+
+#phoneNumberDiv { display: none; border-bottom: 1px dashed #00000029; color: #616161; }
+
+#emailDiv { display: none; }
+
+div#phoneNumberAndEditDiv { color: #0000008F; font-family: 'Heebo-Regular'; font-size: 13px; line-height: 16px; display:
+flex; align-items: center; justify-content: center; flex-wrap: wrap; }
+
+div#emailAndEditDiv { display: none; align-items: baseline; justify-content: center; }
+
+/* ===== OTP INPUT BOXES ===== */ .otp-container { display: none; flex-direction: column; justify-content: center;
+align-items: flex-start; margin: 20px auto; }
+
+.otp-container legend { font-family: 'Heebo-Medium'; font-size: 12px; font-weight: 700; line-height: 16px; color:
+#616161; margin-bottom: 8px; }
+
+.otp-input-container { display: flex; justify-content: center; align-items: center; gap: 8px; width: 100%; }
+
+.otp-box { width: 80px; height: 40px; border: 1px solid #D2D2D7; border-radius: 6px; text-align: center; font-size:
+24px; font-weight: 600; background: #f9f9f9; transition: all 0.3s ease;
+    @media only screen and (max-width: 400px){
+        width: 60px;
+    }
+}
+
+.otp-box:focus { border-color: #462D8C; outline: none; box-shadow: 0 0 0 3px rgba(70, 45, 140, 0.1); background: #fff; }
+
+.otp-box.filled { border-color: #462D8C; background: #fff; }
+
+/* Legacy OTP inputs (hidden as fallback) */ #otpInput { display: none; margin: auto; width: 378px !important; border:
+none; border-radius: 4px; letter-spacing: 87px !important; padding: 10px; padding-left: 30px; background:
+repeating-linear-gradient(90deg, #d9d9d9, #d9d9d9 70px, transparent 0, transparent 95px) 0 100%/370px 2px no-repeat;
+background-position: center bottom; }
+
+#otpInput:focus { border: none; outline: none; box-shadow: none; }
+
+#otpInputSixDigit { display: none; margin: auto; width: 378px !important; border: none; border-radius: 4px;
+letter-spacing: 55px !important; padding: 10px; padding-left: 30px; background: repeating-linear-gradient(90deg,
+#d9d9d9, #d9d9d9 47px, transparent 0, transparent 65px) 0 100%/370px 2px no-repeat; background-position: center bottom;
+}
+
+#otpInputSixDigit:focus { border: none; outline: none; box-shadow: none; }
+
+#emailOtpInput { display: none; margin: auto; width: 378px !important; border: none; border-radius: 4px; letter-spacing:
+87px; padding: 10px; padding-left: 30px; background: repeating-linear-gradient(90deg, #d9d9d9, #d9d9d9 70px, transparent
+0, transparent 95px) 0 100%/370px 2px no-repeat; background-position: center bottom; }
+
+#emailOtpInput:focus { border: none; outline: none; box-shadow: none; }
+
+#smlEmailOTPDivOTPInput { margin: auto; width: 378px !important; border: none; border-radius: 4px; letter-spacing: 87px;
+padding: 10px; padding-left: 30px; background: repeating-linear-gradient(90deg, #d9d9d9, #d9d9d9 70px, transparent 0,
+transparent 95px) 0 100%/370px 2px no-repeat; background-position: center bottom; }
+
+#smlEmailOTPDivOTPInput:focus { border: none; outline: none; box-shadow: none; }
+
+/* ===== BUTTONS ===== */ #getOTPButton { width: 100%; margin-top: 16px; transition: .4s ease; padding: 8px; font-size:
+14px; font-weight: 500; line-height: 1.4; color: #ffffff; background: #462D8C; border-radius: 8px; box-shadow: none;
+border: none; font-family: 'Heebo-Regular'; }
+
+#getOTPButton:hover { box-shadow: none; }
+
+#smlGetOTPOnWhatsAppButton { display: none; width: 100%; margin-top: 0px; margin-bottom: 15px; transition: .4s ease; }
+
+#smlGetOTPOnWhatsAppButton:hover { box-shadow: none; }
+
+.otp-submit-container { display: flex; justify-content: center; align-items: center; margin-top: 16px; }
+
+#submitOTPButton { display: none; }
+
+button#submitOTPButton { border: none; background: #462D8C; padding: 10px; color: #fff; border-radius: 8px; flex: 0.5;
+font-family: 'Heebo-Regular'; font-size: 14px; cursor: pointer; }
+
+.submitOTPButtonClass { display: none; width: 100%; }
+
+#submitEmailOTPButton { display: none; }
+
+.submitEmailOTPButtonClass { display: none; position: relative; margin-top: 20px; width: 100%; }
+
+#resendOTPButton { text-decoration: none; color: #482F8F; font-size: 12px; font-weight: 400; line-height: 16px; padding:
+10px; flex: 0.5; font-family: 'Heebo-Regular'; }
+
+#resendOTPButton span{ font-family: 'Heebo-Medium' !important; }
+
+#resendOTPButton.disabled { color: #6E6E73; cursor: not-allowed; }
+
+#smlEmailOTPDivResendOTPButton, #resendEmailOTPButton, #resendOTPButton { display: none; background: no-repeat; border:
+none; outline: none; box-shadow: none; height: unset; margin-top: 10px; margin: auto; text-align: center; }
+
+/* ===== EMAIL OTP BUTTONS ===== */ #smlEmailOTPDivGetOTPButton { width: 100%; margin-top: 15px; margin-bottom: 15px;
+transition: .4s ease; }
+
+#smlEmailOTPDivGetOTPButton:hover { box-shadow: none; }
+
+#smlEmailOTPDivSubmitOTPButton { position: relative; margin-top: 20px; width: 100%; }
+
+/* ===== FORM INPUTS ===== */ #userEmailInput { display: none; border-radius: 6px; padding: 15px; border: 1px solid
+#0000001F; box-shadow: 0px 1px 2px 0px #E4E5E73D; width: 100%; }
+
+input#userEmailInput:focus { box-shadow: none; outline: none; font-size: 16px; }
+
+#smlEmailOTPDivUserEmailInput { border: none; border-radius: 4px; margin-top: 10px; padding: 10px; background: #f2f2f2;
+width: 100%; border-bottom: 1px solid #d6d6d6; }
+
+input#smlEmailOTPDivUserEmailInput:focus { box-shadow: none; outline: none; font-size: 16px; }
+
+.login-back-button { position: absolute; top: 10%; left: 5%; border: 1px solid #00000014; backdrop-filter: blur(80px);
+width: max-content; border-radius: 8px; width: 36px; height: 36px; display: flex; justify-content: center; align-items:
+center; }
+
+#userFirstNameInput { display: none; border-radius: 6px; padding: 10px; width: 100%; border: 1px solid #0000001F;
+box-shadow: 0px 1px 2px 0px #E4E5E73D; }
+
+#userLastNameInput, #newUserEmailInput { display: none; border-radius: 6px; padding: 10px; width: 100%; border: 1px
+solid #0000001F; box-shadow: 0px 1px 2px 0px #E4E5E73D; }
+
+.input-field-container { display: none; margin-top: 16px; }
+
+.input-field-container label { display: block; font-family: 'Heebo-Medium'; font-size: 14px; font-weight: 500;
+line-height: 24px; color: #2C2C2C; margin-bottom: 8px; text-transform: uppercase; }
+
+#userPasswordInput { display: none; border: none; border-radius: 4px; margin-top: 10px; padding: 10px; background:
+#f2f2f2; width: 100%; border-bottom: 1px solid #d6d6d6; }
+
+/* ===== ACTION BUTTONS ===== */ #registerUserButton { border-radius: 8px; display: none; width: 100%; background:
+#462D8C; border: none; box-shadow: none; padding: 10px 0; color: #fff; font-family: 'Heebo-Regular'; font-size: 14px;
+margin-top: 16px; }
+
+#backToLoginButton { display: none; margin: 0 5px; background: none; border: none; box-shadow: none; padding: 0;
+min-width: unset; }
+
+button#backToLoginButton svg { width: 12px; height: 12px; }
+
+#backToLoginButtonEmailOtp { display: none; margin: 0; background: none; border: none; box-shadow: none; color: #121212;
+padding: 5px 10px; min-width: unset; margin-left: 5px; min-height: unset; width: unset; }
+
+button#backToLoginButtonOtp svg { width: 18px; height: 18px; }
+
+button#loginWithEmailOTPButton, button#loginWithEmailButton, button#loginWithBiometricButton,
+button#loginWithPhoneNumberButton, button#loginWithGoogleButton { border-radius: 6px; background-color: #fff; color:
+#121212; border: 1px solid #c9c9c9; outline: none; box-shadow: none; padding: 10px 20px; margin-top: 20px; min-width:
+unset; min-height: unset; display: none; margin: 20px auto; }
+
+/* ===== FOOTER LINKS ===== */ .login-urls { display: flex; justify-content: center; gap: 24px; font-size: 11px;
+font-weight: 400; margin-top: 16px; }
+
+.login-urls a { color: #86868B; }
+
+/* ===== ERROR & SUCCESS MESSAGES ===== */ #smlEmailOTPDivError, #loginError { text-align: center; color: red; width:
+100%; }
+
+#smlEmailOTPDivSuccess, #loginSuccess { text-align: center; }
+
+/* ===== ICONS & DECORATIVE ELEMENTS ===== */ .call-icon { margin-left: -30px; margin-top: 15px; color: #121212; }
+
+.fas.fa-long-arrow-alt-right { margin-left: 10px; font-size: 16px; }
+
+.selectbox-wrapper .fa-chevron-down { font-size: 16px; color: #000; }
+
+/* ===== DIVIDERS ===== */ .continue_text { display: none; text-align: center; margin-bottom: 15px; margin-top: 15px; }
+
+.continue_text::after { content: ""; display: block; max-width: 100px; margin-left: 30px; margin-top: -15px; height:
+2px; background-color: #d7d7d7; }
+
+.continue_text::before { content: ""; display: block; max-width: 100px; margin-bottom: -15px; margin-left: auto;
+margin-right: 30px; height: 2px; background-color: #d7d7d7; }
+
+/* ===== OTHER LOGIN METHODS ===== */ #otherLoginMethodsDiv { display: none; text-align: center; }
+
+/* ===== SOCIAL LOGIN ===== */ .socialLogin_buttons { width: 100%; display: flex; flex-wrap: wrap; justify-content:
+center; margin-top: 4px; margin-bottom: 4px; }
+
+.socialLogin_buttons div { color: #FFF; width: calc(100% - 0px); cursor: pointer; height: 36px; margin: 4px auto 4px
+auto; display: flex; overflow: hidden; align-items: center; border-color: #888888; border-style: solid; border-width:
+1px; border-radius: 5px; justify-content: center; }
+
+.h_google_text { color: #000000; }
+
+.h_facebook_text { color: #000000; }
+
+.h_googleFB_logo { width: 28px; background: white; border-radius: 50%; margin-right: 13px; }
+
+/* ===== TERMS & CONDITIONS ===== */ #smlTermsAndConditionsDiv { display: flex; flex-direction: row; justify-content:
+center; align-items: center; margin: 10px; display: none; }
+
+#smlAcceptMarketingDiv { flex-direction: row; justify-content: flex-start; align-items: center; margin: 10px 0; display:
+none !important; gap: 5px; }
+
+#smlAcceptMarketingCheckbox { margin: 0; width: 14px; }
+
+#smlAcceptMarketingText { font-size: 10px; font-family: 'Heebo-Regular'; }
+
+#mobileOTPLoginSection input[type="checkbox"] { accent-color: #462D8C; }
+
+/* ===== LOADING ANIMATIONS ===== */ .otp-btn-loading { position: relative; }
+
+.otp-btn-loading::after { content: "" !important; display: block; width: 20px !important; height: 20px !important;
+margin: auto; border: 3px solid transparent; border-top-color: #fff; border-radius: 50% !important; animation:
+button-loading-spinner 1s ease infinite; background-color: transparent !important; opacity: 100% !important; position:
+static !important; }
+
+.otp-btn-loading.black-spinner::after { border-top-color: #000; }
+
+@keyframes button-loading-spinner { from { transform: rotate(0turn); } to { transform: rotate(1turn); } }
+
+/* ===== SPINNER ===== */ #sml-spinner-img { max-width: 100%; }
+
+/* ===== USER PROFILE FIELDS ===== */ #userBirthdayInputDiv { display: none; border: none; border-radius: 4px;
+margin-top: 10px; padding: 10px; width: 100%; }
+
+#userGenderInputDiv { display: none; border: none; border-radius: 4px; margin-top: 10px; padding: 10px; width: 100%; }
+
+#userGenderRadioButtonsInputDiv { display: inline; }
+
+#userBirthdayInputLabel { float: left; }
+
+#userGenderInputLabel { float: left; }
+
+/* ===== MOBILE RESPONSIVE STYLES ===== */ @media screen and (max-width: 749px) { div#phoneNumberAndEditDiv{ font-size:
+12px; } .otp-box { font-size: 20px; }
+
+#otpInput { width: 255px !important; letter-spacing: 51px !important; padding-left: 20px; background:
+repeating-linear-gradient(90deg, #d9d9d9, #D9D9D9 48px, transparent 0, transparent 60px) 0 100%/230px 2px no-repeat;
+background-position: bottom center; }
+
+#otpInputSixDigit { width: 255px !important; letter-spacing: 33px !important; padding-left: 20px; background:
+repeating-linear-gradient(90deg, #d9d9d9, #D9D9D9 25px, transparent 0, transparent 41px) 0 100%/230px 2px no-repeat;
+background-position: bottom center; }
+
+#emailOtpInput { width: 255px !important; letter-spacing: 51px !important; padding-left: 20px; background:
+repeating-linear-gradient(90deg, #d9d9d9, #D9D9D9 48px, transparent 0, transparent 60px) 0 100%/230px 2px no-repeat;
+background-position: bottom center; }
+
+.continue_text::after { content: ""; display: block; max-width: 65px; margin-left: 0; margin-top: -14px; height: 2px;
+background-color: #d7d7d7; }
+
+.continue_text::before { content: ""; display: block; max-width: 60px; margin-bottom: -15px; margin-left: auto;
+margin-right: 0px; height: 2px; background-color: #d7d7d7; }
+
+#simplify-login-sign-up-text { font-size: 24px; }
+
+.login-back-button { top: 3%; width: 24px; height: 24px; }
+
+.login-back-button svg { width: 7.4px; height: 12px; }
+
+.input-field-container { margin-top: 12px; } .input-field-container label{ margin-bottom: 6px; } #userLastNameInput,
+#newUserEmailInput, #userFirstNameInput { padding: 7px; }
+
+.input-field-container input::placeholder{ font-size: 14px; } }
+
+.login-page-brand-logo-desktop img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 12px;
+}
+
+/* ===== DESKTOP RESPONSIVE STYLES ===== */ @media (min-width: 768px) { #new-login-heading, #new-login-second-heading {
+font-size: 24px; line-height: 32px; }
+
+.selectbox-wrapper label { font-size: 16px; line-height: 24px; }
+
+#getOTPButton { font-size: 16px; line-height: 24px; }
+
+.otp-container { width: max-content; }
+
+.otp-container legend { font-size: 14px; }
+
+.login-page-brand-logo-mobile { display: none; }
+
+.login-page-brand-logo-desktop { display: flex; height: 100%; }
+
+#whole-login-container { flex-direction: row; padding: 12px; min-height: 240px; gap: 0px; }
+
+.new-login-box { border: none; align-self: center; flex: 0.4; padding: 24px 60px; }
+
+.login-heading-div { flex: 0.6; }
+
+.login-urls { justify-content: flex-end; margin-top: 12px; padding: 0 12px; }
+
+#mobileOTPLoginSection h2 { font-size: 28px; line-height: 36px; }
+
+#smlAcceptMarketingText { font-size: 12px; } }

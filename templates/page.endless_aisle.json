@@ -1,0 +1,102 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "name": "Title",
+          "settings": {
+            "text": "<h1>{{ closest.page.title }}</h1>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h2",
+            "font": "var(--font-primary--family)",
+            "font_size": "",
+            "font_size_mobile": "unset",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0,
+            "custom_font_class": ""
+          },
+          "blocks": {}
+        },
+        "page-content": {
+          "type": "page-content",
+          "settings": {},
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "heading",
+        "page-content"
+      ],
+      "disabled": true,
+      "settings": {
+        "content_direction": "column",
+        "gap": 32,
+        "color_scheme": "",
+        "padding-block-start": 40,
+        "padding-block-end": 80
+      }
+    },
+    "endless_aisle_mNEGAr": {
+      "type": "endless_aisle",
+      "name": "endless-aisle",
+      "settings": {
+        "color_back1": "#fffefb",
+        "margin_bottom_desktop": 36,
+        "margin_top_desktop": 36,
+        "margin_bottom_Mobile": 20,
+        "margin_top_Mobile": 20
+      }
+    },
+    "endless_aisle_address_PgYgiA": {
+      "type": "endless_aisle_address",
+      "name": "endless-aisle--addresses",
+      "settings": {
+        "color_back2": "#fffefb",
+        "margin_bottom_desktop": 36,
+        "margin_top_desktop": 36,
+        "margin_bottom_Mobile": 20,
+        "margin_top_Mobile": 20
+      }
+    },
+    "endless_aisle_order_ei6wJD": {
+      "type": "endless_aisle_order",
+      "name": "Endless Aisle Order",
+      "settings": {
+        "color_back3": "#fffefb",
+        "margin_bottom_desktop": 36,
+        "margin_top_desktop": 36,
+        "margin_bottom_Mobile": 20,
+        "margin_top_Mobile": 20
+      }
+    }
+  },
+  "order": [
+    "main",
+    "endless_aisle_mNEGAr",
+    "endless_aisle_address_PgYgiA",
+    "endless_aisle_order_ei6wJD"
+  ]
+}

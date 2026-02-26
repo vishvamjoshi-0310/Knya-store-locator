@@ -1,0 +1,153 @@
+/* Drift Difference Section Styles */
+.drift-difference {
+  width: 100%;
+  padding: 56px 80px 28px 80px;
+}
+
+.drift-title {
+  font-family: Heebo-Medium;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 40px;
+  letter-spacing: 0.64px;
+  color: #482f8f;
+  margin-bottom: 24px;
+}
+
+.drift-content {
+  background-color: #eeedf3;
+  border-radius: 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.drift-left {
+  padding-block: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  height: 100%;
+}
+
+.drift-heading {
+    padding-inline: 40px;
+  font-family: Heebo-Regular;
+  font-weight: 400;
+  font-size: 57px;
+  line-height: 72px;
+  letter-spacing: 0.64px;
+  color: #2c2c2c;
+  margin: 0px;
+}
+
+.drift-features {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-radius: 12px;
+}
+
+.drift-feature {
+  padding-block: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+    border-left: 1px solid var(--Miscellaneous-Bar-border, #0000004D);
+}
+.drift-feature:nth-child(1){
+    border: none;
+}
+.drift-icon {
+  width: 72px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+   margin-bottom: 11px;
+}
+
+.drift-icon img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.drift-feature-text {
+  font-family: Heebo-Regular;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 100%;
+  letter-spacing: 0px;
+  margin: 0px;
+}
+
+/* Right Column */
+.drift-right {
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.drift-desktop-image,
+.drift-mobile-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.drift-desktop-image {
+  display: block;
+}
+
+.drift-mobile-image {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .drift-difference {
+    padding: 24px 18px 16px 18px;
+  }
+  .drift-title {
+    font-size: 24px;
+    line-height: 32px;
+    letter-spacing: 0.24px;
+    margin-bottom: 16px;
+  }
+  .drift-content {
+    grid-template-columns: 1fr;
+    align-items: center;
+  }
+  .drift-left {
+    padding: 0px;
+    gap: 0px;
+  }
+  .drift-heading {
+    font-size: 36px;
+    line-height: 48px;
+    letter-spacing: 0px;
+    padding: 24px 18px;
+  }
+  .drift-feature {
+    gap: 8px;
+  }
+  .drift-icon {
+    width: 58px;
+    height: 58px;
+    margin-bottom: 11px;
+  }
+  .drift-feature-text {
+    font-size: 14px;
+    line-height: 100%;
+    text-align: center;
+  }
+  .drift-desktop-image {
+    display: none;
+  }
+  .drift-mobile-image {
+    display: block;
+  }
+}

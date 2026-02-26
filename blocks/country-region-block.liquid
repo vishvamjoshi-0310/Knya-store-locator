@@ -1,0 +1,340 @@
+{% assign block_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .horizon-localization-wrapper-{{ block_id }} {
+    position: relative;
+    display: inline-block;
+  }
+
+  .horizon-localization-button-{{ block_id }} {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    background-color: {{ block.settings.button_background }};
+    color: {{ block.settings.button_text_color }};
+    border: {{ block.settings.button_border_width }}px solid {{ block.settings.button_border_color }};
+    border-radius: {{ block.settings.button_border_radius }}px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s ease;
+  }
+
+  .horizon-localization-heading-{{ block_id }} {
+    font-size: 13px;
+    font-family: 'Heebo-Regular';
+    margin: 10px 0;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.75);
+  }
+
+  .horizon-localization-button-{{ block_id }}:hover {
+    background-color: {{ block.settings.button_hover_background }};
+    border-color: {{ block.settings.button_hover_border_color }};
+  }
+
+  .horizon-localization-button-icon-{{ block_id }} {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.2s ease;
+  }
+
+  .horizon-localization-button-{{ block_id }}[aria-expanded="true"] .horizon-localization-button-icon-{{ block_id }} {
+    transform: rotate(180deg);
+  }
+
+  .horizon-localization-dropdown-{{ block_id }} {
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 0;
+    min-width: 250px;
+    max-height: 250px;
+    overflow-y: auto;
+    background-color: {{ block.settings.dropdown_background }};
+    border: 1px solid {{ block.settings.dropdown_border_color }};
+    border-radius: {{ block.settings.dropdown_border_radius }}px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+    z-index: 1000;
+  }
+
+  .horizon-localization-dropdown-{{ block_id }}.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .horizon-localization-list-{{ block_id }} {
+    list-style: none;
+    margin: 0;
+    padding: 8px 0;
+  }
+
+  .horizon-localization-item-{{ block_id }} {
+    padding: 12px 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: {{ block.settings.dropdown_text_color }};
+    transition: background-color 0.2s ease;
+  }
+
+  .horizon-localization-item-{{ block_id }}:hover {
+    background-color: {{ block.settings.dropdown_hover_background }};
+  }
+
+  .horizon-localization-item-{{ block_id }}.selected {
+    background-color: {{ block.settings.dropdown_selected_background }};
+    font-weight: 600;
+  }
+
+  .horizon-localization-item-info-{{ block_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .horizon-localization-item-name-{{ block_id }} {
+    font-size: 14px;
+  }
+
+  .horizon-localization-item-currency-{{ block_id }} {
+    font-size: 12px;
+    opacity: 0.7;
+  }
+
+  .horizon-localization-hidden-input-{{ block_id }} {
+    display: none;
+  }
+
+  @media screen and (max-width: 749px) {
+    .horizon-localization-dropdown-{{ block_id }} {
+      left: auto;
+      right: 0;
+      min-width: 200px;
+    }
+  }
+{% endstyle %}
+
+<h4 class="horizon-localization-heading-{{ block_id }}">Country/region</h4>
+<localization-form-horizon-{{ block_id }} class="horizon-localization-wrapper-{{ block_id }}" {{ block.shopify_attributes }}>
+  {% form 'localization', id: 'HorizonCountryForm', class: 'localization-form' %}
+    <button
+      type="button"
+      class="horizon-localization-button-{{ block_id }}"
+      aria-expanded="false"
+      aria-label="Select country and currency"
+    >
+      <span class="horizon-localization-button-text-{{ block_id }}">
+        {{ localization.country.name }} ({{ localization.country.currency.symbol }})
+      </span>
+      <svg class="horizon-localization-button-icon-{{ block_id }}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 12 15 18 9"></polyline>
+      </svg>
+    </button>
+
+    <div class="horizon-localization-dropdown-{{ block_id }}">
+      <ul class="horizon-localization-list-{{ block_id }}">
+        {% for country in localization.available_countries %}
+          <li
+            class="horizon-localization-item-{{ block_id }} {% if country.iso_code == localization.country.iso_code %}selected{% endif %}"
+            data-country-code="{{ country.iso_code }}"
+          >
+            <div class="horizon-localization-item-info-{{ block_id }}">
+              <span class="horizon-localization-item-name-{{ block_id }}">{{ country.name }}</span>
+              <span class="horizon-localization-item-currency-{{ block_id }}">{{ country.currency.symbol }} {{ country.currency.iso_code }}</span>
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <input
+      type="hidden"
+      name="country_code"
+      value="{{ localization.country.iso_code }}"
+      class="horizon-localization-hidden-input-{{ block_id }}"
+    >
+  {% endform %}
+</localization-form-horizon-{{ block_id }}>
+
+<script>
+  (function() {
+    class LocalizationFormHorizon{{ block_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.button = this.querySelector('.horizon-localization-button-{{ block_id }}');
+        this.dropdown = this.querySelector('.horizon-localization-dropdown-{{ block_id }}');
+        this.form = this.querySelector('form');
+        this.hiddenInput = this.querySelector('.horizon-localization-hidden-input-{{ block_id }}');
+        this.items = this.querySelectorAll('.horizon-localization-item-{{ block_id }}');
+      }
+
+      connectedCallback() {
+        this.setupEventListeners();
+      }
+
+      setupEventListeners() {
+        this.button.addEventListener('click', (e) => {
+          e.preventDefault();
+          this.toggleDropdown();
+        });
+
+        this.items.forEach((item) => {
+          item.addEventListener('click', (e) => {
+            e.preventDefault();
+            const countryCode = item.getAttribute('data-country-code');
+            this.selectCountry(countryCode);
+          });
+        });
+
+        document.addEventListener('click', (e) => {
+          if (!this.contains(e.target)) {
+            this.closeDropdown();
+          }
+        });
+      }
+
+      toggleDropdown() {
+        const isExpanded = this.button.getAttribute('aria-expanded') === 'true';
+        if (isExpanded) {
+          this.closeDropdown();
+        } else {
+          this.openDropdown();
+        }
+      }
+
+      openDropdown() {
+        this.dropdown.classList.add('active');
+        this.button.setAttribute('aria-expanded', 'true');
+      }
+
+      closeDropdown() {
+        this.dropdown.classList.remove('active');
+        this.button.setAttribute('aria-expanded', 'false');
+      }
+
+      selectCountry(countryCode) {
+        this.hiddenInput.value = countryCode;
+        this.form.submit();
+      }
+    }
+
+    customElements.define('localization-form-horizon-{{ block_id }}', LocalizationFormHorizon{{ block_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Country selector",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Button style"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_background",
+      "label": "Hover background",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Text color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_border_color",
+      "label": "Border color",
+      "default": "#e6e6e6"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_border_color",
+      "label": "Hover border color",
+      "default": "#cccccc"
+    },
+    {
+      "type": "range",
+      "id": "button_border_width",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "label": "Border width",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Border radius",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Dropdown style"
+    },
+    {
+      "type": "color",
+      "id": "dropdown_background",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "dropdown_text_color",
+      "label": "Text color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "dropdown_border_color",
+      "label": "Border color",
+      "default": "#e6e6e6"
+    },
+    {
+      "type": "color",
+      "id": "dropdown_hover_background",
+      "label": "Hover background",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "color",
+      "id": "dropdown_selected_background",
+      "label": "Selected background",
+      "default": "#e6e6e6"
+    },
+    {
+      "type": "range",
+      "id": "dropdown_border_radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Border radius",
+      "default": 8
+    }
+  ],
+  "presets": [
+    {
+      "name": "Country selector"
+    }
+  ]
+}
+{% endschema %}

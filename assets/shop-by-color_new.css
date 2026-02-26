@@ -1,0 +1,93 @@
+.shop-by-color-parent {
+    padding-inline: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 19px;
+  }
+  .shop-by-color-parent .sbc-heading {
+    font-family: Heebo-Medium;
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 40px;
+    letter-spacing: 0.6px;
+    color: #482f8f;
+  }
+  .shop-by-color-parent .sbc-cards {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 22px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .shop-by-color-parent .sbc-cards .collection-card-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 8px;
+    cursor: pointer;
+  }
+  .shop-by-color-parent .sbc-cards .collection-card-container .collection-label {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    border-radius: 12px;
+    background-color: #fafafa;
+    font-family: Heebo-Regular;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 13px;
+    letter-spacing: 0.5%;
+    padding: 2px 8px;
+  }
+  .shop-by-color-parent .sbc-cards .collection-card-container img {
+    display: block;
+    height: 140px;
+    width: 195px;
+    border-radius: 8px;
+  }
+  .shop-by-color-parent .sbc-cards .collection-card-container .collection_text {
+    font-family: Heebo-Medium;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.02px;
+    color: #000303;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .shop-by-color-parent {
+      padding-block: 14px;
+      padding-inline: 18px 0px;
+    }
+    .shop-by-color-parent .sbc-heading {
+      font-size: 24px;
+      line-height: 32px;
+      letter-spacing: 0.24px;
+    }
+    .shop-by-color-parent .sbc-cards {
+      gap: 14px;
+    }
+    .shop-by-color-parent .sbc-cards .collection-card-container {
+      gap: 6px;
+      padding-bottom: 15px;
+    }
+     .shop-by-color-parent .sbc-cards .collection-card-container .collection_image_container{
+        width: 167px;
+    }
+    .shop-by-color-parent .sbc-cards .collection-card-container img {
+      height: 120px;
+      width: 167px;
+    }
+    .shop-by-color-parent .sbc-cards .collection-card-container .collection_text {
+      font-size: 12px;
+      line-height: 16px;
+      letter-spacing: 0.02px;
+    }
+  }
+  

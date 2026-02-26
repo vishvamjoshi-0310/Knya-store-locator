@@ -1,0 +1,439 @@
+{{ 'section-breakpoint-why-exists.css' | asset_url | stylesheet_tag }}
+
+<section class="breakpoint-why-exists-section">
+  {%- if section.settings.background_image_desktop != blank or section.settings.background_image_mobile != blank -%}
+    <div class="breakpoint-why-exists-background">
+      <picture>
+        {%- if section.settings.background_image_mobile != blank -%}
+          <source
+            media="(max-width: 768px)"
+            srcset="{{ section.settings.background_image_mobile | image_url: width: 2000 }}"
+          >
+        {%- endif -%}
+        {%- if section.settings.background_image_desktop != blank -%}
+          <source
+            media="(min-width: 769px)"
+            srcset="{{ section.settings.background_image_desktop | image_url: width: 2000 }}"
+          >
+        {%- endif -%}
+        {%- liquid
+          if section.settings.background_image_desktop != blank
+            assign bg_image = section.settings.background_image_desktop
+          else
+            assign bg_image = section.settings.background_image_mobile
+          endif
+        -%}
+        {{
+          bg_image
+          | image_url: width: 2000
+          | image_tag: loading: 'lazy', width: bg_image.width, height: bg_image.height, alt: bg_image.alt
+        }}
+      </picture>
+    </div>
+  {%- endif -%}
+
+  <div class="breakpoint-why-exists-content">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="breakpoint-why-exists-heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+
+    <div class="breakpoint-why-exists-layout">
+      <div class="breakpoint-why-exists-left">
+        <div class="breakpoint-why-exists-slider" id="customCarousel-{{ section.id }}">
+          <div class="breakpoint-why-exists-slider-wrapper">
+            {%- for block in section.blocks -%}
+              <div
+                class="stat-card"
+                data-index="{{ forloop.index0 }}"
+                data-primary-color="{{ block.settings.primary_background_color }}"
+                data-secondary-color="{{ block.settings.secondary_background_color }}"
+              >
+                <div class="stat-card-content">
+                  <div class="stat-top-row">
+                    {%- if block.settings.left_svg != blank -%}
+                      <div class="stat-icon-left">{{ block.settings.left_svg }}</div>
+                    {%- endif -%}
+                    <div class="stat-number">{{ block.settings.percentage }}</div>
+                    <div class="stat-meta">
+                      <div class="stat-percent-symbol">{{ block.settings.symbol }}</div>
+                      {%- if block.settings.right_svg != blank -%}
+                        <div class="stat-icon-right">{{ block.settings.right_svg }}</div>
+                      {%- endif -%}
+                    </div>
+                  </div>
+                  <div class="stat-description">{{ block.settings.description }}</div>
+                </div>
+              </div>
+            {%- endfor -%}
+          </div>
+          <div class="breakpoint-why-exists-slider-pagination"></div>
+        </div>
+      </div>
+
+      <div class="breakpoint-why-exists-right">
+        {%- if section.settings.description_text_before != blank -%}
+          <div class="breakpoint-why-exists-description-before">{{ section.settings.description_text_before }}</div>
+        {%- endif -%}
+
+        {%- if section.settings.vitals_logo_desktop != blank or section.settings.vitals_logo_mobile != blank -%}
+          <div class="breakpoint-why-exists-vitals">
+            <picture>
+              {%- if section.settings.vitals_logo_mobile != blank -%}
+                <source
+                  media="(max-width: 768px)"
+                  srcset="{{ section.settings.vitals_logo_mobile | image_url: width: 800 }}"
+                >
+              {%- endif -%}
+              {%- if section.settings.vitals_logo_desktop != blank -%}
+                <source
+                  media="(min-width: 769px)"
+                  srcset="{{ section.settings.vitals_logo_desktop | image_url: width: 2000 }}"
+                >
+              {%- endif -%}
+              {%- liquid
+                if section.settings.vitals_logo_desktop != blank
+                  assign vitals_image = section.settings.vitals_logo_desktop
+                  assign vitals_width = 2000
+                else
+                  assign vitals_image = section.settings.vitals_logo_mobile
+                  assign vitals_width = 800
+                endif
+                assign vitals_height = vitals_width | divided_by: vitals_image.aspect_ratio | round
+              -%}
+              <img
+                loading="lazy"
+                src="{{ vitals_image | image_url: width: vitals_width }}"
+                width="{{ vitals_width }}"
+                height="{{ vitals_height }}"
+                alt="{{ vitals_image.alt | escape }}"
+              >
+            </picture>
+          </div>
+        {%- endif -%}
+
+        {%- if section.settings.description_text_after != blank -%}
+          <div class="breakpoint-why-exists-description-after">{{ section.settings.description_text_after }}</div>
+        {%- endif -%}
+
+        {%- if section.settings.breakpoint_statement != blank -%}
+          <div class="breakpoint-why-exists-statement">{{ section.settings.breakpoint_statement }}</div>
+        {%- endif -%}
+
+        {%- if section.settings.action_text != blank -%}
+          <div class="breakpoint-why-exists-action">
+            <a href="{{ section.settings.action_link }}" class="breakpoint-why-exists-link">
+              {{ section.settings.action_text }}
+              {%- if section.settings.action_icon_svg != blank -%}
+                {{ section.settings.action_icon_svg }}
+              {%- endif -%}
+            </a>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  class CustomCarousel {
+    constructor(element) {
+      this.carousel = element;
+      this.cards = Array.from(element.querySelectorAll('.stat-card'));
+      this.pagination = element.querySelector('.breakpoint-why-exists-slider-pagination');
+      this.currentIndex = 0;
+      this.totalCards = this.cards.length;
+
+      // Touch/drag variables
+      this.isDragging = false;
+      this.startX = 0;
+      this.currentX = 0;
+      this.threshold = 50; // Minimum drag distance to trigger slide change
+      this.hasMoved = false; // Track if user actually dragged
+
+      this.init();
+    }
+
+    init() {
+      this.createPagination();
+      this.updateCards();
+      this.attachEventListeners();
+    }
+
+    createPagination() {
+      if (!this.pagination) return;
+
+      this.pagination.innerHTML = '';
+      for (let i = 0; i < this.totalCards; i++) {
+        const dot = document.createElement('span');
+        dot.className = 'breakpoint-why-exists-pagination-dot';
+        dot.addEventListener('click', () => this.goToSlide(i));
+        this.pagination.appendChild(dot);
+      }
+      this.updatePagination();
+    }
+
+    updatePagination() {
+      if (!this.pagination) return;
+
+      const dots = this.pagination.querySelectorAll('.breakpoint-why-exists-pagination-dot');
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === this.currentIndex);
+      });
+    }
+
+    updateCards() {
+      const nextIndex = (this.currentIndex + 1) % this.totalCards;
+
+      this.cards.forEach((card, index) => {
+        // Remove all classes
+        card.classList.remove('is-active', 'is-next');
+
+        // Get colors from data attributes
+        const primaryColor = card.getAttribute('data-primary-color');
+        const secondaryColor = card.getAttribute('data-secondary-color');
+
+        if (index === this.currentIndex) {
+          // Active card
+          card.classList.add('is-active');
+          card.style.backgroundColor = primaryColor;
+        } else if (index === nextIndex) {
+          // Next card (60% visible)
+          card.classList.add('is-next');
+          card.style.backgroundColor = secondaryColor;
+        } else {
+          // Hidden cards
+          card.style.backgroundColor = primaryColor;
+        }
+      });
+
+      this.updatePagination();
+    }
+
+    goToSlide(index) {
+      if (index < 0 || index >= this.totalCards) return;
+      this.currentIndex = index;
+      this.updateCards();
+    }
+
+    nextSlide() {
+      this.currentIndex = (this.currentIndex + 1) % this.totalCards;
+      this.updateCards();
+    }
+
+    prevSlide() {
+      this.currentIndex = (this.currentIndex - 1 + this.totalCards) % this.totalCards;
+      this.updateCards();
+    }
+
+    attachEventListeners() {
+      // Click on cards
+      this.cards.forEach((card, index) => {
+        card.addEventListener('click', (e) => {
+          // Only navigate if it was a click (not a drag) and NOT clicking the active card
+          if (!this.hasMoved && index !== this.currentIndex) {
+            this.goToSlide(index);
+          }
+        });
+      });
+
+      // Touch/Mouse drag events
+      this.carousel.addEventListener('mousedown', this.onDragStart.bind(this));
+      this.carousel.addEventListener('touchstart', this.onDragStart.bind(this), { passive: true });
+
+      this.carousel.addEventListener('mousemove', this.onDragMove.bind(this));
+      this.carousel.addEventListener('touchmove', this.onDragMove.bind(this), { passive: true });
+
+      this.carousel.addEventListener('mouseup', this.onDragEnd.bind(this));
+      this.carousel.addEventListener('touchend', this.onDragEnd.bind(this));
+
+      this.carousel.addEventListener('mouseleave', this.onDragEnd.bind(this));
+
+      // Prevent default drag behavior on images
+      this.carousel.addEventListener('dragstart', (e) => e.preventDefault());
+    }
+
+    onDragStart(e) {
+      this.isDragging = true;
+      this.hasMoved = false; // Reset movement tracking
+      this.startX = e.type.includes('mouse') ? e.pageX : e.touches[0].pageX;
+      this.carousel.style.cursor = 'grabbing';
+    }
+
+    onDragMove(e) {
+      if (!this.isDragging) return;
+
+      this.currentX = e.type.includes('mouse') ? e.pageX : e.touches[0].pageX;
+
+      // Track if user has moved significantly (more than 5px)
+      const diff = Math.abs(this.startX - this.currentX);
+      if (diff > 5) {
+        this.hasMoved = true;
+      }
+    }
+
+    onDragEnd(e) {
+      if (!this.isDragging) return;
+
+      this.isDragging = false;
+      this.carousel.style.cursor = '';
+
+      const diff = this.startX - this.currentX;
+
+      // Check if drag distance exceeds threshold AND user actually moved
+      if (this.hasMoved && Math.abs(diff) > this.threshold) {
+        if (diff > 0) {
+          // Swiped left - go to next slide
+          this.nextSlide();
+        } else {
+          // Swiped right - go to previous slide
+          this.prevSlide();
+        }
+      }
+
+      this.startX = 0;
+      this.currentX = 0;
+
+      // Reset hasMoved after a short delay to allow click event to check it
+      setTimeout(() => {
+        this.hasMoved = false;
+      }, 10);
+    }
+  }
+
+  // Initialize carousel when DOM is ready
+  document.addEventListener('DOMContentLoaded', function () {
+    const carouselId = 'customCarousel-{{ section.id }}';
+    const carouselElement = document.getElementById(carouselId);
+    if (carouselElement) {
+      new CustomCarousel(carouselElement);
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Breakpoint Why Exists",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section Heading",
+      "default": "Why Breakpoint exists"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image_desktop",
+      "label": "Background Image Desktop"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image_mobile",
+      "label": "Background Image Mobile"
+    },
+    {
+      "type": "image_picker",
+      "id": "vitals_logo_desktop",
+      "label": "Vitals Logo Desktop"
+    },
+    {
+      "type": "image_picker",
+      "id": "vitals_logo_mobile",
+      "label": "Vitals Logo Mobile"
+    },
+    {
+      "type": "textarea",
+      "id": "description_text_before",
+      "label": "Description Text (Before Logo)",
+      "default": "In 2025, Knya conducted,"
+    },
+    {
+      "type": "textarea",
+      "id": "description_text_after",
+      "label": "Description Text (After Logo)",
+      "default": "a nationwide study built on responses from 10,000+ medical professionals across India."
+    },
+    {
+      "type": "textarea",
+      "id": "breakpoint_statement",
+      "label": "Breakpoint Statement (Bold Text)",
+      "default": "Breakpoint is our way of acting on what we observed and heard."
+    },
+    {
+      "type": "text",
+      "id": "action_text",
+      "label": "Action Link Text",
+      "default": "Read Vital 2025"
+    },
+    {
+      "type": "url",
+      "id": "action_link",
+      "label": "Action Link URL"
+    },
+    {
+      "type": "html",
+      "id": "action_icon_svg",
+      "label": "Action Icon SVG",
+      "info": "Paste SVG code for the arrow icon"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stat_card",
+      "name": "Statistic Card",
+      "settings": [
+        {
+          "type": "color",
+          "id": "primary_background_color",
+          "label": "Primary Background Color",
+          "default": "#5E5EEC"
+        },
+        {
+          "type": "color",
+          "id": "secondary_background_color",
+          "label": "Secondary Background Color",
+          "default": "#6767A5"
+        },
+        {
+          "type": "number",
+          "id": "percentage",
+          "label": "Percentage",
+          "default": 83
+        },
+        {
+          "type": "text",
+          "id": "symbol",
+          "label": "Symbol",
+          "default": "%"
+        },
+        {
+          "type": "html",
+          "id": "left_svg",
+          "label": "Left SVG Icon"
+        },
+        {
+          "type": "html",
+          "id": "right_svg",
+          "label": "Right SVG Icon"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "of medicos report feeling emotionally or mentally fatigued from work"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Breakpoint Why Exists",
+      "blocks": [
+        {
+          "type": "stat_card"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

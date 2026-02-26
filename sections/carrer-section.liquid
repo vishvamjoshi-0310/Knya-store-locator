@@ -1,0 +1,100 @@
+<link rel="stylesheet" href="{{ 'carrer-section-stylesheet.css' | asset_url }}">
+
+<div class="carrer-section">
+  <div class="carrer-section-grid">
+    <!-- Image Column -->
+    <div class="carrer-section-image-wrapper">
+      {% if section.settings.image != blank %}
+        <img
+          src="{{ section.settings.image | image_url: width: 800 }}"
+          srcset="
+            {{ section.settings.image | image_url: width: 400 }} 400w,
+            {{ section.settings.image | image_url: width: 600 }} 600w,
+            {{ section.settings.image | image_url: width: 800 }} 800w,
+            {{ section.settings.image | image_url: width: 1000 }} 1000w,
+            {{ section.settings.image | image_url: width: 1200 }} 1200w
+          "
+          sizes="(max-width: 768px) 90vw, 1200px"
+          width="1200"
+          height="auto"
+          alt="{{ section.settings.image.alt | escape }}"
+          class="carrer-section-image"
+          loading="lazy"
+        >
+
+      {% endif %}
+    </div>
+
+    <!-- Content Column -->
+    <div class="carrer-section-content">
+      {% if section.settings.label != blank %}
+        <div class="carrer-section-label">{{ section.settings.label }}</div>
+      {% endif %}
+
+      {% if section.settings.heading != blank %}
+        <h2 class="carrer-section-heading">{{ section.settings.heading }}</h2>
+      {% endif %}
+
+      {% if section.settings.description != blank %}
+        <p class="carrer-section-description">{{ section.settings.description }}</p>
+      {% endif %}
+
+      {% if section.settings.button_text != blank %}
+        <div class="carrer-section-button-wrapper">
+          <a href="{{ section.settings.button_url }}" class="carrer-section-button">
+            {{ section.settings.button_text }}
+          </a>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Career Section",
+  "class": "carrer-section-parent page-width-updated",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Team Image",
+      "info": "Recommended size: 1200 x 800px"
+    },
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Label",
+      "default": "Careers At Knya"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Build what empowers those who heal."
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "We're always looking for passionate people to join our journey of redefining medical apparel."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Explore Careers"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button URL"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Career Section"
+    }
+  ]
+}
+{% endschema %}

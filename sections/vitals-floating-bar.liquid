@@ -1,0 +1,102 @@
+{{ 'vitals-floating-bar-stylesheet.css' | asset_url | stylesheet_tag: preload: true }}
+<style>
+  .vitals-floating-bar-parent {
+    position: sticky;
+    width: 100%;
+    z-index: 3;
+    transition: bottom 0.7s ease-in-out;
+    bottom: -140px;
+  }
+</style>
+
+<div id="shakeBox" class="vitals-floating-bar">
+  <p class="floating-bar-heading desktop">{{ section.settings.heading }}</p>
+  <p class="floating-bar-heading mobile" id="floatingText">{{ section.settings.heading }}</p>
+  {% if section.settings.pdf_file != blank %}
+  <form id="floating-bar-form" class="floating-bar-form-container">
+    <input type="text" class="floating-bar-input" id="floating-bar-input" name="email" placeholder="example@gmail.com">
+    <button class="download-vitals-pdf">{{ section.settings.button_text }}</button>
+    <!-- Hidden medical professional options for floating form -->
+    <div style="display: none;">
+      <input type="radio" name="floating-option" id="floating-yes" class="floating-vitals-radio">
+      <input type="radio" name="floating-option" id="floating-no" class="floating-vitals-radio">
+    </div>
+  </form>
+  {% endif %}
+</div>
+<script>
+    const texts = ["Unfiltered voices.", "Unexpected insights."];
+    let index = 0;
+    const element = document.getElementById("floatingText");
+
+    function showNextText() {
+      element.classList.add("fade-out");
+
+      setTimeout(() => {
+        element.textContent = texts[index];
+        element.classList.remove("fade-out");
+        index = (index + 1) % texts.length;
+      }, 500); // match this with your CSS transition time
+    }
+
+    // Initial display
+    showNextText();
+    setInterval(showNextText, 3000); // change every 3 seconds
+</script>
+
+<script id="vitals-floating-pdf-url" data-pdf="{{ section.settings.pdf_file }}"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const bannerButton = document.getElementById('banner-vitals-button');
+    const floatingBarParent = document.querySelector('.vitals-floating-bar-parent');
+
+    function checkBannerPosition() {
+      if (!bannerButton || !floatingBarParent) return;
+
+      const bannerRect = bannerButton.getBoundingClientRect();
+
+      if (bannerRect.top < 50) {
+        // Show the floating bar
+        floatingBarParent.style.bottom = '30px';
+      } else {
+        // Hide the floating bar
+        floatingBarParent.style.bottom = '-100%';
+      }
+    }
+
+    // Initial check
+    checkBannerPosition();
+
+    // Check on scroll
+    window.addEventListener('scroll', checkBannerPosition);
+  });
+</script>
+
+{% schema %}
+{
+  "name": "vitals-floating-bar",
+  "class": "vitals-floating-bar-parent",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text"
+    },
+    {
+      "type": "text",
+      "id": "pdf_file",
+      "label": "Vitals Report PDF"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Vitals Floating Bar"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,303 @@
+.medical-scrubs-section {
+  padding: 56px 80px;
+}
+.medical-scrubs-section a {
+  text-decoration: none;
+  color: #462d8c;
+}
+.medicos-header h2 p {
+  font-family: Heebo-Medium;
+  font-weight: 500;
+  font-size: 57px;
+  line-height: 64px;
+  letter-spacing: 0.64px;
+  color: var(--color-grey-17, #2c2c2c);
+  margin: 0px;
+  margin-bottom: 32px;
+}
+.features-odd-even {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  margin-bottom: 52px;
+}
+.medical-scrubs-section .feature-item-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 52px;
+}
+.medical-scrubs-section .feature-item-card:nth-child(odd) {
+  flex-direction: row;
+}
+.medical-scrubs-section .feature-item-card:nth-child(even) {
+  flex-direction: row-reverse;
+}
+.medical-scrubs-section .feature-item-card .feature-card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  cursor: pointer;
+}
+.medical-scrubs-section .feature-item-card .feature-card-content h3 {
+  font-family: Heebo-Medium;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  letter-spacing: 0.23px;
+  vertical-align: middle;
+  color: #1d1d1f;
+  margin: 0px 0px 8px 0px;
+}
+.medical-scrubs-section .feature-item-card .feature-card-content p {
+  font-family: Heebo-Regular;
+  font-weight: 400;
+  font-size: 21px;
+  line-height: 29px;
+  letter-spacing: 0.23px;
+  color: #999999;
+  margin: 0px 0px 32px 0px;
+}
+.medical-scrubs-section .feature-item-card .feature-card-content .shop-btns,
+.shop-btns a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  color: #462d8c;
+}
+.medical-scrubs-section .feature-item-card .feature-card-content .shop-btns a {
+  font-family: Heebo-Medium;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0px;
+  gap: 4px;
+  padding-block: 8px;
+  opacity: 0;
+  transition: ease-in-out 200ms;
+}
+/* .medical-scrubs-section .feature-item-card .feature-card-content .shop-btns a span{
+  border-bottom: 1px solid #ffffff;
+}
+.medical-scrubs-section .feature-item-card .feature-card-content .shop-btns a span:hover{
+  border-bottom: 1px solid #462D8C;
+} */
+
+.medical-scrubs-section
+  .feature-item-card
+  .feature-card-content
+  .shop-btns
+  a
+  span {
+  border-bottom: 1px solid #ffffff;
+  transition: all 0.2s ease;
+}
+
+.medical-scrubs-section
+  .feature-item-card
+  .feature-card-content
+  .shop-btns
+  a
+  span:hover {
+  border-bottom: 1px solid #462d8c;
+}
+
+.medical-scrubs-section
+  .feature-item-card
+  .feature-card-content
+  .shop-btns
+  a:focus {
+  color: #482f8f;
+}
+.medical-scrubs-section
+  .feature-item-card:hover
+  .feature-card-content
+  .shop-btns
+  a {
+  opacity: 1;
+  transition: ease-in-out 200ms;
+}
+.medical-scrubs-section .feature-item-card .feature-image-wrapper {
+  width: 840px;
+  height: 506px;
+  overflow: hidden;
+  border-radius: 16px;
+  cursor: pointer;
+  /* transition: ease-in-out; */
+}
+.medical-scrubs-section .feature-item-card .feature-image-wrapper:hover img {
+  transform: scale(1.1);
+}
+.medical-scrubs-section .feature-item-card .feature-image-wrapper img {
+  display: block;
+  width: 840px;
+  height: auto;
+
+  transition: transform 0.2s ease-in;
+}
+.medical-scrubs-section
+  .feature-item-card
+  .feature-image-wrapper
+  .feature-image-desktop {
+  display: block;
+  height: 506px;
+}
+.medical-scrubs-section
+  .feature-item-card
+  .feature-image-wrapper
+  .feature-image-mobile {
+  display: none;
+}
+.medical-scrubs-section .bottom-features {
+  display: flex;
+  gap: 48px;
+  justify-content: space-between;
+  align-items: center;
+  padding-block: 16px 24px;
+}
+.bottom-features .bottom-feature-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.bottom-features .bottom-feature-item .features-img-container {
+  height: 83px;
+  margin-bottom: 8px;
+}
+.bottom-features .bottom-feature-item .features-img-container img {
+  display: block;
+  width: 72px;
+  height: 72px;
+}
+.bottom-features .bottom-feature-item h4 {
+  font-family: Heebo-Medium;
+  font-weight: 500;
+  font-size: 21px;
+  line-height: 25px;
+  letter-spacing: 0.23px;
+  color: #202020;
+  margin: 0px;
+}
+.bottom-features .bottom-feature-item p {
+  font-family: Heebo-Regular;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 25px;
+  letter-spacing: 0.23px;
+  color: #86868b;
+  margin: 0px;
+}
+.bottom-features .bottom-feature-item .features-img-container {
+  height: 72px;
+}
+
+@media (max-width: 768px) {
+  .medical-scrubs-section {
+    padding: 24px 18px;
+  }
+  .medicos-header h2 p {
+    font-size: 28px;
+    line-height: 32px;
+    letter-spacing: -0.14px;
+    margin: 0px;
+    margin-bottom: 12px;
+    text-align: center;
+  }
+  .features-odd-even {
+    gap: 24px;
+    margin-bottom: 24px;
+  }
+  .medical-scrubs-section .feature-item-card {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .medical-scrubs-section .feature-item-card:nth-child(odd) {
+    flex-direction: column-reverse;
+  }
+  .medical-scrubs-section .feature-item-card:nth-child(even) {
+    flex-direction: column-reverse;
+  }
+  .medical-scrubs-section .feature-item-card .feature-card-content {
+    align-items: center;
+  }
+  .medical-scrubs-section .feature-item-card .feature-card-content h3 {
+    font-family: Heebo-Medium;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0px;
+    margin: 0px;
+  }
+
+  .medical-scrubs-section .feature-item-card .feature-card-content p {
+    font-family: Heebo-Regular;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0px;
+    color: #6e6e73;
+    margin: 0px 0px 6px 0px;
+    text-align: center;
+  }
+  .medical-scrubs-section .feature-item-card .feature-card-content .shop-btns,
+  .shop-btns a {
+    gap: 10px;
+  }
+  .medical-scrubs-section
+    .feature-item-card
+    .feature-card-content
+    .shop-btns
+    a {
+    font-size: 12px;
+    line-height: 20px;
+    gap: 0px;
+    padding-block: 4px;
+    display: flex;
+    opacity: 1;
+  }
+  .medical-scrubs-section .feature-item-card .feature-image-wrapper {
+    width: 354px;
+    height: 244px;
+  }
+  .medical-scrubs-section .feature-item-card .feature-image-wrapper img {
+    width: 354px;
+    height: 244px;
+  }
+  .medical-scrubs-section
+    .feature-item-card
+    .feature-image-wrapper
+    .feature-image-desktop {
+    display: none;
+  }
+  .medical-scrubs-section
+    .feature-item-card
+    .feature-image-wrapper
+    .feature-image-mobile {
+    display: block;
+  }
+  .medical-scrubs-section .bottom-features {
+    flex-direction: column;
+    gap: 20px;
+    padding: 0px;
+  }
+  .bottom-features .bottom-feature-item {
+    justify-content: center;
+    align-items: center;
+    gap: 0px;
+  }
+  .bottom-features .bottom-feature-item h4 {
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0px;
+  }
+  .bottom-features .bottom-feature-item p {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0px;
+    text-align: center;
+  }
+}

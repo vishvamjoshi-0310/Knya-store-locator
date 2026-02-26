@@ -1,0 +1,196 @@
+{{ 'shop-by-category.css' | asset_url | stylesheet_tag }}
+
+<style>
+  .shop-by-category-swiper-wrapper .swiper-slide{
+    width: 11.806vw;
+  }
+
+  .shop-by-category-swiper-wrapper{
+      gap: 12px;
+    }
+
+  .section-{{ section.id }}-margin {
+    margin-top:{{ section.settings.margin_top_desktop }}px;
+    margin-bottom: {{ section.settings.margin_bottom_desktop }}px;
+  }
+
+  @media screen and (max-width: 640px) {
+      .section-{{ section.id }}-margin {
+        margin-top:{{ section.settings.margin_top_mobile }}px;
+        margin-bottom: {{ section.settings.margin_bottom_mobile }}px;
+      }
+  }
+
+  @media screen and (min-width: 750px){
+    .shop-by-category-parent-{{ section.id }} {
+      padding-left: var(--desktop-padding);
+      overflow: hidden;
+    }
+  }
+
+  @media screen and (min-width: 750px) and (max-width: 1024px){
+    .shop-by-category-parent-{{ section.id }} {
+      padding-right: var(--desktop-padding);
+    }
+  }
+
+</style> 
+
+
+{%  if section.blocks.size <= 6 %}
+  <style>
+    
+    .shop-by-category-swiper-wrapper .swiper-slide{width: auto;}
+    
+    @media screen and (min-width: 1901px){
+      .shop-by-category-swiper-wrapper .swiper-slide{
+        max-width: 216px;
+      }
+    }
+  </style>
+
+{% endif %}
+
+
+<div class="shop-by-category-parent shop-by-category-parent-{{ section.id }} section-{{ section.id }}-margin page-width-updated" >
+  <h2 class="shopbycategory-heading heebo-medium">{{ section.settings.section_heading }}</h2>
+
+  <div class="responsive-slider-section shop-by-category-main">
+    <div class="shop-by-category-swiper-container swiper-container">
+        {% capture children %}
+          {% content_for 'blocks' %}
+        {% endcapture %}
+        {% render 'swiper-wrapper', children: children, swiper_class: "shop-by-category-swiper-wrapper" %}
+    </div>
+  </div>
+</div>
+
+
+<script>
+ window.shopByCategory = function(event) {
+    try{     
+     const dataAttrValue = event.getAttribute("data-dataAttr");
+      dataLayer.push({
+        event: "Shop By Category",
+        clicked_item: dataAttrValue
+      });         
+    }catch(error){
+      console.log("An error occurred:",error) 
+    }
+  };
+
+  
+
+ </script>
+
+{% if section.blocks.size > 6 %}
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    let swiperInstance;
+
+    const desktopQuery = window.matchMedia("(min-width: 1025px)");
+
+    function initOrDestroySlider(e) {
+      const container = document.querySelector('.shop-by-category-swiper-container');
+      if (!container) return;
+
+      const slides = container.querySelectorAll('.shop-by-category-swiper-wrapper .swiper-slide');
+      const slideCount = slides.length;
+
+      if (desktopQuery.matches) {
+
+        if (!swiperInstance) {
+          swiperInstance = new Swiper(container, {
+            spaceBetween: 12,
+            slidesPerView: 5,
+            loop: false,
+            slidesOffsetAfter: 80,
+            breakpoints: {
+              1400: { slidesPerView: Math.min(slideCount,7.1) },
+              2000: { slidesPerView: Math.min(slideCount,6.1) }
+            }
+          });
+        
+        }
+      } else {
+        if (swiperInstance) {
+          swiperInstance.destroy(true, true);
+          swiperInstance = null;
+        }
+      }
+    }
+
+ 
+    initOrDestroySlider();
+    desktopQuery.addEventListener('change', initOrDestroySlider);
+  });
+</script>
+{% endif %}
+
+
+
+{% schema %}
+{
+  "name": "Shop by Category",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_heading",
+      "label": "Section Heading"
+    },
+    {
+      "type": "range",
+      "id": "margin_top_desktop",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Desktop : Margin-Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_desktop",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Desktop : Margin-Bottom",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile : Margin-Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile : Margin-Bottom",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "_category_slide"
+    }
+  ],
+  "presets": [{ "name": "Shop by Category" }]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+           

@@ -1,0 +1,870 @@
+{% assign engraving = block.settings.EngravingProductHandlepicker %}
+{% assign max_price = 0 %}
+{% for variant in engraving.variants %}
+  {% if variant.price > max_price %}
+    {% assign max_price = variant.price %}
+  {% endif %}
+{% endfor %}
+{% assign min_price = max_price %}
+{% for variant in engraving.variants %}
+  {% if variant.price < min_price %}
+    {% assign min_price = variant.price %}
+  {% endif %}
+{% endfor %}
+
+<style>
+  body.bodyEmbhidden {
+    overflow: hidden !important;
+  }
+  .popup-overlay {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+  }
+
+  .popup-container {
+    display: flex;
+    background: white;
+    overflow: hidden;
+    width: 76%;
+    height: 640px;
+    max-width: 1080px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    max-height: 90%;
+    overflow-y: scroll;
+  }
+
+  .popup-image {
+    width: 56.5%;
+    position: relative;
+    background: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .popup-image img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .close-popup {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background: #000000b8;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .popup-content {
+    width: 43.5%;
+  }
+
+  .emb_pading_ltrt {
+    padding: 0 32px;
+  }
+
+  .price {
+    float: right;
+  }
+
+  .popup-contentsecondlvl .button-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    width: 100%;
+  }
+
+  /* popup right content */
+  .popup-content h4 {
+    color: #282828;
+    font-weight: 500;
+    font-size: clamp(20px, calc(22 * (100vw / 1440)), 24px);
+    line-height: 1.9;
+    letter-spacing: 1.4px;
+    text-align: center;
+    vertical-align: middle;
+    text-transform: uppercase;
+    margin: 0;
+    font-family: Heebo-Medium;
+    padding: 15px 0;
+    border-bottom: 1px solid #cccccc;
+  }
+  .popup-content .popup-contentParatext p {
+    font-weight: 400;
+    font-size: clamp(16px, calc(16 * (100vw / 1440)), 18px);
+    line-height: 1.25;
+    letter-spacing: 0.001px;
+    vertical-align: middle;
+    color: #616161;
+    font-family: Heebo-Regular;
+    margin: 0;
+    padding: 16px 0;
+  }
+  .popup-content .popup-contentParatext p strong {
+    font-weight: 500;
+    font-size: clamp(16px, calc(16 * (100vw / 1440)), 18px);
+    line-height: 1.25;
+    letter-spacing: 0.001px;
+    vertical-align: middle;
+    color: #282828;
+    opacity: 1;
+    font-family: Heebo-Medium;
+  }
+  .popup-content .popup-contentParatext span.price {
+    font-weight: 500;
+    font-size: clamp(16px, calc(16 * (100vw / 1440)), 18px);
+    line-height: 20px;
+    letter-spacing: 0.001px;
+    vertical-align: middle;
+    color: #282828;
+    font-family: Heebo-Medium;
+  }
+  label.engravingText {
+    font-family: Heebo-Medium;
+    font-weight: 500;
+    font-size: clamp(16px, calc(16 * (100vw / 1440)), 18px);
+    line-height: 1.375;
+    letter-spacing: 0;
+    text-align: center;
+    vertical-align: middle;
+    color: #1e192b;
+  }
+  .popup-contentParatext.emb_pading_ltrt {
+    padding-bottom: 20px;
+  }
+  .input-with-toggle {
+    position: relative;
+    margin-top: 20px;
+    width: 100%;
+  }
+
+  input#engravingText {
+    border: 1px solid #2c2c2c;
+    height: 42px;
+    border-radius: 0;
+    background: #fff;
+    width: 100%;
+    padding: 16px;
+    box-sizing: border-box;
+  }
+
+  /* Font Type Buttons */
+  .font-type-buttons {
+    display: flex;
+    gap: 16px;
+    margin-top: 12px;
+  }
+
+  .font-type-btn {
+    padding: 11px 24px;
+    border: 1px solid #79747e;
+    background: #fff;
+    color: #333;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: 0.1px;
+    border-radius: 4px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .font-type-buttons button:first-child {
+    font-family: 'Roboto';
+  }
+  .font-type-buttons button:last-child {
+    font-family: 'NotoSansDevanagari-Medium';
+  }
+  .font-type-btn.active-font-type {
+    background: #462d8c;
+    color: #fff;
+    border-color: #462d8c;
+  }
+  .popup-contentsecondlvl small.error-message {
+    font-family: Heebo-Regular;
+    font-weight: 400;
+    font-size: clamp(12px, calc(12 * (100vw / 1440)), 14px);
+    line-height: 1.5;
+    letter-spacing: 0.004px;
+    vertical-align: middle;
+    color: #ff3b30;
+    width: 50%;
+  }
+  .popup-contentsecondlvl_type p {
+    font-family: Heebo-Regular;
+    font-weight: 400;
+    font-size: clamp(16px, calc(16 * (100vw / 1440)), 18px);
+    line-height: 1.5;
+    letter-spacing: 0.001px;
+    vertical-align: middle;
+    text-transform: capitalize;
+    color: #1e192b;
+    margin: 0;
+  }
+  .popup-contentsecondlvl_type strong {
+    font-family: Heebo-Medium;
+    font-weight: 500;
+    font-size: clamp(16px, calc(16 * (100vw / 1440)), 18px);
+    line-height: 1.2;
+    letter-spacing: 0.001px;
+    vertical-align: middle;
+    text-transform: capitalize;
+    color: #1e192b;
+  }
+  .popup-contentsecondlvl_type {
+    margin-top: 20px;
+    margin-bottom: 24px;
+  }
+  button.add-btn.popup-contentsecondlvl_add {
+    width: 100%;
+    border: 2px solid #e5e5e5;
+    background: #462d8c;
+    min-height: 42px;
+    color: #fff;
+    cursor: pointer;
+    font-family: 'Heebo-Medium';
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 20px;
+    letter-spacing: 1.2px;
+    text-align: center;
+    vertical-align: middle;
+    text-transform: uppercase;
+  }
+  button.reset-btn.popup-contentsecondlvl_reset {
+    width: 100%;
+    border: 2px solid #e5e5e5;
+    background: #fff;
+    min-height: 42px;
+    color: #2b2930;
+    cursor: pointer;
+    font-family: 'Heebo-Medium';
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 20px;
+    letter-spacing: 1.2px;
+    text-align: center;
+    vertical-align: middle;
+    text-transform: uppercase;
+  }
+  .engraving-info p strong {
+    font-family: Heebo-Medium;
+    font-weight: 500;
+    font-size: clamp(16px, calc(16 * (100vw / 1440)), 18px);
+    line-height: 1.375;
+    letter-spacing: 0;
+    text-align: center;
+    vertical-align: middle;
+    color: #1e192b;
+  }
+  .engraving-info {
+    margin-top: 32px;
+    border-top: 1px solid #cccccc;
+  }
+  .engraving-info p {
+    margin: 0;
+    margin-top: 32px;
+    display: flex;
+    gap: 10px;
+  }
+  .engraving-info ul {
+    padding-left: 20px;
+  }
+  .engraving-info ul li {
+    font-family: Heebo-Regular;
+    font-weight: 400;
+    font-size: clamp(14px, calc(14 * (100vw / 1440)), 16px);
+    line-height: 1.428;
+    letter-spacing: 0.004px;
+    vertical-align: middle;
+    color: #616161;
+  }
+  img.Engraving_usp-image_mob {
+    display: none;
+  }
+  span.engravingText_msgManagerCount {
+    color: #79747e;
+    font-family: Heebo-Regular;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0.004;
+    text-align: end;
+    vertical-align: middle;
+    text-transform: capitalize;
+  }
+  .engravingText_msgManager {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 4px;
+  }
+  #mobile-engraving-popup {
+    display: none;
+  }
+  @media (max-width: 1024px) {
+    img.Engraving_usp-image_desk {
+      display: none;
+    }
+    img.Engraving_usp-image_mob {
+      display: block;
+    }
+    .popup-container {
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      padding-bottom: 32px;
+      bottom: 0;
+      position: absolute;
+      overflow-y: scroll;
+    }
+
+    .popup-image {
+      width: 100%;
+    }
+    .close-popup {
+      right: 0;
+      left: unset;
+    }
+    .popup-content {
+      width: 100%;
+    }
+    .emb_pading_ltrt {
+      padding: 0 24px;
+    }
+    .popup-content h4 {
+      display: none;
+    }
+    .popup-contentParatext.emb_pading_ltrt {
+      padding-bottom: 16px;
+    }
+    .popup-content .popup-contentParatext p strong,
+    .popup-content .popup-contentParatext p,
+    label.engravingText,
+    .popup-contentsecondlvl_type p,
+    .popup-contentsecondlvl_type strong {
+      font-size: 14px;
+      line-height: 1.428;
+    }
+    .input-with-toggle,
+    .popup-contentsecondlvl_type {
+      margin-top: 16px;
+    }
+    .engraving-info {
+      display: none;
+    }
+    .popup-image img {
+      width: 100%;
+      height: auto;
+    }
+    .popup-content .popup-contentParatext span.price {
+      font-size: 14px;
+    }
+    .WhatsAppButton__root.WhatsAppButton__Indexing {
+      z-index: 1 !important;
+    }
+    .mobile-engraving-popup.show .engraving-info {
+      display: block;
+      padding-bottom: 4px;
+      border-top: unset;
+      margin-top: 40px;
+    }
+    .showengravingPopup .popup-container {
+      height: max-content;
+    }
+    .showengravingPopup .popup-image,
+    .showengravingPopup .popup-content {
+      display: none;
+    }
+    .mobile-engraving-popup.show {
+      display: block !important;
+    }
+    div#mobile-engraving-popup button.close-popup {
+      background: #fff;
+    }
+  }
+  @media (max-width: 600px) {
+    .font-type-btn {
+      font-size: 13px;
+      height: 36px;
+    }
+  }
+  @media (max-width: 1024px) and (min-width: 600px) {
+    .popup-container {
+      width: 70%;
+      bottom: unset;
+      height: 65%;
+    }
+  }
+</style>
+
+<div id="engravingPopup" class="popup-overlay">
+  <div class="popup-container">
+    <!-- Left Section - Image -->
+    <div class="popup-image">
+      <button class="close-popup" onclick="closeEngravingPopup()">{% render 'svg-engraving' %}</button>
+
+      {% if product.metafields.custom.engraving_product_desk_image != blank %}
+        <img
+          src="{{ product.metafields.custom.engraving_product_desk_image | file_url }}&width=620"
+          class="Engraving_usp-image_desk"
+          loading="lazy"
+          alt="Engraving-section-image"
+        >
+      {% else %}
+        {{
+          block.settings.EngravingLeftImage_desk
+          | image_url: width: 620
+          | image_tag: class: 'Engraving_usp-image_desk', loading: 'lazy', alt: 'Engraving-section-image'
+        }}
+      {% endif %}
+      {% if product.metafields.custom.engraving_product_mob_image != blank %}
+        <img
+          src="{{ product.metafields.custom.engraving_product_mob_image | file_url }}&width=420"
+          class="Engraving_usp-image_mob"
+          loading="lazy"
+          alt="Engraving-section-image"
+        >
+      {% else %}
+        {{
+          block.settings.EngravingLeftImage_mob
+          | image_url: width: 420
+          | image_tag: class: 'Engraving_usp-image_mob', loading: 'lazy', alt: 'Engraving-section-image'
+        }}
+      {% endif %}
+    </div>
+
+    <!-- Right Section - Form -->
+    <div class="popup-content">
+      <h4>ADD PERSONALISATION</h4>
+      <div class="popup-contentParatext emb_pading_ltrt">
+        <p>
+          <strong>Engraving Selected:</strong> Text
+          <span class="price">{{ min_price | money_without_trailing_zeros | replace: '₹ ', '₹' }}</span>
+        </p>
+      </div>
+      <div class="popup-contentsecondlvl emb_pading_ltrt">
+        <label class="engravingText" for="engravingText">ADD TEXT</label>
+        <div class="input-with-toggle">
+          <input type="text" id="engravingText" placeholder="Name (Ex. Pramod Rawal)" maxlength="20">
+        </div>
+        <div class="engravingText_msgManager">
+          <small class="error-message" style="display: none;">*Name is Required</small>
+          <span class="engravingText_msgManagerCount" style="width: 100%;">0/20</span>
+        </div>
+        <div class="popup-contentsecondlvl_type">
+          <p><strong>Font Type:</strong></p>
+          <div class="font-type-buttons">
+            <button
+              type="button"
+              class="font-type-btn active-font-type"
+              data-font-type="Block"
+              onclick="selectLanguages('english', this)"
+            >
+              Block
+            </button>
+            <button type="button" class="font-type-btn" data-font-type="देवनागरी" onclick="selectLanguages('hindi', this)">
+              देवनागरी
+            </button>
+          </div>
+        </div>
+        <div class="button-group">
+          <button class="reset-btn popup-contentsecondlvl_reset" onclick="validateEngraving()">RESET</button>
+          <button class="add-btn popup-contentsecondlvl_add" onclick="EngravingAdded_to_cart()">ADD</button>
+        </div>
+
+        {% if block.settings.Engravingbullets != blank %}
+          <div class="engraving-info">
+            <p>
+              {% render 'engraving_info_svg' %}
+              <strong>Made Just for You!</strong>
+            </p>
+            {{ block.settings.Engravingbullets }}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+    <div id="mobile-engraving-popup" class="mobile-engraving-popup emb_pading_ltrt">
+      <button class="close-popup" onclick="closeEngravingPopupSec()">{% render 'svg-engraving' %}</button>
+      {% if block.settings.Engravingbullets != blank %}
+        <div class="engraving-info">
+          <p>
+            {% render 'engraving_info_svg' %}
+            <strong>Made Just for You!</strong>
+          </p>
+          {{ block.settings.Engravingbullets }}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const showEmbRadio = document.getElementById('showEmb');
+    const popup = document.getElementById('engravingPopup');
+    const closeBtn = document.querySelector('.close-popup');
+    const bodyEmb = document.querySelector('body');
+    const engravingTextInput = document.getElementById('engravingText');
+    const charCountDisplay = document.querySelector('.engravingText_msgManagerCount');
+    const errorMessage = document.querySelector('.error-message');
+
+    // Initialize input field state - always enabled
+    function initializeInputState() {
+      // Input field is always enabled
+      engravingTextInput.disabled = false;
+    }
+
+    // Call initialization function
+    initializeInputState();
+
+    // Handle input based on current font type
+    engravingTextInput.addEventListener('input', function () {
+      // Always store the current value for potential conversion
+      if (window.selectedFontType === 'Block') {
+        // Store English value for later conversion
+        window.originalValue = this.value;
+      }
+      // In Hindi mode, don't interfere with user input at all
+      // Let the user type freely including spaces, special characters, etc.
+    });
+
+    // Handle keydown events - allow all keys in all modes
+    engravingTextInput.addEventListener('keydown', function (e) {
+      // Allow all keys including space, backspace, delete, etc. in all modes
+      // Don't prevent any input
+      return true;
+    });
+
+    // Handle focus events to ensure input is ready for text
+    engravingTextInput.addEventListener('focus', function () {
+      // Ensure input is always enabled and ready for text input
+      this.disabled = false;
+    });
+
+    // Remove paste event listener to allow natural paste behavior
+    // The input field should handle pasting naturally without interference
+
+    const radioButtons = document.querySelectorAll("input[name='engraving']");
+    const embSelectOpt = document.querySelector('.emb_select_opt');
+
+    radioButtons.forEach((radio) => {
+      radio.addEventListener('change', function () {
+        radioButtons.forEach((rb) => rb.parentElement.classList.remove('checked'));
+        if (this.checked) {
+          this.parentElement.classList.add('checked');
+          embSelectOpt.style.display = 'none';
+          document.querySelector('.WhatsAppButton__root')?.classList.add('WhatsAppButton__Indexing');
+        }
+      });
+    });
+
+    showEmbRadio.addEventListener('change', function () {
+      if (this.checked) {
+        popup.style.display = 'flex'; // Show popup
+        bodyEmb.classList.add('bodyEmbhidden');
+      }
+    });
+
+    // Hide popup if user clicks outside
+    popup.addEventListener('click', function (e) {
+      if (e.target === popup) {
+        popup.style.display = 'none';
+        bodyEmb.classList.remove('bodyEmbhidden');
+        closeEngravingPopup();
+      }
+    });
+    // Update character count dynamically and handle error message
+    engravingTextInput.addEventListener('input', function () {
+      let sanitized = this.value;
+
+      // Only sanitize if in Block mode (English), allow Hindi text in देवनागरी mode
+      if (window.selectedFontType === 'Block') {
+        sanitized = this.value
+          .replace(/[^a-zA-Z0-9 .]/g, '') // allow only letters, numbers, space, dot
+          .replace(
+            /([\u2700-\u27BF]|[\uE000-\uF8FF]|[\uD800-\uDBFF][\uDC00-\uDFFF]|\uFE0F|\u24C2|\uD83C[\uDDE6-\uDDFF]|\uD83D[\uDC00-\uDFFF]|\uD83E[\uDD00-\uDFFF])/gu,
+            ''
+          );
+      } else {
+        // In Hindi mode, only remove emojis, allow all other characters including Hindi
+        sanitized = this.value.replace(
+          /([\u2700-\u27BF]|[\uE000-\uF8FF]|[\uD800-\uDBFF][\uDC00-\uDFFF]|\uFE0F|\u24C2|\uD83C[\uDDE6-\uDDFF]|\uD83D[\uDC00-\uDFFF]|\uD83E[\uDD00-\uDFFF])/gu,
+          ''
+        );
+      }
+
+      if (typeof applyCasing === 'function' && window.selectedFontType === 'Block') {
+        sanitized = applyCasing(sanitized, this);
+      }
+      this.value = sanitized;
+      let currentLength = sanitized.length;
+      charCountDisplay.textContent = `${currentLength}/20`;
+      if (currentLength > 0) {
+        errorMessage.style.display = 'none';
+        charCountDisplay.style.width = '100%';
+      } else {
+        errorMessage.style.display = 'block';
+        charCountDisplay.style.width = 'unset';
+      }
+      if (typeof previewElement !== 'undefined' && previewElement) {
+        previewElement.textContent = sanitized;
+      }
+    });
+  });
+  const engravingTextInput = document.getElementById('engravingText');
+  // Removed old paste event listener - now handled above
+  function closeEngravingPopup() {
+    try {
+      const engravingBox = document.querySelector('.engraving-box');
+      const radioButtonsAlls = document.querySelectorAll("input[name='engraving']");
+      radioButtonsAlls.forEach((rb) => rb.parentElement.classList.remove('checked'));
+      radioButtonsAlls.forEach(radio => radio.checked = false);
+      
+      document.getElementById('engravingPopup').style.display = 'none';
+      document.body.classList.remove('bodyEmbhidden');
+      document.querySelector('.WhatsAppButton__root').classList.remove('WhatsAppButton__Indexing');
+      engravingBox.querySelector('.popupbtnengraving').checked = false;
+
+    } catch (error) {
+      console.error('Error closing popup:', error.message);
+    }
+  }
+
+  function validateEngraving() {
+    try {
+      const engravingTextInput = document.getElementById('engravingText');
+      const charCountDisplay = document.querySelector('.engravingText_msgManagerCount');
+      const errorMessage = document.querySelector('.error-message');
+      engravingTextInput.value = '';
+      engravingTextInput.placeholder = 'Name (Ex. Pramod Rawal)';
+      charCountDisplay.textContent = '0/20'; // Reset character count
+      errorMessage.style.display = 'block';
+    } catch (error) {
+      console.error('Error in validateEngraving:', error.message);
+    }
+  }
+  function EngravingAdded_to_cart() {
+    try {
+      const engravingBox = document.querySelector('.engraving-box');
+      const engravingTextInput = document.getElementById('engravingText');
+      const engravingValue = engravingTextInput.value
+        .trim()
+        .toLowerCase()
+        .replace(/\b\w/g, (char) => char.toUpperCase()); // Handle empty input
+      const errorMessageATC = document.querySelector('.error-message');
+      if (!engravingValue) {
+        errorMessageATC.style.display = 'block';
+        return;
+      }
+
+      // Store the engraving variant ID in the engraving box (from data attribute set in Liquid)
+      if (engravingBox) {
+        const engravingVariantId = engravingBox.getAttribute('data-engraving-variant-id');
+        const engravingVariantSku = engravingBox.getAttribute('data-engraving-variant-sku');
+        if (engravingVariantId) {
+          engravingBox.setAttribute('data-selected-variant-id', engravingVariantId);
+          if (engravingVariantSku) {
+            engravingBox.setAttribute('data-selected-variant-sku', engravingVariantSku);
+          }
+        }
+        
+        // Store engraving properties for cart
+        engravingBox.setAttribute('data-engraving-text', engravingValue);
+        engravingBox.setAttribute('data-engraving-selected', 'Text');
+        const selectedFontType = window.selectedFontType || 'Block';
+        engravingBox.setAttribute('data-engraving-font-type', selectedFontType);
+        engravingBox.setAttribute('data-engraving-enabled', 'true');
+      }
+
+      engravingBox.querySelector('input.engraving_filled').checked = true;
+      engravingBox.querySelector('.selected-Name-centered p').innerText = engravingValue;
+      engravingBox.querySelector('.property_line__textEngWrapper .property_line__textEng').innerText = engravingValue;
+      engravingBox.querySelector('.popupbtnengraving').checked = false;
+      engravingBox.querySelector('.added_list').style.display = 'block';
+      engravingBox.querySelector('.embMaiDiv').style.display = 'none';
+      engravingBox.querySelector('.btn_pack').style.display = 'none';
+      if (window.innerWidth < 1024) {
+        let mobilePopup = document.getElementById('mobile-engraving-popup');
+        let engravingPopup = document.getElementById('engravingPopup');
+
+        if (!mobilePopup) return;
+        mobilePopup.classList.add('show');
+        engravingPopup.classList.add('showengravingPopup');
+        setTimeout(() => {
+          closeEngravingPopupSec();
+        }, 5000);
+      } else {
+        // Call the original closeEngravingPopup() on desktop
+        closeEngravingPopup();
+      }
+    } catch (error) {
+      console.error('Error in EngravingAdded_to_cart:', error.message);
+    }
+  }
+  function closeEngravingPopupSec() {
+    try {
+      let mobilePopup = document.getElementById('mobile-engraving-popup');
+      let engravingPopup = document.getElementById('engravingPopup');
+      mobilePopup.classList.remove('show');
+      engravingPopup.classList.remove('showengravingPopup');
+      closeEngravingPopup();
+    } catch (error) {
+      console.error('Error in EngravingAdded_to_cart:', error.message);
+    }
+  }
+
+  window.Engravingdelete = function () {
+    try {
+      const engravingBox = document.querySelector('.engraving-box');
+      const engravingTextInput = document.getElementById('engravingText');
+      engravingBox.querySelector('input.engraving_filled').checked = false;
+      engravingBox.querySelector('.added_list').style.display = 'none';
+      engravingBox.querySelector('.embMaiDiv').style.display = 'block';
+      engravingBox.querySelector('.btn_pack').style.display = 'flex';
+      engravingTextInput.value = '';
+      engravingBox.querySelector('.selected-Name-centered p').innerText = '';
+      engravingBox.querySelector('.property_line__textEngWrapper .property_line__textEng').innerText = '';
+      engravingBox.querySelector('.popupbtnengraving').checked = false;
+      document.querySelector('.emb_select_opt').style.display = 'none';
+    } catch (error) {
+      console.error('Error in EngravingAdded_to_cart:', error.message);
+    }
+  };
+
+  function Engravingedited() {
+    try {
+      const bodyEmb = document.querySelector('body');
+      const popup = document.getElementById('engravingPopup');
+      popup.style.display = 'flex'; // Show popup
+      bodyEmb.classList.add('bodyEmbhidden');
+    } catch (error) {
+      console.error('Error in EngravingAdded_to_cart:', error.message);
+    }
+  }
+
+  window.originalValue = '';
+  window.selectedFontType = 'Block'; // Default font type
+
+  // Test function to verify functionality
+  window.testHindiInput = function () {
+    const input = document.getElementById('engravingText');
+    console.log('Current input value:', input.value);
+    console.log('Current font type:', window.selectedFontType);
+    console.log('Original value:', window.originalValue);
+  };
+
+  // Keep track of the current language of the input text
+  window.currentEngravingLanguage = window.currentEngravingLanguage || 'english';
+
+  // lang: 'english' | 'hindi'
+  // elem: button element (pass `this` from onclick)
+  let selectLanguages = (lang, elem) => {
+    const engraving_TextInput = document.getElementById("engravingText");
+    if (!engraving_TextInput) return;
+
+    // Toggle active class on buttons
+    document.querySelectorAll('.font-type-btn').forEach(btn => {
+      btn.classList.remove('active-font-type');
+    });
+    if (elem) {
+      elem.classList.add('active-font-type');
+    }
+
+    const text = engraving_TextInput.value.trim();
+    const errorMessage = document.querySelector('.error-message');
+    const charCountDisplay = document.querySelector('.engravingText_msgManagerCount');
+    
+    // Show error message if input is blank
+    if (!text) {
+      if (errorMessage) {
+        errorMessage.style.display = 'block';
+      }
+      if (charCountDisplay) {
+        charCountDisplay.style.width = 'unset';
+      }
+      window.currentEngravingLanguage = lang;
+      return;
+    }
+    
+    // Hide error message if text exists
+    if (errorMessage) {
+      errorMessage.style.display = 'none';
+    }
+    if (charCountDisplay) {
+      charCountDisplay.style.width = '100%';
+    }
+
+    // If language is not changing, don't call API
+    if (lang === window.currentEngravingLanguage) {
+      return;
+    }
+
+    // Decide source/target based on current and selected language
+    const source = window.currentEngravingLanguage === 'english' ? 'en' : 'hi';
+    const target = lang === 'english' ? 'en' : 'hi';
+
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const raw = JSON.stringify({
+      text,
+      source,
+      target
+    });
+
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow"
+    };
+
+    fetch("https://dcwysugrif.execute-api.ap-south-1.amazonaws.com/lang", requestOptions)
+      .then((response) => response.json())
+      .then((data) => {
+        // Support different shapes: { translatedText: '...' } or nested
+        let translated = '';
+        if (typeof data === 'string') {
+          translated = data;
+        } else if (data && typeof data === 'object') {
+          if (data.translatedText && typeof data.translatedText === 'string') {
+            translated = data.translatedText;
+          } else if (data.body && data.body.translatedText) {
+            translated = data.body.translatedText;
+          } else {
+            translated = JSON.stringify(data);
+          }
+        }
+
+        // Clean extra quotes if API wraps the string
+        translated = translated.replace(/^"+|"+$/g, '');
+
+        engraving_TextInput.value = translated;
+        window.currentEngravingLanguage = lang;
+      })
+      .catch((error) => {
+        console.error("Translation error:", error);
+      });
+  }
+</script>

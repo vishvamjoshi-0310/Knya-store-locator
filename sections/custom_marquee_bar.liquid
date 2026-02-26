@@ -1,0 +1,83 @@
+{{ 'marquee-stylesheet.css' | asset_url | stylesheet_tag: preload: true }}
+{% if section.blocks.size < 1 %}
+  <style>
+    .marquee-bar-parent{
+      display: none;
+    }
+  </style>
+{% endif %}
+{% if section.blocks.size > 0 %}
+  <div class="custom-marquee-wrapper" id="custom-marquee-wrapper--section">
+    <div class="custom-marquee">
+      <div class="custom-marquee-content">
+        {% for i in (1..20) %}
+          {% for block in section.blocks %}
+            {% if block.type == 'marquee_text' and block.settings.text != blank %}
+              <span class="marquee-item">{{ block.settings.text | strip }}</span>
+              <span class="dot-separator">•</span>
+            {% endif %}
+          {% endfor %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+<!-- Mobile Content -->
+<div class="mobile-marquee-wrapper ">
+  {% if section.settings.mobile_image != blank %}
+    <img
+      src="{{ section.settings.mobile_image | image_url }}"
+      height="24"
+      width="24"
+      alt="{{ section.settings.mobile_text | escape }}"
+    >
+  {% endif %}
+  {% if section.settings.mobile_text != blank %}
+    <h4 class="mobile-heading">
+      {{ section.settings.mobile_text }}
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8.78602 12.5143C8.79282 12.7365 8.86944 12.9276 9.01947 13.0777C9.17056 13.2287 9.36289 13.3022 9.58639 13.3022C9.80981 13.3022 10.0022 13.2287 10.1533 13.0777L14.665 8.56593C14.7446 8.48638 14.8041 8.39705 14.8398 8.29771C14.8731 8.20355 14.8896 8.10328 14.8896 7.99902C14.8896 7.89471 14.8734 7.79308 14.8409 7.69463C14.8056 7.58966 14.7451 7.49963 14.6612 7.42833L10.1533 2.9204C10.0022 2.76934 9.80981 2.6958 9.58639 2.6958C9.36289 2.6958 9.17056 2.76934 9.01947 2.9204C8.86944 3.07042 8.79283 3.26122 8.78603 3.48348C8.7797 3.70796 8.85033 3.90217 9.00239 4.05421L12.1442 7.19602L2.22031 7.38411C1.99573 7.38439 1.80144 7.46174 1.64588 7.61676C1.49058 7.77259 1.41293 7.96761 1.41293 8.1927C1.41293 8.4178 1.49029 8.61238 1.64573 8.76781C1.80154 8.92362 1.99629 9.0013 2.22153 9.00132L2.22389 9.00128L12.1327 8.81347L9.00239 11.9438C8.85033 12.0958 8.77969 12.2898 8.78602 12.5143Z" fill="white" stroke="#5E3654" stroke-width="0.25"/>
+      </svg>
+    </h4>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Marquee Bar",
+  "class": "marquee-bar-parent",
+  "settings": [
+    {
+      "type": "text",
+      "id": "mobile_text",
+      "label": "Mobile Heading Text",
+      "default": "Welcome to Our Store!"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile Heading Image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "marquee_text",
+      "name": "Marquee Text",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Marquee Text",
+          "default": "Free shipping all over India"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Marquee Bar"
+    }
+  ]
+}
+{% endschema %}

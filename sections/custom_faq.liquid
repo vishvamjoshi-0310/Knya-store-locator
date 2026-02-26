@@ -1,0 +1,309 @@
+{{ 'custom-faq.css' | asset_url | stylesheet_tag }}
+<style>
+  .faq-div{margin-top:{{ section.settings.margintopfaq}}px;}
+  @media screen and (max-width: 640px){
+  .faq-div{margin-top:{{ section.settings.margintopfaqmob}}px;}
+  }
+</style>
+
+<div class="faq-div page-width-updated" id="faq-id-div">
+  <div class="faqs-heading">
+    <h2 class="h2-title font-heebo-medium">{{ section.settings['faq-heading'] }}</h2>
+  </div>
+  <div class="faq-sec-div">
+    <div class="right-side-faq right-desk">
+      {% for block in section.blocks %}
+        <div class="right-side-titles">
+          <div class="faq-category">
+            <div class="faq-image">
+              <img
+                srcset="
+                  {%- if block.settings.faq-img.width >= 375 -%}{{ block.settings.faq-img | image_url: width: 375 }} 375w,{%- endif -%}
+                  {%- if block.settings.faq-img.width >= 550 -%}{{ block.settings.faq-img | image_url: width: 550 }} 550w,{%- endif -%}
+                  {%- if block.settings.faq-img.width >= 750 -%}{{ block.settings.faq-img | image_url: width: 750 }} 750w,{%- endif -%}
+                  {%- if block.settings.faq-img.width >= 1100 -%}{{ block.settings.faq-img | image_url: width: 1100 }} 1100w,{%- endif -%}
+                  {%- if block.settings.faq-img.width >= 1500 -%}{{ block.settings.faq-img | image_url: width: 1500 }} 1500w,{%- endif -%}
+                  {%- if block.settings.faq-img.width >= 1780 -%}{{ block.settings.faq-img | image_url: width: 1780 }} 1780w,{%- endif -%}
+                  {%- if block.settings.faq-img.width >= 2000 -%}{{ block.settings.faq-img | image_url: width: 2000 }} 2000w,{%- endif -%}
+                  {%- if block.settings.faq-img.width >= 3000 -%}{{ block.settings.faq-img | image_url: width: 3000 }} 3000w,{%- endif -%}
+                  {%- if block.settings.faq-img.width >= 3840 -%}{{ block.settings.faq-img | image_url: width: 3840 }} 3840w,{%- endif -%}
+                  {{ block.settings.faq-img | image_url }} {{ block.settings.faq-img.width }}w
+                "
+                sizes="100vw"
+                src="{{ block.settings.faq-img | image_url: width: 1500 }}"
+                loading="lazy"
+                alt="{{ block.settings.faq-img.alt | escape }}"
+                width="{{ block.settings.faq-img.width }}"
+                height="{{ block.settings.faq-img.height }}"
+              >
+            </div>
+            <div
+              class="faq-title faq-titledesk font-heebo-SemiBold {% if forloop.index ==1 %}focus-color{% endif %}"
+              data-id="title-{{ forloop.index}}"
+            >
+              <span class="header-faq heebo-semibold">{{ block.settings['faq-title'] }}</span>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    <div class="left-side-faq faq-desk">
+      {% for block in section.blocks %}
+        <div
+          class="left-side-div accordionWrapper {% if forloop.index ==1 %}opened {% else %}closed{% endif %}"
+          id="title-{{ forloop.index }}"
+        >
+          {% assign question = block.settings.questions | split: '##' %}
+          {% assign answer = block.settings.answers | split: '##' %}
+          {% assign sizes = question.size | minus: 1 %}
+          {% for x in (0..sizes) %}
+            <div
+              id="question-title"
+              class="accordionItem {% if forloop.index == 1 %}open {% else %}close{% endif %}"
+            >
+              <span class="accordionItemHeading heebo-semibold header-faq">
+                {{- question[x] -}}
+                <span class="icon-minus">
+                  {{ 'icon-minus.svg' | inline_asset_content }}
+                </span>
+                <span class="icon-plus">{{ 'icon-plus.svg' | inline_asset_content }}</span></span
+              >
+              <span class="accordionItemContent font-heebo-regular">{{ answer[x] }}</span>
+            </div>
+          {% endfor %}
+        </div>
+      {% endfor %}
+    </div>
+    <div class="left-side-faq faq-mobile">
+      {% for block in section.blocks %}
+        <div class="main-div-mob">
+          <div class="right-side-titles">
+            <div class="faq-category">
+              <div class="faq-image">
+                <img
+                  srcset="
+                    {%- if block.settings.faq-img.width >= 375 -%}{{ block.settings.faq-img | image_url: width: 375 }} 375w,{%- endif -%}
+                    {%- if block.settings.faq-img.width >= 550 -%}{{ block.settings.faq-img | image_url: width: 550 }} 550w,{%- endif -%}
+                    {%- if block.settings.faq-img.width >= 750 -%}{{ block.settings.faq-img | image_url: width: 750 }} 750w,{%- endif -%}
+                    {%- if block.settings.faq-img.width >= 1100 -%}{{ block.settings.faq-img | image_url: width: 1100 }} 1100w,{%- endif -%}
+                    {%- if block.settings.faq-img.width >= 1500 -%}{{ block.settings.faq-img | image_url: width: 1500 }} 1500w,{%- endif -%}
+                    {%- if block.settings.faq-img.width >= 1780 -%}{{ block.settings.faq-img | image_url: width: 1780 }} 1780w,{%- endif -%}
+                    {%- if block.settings.faq-img.width >= 2000 -%}{{ block.settings.faq-img | image_url: width: 2000 }} 2000w,{%- endif -%}
+                    {%- if block.settings.faq-img.width >= 3000 -%}{{ block.settings.faq-img | image_url: width: 3000 }} 3000w,{%- endif -%}
+                    {%- if block.settings.faq-img.width >= 3840 -%}{{ block.settings.faq-img | image_url: width: 3840 }} 3840w,{%- endif -%}
+                    {{ block.settings.faq-img | image_url }} {{ block.settings.faq-img.width }}w
+                  "
+                  sizes="100vw"
+                  src="{{ block.settings.faq-img | image_url: width: 1500 }}"
+                  loading="lazy"
+                  alt="{{ block.settings.faq-img.alt | escape }}"
+                  width="{{ block.settings.faq-img.width }}"
+                  height="{{ block.settings.faq-img.height }}"
+                >
+              </div>
+              <div
+                class="faq-title faq-mob-title font-heebo-SemiBold {% if forloop.index ==1 %}focus-mob {% endif %}"
+                data-id="title-{{ forloop.index}}"
+              >
+                <span class="header-faq heebo-semibold">
+                  {{- block.settings['faq-title'] -}}
+                  <span
+                    class="icon-minus-mob"
+                  >
+                    {{ 'icon-minus.svg' | inline_asset_content }}
+                    </span>
+                    <span class="icon-plus-mob">{{ 'icon-plus.svg' | inline_asset_content }}</span></span
+                >
+              </div>
+            </div>
+          </div>
+          <div
+            class="left-side-div accordionWrapper {% if forloop.index ==1 %}opened {% else %}closed{% endif %}"
+            id="title-{{ forloop.index }}"
+          >
+            {% assign question = block.settings.questions | split: '##' %}
+            {% assign answer = block.settings.answers | split: '##' %}
+            {% assign sizes = question.size | minus: 1 %}
+            {% for x in (0..sizes) %}
+              <div
+                id="question-title"
+                class="accordionItem {% if forloop.index == 1 %}open {% else %}close{% endif %}"
+              >
+                <span class="accordionItemHeading heebo-semibold header-faq">
+                  {{- question[x] -}}
+                  <span
+                    class="icon-minus"
+                  >
+                  {{ 'icon-minus.svg' | inline_asset_content }}
+                    </span
+                  ><span class="icon-plus">{{ 'icon-plus.svg' | inline_asset_content }}</span></span
+                >
+                <span class="accordionItemContent font-heebo-regular">{{ answer[x] }}</span>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% for block in section.blocks %}
+  <script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+
+    {% assign question = block.settings.questions | split: "##" %}
+    {% assign answer = block.settings.answers | split: "##" %}
+    {% assign sizes = question.size | minus: 1 %}
+    {% for x in (0..sizes) %}
+    {
+    "@type": "Question",
+    "name": "{{ question[x] | strip_html | escape }}",
+    "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "{{ answer[x] | strip_html | escape }}"
+    }
+    }{% if forloop.last == false %},{% endif %}
+    {% endfor %}
+    ]
+    }
+  </script>
+{% endfor %}
+
+<script>
+  var accItem = document.getElementsByClassName('accordionItem');
+  var accHD = document.getElementsByClassName('accordionItemHeading');
+  for (i = 0; i < accHD.length; i++) {
+    accHD[i].addEventListener('click', toggleItem, false);
+  }
+  function toggleItem() {
+    var itemClass = this.parentNode.className;
+    for (i = 0; i < accItem.length; i++) {
+      accItem[i].className = 'accordionItem close';
+    }
+    if (itemClass == 'accordionItem close') {
+      this.parentNode.className = 'accordionItem open';
+    }
+  }
+  document.querySelectorAll('.faq-title').forEach((each) => {
+    each.addEventListener('click', function () {
+      let idd = each.getAttribute('data-id');
+      document.querySelectorAll('.accordionWrapper').forEach((each1) => {
+        each1.style.display = 'none';
+        let dataidd = each1.getAttribute('id');
+        if (idd == dataidd) each1.style.display = 'block';
+      });
+    });
+  });
+  document.querySelectorAll('.faq-titledesk').forEach((each) => {
+    each.addEventListener('click', function () {
+      document.querySelectorAll('.faq-titledesk').forEach((each1) => {
+        if (each1.classList.contains('focus-color')) {
+          each1.classList.remove('focus-color');
+        }
+      });
+
+      each.classList.add('focus-color');
+    });
+  });
+
+  document.querySelectorAll('.faq-title').forEach((each) => {
+    each.addEventListener('click', function () {
+      document.querySelectorAll('.faq-title').forEach((each1) => {
+        if (each1.classList.contains('focus-mob')) {
+          each1.classList.remove('focus-mob');
+        }
+      });
+
+      each.classList.add('focus-mob');
+    });
+  });
+  window.onload = (event) => {
+    var postop = document.querySelector('#faq-id-div').offsetTop;
+    var elementt = document.querySelector('#faq-id-div');
+    if (window.location.href.includes('faq-id-div')) {
+      window.scrollTo(0, postop - 50);
+    }
+  };
+</script>
+
+{% schema %}
+{
+  "name": "Faq's",
+  "settings": [
+    {
+      "type": "text",
+      "id": "faq-heading",
+      "label": "title for faq"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_padding_faq",
+      "label": "padding for section",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_paddingfaq_mob",
+      "label": "padding for section in mobile",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "margintopfaq",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "margin from top for entire section",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margintopfaqmob",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "margin from top for entire section",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Faq's",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "faq-img",
+          "label": "title img (use )"
+        },
+        {
+          "type": "text",
+          "id": "faq-title",
+          "label": "title for faq"
+        },
+        {
+          "type": "textarea",
+          "id": "questions",
+          "label": "enter questions(## seprated)"
+        },
+        {
+          "type": "html",
+          "id": "answers",
+          "label": "enter questions(## seprated)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "faq"
+    }
+  ]
+}
+{% endschema %}

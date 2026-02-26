@@ -1,0 +1,302 @@
+{{ 'customer.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    }
+
+    .register-main-container .customer.register .title{
+      text-align: left;
+    }
+
+    .register-main-container .customer.register .form-label {
+      text-align: left;
+      display: block;
+      text-transform: uppercase;
+    }
+
+    .register-main-container .required{
+      color: red;
+    }
+
+    .register-main-container .customer .field input,
+    .register-main-container .customer .field input:not(:placeholder-shown),
+    .register-main-container .customer .field input:focus{
+      padding: 0;
+    }
+
+    .register-main-container .customer.register .field{
+       margin: 0;
+       margin-bottom: 17.55px;
+      padding: 0 15px;
+      min-height: 40px;
+      align-items: center;
+    }
+
+    .register-main-container .customer .field:after,
+    .register-main-container .customer .field:hover.field:after{
+      border-radius: 6px;
+    }
+
+    .register-main-container .customer.register #RegisterForm-Phone::placeholder {
+      opacity: 1;
+  /*     line-height : normal; */
+      display: flex;
+      align-items: center;
+    }
+
+    .register-main-container .customer.register .accepts-marketing-container{
+      text-align: left;
+      margin-bottom: 17.55px;
+    }
+
+    .register-main-container .customer.register .btnRegister{
+      margin-top: 0px;
+      text-transform: uppercase;
+    }
+
+    .register-main-container .customer button,
+    .register-main-container .customer button:after{
+      border-radius: 6px;
+    }
+
+      .sl-container .sl-vertical a.social_login.facebook, .sl-container .sl-vertical a.social_login.google{
+        border-radius: 6px;
+      }
+
+
+     @media screen and (max-width: 768px) {
+
+       .register-main-container .customer:not(.account):not(.order){
+         margin: 0;
+         text-align: left;
+         width: 100%;
+         max-width: 100%;
+       }
+
+     }
+
+    @media screen and (min-width: 750px) {
+      .section-{{ section.id }}-padding {
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+      }
+    }
+{%- endstyle -%}
+
+<div class="register-main-container">
+  <div class="customer register section-{{ section.id }}-padding">
+    <svg style="display: none">
+      <symbol id="icon-error" viewBox="0 0 13 13">
+        <circle cx="6.5" cy="6.50049" r="5.5" stroke="white" stroke-width="2"/>
+        <circle cx="6.5" cy="6.5" r="5.5" fill="#EB001B" stroke="#EB001B" stroke-width="0.7"/>
+        <path d="M5.87413 3.52832L5.97439 7.57216H7.02713L7.12739 3.52832H5.87413ZM6.50076 9.66091C6.88091 9.66091 7.18169 9.37267 7.18169 9.00504C7.18169 8.63742 6.88091 8.34917 6.50076 8.34917C6.12061 8.34917 5.81982 8.63742 5.81982 9.00504C5.81982 9.37267 6.12061 9.66091 6.50076 9.66091Z" fill="white"/>
+        <path d="M5.87413 3.17832H5.51535L5.52424 3.537L5.6245 7.58083L5.63296 7.92216H5.97439H7.02713H7.36856L7.37702 7.58083L7.47728 3.537L7.48617 3.17832H7.12739H5.87413ZM6.50076 10.0109C7.06121 10.0109 7.5317 9.57872 7.5317 9.00504C7.5317 8.43137 7.06121 7.99918 6.50076 7.99918C5.94031 7.99918 5.46982 8.43137 5.46982 9.00504C5.46982 9.57872 5.94031 10.0109 6.50076 10.0109Z" fill="white" stroke="#EB001B" stroke-width="0.7">
+      </symbol>
+    </svg>
+
+    <h1 class="title">
+      <!-- {{ 'customer.register.title' | t }} -->
+      Register
+    </h1>
+    <!-- <p class="font-heebo-regular create-acc"> please fill in the information below :</p> -->
+    {%- form 'create_customer', novalidate: 'novalidate' -%}
+      {% unless template.name == 'login' %}
+        {%- if form.errors -%}
+          <h2 class="form__message font-heebo-regular forget-pass" tabindex="-1" autofocus>
+            <svg aria-hidden="true" focusable="false" role="presentation">
+              <use href="#icon-error" />
+            </svg>
+            {{ 'templates.contact.form.error_heading' | t }}
+          </h2>
+
+          <ul>
+            {%- for field in form.errors -%}
+              <li>
+                {%- if field == 'form' -%}
+                  {{ form.errors.messages[field] }}
+                {%- else -%}
+                  <a href="#RegisterForm-{{ field }}">
+                    {{ form.errors.translated_fields[field] | capitalize }}
+                    {{ form.errors.messages[field] }}
+                  </a>
+                {%- endif -%}
+              </li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+      {% endunless %}
+
+      <label class="form-label" for="RegisterForm-FirstName">First Name <span class="required">*</span></label>
+      <div class="field">
+        <input
+          type="text"
+          name="customer[first_name]"
+          id="RegisterForm-FirstName"
+          {% if form.first_name %}
+            value="{{ form.first_name }}"
+          {% endif %}
+          autocomplete="given-name"
+          placeholder="{{ 'customer.register.first_name' | t }}"
+        >
+        <!--
+          <label for="RegisterForm-FirstName" class="forget-pass font-heebo-regular">
+            {{ 'customer.register.first_name' | t }}
+          </label>
+        -->
+      </div>
+
+      <label class="form-label" for="RegisterForm-LastName">Last Name</label>
+      <div class="field">
+        <input
+          type="text"
+          name="customer[last_name]"
+          id="RegisterForm-LastName"
+          {% if form.last_name %}
+            value="{{ form.last_name }}"
+          {% endif %}
+          autocomplete="family-name"
+          placeholder="{{ 'customer.register.last_name' | t }}"
+        >
+        <!--
+          <label for="RegisterForm-LastName" class="forget-pass font-heebo-regular">
+            {{ 'customer.register.last_name' | t }}
+          </label>
+        -->
+      </div>
+
+      <label class="form-label" for="RegisterForm-email">Email <span class="required">*</span></label>
+      <div class="field">
+        <input
+          type="email"
+          name="customer[email]"
+          id="RegisterForm-email"
+          {% if form.email %}
+            value="{{ form.email }}"
+          {% endif %}
+          spellcheck="false"
+          autocapitalize="off"
+          autocomplete="email"
+          aria-required="true"
+          {% if form.errors contains 'email' %}
+            aria-invalid="true"
+            aria-describedby="RegisterForm-email-error"
+          {% endif %}
+          placeholder="{{ 'customer.register.email' | t }}"
+        >
+        <!--
+          <label for="RegisterForm-email" class="forget-pass font-heebo-regular">
+            {{ 'customer.register.email' | t }}
+          </label>
+        -->
+      </div>
+      {%- if form.errors contains 'email' -%}
+        <span id="RegisterForm-email-error " class="form__message error-create">
+          <svg aria-hidden="true" focusable="false" role="presentation">
+            <use href="#icon-error" />
+          </svg>
+          {{ form.errors.translated_fields.email | capitalize }}
+          {{ form.errors.messages.email }}.
+        </span>
+      {%- endif -%}
+
+      <label class="form-label" for="RegisterForm-password">Password <span class="required">*</span></label>
+      <div class="field">
+        <input
+          type="password"
+          name="customer[password]"
+          id="RegisterForm-password"
+          aria-required="true"
+
+          {% if form.errors contains 'password' %}
+            aria-invalid="true"
+            aria-describedby="RegisterForm-password-error"
+          {% endif %}
+
+          placeholder="{{ 'customer.register.password' | t }}"
+        >
+        <!--
+          <label for="RegisterForm-password" class="forget-pass font-heebo-regular">
+            {{ 'customer.register.password' | t }}
+          </label>
+        -->
+      </div>
+      {%- if form.errors contains 'password' -%}
+        <span id="RegisterForm-password-error" class="form__message error-create">
+          <svg aria-hidden="true" focusable="false" role="presentation">
+            <use href="#icon-error" />
+          </svg>
+          {{ form.errors.translated_fields.password | capitalize }}
+          {{ form.errors.messages.password }}.
+        </span>
+      {%- endif -%}
+
+      <label class="form-label" for="RegisterForm-Phone">Phone <span class="required">*</span></label>
+      <div class="field">
+        <input
+          type="number"
+          id="RegisterForm-Phone"
+          class=""
+          name="customer[note][phone]"
+          {% if form.phone %}
+            value="{{ form.phone }}"
+          {% endif %}
+          aria-required="true"
+          minlength="10"
+          maxlength="10"
+          pattern="[0-9]{10}"
+          placeholder="Please enter valid 10 digit Phone No."
+        >
+        <!--
+          <label for="RegisterForm-Phone" class="forget-pass font-heebo-regular">
+            Phone
+          </label>
+        -->
+      </div>
+      <div class="accepts-marketing-container">
+        <input type="checkbox" name="customer[accepts_marketing]" id="accepts_marketing" checked="">
+        <label for="accepts_marketing"
+          >Subscribe to RCS, WhatsApp, Email, SMS for special offers and exclusive benefits.
+        </label>
+      </div>
+      <button class="btnRegister" disabled>
+        <span class="font-heebo-regular forget-pass">{{ 'customer.register.submit' | t }}</span>
+      </button>
+    {%- endform -%}
+  </div>
+</div>
+
+<script>
+  const firstName = document.querySelector('#RegisterForm-FirstName');
+  const phone = document.querySelector('#RegisterForm-Phone');
+  const btnRegister = document.querySelector('.btnRegister');
+
+  /**
+   * "input event" added for firstName
+   */
+  firstName.addEventListener('input', (e) => {
+    if (e.currentTarget.value !== '' && phone.value !== '') {
+      btnRegister.disabled = false;
+    } else {
+      btnRegister.disabled = true;
+    }
+  });
+
+  /**
+   * "input event" added for phone
+   */
+  phone.addEventListener('input', (e) => {
+    // validating maxlength input
+    if (e.currentTarget.value.length > e.currentTarget.maxLength) {
+      e.currentTarget.value = e.currentTarget.value.slice(0, e.currentTarget.maxLength);
+    }
+
+    //   button disability
+    if (firstName.value !== '' && e.currentTarget.value.length === e.currentTarget.maxLength) {
+      btnRegister.disabled = false;
+    } else {
+      btnRegister.disabled = true;
+    }
+  });
+</script>

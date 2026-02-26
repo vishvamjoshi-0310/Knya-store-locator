@@ -1,0 +1,110 @@
+  .our-fabric-section{
+    padding: 52px 80px;
+  }
+  .feature-image-wrapper{
+    position: relative;
+  }
+
+  .icon-wrapper{
+    display: flex;
+  }
+
+.icon-wrapper svg {
+  transition: transform 0.3s ease;
+}
+
+.icon-wrapper.active svg {
+  transform: rotate(45deg);
+}
+
+
+  .heading-with-svg{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .heading-with-svg .icon-wrapper {
+    padding: 5px;
+    border-radius: 100%;
+    background-color: rgba(255,255,255,0.75);
+  }
+
+  .feature-image-wrapper img{
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+  }
+
+  .feature-card-content{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: #0000005C;
+    backdrop-filter: blur(24px);
+    border: 1px solid #FFFFFF8A;
+    padding: 16px 12px;
+    margin: 22px 16px;
+    border-radius: 8px;
+  }
+  .feature-card-content h3{
+    font-weight: 400;
+    font-size: 16px;
+    leading-trim: Cap height;
+    line-height: 28px;
+    letter-spacing: 0px;
+    vertical-align: middle;
+    margin: 0;
+    color: #ffffff;
+  }
+  .feature-card-content p{
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0px;
+    vertical-align: middle;
+    margin: 0;
+    color: #CDCDCD;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.3s ease-in-out, max-height 0.3s ease-in-out;
+  }
+
+  .heading-with-svg svg {
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  @media(min-width: 1200px){
+    .feature-card-content:hover p {
+      opacity: 1;
+      max-height: 100px; /* Adjust based on content */
+    }
+
+    .feature-card-section-wrapper{
+      padding: 52px 80px;
+    }
+  }
+
+  @media (max-width: 1200px) { 
+    .feature-card-content p {
+        opacity: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: opacity 0.3s ease-in-out, max-height 0.3s ease-in-out;
+      }
+  
+      .feature-card-content p.visible {
+        opacity: 1;
+        max-height: 100%; /* Adjust based on content */
+      }
+        .our-fabric-section{
+    padding: 32px 0px;
+  }
+  .fabric-image_container{
+    padding-inline: 16px;
+  }
+
+  .fabric-image_container-mob-overflow {
+    scrollbar-width: none; 
+  }
+}

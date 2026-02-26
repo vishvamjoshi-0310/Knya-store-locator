@@ -1,0 +1,52 @@
+<a href="{{ block.settings.link_url }}" class="helping-card" {{ block.shopify_attributes }}>
+  <div class="helping-card-icon">
+    {{ block.settings.icon_svg }}
+  </div>
+  <h3 class="helping-card-title">{{ block.settings.title }}</h3>
+  {% if block.settings.link_url != blank %}
+    <span href="{{ block.settings.link_url }}" class="helping-card-link">
+      {{ block.settings.link_text }}
+      {{ block.settings.link_icon_svg }}
+    </span>
+  {% endif %}
+</a>
+
+{% schema %}
+{
+  "name": "Help Card",
+  "tag": null,
+  "settings": [
+    {
+      "type": "html",
+      "id": "icon_svg",
+      "label": "Icon SVG",
+      "info": "Paste your SVG code here"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Card Title",
+      "default": "Card Title"
+    },
+    {
+      "type": "text",
+      "id": "link_text",
+      "label": "Link Text",
+      "default": "Learn More"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Link URL"
+    },
+    {
+      "type": "html",
+      "id": "link_icon_svg",
+      "label": "Link Icon SVG"
+    }
+  ],
+    "presets": [
+        {"name": "Help card"}
+    ]
+}
+{% endschema %}

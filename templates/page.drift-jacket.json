@@ -1,0 +1,688 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "content_direction": "column",
+        "gap": 12,
+        "color_scheme": "",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "drift_jacket_hero_banner_iTWCGJ": {
+      "type": "drift-jacket-hero-banner",
+      "name": "Drift Jacket Hero Banner",
+      "settings": {
+        "banner_image_desktop": "shopify://shop_images/Group_2_0c9fe605-aecb-4288-bb39-1a5e6b0791da.png",
+        "banner_image_mobile": "shopify://shop_images/Banner_mobile.png",
+        "title_gif_desktop": "shopify://shop_images/Drift_Logo_Desktop_2.gif",
+        "title_gif_mobile": "shopify://shop_images/Drift_Logo_Mobile_1.gif",
+        "intro_url": "shopify://collections/shop-jacket",
+        "shopnow_url": "shopify://collections/shop-jacket"
+      }
+    },
+    "banner_with_text_iDcBFY": {
+      "type": "banner-with-text",
+      "blocks": {
+        "text_GNFABc": {
+          "type": "text",
+          "settings": {
+            "image": "shopify://shop_images/Banner_Desktop_1.png",
+            "image_2": "shopify://shop_images/Banner_mobile_1.png",
+            "subheading": "",
+            "subheading_color": "#ffffff",
+            "heading": "",
+            "heading_color": "#ffffff",
+            "heading_size": "h1",
+            "text": "",
+            "text_color": "#ffffff",
+            "text_style": "body",
+            "button_link_banner": "https://knyamed.com/collections/shop-jacket",
+            "button_label_1": "",
+            "button_link_1": "https://knyamed.com/collections/shop-jacket",
+            "button_label_2": "",
+            "button_link_2": "https://knyamed.com/collections/shop-jacket",
+            "button_style_secondary_1": false,
+            "button-backgroundcolor": "",
+            "button-color": "",
+            "hpbox1": "Drift-12Oct2025"
+          }
+        }
+      },
+      "block_order": [
+        "text_GNFABc"
+      ],
+      "disabled": true,
+      "name": "Banner with text",
+      "settings": {
+        "enable_autoplay": false,
+        "margin-top-desktop": 0,
+        "margin-bottom-desktop": 0,
+        "margin-top-mobile": 0,
+        "margin-bottom-mobile": 0,
+        "desktop_content_position": "middle-center",
+        "show_text_box": true,
+        "desktop_content_alignment": "center",
+        "text-backgroundcolor": "",
+        "text-color": "",
+        "box-padding": 0,
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": true,
+        "show_text_below": true
+      }
+    },
+    "product_features_bgqD7J": {
+      "type": "product-features",
+      "blocks": {
+        "feature_CePTEG": {
+          "type": "feature",
+          "settings": {
+            "image-desktop": "shopify://shop_images/AirPods_Pro_3_white_colour_noise-cancelling_microphone_silicone_tip_short_stem_features_letter_R.png",
+            "image-mobile": "shopify://shop_images/AirPods_Pro_3_white_colour_noise-cancelling_microphone_silicone_tip_short_stem_features_letter_R_3.png",
+            "title": "Stay Warm. Stay Focused.",
+            "description": "Warm fleece lining that keeps you comfortable in AC-heavy wards and chilly nights.",
+            "Shop-Women-title": "Shop Women's",
+            "Shop-Women-url": "shopify://products/drift-womens-black-jacket",
+            "Shop-men-title": "Shop Men's",
+            "Shop-men-url": "shopify://products/drift-mens-black-jacket"
+          }
+        },
+        "feature_RXbiFa": {
+          "type": "feature",
+          "settings": {
+            "image-desktop": "shopify://shop_images/Pocket_a22a43b1-84cd-4249-a421-46b6082dec77.png",
+            "image-mobile": "shopify://shop_images/Picture.png",
+            "title": "Carry What Matters.",
+            "description": "Stethoscope. Diary. Pens. Cash. Designed with 6 utility pockets to keep your essentials close.",
+            "Shop-Women-title": "Shop Women's",
+            "Shop-Women-url": "shopify://products/drift-womens-black-jacket",
+            "Shop-men-title": "Shop Men's",
+            "Shop-men-url": "shopify://products/drift-mens-black-jacket"
+          }
+        },
+        "feature_pCnahK": {
+          "type": "feature",
+          "settings": {
+            "image-desktop": "shopify://shop_images/AirPods_Pro_3_white_colour_noise-cancelling_microphone_silicone_tip_short_stem_features_letter_R_2.png",
+            "image-mobile": "shopify://shop_images/AirPods_Pro_3_white_colour_noise-cancelling_microphone_silicone_tip_short_stem_features_letter_R_4.png",
+            "title": "Never Holds You Back.",
+            "description": "2-way stretch fabric that flexes as you round, bend, sprint, or scrub in.",
+            "Shop-Women-title": "Shop Women's",
+            "Shop-Women-url": "shopify://products/drift-womens-black-jacket",
+            "Shop-men-title": "Shop Men's",
+            "Shop-men-url": "shopify://products/drift-mens-black-jacket"
+          }
+        },
+        "bottom_feature_6MxYgg": {
+          "type": "bottom_feature",
+          "settings": {
+            "icon": "shopify://shop_images/USP_icons.svg",
+            "title": "Scrub Ready.",
+            "description": "Made to Layer Over Scrubs.<br> \nNo tugging. No bulking. Just pull on and go.",
+            "womens-url": "shopify://products/drift-womens-black-jacket",
+            "mens-url": "shopify://products/drift-mens-black-jacket"
+          }
+        },
+        "bottom_feature_LQKdNi": {
+          "type": "bottom_feature",
+          "settings": {
+            "icon": "shopify://shop_images/USP_icons_1.svg",
+            "title": "High Rise Collar.",
+            "description": "Cold Outside, Calm Inside. <br>\nKeeps the chill out and your focus in.",
+            "womens-url": "shopify://products/drift-womens-black-jacket",
+            "mens-url": "shopify://products/drift-mens-black-jacket"
+          }
+        },
+        "bottom_feature_TiACxh": {
+          "type": "bottom_feature",
+          "settings": {
+            "icon": "shopify://shop_images/USP_icons_2.svg",
+            "title": "Effortless Style.",
+            "description": "Shift-wear, Not Just Outerwear. <br>\nMinimal. Modern. Designed to look sharp.",
+            "womens-url": "shopify://products/drift-womens-black-jacket",
+            "mens-url": "shopify://products/drift-mens-black-jacket"
+          }
+        }
+      },
+      "block_order": [
+        "feature_CePTEG",
+        "feature_RXbiFa",
+        "feature_pCnahK",
+        "bottom_feature_6MxYgg",
+        "bottom_feature_LQKdNi",
+        "bottom_feature_TiACxh"
+      ],
+      "name": "Medical Scrubs Features",
+      "settings": {
+        "medicos_heading": "<p>Built for Medicos. <br/>Designed for long shifts.</p>"
+      }
+    },
+    "product_feature_card_r9wDje": {
+      "type": "product-feature-card",
+      "blocks": {
+        "feature_zagwXW": {
+          "type": "feature",
+          "settings": {
+            "video_url": "shopify://files/videos/Jacket Landing Page_Comfort.mp4",
+            "image": "shopify://shop_images/feature_3_cover_70_jpg.png",
+            "heading": "Feel Comfortable.",
+            "subheading": "Tailored for long shifts."
+          }
+        },
+        "feature_L6Ebk6": {
+          "type": "feature",
+          "settings": {
+            "video_url": "shopify://files/videos/Jacket Landing Page_Pockets.mp4",
+            "image": "shopify://shop_images/feature_2_cover_70_jpg.png",
+            "heading": "Carry More.",
+            "subheading": "6 smart pockets"
+          }
+        },
+        "feature_pMpXBB": {
+          "type": "feature",
+          "settings": {
+            "video_url": "shopify://files/videos/Jacket Landing Page_Fabric.mp4",
+            "image": "shopify://shop_images/feature_1_cover_70_jpg.png",
+            "heading": "Stay Warm.",
+            "subheading": "Warm fleece lining"
+          }
+        }
+      },
+      "block_order": [
+        "feature_zagwXW",
+        "feature_L6Ebk6",
+        "feature_pMpXBB"
+      ],
+      "name": "Product Feature Card",
+      "settings": {
+        "section_title": "DRIFT, up close"
+      }
+    },
+    "drift_difference_9q7je9": {
+      "type": "drift-difference",
+      "blocks": {
+        "feature_MDfnJU": {
+          "type": "feature",
+          "settings": {
+            "icon_image": "shopify://shop_images/USP_icons_e2431a80-afcd-4b9f-9e70-9189f27a1938.png",
+            "feature_text": "6 Pocket"
+          }
+        },
+        "feature_zEYgMR": {
+          "type": "feature",
+          "settings": {
+            "icon_image": "shopify://shop_images/USP_icons_1.png",
+            "feature_text": "AC Friendly"
+          }
+        },
+        "feature_EryYwC": {
+          "type": "feature",
+          "settings": {
+            "icon_image": "shopify://shop_images/USP_icons_2.png",
+            "feature_text": "Comfort fit"
+          }
+        }
+      },
+      "block_order": [
+        "feature_MDfnJU",
+        "feature_zEYgMR",
+        "feature_EryYwC"
+      ],
+      "name": "Drift Difference",
+      "settings": {
+        "section_title": "The DRIFT Difference",
+        "main_heading": "Made for the coldest wards and the longest shifts.",
+        "desktop_image": "shopify://shop_images/Heat_Section_Desktop_1.png",
+        "mobile_image": "shopify://shop_images/Heat_Section_Mobile.png"
+      }
+    },
+    "product_list_eVMKd7": {
+      "type": "product-list",
+      "blocks": {
+        "static-header": {
+          "type": "_product-list-content",
+          "name": "t:names.header",
+          "static": true,
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": false,
+            "horizontal_alignment": "space-between",
+            "vertical_alignment": "flex-end",
+            "align_baseline": true,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 0,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "inherit_color_scheme": false,
+            "color_scheme": "scheme-4a76643a-9223-4c3b-a8eb-634a27a0a48a",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "product_list_text_TnFfGx": {
+              "type": "_product-list-text",
+              "name": "t:names.collection_title",
+              "settings": {
+                "text": "<p>Designed with you in mind</p>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h3",
+                "font": "var(--font-heading--family)",
+                "font_size": "2rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground-heading)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 8,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_DCVcpT": {
+              "type": "text",
+              "name": "t:names.text",
+              "settings": {
+                "text": "<p>Shop Jackets</p>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "font_size_mobile": "unset",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-primary)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 8,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0,
+                "custom_font_class": ""
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "product_list_text_TnFfGx",
+            "text_DCVcpT"
+          ]
+        },
+        "static-product-card": {
+          "type": "_product-card",
+          "name": "t:names.product_card",
+          "static": true,
+          "settings": {
+            "product_card_gap": 4,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "product_card_gallery_xqTJxa": {
+              "type": "_product-card-gallery",
+              "name": "t:names.product_card_media",
+              "settings": {
+                "image_ratio": "adapt",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "product_title_aWJNWk": {
+              "type": "product-title",
+              "name": "t:names.product_title",
+              "settings": {
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 4,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "price_3AYMKQ": {
+              "type": "price",
+              "name": "t:names.product_price",
+              "settings": {
+                "show_sale_price_first": true,
+                "show_installments": false,
+                "show_tax_info": false,
+                "show_tax_info_product_card": false,
+                "tax_info_product_card_text": "*Incl of taxes",
+                "type_preset": "h6",
+                "width": "100%",
+                "alignment": "left",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "color": "var(--color-foreground)",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "custom_color_swatch_6DaXck": {
+              "type": "custom-color-swatch",
+              "name": "Color swatches",
+              "settings": {
+                "title": "",
+                "title_font_size": 16,
+                "title_font_size_mobile": 14,
+                "title_font_weight": "Heebo-Medium",
+                "title_padding": 0,
+                "title_padding_mobile": 0,
+                "title_bottom_spacing": 0,
+                "title_text_color": "#000000",
+                "use_product_image": false,
+                "swatch_size": 22,
+                "swatch_size_mobile": 20,
+                "swatch_spacing": 8,
+                "swatch_spacing_mobile": 6,
+                "top_spacing": 12,
+                "swatch_border_radius": 40,
+                "color-swatches-show-desktop": 5,
+                "color-swatches-show-mobile": 3,
+                "swatch_border_width": 1,
+                "swatch_border_color": "#e6e6e6",
+                "current_swatch_border_width": 2,
+                "current_swatch_border_color": "#000000",
+                "placeholder_color": "#f5f5f5",
+                "placeholder_text_color": "#666666"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "product_card_gallery_xqTJxa",
+            "product_title_aWJNWk",
+            "price_3AYMKQ",
+            "custom_color_swatch_6DaXck"
+          ]
+        }
+      },
+      "name": "t:names.products_carousel",
+      "settings": {
+        "collection": "shop-jacket",
+        "layout_type": "carousel",
+        "carousel_on_mobile": false,
+        "max_products": 16,
+        "columns": 4,
+        "mobile_columns": "2",
+        "tablet_columns": 2,
+        "mobile_card_size": "60cqw",
+        "columns_gap": 24,
+        "rows_gap": 24,
+        "icons_style": "arrow",
+        "icons_shape": "none",
+        "show_custom_navigation": true,
+        "show_infinite_carousel": false,
+        "section_width": "full-width",
+        "horizontal_alignment": "flex-start",
+        "gap": 28,
+        "color_scheme": "scheme-1",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
+    "slider_phBxcX": {
+      "type": "slider",
+      "disabled": true,
+      "settings": {
+        "shop-now-cont": "ADD TO CART",
+        "show_padding_slidd": false,
+        "pagination": false,
+        "show_secondary_image": true,
+        "show_padding_mob_slidd": false,
+        "shop_collection_text": "",
+        "shop_collection_url": "",
+        "marginTopslidd": 28,
+        "marginBottomslidd": 28,
+        "marginTopsliddmob": 16,
+        "marginBottomsliddmob": 32,
+        "headText": "Designed with you in mind",
+        "secondText": "Shop Jackets",
+        "collection": "shop-jacket"
+      }
+    },
+    "drift_in_action_video_TKgJEQ": {
+      "type": "drift-in-action-video",
+      "name": "Drift In Action Video",
+      "settings": {
+        "headline": "See DRIFT in Action",
+        "button_text": "Watch the film",
+        "button_link": "shopify://collections/shop-jacket",
+        "video_url": "shopify://files/videos/Knya Drift Jacket_16x9.mp4"
+      }
+    },
+    "faq_accordion_aTrXdz": {
+      "type": "faq-accordion",
+      "blocks": {
+        "faq_Bh9fzz": {
+          "type": "faq",
+          "settings": {
+            "question": "What fabric is the jacket made of?",
+            "answer": "Drift is constructed from two high-performance fabrics: <br>\n ● 250gsm Bonded Fleece (100% polyester) for internal warmth <br>\n ● 2-way stretch lycra blend - 70% viscose, 27% polyester, 3% elastane - for flexibility and all-day wear "
+          }
+        },
+        "faq_iLAThj": {
+          "type": "faq",
+          "settings": {
+            "question": "Who is the Drift Jacket made for?",
+            "answer": "Drift is made for all healthcare professionals - doctors, nurses, residents, and students. \nIt’s scrub-ready and features smart internal pockets for stethoscopes, earbuds, pens, keys, cash, and more. "
+          }
+        },
+        "faq_TdnxyQ": {
+          "type": "faq",
+          "settings": {
+            "question": "What sizes does the Drift Jacket come in?",
+            "answer": "Drift is available in separate fits for men and women and comes in sizes XS to 4XL. It follows the same sizing as your Knya scrubs, so you can order your usual size. "
+          }
+        },
+        "faq_NP6PjT": {
+          "type": "faq",
+          "settings": {
+            "question": "Is the Drift Jacket warm enough for outdoor use?",
+            "answer": "Yes - it’s made with bonded fleece (fleece on the inside only), so it keeps you warm during early mornings, cold commutes, and even airport travel. It’s lightweight, but thermal."
+          }
+        },
+        "faq_8tBCAT": {
+          "type": "faq",
+          "settings": {
+            "question": "Can I wear Drift inside a cold hospital or ICU?",
+            "answer": "Absolutely. In fact, Drift was designed for cold wards and long night shifts. It's not just a winter jacket - it's your go-to shiftwear for AC-heavy hospital environments year-round."
+          }
+        },
+        "faq_UjFCdN": {
+          "type": "faq",
+          "settings": {
+            "question": "Can I layer an underscrub below it?",
+            "answer": "Yes - Drift works beautifully with an underscrub and your scrub top. Layer it up, without bulk. "
+          }
+        },
+        "faq_3DjjHN": {
+          "type": "faq",
+          "settings": {
+            "question": "Is the jacket waterproof?",
+            "answer": "No - Drift is thermal, not water-resistant. It’s built for cold, not rain."
+          }
+        },
+        "faq_RJwEaX": {
+          "type": "faq",
+          "settings": {
+            "question": "Is it machine washable?",
+            "answer": "Yes. Drift is easy-care and machine washable. It won’t shrink or lose shape with regular washing. No special settings required. "
+          }
+        }
+      },
+      "block_order": [
+        "faq_Bh9fzz",
+        "faq_iLAThj",
+        "faq_TdnxyQ",
+        "faq_NP6PjT",
+        "faq_8tBCAT",
+        "faq_UjFCdN",
+        "faq_3DjjHN",
+        "faq_RJwEaX"
+      ],
+      "name": "FAQ Accordion",
+      "settings": {
+        "heading": "FAQs"
+      }
+    },
+    "read_more_section_Tg38Hq": {
+      "type": "read-more-section",
+      "disabled": true,
+      "settings": {
+        "show_padding_read": false,
+        "show_padding_mob_read": false,
+        "margintopread": 0,
+        "marginbottomread": 0,
+        "margintopreadmob": 0,
+        "marginbottomreadmob": 32,
+        "main-text": "Built for Medicos. Designed for Long Shifts - Drift Jackets",
+        "content-text-before": "<p>Stay Warm. Stay Focused with <a href=\"/collections/shop-jacket\" title=\"Shop Jacket\">Knya's Drift Jacket</a>.<br/><br/></p>",
+        "content-text": "Long nights. Cold wards. Endless rounds. The Drift Jacket keeps medicos warm through it all.Made with a soft fleece lining, it’s your comfort layer for AC-heavy hospitals and late-night duties.Think of it as your smart winter jacket for every shift—warm, light, and made to move with you.Carry What Matters.Every medico needs space for the little things that matter, from a stethoscope to a notebook, a few pens, or even your shift essentials. Drift features 6 utility pockets so everything stays close and secure, wherever duty takes you. It’s not just a comfortable jacket; it’s a gear upgrade for medical life.Shop the Drift Men’s (Black) Jacket and experience what true medical comfort feels like—because when you feel your best, you care your best.Never Holds You Back.Rounds, stretches, sprints—your jacket should move as freely as you do. That’s why Drift comes with a 2-way stretch fabric, giving flexibility without bulk. It’s the perfect comfort-fit winter jacket designed to keep you focused, not restricted.Scrub-Ready Layering.No tugging. No bulking. No fuss. Drift is designed to layer easily over scrubs, staying smooth and professional. Whether you’re stepping out for rounds or heading into an ICU, this jacket keeps you ready, always.High-Rise Collar. Calm Inside.The high-rise collar keeps the chill out and your focus in.Made to tackle the coldest wards or winter mornings, it’s the ultimate comfort jacket for medicos who never slow down.Effortless Style.Minimal. Modern. Medical. Drift doesn’t just work hard, it looks sharp too. Whether you’re on duty or off, it’s your go-to comfortable winter coat that fits right into every scene.The Drift DifferenceWarm fleece lining for long shifts6 utility pockets for essentials2-way stretch fabric for easy movementAC-friendly warmthComfort fit designed for medicosScrub-ready and shift-readyExperience all-day warmth and comfort with the Drift Women’s (Black) Jacket because feeling great helps you care even betterMade for the Coldest Wards and the Longest Shifts.Drift keeps healthcare professionals comfortable through winter rounds and long nights. It’s more than just a jacket, it’s your daily comfort armor.",
+        "read-more-text": "READ MORE",
+        "read-less-text": "READ LESS",
+        "back-img": "shopify://shop_images/Vector_e3c241a2-7b11-44f6-8e63-6dcca5fa809c.png"
+      }
+    },
+    "section_6LkYiW": {
+      "type": "section",
+      "blocks": {
+        "read_more_Km9LTn": {
+          "type": "read_more",
+          "name": "Read more block",
+          "settings": {
+            "show_padding_read": false,
+            "show_padding_mob_read": false,
+            "margintopread": 0,
+            "marginbottomread": 0,
+            "margintopreadmob": 0,
+            "marginbottomreadmob": 0,
+            "main-text": "Built for Medicos. Designed for Long Shifts - Drift Jackets",
+            "content-text-before": "<p>Stay Warm. Stay Focused with <a href=\"/collections/shop-jacket\" title=\"Shop Jacket\">Knya's Drift Jacket</a>.<br/><br/></p>",
+            "content-text": "<p>Long nights. Cold wards. Endless rounds. The Drift Jacket keeps medicos warm through it all.Made with a soft fleece lining, it’s your comfort layer for AC-heavy hospitals and late-night duties.Think of it as your smart winter jacket for every shift—warm, light, and made to move with you.Carry What Matters.Every medico needs space for the little things that matter, from a stethoscope to a notebook, a few pens, or even your shift essentials. Drift features 6 utility pockets so everything stays close and secure, wherever duty takes you. It’s not just a comfortable jacket; it’s a gear upgrade for medical life.Shop the Drift Men’s (Black) Jacket and experience what true medical comfort feels like—because when you feel your best, you care your best.Never Holds You Back.Rounds, stretches, sprints—your jacket should move as freely as you do. That’s why Drift comes with a 2-way stretch fabric, giving flexibility without bulk. It’s the perfect comfort-fit winter jacket designed to keep you focused, not restricted.Scrub-Ready Layering.No tugging. No bulking. No fuss. Drift is designed to layer easily over scrubs, staying smooth and professional. Whether you’re stepping out for rounds or heading into an ICU, this jacket keeps you ready, always.High-Rise Collar. Calm Inside.The high-rise collar keeps the chill out and your focus in.Made to tackle the coldest wards or winter mornings, it’s the ultimate comfort jacket for medicos who never slow down.Effortless Style.Minimal. Modern. Medical. Drift doesn’t just work hard, it looks sharp too. Whether you’re on duty or off, it’s your go-to comfortable winter coat that fits right into every scene.The Drift DifferenceWarm fleece lining for long shifts6 utility pockets for essentials2-way stretch fabric for easy movementAC-friendly warmthComfort fit designed for medicosScrub-ready and shift-readyExperience all-day warmth and comfort with the Drift Women’s (Black) Jacket because feeling great helps you care even betterMade for the Coldest Wards and the Longest Shifts.Drift keeps healthcare professionals comfortable through winter rounds and long nights. It’s more than just a jacket, it’s your daily comfort armor.</p>",
+            "read-more-text": "READ MORE",
+            "read-less-text": "READ LESS",
+            "back-img": "shopify://shop_images/Vector_e3c241a2-7b11-44f6-8e63-6dcca5fa809c.png"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "read_more_Km9LTn"
+      ],
+      "name": "Read more",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": false,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 0,
+        "section_width": "full-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 0,
+        "padding-block-end": 0,
+        "custom_section_class": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "drift_jacket_hero_banner_iTWCGJ",
+    "banner_with_text_iDcBFY",
+    "product_features_bgqD7J",
+    "product_feature_card_r9wDje",
+    "drift_difference_9q7je9",
+    "product_list_eVMKd7",
+    "slider_phBxcX",
+    "drift_in_action_video_TKgJEQ",
+    "faq_accordion_aTrXdz",
+    "read_more_section_Tg38Hq",
+    "section_6LkYiW"
+  ]
+}

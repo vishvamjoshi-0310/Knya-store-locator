@@ -1,0 +1,354 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "title": {
+          "type": "text",
+          "name": "t:names.title",
+          "settings": {
+            "text": "<h1>{{ closest.page.title }}</h1>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "center",
+            "type_preset": "h2",
+            "font": "var(--font-primary--family)",
+            "font_size": "",
+            "font_size_mobile": "unset",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "content": {
+          "type": "text",
+          "name": "t:names.content",
+          "settings": {
+            "text": "{{ closest.page.content }}",
+            "width": "100%",
+            "max_width": "narrow",
+            "alignment": "center",
+            "type_preset": "rte",
+            "font": "var(--font-primary--family)",
+            "font_size": "",
+            "font_size_mobile": "unset",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "title",
+        "content"
+      ],
+      "disabled": true,
+      "settings": {
+        "content_direction": "column",
+        "gap": 32,
+        "color_scheme": "",
+        "padding-block-start": 40,
+        "padding-block-end": 0
+      }
+    },
+    "section_Gmq7b6": {
+      "type": "section",
+      "blocks": {
+        "text_6yV79c": {
+          "type": "text",
+          "name": "t:names.heading",
+          "settings": {
+            "text": "<p>Focused  Assistance is  on standby</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "custom",
+            "font": "var(--font-subheading--family)",
+            "font_size": "3.5rem",
+            "font_size_mobile": "1.5rem",
+            "line_height": "normal",
+            "letter_spacing": "tight",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_6yV79c"
+      ],
+      "name": "t:names.rich_text_section",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 25,
+        "section_width": "full-width",
+        "section_height": "small",
+        "section_height_custom": 50,
+        "color_scheme": "scheme-4a76643a-9223-4c3b-a8eb-634a27a0a48a",
+        "background_media": "image",
+        "video_position": "cover",
+        "background_image": "shopify://shop_images/1280x310.png",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 48,
+        "padding-block-end": 48,
+        "custom_section_class": ""
+      }
+    },
+    "contact_focus_LfcyAg": {
+      "type": "contact_focus",
+      "blocks": {
+        "social_icons_74G4jb": {
+          "type": "social_icons",
+          "name": "Social Icons",
+          "settings": {
+            "social-img": "shopify://shop_images/Insta_1.png",
+            "social-text": "Knya",
+            "social-url": "https://in.linkedin.com/company/knya"
+          },
+          "blocks": {}
+        },
+        "social_icons_BYPM7w": {
+          "type": "social_icons",
+          "name": "Social Icons",
+          "settings": {
+            "social-img": "shopify://shop_images/Insta_1.png",
+            "social-text": "Knya",
+            "social-url": "https://in.linkedin.com/company/knya"
+          },
+          "blocks": {}
+        },
+        "social_icons_4PG9qR": {
+          "type": "social_icons",
+          "name": "Social Icons",
+          "settings": {
+            "social-img": "shopify://shop_images/Insta_1.png",
+            "social-text": "Knya",
+            "social-url": "https://in.linkedin.com/company/knya"
+          },
+          "blocks": {}
+        },
+        "social_icons_gpMhqM": {
+          "type": "social_icons",
+          "name": "Social Icons",
+          "settings": {
+            "social-img": "shopify://shop_images/INNS_1.png",
+            "social-text": "Knya",
+            "social-url": "https://in.linkedin.com/company/knya"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "social_icons_74G4jb",
+        "social_icons_BYPM7w",
+        "social_icons_4PG9qR",
+        "social_icons_gpMhqM"
+      ],
+      "name": "focus-hq",
+      "settings": {
+        "show_padding_cf": false,
+        "show_paddingcf_mob": false,
+        "margintopcontact": 16,
+        "margintopcontactmob": 14,
+        "main-heading": "Come find us at our Focus HQ",
+        "adress-text": "401, 4th Floor, Todi Building, Mathuradas Mill Compound, Lower Parel (West) Mumbai - 400013, Maharashtra, India",
+        "mail-text": "support@knya.in",
+        "mail-focus": "mailto:support@knya.in",
+        "call-text": "+91 9987200005",
+        "call-focus": "tel:+91 9987200005",
+        "time-text": "8 am to 8 pm (Monday to Sunday)",
+        "background-img": "shopify://shop_images/Rectangle_18906_1.png"
+      }
+    },
+    "contact_get_right_nhUbCz": {
+      "type": "contact_get_right",
+      "blocks": {
+        "text_with_icon_WHDqGc": {
+          "type": "text_with_icon",
+          "name": "Text with icon",
+          "settings": {
+            "get-image": "shopify://shop_images/Tracking.png",
+            "gettitle": "Tracking & Shipping",
+            "getcontent": "If you have queries about your order’s whereabouts, we can address them immediately via our WhatsApp chat feature.",
+            "geturltext": "TRACK ORDER",
+            "geturl": "https://knyamed.clickpost.ai/"
+          },
+          "blocks": {}
+        },
+        "text_with_icon_rrWBCV": {
+          "type": "text_with_icon",
+          "name": "Text with icon",
+          "settings": {
+            "get-image": "shopify://shop_images/Tracking.png",
+            "gettitle": "Tracking & Shipping",
+            "getcontent": "If you have queries about your order’s whereabouts, we can address them immediately via our WhatsApp chat feature.",
+            "geturltext": "TRACK ORDER",
+            "geturl": ""
+          },
+          "blocks": {}
+        },
+        "text_with_icon_zN6chA": {
+          "type": "text_with_icon",
+          "name": "Text with icon",
+          "settings": {
+            "get-image": "shopify://shop_images/Tracking.png",
+            "gettitle": "Tracking & Shipping",
+            "getcontent": "If you have queries about your order’s whereabouts, we can address them immediately via our WhatsApp chat feature.",
+            "geturltext": "TRACK ORDER",
+            "geturl": ""
+          },
+          "blocks": {}
+        },
+        "text_with_icon_8iTeEP": {
+          "type": "text_with_icon",
+          "name": "Text with icon",
+          "settings": {
+            "get-image": "shopify://shop_images/Tracking.png",
+            "gettitle": "Tracking & Shipping",
+            "getcontent": "If you have queries about your order’s whereabouts, we can address them immediately via our WhatsApp chat feature.",
+            "geturltext": "TRACK ORDER",
+            "geturl": ""
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_with_icon_WHDqGc",
+        "text_with_icon_rrWBCV",
+        "text_with_icon_zN6chA",
+        "text_with_icon_8iTeEP"
+      ],
+      "name": "getright",
+      "settings": {
+        "show_padding_get": false,
+        "show_padding_mob_get": false,
+        "margintopget": 0,
+        "margintopgetmob": 0,
+        "rightseth1": "Let's get right to it"
+      }
+    },
+    "custom_faq_NGMAhA": {
+      "type": "custom_faq",
+      "blocks": {
+        "text_CjyQyH": {
+          "type": "text",
+          "settings": {
+            "faq-img": "shopify://shop_images/Layer_1_58a1c154-4189-4cce-91af-27256023f0ec.png",
+            "faq-title": "Returns, Refunds and Exchanges",
+            "questions": "What is your Returns & Exchange Policy?##How can I place a return or exchange request?##How are return requests processed?##What is the return policy for items bought during a sale period? ##How will I receive the refund for my returned product? ##When will the refund amount be credited to my account?  ##I placed a COD order, how will I get my refund? ##What will happen if I do not accept my order while it is out for delivery?##How long does it take to exchange my product?##Can I do more than 1 exchange?",
+            "answers": "We offer a hassle-free 7-days return and exchange policy from the date of delivery. Refunds are initiated within 5 days after the return items are picked up. Please note that embroidery/engraving orders are not eligible for returns and exchanges. ##To place a return or exchange request, please visit <a class=\"RD_track\" href=\"https://knyamed.com/pages/returns-exchanges\" target=\"_blank\">Return &amp; Exchange Page.</a> Our team will review and approve your request within 3 working days. Once approved, we will arrange pick up for the items within 2 working days.##Once your return request is approved, our logistics partner will pick up the items within 2 working days. The returned item will undergo quality checks, and refunds will be initiated within 5 days after the items are picked up.##Any items bought during the sale period do not qualify for a return. They are final sale items.##For prepaid orders, the refund amount will be credited back to the original payment method after a deduction of FLAT Rs 100 as a reverse shipment fee. For Cash on Delivery orders, you will receive store credits in the form of a Knya gift card sent to your registered email address.##Refunds are typically initiated within 5 days after the returned item passes quality checks. The entire process usually takes 7-10 working days. ##For COD orders, you will receive store credits in the form of a Knya gift card, which will be sent to your registered email address. Please note that COD handling charges paid at the time of placing the order are non-refundable.##As a standard practice, we attempt delivery 3 times, and we try reaching out to you. In case the order is not accepted, a standard deduction of INR 150 towards shipping charges will be applied during the refund process. This refund will be credited to you in the form of a Gift card. ##The exchange process starts after the pickup of the old order. Typically, the entire process, from placing the exchange request to receiving the new product, takes 7-10 working days.##Due to operational difficulties, we will only be able to exchange your order once. Our customer service agents are there to help you choose the right fit for you."
+          }
+        },
+        "text_tMw99x": {
+          "type": "text",
+          "settings": {
+            "faq-img": "shopify://shop_images/Layer_1_58a1c154-4189-4cce-91af-27256023f0ec.png",
+            "faq-title": "Returns, Refunds and Exchanges",
+            "questions": "What is your Returns & Exchange Policy?##How can I place a return or exchange request?##How are return requests processed?##What is the return policy for items bought during a sale period? ##How will I receive the refund for my returned product? ##When will the refund amount be credited to my account?  ##I placed a COD order, how will I get my refund? ##What will happen if I do not accept my order while it is out for delivery?##How long does it take to exchange my product?##Can I do more than 1 exchange?",
+            "answers": "We offer a hassle-free 7-days return and exchange policy from the date of delivery. Refunds are initiated within 5 days after the return items are picked up. Please note that embroidery/engraving orders are not eligible for returns and exchanges. ##To place a return or exchange request, please visit <a class=\"RD_track\" href=\"https://knyamed.com/pages/returns-exchanges\" target=\"_blank\">Return &amp; Exchange Page.</a> Our team will review and approve your request within 3 working days. Once approved, we will arrange pick up for the items within 2 working days.##Once your return request is approved, our logistics partner will pick up the items within 2 working days. The returned item will undergo quality checks, and refunds will be initiated within 5 days after the items are picked up.##Any items bought during the sale period do not qualify for a return. They are final sale items.##For prepaid orders, the refund amount will be credited back to the original payment method after a deduction of FLAT Rs 100 as a reverse shipment fee. For Cash on Delivery orders, you will receive store credits in the form of a Knya gift card sent to your registered email address.##Refunds are typically initiated within 5 days after the returned item passes quality checks. The entire process usually takes 7-10 working days. ##For COD orders, you will receive store credits in the form of a Knya gift card, which will be sent to your registered email address. Please note that COD handling charges paid at the time of placing the order are non-refundable.##As a standard practice, we attempt delivery 3 times, and we try reaching out to you. In case the order is not accepted, a standard deduction of INR 150 towards shipping charges will be applied during the refund process. This refund will be credited to you in the form of a Gift card. ##The exchange process starts after the pickup of the old order. Typically, the entire process, from placing the exchange request to receiving the new product, takes 7-10 working days.##Due to operational difficulties, we will only be able to exchange your order once. Our customer service agents are there to help you choose the right fit for you."
+          }
+        },
+        "text_npPVUy": {
+          "type": "text",
+          "settings": {
+            "faq-img": "shopify://shop_images/Layer_1_58a1c154-4189-4cce-91af-27256023f0ec.png",
+            "faq-title": "Returns, Refunds and Exchanges",
+            "questions": "What is your Returns & Exchange Policy?##How can I place a return or exchange request?##How are return requests processed?##What is the return policy for items bought during a sale period? ##How will I receive the refund for my returned product? ##When will the refund amount be credited to my account?  ##I placed a COD order, how will I get my refund? ##What will happen if I do not accept my order while it is out for delivery?##How long does it take to exchange my product?##Can I do more than 1 exchange?",
+            "answers": "We offer a hassle-free 7-days return and exchange policy from the date of delivery. Refunds are initiated within 5 days after the return items are picked up. Please note that embroidery/engraving orders are not eligible for returns and exchanges. ##To place a return or exchange request, please visit <a class=\"RD_track\" href=\"https://knyamed.com/pages/returns-exchanges\" target=\"_blank\">Return &amp; Exchange Page.</a> Our team will review and approve your request within 3 working days. Once approved, we will arrange pick up for the items within 2 working days.##Once your return request is approved, our logistics partner will pick up the items within 2 working days. The returned item will undergo quality checks, and refunds will be initiated within 5 days after the items are picked up.##Any items bought during the sale period do not qualify for a return. They are final sale items.##For prepaid orders, the refund amount will be credited back to the original payment method after a deduction of FLAT Rs 100 as a reverse shipment fee. For Cash on Delivery orders, you will receive store credits in the form of a Knya gift card sent to your registered email address.##Refunds are typically initiated within 5 days after the returned item passes quality checks. The entire process usually takes 7-10 working days. ##For COD orders, you will receive store credits in the form of a Knya gift card, which will be sent to your registered email address. Please note that COD handling charges paid at the time of placing the order are non-refundable.##As a standard practice, we attempt delivery 3 times, and we try reaching out to you. In case the order is not accepted, a standard deduction of INR 150 towards shipping charges will be applied during the refund process. This refund will be credited to you in the form of a Gift card. ##The exchange process starts after the pickup of the old order. Typically, the entire process, from placing the exchange request to receiving the new product, takes 7-10 working days.##Due to operational difficulties, we will only be able to exchange your order once. Our customer service agents are there to help you choose the right fit for you."
+          }
+        },
+        "text_Q6Dt6T": {
+          "type": "text",
+          "settings": {
+            "faq-img": "shopify://shop_images/Layer_1_58a1c154-4189-4cce-91af-27256023f0ec.png",
+            "faq-title": "Returns, Refunds and Exchanges",
+            "questions": "What is your Returns & Exchange Policy?##How can I place a return or exchange request?##How are return requests processed?##What is the return policy for items bought during a sale period? ##How will I receive the refund for my returned product? ##When will the refund amount be credited to my account?  ##I placed a COD order, how will I get my refund? ##What will happen if I do not accept my order while it is out for delivery?##How long does it take to exchange my product?##Can I do more than 1 exchange?",
+            "answers": "We offer a hassle-free 7-days return and exchange policy from the date of delivery. Refunds are initiated within 5 days after the return items are picked up. Please note that embroidery/engraving orders are not eligible for returns and exchanges. ##To place a return or exchange request, please visit <a class=\"RD_track\" href=\"https://knyamed.com/pages/returns-exchanges\" target=\"_blank\">Return &amp; Exchange Page.</a> Our team will review and approve your request within 3 working days. Once approved, we will arrange pick up for the items within 2 working days.##Once your return request is approved, our logistics partner will pick up the items within 2 working days. The returned item will undergo quality checks, and refunds will be initiated within 5 days after the items are picked up.##Any items bought during the sale period do not qualify for a return. They are final sale items.##For prepaid orders, the refund amount will be credited back to the original payment method after a deduction of FLAT Rs 100 as a reverse shipment fee. For Cash on Delivery orders, you will receive store credits in the form of a Knya gift card sent to your registered email address.##Refunds are typically initiated within 5 days after the returned item passes quality checks. The entire process usually takes 7-10 working days. ##For COD orders, you will receive store credits in the form of a Knya gift card, which will be sent to your registered email address. Please note that COD handling charges paid at the time of placing the order are non-refundable.##As a standard practice, we attempt delivery 3 times, and we try reaching out to you. In case the order is not accepted, a standard deduction of INR 150 towards shipping charges will be applied during the refund process. This refund will be credited to you in the form of a Gift card. ##The exchange process starts after the pickup of the old order. Typically, the entire process, from placing the exchange request to receiving the new product, takes 7-10 working days.##Due to operational difficulties, we will only be able to exchange your order once. Our customer service agents are there to help you choose the right fit for you."
+          }
+        },
+        "text_DArLyP": {
+          "type": "text",
+          "settings": {
+            "faq-img": "shopify://shop_images/Layer_1_58a1c154-4189-4cce-91af-27256023f0ec.png",
+            "faq-title": "Returns, Refunds and Exchanges",
+            "questions": "What is your Returns & Exchange Policy?##How can I place a return or exchange request?##How are return requests processed?##What is the return policy for items bought during a sale period? ##How will I receive the refund for my returned product? ##When will the refund amount be credited to my account?  ##I placed a COD order, how will I get my refund? ##What will happen if I do not accept my order while it is out for delivery?##How long does it take to exchange my product?##Can I do more than 1 exchange?",
+            "answers": "We offer a hassle-free 7-days return and exchange policy from the date of delivery. Refunds are initiated within 5 days after the return items are picked up. Please note that embroidery/engraving orders are not eligible for returns and exchanges. ##To place a return or exchange request, please visit <a class=\"RD_track\" href=\"https://knyamed.com/pages/returns-exchanges\" target=\"_blank\">Return &amp; Exchange Page.</a> Our team will review and approve your request within 3 working days. Once approved, we will arrange pick up for the items within 2 working days.##Once your return request is approved, our logistics partner will pick up the items within 2 working days. The returned item will undergo quality checks, and refunds will be initiated within 5 days after the items are picked up.##Any items bought during the sale period do not qualify for a return. They are final sale items.##For prepaid orders, the refund amount will be credited back to the original payment method after a deduction of FLAT Rs 100 as a reverse shipment fee. For Cash on Delivery orders, you will receive store credits in the form of a Knya gift card sent to your registered email address.##Refunds are typically initiated within 5 days after the returned item passes quality checks. The entire process usually takes 7-10 working days. ##For COD orders, you will receive store credits in the form of a Knya gift card, which will be sent to your registered email address. Please note that COD handling charges paid at the time of placing the order are non-refundable.##As a standard practice, we attempt delivery 3 times, and we try reaching out to you. In case the order is not accepted, a standard deduction of INR 150 towards shipping charges will be applied during the refund process. This refund will be credited to you in the form of a Gift card. ##The exchange process starts after the pickup of the old order. Typically, the entire process, from placing the exchange request to receiving the new product, takes 7-10 working days.##Due to operational difficulties, we will only be able to exchange your order once. Our customer service agents are there to help you choose the right fit for you."
+          }
+        }
+      },
+      "block_order": [
+        "text_CjyQyH",
+        "text_tMw99x",
+        "text_npPVUy",
+        "text_Q6Dt6T",
+        "text_DArLyP"
+      ],
+      "name": "faq",
+      "settings": {
+        "faq-heading": "FAQs",
+        "show_padding_faq": false,
+        "show_paddingfaq_mob": false,
+        "margintopfaq": 42,
+        "margintopfaqmob": 0
+      }
+    }
+  },
+  "order": [
+    "main",
+    "section_Gmq7b6",
+    "contact_focus_LfcyAg",
+    "contact_get_right_nhUbCz",
+    "custom_faq_NGMAhA"
+  ]
+}

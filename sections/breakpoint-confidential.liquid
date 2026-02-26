@@ -1,0 +1,43 @@
+{{ 'section-breakpoint-confidential.css' | asset_url | stylesheet_tag }}
+
+<div id="BreakpointConfidential-{{ section.id }}" class="breakpoint-confidential-section">
+  <div class="breakpoint-confidential-content">
+    {%- if section.settings.main_text != blank -%}
+      <div class="breakpoint-confidential-main-text">
+        {{ section.settings.main_text }}
+      </div>
+    {%- endif -%}
+    {%- if section.settings.sub_text != blank -%}
+      <div class="breakpoint-confidential-sub-text">
+        {{ section.settings.sub_text }}
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Breakpoint Confidential",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "main_text",
+      "label": "Main text",
+      "default": "No personal information is recorded or shared."
+    },
+    {
+      "type": "textarea",
+      "id": "sub_text",
+      "label": "Sub text",
+      "default": "Breakpoint offers confidential emotional support, not therapy or medical treatment, and is not a crisis service. Calls are handled by Mpower counsellors."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Breakpoint Confidential"
+    }
+  ]
+}
+{% endschema %}

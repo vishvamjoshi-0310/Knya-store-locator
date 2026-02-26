@@ -1,0 +1,247 @@
+{%- comment -%} Sticky Add to Cart Button (Mobile Only) {%- endcomment -%}
+<div class="sticky-add-to-cart-mobile" id="stickyAddToCartMobile" style="display: none;">
+  <div class="sticky-add-to-cart-mobile__container">
+    <button
+      type="button"
+      class="sticky-add-to-cart-mobile__button"
+      id="stickyAddToCartButton"
+      aria-label="{{ 'products.product.add_to_cart' | t }}"
+    >
+      <div class="atc-svg">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="19" viewBox="0 0 18 19" fill="none">
+          <g clip-path="url(#clip0_98_489)">
+            <path d="M8.25 6.77539H9.75V4.52539H12V3.02539H9.75V0.775391H8.25V3.02539H6V4.52539H8.25V6.77539ZM5.25 13.5254C4.425 13.5254 3.7575 14.2004 3.7575 15.0254C3.7575 15.8504 4.425 16.5254 5.25 16.5254C6.075 16.5254 6.75 15.8504 6.75 15.0254C6.75 14.2004 6.075 13.5254 5.25 13.5254ZM12.75 13.5254C11.925 13.5254 11.2575 14.2004 11.2575 15.0254C11.2575 15.8504 11.925 16.5254 12.75 16.5254C13.575 16.5254 14.25 15.8504 14.25 15.0254C14.25 14.2004 13.575 13.5254 12.75 13.5254ZM6.075 9.77539H11.6625C12.225 9.77539 12.72 9.46789 12.975 9.00289L15.87 3.74539L14.565 3.02539L11.6625 8.27539H6.3975L3.2025 1.52539H0.75V3.02539H2.25L4.95 8.71789L3.9375 10.5479C3.39 11.5529 4.11 12.7754 5.25 12.7754H14.25V11.2754H5.25L6.075 9.77539Z" fill="#F5EBD2"/>
+          </g>
+          <defs>
+            <clipPath id="clip0_98_489">
+              <rect width="18" height="18" fill="white" transform="translate(0 0.0253906)"/>
+            </clipPath>
+          </defs>
+        </svg>
+      </div>
+      <span class="sticky-add-to-cart-mobile__text">{{ 'products.product.add_to_cart' | t }}</span>
+    </button>
+  </div>
+</div>
+
+{% stylesheet %}
+  /* Sticky Add to Cart Button - Mobile Only */
+  .sticky-add-to-cart-mobile {
+    display: none;
+  }
+
+  @media screen and (max-width: 749px) {
+    .sticky-add-to-cart-mobile {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 2;
+      background: #fff;
+      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+      padding: 12px 18px;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .sticky-add-to-cart-mobile.hidden {
+      transform: translateY(100%);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .sticky-add-to-cart-mobile__container {
+      max-width: 100%;
+      margin: 0 auto;
+    }
+
+    .sticky-add-to-cart-mobile__button {
+      width: 100%;
+      font-family: 'Heebo-Medium';
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 15.84px;
+      text-align: center;
+      color: #F5EBD2;
+      background: #482f8f;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      box-shadow: none;
+      border: none;
+      border-radius: 0;
+      cursor: pointer;
+      height: 41px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      gap: 8px;
+    }
+
+    .sticky-add-to-cart-mobile__button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .sticky-add-to-cart-mobile__text {
+      pointer-events: none;
+    }
+  }
+{% endstylesheet %}
+
+<script>
+  (function () {
+    'use strict';
+
+    // Only run on mobile
+    if (window.innerWidth > 749) {
+      return;
+    }
+
+    // Wait for DOM to be ready
+    function initStickyAddToCart() {
+      const stickyButton = document.getElementById('stickyAddToCartMobile');
+      const stickyButtonElement = document.getElementById('stickyAddToCartButton');
+
+      if (!stickyButton || !stickyButtonElement) {
+        return;
+      }
+
+      // Find the original add to cart button(s)
+      const originalButtons = [
+        document.querySelector('.product-add-to-cart-button button[type="submit"]'),
+        document.querySelector('.product-add-to-cart-button.enabled button[type="submit"]'),
+        document.querySelector('#customAddToCartButton'),
+        document.querySelector('.custom-add-to-cart-button:not(.hidden) #customAddToCartButton'),
+      ].filter(Boolean);
+
+      // Find the button container for viewport detection
+      const buttonContainer =
+        document.querySelector('.product-form-buttons') ||
+        document.querySelector('.buy-buttons-block') ||
+        originalButtons[0]?.closest('.product-form-buttons') ||
+        originalButtons[0]?.closest('.buy-buttons-block');
+
+      if (!buttonContainer && originalButtons.length === 0) {
+        return;
+      }
+
+      // Function to check if element is partially visible in viewport
+      function isPartiallyVisible(element) {
+        if (!element) return false;
+        const rect = element.getBoundingClientRect();
+        const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+        const windowWidth = window.innerWidth || document.documentElement.clientWidth;
+
+        return rect.top < windowHeight && rect.bottom > 0 && rect.left < windowWidth && rect.right > 0;
+      }
+
+      // Function to check if any original button is visible in viewport
+      function checkButtonVisibility() {
+        // Check if button container is visible in viewport
+        const containerVisible = buttonContainer ? isPartiallyVisible(buttonContainer) : false;
+
+        // Check if any original button is visible
+        const anyButtonVisible = originalButtons.some((btn) => {
+          if (!btn) return false;
+          return isPartiallyVisible(btn);
+        });
+
+        // Show sticky button if original is not in viewport
+        if (containerVisible || anyButtonVisible) {
+          stickyButton.classList.add('hidden');
+          stickyButton.style.display = 'none';
+        } else {
+          // Check if original button exists and is enabled
+          const enabledButton = document.querySelector(
+            '.product-add-to-cart-button.enabled button[type="submit"]:not([disabled])'
+          );
+          const customButton = document.querySelector('.custom-add-to-cart-button:not(.hidden) #customAddToCartButton');
+
+          // Also check if button is visible but just scrolled out of view
+          const hasAnyButton = originalButtons.length > 0;
+
+          if ((enabledButton || customButton) && hasAnyButton) {
+            stickyButton.classList.remove('hidden');
+            stickyButton.style.display = 'block';
+
+            // Update disabled state
+            if (enabledButton && enabledButton.disabled) {
+              stickyButtonElement.disabled = true;
+            } else {
+              stickyButtonElement.disabled = false;
+            }
+          } else {
+            stickyButton.classList.add('hidden');
+            stickyButton.style.display = 'none';
+          }
+        }
+      }
+
+      // Handle click on sticky button
+      stickyButtonElement.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        // Find and click the original button
+        const enabledButton = document.querySelector('.product-add-to-cart-button.enabled button[type="submit"]');
+        const customButton = document.querySelector('.custom-add-to-cart-button:not(.hidden) #customAddToCartButton');
+
+        if (enabledButton) {
+          enabledButton.click();
+        } else if (customButton) {
+          customButton.click();
+        }
+      });
+
+      // Check visibility on scroll and resize
+      let ticking = false;
+      function updateStickyButton() {
+        // Hide sticky button if window is resized to desktop
+        if (window.innerWidth > 749) {
+          stickyButton.classList.add('hidden');
+          stickyButton.style.display = 'none';
+          return;
+        }
+
+        if (!ticking) {
+          window.requestAnimationFrame(function () {
+            checkButtonVisibility();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }
+
+      window.addEventListener('scroll', updateStickyButton, { passive: true });
+      window.addEventListener('resize', updateStickyButton, { passive: true });
+
+      // Initial check
+      setTimeout(checkButtonVisibility, 100);
+
+      // Also check when variant selection changes
+      const observer = new MutationObserver(function () {
+        setTimeout(checkButtonVisibility, 100);
+      });
+
+      // Observe changes to button states
+      const observeTarget = document.querySelector('.product-form-buttons') || document.body;
+      if (observeTarget) {
+        observer.observe(observeTarget, {
+          childList: true,
+          subtree: true,
+          attributes: true,
+          attributeFilter: ['class', 'style'],
+        });
+      }
+    }
+
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initStickyAddToCart);
+    } else {
+      initStickyAddToCart();
+    }
+
+    // Re-initialize on page navigation (for SPA-like behavior)
+    document.addEventListener('shopify:section:load', initStickyAddToCart);
+  })();
+</script>

@@ -1,0 +1,30 @@
+{% assign pro_images = product.metafields.custom.product_details_image.value %}
+{% assign pro_titles = product.metafields.custom.product_details_image_over_text.value %}
+{% assign pro_urls = product.metafields.custom.product_details_url.value %}
+{% if pro_images or pro_titles %}
+<div class="tab-left">
+    <div class="right-inner">
+        {% for grid-images in pro_images limit:4 %}
+        {% if grid-images.sources[1].url contains 'mp4' %}
+        <video id="homevideo" class="pro-vid" width="100%" height="auto" src="{{ grid-images.sources[1].url }}"
+            playsinline="playsinline" preload="auto" type="video/mp4" loop="false" autoplay="autoplay" muted="muted"
+            controls></video>
+        {% else %}
+        <div class="grid-imagess grid_section-{{ forloop.index }}">
+            {{
+            grid-images
+            | image_url: width: 400, format: 'webp'
+            | image_tag: class: '', loading: 'lazy', sizes: '(min-width: 200px) 400px', widths: '400'
+            }}
+            <div class="grid-grad_details">
+                <div class="main-grid-text-div">
+
+                    <div class="grid-text">{{ pro_titles[forloop.index0] }}</div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+{% endif %}

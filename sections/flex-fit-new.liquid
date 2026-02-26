@@ -1,0 +1,321 @@
+{{ 'swiper.css' | asset_url | stylesheet_tag }}
+
+<style>
+  .flex-fit-slider .swiper-wrapper, .flex-fit-slider .swiper {position: unset;}
+  .flex-fit-slider{
+     margin-top : {{ section.settings.marginTopslidd1 }}px;
+     margin-bottom : {{ section.settings.marginBottomslidd1 }}px;
+
+   }
+  .div-padding{    position: relative;}
+    @media screen and (max-width: 640px){
+        p.second-line-home.font-heebo-regular{margin-bottom: 8px!important;}
+     .flex-fit-slider{
+       margin-top:{{ section.settings.marginTopsliddmob1 }}px;
+       margin-bottom:{{ section.settings.marginBottomsliddmob1 }}px;
+     }
+      .shop-our-bestsellers .first-line-home {color: #482f8f;    letter-spacing: 0.016px;
+     margin-bottom: 3.5%!important;font-size: 16px;line-height:20px;}
+   }
+  .first-line-home {color: #282828;    letter-spacing: 0.64px;
+     margin-bottom: 1.8%;}
+  img.main-image-class {
+    width: 100%;
+    height: 365px;
+    object-fit: cover;
+}
+  h2.first-line-home.font-heebo-medium,p.second-line-home.font-heebo-regular {
+    margin: 0;
+}
+   h2.first-line-home{
+      color: #482F8F;
+    font-family: Heebo-Medium;
+    font-size: clamp(30px, calc(32 * (100vw / 1440)), 34px);
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: 0.64px;
+}
+  p.second-line-home.font-heebo-regular{
+  color: var(--Knya-Palette-ref-neutral-neutral6, #141218);
+font-family: Heebo-Regular;
+font-size:clamp(11px, calc(12 * (100vw / 1440)), 14px);
+font-style: normal;
+font-weight: 400;
+line-height: 18px; /* 150% */
+letter-spacing: 0.048px;
+    margin-bottom: 24px;
+  }
+  .flex-subcontainer {
+    line-height: 0;
+}
+  .name-left h5 {
+    color: var(--Knya-Palette-ref-neutral-neutral6, #141218);
+    font-family: Heebo-Medium;
+    font-size: clamp(12px, calc(14 * (100vw / 1440)), 16px);
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.428;
+    letter-spacing: 0.014px;
+    margin: 10px 0 0 0;
+}
+  @media(max-width: 600px){
+    .name-left h5{
+      color: #1D1B20;
+font-size: 11px;
+line-height: 16px; /* 145.455% */
+letter-spacing: 0.055px;
+    }
+    span.span-sub-class {
+font-size: 12px;
+line-height: 16px; /* 133.333% */
+letter-spacing: 0.06px;
+text-decoration-line: underline;
+    }
+  }
+  span.span-sub-class {
+    color: var(--Knya-Palette-Primary, #462D8C);
+    font-family: Heebo;
+    font-size: clamp(14px, calc(16 * (100vw / 1440)), 18px);
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: 0.024px;
+}
+  .name-left {
+    line-height: 0;
+}
+  @media(max-width: 600px){
+    h2.first-line-home {
+      letter-spacing: 0.016px;
+    font-size: 16px;
+    line-height: 20px;
+      font-weight:500;
+}
+      p.second-line-home{
+        color: var(--Knya-Palette-ref-neutral-neutral10, #1D1B20);
+font-size: 12px;
+line-height: 18px; /* 150% */
+letter-spacing: 0.048px;
+            margin-bottom: 10px;
+      }
+    img.main-image-class {
+    width: 100%;
+    object-fit: cover;
+    height: 168px;
+    flex-shrink: 0;
+    align-self: stretch;
+}
+    .swiper-button-next.flex-next1 {
+    top: 5% !important;
+    left: calc(99% - 18px);
+}
+    .swiper-button-prev.flex-prev1 {
+          top: 5% !important;
+    left: calc(99% - 50px);
+    }
+  }
+
+  .flex-prev1::after, .flex-next1::after {display: none;}
+  @media(min-width: 640px){
+    .swiper-button-prev.flex-prev1 {
+    right: 100%;
+    left: auto;
+}
+    .swiper-button-next.flex-next1 {
+    left: 100%;
+    right: auto;
+}
+  }
+</style>
+
+
+{% assign flex_img = product.metafields.custom.flex_fit_image.value %}
+{% assign flex_name = product.metafields.custom.flex_fit_name.value %}
+{% assign flex_designation = product.metafields.custom.flex_fit_designation.value %}
+{% if product.metafields.custom.flex_fit_image.value != blank %}
+<div class="main-slider-flex flex-fit-slider page-width flex-fittted conditional-class1">
+  <div class="div-padding{% if section.settings.show_padding_slidd  %} page-padding-right page-padding-left{% endif %} {% if section.settings.show_padding_mob_slidd %}padding-right-mob padding-left-mob{% endif %}">
+    <div class="content-home1">
+      <h2 class="first-line-home font-heebo-medium">{{ section.settings.headText }}</h2>
+      <p class="second-line-home font-heebo-regular">{{ section.settings.secondText }}</p>
+    </div>
+
+    <div class="swiper mySwiper-{{ section.id }} flex-slider ">
+      <div class="swiper-wrapper">
+        {% for img-pdp1 in flex_img %}
+          <div class="swiper-slide">
+            <div class="main-div">
+              <div class="flex-maincontainer">
+                <div class="flex-subcontainer">
+                  {{ img-pdp1 | image_url: width: 450 | image_tag: class: 'main-image-class', loading: 'lazy' }}
+                     </div>
+                  <div class="name-left">
+                    <h5 class="">{{ flex_name[forloop.index0] }}</h5>
+                    <span class="span-sub-class">{{ flex_designation[forloop.index0] }}</span>
+               
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+      {% if section.settings.pagination %}
+        <div class="swiper-pagination"></div>
+      {% endif %}
+    </div>
+         <div class="swiper-button-next flex-next1">{% render 'next-flex' %}</div> 
+        <div class="swiper-button-prev flex-prev1">{% render 'pre-flex' %}</div>
+  </div>
+</div>
+{% endif %} 
+<script>
+  window.addEventListener(
+    'DOMContentLoaded',
+    () => {
+      var swiper = new Swiper('.mySwiper-{{ section.id }}', {
+        slidesPerView: 4.5,
+        spaceBetween: 30,
+        slidesPerGroup: 1,
+        loop: {{ section.settings.swiper_enable_button }},
+        loopFillGroupWithBlank: true,
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        },
+        breakpoints: {
+          0: {
+            slidesPerView: 2.5,
+            spaceBetween: 18,
+          },
+          500: {
+            slidesPerView: 2.5,
+            spaceBetween: 15,
+          },
+          660: {
+            slidesPerView: 2.5,
+            spaceBetween: 20,
+          },
+          900: {
+            slidesPerView: 2.5,
+            spaceBetween: 20,
+          },
+          1100: {
+            slidesPerView: 4.5,
+            spaceBetween: 20,
+          },
+          2100: {
+            slidesPerView: 3.5,
+            spaceBetween: 20,
+          },
+        },
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+      });
+    },
+    { once: true }
+  );
+
+</script>
+
+{% schema %}
+{
+  "name": "Flex Fit New",
+  "settings": [
+    {
+      "type": "text",
+      "id": "shop-now-cont",
+      "label": "Shop now text"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_padding_slidd",
+      "label": "padding for section",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "pagination",
+      "label": "show dot on slider",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_secondary_image",
+      "default": false,
+      "label": "Show second image on hover"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_padding_mob_slidd",
+      "label": "padding for section in mobile",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "swiper_enable_button",
+      "label": "Enable swiper loop",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "marginTopslidd1",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Desktop : Margin-Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "marginBottomslidd1",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Desktop : Margin-Bottom",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "marginTopsliddmob1",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile : Margin-Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "marginBottomsliddmob1",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile : Margin-Bottom",
+      "default": 0
+    },
+
+    {
+      "type": "text",
+      "id": "headText",
+      "label": "enter heading"
+    },
+    {
+      "type": "text",
+      "id": "secondText",
+      "label": "enter content"
+    }
+  ],
+  "presets": [
+    {
+      "name": "flex_fit_new"
+    }
+  ]
+}
+{% endschema %}

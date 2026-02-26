@@ -1,0 +1,82 @@
+{% if block.settings.category-name != blank and block.settings.category-image != blank %}
+            <div class="swiper-slide-container"
+              {% if block.settings.background_color != blank %}
+                style="
+                background-color: {{  block.settings.background_color}};
+                "
+              {% endif %}>
+              <div class="category-card">
+                  <a {% if block.settings.urlofcategory  %} href="{{ block.settings.urlofcategory }}" {% endif %} >
+                    {% assign image = block.settings.category-image %}
+                    <picture>
+                    <source srcset="{{ image | image_url: width: 600 }}" media="(min-width: 768px)">
+                    <source srcset="{{ image | image_url: width: 300 }}" media="(max-width: 767px)">
+
+                    <img
+                        src="{{ image | image_url }}"
+                        loading="lazy"
+                        alt="{{ image.alt | escape }}"
+                        width="200"
+                        height="auto"
+                    >
+                    </picture>
+
+                    <div class="category-label">
+                      <p 
+                        {% if block.settings.background_color != blank %}
+                          style="color: {{ block.settings.category_text_color }};"
+                        {% endif %}
+                      >{{ block.settings.category-name }}</p>
+                      <span>{{ block.settings.category-subtext }}</span>
+                    </div>
+
+                  </a>
+                </div>
+              
+            </div>
+          {% endif %}
+
+
+{% schema %}
+{
+    "name": "category Slide",
+    "class": "swiper-slide",
+    "settings": [
+        {
+          "type": "text",
+          "id": "category-name",
+          "label": "category name"
+        },
+        {
+          "type": "text",
+          "id": "category-subtext",
+          "label": "category subtext"
+        },
+        {
+          "type": "image_picker",
+          "id": "category-image",
+          "label": "category Image"
+        },
+        {
+          "type": "url",
+          "id": "urlofcategory",
+          "label": "URL of Category"
+        },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Background Color",
+          "default": "rgba(245, 245, 249, 1)"
+        },
+        {
+          "type": "color",
+          "id": "category_text_color",
+          "label": "Category Text Color",
+          "default": "#000000"
+        }
+    ],
+    "presets": [
+        {"name": "Category Slide"}
+    ]
+}
+{% endschema %}

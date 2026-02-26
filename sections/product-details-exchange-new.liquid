@@ -1,0 +1,151 @@
+{{ 'product-detail-exchange-new.css' | asset_url | stylesheet_tag }}
+<style>
+     .main-div-pro{margin-top:{{ section.settings.margintopex}}px;}
+    .backGroundImage{background:url('{{section.settings.backgroundImage | img_url :"1000x" }}');background-size:cover;background-position: center;}
+      @media only screen and (max-width:640px){
+       .main-div-pro{margin-top:{{ section.settings.margintopexmob}}px}
+       .main-div-container {
+      display: none;
+  }
+     }
+     .main-div-container {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+  }
+</style>
+
+{% assign pro_images = product.metafields.custom.product_details_image.value %}
+{% assign pro_titles = product.metafields.custom.product_details_image_over_text.value %}
+{% assign pro_urls = product.metafields.custom.product_details_url.value %}
+
+{% if pro_images %}
+  <div class="main-div-container">
+    <div class="main-div-pro {{ section.id }}">
+      <div class="page-width-updated exchange_width">
+        <div class="inner-pro">
+          <div class="uppertab-option">
+            <div class="detail-option opacity-color" dataid="option-one">{{ section.settings['product-detail'] }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="lower mainn-div-pro with-design">
+      <div class="page-width-updated">
+        <div class="inner-pro {% if section.settings.show_padding_ex  %} page-padding-right page-padding-left{% endif %} {% if section.settings.show_padding_mob_ex %}padding-right-mob padding-left-mob{% endif %}">
+          <div class="lowertab-options tab-option" dataid="option-one">
+            <div class="tab-right">
+              <div class="tab-right-container">
+                <span class="icon-tab">{% render 'icon-header1' %} </span>
+                <span class="text-tab">{{ section.settings['detail-title'] }}</span>
+              </div>
+            </div>
+            <div class="tab-left">
+              <div class="right-inner">
+                {% for grid-images in pro_images limit: 4 %}
+                  {% if grid-images.sources[1].url contains 'mp4' %}
+                    <video
+                      id="homevideo"
+                      class="pro-vid"
+                      width="100%"
+                      height="auto"
+                      src="{{ grid-images.sources[1].url }}"
+                      playsinline="playsinline"
+                      preload="auto"
+                      type="video/mp4"
+                      loop="false"
+                      autoplay="autoplay"
+                      muted="muted"
+                      controls
+                    ></video>
+                  {% else %}
+                    <div class="grid-imagess grid_section-{{ forloop.index }}">
+                      {{
+                        grid-images
+                        | image_url: width: 400, format: 'webp'
+                        | image_tag: class: '', loading: 'lazy', sizes: '(min-width: 200px) 400px', widths: '400'
+                      }}
+                      <div class="grid-grad_details">
+                        <div class="main-grid-text-div">
+                          <div class="grid-text">{{ pro_titles[forloop.index0] }}</div>
+                        </div>
+                      </div>
+                    </div>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+{% schema %}
+{
+  "name": "pdp detail exchange new",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_padding_ex",
+      "label": "padding for section",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_padding_mob_ex",
+      "label": "padding for section in mobile",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "backgroundImage",
+      "label": "Exchange Background Image"
+    },
+    {
+      "type": "range",
+      "id": "margintopex",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "margin from top for entire section",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margintopexmob",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "margin from top for entire section",
+      "default": 0
+    },
+    {
+      "type": "text",
+      "id": "product-detail",
+      "label": "detail"
+    },
+    {
+      "type": "text",
+      "id": "detail-title",
+      "label": "Detail Title"
+    },
+    {
+      "type": "text",
+      "id": "exchange-title",
+      "label": "exchange"
+    }
+  ],
+  "presets": [
+    {
+      "name": "product-details-exchange-new"
+    }
+  ]
+}
+{% endschema %}

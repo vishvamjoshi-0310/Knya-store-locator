@@ -1,0 +1,40 @@
+{% if request.path contains 'return_prime' %}
+  <script>
+    var detailsData;
+
+    // Hide refund mode based on discount code applied
+    function checkRefundText() {
+      if (document.getElementById('refund_mode_heading')) {
+        const payToSourceElement = document.getElementById('pay_to_source');
+        const bankRefund = document.querySelector('#bank_refund');
+        const others = document.querySelector('#others');
+      if (detailsData.order.discount_codes.length > 0 && detailsData.order.discount_applications[0].code == 'TIRANGA15' ) {
+        if(payToSourceElement) {
+          payToSourceElement.closest('.refund__list').style.display = 'none';
+        }    
+         if (bankRefund) {
+           bankRefund.closest('.refund__list').style.display = 'none';
+          }
+          if (others) {
+            others.closest('.refund__list').style.display = 'none';
+          }
+        clearInterval(intervalTwo);
+       }
+      }
+    
+    }
+
+    if (window.location.href.includes('return_prime')) {
+      var intervalTwo = setInterval(checkRefundText, 50);
+      document.addEventListener('click', function (e) {
+        if (e.target.classList.contains('back__btn')) {
+          intervalTwo = setInterval(checkRefundText, 50);
+        }
+      });
+    }
+
+    document.addEventListener('returnprime_return_page', function (e) {
+      detailsData = e.detail;
+    });
+  </script>
+{% endif %}

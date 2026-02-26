@@ -1,0 +1,296 @@
+{%- doc -%}
+  Renders the cart summary totals.
+
+  @param {string} [accelerated_checkout_buttons_layout] - { 'vertical' } Forced layout of the additional checkout buttons, instead of relying on platform's layout.
+{%- enddoc -%}
+
+{% assign flag_value = true %}
+{% assign giftBox = settings.gift_box_product %}
+{% assign giftBoxLarge = settings.gift_box_large_product %}
+{% assign checkGift = false %}
+{% assign giftBoxID = '' %}
+{% assign giftBoxLargeID = '' %}
+{% assign giftCardDisabled = false %}
+{% assign dataKey = '' %}
+{% for variant in giftBox.variants %}
+  {% assign giftBoxID = variant.id %}
+{% endfor %}
+{% for variant in giftBoxLarge.variants %}
+  {% assign giftBoxLargeID = variant.id %}
+{% endfor %}
+{% assign itemCount = cart.item_count %}
+
+{% comment %} Enhanced Gift Box Logic - Product Combination Rules {% endcomment %}
+{% assign labcoatCount = 0 %}
+{% assign scrubCount = 0 %}
+{% assign stethCount = 0 %}
+{% assign giftBoxType = 'none' %}
+
+
+{% for item in cart.items %}
+  {% if item.id == giftBoxID or item.id == giftBoxLargeID %}
+    {% assign checkGift = true %}
+    {% assign dataKey = item.key %}
+    {% assign itemCount = itemCount | minus: 1 %}
+  {% endif %}
+  {% if item.product.title == 'Custom Embroidery' %}
+    {% assign itemCount = itemCount | minus: item.quantity %}
+  {% endif %}
+  {% if item.product.tags contains 'disable_gift_box' %}
+    {% assign giftCardDisabled = true %}
+  {% endif %}
+
+  {% comment %} Identify product types for gift box logic {% endcomment %}
+  {% assign product_title = item.product.title | downcase %}
+  {% comment %} Debug: Processing product: {{ product_title }} with quantity: {{ item.quantity }} {% endcomment %}
+  {% if product_title contains 'labcoat' or product_title contains 'lab coat' %}
+    {% comment %} Debug: Found labcoat product {% endcomment %}
+    {% assign labcoatCount = labcoatCount | plus: item.quantity %}
+  {% elsif product_title contains 'scrub' %}
+    {% comment %} Debug: Found scrub product {% endcomment %}
+    {% assign scrubCount = scrubCount | plus: item.quantity %}
+  {% elsif product_title contains 'stethoscope' or product_title contains 'steth' %}
+    {% comment %} Debug: Found stethoscope product {% endcomment %}
+    {% assign stethCount = stethCount | plus: item.quantity %}
+  {% endif %}
+
+  {% comment %} manish code {% endcomment %}
+  {% assign item_title = item.title | downcase %}
+  {% unless item_title contains 'stethoscope' %}
+    {% assign flag_value = false %}
+  {% endunless %}
+  {% assign pair_id = '' %}
+{% endfor %}
+
+
+{% assign totalNonEmbroideryItems = labcoatCount | plus: scrubCount | plus: stethCount %}
+{% if labcoatCount >= 2 %}
+  {% assign giftBoxType = 'large' %}
+{% elsif scrubCount >= 2 %}
+  {% assign giftBoxType = 'small' %}
+{% elsif scrubCount >= 1 and labcoatCount >= 1 %}
+  {% assign giftBoxType = 'none' %}
+{% elsif stethCount >= 1 and scrubCount >= 1 %}
+  {% assign giftBoxType = 'small' %}
+{% elsif stethCount >= 2 %}
+  {% assign giftBoxType = 'none' %}
+{% elsif stethCount >= 1 and labcoatCount >= 1 %}
+  {% assign giftBoxType = 'large' %}
+{% elsif stethCount >= 1 %}
+  {% assign giftBoxType = 'none' %}
+{% elsif labcoatCount == 1 and totalNonEmbroideryItems == 1 %}
+  {% assign giftBoxType = 'large' %}
+{% elsif scrubCount == 1 and totalNonEmbroideryItems == 1 %}
+  {% assign giftBoxType = 'small' %}
+{% else %}
+  {% assign giftBoxType = 'none' %}
+{% endif %}
+
+<div class="cart__summary-totals">
+  {% # We need to keep this node in place to allow morphing to work properly # %}
+  <div class="cart__original-total-container cart-primary-typography">
+    {%- if cart.cart_level_discount_applications.size > 0 -%}
+      <span class="cart__summary-item cart__original-total">
+        <span class="cart__original-total-label">{{ 'content.cart_subtotal' | t }}</span>
+        <span class="cart__original-total-value cart-secondary-typography">
+          {{- cart.original_total_price | money -}}
+        </span>
+      </span>
+      <div class="cart__summary-discounts">
+        <ul
+          class="discounts list-unstyled"
+          role="list"
+          aria-label="{{ 'content.discounts' | t }}"
+        >
+          {%- for discount in cart.cart_level_discount_applications -%}
+            <li class="cart__summary-item cart__discount">
+              <span class="cart__discount-label">
+                {{- 'icon-discount.svg' | inline_asset_content -}}
+                {{ discount.title | escape }}
+              </span>
+              <span class="cart__discount-value cart-secondary-typography"
+                >-{{ discount.total_allocated_amount | money -}}
+              </span>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </div>
+    {%- endif -%}
+  </div>
+
+  {% if settings.show_cart_note or settings.show_add_discount_code %}
+    <div class="cart-actions">
+      {% if settings.show_cart_note %}
+        {% render 'cart-note' %}
+      {% endif %}
+      {% if settings.show_cart_note and settings.show_add_discount_code %}
+        <div class="cart-actions__divider"></div>
+      {% endif %}
+      {% if settings.show_add_discount_code %}
+        {% render 'cart-discount', section_id: section.id %}
+      {% endif %}
+    </div>
+  {% endif %}
+
+<div class="cart__ctas">
+
+  {% if settings.show_giftCArd == true and flag_value == false %}
+    {% if cart.item_count > 0 and giftCardDisabled == false and itemCount <= 2 and giftBoxType != 'none' %}
+      <div class="giftBoxSection">
+        <div class="loading-overlay__spinner giftBoxLoader" style="display:none">
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            role="presentation"
+            class="spinner"
+            viewBox="0 0 66 66"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+          </svg>
+        </div>
+        <div class="giftInput">
+          <input
+            onChange="addGiftBox(event)"
+            {% if dataKey != '' %}
+              data-key="{{ dataKey }}"
+            {% endif -%}
+            {% if checkGift %}
+              checked="checked"
+            {% endif %}
+            type="checkbox"
+            id="giftBox"
+            name="giftBox"
+            {% if giftBoxType == 'large' %}
+              value="{{ giftBoxLargeID }}"
+            {% else %}
+              value="{{ giftBoxID }}"
+            {% endif %}
+            data-gift-box-type="{{ giftBoxType }}"
+          >
+          <label for="giftBox">
+            {% if giftBoxType == 'large' %}
+              Add a Gift Box at just ₹{{ giftBoxLarge.price | divided_by: 100 }}
+            {% else %}
+              Add a gift box at just ₹{{ giftBox.price | divided_by: 100 }}
+            {% endif %}
+          </label>
+        </div>
+        <cart-note class="cart__note field {% if checkGift %} ShowCartNote {% else %} {% endif %}">
+          <label class="visually-hidden" for="CartDrawer-Note">{{ 'sections.cart.note' | t }}</label>
+          <textarea
+            id="CartDrawer-Note"
+            class="text-area text-area--resize-vertical field__input"
+            name="note"
+            placeholder="{{ 'sections.cart.note' | t }}"
+          >{{ cart.note }}</textarea>
+        </cart-note>
+      </div>
+    {% endif %}
+  {% endif %}
+  {%- liquid
+    if settings.currency_code_enabled_cart_total
+      assign total_price = cart.total_price | money_with_currency
+    else
+      assign total_price = cart.total_price | money
+    endif
+  -%}
+  <div class="cart__total-container">
+    <span
+      class="cart__summary-item cart__total"
+      role="status"
+    >
+      <span class="cart__total-label cart-primary-typography">{{ 'content.cart_estimated_total' | t }}</span>
+      <text-component
+        ref="cartTotal"
+        value="{{ total_price | strip_html }}"
+        class="cart__total-value cart-secondary-typography"
+        {% comment %} Used by payment_terms web component {% endcomment %}
+        data-cart-subtotal
+      >
+        {{ total_price }}
+      </text-component>
+    </span>
+    {% if settings.show_installments %}
+      <span class="cart__summary-item cart__installments">
+        {% form 'cart', cart %}
+          {{ form | payment_terms }}
+        {% endform %}
+      </span>
+    {% endif %}
+  </div>
+  <button
+    class="cart__checkout-button button"
+    name="checkout"
+    id="checkout"
+    {% if customer and customer.tags contains "Endless_Admin" %}
+      onclick="Endless_AdminClicked()"
+      type="button"
+    {% else %}
+      type="submit"
+    {% endif %}
+    
+    {% if cart == empty %}
+      disabled
+    {% endif %}
+    form="cart-form"
+  >
+    {{ 'content.checkout' | t }}
+  </button>
+  <small class="tax-note caption-large rte font-heebo-regular">
+    {%- if cart.taxes_included and shop.shipping_policy.body != blank -%}
+      {{ 'sections.cart.taxes_included_and_shipping_policy_html' | t: link: shop.shipping_policy.url }}
+    {%- elsif cart.taxes_included -%}
+      {{ 'sections.cart.taxes_included_but_shipping_at_checkout' | t }}
+    {%- elsif shop.shipping_policy.body != blank -%}
+      {{ 'sections.cart.taxes_and_shipping_policy_at_checkout_html' | t: link: shop.shipping_policy.url }}
+    {%- else -%}
+      {{ 'sections.cart.taxes_and_shipping_at_checkout' | t }}
+    {%- endif -%}
+  </small>
+
+  {% if additional_checkout_buttons and settings.show_accelerated_checkout_buttons %}
+    <div
+      class="
+        additional-checkout-buttons
+        {% if accelerated_checkout_buttons_layout == 'vertical' %}additional-checkout-buttons--vertical{% endif %}
+      "
+    >
+      {{ content_for_additional_checkout_buttons }}
+    </div>
+  {% endif %}
+</div>
+</div>
+
+
+<script>
+  function Endless_AdminClicked(){
+     window.location.href = "{{ shop.url }}/pages/endless-aisle?section=endless_aisle_login";
+  }
+</script>
+
+<style>
+  .cart-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-sm);
+    border-block: 1px solid var(--color-border);
+    padding-block: var(--padding-sm);
+    margin-block-start: var(--margin-3xs);
+    display: none;
+  }
+
+  .cart-actions__divider {
+    border-block-start: 1px solid var(--color-border);
+  }
+
+  .cart__summary-totals:not(:has(.cart-actions)) {
+    margin-block-start: var(--margin-3xs);
+    border-block-start: 1px solid var(--color-border);
+    padding-block-start: var(--margin-xl);
+  }
+
+  .cart__installments {
+    color: var(--color-foreground);
+  }
+</style>

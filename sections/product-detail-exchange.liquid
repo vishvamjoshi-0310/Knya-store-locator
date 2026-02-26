@@ -1,0 +1,199 @@
+{{ 'product-detail-exchange.css' | asset_url | stylesheet_tag }}
+<style>
+   .main-div-pro{margin-top:{{ section.settings.margintopex}}px;}
+  .backGroundImage{background:url('{{section.settings.backgroundImage | img_url :"1000x" }}');background-size:cover;background-position: center;}
+    @media only screen and (max-width:640px){
+     .main-div-pro{margin-top:{{ section.settings.margintopexmob}}px}
+   }
+</style>
+
+{% assign pro-images = product.metafields.custom.product_details_image.value %}
+{% assign pro-titles = product.metafields.custom.product_details_image_over_text.value %}
+{% assign pro-urls = product.metafields.custom.product_details_url.value %}
+
+{% if pro-images %}
+  <div class="main-div-pro">
+    <div class="page-width exchange_width">
+      <div class="inner-pro">
+        <div class="uppertab-option">
+          <div class="detail-option opacity-color" dataid="option-one">{{ section.settings['product-detail'] }}</div>
+          <span class="verticle-line"> <b>|</b></span>
+          <div class="detail-option " dataid="option-two">{{ section.settings['product-policy'] }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lower mainn-div-pro with-design">
+    <div class="page-width">
+      <div class="inner-pro {% if section.settings.show_padding_ex  %} page-padding-right page-padding-left{% endif %} {% if section.settings.show_padding_mob_ex %}padding-right-mob padding-left-mob{% endif %}">
+        <div class="lowertab-options tab-option" dataid="option-one">
+          <div class="tab-right">
+            <span class="icon-tab">{% render 'icon-header1' %} </span>
+            <span class="text-tab">{{ section.settings['detail-title'] }}</span>
+          </div>
+          <div class="tab-left">
+            <div class="right-inner">
+              {% for grid-images in pro-images %}
+                {% if grid-images.sources[1].url contains 'mp4' %}
+                  <video
+                    id="homevideo"
+                    class="pro-vid"
+                    width="100%"
+                    height="auto"
+                    src="{{ grid-images.sources[1].url }}"
+                    playsinline="playsinline"
+                    preload="auto"
+                    type="video/mp4"
+                    loop="false"
+                    autoplay="autoplay"
+                    muted="muted"
+                    controls
+                  ></video>
+                {% else %}
+                  <div class="grid-imagess grid_section-{{ forloop.index }}">
+                    {{
+                      grid-images
+                      | image_url: width: 300, format: 'webp'
+                      | image_tag: class: '', loading: 'lazy', sizes: '(min-width: 200px) 300px', widths: '300'
+                    }}
+                    <div class="main-grid-text-div">
+                      <div class="grid-text">{{ pro-titles[forloop.index0] }}</div>
+                    </div>
+                  </div>
+                {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        <div class="exchange-div tab-option" dataid="option-two">
+          <div class="tab-right">
+            <span class="icon-tab">{% render 'icon-header2' %} </span>
+            <span class="text-tab">{{ section.settings['exchange-title'] }}</span>
+          </div>
+          <div class="tab-left">
+            <div class="ecxchange-content-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="9" height="7" viewBox="0 0 9 7" fill="none">
+                <path d="M9 0V0.203254C8.94788 0.241147 8.89636 0.283761 8.84437 0.330102C8.8386 0.335071 8.83308 0.340165 8.82779 0.345507C8.77411 0.39719 8.72308 0.453843 8.6748 0.514472C8.65883 0.534598 8.64274 0.554849 8.62785 0.576467C8.61188 0.59709 8.59698 0.617838 8.58269 0.640325C8.56816 0.662191 8.55363 0.684554 8.5403 0.707414C8.52541 0.730274 8.51208 0.753755 8.49911 0.77736C8.48674 0.798605 8.47485 0.820968 8.46405 0.842834C8.46104 0.848176 8.45828 0.853518 8.45564 0.85886C8.44495 0.880105 8.43414 0.902468 8.42418 0.924334C8.42382 0.924955 8.42322 0.925328 8.42322 0.925949C8.41193 0.951418 8.40052 0.977011 8.38983 1.0031C8.37914 1.02882 8.3687 1.05441 8.35945 1.08025C8.35909 1.08249 8.35801 1.08473 8.35681 1.08684C8.35008 1.10498 8.34348 1.12374 8.33735 1.14225C8.33219 1.15629 8.32823 1.16946 8.32378 1.18275C8.32234 1.18586 8.32138 1.18909 8.32078 1.19281C8.31261 1.21629 8.30529 1.24077 8.29868 1.26524C8.29256 1.28599 8.2868 1.30749 8.28115 1.32923C8.27539 1.35209 8.26986 1.37594 8.2641 1.40004C8.25857 1.42352 8.25281 1.44738 8.24777 1.4721C8.24416 1.49061 8.23984 1.50937 8.23684 1.52851C8.23624 1.5295 8.23624 1.53012 8.23624 1.53124C8.23228 1.55435 8.22807 1.57721 8.22447 1.60056C8.22327 1.60367 8.22291 1.6069 8.22243 1.61001C8.22243 1.61435 8.22123 1.61746 8.22087 1.62168C8.21666 1.6474 8.21306 1.67337 8.20994 1.69946C8.20838 1.70753 8.2073 1.71598 8.20634 1.72455C8.20538 1.73201 8.2049 1.73897 8.20369 1.74642C8.20069 1.77363 8.19757 1.80133 8.19493 1.82916C8.19337 1.85103 8.19193 1.87327 8.19 1.89501C8.18844 1.9175 8.18724 1.94036 8.18568 1.96334C8.18484 1.98583 8.18364 2.00869 8.18268 2.03167L8.18112 2.09218C8.18076 2.11889 8.18016 2.14572 8.18016 2.17231C8.18016 2.72505 8.18016 3.18995 8.1798 3.57273H8.18016V4.1887H8.18076V6.75H0.000840236V5.59856L-3.86909e-07 5.59893V3.47942C-3.86909e-07 0.795126 1.89104 0 3.18055 0H9Z" fill="#482F8F"/>
+              </svg>
+            </div>
+            <div class="ecxchange-content">
+              <span class="exchange-upper"> {{ section.settings['exchange-content'] }}</span> <br>
+              <span class="exchange-lower"> {{ section.settings['exchange-lower'] }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    document.querySelectorAll('.detail-option').forEach((each) => {
+      each.addEventListener('click', function (e) {
+        if (e.target.getAttribute('dataid') == 'option-two') {
+          e.target.closest('.main-div-pro').nextElementSibling.classList.add('backGroundImage');
+        } else {
+          e.target.closest('.main-div-pro').nextElementSibling.classList.remove('backGroundImage');
+        }
+        document.querySelectorAll('.detail-option').forEach((each1) => {
+          if (each1.classList.contains('opacity-color')) {
+            each1.classList.remove('opacity-color');
+          }
+        });
+        each.classList.add('opacity-color');
+        let idOne = each.getAttribute('dataid');
+        document.querySelectorAll('.tab-option').forEach((each1) => {
+          each1.style.display = 'none';
+          let idTwo = each1.getAttribute('dataid');
+          if (idOne == idTwo) {
+            if (window.innerWidth <= 640) {
+              each1.style.display = 'block';
+            } else {
+              each1.style.display = 'flex';
+            }
+          }
+        });
+      });
+    });
+  });
+</script>
+{% schema %}
+{
+  "name": "pdp detail exchange",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_padding_ex",
+      "label": "padding for section",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_padding_mob_ex",
+      "label": "padding for section in mobile",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "backgroundImage",
+      "label": "Exchange Background Image"
+    },
+    {
+      "type": "range",
+      "id": "margintopex",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "margin from top for entire section",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margintopexmob",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "margin from top for entire section",
+      "default": 0
+    },
+    {
+      "type": "text",
+      "id": "product-detail",
+      "label": "detail"
+    },
+    {
+      "type": "text",
+      "id": "product-policy",
+      "label": "exchange"
+    },
+    {
+      "type": "text",
+      "id": "detail-title",
+      "label": "Detail Title"
+    },
+    {
+      "type": "text",
+      "id": "exchange-title",
+      "label": "exchange"
+    },
+    {
+      "type": "text",
+      "id": "exchange-content",
+      "label": "exchange content upper"
+    },
+    {
+      "type": "text",
+      "id": "exchange-lower",
+      "label": "exchange content lower"
+    }
+  ],
+  "presets": [
+    {
+      "name": "product-details-exchange"
+    }
+  ]
+}
+{% endschema %}

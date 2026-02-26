@@ -1,0 +1,192 @@
+.vitals-banner-logo img{
+    height :25px;
+}
+.vitals-banner-inner img{
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.vitals-banner-heading{
+    font-size: 28px;
+    color: #fff;
+    font-family: Heebo-Regular;
+    font-weight: 500;
+    line-height: 36px;
+    letter-spacing: 0;
+    text-align: center;
+}
+
+.vitals-banner-form-submit-container{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.vitals-banner-form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.vitals-banner{
+    position: relative;
+}
+
+.vitals-banner-content{
+    position: absolute;
+    bottom: 48px;
+    left: 50%;
+    padding: 0 18px;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+    align-items: center;
+}
+
+.vitals-banner-form-inner{
+    font-size: 12px;
+    line-height: 18px;
+    color: #fff;
+    font-family: 'Heebo-Regular';
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.vitals-banner-form-submit-container #vitals-text{
+    border: 1px solid #FFFFFF3D;
+    background: #FFFFFF3D;
+    backdrop-filter: blur(52px);
+    border-radius: 8px;
+    width: 100%;
+    padding: 8px 16px;
+    color: #FFFFFF8F;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: 'Heebo-Regular';
+    line-height: 22px;
+    min-height: 40px;
+}
+
+.vitals-banner-form-submit-container #vitals-text::placeholder{
+    color: #FFFFFF8F;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: 'Heebo-Regular';
+    line-height: 22px;
+}   
+
+.vitals-banner-form-submit-container .vitals-button {
+    background: #462d8c;
+    border: none;
+    box-shadow: none;
+    color: #fff;
+    padding: 8px 48px;
+    max-width: 100%;
+    width: 100%;
+    border-radius: 8px;
+    font-family: Heebo-Regular;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 40px;
+    cursor: pointer;
+}
+
+  
+.vitals-radio {
+    display: none;
+}
+
+.custom-radio label {
+    position: relative;
+    padding-left: 26px;
+    cursor: pointer;
+    user-select: none;
+}
+
+/* Outer Circle */
+.custom-radio label::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    background: transparent;
+    box-sizing: border-box;
+}
+
+/* Inner Circle when Checked */
+.vitals-radio:checked + label::before {
+    background: #ccc; /* inner circle color */
+    box-shadow: inset 0 0 0 3px #000; /* black ring around inner circle */
+}
+
+@media(min-width: 768px){
+    .vitals-banner-logo{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .vitals-banner-logo img{
+        height :25px;
+    }
+    .vitals-banner-content{
+        bottom: 50%;
+        left: 5%;
+        transform: translateY(50%);
+        gap: 32px;
+        max-width: 720px;
+        align-items: flex-start;
+        padding: 0;
+    }
+    .vitals-banner-heading{
+        font-size: 44px;
+        line-height: 52px;
+        text-align: left;
+    }
+
+    .vitals-banner-form{
+        gap: 18px;
+    }
+
+    .vitals-banner-form-inner{
+        font-size: 14px;
+        line-height: 22px;
+    }
+    .vitals-banner-form-submit-container{
+        flex-direction: row;
+        gap: 12px;
+    }
+    .vitals-banner-form-submit-container #vitals-text{
+        flex: 1;
+        min-height: 48px;
+    }
+    .vitals-banner-form-submit-container .vitals-button{
+        min-height: 48px;
+        max-width: max-content;
+    }
+
+    .custom-radio label{
+        padding-left: 34px;
+    }
+
+    .custom-radio label::before {
+        width: 24px;
+        height: 24px;
+    }
+}

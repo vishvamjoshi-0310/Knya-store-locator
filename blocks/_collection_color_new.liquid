@@ -1,0 +1,59 @@
+<a href="{{ block.settings.color_collection.url }}" class="collection-card-container">
+  <div class="collection_image_container">
+    {% if block.settings.label_text != blank %}
+      <span class="collection-label" style="color: {{ block.settings.label_color }};">
+        {{- block.settings.label_text -}}
+      </span>
+    {% endif %}
+
+    {%- if block.settings.collection_image -%}
+      {{
+        block.settings.collection_image
+        | image_url: width: 260
+        | image_tag: widths: '150, 260', loading: 'lazy', height: '100px', class: 'sbc-image'
+      }}
+    {%- endif -%}
+  </div>
+  <span class="collection_text">{{ block.settings.collection_title }}</span>
+</a>
+
+{% schema %}
+{
+  "name": "Collection Color",
+  "tag": null,
+  "settings": [
+    {
+      "type": "collection",
+      "id": "color_collection",
+      "label": "Collection"
+    },
+    {
+      "type": "image_picker",
+      "id": "collection_image",
+      "label": "Collection Image"
+    },
+    {
+      "type": "text",
+      "id": "label_text",
+      "label": "Label Text",
+      "default": "New"
+    },
+    {
+      "type": "color",
+      "id": "label_color",
+      "label": "Label Color",
+      "default": "#202020"
+    },
+    {
+      "type": "text",
+      "id": "collection_title",
+      "label": "Collection Title"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection Color"
+    }
+  ]
+}
+{% endschema %}

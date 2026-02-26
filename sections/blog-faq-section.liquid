@@ -1,0 +1,120 @@
+{{ 'section-blog-post.css' | asset_url | stylesheet_tag }}
+<style>
+   .faqsection_new .contentwrapperfaq{background:#FFFFFF;}
+    .faqsection_new .page-width{width:100%;}
+    .faqsection details{padding: 0px;}
+   .faqsection_new, .faqsection_new .article-template__content .quotes{background-color:#FFFBFE !important; padding:0px;
+      margin-bottom: 24px; margin-top: 24px;}
+    .faqsection_new .contentwrapperfaq{display:flex;}
+    .faqsection_new .contentwrapperfaq .headerblock{flex:520px;}
+    .faqsection_new .contentwrapperfaq .contentblock{flex:calc(100% - 520px);}
+    .faqsection_new .contentwrapperfaq .faq-heading{
+    font-family: Heebo-Regular !important;color:#462D8C !important;
+    font-size: clamp(24px,calc(32 * (100vw / 1440)),34px) !important;
+    line-height:clamp(32px,calc(40 * (100vw / 1440)),44px) !important;
+    font-style: normal;font-weight: 500;margin-top:24px !important;margin-bottom:24px !important;padding:0px 15px;
+  }
+  .faqsection_new .contentwrapperfaq summary h4{
+    color:#000000 !important;font-weight: 500;
+    font-size: clamp(14px,calc(16 * (100vw / 1440)),18px) !important;
+    line-height:clamp(142%,calc(150 * (100vw / 1440)),160%) !important;
+  }
+  .faqsection_new .contentwrapperfaq details p{
+    color:#282828 !important;font-weight: 400;
+    font-size: clamp(14px,calc(16 * (100vw / 1440)),18px) !important;
+    line-height:clamp(142%,calc(150 * (100vw / 1440)),160%) !important;
+  }
+  .faqsection_new .contentwrapperfaq details{border-bottom: 1px #E5E5E5 solid;}
+  .faqsection.faqsection_new details summary .plus svg, .faqsection.faqsection_new details summary .minus svg {
+      color: #222228 !important;
+  }
+  .faqsection.faqsection_new details[open] summary .minus {
+      display: flex;
+  }
+  .faqsection.faqsection_new details summary .plus{line-height:100%;}
+
+  @media screen and (min-width:751px){
+    .faqsection_new .contentwrapperfaq details p{padding-right:15px;}
+  }
+  .breadcrumbs__list{display: inline}
+
+  @media screen and (max-width:1200px){
+        .faqsection_new .contentwrapperfaq .headerblock{flex:40%;}
+        .faqsection_new .contentwrapperfaq .contentblock{flex:60%;}
+  }
+   @media screen and (max-width:989px){
+  .faqsection_new .contentwrapperfaq{display:flex; flex-direction: column;}
+  .faqsection_new .contentwrapperfaq .headerblock{flex:50%;}
+  .faqsection_new .contentwrapperfaq .contentblock{flex:50%;}
+  .faqsection_new .page-width{padding: 0 var(--desktop-padding);}
+  }
+  @media screen and (max-width:750px){
+  .faqsection_new{margin-top:0px;}
+  .faqsection_new .page-width{width:100%;padding:0px;}
+  .faqsection_new .contentwrapperfaq details summary{padding: 0 var(--mobile-padding);}
+  .faqsection_new .contentwrapperfaq details p{padding: 0 var(--mobile-padding);}
+  .faqsection_new .contentwrapperfaq .faq-heading{margin-bottom:12px !important;}
+  .faqsection details {padding: 24px 0px 25px 0px;}
+  .article-template__content {margin-bottom: 0rem;}
+  .faqsection_new .contentwrapperfaq summary h4{font-family: Heebo-Medium !important;}
+  }
+</style>
+
+{% if article.metafields.custom.blog_faq.value != blank %}
+  <div class="faqsection faqsection_new">
+    <div class="page-width-updated">
+      <div class="contentwrapperfaq">
+        <div class="headerblock">
+          <h3 class="faq-heading">{{ section.settings.heading }}</h3>
+        </div>
+        <div class="contentblock">
+          {% assign sizes = article.metafields.custom.blog_faq.value %}
+          {% for i in sizes %}
+            {% assign question-arr = i | split: '##' %}
+            <details
+              {% if forloop.index == 1 %}
+                open
+              {% endif %}
+            >
+              <summary>
+                <h4 class="question">{{ question-arr[0] }}</h4>
+                <span class="plus">{{- 'icon-plus.svg' | inline_asset_content -}}</span><span class="minus">{{- 'icon-minus.svg' | inline_asset_content -}}</span>
+              </summary>
+              <p>
+                {{ question-arr[1] }}
+              </p>
+            </details>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "FAQ Section New",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "section heading"
+    },
+    {
+      "type": "text",
+      "id": "button",
+      "label": "Button"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "blog Faq section new"
+    }
+  ]
+}
+{% endschema %}

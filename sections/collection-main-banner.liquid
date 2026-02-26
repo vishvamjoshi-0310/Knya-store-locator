@@ -1,0 +1,117 @@
+{% if template == "collection" %}
+{{ 'collection-main-banner.css' | asset_url | stylesheet_tag }}
+
+<style>
+  .section-{{ section.id }}-margin {
+    margin-bottom: {{ section.settings.margin_bottom_desktop }}px;
+  }
+
+  .first-dev-coll a:not([href]) {
+    cursor: unset;
+  }
+
+  @media screen and (max-width: 750px) {
+    .section-{{ section.id }}-margin {
+      margin-bottom: {{ section.settings.margin_bottom_mobile }}px;
+    }
+  }
+</style>
+
+{% assign mobImg = collection.metafields.custom.main_banner_mobile %}
+
+<div class="first-banner-collection {% if section.settings.show_padding_colle_banner_desk %} page-padding-right page-padding-left{% endif %} {% if section.settings.show_padding_colle_banner_mob %}padding-right-mob padding-left-mob{% endif %} section-{{ section.id }}-margin">
+  <div class="first-dev-coll">
+    <a
+      {% if section.settings['col-url-full'] %}
+        href="{{ section.settings.col-url-full }}"
+      {% endif %}
+    >
+      <div class="image-coll">
+        {% if collection.image != blank %}
+          <img
+            class=" desk-banner"
+            srcset="
+              {%- if collection.image.width >= 165 -%}{{ collection.image | image_url: width: 165 }} 165w,{%- endif -%}
+              {%- if collection.image.width >= 360 -%}{{ collection.image | image_url: width: 360 }} 360w,{%- endif -%}
+              {%- if collection.image.width >= 535 -%}{{ collection.image | image_url: width: 535 }} 535w,{%- endif -%}
+              {%- if collection.image.width >= 750 -%}{{ collection.image | image_url: width: 750 }} 750w,{%- endif -%}
+              {%- if collection.image.width >= 1070 -%}{{ collection.image | image_url: width: 1070 }} 1070w,{%- endif -%}
+              {%- if collection.image.width >= 1500 -%}{{ collection.image | image_url: width: 1500 }} 1500w,{%- endif -%}
+              {{ collection.image | image_url }} {{ collection.image.width }}w
+            "
+            src="{{ collection.image | img_url:'1900x' }}"
+            sizes="100vw"
+            alt="{% if collection.image.alt == blank  %} collection banner {% else %} {{ collection.image.alt | escape }} {% endif %}"
+            width="{{ collection.image.width }}"
+            height="{{ collection.image.height }}"
+          >
+        {% endif %}
+        {% if collection.metafields.custom.main_banner_mobile != blank %}
+          <img
+            class="mob-banner"
+            srcset="
+              {%- if mobImg.width >= 165 -%}{{ mobImg | image_url: width: 165 }} 165w,{%- endif -%}
+              {%- if mobImg.width >= 360 -%}{{ mobImg | image_url: width: 360 }} 360w,{%- endif -%}
+              {%- if mobImg.width >= 535 -%}{{ mobImg | image_url: width: 535 }} 535w,{%- endif -%}
+              {%- if mobImg.width >= 750 -%}{{ mobImg | image_url: width: 750 }} 750w,{%- endif -%}
+              {%- if mobImg.width >= 1070 -%}{{ mobImg | image_url: width: 1070 }} 1070w,{%- endif -%}
+              {%- if mobImg.width >= 1500 -%}{{ mobImg | image_url: width: 1500 }} 1500w,{%- endif -%}
+              {{ mobImg | image_url }} {{ mobImg.width }}w
+            "
+            src="{{ mobImg | img_url:"600x" }}"
+            sizes="100vw"
+            alt="{% if mobImg.alt == blank  %} collection category {% else %} {{ mobImg.alt | escape }} {% endif %}"
+            width="{{ mobImg.width }}"
+            height="{{ mobImg.height }}"
+          >
+        {% endif %}
+      </div>
+    </a>
+  </div>
+</div>
+{% endif %}
+{% schema %}
+{
+  "name": "Collection Banner",
+  "settings": [
+    {
+      "type": "range",
+      "id": "margin_bottom_desktop",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Margin Bottom Desktop",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Margin Bottom Mobile",
+      "default": 36
+    },
+    {
+      "type": "checkbox",
+      "id": "show_padding_colle_banner_desk",
+      "label": "Padding for Section",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_padding_colle_banner_mob",
+      "label": "Padding for Section in Mobile",
+      "default": true
+    },
+    {
+      "type": "url",
+      "id": "col-url-full",
+      "label": "Url for Banner"
+    }
+  ],
+  "presets": [{ "name": "Collection Banner" }]
+}
+{% endschema %}

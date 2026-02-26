@@ -1,0 +1,193 @@
+@media screen and (max-width: 749px) {
+  .articles-wrapper .article {
+    width: 100%;
+  }
+}
+.swiper.swiperarticlemb.mobile{display:none;}
+.desktoparticlecustom img{width:100%; height:auto;}
+.article {
+  display: flex;
+  align-items: center;
+}
+
+.article.grid__item {
+  padding: 0;
+}
+
+.grid--peek .article-card {
+  box-sizing: border-box;
+}
+
+.article-card__image-wrapper > a {
+  display: block;
+}
+
+.article-card__title {
+  text-decoration: none;
+  word-break: break-word;
+}
+
+.article-card__title a:after {
+  bottom: 0;
+  content: "";
+  height: 100%;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.article-card__link.link {
+  padding: 0;
+}
+
+.article-card__link {
+  text-underline-offset: 3px;
+}
+
+.article-card .card__heading {
+  margin-bottom: 6px;width: auto !important;padding-top: 50px;
+}
+.article-card .card__heading a{
+  color: #000303;
+    font-size: 1.719vw;
+    font-family: 'Heebo-SemiBold';
+    line-height: 120%;
+    opacity: 60%;
+}
+.main-blog  .custom-title-article{color:#000303; font-size:1.719vw;font-family:'Heebo-SemiBold';line-height:120%;opacity: 60%;}
+.article-card .card__heading a center {text-align:left;}
+.main-blog .card__information{background-color:#fff !important;}
+.blog-articles .article-card .card__information,
+.blog__posts .article-card .card__information {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.article-card__info {
+  padding-top: 4px;
+}
+
+.article-card__footer {
+  letter-spacing: 1px;
+  font-size: 14px;
+}
+
+.article-card__footer:not(:last-child) {
+  margin-bottom: 10px;
+}
+padding-right: 9px;
+.article-card__footer:last-child {
+  margin-top: auto;
+}
+
+.article-card__excerpt {
+  width: 100%;
+  margin-top: 12px;max-width:60% !important;
+}
+
+.article-card__link:not(:only-child) {
+  margin-right: 30px;
+}
+
+@media screen and (min-width: 990px) {
+  .article-card__link:not(:only-child) {
+    margin-right: 40px;
+  }
+}
+
+.article-card__image--small .ratio::before {
+  padding-bottom: 110px;
+}
+
+.article-card__image--medium .ratio::before {
+  padding-bottom: 220px;
+}
+
+.article-card__image--large .ratio::before {
+  padding-bottom: 330px;
+}
+
+@media screen and (min-width: 750px) {
+  .article-card__image--small .ratio::before {
+    padding-bottom: 143px;
+  }
+
+  .article-card__image--medium .ratio::before {
+    padding-bottom: 219px;
+  }
+
+  .article-card__image--large .ratio::before {
+    padding-bottom: 275px;
+  }
+}
+
+@media screen and (min-width: 990px) {
+  .article-card__image--small .ratio::before {
+    padding-bottom: 177px;
+  }
+
+  .article-card__image--medium .ratio::before {
+    padding-bottom: 307px;
+  }
+
+  .article-card__image--large .ratio::before {
+    padding-bottom: 407px;
+  }
+}
+
+/* check for flexbox gap in older Safari versions */
+@supports not (inset: 10px) {
+  .articles-wrapper.grid {
+    margin: 0 0 50px 0;
+  }
+
+  @media screen and (min-width: 750px) {
+    .articles-wrapper.grid {
+      margin-bottom: 70px;
+    }
+  }
+}
+.custom-title-article{font-size:1.719vw;line-height: 120%;color:#482F8F;display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;}
+.card-bgg{background:none;}
+.card-flex{display: flex;flex-direction: row-reverse;justify-content: start;gap: 9px;}
+.blog-auth{border-right: 1px solid #000303;padding-right: 4px;}
+ .article-card__info span{font-size:1.250vw;padding-right: 9px;color: #000303;text-transform: capitalize;}
+@media screen and (min-width: 641px) and (max-width:1024px){
+  .upper-title-article{font-size: 4.492vw;}
+  .custom-title-article{font-size:2.148vw;}
+  .article-card__info span{font-size:1.563vw;}
+}
+@media screen and (max-width: 767px){
+  .main-blog  .custom-title-article{font-size:22px; font-family:'Heebo-Medium';}
+  .article-card .card--media .card__inner .card__content{padding:0;}
+  .swiper.swiperarticlemb.mobile{display:block;}
+  .swiper.swiperarticledk.desktop{display:none;}
+}
+  
+@media screen and (max-width: 640px){
+.article-style{padding-bottom: 25px !important;}
+  .article-card .card__heading {padding-top: 20px !important;}
+  .upper-title-article{font-size: 36px;}
+  .custom-title-article{font-size:22px;}
+   .article-card__info span{font-size:12px;}
+}
+
+.upper-title-article {
+/*     padding-top: 50px; */
+/*   color:#482F8F; */
+}
+/* .one-line-art{padding-top: 50px;} */
+
+
+
+
+
+
+
+

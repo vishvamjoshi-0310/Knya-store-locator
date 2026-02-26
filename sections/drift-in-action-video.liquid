@@ -1,0 +1,87 @@
+<link rel="stylesheet" href="{{ 'drift-in-action-video-stylesheet.css' | asset_url }}">
+
+<section class="drift-in-action-video-section">
+  <div class="drift-container">
+    <div class="drift-content-wrapper">
+      <h2 class="drift-headline">{{ section.settings.headline }}</h2>
+      <div class="drift-button-wrapper">
+        <span class="drift-watch-button">
+          <span>{{ section.settings.button_text }}</span>
+          <a href="{{ section.settings.button_link }}" class="drift-play-icon-link">
+            {% render 'video-play-icon-black' %}
+          </a>
+        </span>
+      </div>
+    </div>
+
+    <div class="drift-video-container">
+      {{ section.settings.video_url | media_tag: autoplay: true, muted: true, loop: true, playsinline: true }}
+
+    </div>
+  </div>
+</section>
+
+<script src="{{ 'drift-in-action-video-javascript.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "Drift In Action Video",
+  "class": "drift-in-action-video-parent",
+  "settings": [
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Headline",
+      "default": "See DRIFT in Action"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Watch the film"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "video",
+      "id": "video_url",
+      "label": "Video"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Drift In Action Video"
+    }
+  ]
+}
+{% endschema %}
+
+<script>
+  const button = document.querySelector('.drift-watch-button');
+
+  if (button) {
+    const link = button.querySelector('.drift-play-icon-link');
+    const textSpan = button.querySelector('span');
+    const svgPath = button.querySelector('svg path');
+    const targetUrl = link.getAttribute('href');
+
+    button.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      // Click animation styles
+      textSpan.style.borderColor = '#ffffff';
+      textSpan.style.color = '#616161';
+      svgPath.setAttribute('fill', '#616161');
+
+      // Delay redirect for smooth visual
+      setTimeout(() => {
+        window.location.href = targetUrl;
+      }, 500);
+    });
+  }
+</script>
+
+

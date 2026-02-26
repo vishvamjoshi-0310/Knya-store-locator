@@ -1,0 +1,274 @@
+{%- doc -%}
+  Renders a list or swatch filter for mobile drawer (simplified version without accordion)
+  @param {object} filter - The filter to render
+  @param {string} filter_style - The filter style
+  @param {number} active_value_count - The number of active values
+  @param {number} sectionId - The section ID
+  @param {boolean} [autofocus] - Whether to autofocus the filter
+  @param {boolean} [should_render_clear] - Whether to render the clear button
+  @param {boolean} [in_drawer] - Whether the filter is in a drawer
+{%- enddoc -%}
+
+{% liquid
+  assign is_swatch = false
+  assign swatch_index = filter.values | find_index: 'swatch'
+
+  if swatch_index != null
+    assign is_swatch = true
+  endif
+
+  assign is_image = false
+  if filter.presentation == 'image'
+    assign is_image = true
+  endif
+%}
+
+<facet-inputs-component
+  on:change="/updateFilters"
+  id="facet-inputs-component-mobile-{{ filter.param_name | escape | replace: '.', '-' }}"
+>
+  {% liquid
+    assign has_active_values = false
+    assign should_use_pills = false
+
+    for value in filter.values
+      if value.label.size > 3
+        assign should_use_pills = false
+        break
+      endif
+    endfor
+
+    if filter.type == 'boolean'
+      assign should_use_pills = false
+    endif
+  %}
+
+  <div
+    class="facets__inputs-wrapper{% if is_swatch or is_image or should_use_pills %} facets__inputs-wrapper--row{% endif %}"
+  >
+    {% liquid
+      if is_swatch
+        assign swatch_columns = filter.values.size
+
+        if swatch_columns > 4
+          assign swatch_columns = 4
+
+          assign mod4 = filter.values.size | modulo: 4
+          assign mod3 = filter.values.size | modulo: 3
+          if mod4 != 0 and mod4 != 3
+            if mod3 == 0 or mod3 == 2
+              assign swatch_columns = 3
+            endif
+          endif
+        endif
+      endif
+
+      if is_image
+        assign image_columns = 3
+        if filter.values.size < 3
+          assign image_columns = filter.values.size
+        endif
+      endif
+    %}
+    <ul
+      id="filters-list-mobile-{{ sectionId }}-{{ filter.param_name | escape | replace: '.', '-' }}"
+      class="facets__inputs-list{% if should_use_pills %} facets__inputs-list--grid{% endif %} list-unstyled{% if is_swatch %} facets__inputs-list--swatches{% endif %}{% if is_image %} facets__inputs-list--images{% endif %} filter_content_div"
+      {% if is_swatch %}
+        style="--swatch-columns: {{ swatch_columns }};"
+      {% endif %}
+      {% if is_image %}
+        style="--image-columns: {{ image_columns }};"
+      {% endif %}
+      name="{{ filter.label }}"
+      category-label="{{ filter.label | downcase }}"
+    >
+      {%- for value in filter.values -%}
+        {% liquid
+          assign input_id = 'Filter-Mobile-' | append: filter.param_name | escape | append: '-' | append: forloop.index | replace: '.', '-' | append: '-' | append: sectionId
+          assign is_disabled = false
+          if value.count == 0 and value.active == false
+            assign is_disabled = true
+          endif
+        %}
+        <li
+          data-skip-node-update="true"
+          class="facets__inputs-list-item"
+        >
+          {% if value.active %}
+            {% assign has_active_values = true %}
+          {% endif %}
+          {% if is_image %}
+            <fieldset
+              class="variant-option variant-option--buttons variant-option--images"
+              aria-label="{{ value.label }}"
+              on:keydown="#facet-inputs-component-mobile-{{ filter.param_name | escape | replace: '.', '-' }}/handleKeyDown"
+            >
+              <div class="facets__image-wrapper">
+                {% if value.image %}
+                  {{ value.image | image_url: width: 300 | image_tag: alt: value.alt }}
+                {% endif %}
+                {% if is_disabled %}
+                  <svg
+                    aria-hidden="true"
+                    width="100%"
+                    height="100%"
+                    viewBox="0 0 100 100"
+                    preserveAspectRatio="none"
+                  >
+                    <line x1="100" y1="0" x2="0" y2="100" vector-effect="non-scaling-stroke" />
+                  </svg>
+                {% endif %}
+              </div>
+              <input
+                tabindex="0"
+                type="checkbox"
+                name="{{ value.param_name }}"
+                value="{{ value.value }}"
+                aria-label="{{ value.label }}"
+                id="{{ input_id }}"
+                {% if value.active %}
+                  checked
+                {% endif %}
+                {% if is_disabled %}
+                  disabled
+                {% endif %}
+                {% if autofocus %}
+                  autofocus
+                {% endif %}
+                ref="facetInputs[]"
+                filter-label="{{ filter.label | downcase }}"
+                filter-value="{{ value.value | downcase }}"
+              >
+              <label
+                class="facets__image-label"
+                for="{{ input_id }}"
+                tabindex="-1"
+              >
+                {{- value.label }}
+              </label>
+            </fieldset>
+          {% elsif is_swatch %}
+            <fieldset
+              class="variant-option variant-option--buttons variant-option--swatches {% if is_disabled %}variant-option--swatches-disabled{% endif %}"
+              aria-label="{{ value.label }}"
+              on:keydown="#facet-inputs-component-mobile-{{ filter.param_name | escape | replace: '.', '-' }}/handleKeyDown"
+            >
+              <label
+                class="variant-option__button-label variant-option__button-label--has-swatch swatch-rounded"
+                on:pointerenter="/prefetchPage"
+                on:pointerleave="/cancelPrefetchPage"
+              >
+                <div
+                  class="variant-option__swatch-wrapper"
+                >
+                  <input
+                    tabindex="0"
+                    type="checkbox"
+                    name="{{ value.param_name }}"
+                    value="{{ value.value }}"
+                    aria-label="{{ value.label }}"
+                    id="{{ input_id }}"
+                    {% if value.active %}
+                      checked
+                    {% endif %}
+                    {% if is_disabled %}
+                      disabled
+                    {% endif %}
+                    {% if autofocus %}
+                      autofocus
+                    {% endif %}
+                    ref="facetInputs[]"
+                    filter-label="{{ filter.label | downcase }}"
+                    filter-value="{{ value.value | downcase }}"
+                  >
+                  {% render 'swatch', swatch: value.swatch, mode: 'filter' %}
+                  {% if is_disabled %}
+                    <svg
+                      aria-hidden="true"
+                      width="100%"
+                      height="100%"
+                      viewBox="0 0 100 100"
+                      preserveAspectRatio="none"
+                    >
+                      <line x1="100" y1="0" x2="0" y2="100" vector-effect="non-scaling-stroke" />
+                    </svg>
+                  {% endif %}
+                </div>
+                <label
+                  class="facets__swatch-label"
+                  for="{{ input_id }}"
+                  tabindex="-1"
+                >
+                  {{- value.label }}
+                </label>
+              </label>
+            </fieldset>
+          {% else %}
+            {% if should_use_pills %}
+              <div
+                class="facets__pill-wrapper"
+                on:keydown="#facet-inputs-component-mobile-{{ filter.param_name | escape | replace: '.', '-' }}/handleKeyDown"
+              >
+                <input
+                  type="checkbox"
+                  name="{{ value.param_name }}"
+                  value="{{ value.value }}"
+                  id="{{ input_id }}"
+                  class="facets__pill-input"
+                  data-label="{{ value.label }}"
+                  {% if value.active %}
+                    checked
+                  {% endif %}
+                  {% if is_disabled %}
+                    disabled
+                  {% endif %}
+                  {% if autofocus %}
+                    autofocus
+                  {% endif %}
+                  ref="facetInputs[]"
+                  tabindex="-1"
+                  filter-label="{{ filter.label | downcase }}"
+                  filter-value="{{ value.value | downcase }}"
+                >
+                <label
+                  class="facets__pill-label"
+                  for="{{ input_id }}"
+                  tabindex="0"
+                >
+                  {{- value.label }}
+                  {% if is_disabled %}
+                    <svg
+                      aria-hidden="true"
+                      width="100%"
+                      height="100%"
+                      viewBox="0 0 100 100"
+                      preserveAspectRatio="none"
+                    >
+                      <line x1="100" y1="0" x2="0" y2="100" vector-effect="non-scaling-stroke" />
+                    </svg>
+                  {% endif %}
+                </label>
+              </div>
+            {% else %}
+              {% render 'checkbox',
+                name: value.param_name,
+                value: value.value,
+                label: value.label,
+                checked: value.active,
+                id: input_id,
+                disabled: is_disabled,
+                inputRef: 'facetInputs[]',
+                events: 'on:pointerenter="/prefetchPage" on:pointerleave="/cancelPrefetchPage"',
+                autofocus: autofocus,
+                filterLabel: filter.label | downcase,
+                filterValue: value.value | downcase,
+                dataLabel: 'manish'
+              %}
+            {% endif %}
+          {% endif %}
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</facet-inputs-component>
+

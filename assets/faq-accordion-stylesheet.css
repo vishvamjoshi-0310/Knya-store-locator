@@ -1,0 +1,123 @@
+.faq-container {
+  max-width: 1980px;
+  margin: 32px auto;
+  padding: 12px 80px; 
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.font-heebo-regular .faq-item .faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 12px;
+  cursor: pointer;
+  background: #f7f7f7;
+  transition: background 0.3s;
+  border-radius: 4px;
+  color: #462D8C;
+  font-family: Heebo-Medium !important;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 100%;
+}
+.font-heebo-regular .faq-item .faq-question span{
+  font-family: Heebo-Medium !important;
+}
+
+.faq-container h2{
+  font-family: Heebo-Medium !important;
+  font-size: 22px;
+  line-height: 28px;
+  letter-spacing: 0px;
+  vertical-align: middle;
+  color: #462D8C;
+  margin:0;
+}
+  
+.faq-question:hover {
+  background: #ececec;
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+  padding: 0 15px;
+}
+
+.faq-answer p{
+  font-size: 12px;
+  line-height: 140%;
+  letter-spacing: 0%;
+  vertical-align: middle;
+  margin: 0;
+  color: #000000;
+}
+.faq-item.open .faq-answer {
+  max-height: 500px;
+  padding: 8px 12px;
+}
+
+.icon {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.icon-minus {
+  display: none;
+  opacity: 0;
+}
+
+.faq-item.open .icon-plus {
+  display: none;
+  opacity: 0;
+}
+
+.faq-item.open .icon-minus {
+  display: flex;
+  opacity: 1;
+}
+
+@media(max-width: 768px){
+  .faq-container h2{
+    font-size: 18px;
+  }
+
+  .faq-container{
+    gap: 12px;
+    padding: 24px 18px;
+    margin: 0;
+  }
+  .faq-question span{
+    font-size: 12px;
+    line-height: 100%;
+  }
+  .faq-answer p{
+    font-size: 11px;
+    line-height: 16px;
+    letter-spacing: 0.1px;
+  }
+}
+
+.icon.icon-plus{
+  display: flex;
+}
+
+@media(min-width: 1441px){
+  .faq-container{
+    margin: 2.22vw auto;
+    padding: 0.83vw 5.56vw;
+    gap: 0.83vw;
+  }
+  .faq-question{
+    font-size: 0.97vw;
+    padding: 0.28vw 0.83vw;
+  }
+  .faq-answer p{
+    font-size: 0.83vw;
+  }
+  .faq-container h2{
+    font-size: 1.53vw;
+  }
+}

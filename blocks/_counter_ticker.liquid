@@ -1,0 +1,44 @@
+<span class="count-ticker-block-heading">{{ block.settings['block-heading'] }}</span>
+<div class="count-ticker-block-content">
+  <div class="count-ticker {% if block.settings['enable-ticker'] %}enable-ticker{% endif %}">
+    {% if block.settings['enable-ticker'] %}
+      {% assign ticker_id = 'ticker-' | append: block.id %}
+      <p class="count-ticker-content">
+        <span id="{{ ticker_id }}" data-count="{{ block.settings['ticker-content'] }}">00</span><span>+</span>
+      </p>
+    {% else %}
+      <p class="count-ticker-content">{{ block.settings['ticker-content'] }}+</p>
+    {% endif %}
+  </div>
+  <p class="count-ticker-block-subheading">{{ block.settings['block-subheading'] }}</p>
+</div>
+
+{% schema %}
+{
+  "name": "Count Ticker",
+  "class": "count-ticker-block",
+  "settings": [
+    {
+      "type": "text",
+      "id": "block-heading",
+      "label": "Block Heading"
+    },
+    {
+      "type": "text",
+      "id": "ticker-content",
+      "label": "Ticker Content"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable-ticker",
+      "label": "Enable Ticker"
+    },
+    {
+      "type": "text",
+      "id": "block-subheading",
+      "label": "Block Subheading"
+    }
+  ],
+  "presets": [{ "name": "Count Ticker" }]
+}
+{% endschema %}

@@ -1,0 +1,509 @@
+<style>
+  {% if shop.metafields.sml.settings.value.is_enabled %}
+  #customer_login {
+      visibility: hidden
+  }
+  #CustomerLoginForm {
+      visibility: hidden
+  }
+  header.section-header {
+      display: none
+  }
+  {% endif %}
+
+  #smlCountdown {
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+    margin-top: 10px;
+    line-height: 1.4;
+  }
+
+  /* Show email input when visible class is added */
+  #userEmailInput.visible {
+    display: block !important;
+  }
+
+  /* Agent Login toggle styles */
+  .hidden {
+    display: none !important;
+  }
+
+  #agentLoginButton {
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 10px;
+    display: inline-block;
+  }
+</style>
+<script>
+  {% if shop.metafields.sml.settings != null %}
+      var smlSettings = {{ shop.metafields.sml.settings }}
+      {% else %}
+      var smlSettings = null
+      {% endif %}
+</script>
+
+<script src="https://unpkg.com/@simplewebauthn/browser@6.2.2"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://recaptcha.net/recaptcha/api.js?render=6Lf5M7sjAAAAAN6cj5PtXrtkjvSd82YlvW0MEXVK"></script>
+
+<script type="module">
+  import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.16.0/firebase-app.js';
+  import { getAuth, RecaptchaVerifier } from 'https://www.gstatic.com/firebasejs/9.16.0/firebase-auth.js';
+  window.initializeApp = initializeApp;
+  window.getAuth = getAuth;
+  window.RecaptchaVerifier = RecaptchaVerifier;
+</script>
+<div id="smlEmailOTPDiv" style="display:none">
+  <div id="smlEmailOTPDivError"></div>
+  <div id="smlEmailOTPDivSuccess"></div>
+  <div id="smlEmailOTPScreenGetOTPPage">
+    <input type="text" id="smlEmailOTPDivUserEmailInput" placeholder="Enter your email here">
+    <button type="button" id="smlEmailOTPDivGetOTPButton">Send OTP</button>
+  </div>
+  <div id="smlEmailOTPScreenSubmitOTPPage">
+    <input type="tel" id="smlEmailOTPDivOTPInput" placeholder="" maxlength="4" autocomplete="off">
+    <button type="button" id="smlEmailOTPDivSubmitOTPButton">Submit OTP</button>
+    <button type="button" id="smlEmailOTPDivResendOTPButton">
+      Resend OTP
+      <div
+        id="smlEmailOTPCountdown"
+      ></div>
+    </button>
+  </div>
+</div>
+<div id="loginErrorEmail"></div>
+<div id="mobileOTPLoginSection" style="display:none">
+  <div id="whole-login-container">
+    <div class="login-heading-div">
+      <div class="login-page-brand-logo-desktop">
+        {{
+          section.settings['brand-logo']
+          | image_url: width: 500
+          | image_tag: widths: '400,500', loading: 'lazy', height: 'auto', class: ''
+        }}
+      </div>
+    </div>
+    <div class="new-login-box">
+      <div class="new-login-content-container">
+        <div id="new-login-heading">{{ section.settings['first-heading'] }}</div>
+        <p id="new-login-sub-heading">{{ section.settings['first-subheading'] }}</p>
+        <div id="new-login-second-heading" style="display:none">{{ section.settings['second-heading'] }}</div>
+        <div id="phoneNumberAndEditDiv" style="display:none">
+          The code was sent to
+          <button type="button" id="backToLoginButton">
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0.499268 7.73052V9.25052C0.499268 9.39052 0.609268 9.50052 0.749268 9.50052H2.26927C2.33427 9.50052 2.39927 9.47552 2.44427 9.42552L7.90427 3.97052L6.02927 2.09552L0.574268 7.55052C0.524268 7.60052 0.499268 7.66052 0.499268 7.73052ZM9.35427 2.52052C9.54927 2.32552 9.54927 2.01052 9.35427 1.81552L8.18427 0.645518C7.98927 0.450518 7.67427 0.450518 7.47927 0.645518L6.56427 1.56052L8.43927 3.43552L9.35427 2.52052Z" fill="#462D8C"/>
+            </svg>
+          </button>
+          <div id="phoneNumberDiv"></div>
+        </div>
+      </div>
+      <div id="loginError"></div>
+      <div id="loginSuccess" style="display:none"></div>
+      <div class="selectbox-wrapper">
+        <label>Phone No.</label>
+        <div class="selectbox-wrapper-fields">
+          <select disabled aria-hidden="true" id="mobileCountryCodeDropdown"></select>
+          <div
+            id="parody-country-code"
+          >
+            +91
+          </div>
+          <input
+            aria-label="Enter your phone number"
+            type="number"
+            id="smlPhoneNumberInput"
+            autofocus="on"
+            value=""
+            placeholder=""
+          >
+        </div>
+      </div>
+      <input type="text" id="userEmailInput" placeholder="">
+      <button type="button" id="getOTPButton"></button>
+      <button type="button" id="smlGetOTPOnWhatsAppButton">Get OTP on WhatsApp</button>
+
+      <input type="tel" id="otpInput" placeholder="" maxlength="4" autocomplete="off">
+      <input type="tel" id="otpInputSixDigit" placeholder="" maxlength="6" autocomplete="off">
+
+      <!-- New OTP boxes for 4-digit OTP -->
+      <div class="otp-container" id="otpBoxContainer">
+        <legend>Enter OTP</legend>
+        <div class="otp-input-container">
+          <input type="tel" class="otp-box" maxlength="1" autocomplete="off" data-index="0">
+          <input type="tel" class="otp-box" maxlength="1" autocomplete="off" data-index="1">
+          <input type="tel" class="otp-box" maxlength="1" autocomplete="off" data-index="2">
+          <input type="tel" class="otp-box" maxlength="1" autocomplete="off" data-index="3">
+        </div>
+      </div>
+
+      <!-- New OTP boxes for 6-digit OTP -->
+      <div class="otp-container" id="otpBoxContainerSix">
+        <input type="tel" class="otp-box" maxlength="1" autocomplete="off" data-index="0">
+        <input type="tel" class="otp-box" maxlength="1" autocomplete="off" data-index="1">
+        <input type="tel" class="otp-box" maxlength="1" autocomplete="off" data-index="2">
+        <input type="tel" class="otp-box" maxlength="1" autocomplete="off" data-index="3">
+        <input type="tel" class="otp-box" maxlength="1" autocomplete="off" data-index="4">
+        <input type="tel" class="otp-box" maxlength="1" autocomplete="off" data-index="5">
+      </div>
+      <div class="otp-submit-container">
+        <button type="button" id="resendOTPButton">
+          <div
+            id="smlCountdown"
+            style="display: none;"
+          ></div>
+        </button>
+        <button type="button" id="submitOTPButton"></button>
+      </div>
+
+      <div class="input-field-container">
+        <label for="newUserEmailInput">Email ID</label>
+        <input type="text" id="newUserEmailInput" placeholder="">
+      </div>
+      <div class="input-field-container">
+        <label for="userFirstNameInput">First Name</label>
+        <input type="text" id="userFirstNameInput" placeholder="">
+      </div>
+      <div class="input-field-container">
+        <label for="userLastNameInput">Last Name</label>
+        <input type="text" id="userLastNameInput" placeholder="">
+      </div>
+      <div id="smlAcceptMarketingDiv">
+        <input type="checkbox" id="smlAcceptMarketingCheckbox" checked>
+        <label for="smlAcceptMarketingCheckbox" id="smlAcceptMarketingText">
+          I wish to receive updates on SMS and Email
+        </label>
+      </div>
+      <button type="button" id="registerUserButton"></button>
+    </div>
+
+    <div id="emailAndEditDiv">
+      <div id="emailDiv"></div>
+      <button type="button" id="backToLoginButtonEmailOtp">
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0.499268 7.73052V9.25052C0.499268 9.39052 0.609268 9.50052 0.749268 9.50052H2.26927C2.33427 9.50052 2.39927 9.47552 2.44427 9.42552L7.90427 3.97052L6.02927 2.09552L0.574268 7.55052C0.524268 7.60052 0.499268 7.66052 0.499268 7.73052ZM9.35427 2.52052C9.54927 2.32552 9.54927 2.01052 9.35427 1.81552L8.18427 0.645518C7.98927 0.450518 7.67427 0.450518 7.47927 0.645518L6.56427 1.56052L8.43927 3.43552L9.35427 2.52052Z" fill="#462D8C"/>
+        </svg>
+      </button>
+    </div>
+    <div id="smlTermsAndConditionsDiv">
+      <input type="checkbox" id="smlTermsAndConditionsCheckbox" checked="true">
+      <label for="smlTermsAndConditionsCheckbox" id="smlTermsAndConditionsText">
+        I agree to the
+        <a href="" target="_blank" style="display: inline;" id="smlTermsAndConditionsAnchorTag">Terms and Conditions</a>
+      </label>
+    </div>
+
+    <input type="tel" id="emailOtpInput" placeholder="" maxlength="4" autocomplete="off">
+    <button type="button" id="submitEmailOTPButton"></button>
+    <button type="button" id="resendEmailOTPButton"></button>
+    <input type="password" id="userPasswordInput" placeholder="">
+    <div id="userBirthdayInputDiv">
+      <label id="userBirthdayInputLabel" for="userBirthdayInput">Birthday</label>
+      <input type="date" id="userBirthdayInput">
+    </div>
+    <div id="userGenderInputDiv">
+      <label id="userGenderInputLabel" for="userGenderInput">Gender</label>
+      <div id="userGenderRadioButtonsInputDiv">
+        <input type="radio" name="userGenderInput" value="male" placeholder="Male"> Male
+        <input type="radio" name="userGenderInput" value="female" placeholder="Female"> Female
+      </div>
+    </div>
+  </div>
+  <div class="login-urls">
+    <span>
+      <a href="{{ section.settings.policy-url }}" target="_blank">Policies</a>
+    </span>
+    <span>
+      <a href="{{ section.settings.terms-url }}" target="_blank">Terms and Conditions</a>
+    </span>
+    <span id="agentLoginButton">Agent Login</span>
+  </div>
+</div>
+
+<script>
+  // Vanilla JavaScript approach
+  document.addEventListener('DOMContentLoaded', function () {
+    initAgentLoginToggle();
+  });
+
+  window.addEventListener('load', function () {
+    initAgentLoginToggle();
+  });
+
+  // Also try with jQuery when available
+  if (typeof $ !== 'undefined') {
+    $(document).ready(function () {
+      initAgentLoginToggle();
+    });
+  }
+
+  // Fallback with delay
+  setTimeout(function () {
+    initAgentLoginToggle();
+  }, 2000);
+
+  function initAgentLoginToggle() {
+    let isEmailMode = false;
+
+    console.log('=== Agent Login Toggle Init ===');
+
+    // Try both vanilla JS and jQuery
+    const button = document.getElementById('agentLoginButton');
+    const emailInput = document.getElementById('userEmailInput');
+    const selectboxWrapper = document.querySelector('.selectbox-wrapper');
+
+    console.log('Vanilla JS - Button:', button);
+    console.log('Vanilla JS - Email input:', emailInput);
+    console.log('Vanilla JS - Selectbox wrapper:', selectboxWrapper);
+
+    if (typeof $ !== 'undefined') {
+      console.log('jQuery - Button exists:', $('#agentLoginButton').length);
+      console.log('jQuery - Email input exists:', $('#userEmailInput').length);
+      console.log('jQuery - Selectbox wrapper exists:', $('.selectbox-wrapper').length);
+    }
+
+    // Initially hide email input - only if not already visible
+    if (emailInput && !emailInput.classList.contains('visible')) {
+      emailInput.classList.add('hidden');
+    }
+    if (typeof $ !== 'undefined' && !$('#userEmailInput').hasClass('visible')) {
+      $('#userEmailInput').addClass('hidden');
+    }
+
+    // Add click handler with vanilla JS
+    if (button) {
+      button.onclick = function () {
+        console.log('Agent Login button clicked! (vanilla JS)');
+        isEmailMode = !isEmailMode;
+        console.log('Email mode:', isEmailMode);
+
+        if (isEmailMode) {
+          // Switch to Email Login
+          console.log('Switching to email mode');
+          if (selectboxWrapper) {
+            selectboxWrapper.classList.add('hidden');
+          }
+          if (emailInput) {
+            emailInput.classList.remove('hidden');
+            emailInput.classList.add('visible');
+            // Override CSS display: none with important
+            emailInput.style.setProperty('display', 'block', 'important');
+          }
+          button.textContent = 'User Login';
+
+          // Hide OTP containers and countdown when switching to agent login
+          const otpContainers = document.querySelectorAll('.otp-container');
+          const otpSubmitContainer = document.querySelector('.otp-submit-container');
+          const smlCountdown = document.getElementById('smlCountdown');
+          const smlEmailOTPCountdown = document.getElementById('smlEmailOTPCountdown');
+          const getOTPButton = document.getElementById('getOTPButton');
+
+          otpContainers.forEach((container) => {
+            container.style.display = 'none';
+          });
+
+          if (otpSubmitContainer) {
+            otpSubmitContainer.style.display = 'none';
+          }
+
+          if (smlCountdown) {
+            smlCountdown.style.display = 'none';
+          }
+
+          if (smlEmailOTPCountdown) {
+            smlEmailOTPCountdown.style.display = 'none';
+          }
+
+          // Clear both SMS and Email OTP timers when switching to agent login
+          if (typeof window.clearResendOTPTimer === 'function') {
+            window.clearResendOTPTimer();
+          }
+          if (typeof window.clearEmailOTPTimer === 'function') {
+            window.clearEmailOTPTimer();
+          }
+
+          // Make sure getOTPButton is visible (remove display none if present)
+          if (getOTPButton && getOTPButton.style.display === 'none') {
+            getOTPButton.style.removeProperty('display');
+          }
+
+          // Hide third phase fields when switching to agent login
+          const inputFieldContainers = document.querySelectorAll('.input-field-container');
+          const registerUserButton = document.getElementById('registerUserButton');
+          const phoneNumberAndEditDiv = document.getElementById('phoneNumberAndEditDiv');
+
+          inputFieldContainers.forEach((container) => {
+            container.style.display = 'none';
+          });
+
+          if (registerUserButton) {
+            registerUserButton.style.display = 'none';
+          }
+
+          if (phoneNumberAndEditDiv) {
+            phoneNumberAndEditDiv.style.display = 'none';
+          }
+
+          // Also try jQuery
+          if (typeof $ !== 'undefined') {
+            $('.selectbox-wrapper').addClass('hidden');
+            $('#userEmailInput').removeClass('hidden').addClass('visible').css('display', 'block !important');
+            $('.otp-container').css('display', 'none');
+            $('.otp-submit-container').css('display', 'none');
+            $('#smlCountdown').css('display', 'none');
+
+            // Hide third phase fields with jQuery
+            $('.input-field-container').css('display', 'none');
+            $('#registerUserButton').css('display', 'none');
+            $('#phoneNumberAndEditDiv').css('display', 'none');
+
+            if ($('#getOTPButton').css('display') === 'none') {
+              $('#getOTPButton').css('display', '');
+            }
+          }
+        } else {
+          // Switch to Mobile Login
+          console.log('Switching to mobile mode');
+          if (selectboxWrapper) {
+            selectboxWrapper.classList.remove('hidden');
+            // Make sure selectbox-wrapper is visible (remove display none if present)
+            if (selectboxWrapper.style.display === 'none') {
+              selectboxWrapper.style.removeProperty('display');
+            }
+
+            // Also make sure child elements are visible
+            const mobileCountryCodeDropdown = document.getElementById('mobileCountryCodeDropdown');
+            const smlPhoneNumberInput = document.getElementById('smlPhoneNumberInput');
+
+            if (mobileCountryCodeDropdown && mobileCountryCodeDropdown.style.display === 'none') {
+              mobileCountryCodeDropdown.style.removeProperty('display');
+            }
+
+            if (smlPhoneNumberInput && smlPhoneNumberInput.style.display === 'none') {
+              smlPhoneNumberInput.style.removeProperty('display');
+            }
+          }
+          if (emailInput) {
+            emailInput.classList.add('hidden');
+            emailInput.classList.remove('visible');
+            emailInput.style.removeProperty('display');
+          }
+          button.textContent = 'Agent Login';
+
+          // Hide OTP containers and countdown when switching back to user login
+          const otpContainers = document.querySelectorAll('.otp-container');
+          const otpSubmitContainer = document.querySelector('.otp-submit-container');
+          const smlCountdown = document.getElementById('smlCountdown');
+          const smlEmailOTPCountdown = document.getElementById('smlEmailOTPCountdown');
+          const getOTPButton = document.getElementById('getOTPButton');
+
+          otpContainers.forEach((container) => {
+            container.style.display = 'none';
+          });
+
+          if (otpSubmitContainer) {
+            otpSubmitContainer.style.display = 'none';
+          }
+
+          if (smlCountdown) {
+            smlCountdown.style.display = 'none';
+          }
+
+          if (smlEmailOTPCountdown) {
+            smlEmailOTPCountdown.style.display = 'none';
+          }
+
+          // Clear both SMS and Email OTP timers when switching back to user login
+          if (typeof window.clearResendOTPTimer === 'function') {
+            window.clearResendOTPTimer();
+          }
+          if (typeof window.clearEmailOTPTimer === 'function') {
+            window.clearEmailOTPTimer();
+          }
+
+          // Make sure getOTPButton is visible (remove display none if present)
+          if (getOTPButton && getOTPButton.style.display === 'none') {
+            getOTPButton.style.removeProperty('display');
+          }
+
+          // Restore third phase fields if we were in third phase (check if register button was visible)
+          const registerUserButton = document.getElementById('registerUserButton');
+          const inputFieldContainers = document.querySelectorAll('.input-field-container');
+          const phoneNumberAndEditDiv = document.getElementById('phoneNumberAndEditDiv');
+
+          // Check if we're in third phase by seeing if register button was visible before agent login
+          const wasInThirdPhase = registerUserButton && window.getComputedStyle(registerUserButton).display !== 'none';
+
+          if (wasInThirdPhase) {
+            // Restore third phase fields
+            inputFieldContainers.forEach((container) => {
+              container.style.removeProperty('display');
+            });
+
+            if (registerUserButton) {
+              registerUserButton.style.removeProperty('display');
+            }
+
+            if (phoneNumberAndEditDiv) {
+              phoneNumberAndEditDiv.style.removeProperty('display');
+            }
+          }
+
+          // Also try jQuery
+          if (typeof $ !== 'undefined') {
+            $('.selectbox-wrapper').removeClass('hidden');
+            // Make sure selectbox-wrapper is visible with jQuery too
+            if ($('.selectbox-wrapper').css('display') === 'none') {
+              $('.selectbox-wrapper').css('display', '');
+            }
+
+            // Also make sure child elements are visible with jQuery
+            if ($('#mobileCountryCodeDropdown').css('display') === 'none') {
+              $('#mobileCountryCodeDropdown').css('display', '');
+            }
+
+            if ($('#smlPhoneNumberInput').css('display') === 'none') {
+              $('#smlPhoneNumberInput').css('display', '');
+            }
+
+            $('#userEmailInput').addClass('hidden').removeClass('visible').css('display', '');
+            $('.otp-container').css('display', 'none');
+            $('.otp-submit-container').css('display', 'none');
+            $('#smlCountdown').css('display', 'none');
+            $('#smlEmailOTPCountdown').css('display', 'none');
+
+            // Restore third phase fields with jQuery if we were in third phase
+            if (wasInThirdPhase) {
+              $('.input-field-container').css('display', '');
+              $('#registerUserButton').css('display', '');
+              $('#phoneNumberAndEditDiv').css('display', '');
+            }
+
+            if ($('#getOTPButton').css('display') === 'none') {
+              $('#getOTPButton').css('display', '');
+            }
+
+            // Clear both SMS and Email OTP timers when switching modes
+            if (typeof window.clearResendOTPTimer === 'function') {
+              window.clearResendOTPTimer();
+            }
+            if (typeof window.clearEmailOTPTimer === 'function') {
+              window.clearEmailOTPTimer();
+            }
+          }
+        }
+      };
+    }
+
+    // Also try jQuery event delegation
+    if (typeof $ !== 'undefined') {
+      $(document).off('click', '#agentLoginButton'); // Remove existing handlers
+      $(document).on('click', '#agentLoginButton', function () {
+        console.log('Agent Login button clicked! (jQuery)');
+        // The vanilla JS handler should handle the logic
+      });
+    }
+  }
+</script>

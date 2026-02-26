@@ -1,0 +1,364 @@
+.warranty-registration-image-container,
+.warranty-registration-heading-dekstop {
+  display: none;
+}
+
+.warranty-registration {
+  display: flex;
+}
+.warranty-registration-mobile-breadcrumbs {
+  padding: 12px 18px;
+}
+
+.warranty-registration-parent {
+  position: relative;
+}
+
+.warranty-registration-mobile-breadcrumbs a {
+  font-family: "Heebo-Regular";
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.07px;
+  vertical-align: middle;
+  color: #000000;
+}
+.warranty-registration-mobile-breadcrumbs a.warranty {
+  font-family: "Heebo-Medium";
+  font-weight: 500;
+}
+
+.warranty-registration-form {
+  display: flex;
+  margin-top: 24px;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+.login-input-fields-container input {
+  border: 1px solid #d2d2d7;
+  font-family: "Heebo-Regular";
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 8px 12px;
+  color: #202020;
+  border-radius: 6px;
+  background: transparent;
+}
+.login-input-fields-container {
+  flex: 1 0 100%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 4px;
+}
+.warranty-registration-form-container {
+  padding: 32px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.warranty-registration-submit-button {
+  background: #462d8c;
+  box-shadow: 0px 1px 2px 0px #0000004d;
+  border: none;
+  font-family: "Heebo-Medium";
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.4;
+  letter-spacing: 0.3px;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 6px;
+  padding: 8px 36px;
+  color: #ffffff;
+  width: max-content;
+  margin-top: 32px;
+  cursor: pointer;
+}
+.warranty-registration-heading-mobile {
+  font-family: "Heebo-Medium";
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 36.4px;
+  letter-spacing: 0.6px;
+  text-align: center;
+  vertical-align: middle;
+  margin: 0;
+  color: #222222;
+}
+
+.login-input-fields-container label {
+  font-family: "Heebo-Regular";
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #121212bf;
+  margin: 0;
+  padding: 0;
+}
+
+.login-input-fields-container input::placeholder {
+  color: #a3a3a3;
+  font-family: "Heebo-Regular";
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+}
+.warranty-registration-subheading {
+  font-family: "Heebo-Regular";
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.6px;
+  text-align: center;
+  vertical-align: middle;
+  color: #555555;
+  padding-top: 8px;
+  margin: 0;
+}
+
+.warranty-snackbar {
+  position: relative;
+  background: #eefcef;
+  padding: 10px 16px 10px 8px;
+  border-radius: 8px;
+  font-family: Heebo-Regular;
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 400;
+  z-index: 10000;
+  box-shadow: -2px 4px 2px #00000026;
+  display: flex;
+  align-items: center;
+  width: 354px;
+  gap: 8px;
+  margin: 0 auto 44px;
+}
+
+.success-message {
+  font-family: "Heebo-Medium";
+  color: #202020;
+}
+
+.success-description {
+  font-size: 13px;
+  font-weight: 400;
+  color: #169b40;
+}
+.failure-message {
+  font-family: "Heebo-Medium";
+  color: #202020;
+}
+
+.failure-description {
+  font-size: 13px;
+  font-weight: 400;
+  color: #e83636;
+}
+
+.success-container {
+  display: flex;
+  flex-direction: column;
+}
+.failure-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.warranty-snackbar-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.warranty-snackbar-thank-you {
+  font-size: 14px;
+  line-height: 24px;
+  padding: 8px 12px;
+  color: #462d8c;
+}
+
+.warranty-snackbar-close {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+  padding: 13px;
+}
+
+.warranty-snackbar .close-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.warranty-snackbar-close:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.warranty-tick-gif {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.warranty-tick-gif img {
+  width: 100%;
+  height: auto;
+}
+
+@media (min-width: 768px) {
+  .warranty-registration-mobile-breadcrumbs {
+    display: none;
+  }
+  .warranty-registration-submit-button {
+    margin-top: 40px;
+    font-size: 16px;
+  }
+  .warranty-registration-form {
+    margin-top: 32px;
+  }
+  .login-input-fields-container {
+    flex: 1 0 calc(50% - 24px);
+  }
+  .warranty-registration-subheading {
+    font-size: 20px;
+    line-height: 26px;
+  }
+  .warranty-registration-heading-mobile {
+    display: none;
+  }
+  .warranty-registration-heading-dekstop {
+    display: block;
+    font-family: "Assistant";
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 36.4px;
+    letter-spacing: 0.6px;
+    text-align: center;
+    vertical-align: middle;
+    color: #222222;
+    margin: 0;
+  }
+  .success-message {
+    line-height: 24px;
+  }
+  .warranty-registration-image-container {
+    display: block;
+    width: 50%;
+  }
+  .warranty-registration-form-container {
+    width: 50%;
+    padding: 0px 80px 0px 44px;
+  }
+  .warranty-registration-image-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .warranty-snackbar {
+    position: absolute;
+    bottom: 56px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 16px;
+    line-height: 20px;
+    width: 390px;
+    height: 64px;
+    padding: 12px 16px 12px 12px;
+    margin: 0;
+  }
+  .warranty-tick-gif {
+    width: 40px;
+    height: 40px;
+  }
+  .warranty-snackbar-thank-you {
+    font-size: 16px;
+    line-height: 20px;
+    padding: 6px 12px;
+  }
+  .warranty-snackbar-close {
+    padding: 9px;
+  }
+  .login-input-fields-container label {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .success-description {
+    font-size: 14px;
+  }
+}
+
+@keyframes snackbarSlideUp {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 100%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+@keyframes snackbarSlideDown {
+  from {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, 100%);
+  }
+}
+
+/* Loader animation inside button */
+.warranty-registration-submit-button.loading {
+  position: relative;
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+.warranty-registration-submit-button .loader {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  border: 2px solid #fff;
+  border-top: 2px solid transparent;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 1050px){
+  .warranty-registration-image-container{
+    aspect-ratio: 1 / 1.8;
+  }
+
+  .warranty-registration-image-container picture{
+    height: 100%;
+  }
+
+  .warranty-registration-image-container img{
+    height: 100%;
+    object-fit: cover;
+  }
+}

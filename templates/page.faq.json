@@ -1,0 +1,132 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "name": "Title",
+          "settings": {
+            "text": "<h1>{{ closest.page.title }}</h1>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h2",
+            "font": "var(--font-primary--family)",
+            "font_size": "",
+            "font_size_mobile": "unset",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0,
+            "custom_font_class": ""
+          },
+          "blocks": {}
+        },
+        "page-content": {
+          "type": "page-content",
+          "settings": {},
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "heading",
+        "page-content"
+      ],
+      "disabled": true,
+      "settings": {
+        "content_direction": "column",
+        "gap": 32,
+        "color_scheme": "",
+        "padding-block-start": 40,
+        "padding-block-end": 80
+      }
+    },
+    "custom_faq_ghjw6n": {
+      "type": "custom_faq",
+      "blocks": {
+        "text_GR4Xmj": {
+          "type": "text",
+          "settings": {
+            "faq-img": "shopify://shop_images/Layer_1_58a1c154-4189-4cce-91af-27256023f0ec.png",
+            "faq-title": "Returns, Refunds and Exchanges",
+            "questions": "What is your Returns & Exchange Policy?##How can I place a return or exchange request?##How are return requests processed?##What is the return policy for items bought during a sale period? ##How will I receive the refund for my returned product? ##When will the refund amount be credited to my account?  ##I placed a COD order, how will I get my refund? ##What will happen if I do not accept my order while it is out for delivery?##How long does it take to exchange my product?##Can I do more than 1 exchange?",
+            "answers": "We offer a hassle-free 7-days return and exchange policy from the date of delivery. Refunds are initiated within 5 days after the return items are picked up. Please note that embroidery/engraving orders are not eligible for returns and exchanges. ##To place a return or exchange request, please visit <a class=\"RD_track\" href=\"https://knyamed.com/pages/returns-exchanges\" target=\"_blank\">Return &amp; Exchange Page.</a> Our team will review and approve your request within 3 working days. Once approved, we will arrange pick up for the items within 2 working days.##Once your return request is approved, our logistics partner will pick up the items within 2 working days. The returned item will undergo quality checks, and refunds will be initiated within 5 days after the items are picked up.##Any items bought during the sale period do not qualify for a return. They are final sale items.##For prepaid orders, the refund amount will be credited back to the original payment method after a deduction of FLAT Rs 100 as a reverse shipment fee. For Cash on Delivery orders, you will receive store credits in the form of a Knya gift card sent to your registered email address.##Refunds are typically initiated within 5 days after the returned item passes quality checks. The entire process usually takes 7-10 working days. ##For COD orders, you will receive store credits in the form of a Knya gift card, which will be sent to your registered email address. Please note that COD handling charges paid at the time of placing the order are non-refundable.##As a standard practice, we attempt delivery 3 times, and we try reaching out to you. In case the order is not accepted, a standard deduction of INR 150 towards shipping charges will be applied during the refund process. This refund will be credited to you in the form of a Gift card. ##The exchange process starts after the pickup of the old order. Typically, the entire process, from placing the exchange request to receiving the new product, takes 7-10 working days.##Due to operational difficulties, we will only be able to exchange your order once. Our customer service agents are there to help you choose the right fit for you."
+          }
+        },
+        "text_rc6jzi": {
+          "type": "text",
+          "settings": {
+            "faq-img": "shopify://shop_images/Group_29472_676b63bf-49c0-4350-be50-7de01783e9c8.png",
+            "faq-title": "Tracking and shipping",
+            "questions": "Where is my order?##Can I change the shipping address for my order?##Can I cancel my order?##Can I modify my order?##Do you ship Overseas?##I received an \"Order Delivered\" message but haven't received my package. What should I do?",
+            "answers": "<p>You can track your order using your Order ID or AWB number here: <a class=\"RD_track\" href=\"https://knyamed.clickpost.ai/\" target=\"_blank\">Track Order</a> <br>You’ll also find the Order ID and AWB number in your confirmation email or WhatsApp message.</p> ##Yes, you can change the shipping address within 48 hours for embroidery/engraving orders. For non-embroidery orders, we can update the address if it hasn’t been shipped yet. Orders are usually dispatched within 12 hours. Please WhatsApp us at +91 99872 00005.## <ul> <li>You can edit your order within 60 minutes of placing it. After that, changes or cancellations aren’t possible.</li> <li>Embroidery/engraving orders can’t be canceled once processing begins, as they are custom-made and non-returnable.</li> <li>WhatsApp us your Order ID at +91 99872 00005.</li> </ul> ##For non-embroidery orders, we can make changes if the order hasn’t been shipped. Embroidery/engraving orders can’t be changed once we start the customization. These are made just for you and can’t be resold. You can still reach out to us on WhatsApp at +91 99872 00005.##We don’t ship outside India right now, but we hope to soon! Please fill out this form <a href=\"https://forms.gle/ATWgsogrFEmh9RC79\" style=\"color:blue;text-decoration:underline;\">here</a> and we’ll let you know when we start international shipping. ##If you haven’t received your package, contact us within 24 hours of the delivery update. WhatsApp us at <a href=\"https://wa.me/919987200005?text=Hi%20there,%20can%20you%20help?\" target=\"_blank\">\n  9987200005\n</a>  or Email us at <a href=\"mailto:support@knya.in?subject=Support%20Request\">support@knya.in</a> and we’ll help you out."
+          }
+        },
+        "text_czHMqz": {
+          "type": "text",
+          "settings": {
+            "faq-img": "shopify://shop_images/Group_29472_676b63bf-49c0-4350-be50-7de01783e9c8.png",
+            "faq-title": "Customer Delivery Failure & Attempt Policy",
+            "questions": "How many delivery attempts are made before an order is marked RTO?##Can my order be resent after it is marked RTO?##What happens if I reject the order at the time of delivery?##How long does it take to resend an RTO order?",
+            "answers": "We make three delivery attempts as per standard courier practices. If all attempts fail, the order is returned to our warehouse (RTO initiated).##Yes! Here’s how we handle it:<ul> <li>\n<strong>Non-Customized Orders:</strong> Please contact us for redispatch. We’ll reship your order within 48 hours.\nYou can also request a change in variants at this point.</li> <li>\n<strong>Customized Orders:</strong> Once the shipment is returned to our warehouse, we’ll reship it within 48 hours.<br>\n<strong>Note:</strong> We cannot accommodate any changes in size, style, or personalization, as the product is custom-made for you.</li> </ul>##<ul>\n<li>\n<strong>Non-Customized Orders:</strong> A refund will be processed in the form of a gift card, after deducting Rs. 150 as standard shipping charges.</li>\n<li>\n<strong>Customized Orders:</strong> Since these are specially made for you, no refunds will be provided. However, we’re happy to reship the order to your desired address.##Once confirmed, we dispatch the order within 48 hours from the warehouse.</li>\n</ul>"
+          }
+        },
+        "text_9ETEPf": {
+          "type": "text",
+          "settings": {
+            "faq-img": "shopify://shop_images/Layer_1_58a1c154-4189-4cce-91af-27256023f0ec.png",
+            "faq-title": "Product & Product customisation",
+            "questions": "What is Ecoflex? Is it really sustainable?##What are Knya products made of?##Are Knya products tested for color bleeding and fabric quality?##Which size of products would fit me?##What options are available for custom embroidered products?##Can I get the custom embroidery done on a Lab Coat?##Why does it take 2-4 days to dispatch custom embroidery orders?",
+            "answers": "Ecoflex is our specially developed fabric. The fabric is prepared from 100% recycled polyester made from recycled PET bottles found in the ocean waste. Yes, it is really sustainable and it has one of the lowest carbon footprints. The manufacturing process is traceable and can be validated with a Global Recycling Standard (GRS) certification.##<ul>\n<li>The KNYA Med Classic Scrubs are made of Polyester Viscose blend fabric. The fabric is lighter and comfortable to wear for long hours. </li> <li> The KNYA Med Ecoflex Scrubs are made from our special Ecoflex fabric which is prepared from 100% recycled polyester made from recycled PET bottles found in the ocean waste. The Ecoflex fabric is super soft, auto-clavable and sustainable. </li> <li> Our shortsleeve and long sleeve underscrubs are made of 100% Pima Cotton.</li>\n</ul>##All our fabrics are lab tested by <a href=\"https://www.testtex.com/\" style=\"color:blue;text-decoration:underline;\">Testtex</a> &amp; <a href=\"https://www.btraindia.com/\" style=\"color:blue;text-decoration:underline;\">Bombay Textile Research Association (BTRA)</a> for important parameters such as color bleeding, pilling and yarn composition to name a few. We would be happy to share any certification and test reports with our customer, feel free to ask for it!##<ul>\n<li>Please check the size chart for KNYA Med lab coats and for scrub suits. </li>\n<li> If you’re between the sizes and if you like wearing a loose fitting scrub or a lab coat, we recommend the bigger size, otherwise we recommend you go for the smaller one.</li>\n</ul>##<ol style=\"list-style-type:lower-roman\">We offer following options for custom embroidered products  <li> Single Line: Name of the medical professional.</li> <li>Double Line: Name of the medical professional with designation, department or medical institution, totally up to our Superhero!!. </li> <li> Icons/Logo: We have 6 pre-defined options available for icons with an option for an institutional logo of your choice.</li>\n</ol>##Yes, why not!##Custom embroidery orders take a bit more time to perfect, we also perform quality checks to make sure they’re good for dispatch. This is why we take slightly longer to dispatch embroidery orders so you receive the best possible product from our end."
+          }
+        },
+        "text_iCWdnA": {
+          "type": "text",
+          "settings": {
+            "faq-img": "shopify://shop_images/Group_29472_676b63bf-49c0-4350-be50-7de01783e9c8.png",
+            "faq-title": "Miscellaneous",
+            "questions": "How can I wash my scrubs?##How are Knya Scrubs different from other scrubs?##How does knya ensure secure communication with customers?",
+            "answers": "<ul>\n<li>We recommend washing your scrubs at 40°C  for 30 minutes with like colors and not with dark colors.</li> <li>  Please do not use bleach </li>\n<li>Tumble Dry</li> <li>Warm Iron</li> <li>Our fabrics are tested and certified by <a href=\"https://www.testtex.com/\" style=\"color:blue;text-decoration:underline;\">Testtex</a> &amp; <a href=\"https://www.btraindia.com/\" style=\"color:blue;text-decoration:underline;\">Bombay Textile Research Association (BTRA)</a>, hence these washing conditions are tested.</li>\n</ul>##<ul>\n<li>At KNYA Med, our scrub suits are made of high quality poly viscose fabric. This blend of the fabric is durable, light weight , breathable and comfortable. </li> <li>Further, our Ecoflex fabric is as perfect for the planet as it is for you!</li>\n<li> Ecoflex scrubs are 100% recycled polyester made from PET bottles. The fabric has a 4-way stretch unlike other fabrics. It is wrinkle-free and durable.</li>\n</ul>##At knya, your security is our priority. We only communicate through our official phone number +91-9987200005(whatsApp). All payment requests are made securely via our website and RBI-approved gateways. If you receive suspicious messages, please do not respond. Instead, verify with us using our official contact details."
+          }
+        }
+      },
+      "block_order": [
+        "text_GR4Xmj",
+        "text_rc6jzi",
+        "text_czHMqz",
+        "text_9ETEPf",
+        "text_iCWdnA"
+      ],
+      "name": "faq",
+      "settings": {
+        "faq-heading": "FAQs",
+        "show_padding_faq": false,
+        "show_paddingfaq_mob": false,
+        "margintopfaq": 42,
+        "margintopfaqmob": 0
+      }
+    }
+  },
+  "order": [
+    "main",
+    "custom_faq_ghjw6n"
+  ]
+}

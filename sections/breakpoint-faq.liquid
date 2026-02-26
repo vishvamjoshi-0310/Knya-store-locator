@@ -1,0 +1,151 @@
+{{ 'section-breakpoint-faq.css' | asset_url | stylesheet_tag }}
+
+<section class="breakpoint-faq-section">
+  {%- if section.settings.heading != blank -%}
+    <h2 class="breakpoint-faq-heading">{{ section.settings.heading }}</h2>
+  {%- endif -%}
+
+  <div class="breakpoint-faq-items breakpoint-faq-items-{{ section.id }}">
+    {%- for block in section.blocks -%}
+      <div class="breakpoint-faq-item" data-faq-item="{{ section.id }}-{{ forloop.index }}">
+        <div class="breakpoint-faq-question" data-faq-toggle>
+          {%- if block.settings.question != blank -%}
+            <span class="breakpoint-faq-question-text">{{ block.settings.question }}</span>
+          {%- endif -%}
+          <span class="breakpoint-faq-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </span>
+        </div>
+        {%- if block.settings.answer != blank -%}
+          <div class="breakpoint-faq-answer">
+            <div class="breakpoint-faq-answer-content">{{ block.settings.answer }}</div>
+          </div>
+        {%- endif -%}
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+
+<script>
+  (function() {
+    var section = document.querySelector('.breakpoint-faq-items-{{ section.id }}');
+    if (!section) return;
+    
+    var faqItems = section.querySelectorAll('[data-faq-item]');
+    
+    faqItems.forEach(function(item) {
+      var toggle = item.querySelector('[data-faq-toggle]');
+      var answer = item.querySelector('.breakpoint-faq-answer');
+      
+      if (!toggle || !answer) return;
+      
+      toggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var isOpen = item.classList.contains('active');
+        
+        // Close all other items in this section only
+        faqItems.forEach(function(otherItem) {
+          if (otherItem !== item) {
+            otherItem.classList.remove('active');
+          }
+        });
+        
+        // Toggle current item
+        if (isOpen) {
+          item.classList.remove('active');
+        } else {
+          item.classList.add('active');
+        }
+      });
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Breakpoint FAQ",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section Heading",
+      "default": "FAQ'S"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq_item",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "What is Breakpoint?"
+        },
+        {
+          "type": "textarea",
+          "id": "answer",
+          "label": "Answer",
+          "default": "Breakpoint is a 24/7, completely free mental health helpline for India's medical community. There is no cost to call, no limit on usage, and no requirement to justify why you're reaching out. It's designed for moments when things feel heavy and you need to talk to a trained professional immediately."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Breakpoint FAQ",
+      "blocks": [
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "What is Breakpoint?",
+            "answer": "Breakpoint is a 24/7, completely free mental health helpline for India's medical community. There is no cost to call, no limit on usage, and no requirement to justify why you're reaching out. It's designed for moments when things feel heavy and you need to talk to a trained professional immediately."
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Help with how I'm feeling right now"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is this therapy?"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Who will I speak to?"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is my identity confidential?"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Who is this helpline for?"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "What if I'm not sure my problem is \"serious enough\"?"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+

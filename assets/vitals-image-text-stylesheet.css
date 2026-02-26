@@ -1,0 +1,64 @@
+.vitals-text-container p{
+    margin: 0;
+}
+.vitals-image-text{
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 24px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.vitals-text-container .vital-heading{
+    font-size: 28px;
+    font-family: 'Heebo-Medium';
+    line-height: 36px;
+    font-weight: 500;
+    color: #202020;
+    margin-bottom: 12px;
+}
+
+.vitals-text-container .vital-sub-heading{
+    font-size: 13px;
+    font-family: 'Heebo-Regular';
+    line-height: 16px;
+    font-weight: 400;
+    color: #616161;
+}
+
+.vitals-text-container .vital-sub-heading strong{
+    font-family: 'Heebo-Medium';
+    font-weight: 500;
+    color: #2C2C2C;
+}
+
+.vitals-image-container img{
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+@media(min-width: 768px){
+    .vitals-image-container{
+        max-width: 400px;
+    }
+    .vitals-image-text{
+        flex-direction: row;
+        gap: 36px;
+        padding: 72px 80px;
+    }
+
+    .vitals-text-container .vital-heading{
+        font-size: 44px;
+        line-height: 52px;
+    }
+
+    .vitals-text-container .vital-sub-heading{
+        font-size: 22px;
+        line-height: 36px;
+    }
+    .vitals-text-container{
+        padding: 33px 0 0;
+    }
+}

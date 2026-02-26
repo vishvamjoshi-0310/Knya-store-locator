@@ -1,0 +1,219 @@
+<style>
+    .{{ section.id }} .table-container table tr td,
+    .{{ section.id }} .table-container table tr th{
+        padding: 14px;
+    }
+    .table-container{
+        margin-top: 12px;
+    }
+    .table-container table {
+        width: 100%;
+        border-spacing: 0;
+    }
+    .table-container table tr th.first-column {
+        width: 16.1112vw;
+        background: #0000000F;
+        font-size: 16px;
+        line-height: 24px;
+        font-family: 'Heebo-Medium';
+        font-weight: 500;
+        text-align: center;
+        color: #000000;
+    }
+    h2.our-vs-theirs{
+        font-family: 'Heebo-Medium';
+        font-weight: 500;
+        font-size: 32px;
+        line-height: 40px;
+        color: #462D8C;
+    }
+    td.common-class-row {
+      font-size: 14px;
+      font-family: 'Heebo-Regular';
+      font-weight: 400;
+      line-height: 16.9px;
+    }
+    td.first-column {
+      background: #0000000F;
+      font-family: 'Heebo-Medium';
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 24px;
+      color: #3B383E;
+    }
+    th.common-class-column {
+        background: #F2F2F7;
+        text-align: left;
+    }
+    tr.first-row {
+      background: #F2F2F7;
+    }
+    tr.odd-row {
+      background: #ffffff;
+    }
+    tr.even-row {
+      background: #F5F5F5;
+    }
+    td.common-class-row.second-column {
+      color: #48464C;
+    }
+    td.common-class-row.third-column {
+      color: #79767D;
+    }
+    th.common-class-column.third-column {
+      color: #79767D;
+      font-size: 12.7px;
+      line-height: 16.9px;
+      font-family: 'Heebo-Regular';
+      font-weight: 400;
+    }
+
+    .our-vs-theirs-section table:not([class]) td, table:not([class]) th{
+      border: 0.5px solid rgba(18, 18, 18, .2);
+    }
+    @media only screen and (max-width: 749px) {
+        h2.our-vs-theirs{
+            font-size: 24px;
+            line-height: 32px; 
+        }
+        .table-container table tr th.first-column{
+          width: unset;
+          text-align: left;
+          font-size: 14px;
+          line-height: 16px;
+        }
+        td.first-column{
+          font-size: 14px;
+          line-height: 18px;
+          letter-spacing: -0.1px;
+        }
+        td.common-class-row{
+          font-size: 12px;
+        }
+    }
+</style>
+{% style %}
+    .our-vs-theirs-section.{{ section.id }} {
+      padding-top: {{ section.settings.margin_top_desktop }}px;
+      padding-bottom: {{ section.settings.margin_bottom_desktop }}px;
+    }
+    @media only screen and (max-width: 749px) {
+      .our-vs-theirs-section.{{ section.id }} {
+        padding-top: {{ section.settings.margin_top_mobile }}px;
+        padding-bottom: {{ section.settings.margin_bottom_mobile }}px;
+      }
+    }
+  {% endstyle %}
+<div class="our-vs-theirs-section {{ section.id }} page-width-updated">
+    <h2 class="our-vs-theirs">{{ section.settings.ourvstheirs_heading_text }}</h2>
+    <div class="table-container">
+        <table>
+            <tr class="first-row">
+                <th class="first-column">{{ section.settings.feature_Heading }}</th>
+                <th class="common-class-column second-column">{{ section.settings.ecoflex_heading }}</th>
+                <th class="common-class-column third-column">{{ section.settings.theirs_heading }}</th>
+            </tr>
+            {% for block in section.blocks %}
+                {% assign index = forloop.index | modulo: 2 %}
+                <tr class="{% if index == 1 %} odd-row {% else %} even-row {% endif %}">
+                    <td class="first-column">{{ block.settings.feature_text }}</td>
+                    <td class="common-class-row second-column {% if index == 1 %} odd {% else %} even {% endif %}">{{ block.settings.ecoflex_text }}</td>
+                    <td class="common-class-row third-column {% if index == 1 %} odd {% else %} even {% endif %}">{{ block.settings.theirs_text }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% schema %}
+    {
+      "name": "Our vs Theirs Section",
+      "settings": [
+        {
+          "type": "text",
+          "id": "ourvstheirs_heading_text",
+          "label": "Section Heading"
+        },
+        {
+          "type": "text",
+          "id": "feature_Heading",
+          "label": "Feature Heading"
+        },
+        {
+          "type": "html",
+          "id": "ecoflex_heading",
+          "label": "Ecoflex Heading"
+        },
+        {
+          "type": "text",
+          "id": "theirs_heading",
+          "label": "Theirs Heading"
+        },
+        {
+          "type": "range",
+          "id": "margin_top_desktop",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "px",
+          "label": "Padding Top Desktop",
+          "default": 24
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom_desktop",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "px",
+          "label": "Padding Bottom Desktop",
+          "default": 24
+        }, {
+          "type": "range",
+          "id": "margin_top_mobile",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "px",
+          "label": "Padding Top Mobile",
+          "default": 12
+        }, {
+          "type": "range",
+          "id": "margin_bottom_mobile",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "px",
+          "label": "Padding Bottom Mobile",
+          "default": 12
+        }
+      ],
+      "blocks": [
+        {
+          "type": "block",
+          "name": "block",
+          "settings": [
+            {
+                "type": "text",
+                "id": "feature_text",
+                "label": "Features Text"
+            },
+            {
+                "type": "text",
+                "id": "ecoflex_text",
+                "label": "Ecoflex Text"
+            },
+            {
+                "type": "text",
+                "id": "theirs_text",
+                "label": "Theirs Text"
+            }
+          ]
+        }
+      ],
+      "presets": [
+        {
+          "name": "Our vs Theirs Section"
+        }
+      ]
+    }
+  {% endschema %}

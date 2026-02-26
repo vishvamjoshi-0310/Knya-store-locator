@@ -1,0 +1,352 @@
+
+
+{% style %}
+  .mobile-nav-{{ block.id }} {
+    display: none;
+  }
+
+  @media screen and (max-width: 749px) {
+    .mobile-nav-{{ block.id }} {
+      display: block;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      background-color: {{ block.settings.background_color }};
+      border-radius: {{ block.settings.border_radius }}px {{ block.settings.border_radius }}px 0 0;
+      z-index: 999;
+      padding-bottom: env(safe-area-inset-bottom);
+      margin-top: {{ block.settings.margin_top_mobile }}px;
+      margin-bottom: {{ block.settings.margin_bottom_mobile }}px;
+    }
+
+    .mobile-nav-container-{{ block.id }} {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: {{ block.settings.padding_top }}px {{ block.settings.padding_horizontal }}px {{ block.settings.padding_bottom }}px {{ block.settings.padding_horizontal }}px;
+      gap: {{ block.settings.item_spacing }}px;
+    }
+
+    .mobile-nav-left-{{ block.id }} {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      gap: {{ block.settings.item_spacing }}px;
+    }
+
+    .mobile-nav-item-{{ block.id }} {
+      width: 100%;
+      justify-content: center; 
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: {{ block.settings.text_color }};
+      font-size: {{ block.settings.font_size }}px;
+      padding: {{ block.settings.touch_padding }}px;
+      line-height: 12px;
+      white-space: nowrap;
+      transition: opacity 0.2s ease;
+    }
+
+    .mobile-nav-item-{{ block.id }}:active {
+      opacity: 0.7;
+    }
+
+    .mobile-nav-separator-{{ block.id }} {
+      width: 7px;
+      height: {{ block.settings.separator_height }}px;
+      background-color: {{ block.settings.text_color }};
+      display: block !important;
+    }
+
+    .mobile-nav-search-{{ block.id }} {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      padding: {{ block.settings.touch_padding }}px;
+      cursor: pointer;
+      color: {{ block.settings.text_color }};
+      transition: opacity 0.2s ease;
+    }
+
+    .mobile-nav-search-{{ block.id }}:active {
+      opacity: 0.7;
+    }
+
+    .mobile-nav-search-{{ block.id }} .svg-wrapper,
+    .mobile-nav-search-{{ block.id }} .svg-wrapper svg {
+      width: {{ block.settings.icon_size }}px;
+      height: {{ block.settings.icon_size }}px;
+    }
+
+    .mobile-nav-search-{{ block.id }} svg {
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+  }
+
+  @media screen and (min-width: 750px) {
+    .mobile-nav-{{ block.id }} {
+      display: none;
+    }
+  }
+{% endstyle %}
+
+<div class="mobile-nav-{{ block.id }}" {{ block.shopify_attributes }}>
+  <div class="mobile-nav-container-{{ block.id }}">
+    <div class="mobile-nav-left-{{ block.id }}">
+      {% if block.settings.menu_item_1_text != blank %}
+        <a 
+          href="{{ block.settings.menu_item_1_url }}" 
+          class="mobile-nav-item-{{ block.id }} heebo-medium"
+        >
+          {{ block.settings.menu_item_1_text }}
+        </a>
+      {% endif %}
+
+      {% if block.settings.menu_item_1_text != blank and block.settings.menu_item_2_text != blank %}
+        <div class="mobile-nav-separator-{{ block.id }}"></div>
+      {% endif %}
+
+      {% if block.settings.menu_item_2_text != blank %}
+        <a 
+          href="{{ block.settings.menu_item_2_url }}" 
+          class="mobile-nav-item-{{ block.id }} heebo-medium"
+        >
+          {{ block.settings.menu_item_2_text }}
+        </a>
+      {% endif %}
+
+      {% if block.settings.menu_item_1_text != blank and block.settings.menu_item_2_text != blank %}
+        <div class="mobile-nav-separator-{{ block.id }}"></div>
+      {% endif %}
+
+      {% if block.settings.show_search %}
+        <div class="mobile-nav-search-{{ block.id }} mobile-nav-item-{{ block.id }}">
+          {% render 'search' %}
+        </div>
+    {% endif %}
+    </div>
+
+  </div>
+</div>
+
+
+{% schema %}
+{
+  "name": "Mobile bottom navigation",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Menu items"
+    },
+    {
+      "type": "text",
+      "id": "menu_item_1_text",
+      "label": "Menu item 1 text",
+      "default": "Shop"
+    },
+    {
+      "type": "url",
+      "id": "menu_item_1_url",
+      "label": "Menu item 1 link"
+    },
+    {
+      "type": "text",
+      "id": "menu_item_2_text",
+      "label": "Menu item 2 text",
+      "default": "About"
+    },
+    {
+      "type": "url",
+      "id": "menu_item_2_url",
+      "label": "Menu item 2 link"
+    },
+    {
+      "type": "header",
+      "content": "Search"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_search",
+      "label": "Show search icon",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "min": 16,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "label": "Icon size",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#442899"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#E6E96E"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Top corner radius",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Font size",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 8,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 8,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal",
+      "min": 8,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding left and right",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "item_spacing",
+      "min": 8,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "label": "Item spacing",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "touch_padding",
+      "min": 4,
+      "max": 16,
+      "step": 2,
+      "unit": "px",
+      "label": "Touch area padding",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "separator_height",
+      "min": 12,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "label": "Separator height",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Mobile spacing"
+    },
+    {
+      "type": "range",
+      "id": "margin_top_mobile",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_mobile",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin bottom",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Desktop spacing"
+    },
+    {
+      "type": "paragraph",
+      "content": "This block is hidden on desktop, but you can configure spacing for future use."
+    },
+    {
+      "type": "range",
+      "id": "margin_top_desktop",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Margin top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_desktop",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Margin bottom",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Mobile bottom navigation"
+    }
+  ]
+}
+{% endschema %}

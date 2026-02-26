@@ -1,0 +1,280 @@
+{{ 'breadcrum-new.css' | asset_url | stylesheet_tag }}
+
+{% comment %} Custom styles for collection page {% endcomment %}
+{% if template.name == 'collection' %}
+  {{ 'custom-collection-breadcrumb.css' | asset_url | stylesheet_tag }}
+{% endif %}
+
+<style>
+  {% if template.name != 'collection' %}
+    #breadcrumb-container{margin-top:{{ section.settings.margintopbread}}px;}
+    #breadcrumb-container{margin-bottom:{{ section.settings.marginbottombread }}px;}
+  {% else %}
+    #breadcrumb-container{margin-top:{{ section.settings.margintopbread_collection}}px;}
+    #breadcrumb-container{margin-bottom:{{ section.settings.marginbottombread_collection }}px;}
+  {% endif %}
+
+  .onlyforcollectionbredttl{font-family: inherit;
+    font-size:inherit;
+    font-weight:inherit;
+    line-height:inherit;
+    letter-spacing:inherit;
+    text-transform:inherit;}
+
+
+  @media only screen and (max-width:640px){
+    {% if handle == "contact-us" %}
+      #breadcrumb-container{padding-top:17px !important; margin-top:0!important}
+    {% endif %}
+
+    {% if template.name != 'collection' %}
+      #breadcrumb-container{margin-top:{{ section.settings.margintopbreadmob }}px;}
+      #breadcrumb-container{margin-bottom:{{ section.settings.marginbottombreadmob }}px;}
+    {% else %}
+      #breadcrumb-container{margin-top:{{ section.settings.margintopbreadmob_collection }}px;}
+      #breadcrumb-container{margin-bottom:{{ section.settings.marginbottombreadmob_collection }}px;}
+    {% endif %}
+
+  }
+
+  {% if handle == "contact-us" %}
+    #breadcrumb-container{padding-top:20px !important; margin-top:0!important}
+  {% endif %}
+</style>
+
+{%- unless template == 'index'
+  or template == 'cart'
+  or template == 'list-collections'
+  or template == '404'
+  or template == 'search'
+-%}
+  {%- assign t = template | split: '.' | first -%}
+
+  <section
+    id="breadcrumb-container"
+    class="{{ page.title  | remove:" " }}-bread {% case t %} {% when blank %} blank-template {% when 'page' %} page-template page-width-updated {% when 'blog-template' %} blog-template page-width-updated {% when 'blog' %} blog-template page-width-updated {% when 'product'%} product-template {% when 'collection' %} collection-template {% when 'article' %} page-width-updated article-template {% endcase %}"
+  >
+    <nav
+      class="page-width breadcrumbs {% if t == 'product' %}Product {% elsif t == 'collection' %} Collection{% endif %}"
+      role="navigation"
+      aria-label="breadcrumbs"
+    >
+      <ol class="breadcrumbs__list">
+        <li class="breadcrumbs__item">
+          <a
+            class="breadcrumbs__link breadcrumbs__link_home name-breadcrumb font-heebo-regular {% if t == 'collection' %} collection-page-breadcrumb{% endif %}"
+            href="/"
+            >Home / </a
+          >
+        </li>
+        {%- case t -%}
+          {%- when 'page' -%}
+            <li class="breadcrumbs__item">
+              {% if handle == 'story' %}
+                <a
+                  class="breadcrumbs__link storypagifybread font-heebo-medium name-breadcrumb"
+                  href="{{ page.url }}"
+                  aria-current="page"
+                >
+                  <h1>/ {{ page.title }}</h1>
+                </a>
+              {% else %}
+                <a
+                  class="breadcrumbs__link font-heebo-medium name-breadcrumb"
+                  href="{{ page.url }}"
+                  aria-current="page"
+                >
+                  {{- page.title -}}
+                </a>
+              {% endif %}
+            </li>
+          {%- when 'product' -%}
+            {%- if collection and collection.url -%}
+              <li class="breadcrumbs__item cu">
+                <a class="breadcrumbs__link" href="{{ collection.url }}">
+                  {{ collection.title }}
+                </a>/ 
+              </li>
+            {%- endif -%}
+            <li class="breadcrumbs__item pb">
+              <a class="breadcrumbs__link" href="{{ collection.url }} {{ product.url }}" aria-current="page">{{ product.title }}</a>
+            </li>
+          {%- when 'collection' and collection.handle -%}
+            {%- if current_tags -%}
+              <li class="breadcrumbs__item cb">{{ collection.title | link_to: collection.url }}</li>
+              <li class="breadcrumbs__item pb">
+                {%- capture tag_url -%}{{ collection.url }}/{{ current_tags | join: "+"}}{%- endcapture -%}
+                <a
+                  class="tagss breadcrumbs__link {% if t == 'collection' %} collection-page-breadcrumb{% endif %} font-heebo-medium name-breadcrumb"
+                  href="{{ tag_url }}"
+                  aria-current="page"
+                >
+                  {{- current_tags | join: ' + ' | remove: 'label_' -}}
+                </a>
+              </li>
+            {%- else -%}
+              <li class="breadcrumbs__item dcb">
+                <a
+                  class="breadcrumbs__link {% if t == 'collection' %} collection-page-breadcrumb{% endif %} font-heebo-medium name-breadcrumb"
+                  href="{{ collection.url }}"
+                  aria-current="page"
+                >
+                 <h1 class="onlyforcollectionbredttl">{{- collection.title | downcase -}}</h1>
+                </a>
+              </li>
+            {%- endif -%}
+
+          {%- when 'blog' -%}
+            {%- if current_tags -%}
+              <li class="breadcrumbs__item">{{ blog.title | link_to: blog.url }}</li>
+              <li class="breadcrumbs__item">
+                {%- capture tag_url -%}{{blog.url}}/tagged/{{ current_tags | join: "+" }}{%- endcapture -%}
+                <a class="breadcrumbs__link font-heebo-medium name-breadcrumb" href="{{ tag_url }}" aria-current="page">
+                  {{- current_tags | join: ' + ' -}}
+                </a>
+              </li>
+            {%- else -%}
+              <li class="breadcrumbs__item">
+                <a
+                  class="breadcrumbs__link font-heebo-medium name-breadcrumb"
+                  href="{{ blog.url }}"
+                  aria-current="page"
+                >
+                  {{- blog.title | upcase -}}
+                </a>
+              </li>
+            {%- endif -%}
+
+          {%- when 'article' -%}
+            {% assign blogName = request.path | split: '/blogs/' %}
+            {% assign blogHanlde = blogName[1] | split: '/' %}
+            {% assign bHandle = blogHanlde[0] %}
+            {% assign blog = blogs[bHandle] %}
+            <li class="breadcrumbs__item">
+              <a class="breadcrumbs__link font-heebo-medium name-breadcrumb" href="{{ blog.url }}" aria-current="page">
+                {{- blog.title | upcase -}} >
+              </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <a
+                class="breadcrumbs__link font-heebo-medium name-breadcrumb"
+                href="{{ request.path }}"
+                aria-current="page"
+              >
+                {{- page_title | upcase -}}
+              </a>
+            </li>
+          {%- when blank -%}
+            <li class="breadcrumbs__item">
+              <a
+                class="breadcrumbs__link font-heebo-medium name-breadcrumb"
+                href="{{ request.path }}"
+                aria-current="page"
+              >
+                {{- page_title | upcase -}}
+              </a>
+            </li>
+        {%- endcase -%}
+      </ol>
+    </nav>
+  </section>
+{%- endunless -%}
+
+{% schema %}
+{
+  "name": "breadcrumbs",
+  "settings": [
+    {
+      "type": "range",
+      "id": "margintopbread",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Desktop: margin from top for entire section",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "marginbottombread",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Desktop: margin from bottom for entire section",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margintopbreadmob",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile: margin from top for entire section",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "marginbottombreadmob",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile: margin from bottom for entire section",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margintopbread_collection",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Desktop: Margin-Top (Collection Page)",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "marginbottombread_collection",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Desktop: Margin-Top (Collection Page)",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margintopbreadmob_collection",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile: Margin-Top (Collection Page)",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "marginbottombreadmob_collection",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile: Margin-Top (Collection Page)",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "breadcrumbs-new"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

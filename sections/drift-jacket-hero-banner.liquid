@@ -1,0 +1,97 @@
+<link rel="stylesheet" href="{{ 'drift-jacket-hero-banner-stylesheet.css' | asset_url }}">
+
+<div class="drift-jacket-hero-banner">
+  <div class="drift-image">
+    <picture>
+      <source
+        media="(max-width: 768px)"
+        srcset="{{ section.settings.banner_image_mobile | image_url: width: 768 }} 768w"
+        sizes="100vw"
+      >
+      <source
+        media="(min-width: 769px)"
+        srcset="{{ section.settings.banner_image_desktop | image_url: width: 1440 }} 1440w"
+        sizes="60vw"
+      >
+      <img
+        src="{{ section.settings.banner_image_desktop | image_url: width: 1920 }}"
+        alt="Drift Winter Jacket - India's first winter jacket designed to layer over scrubs"
+        loading="eager"
+        width="1920"
+        height="720"
+      >
+    </picture>
+  </div>
+  <div class="drift-content">
+    <a href="{{ section.settings.intro_url }}" class="drift-introducing">Introducing</a>
+    <div class="drift-gif-container">
+      <h1 class="drift-title">
+        {% if section.settings.title_gif_desktop %}
+          <picture>
+            <source
+              media="(max-width: 768px)"
+              srcset="{{ section.settings.title_gif_mobile | image_url: width: 250 }}"
+            >
+            <source
+              media="(min-width: 769px)"
+              srcset="{{ section.settings.title_gif_desktop | image_url: width: 600 }}"
+            >
+            <img
+              src="{{ section.settings.title_gif_desktop | image_url: width: 600 }}"
+              width="500"
+              height="150"
+            >
+          </picture>
+        {% endif %}
+      </h1>
+      <p class="drift-description">India's first winter jacket designed to layer over scrubs.</p>
+    </div>
+    <a href="{{ section.settings.shopnow_url }}" class="drift-cta-button">Shop Now</a>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "drift-jacket-hero-banner",
+  "class": "drift-jacket-hero-banner-parent",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "banner_image_desktop",
+      "label": "Banner Image - Desktop"
+    },
+    {
+      "type": "image_picker",
+      "id": "banner_image_mobile",
+      "label": "Banner Image - Mobile"
+    },
+    {
+      "type": "image_picker",
+      "id": "title_gif_desktop",
+      "label": "Desktop DRIFT Title GIF"
+    },
+    {
+      "type": "image_picker",
+      "id": "title_gif_mobile",
+      "label": "Mobile DRIFT Title GIF"
+    },
+    {
+      "type": "url",
+      "id": "intro_url",
+      "label": "Button Link",
+      "info": "Where the Shop Now button should link to"
+    },
+    {
+      "type": "url",
+      "id": "shopnow_url",
+      "label": "Button Link",
+      "info": "Where the Shop Now button should link to"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Drift Jacket Hero Banner"
+    }
+  ]
+}
+{% endschema %}

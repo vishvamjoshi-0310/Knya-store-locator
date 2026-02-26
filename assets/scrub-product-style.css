@@ -1,0 +1,129 @@
+.hidePayment{display:none;}
+.HorizontalList__Item input{clip: rect(0,0,0,0);overflow: hidden;position: absolute;height: 1px;width: 1px;}
+ul.SizeSwatchList_custom.HorizontalList.HorizontalList--spacingTight{    display: grid;list-style: none;padding-left: 0;grid-template-columns: repeat(7,1fr);}
+.HorizontalList--spacingTight li,span.Replace-Image{    padding: 0 0 !important;width:20px;border-radius: 0px 0px 0px 4px !important;margin-top: 0px;}
+span.varient-title-color.nhb {color: #482F8F;display: flex;justify-content: space-between;font-size: 12px;line-height: 14px;margin-bottom: 0px;}
+.color_custom_container.colorSwatchWrapperDivision{background: #F6F0D9;padding: 12px 15px 15px;border-radius: 0px 0px 20px 0px;}
+.first_variant,.ProductForm__Option.ProductForm__Option--labelled {margin:0 0 1.5rem;background: #F6F0D9;padding: 12px 13px 15px;border-radius: 0px 0px 20px 0px;}
+legend.form__label.hideSize {display: none;}
+.ProductForm__Variants .product-form__input input[type=radio]+label {
+    border: none;
+    background-color: transparent;
+    border-radius: 0;
+   margin:0;
+    padding: 0;
+/*     font-size: 16px; */
+    letter-spacing: 0;
+    line-height: 100%;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    border-radius: 0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+ul.SizeSwatchList.HorizontalList.HorizontalList--spacingTight,ul.SizeSwatchList_custom.HorizontalList.HorizontalList--spacingTight {
+    margin: 0rem .5rem .2rem 0;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    /* overflow: auto; */
+    flex-wrap: wrap;
+}
+.SizeSwatchList_custom li.HorizontalList__Item{
+  border-radius: 0 0 0 4px!important;
+    text-align: center;
+    border: 1px solid #482F8F;
+    display: block;
+    align-items: center;
+    justify-content: center;
+      width: 36.7px;
+    height: 34.7px;cursor: pointer;
+}
+.ProductForm__Variants .SizeSwatchList  li.HorizontalList__Item{
+    border-radius: 0 0 0 4px!important;
+    text-align: center;
+   
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    /* width: 36.7px;
+    height: 34.7px; */
+    width:auto;
+    min-width:30px;
+    height:30px;
+    cursor: pointer; 
+  border-radius:50% !important;
+}
+.product-form__input .SizeSwatchList{margin-top:15px !important;}
+.product-form__input .SizeSwatchList input[type=radio]+label {
+    border: var(--variant-pills-border-width) solid rgba(var(--color-foreground), var(--variant-pills-border-opacity));
+    color: rgb(var(--color-foreground));
+    font-family: Heebo-Regular;
+    display: inline-flex; 
+    padding: .5rem;
+    width: auto;
+    min-width: 30px;
+    height: 30px;
+    font-size: 1.2rem;
+    border-color: #482f8f;
+    color: #482f8f;
+    letter-spacing: .1rem;
+    align-items: center;
+    justify-content: center;
+    line-height: 120%;
+    text-align: center;
+    transition: border var(--duration-short) ease;
+    cursor: pointer;
+    position: relative;
+    border-radius: 50% !important;
+}
+
+
+.varient-title-SizeSwatchList-selected-value, .varient-title-SizeSwatchList_custom-selected-value{
+    color: red;
+}
+.varient-title-SizeSwatchList-selected-value.valued, .varient-title-SizeSwatchList_custom-selected-value.valued {
+    color: #000;
+}
+.SizeSwatchList_custom li.HorizontalList__Item label{
+  cursor: pointer;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+  line-height:100%;
+  
+}
+.SizeSwatchList  li.HorizontalList__Item label{cursor: pointer;    width: 100%;height: auto;}
+.ProductForm__QuantitySelector.product-form__input.product-form__quantity {
+    display: none;
+}
+.product-form__submit {
+    width: 100%;
+}
+.zeroQnty, .HorizontalList__Item[data-available="false"] {opacity: .2;cursor: not-allowed !important;pointer-events: none;}
+p.outofScockMsg {
+    margin: 0;
+    color: red;
+    text-align: center;
+  display:none;
+  font-size:14px;
+}
+@media screen and (min-width: 1880px){
+  .ProductForm__Variants .SizeSwatchList .HorizontalList__Item{
+    width: 52.7px !important;
+    height: 39.7px !important;
+  }
+ .ProductForm__Variants .SizeSwatchList_custom li.HorizontalList__Item{
+    width: 52.7px !important;
+    height: 39.7px !important;
+  }
+}
+
+
+@media screen and (max-width:749px){
+   .HorizontalList--spacingTight li,span.Replace-Image{width:16px;}
+}

@@ -1,0 +1,599 @@
+<style>
+    .container-main-filter {
+        display: flex;
+        flex-direction: column;
+    }
+    .container-main-filter > div {
+        display: flex;
+        overflow-x: auto;
+        margin-top: 12px;
+        scrollbar-width: none;
+
+        @media screen and (min-width: 1300px){
+            justify-content: center;
+        }
+    }
+    .container-level-first{
+        justify-content: center;
+    }
+    .container-level-second::-webkit-scrollbar{
+        display: none;
+    }
+    .inner-first-level span {
+        font-size: 14px;
+        line-height: 18px;
+        font-family: 'Heebo-Regular';
+        letter-spacing: -0.08px;
+        color: #767676;
+    }
+    .inner-second-level span {
+        font-size: 16px;
+        line-height: 16px;
+        font-family: 'Heebo-Regular';
+        letter-spacing: 0.064px;
+        color: #616161;
+        width: max-content;
+    }
+    .inner-third-level.disabled {
+        opacity: 0.24;;
+        pointer-events: none !important;
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.04) 0%, rgba(0, 0, 0, 0.04) 100%), rgba(70, 45, 140, 0.06);
+    }
+    .inner-second-level.active span {
+        color: #462D8C !important;
+        font-family: 'Heebo-Medium';
+    }
+    .inner-second-level:hover span{
+        color: #232323;
+        font-family: 'Heebo-Medium';
+    }
+    .inner-first-level.active span {
+        font-family: 'Heebo-SemiBold';
+        color: #000;
+        font-style: normal;
+    }
+    .inner-first-level.active {
+        border-bottom: 2px solid #000;
+    }
+    .inner-first-level {
+        padding: 8px;
+        line-height: 1;
+        width: 86px;
+        display: flex;
+        justify-content: center;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+    }
+    .inner-first-level.clicking {
+        background: #462D8C14;
+        border-radius: 4px;
+    }
+    .inner-first-level.clicking span {
+        color: #616161;
+    }
+    .inner-first-level.removing {
+        background: #462D8C14;
+        border-bottom: 2px solid #000;
+    }
+    .inner-first-level.removing span {
+        color: #2C2C2C;
+        font-family: 'Heebo-SemiBold';
+    }
+    .inner-second-level {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        line-height: 1;
+        gap: 6px;
+        padding: 6px;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+    }
+    .inner-second-level:has(.image-container) {
+        display: flex;
+    }
+    .container-level-second {
+        gap: 12px;
+    }
+    .image-container {
+        line-height: 1;
+        width: 120px;
+        height: 120px;
+        position: relative;
+    }
+    .image-container img{
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        user-drag: none;
+        -webkit-user-drag: none;
+    }
+    .inner-second-level.active .image-container img{
+        display: none;
+    }
+    .inner-second-level.active .image-container img.third{
+        display: block;
+        opacity: 1;
+    }
+    .container-level-third {
+        gap: 24px;
+        @media screen and (min-width: 1280px){
+            margin: auto;
+        }
+    }
+    .container-level-third::-webkit-scrollbar{
+        display: none;
+    }
+    .inner-third-level {
+        border: 1px solid #462D8C;
+        padding: 6px 18px;
+        line-height: 1;
+        min-width: fit-content;
+        border-radius: 8px;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+    }
+    .inner-third-level.active {
+        background: #462D8C0F;
+        border: 1px solid #462D8C;
+    }
+    .inner-third-level.removing-filter {
+        background: #0000000F;
+        border: 1px solid #462D8C;
+        color: #462D8C;
+    }
+    .inner-third-level span {
+        font-size: 16px;
+        line-height: 24px;
+        font-family: 'Heebo-Regular';
+        font-weight: 400;
+        color: #202020;
+        letter-spacing: 0;
+    }
+    .inner-third-level.active span,
+    .inner-third-level.removing-filter span {
+        color: #462D8C;
+        font-family: 'Heebo-Medium';
+    }
+    .container-level-second.women .image-container.men {
+        display: none;
+    }
+    .container-level-second.women .image-container.women {
+        display: block;
+    }
+    .container-level-second.men .image-container.men {
+        display: block;
+    }
+    .container-level-second.men .image-container.women {
+        display: none;
+    }
+    .inner-second-level.unavailable{
+        display: none;
+    }
+    @media only screen and (min-width: 750px){
+        .inner-third-level:hover {
+            color: #202020;
+            background: #462D8C0F;
+            border: 1px solid #462D8C0F;
+        }
+    }
+    @media only screen and (max-width: 749px) {
+        .image-container{
+            width: 76px;
+            height: 76px;
+        }
+        .inner-second-level {
+            padding: 4px;
+            gap: 8px;
+        }
+        .container-level-second{
+            gap: 4px;
+        }
+        .inner-second-level span {
+            font-size: 13px;
+            line-height: 16px;
+            letter-spacing: 0.052px;
+        }
+        .inner-third-level span {
+            font-size: 14px;
+            line-height: 18px;
+        }
+        .container-level-third{
+            gap: 16px;
+            margin-top: 12px !important;
+        }
+        .container-level-first{
+            gap: 16px;
+        }
+        .inner-first-level{
+            padding: 6px 2px;
+            width: unset;
+        }
+        .inner-first-level span {
+            font-size: 13px;
+        }
+        .inner-third-level {
+            padding: 6px 12px;
+            margin-bottom: 1px;
+        }
+    }
+</style>
+<style>
+.image-container img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  opacity: 0;
+  transition: opacity 300ms ease-out;
+  z-index: 1;
+}
+
+.image-container img.first {
+  opacity: 1;
+  z-index: 2;
+}
+
+.inner-second-level:hover .first {
+  opacity: 0;
+}
+
+.inner-second-level:hover .second {
+  opacity: 1;
+  z-index: 3;
+}
+
+</style>
+
+{% style %}
+  {% if collection.handle == 'all' %}
+    .sub-category-collection{
+      display: none;
+    }
+  {% endif %}
+    {% if collection.metafields.custom.hide_gender_filter.value == true %}
+        accordion-custom.facets__item[filter-label="gender"], .facets__filter-labels-mobile button[aria-label="Gender"] {
+            display: none !important;
+        }
+        div#filterContent_2 {
+            display: block;
+        }
+    {% endif %}
+{% endstyle %}
+{% assign active_filter_count = 0 %}
+{% for filter in collection.filters %}
+  {% unless filter.label == "Category" or filter.label == "Gender" %}
+    {% assign active_filter_count = active_filter_count | plus: filter.active_values.size %}
+  {% endunless %}
+{% endfor %}
+<div class="container-main-filter">
+    {% for filter in collection.filters %}
+    {% assign active_filter = '' %}
+    {% for filter in collection.filters %}
+        {% if filter.label == 'Gender' %}
+        {% for active_value in filter.active_values %}
+            {% assign active_filter = active_value.label | downcase | strip %}
+            {% break %}
+        {% endfor %}
+        {% endif %}
+    {% endfor %}
+        
+    {% if filter.label == 'Gender' %}
+    <div class="container-level-first page-width-updated">
+        {% for value in filter.values %}
+            {% assign active_filter_value = value.value | downcase | strip %}
+        <div class="inner-first-level {% if active_filter_value == active_filter %}active{% endif %}" onclick="levelFirstFilter(this)" filter-label="{{ filter.label | downcase | strip }}"
+            filter-value="{{ value.value | downcase | strip }}">
+            <span>{{ value.value }}</span>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% if filter.label == 'Category' %}
+    
+    {% assign women_content = collection.metafields.custom.women_category_image_content %}
+    {% assign men_content = collection.metafields.custom.men_category_image_content %}
+    <div class="container-level-second page-width-updated {% if active_filter != blank %}{{ active_filter }}{% else %}women{% endif %}">
+        <div class="inner-second-level active" filter-value="all" filter-label="category" onclick="levelSecondAll(this)">
+            {% comment %} women {% endcomment %}
+            {% for content in women_content.value %}
+                {% assign content_item = content | split: '##' %}
+                {% assign content_value = content_item[0] | downcase | strip %}
+                {% if content_value == 'all' %}
+                    <div class="image-container women">
+                        <img src="{{ content_item[1] }}" class="first" alt="initial-state">
+                        <img src="{{ content_item[2] }}" class="second" alt="hover-state">
+                        <img src="{{ content_item[3] }}" class="third" alt="active-state">
+                    </div>
+                    {% break %}
+                {% endif %}
+            {% endfor %}
+            {% comment %} men {% endcomment %}
+            {% for content in men_content.value %}
+                {% assign content_item = content | split: '##' %}
+                {% assign content_value = content_item[0] | downcase | strip %}
+                {% if content_value == 'all' %}
+                    <div class="image-container men">
+                        <img src="{{ content_item[1] }}" class="first" alt="initial-state">
+                        <img src="{{ content_item[2] }}" class="second" alt="hover-state">
+                        <img src="{{ content_item[3] }}" class="third" alt="active-state">
+                    </div>
+                    {% break %}
+                {% endif %}
+            {% endfor %}
+            <span>All</span>
+        </div>
+        
+        {% for value in filter.values %}
+            {% assign filter_value = value.value | downcase | strip %}
+            <div class="inner-second-level {% if value.count == 0 and active_filter_count == 0 %}unavailable{% endif %}" onclick="levelSecondFilter(this)" filter-label="{{ filter.label | downcase | strip }}"
+                filter-value="{{ value.value | downcase | strip }}">
+                {% comment %} women {% endcomment %}
+                {% for content in women_content.value %}
+                    {% assign content_item = content | split: '##' %}
+                    {% assign content_value = content_item[0] | downcase | strip %}
+                    {% if content_value == filter_value %}
+                        <div class="image-container women">
+                            <img src="{{ content_item[1] }}" class="first" alt="initial-state">
+                            <img src="{{ content_item[2] }}" class="second" alt="hover-state">
+                            <img src="{{ content_item[3] }}" class="third" alt="active-state">
+                        </div>
+                        {% break %}
+                    {% endif %}
+                {% endfor %}
+                {% comment %} men {% endcomment %}
+                 {% for content in men_content.value %}
+                    {% assign content_item = content | split: '##' %}
+                    {% assign content_value = content_item[0] | downcase | strip %}
+                    {% if content_value == filter_value %}
+                        <div class="image-container men">
+                            <img src="{{ content_item[1] }}" class="first" alt="initial-state">
+                            <img src="{{ content_item[2] }}" class="second" alt="hover-state">
+                            <img src="{{ content_item[3] }}" class="third" alt="active-state">
+                        </div>
+                        {% break %}
+                    {% endif %}
+                {% endfor %}
+                <span>{{ value.value }}</span>
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endfor %}
+    {% assign level_third = collection.metafields.custom.third_level_content_quick_filter %}
+    <div class="container-level-third page-width-updated">
+        {% for filter in collection.filters %}
+
+        {% endfor %}
+
+        {% for item in level_third.value %}
+            {% assign filter_item = item | split: '##' %}
+            <div class="inner-third-level" onclick="levelThirdFilter(this)" category-value="{{ filter_item[0] | downcase | strip }}" for-value="{{ filter_item[2] | downcase | strip }}" for-label="{{ filter_item[1] | downcase | strip }}">
+                <span>{{ filter_item[2] }}</span>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+<script>
+    window.handleDisabledFilter = function () {
+        const disabledInputs = screen.width > 600 ? document.querySelectorAll(`ul.desktop-list[category-label='category'] li input:disabled`) : document.querySelectorAll(`.filter_content_div[category-label='category'] li input:disabled`);
+        const filterElements = document.querySelectorAll('.inner-second-level[filter-value]');
+        filterElements?.forEach(item=> item.classList.remove('disabled'));
+        disabledInputs?.forEach((input) => {
+            const inputValue = input.value;
+            const matchedFilter = Array.from(filterElements).find((el) => {
+                return el.getAttribute('filter-value') == inputValue.toLowerCase();
+            });
+            if (matchedFilter) {
+                matchedFilter.classList.add('disabled');
+            }
+        });
+    }
+
+    window.handleThirdLevelDisabledFilter = function () {
+        const activeCategory = document.querySelector('.inner-second-level.active')?.getAttribute('filter-value');
+        if (!activeCategory) return;
+
+        // Hide and reset all third-level filters
+        const thirdLevelItems = document.querySelectorAll('.inner-third-level');
+        thirdLevelItems.forEach(el => {
+            el.style.display = 'none';
+            el.classList.remove('active', 'disabled');
+        });
+
+        // Show third-level filters matching the active second-level category
+        document.querySelectorAll(`.inner-third-level[category-value='${activeCategory}']`)
+            .forEach(item => item.style.display = 'block');
+
+        // Select input checkboxes depending on screen width
+        const inputSelector = screen.width > 600
+            ? `ul.desktop-list[category-label]:not([category-label="gender"]):not([category-label="category"]) input[type="checkbox"]`
+            : `.filter_content_div[category-label]:not([category-label="gender"]):not([category-label="category"]) input[type="checkbox"]`;
+
+        document.querySelectorAll(inputSelector).forEach(input => {
+            const filterLabel = input.getAttribute('filter-label');
+            const filterValue = input.getAttribute('filter-value');
+
+            // Cache query selector string
+            const thirdLayerSelector = `.inner-third-level[for-label='${filterLabel}'][for-value='${filterValue}']`;
+            document.querySelectorAll(thirdLayerSelector).forEach(list => {
+            if (input.checked) list.classList.add('active');
+            if (input.disabled) {
+                list.classList.add('disabled');
+            }
+            });
+        });
+    };
+    
+    function enableAllFilters(event, filterValue){
+        document.querySelectorAll('.inner-second-level.active')?.forEach(item=> item.classList.remove('active'));
+        document.querySelectorAll('.inner-third-level.active')?.forEach(item=> item.classList.remove('active'));
+        event.classList.add('active');
+        let checkedInputNotGender = screen.width > 600 ? document.querySelectorAll(`ul.desktop-list[category-label]:not([category-label="gender"]) input[type="checkbox"]:checked`) : document.querySelectorAll(`.filter_content_div[category-label]:not([category-label="gender"]) input[type="checkbox"]:checked`);
+        checkedInputNotGender?.forEach(item=>{
+            item.checked = false;
+            const changeEvent = new Event('change', { bubbles: true, cancelable: true });
+            item.dispatchEvent(changeEvent);
+        })
+        setTimeout(() => {
+            let selectedCategory = screen.width > 600 ? document.querySelector(`ul.desktop-list[category-label='category'] li input[filter-value='${filterValue}']`) : document.querySelector(`.filter_content_div[category-label='category'] li input[filter-value='${filterValue}']`)
+            selectedCategory?.click();
+        }, 2000);
+    }
+
+    function levelSecondAll(event){
+        document.querySelectorAll('.inner-second-level.active')?.forEach(item=> item.classList.remove('active'));
+        let allCheckedFilter = screen.width > 600 ? document.querySelectorAll('ul.desktop-list[category-label]:not([category-label="gender"]) input[type="checkbox"]:checked') : document.querySelectorAll('.filter_content_div[category-label]:not([category-label="gender"]) input[type="checkbox"]:checked');
+        allCheckedFilter?.forEach(item=> {
+            item.checked = false
+            const changeEvent = new Event('change', { bubbles: true, cancelable: true });
+            item.dispatchEvent(changeEvent);
+        });
+        document.querySelectorAll('.inner-third-level.active')?.forEach(item=> item.classList.remove('active'));
+        document.querySelectorAll('.inner-third-level')?.forEach(el => el.style.display = el.getAttribute('category-value') === 'all' ? 'block' : 'none');
+    }
+    function levelFirstFilter(event){
+        document.querySelectorAll('.inner-first-level')?.forEach(item=> item.classList.remove('active'));
+        if(event.classList.contains('active')){
+            event.classList.add('removing')
+        }else{
+            event.classList.add('clicking')
+        }
+        let filterValue = event.getAttribute('filter-value')
+        document.querySelectorAll('.inner-second-level')?.forEach(item=> item.classList.remove('active'));
+        document.querySelectorAll('.inner-third-level')?.forEach(item=> item.classList.remove('active'));
+        document.querySelectorAll('.inner-third-level')?.forEach(el => el.style.display = el.getAttribute('category-value') === 'all' ? 'block' : 'none');
+
+        let allCheckedInput = screen.width > 600 ? document.querySelectorAll('ul.desktop-list input[type="checkbox"]:checked') : document.querySelectorAll('.filter_content_div input[type="checkbox"]:checked');
+        allCheckedInput?.forEach(checkedInput => {
+            checkedInput.checked = false;
+            const changeEvent = new Event('change', { bubbles: true, cancelable: true });
+            checkedInput.dispatchEvent(changeEvent);
+        });
+        let selectedInputGender = screen.width > 600 ? document.querySelector(`ul.desktop-list[category-label='gender'] li input[filter-value='${filterValue}']`) : document.querySelector(`.filter_content_div[category-label='gender'] li input[filter-value='${filterValue}']`);
+        if(selectedInputGender){
+            selectedInputGender.checked = true;
+            const changeEvent2 = new Event('change', { bubbles: true, cancelable: true });
+            selectedInputGender.dispatchEvent(changeEvent2);
+        }
+        let secondContainerLevel = document.querySelector('.container-level-second');
+        if(secondContainerLevel){
+            secondContainerLevel.classList.remove('women','men');
+            secondContainerLevel.classList.add(`${filterValue}`)
+        }
+        setTimeout(() => {
+            event.classList.remove('clicking')
+            event.classList.remove('removing')
+        }, 1000);
+        event.classList.add('active');
+    }
+    function levelSecondFilter(event){
+        let filterValue = event.getAttribute('filter-value');
+        let flag = event.classList.contains('active');
+        document.querySelectorAll('.inner-second-level.active')?.forEach(item=> item.classList.remove('active'));
+        document.querySelectorAll('.inner-third-level.active')?.forEach(item=> item.classList.remove('active'));
+        if(event.classList.contains('disabled')){
+            sessionStorage.setItem('disabled_clicked', 'true');
+            enableAllFilters(event, filterValue)
+            return;
+        }
+        let checkedInputNotGender = screen.width > 600 ? document.querySelectorAll(`ul.desktop-list[category-label]:not([category-label="gender"]) input[type="checkbox"]:checked`) : document.querySelectorAll(`.filter_content_div[category-label]:not([category-label="gender"]) input[type="checkbox"]:checked`);
+        checkedInputNotGender?.forEach(item=>{
+            item.checked = false;
+            const changeEvent = new Event('change', { bubbles: true, cancelable: true });
+            item.dispatchEvent(changeEvent);
+        })
+        if(flag){
+            document.querySelectorAll('.inner-third-level')?.forEach(el => el.style.display = el.getAttribute('category-value') === 'all' ? 'block' : 'none');
+        }else{
+            document.querySelectorAll('.inner-third-level')?.forEach(el => el.style.display = el.getAttribute('category-value') === filterValue ? 'block' : 'none');
+            event.classList.add('active');
+            let selectedCategory = screen.width > 600 ? document.querySelector(`ul.desktop-list[category-label='category'] li input[filter-value='${filterValue}']`) : document.querySelector(`.filter_content_div[category-label='category'] li input[filter-value='${filterValue}']`)
+            selectedCategory?.click();
+            const changeEvent = new Event('change', { bubbles: true, cancelable: true });
+            selectedCategory.dispatchEvent(changeEvent);
+        }
+    }
+    function levelThirdFilter(event){
+        let forValue = event.getAttribute('for-value')
+        let forLabel = event.getAttribute('for-label')
+        let allFilterLabel = screen.width > 600 ? document.querySelectorAll('ul.desktop-list[category-label]') : document.querySelectorAll('.filter_content_div[category-label]');
+        allFilterLabel?.forEach(ul=> {
+            let filterLabal = ul.getAttribute('category-label');
+            if(forLabel == filterLabal){
+                ul.querySelectorAll('li input')?.forEach(el=>{
+                    if(el.value.toLowerCase() == forValue && el.checked){
+                        event.classList.add('removing-filter')
+                        event.classList.remove('active')
+                        el.click()
+                        setTimeout(() => {
+                            event.classList.remove('removing-filter')
+                        }, 1000);
+                        return
+                    }else if(el.value.toLowerCase() == forValue && !el.checked){
+                        event.classList.add('active')
+                        el.click()
+                        return
+                    }else{}
+                })
+                return
+            }
+        })
+
+    }
+
+    window.scrollHorizontal = function () {
+        document.querySelectorAll('.container-main-filter > div')?.forEach(slider => {
+            let isDown = false, startX, scrollLeft;
+            slider.addEventListener('mousedown', (e) => {
+            isDown = true;
+            slider.classList.add('active');
+            startX = e.pageX - slider.offsetLeft;
+            scrollLeft = slider.scrollLeft;
+            });
+            ['mouseleave', 'mouseup'].forEach(ev =>
+            slider.addEventListener(ev, () => {
+                isDown = false;
+                slider.classList.remove('active');
+            })
+            );
+            slider.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - slider.offsetLeft;
+            slider.scrollLeft = scrollLeft - (x - startX) * 2;
+            });
+        });
+    };
+
+    document.addEventListener('DOMContentLoaded', async function(){
+        if(screen.width <= 1024) document.querySelectorAll('.container-main-filter > div')?.forEach(item=> item.classList.remove('1','page-width--narrow')); 
+        if(screen.width > 1024) scrollHorizontal();
+        let checkInitialFilter = screen.width > 600 ? document.querySelectorAll(`ul.desktop-list[category-label='gender'] li input`)[0] : document.querySelectorAll(`.filter_content_div[category-label='gender'] li input`)[0];
+        let genderCheckedFilter = screen.width > 600 ? document.querySelectorAll(`ul.desktop-list[category-label='gender'] li input[type="checkbox"]:checked`) : document.querySelectorAll(`.filter_content_div[category-label=gender] li input[type='checkbox']:checked`);
+        if(checkInitialFilter && genderCheckedFilter.length === 0 && !checkInitialFilter.checked){
+            checkInitialFilter.checked = true;
+            const changeEvent = new Event('change', { bubbles: true, cancelable: true });
+            checkInitialFilter.dispatchEvent(changeEvent);
+            document.querySelectorAll('.inner-third-level')?.forEach(el => el.style.display = el.getAttribute('category-value') === 'all' ? 'block' : 'none');
+            if(document.querySelector('.container-level-second')){
+                document.querySelector('.container-level-second')?.classList.remove('men','women');
+                document.querySelector('.container-level-second')?.classList.add(`${checkInitialFilter?.value?.toLowerCase()}`)
+            }
+        }else{
+            document.querySelectorAll('.inner-first-level.active')?.forEach(item=> item.classList.remove('active'));
+            let checkedGender = document.querySelector(`.inner-first-level[filter-value='${genderCheckedFilter[0]?.value?.toLowerCase()}']`)
+            if(checkedGender) checkedGender.classList.add('active');
+            let categoryList = screen.width > 600 ? document.querySelectorAll(`ul.desktop-list[category-label] li input[type="checkbox"]:checked`) : document.querySelectorAll(`.filter_content_div[category-label] li input[type='checkbox']:checked`);
+            categoryList?.forEach(item=>{
+                const changeEvent = new Event('change', { bubbles: true, cancelable: true });
+                item.dispatchEvent(changeEvent);
+            })
+            if(document.querySelector('.container-level-second')){
+                document.querySelector('.container-level-second')?.classList.remove('men','women');
+                document.querySelector('.container-level-second')?.classList.add(`${genderCheckedFilter[0]?.value?.toLowerCase()}`)
+            }
+        }
+    })
+</script>

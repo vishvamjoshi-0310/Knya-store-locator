@@ -1,0 +1,108 @@
+/* Breakpoint Confidential – base = above 768px (desktop), override below 768px (mobile) */
+.breakpoint-confidential-section {
+  --color-grey-13: #202020;
+  --color-grey-17: #2c2c2c;
+  --color-grey-38: #616161;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 154px;
+  padding: 36px 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: #f4ecd0;
+}
+
+.breakpoint-confidential-section .breakpoint-confidential-content {
+  width: 1280px;
+  min-height: 82px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.breakpoint-confidential-section .breakpoint-confidential-main-text {
+  font-family: Poppins-Medium;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 22px;
+  line-height: 36px;
+  letter-spacing: 0;
+  text-align: center;
+  color: var(--color-grey-13, #202020);
+  margin: 0;
+  width: 100%;
+  max-width: 1280px;
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.breakpoint-confidential-section .breakpoint-confidential-sub-text {
+  font-family: Poppins;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0;
+  text-align: center;
+  color: var(--color-grey-17, #2c2c2c);
+  margin: 0;
+  width: 100%;
+  max-width: 608px;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media screen and (max-width: 768px) {
+  .breakpoint-confidential-section {
+    width: 100%;
+    min-height: 168px;
+    padding: 36px 18px;
+    gap: 10px;
+    background-color: #f4ecd0;
+  }
+
+  .breakpoint-confidential-section .breakpoint-confidential-content {
+    width: 354px;
+    max-width: 100%;
+    min-height: 96px;
+    gap: 6px;
+  }
+
+  .breakpoint-confidential-section .breakpoint-confidential-main-text {
+    width: 354px;
+    max-width: 100%;
+    min-height: 24px;
+    font-family: Poppins-Medium;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: 0;
+    text-align: center;
+    color: var(--color-grey-13, #202020);
+  }
+
+  .breakpoint-confidential-section .breakpoint-confidential-sub-text {
+    width: 354px;
+    max-width: 100%;
+    min-height: 66px;
+    font-family: Poppins;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 12px;
+    line-height: 22px;
+    letter-spacing: 0;
+    text-align: center;
+    color: var(--color-grey-38, #616161);
+  }
+}

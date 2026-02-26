@@ -1,0 +1,88 @@
+.stethoscope-video-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.stethoscope-video-container {
+  position: relative;
+  max-width: 100%;
+  overflow: hidden;
+}
+.stethoscope-video-container video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.stethoscope-play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stethoscope-button {
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: underline;
+  color: #282828;
+  font-size: 16px;
+  line-height: 16px;
+  letter-spacing: 0.6px;
+}
+
+  .stethoscope-content h2{
+    font-size: 16px;
+    line-height: 16px;
+    letter-spacing: 0.6px;
+    vertical-align: middle;
+    color: #282828;
+    margin: 0;
+  }
+   .stethoscope-content p{
+     color: #A0A0A0;
+     font-size: 14px;
+     line-height: 20px;
+     letter-spacing: 0.4px;
+     margin: 0;
+   }
+  .stethoscope-content p>strong{
+    color: #4C4C4C;
+  }
+
+  .stethoscope-content{
+    padding: 0 18px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  @media(min-width: 768px){
+    .stethoscope-video-section {
+      flex-direction: column-reverse;
+      gap: 24px;
+    }
+    .stethoscope-content{
+      align-items: center;
+    }
+    .stethoscope-content h2{
+      font-size: 32px;
+      line-height: 40px;
+      color: #482F8F;
+      letter-spacing: 0.64px;
+    }
+    .stethoscope-content p{
+      font-size: 18px;
+      line-height: 22px;
+      letter-spacing: 0.4px;
+    }
+
+    .stethoscope-button{
+      font-size: 18px;
+      line-height: 24px;
+    }
+  }

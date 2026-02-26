@@ -1,0 +1,154 @@
+.firstHalfImg {
+  position: relative;
+}
+.secondHalfImg {
+  position: relative;
+}
+.slidder-seen-mob {
+  display: none;
+}
+.contSeen {
+  bottom: 0;
+  width: 100%;
+  text-align: left;
+  background: #f6917e;
+  position: absolute;
+  border-top-right-radius: 25px;
+  height: auto;
+  display: flex;
+  align-items: center;
+}
+
+.first-dicv-seen {
+  display: flex;
+  height: 100%;
+}
+
+.first-dicv-seen picture {
+  height: 100%;
+}
+
+.first-dicv-seen .imgFirstFull img {
+  position: absolute;
+}
+
+.first-dicv-seen picture img {
+  height: 100%;
+  object-fit: cover;
+}
+.imgFirstFull {
+  width: 60%;
+}
+.secondMainDiv {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+.slider-seen1 {
+  display: none;
+}
+.sliderseen .swiper-wrapper {
+  transition-timing-function: linear;
+}
+
+.headingFirst {
+  color: #482f8f;
+}
+
+.seenHeadings .headingFirst {
+  font-size: clamp(28px, calc(32 * (100vw / var(--viewportDesktop))), 35px);
+  line-height: clamp(35px, calc(40 * (100vw / var(--viewportDesktop))), 43px);
+  margin: 0;
+}
+
+p.secondFirst {
+  color: #000303;
+  opacity: 0.7;
+}
+
+.seenHeadings p.secondFirst {
+  font-size: clamp(12px, calc(14 * (100vw / var(--viewportDesktop))), 18px);
+  line-height: clamp(18px, calc(20 * (100vw / var(--viewportDesktop))), 24px);
+  margin: 8px 0 24px;
+}
+.titles {
+  font-weight: 400;
+  font-size: 0.938vw;
+  line-height: 120%;
+  color: #f4ecd0;
+  margin: 0;
+  padding: 5px 0 5px 6px;
+}
+
+.mob-connt {
+  bottom: 0 !important;
+}
+.sliderseen {
+  height: auto;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  max-width: 1780px;
+}
+
+.contDiv1 {
+  width: 41%;
+}
+.contDiv4 {
+  bottom: 121px;
+  width: 136px !important;
+}
+
+.sliderseen .swiper-slide {
+  width: calc(466 * (100vw / 1440));
+}
+
+@media screen and (max-width: 1024px) {
+  .sliderseen .swiper-slide {
+    width: calc(521 * (100vw / 900));
+  }
+
+  .contSeen {
+    height: 35px;
+  }
+}
+@media screen and (max-width: 1024px) and (min-width: 640px) {
+  .titles {
+    font-size: 1.172vw !important;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .titles {
+    font-size: 12px !important;
+  }
+  .slidder-seen-mob {
+    display: block;
+  }
+  .contDiv1 {
+    bottom: 0px;
+  }
+  .slider-seen1 {
+    display: block;
+  }
+
+  .sliderseen .swiper-slide {
+    width: calc(400 * (100vw / 400));
+  }
+
+  .seenHeadings .headingFirst {
+    font-size: 24px;
+    line-height: 32px;
+    letter-spacing: 0.24px;
+  }
+
+  .seenHeadings p.secondFirst {
+    font-size: 12px;
+    line-height: 16px;
+    margin: 0px 0 24px;
+    letter-spacing: 0.048px;
+  }
+
+}

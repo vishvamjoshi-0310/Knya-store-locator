@@ -1,0 +1,161 @@
+{{ '6sence-stylesheet.css' | asset_url | stylesheet_tag: preload: true }}
+
+<div class="sence">
+  <!-- 6sense Card -->
+  <div class="sence-card sence-premium">
+    <div class="card-content">
+      <div class="brand-name">
+        {% if section.settings.sence_logo %}
+          {{
+            section.settings.sence_logo
+            | image_url: width: 260
+            | image_tag: widths: '150, 260', loading: 'lazy', height: ''
+          }}
+      {% endif %}
+      </div>
+      <h3 class="card-title">{{ section.settings.premium_title }}</h3>
+      <div class="sence-price">{{ section.settings.premium_price }}</div>
+
+      <div class="sence-buttons">
+        <a href="{{ section.settings.premium_shop_link }}" class="btn btn-primary">
+          {{ section.settings.premium_shop_text }}
+        </a>
+      </div>
+    </div>
+
+    <div class="sence-image">
+      {% if section.settings.premium_image %}
+        <img
+          src="{{ section.settings.premium_image | img_url: '400x400' }}"
+          alt="{{ section.settings.premium_title }}"
+          loading="lazy"
+          width="400"
+          height="400"
+        >
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- 6senseLITE Card -->
+  <div class="sence-card sence-lite">
+    <div class="card-content secondary-content">
+      <div class="brand-name sence-name">
+        {{
+          section.settings.secondary_logo
+          | image_url: width: 260
+          | image_tag: widths: '150, 260', loading: 'lazy', height: ''
+        }}
+      </div>
+      <h3 class="card-title">{{ section.settings.lite_title }}</h3>
+      <div class="secondary-price">{{ section.settings.lite_price }}</div>
+      <div class="sence-buttons">
+        <a href="{{ section.settings.lite_shop_link }}" class="btn sence-primary">
+          {{ section.settings.lite_shop_text }}
+        </a>
+      </div>
+    </div>
+
+    <div class="sence-image">
+      {% if section.settings.lite_image %}
+        <img
+          src="{{ section.settings.lite_image | img_url: '400x400' }}"
+          alt="{{ section.settings.lite_title }}"
+          loading="lazy"
+          width="400"
+          height="400"
+        >
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "6sense",
+  "class": "sence-parent",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Premium Card Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "sence_logo",
+      "label": "First Logo"
+    },
+    {
+      "type": "richtext",
+      "id": "premium_title",
+      "label": "Premium Title"
+    },
+    {
+      "type": "text",
+      "id": "premium_price",
+      "label": "Premium Price",
+      "default": "₹2499*"
+    },
+    {
+      "type": "text",
+      "id": "premium_shop_text",
+      "label": "Premium Shop Button Text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "premium_shop_link",
+      "label": "Premium Shop Button Link"
+    },
+    {
+      "type": "image_picker",
+      "id": "premium_image",
+      "label": "Premium Product Image"
+    },
+    {
+      "type": "header",
+      "content": "Lite Card Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "secondary_logo",
+      "label": "Lite Logo"
+    },
+    {
+      "type": "richtext",
+      "id": "lite_title",
+      "label": "Lite Title"
+    },
+    {
+      "type": "text",
+      "id": "lite_price",
+      "label": "Lite Price",
+      "default": "₹2099*"
+    },
+    {
+      "type": "text",
+      "id": "lite_shop_text",
+      "label": "Lite Shop Button Text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "lite_shop_link",
+      "label": "Lite Shop Button Link"
+    },
+    {
+      "type": "url",
+      "id": "lite_learn_link",
+      "label": "Lite Learn More Link"
+    },
+    {
+      "type": "image_picker",
+      "id": "lite_image",
+      "label": "Lite Product Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "6sense"
+    }
+  ]
+}
+{% endschema %}

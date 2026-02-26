@@ -1,0 +1,70 @@
+<div class="sbc-card" data-dataAttr="{{ block.settings.collectiontitle }}" onclick="shopByColor(this)">
+  <a href="{{ block.settings.colorcollection.url }}">
+    <div class="sbc-card-img-div">
+      <picture>
+        {%- if block.settings.collection_image -%}
+
+          <!-- WebP Source -->
+          <source
+            srcset="
+              {{ block.settings.collection_image | image_url: width: 300, height: 388, format: 'webp' }} 1x,
+              {{ block.settings.collection_image | image_url: width: 600, height: 776, format: 'webp' }} 2x
+            "
+            type="image/webp"
+          >
+
+          <!-- Fallback JPG/PNG -->
+          <source
+            srcset="
+              {{ block.settings.collection_image | image_url: width: 300, height: 388 }} 1x,
+              {{ block.settings.collection_image | image_url: width: 600, height: 776 }} 2x
+            "
+            type="image/{{ block.settings.collection_image | split: '.' | last }}"
+          >
+
+          <!-- Final fallback image -->
+          <img
+            src="{{ block.settings.collection_image | image_url: width: 300, height: 388 }}"
+            width="{{ block.settings.collection_image.width }}"
+            height="{{ block.settings.collection_image.height }}"
+            loading="lazy"
+            alt="{{ block.settings.collection_image.alt | escape }}"
+          >
+
+        {%- endif -%}
+      </picture>
+
+    </div>
+    <div class="sbc-card-title-div">
+      <p class="sbc-card-title">{{ block.settings.collectiontitle }}</p>
+    </div>
+  </a>
+</div>
+
+
+{% schema %}
+{
+    "name": "color_collection",
+    "class": "swiper-slide",
+    "settings": [
+        {
+          "type": "collection",
+          "id": "colorcollection",
+          "label": "Collection"
+        },
+        {
+          "type": "text",
+          "id": "collectiontitle",
+          "label": "Collection Title"
+        },
+        {
+          "type": "image_picker",
+          "id": "collection_image",
+          "label": "Collection Image"
+        }
+    ],
+    "presets": [
+        {"name": "color collection"}
+    ]
+}
+{% endschema %}

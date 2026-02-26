@@ -1,0 +1,77 @@
+{{ 'stetho-preorder-stylesheet.css' | asset_url | stylesheet_tag }}
+
+<div 
+  class="preorder-wrapper font-heebo-regular">
+    {% if section.settings.enable_preorder_counter %}
+      <div class="heebo-regular preorder-count-wrapper">
+          {% assign preorder_metaobject = shop.metaobjects.pre_order_count["pre-order-count-9xjaq1md"] %}
+          
+          <p class="prebook-count">{{ preorder_metaobject.pre_order_count_value }}+</p>
+          <p class="prebook-span">Stethoscopes Booked</p>
+      </div>
+    {% endif %}
+  <h3 class="heebo-regular preorder-text-content">{{ section.settings.preorder_content }}</h3>
+  <span class="preorder-stetho-button"><a href="{{ section.settings.preorder_button_url }}">{{ section.settings.button_text }}</a></span>
+</div>
+
+
+<script src="{{ 'stetho-preorder-javascript.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+  {
+    "name": "Preorder Popup",
+    "class": "stetho-preoorder-overlay",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enable_preorder_counter",
+        "label": "Enable Preorder Counter",
+        "default" : true
+      },
+      {
+        "type": "number",
+        "id": "present_count",
+        "label": "Starting Count",
+        "default": 126
+      },
+      {
+        "type": "number",
+        "id": "update_interval",
+        "label": "Update Interval (seconds)",
+        "default": 7200
+      },
+      {
+        "type": "number",
+        "id": "update_count",
+        "label": "Increment per Interval",
+        "default": 30
+      },
+      {
+        "type": "number",
+        "id": "upper_limit",
+        "label": "Upper Limit",
+        "default": 500
+      },
+      {
+        "type": "textarea",
+        "id": "preorder_content",
+        "label": "Preorder Content"
+      },
+      {
+        "type": "text",
+        "id": "button_text",
+        "label": "Button Text"
+      },
+      {
+        "type": "url",
+        "id": "preorder_button_url",
+        "label": "PreOrder Button URL"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Preorder Popup"
+      }
+    ]
+  }
+{% endschema %}

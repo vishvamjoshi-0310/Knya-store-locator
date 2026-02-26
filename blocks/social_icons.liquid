@@ -1,0 +1,81 @@
+<a href="{{ block.settings.social-url }}" target="_blank">
+  <div class="social-contact">
+    <img
+      class="back-image-social"
+      srcset="
+        {%- if section.settings.background-img.width >= 375 -%}{{ section.settings.background-img | image_url: width: 375 }} 375w,{%- endif -%}
+        {%- if section.settings.background-img.width >= 550 -%}{{ section.settings.background-img | image_url: width: 550 }} 550w,{%- endif -%}
+        {%- if section.settings.background-img.width >= 750 -%}{{ section.settings.background-img | image_url: width: 750 }} 750w,{%- endif -%}
+        {%- if section.settings.background-img.width >= 1100 -%}{{ section.settings.background-img | image_url: width: 1100 }} 1100w,{%- endif -%}
+        {%- if section.settings.background-img.width >= 1500 -%}{{ section.settings.background-img | image_url: width: 1500 }} 1500w,{%- endif -%}
+        {%- if section.settings.background-img.width >= 1780 -%}{{ section.settings.background-img | image_url: width: 1780 }} 1780w,{%- endif -%}
+        {%- if section.settings.background-img.width >= 2000 -%}{{ section.settings.background-img | image_url: width: 2000 }} 2000w,{%- endif -%}
+        {%- if section.settings.background-img.width >= 3000 -%}{{ section.settings.background-img | image_url: width: 3000 }} 3000w,{%- endif -%}
+        {%- if section.settings.background-img.width >= 3840 -%}{{ section.settings.background-img | image_url: width: 3840 }} 3840w,{%- endif -%}
+        {{ section.settings.background-img | image_url }} {{ section.settings.background-img.width }}w
+      "
+      sizes="100vw"
+      src="{{ section.settings.background-img | image_url: width: 1500 }}"
+      loading="lazy"
+      alt="{{ section.settings.background-img.alt | escape }}"
+      width="{{ section.settings.background-img.width }}"
+      height="{{ section.settings.background-img.height }}"
+    >
+    <div class="social-list" id="social-idd">
+      <div class="img-div-hq">
+        <img
+          class="social-icons"
+          srcset="
+            {%- if block.settings.social-img.width >= 375 -%}{{ block.settings.social-img | image_url: width: 375 }} 375w,{%- endif -%}
+            {%- if block.settings.social-img.width >= 550 -%}{{ block.settings.social-img | image_url: width: 550 }} 550w,{%- endif -%}
+            {%- if block.settings.social-img.width >= 750 -%}{{ block.settings.social-img | image_url: width: 750 }} 750w,{%- endif -%}
+            {%- if block.settings.social-img.width >= 1100 -%}{{ block.settings.social-img | image_url: width: 1100 }} 1100w,{%- endif -%}
+            {%- if block.settings.social-img.width >= 1500 -%}{{ block.settings.social-img | image_url: width: 1500 }} 1500w,{%- endif -%}
+            {%- if block.settings.social-img.width >= 1780 -%}{{ block.settings.social-img | image_url: width: 1780 }} 1780w,{%- endif -%}
+            {%- if block.settings.social-img.width >= 2000 -%}{{ block.settings.social-img | image_url: width: 2000 }} 2000w,{%- endif -%}
+            {%- if block.settings.social-img.width >= 3000 -%}{{ block.settings.social-img | image_url: width: 3000 }} 3000w,{%- endif -%}
+            {%- if block.settings.social-img.width >= 3840 -%}{{ block.settings.social-img | image_url: width: 3840 }} 3840w,{%- endif -%}
+            {{ block.settings.social-img | image_url }} {{ block.settings.social-img.width }}w
+          "
+          sizes="100vw"
+          src="{{ block.settings.social-img | image_url: width: 1500 }}"
+          loading="lazy"
+          alt="{{ block.settings.social-img.alt | escape }}"
+          width="{{ block.settings.social-img.width }}"
+          height="{{ block.settings.social-img.height }}"
+        >
+      </div>
+      <span class="social-textt font-heebo-regular">{{ block.settings['social-text'] }}</span>
+    </div>
+  </div>
+</a>
+
+{% schema %}
+{
+  "name": "Social Icons",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "social-img",
+      "label": "social media img (use 14*14 size)"
+    },
+
+    {
+      "type": "text",
+      "id": "social-text",
+      "label": "Social options",
+      "default": "knyamed"
+    },
+    {
+      "type": "url",
+      "id": "social-url",
+      "label": "url of social media"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Social Icons"
+    }
+  ]
+}
+{% endschema %}

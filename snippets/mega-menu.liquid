@@ -1,0 +1,186 @@
+{%- doc -%}
+  Renders a mega menu list and optional "more" menu links.
+  When more menu links are present a duplicate instance of each submenu is also rendered.
+
+  @param {object} [section] - The section object.
+  @param {linklist} [parent_link] - The linklist to render
+  @param {string} [id] - Unique ID to assign ul in markup
+  @param {string} [menu_content_type] - The type of content to render, options: ['featured_products', 'featured_collections', 'collection_images', 'text'] (default: 'text')
+  @param {number} [content_aspect_ratio] - The aspect ratio to display the content if applicable
+  @param {number} [image_border_radius] - The border radius used for the content images
+
+{%- enddoc -%}
+
+
+{% assign left_links = parent_link.links | where: 'levels', 0 %}
+{% assign middle_links_left = parent_link.links | reject: 'levels', 0 %}
+
+<div class="mega-menu section--full-width-margin section--{{ section.settings.section_width }}" style="width:100%;">
+  <div class="mega-menu-custom-grid">
+  
+    <!-- LEFT COLUMN -->
+    <div class="mega-menu__left-col">
+      <ul class="mega-menu__left-list">
+        {% for link in left_links %}
+        <li>
+        {%  assign mega_menu_array = link.title | split:'@@' %}
+          <a href="{{ link.url }}" 
+            class="mega-menu__left-link heebo-medium"
+            {% if mega_menu_array[1] != blank and mega_menu_array[1] != 'NULL' %} style="color:{{mega_menu_array[1]}};" {% endif %}
+          >
+            {{- mega_menu_array[0] -}}
+            {% if mega_menu_array[2] != blank and mega_menu_array[2] != 'NULL' %} {{- mega_menu_array[2] -}} {% endif %}
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+
+      <!-- MIDDLE COLUMN -->
+      <div class="mega-menu__middle_left-col">
+        <div
+          class="mega-menu__grid"
+          data-menu-grid-id="{{ id }}"
+        >
+          {% render 'mega-menu-list',
+            parent_link: parent_link,
+            middle_links: middle_links_left,
+            id: id,
+            section: section,
+            grid_columns_count: 5,
+            grid_columns_count_tablet: 3,
+            grid_columns_count_collection_images: 3,
+            menu_content_type: menu_content_type,
+            content_aspect_ratio: content_aspect_ratio,
+            image_border_radius: image_border_radius
+          %}
+        </div>
+        
+      </div>
+
+    <!-- RIGHT COLUMN -->
+    <div class="mega-menu__right-col">
+      <div class="mega-menu__promo-image">
+
+        {% for entry in shop.metafields.custom.header_menu_image.value %}
+          {% assign menu_assets_array = entry | split: '@@' %}
+
+          {% if menu_assets_array[0] == parent_link.title %}
+            <a 
+            {% if menu_assets_array[2] != blank %} href="{{ menu_assets_array[2] }}" {% endif %} >
+              <picture>
+                <!-- Mobile: up to 749px -->
+                <source
+                  media="(max-width: 749px)"
+                  srcset="{{ menu_assets_array[1] }}&width=600"
+                  type="image/webp"
+                >
+
+                <!-- Desktop: 750px and above -->
+                <source
+                  media="(min-width: 750px)"
+                  srcset="{{ menu_assets_array[1] }}&width=1200"
+                  type="image/webp"
+                >
+
+                <!-- Fallback -->
+                <img
+                  src="{{ menu_assets_array[1] }}&width=900"
+                  alt="{{ menu_assets_array[1] | escape }}"
+                  loading="lazy"
+                  width="900"
+                  height="auto"
+                >
+              </picture>
+
+
+            </a>
+          {% endif %}
+
+        {% endfor %}
+
+      </div>
+    </div>
+
+
+  </div>
+
+</div>
+
+{% stylesheet %}
+
+  .mega-menu__middle_left-col .mega-menu__grid .mega-menu__list {
+    row-gap: 50px;
+    @media only screen and (max-width: 900px){
+      column-gap: 10px;
+    }
+  }
+
+  .mega-menu-custom-grid {
+    display: grid;
+    grid-template-columns: 20% 60% 20%;
+
+    @media only screen and (max-width: 900px){
+    grid-template-columns: 24% 56% 20%;
+    }
+  }
+
+  .mega-menu-custom-grid .mega-menu__left-col .mega-menu__left-list{
+    padding-inline-start: 0px;
+    list-style: none;
+    margin-block: 0px;
+  }
+
+  .mega-menu-custom-grid .mega-menu__left-col .mega-menu__left-list li a {
+    font-size: clamp(12px, calc(18 * (100vw / 1920)), 16px);
+    letter-spacing: 0.06px;
+    color: #000;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+
+  .mega-menu-custom-grid .mega-menu__left-col .mega-menu__left-list li:not(:last-child) {
+    margin-bottom: 18px;
+  }
+
+  .mega-menu__list .shop-by-color-col {
+    display: grid;
+    align-items: flex-start;
+    grid-template-columns: 1fr 1fr;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .mega-menu__column ul.list-unstyled .mega-menu__link .mega-menu__link-title {
+    font-size: clamp(12px, calc(16 * (100vw / 1920)), 16px);
+    color: #000;
+    letter-spacing: 0.06px;
+  }
+
+  .mega-menu__link--parent .mega-menu__link-title,
+  .mega-menu__middle_right-list.shop-by-color-col .mega-menu__link--parent.mega-menu__link .mega-menu__link-title {
+    color: rgb(72, 47, 143);
+    font-size: clamp(12px, calc(18 * (100vw / 1920)), 16px);
+  }
+
+  .mega-menu__middle_right-list .mega-menu__link-title{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .mega-menu__middle_right-list .mega-menu__link-title .col-cod {
+    width: 16px;
+    height: 16px;
+    border-radius: 100%;
+    display: block;
+  }
+
+  .mega-menu__promo-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+{% endstylesheet %}

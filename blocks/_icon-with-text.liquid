@@ -1,0 +1,196 @@
+<style>
+ul.icon-with-text.icon-with-text--horizontal.list-unstyled {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+}
+li.icon-with-text__item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-direction: column;
+    max-width:120px;
+}
+span.h4.inline-richtext {
+    color:#616161;
+    text-align: center;
+    font-family: var(--font-heebo-regular);
+    font-size: clamp(12px, calc(14 * (100vw / 1440)), 16px);
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.42;
+    letter-spacing: .07px;
+}
+@media screen and (max-width: 749px) {
+  span.h4.inline-richtext {
+    font-size: 12px;
+    line-height: 20px;
+  }
+  li.icon-with-text__item{
+    max-width: 28.5%;
+  }
+}
+</style>
+{%- liquid
+  assign heading_1_empty = false
+  assign heading_2_empty = false
+  assign heading_3_empty = false
+  assign text_only_all_items = true
+
+  if block.settings.heading_1 == empty
+    assign heading_1_empty = true
+  endif
+
+  if block.settings.heading_2 == empty
+    assign heading_2_empty = true
+  endif
+
+  if block.settings.heading_3 == empty
+    assign heading_3_empty = true
+  endif
+
+  if heading_1_empty == false and block.settings.image_1 != null
+    assign text_only_all_items = false
+  elsif heading_2_empty == false and block.settings.image_2 != null
+    assign text_only_all_items = false
+  elsif heading_3_empty == false and block.settings.image_3 != null
+    assign text_only_all_items = false
+  endif
+-%}
+
+<ul
+  class="icon-with-text page-width-pdp-mob icon-with-text--{{ block.settings.layout }} list-unstyled{% if text_only_all_items %} icon-with-text--text-only{% endif %}"
+  {{ block.shopify_attributes }}
+>
+
+  {%- unless heading_1_empty -%}
+    <li class="icon-with-text__item">
+      <img
+        src="{{ block.settings.image_1 | image_url }}"
+        {% if block.settings.image_1.alt != blank %}
+          alt="{{ block.settings.image_1.alt | escape }}"
+        {% else %}
+          role="presentation"
+        {% endif %}
+        height="auto"
+        width="auto"
+        loading="lazy"
+      >
+      <span class="h4 inline-richtext">
+        {{- block.settings.heading_1 -}}
+      </span>
+    </li>
+  {%- endunless -%}
+  {%- unless heading_2_empty -%}
+    <li class="icon-with-text__item">
+      <img
+        src="{{ block.settings.image_2 | image_url }}"
+        {% if block.settings.image_2.alt != blank %}
+          alt="{{ block.settings.image_2.alt | escape }}"
+        {% else %}
+          role="presentation"
+        {% endif %}
+        height="auto"
+        width="auto"
+        loading="lazy"
+      >
+
+      <span class="h4 inline-richtext">
+        {{- block.settings.heading_2 -}}
+      </span>
+    </li>
+  {%- endunless -%}
+  {%- unless heading_3_empty -%}
+    <li class="icon-with-text__item">
+      <img
+        src="{{ block.settings.image_3 | image_url }}"
+        {% if block.settings.image_3.alt != blank %}
+          alt="{{ block.settings.image_3.alt | escape }}"
+        {% else %}
+          role="presentation"
+        {% endif %}
+        height="auto"
+        width="auto"
+        loading="lazy"
+      >
+
+      <span class="h4 inline-richtext">
+        {{- block.settings.heading_3 -}}
+      </span>
+    </li>
+  {%- endunless -%}
+</ul>
+
+{% schema %}
+{
+  "name": "Icon with Text",
+  "settings": [
+    {
+      "type": "select",
+      "id": "layout",
+      "options": [
+        {
+          "value": "horizontal",
+          "label": "horizontal"
+        },
+        {
+          "value": "vertical",
+          "label": "vertical"
+        }
+      ],
+      "default": "horizontal",
+      "label": "horizontal"
+    },
+    {
+      "type": "header",
+      "content": "Choose an image for each column or row.",
+      "info": "Choose an icon or add an image for each column or row."
+    },
+
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "First image"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading_1",
+      "default": "Heading",
+      "label": "First heading",
+      "info": "Leave the heading label blank to hide the icon column."
+    },
+
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Second image"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading_2",
+      "default": "Heading",
+      "label": "Second heading",
+      "info": "Leave the heading label blank to hide the icon column."
+    },
+
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "third image"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading_3",
+      "default": "Heading",
+      "label": "third heading",
+      "info": "Leave the heading label blank to hide the icon column."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Icon with Text"
+    }
+  ]
+}
+{% endschema %}

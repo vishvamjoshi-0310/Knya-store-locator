@@ -1,0 +1,116 @@
+{%- comment -%}
+  Product Share Button Snippet
+  Displays a share button that uses the native Web Share API
+{%- endcomment -%}
+
+{% if product != blank %}
+  <button type="button" class="product-share-button" aria-label="Share product" onclick="shareProduct()">
+    {% render 'share-icon' %}
+  </button>
+{% endif %}
+
+<style>
+  .product-share-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #482f8f;
+    padding: 0;
+    min-width:20px;
+    margin-top:7px;
+  }
+  
+  .product-share-button svg {
+    width:20px;
+    height:22px;
+  }
+</style>
+
+<script>
+  function shareProduct() {
+    {% if product != blank %}
+      const productUrl = '{{ shop.url }}{{ product.url }}';
+      const productTitle = {{ product.title | json }};
+      
+      // Use native Web Share API if available (this will show the default browser/system share popup)
+      if (navigator.share) {
+        const shareData = {
+          title: productTitle,
+          text: productTitle,
+          url: productUrl
+        };
+        
+        navigator.share(shareData)
+          .then(() => {
+            console.log('Product shared successfully');
+          })
+          .catch((error) => {
+            // User cancelled or error occurred
+            if (error.name !== 'AbortError') {
+              console.log('Error sharing product:', error);
+              // Fallback to copy link
+              copyProductLink(productUrl);
+            }
+          });
+      } else {
+        // Fallback: Copy link to clipboard if Web Share API is not supported
+        copyProductLink(productUrl);
+      }
+    {% endif %}
+  }
+  
+  function copyProductLink(url) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(() => {
+        // Show success message
+        showCopySuccess();
+      }).catch((err) => {
+        console.error('Failed to copy:', err);
+        // Fallback to old method
+        fallbackCopyTextToClipboard(url);
+      });
+    } else {
+      // Fallback for older browsers
+      fallbackCopyTextToClipboard(url);
+    }
+  }
+  
+  function fallbackCopyTextToClipboard(text) {
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    textArea.style.position = 'fixed';
+    textArea.style.left = '-999999px';
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    
+    try {
+      document.execCommand('copy');
+      showCopySuccess();
+    } catch (err) {
+      console.error('Fallback: Failed to copy text', err);
+    }
+    
+    document.body.removeChild(textArea);
+  }
+  
+  function showCopySuccess() {
+    // Create a temporary success message
+    const message = document.createElement('div');
+    message.textContent = '{{ "share.success_message" | default: "Link copied to clipboard" }}';
+    message.style.cssText = 'position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #482f8f; color: white; padding: 12px 24px; border-radius: 8px; z-index: 10000; font-size: 14px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);';
+    document.body.appendChild(message);
+    
+    setTimeout(() => {
+      message.style.opacity = '0';
+      message.style.transition = 'opacity 0.3s';
+      setTimeout(() => {
+        document.body.removeChild(message);
+      }, 300);
+    }, 2000);
+  }
+</script>
+

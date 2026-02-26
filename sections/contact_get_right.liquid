@@ -1,0 +1,65 @@
+{{ 'contact_get_right.css' | asset_url | stylesheet_tag }}
+
+<div class="set-container">
+  <div class="page-width-updated">
+    <div class="inner {% if section.settings.show_padding_get  %} page-padding-right page-padding-left{% endif %} {% if section.settings.show_padding_mob_get %}padding-right-mob padding-left-mob{% endif %}">
+      <h2 class="get-title heebo-medium">{{ section.settings.rightseth1 }}</h2>
+      <div class="loop-div">
+        {% content_for 'blocks' %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "get right",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_padding_get",
+      "label": "padding for section",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_padding_mob_get",
+      "label": "padding for section in mobile",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "margintopget",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "label": "margin from top for entire section",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margintopgetmob",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "label": "margin from top for entire section",
+      "default": 0
+    },
+    {
+      "type": "text",
+      "id": "rightseth1",
+      "label": "Heading"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text_with_icon"
+    }
+  ],
+  "presets": [
+    {
+      "name": "getright"
+    }
+  ]
+}
+{% endschema %}
