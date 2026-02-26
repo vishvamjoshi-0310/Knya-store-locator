@@ -1,0 +1,1 @@
+# Knya-store-locator
