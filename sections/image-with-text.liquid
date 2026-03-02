@@ -35,7 +35,7 @@
         {% endif %}
       >
         {%- if section.settings.image != blank -%}
-          {%- capture sizes -%}(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2){%- endcapture -%}
+          {%- capture sizes -%}(min-width: {{ settings.page_width_new }}px) {{ settings.page_width_new | minus: 100 | divided_by: 2 }}px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2){%- endcapture -%}
           <picture>
             <!-- WebP source -->
             <source

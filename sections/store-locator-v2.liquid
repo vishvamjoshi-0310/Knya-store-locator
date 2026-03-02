@@ -1,0 +1,648 @@
+{{ 'store_locator.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign store_cities = shop.metaobjects.store_city.values
+  assign total_store_count = 0
+  for city in store_cities
+    assign city_stores = city.stores.value
+    if city_stores != blank
+      assign total_store_count = total_store_count | plus: city_stores.size
+    endif
+  endfor
+  assign per_page = 10
+-%}
+
+<div class="store-locator-v2 page-width-updated store-locator-v2--{{ section.id }}">
+  <header class="store-locator-v2__mobile-header" id="StoreLocatorMobileHeader" aria-label="Store locator mobile header">
+    <button type="button" class="store-locator-v2__mobile-header-back" onclick="window.history.back()" aria-label="Back to previous">
+      {% render 'store-locator-back-icon' %}
+    </button>
+    <span class="store-locator-v2__mobile-header-city" id="StoreLocatorMobileCityName">ALL STORES</span>
+    <span class="store-locator-v2__mobile-header-count" id="StoreLocatorCountMobile">{{ total_store_count }} Stores Found</span>
+  </header>
+
+  <div class="store-locator-v2__content-below-header">
+    <div class="store-locator-v2__header-wrapper">
+      <h1 class="store-locator-v2__title">
+        {{ section.settings.mainheading }}
+      </h1>
+    </div>
+
+    <div class="store-locator-v2__body">
+      <aside class="store-locator-v2__sidebar">
+        <button type="button" class="store-locator-v2__mobile-city-trigger" id="StoreLocatorMobileCityTrigger" aria-haspopup="listbox" aria-expanded="false" aria-label="Select your city">
+          <span class="store-locator-v2__mobile-city-trigger-text">Select Your City</span>
+          {% render 'store-locator-dropdown-icon' %}
+        </button>
+      <div class="store-locator-v2__search">
+        <div class="store-locator-v2__search-input-wrapper">
+          <span class="store-locator-v2__search-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15.9767 14.4716H15.1867L14.9067 14.2016C16.1067 12.8016 16.7267 10.8916 16.3867 8.86157C15.9167 6.08157 13.5967 3.86157 10.7967 3.52157C6.5667 3.00157 3.0067 6.56157 3.5267 10.7916C3.8667 13.5916 6.0867 15.9116 8.8667 16.3816C10.8967 16.7216 12.8067 16.1016 14.2067 14.9016L14.4767 15.1816V15.9716L18.7267 20.2216C19.1367 20.6316 19.8067 20.6316 20.2167 20.2216C20.6267 19.8116 20.6267 19.1416 20.2167 18.7316L15.9767 14.4716ZM9.9767 14.4716C7.4867 14.4716 5.4767 12.4616 5.4767 9.97157C5.4767 7.48157 7.4867 5.47157 9.9767 5.47157C12.4667 5.47157 14.4767 7.48157 14.4767 9.97157C14.4767 12.4616 12.4667 14.4716 9.9767 14.4716Z" fill="#999999"/>
+            </svg>
+          </span>
+          <input
+            id="StoreLocatorCitySearch"
+            type="text"
+            class="store-locator-v2__search-input"
+            placeholder="Search City"
+            autocomplete="off"
+          >
+        </div>
+        <button class="store-locator-v2__search-submit" type="button" aria-label="Search">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 8H13" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M9 4L13 8L9 12" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="store-locator-v2__city-list" id="StoreLocatorCityList">
+        <a
+          href="/pages/store-locator"
+          class="store-locator-v2__city-item"
+          data-city-slug="all"
+          data-city-name="All Stores"
+        >
+          <span class="store-locator-v2__city-name">All Stores</span>
+        </a>
+
+        {% for city in store_cities %}
+          {%- liquid
+            assign city_stores = city.stores.value
+            assign city_store_count = 0
+            if city_stores != blank
+              assign city_store_count = city_stores.size
+            endif
+          -%}
+          <a
+            href="/pages/store-locator?city={{ city.slug.value }}"
+            class="store-locator-v2__city-item"
+            data-city-slug="{{ city.slug.value | escape }}"
+            data-city-name="{{ city.city_name.value | escape }}"
+          >
+            <span class="store-locator-v2__city-name">
+              {{ city.city_name.value }}
+              {% if city.is_new.value %}
+                <span class="store-locator-v2__badge store-locator-v2__badge--new">New</span>
+              {% endif %}
+              {% if city.coming_soon.value %}
+                <span class="store-locator-v2__badge store-locator-v2__badge--coming-soon">Coming soon</span>
+              {% endif %}
+            </span>
+            <span class="store-locator-v2__city-count">
+              {% if city_store_count > 0 %}
+                {{ city_store_count }}
+                {% if city_store_count == 1 %}Store{% else %}Stores{% endif %}
+              {% elsif city.coming_soon.value %}
+                Coming soon
+              {% else %}
+                0 Stores
+              {% endif %}
+            </span>
+          </a>
+        {% endfor %}
+      </div>
+    </aside>
+
+    <section class="store-locator-v2__results">
+      <div class="store-locator-v2__results-inner">
+        <div class="store-locator-v2__results-header">
+          <h2 class="store-locator-v2__results-title">
+            <span id="StoreLocatorCount">{{ total_store_count }}</span> Stores Found
+          </h2>
+        </div>
+
+        <div class="store-locator-v2__grid" id="StoreLocatorGrid" data-per-page="{{ per_page }}">
+          {% for city in store_cities %}
+            {% assign city_slug = city.slug.value %}
+            {% assign city_name = city.city_name.value %}
+            {% assign city_stores = city.stores.value %}
+            {% if city_stores != blank %}
+              {% for store in city_stores %}
+                {%- liquid
+                  assign main_image = store.store_image_main.value
+                  if main_image == blank and store.store_images.value != blank
+                    assign main_image = store.store_images.value.first
+                  endif
+
+                  assign hours_items = store.hours_list.value
+                  assign first_hours = ''
+                  assign open_time = ''
+                  assign close_time = ''
+
+                  if hours_items != blank
+                    assign first_hours = hours_items.first
+                    assign parts = first_hours | split: '-'
+                    assign open_time = parts.first | strip
+                    assign close_time = parts.last | strip
+                  endif
+
+                  assign call_url = store.call_url.value
+                  if call_url == blank and store.phone_number.value != blank
+                    assign call_url = 'tel:' | append: store.phone_number.value
+                  endif
+                -%}
+
+                <article
+                  class="store-card-v2"
+                  data-city-slug="{{ city_slug | escape }}"
+                  data-city-name="{{ city_name | escape }}"
+                >
+                  <div class="store-card-v2__image-wrapper">
+                    {% if main_image != blank %}
+                      {{
+                        main_image
+                        | image_url: width: 824
+                        | image_tag: class: 'store-card-v2__image', loading: 'lazy'
+                      }}
+                    {% endif %}
+                  </div>
+
+                  <div class="store-card-v2__body">
+                    <div class="store-card-v2__title-row">
+                      <h3 class="store-card-v2__title">
+                        {{ store.name.value }}
+                      </h3>
+                    </div>
+
+                    <div class="store-card-v2__address">
+                      {{ store.address.value | newline_to_br }}
+                    </div>
+
+                    <div class="store-card-v2__meta">
+                      {% if hours_items != blank and open_time != blank and close_time != blank %}
+                        <div class="store-card-v2__hours-wrapper">
+                          <div class="store-card-v2__hours-row">
+                            <span class="store-card-v2__hours-label">Hours:</span>
+                            <span class="weekdays-name-open">Open</span>
+                            <span
+                              class="store-status"
+                              data-open-time="{{ open_time }}"
+                              data-close-time="{{ close_time }}"
+                            >
+                              Closes {{ close_time }}
+                            </span>
+                            <button
+                              type="button"
+                              class="store-card-v2__hours-toggle"
+                              aria-label="View weekly hours"
+                            >
+                              <svg xmlns="http://www.w3.org/2000/svg" width="10" height="6" viewBox="0 0 10 6" fill="none">
+                                <path d="M0 0.76001L5 5.76001L10 0.76001H0Z" fill="#5F6368"/>
+                              </svg>
+                            </button>
+                          </div>
+                          <div class="store-card-v2__hours-flyout">
+                            {% assign day_labels = 'Mon,Tue,Wed,Thu,Fri,Sat,Sun' | split: ',' %}
+                            {% for storetime in hours_items %}
+                              <div class="store-card-v2__hours-row-detail">
+                                <span class="store-card-v2__hours-day">
+                                  {{ day_labels[forloop.index0] }}
+                                </span>
+                                <span class="store-card-v2__hours-time">
+                                  {{ storetime }}
+                                </span>
+                              </div>
+                            {% endfor %}
+                          </div>
+                        </div>
+                      {% endif %}
+
+                      {% if store.phone_number.value != blank %}
+                        <p class="phonestorenumber">
+                          <a href="tel:{{ store.phone_number.value }}">{{ store.phone_number.value }}</a>
+                        </p>
+                      {% endif %}
+                    </div>
+
+                    <div class="store-card-v2__actions">
+                      {% if store.map_url.value != blank %}
+                        <a
+                          class="store-card-v2__button store-card-v2__button--primary"
+                          href="{{ store.map_url.value }}"
+                          target="_blank"
+                          rel="noopener"
+                        >
+                          <span>{{ section.settings.viewonmap }}</span>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                            <path d="M3 9L9 3M5 3H9V7" stroke="#462D8C" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+                          </svg>
+                        </a>
+                      {% endif %}
+
+                      {% if call_url != blank %}
+                        <a
+                          class="store-card-v2__button store-card-v2__button--secondary"
+                          href="{{ call_url }}"
+                        >
+                          <span>Call</span>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                            <path d="M3 9L9 3M5 3H9V7" stroke="#462D8C" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+                          </svg>
+                        </a>
+                      {% endif %}
+                    </div>
+                  </div>
+                </article>
+              {% endfor %}
+            {% endif %}
+          {% endfor %}
+        </div>
+
+        <nav class="store-locator-v2__pagination" id="StoreLocatorPagination" aria-label="Store results pagination" style="display: none;">
+          <button type="button" class="store-locator-v2__pagination-btn store-locator-v2__pagination-prev" aria-label="Previous page">Previous</button>
+          <div class="store-locator-v2__pagination-pages" id="StoreLocatorPaginationPages"></div>
+          <button type="button" class="store-locator-v2__pagination-btn store-locator-v2__pagination-next" aria-label="Next page">Next</button>
+        </nav>
+      </div>
+    </section>
+  </div>
+  </div>
+
+  <div class="store-locator-v2__drawer-overlay" id="StoreLocatorDrawerOverlay" aria-hidden="true">
+    <div class="store-locator-v2__drawer" id="StoreLocatorDrawer" role="dialog" aria-labelledby="StoreLocatorDrawerTitle" aria-modal="true">
+      <div class="store-locator-v2__drawer-inner">
+        <div class="store-locator-v2__drawer-header">
+          <h2 class="store-locator-v2__drawer-title" id="StoreLocatorDrawerTitle">Select City</h2>
+          <button type="button" class="store-locator-v2__drawer-close" id="StoreLocatorDrawerClose" aria-label="Close">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+        <div class="store-locator-v2__drawer-search">
+          <div class="store-locator-v2__search-input-wrapper">
+            <span class="store-locator-v2__search-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15.9767 14.4716H15.1867L14.9067 14.2016C16.1067 12.8016 16.7267 10.8916 16.3867 8.86157C15.9167 6.08157 13.5967 3.86157 10.7967 3.52157C6.5667 3.00157 3.0067 6.56157 3.5267 10.7916C3.8667 13.5916 6.0867 15.9116 8.8667 16.3816C10.8967 16.7216 12.8067 16.1016 14.2067 14.9016L14.4767 15.1816V15.9716L18.7267 20.2216C19.1367 20.6316 19.8067 20.6316 20.2167 20.2216C20.6267 19.8116 20.6267 19.1416 20.2167 18.7316L15.9767 14.4716ZM9.9767 14.4716C7.4867 14.4716 5.4767 12.4616 5.4767 9.97157C5.4767 7.48157 7.4867 5.47157 9.9767 5.47157C12.4667 5.47157 14.4767 7.47157 14.4767 9.97157C14.4767 12.4616 12.4667 14.4716 9.9767 14.4716Z" fill="#999999"/>
+              </svg>
+            </span>
+            <input
+              id="StoreLocatorDrawerSearch"
+              type="text"
+              class="store-locator-v2__search-input"
+              placeholder="Search City"
+              autocomplete="off"
+            >
+          </div>
+          <button class="store-locator-v2__search-submit" type="button" aria-label="Search">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 8H13" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M9 4L13 8L9 12" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+        <div class="store-locator-v2__drawer-city-list" id="StoreLocatorDrawerCityList">
+          <a
+            href="/pages/store-locator"
+            class="store-locator-v2__city-item store-locator-v2__drawer-city-item"
+            data-city-slug="all"
+            data-city-name="All Stores"
+          >
+            <span class="store-locator-v2__city-name">All Stores</span>
+            <span class="store-locator-v2__city-count">{{ total_store_count }} Stores</span>
+          </a>
+          {% for city in store_cities %}
+            {%- liquid
+              assign city_stores = city.stores.value
+              assign city_store_count = 0
+              if city_stores != blank
+                assign city_store_count = city_stores.size
+              endif
+            -%}
+            <a
+              href="/pages/store-locator?city={{ city.slug.value }}"
+              class="store-locator-v2__city-item store-locator-v2__drawer-city-item"
+              data-city-slug="{{ city.slug.value | escape }}"
+              data-city-name="{{ city.city_name.value | escape }}"
+            >
+              <span class="store-locator-v2__city-name">
+                {{ city.city_name.value }}
+                {% if city.is_new.value %}
+                  <span class="store-locator-v2__badge store-locator-v2__badge--new">New</span>
+                {% endif %}
+                {% if city.coming_soon.value %}
+                  <span class="store-locator-v2__badge store-locator-v2__badge--coming-soon">Coming soon</span>
+                {% endif %}
+              </span>
+              <span class="store-locator-v2__city-count">
+                {% if city_store_count > 0 %}
+                  {{ city_store_count }}
+                  {% if city_store_count == 1 %}Store{% else %}Stores{% endif %}
+                {% elsif city.coming_soon.value %}
+                  Coming soon
+                {% else %}
+                  0 Stores
+                {% endif %}
+              </span>
+            </a>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var cityLinks = document.querySelectorAll('.store-locator-v2__city-item');
+    var cards = Array.prototype.slice.call(document.querySelectorAll('.store-card-v2'));
+    var countEl = document.getElementById('StoreLocatorCount');
+    var searchInput = document.getElementById('StoreLocatorCitySearch');
+    var grid = document.getElementById('StoreLocatorGrid');
+    var paginationEl = document.getElementById('StoreLocatorPagination');
+    var paginationPagesEl = document.getElementById('StoreLocatorPaginationPages');
+    var perPage = grid ? parseInt(grid.getAttribute('data-per-page'), 10) || 10 : 10;
+
+    var currentCitySlug = '';
+    try {
+      var params = new URLSearchParams(window.location.search);
+      var cityParam = params.get('city');
+      if (cityParam && cityParam.toLowerCase() !== 'all') currentCitySlug = cityParam.toLowerCase().trim();
+    } catch (e) {}
+
+    cityLinks.forEach(function (link) {
+      link.classList.remove('is-active');
+      var slug = (link.getAttribute('data-city-slug') || '').toLowerCase();
+      if ((currentCitySlug === '' && slug === 'all') || (currentCitySlug !== '' && slug === currentCitySlug)) {
+        link.classList.add('is-active');
+      }
+    });
+
+    var drawerCityItems = document.querySelectorAll('.store-locator-v2__drawer-city-item');
+    drawerCityItems.forEach(function (link) {
+      link.classList.remove('is-active');
+      var slug = (link.getAttribute('data-city-slug') || '').toLowerCase();
+      if ((currentCitySlug === '' && slug === 'all') || (currentCitySlug !== '' && slug === currentCitySlug)) {
+        link.classList.add('is-active');
+      }
+    });
+
+    var visibleCards = cards.filter(function (card) {
+      var slug = (card.getAttribute('data-city-slug') || '').toLowerCase();
+      return currentCitySlug === '' || slug === currentCitySlug;
+    });
+
+    if (countEl) countEl.textContent = visibleCards.length;
+    var mobileCountEl = document.getElementById('StoreLocatorCountMobile');
+    if (mobileCountEl) mobileCountEl.textContent = visibleCards.length + ' Stores Found';
+    var mobileCityEl = document.getElementById('StoreLocatorMobileCityName');
+    var activeLink = document.querySelector('.store-locator-v2__city-item.is-active');
+    if (mobileCityEl && activeLink) {
+      mobileCityEl.textContent = (activeLink.getAttribute('data-city-name') || 'All Stores').toUpperCase();
+    }
+    var triggerTextEl = document.querySelector('.store-locator-v2__mobile-city-trigger-text');
+    if (triggerTextEl && activeLink) {
+      triggerTextEl.textContent = activeLink.getAttribute('data-city-name') || 'Select Your City';
+    }
+
+    var totalPages = visibleCards.length <= 0 ? 1 : Math.ceil(visibleCards.length / perPage);
+    var currentPage = 1;
+
+    function showPage(page) {
+      currentPage = Math.max(1, Math.min(page, totalPages));
+      cards.forEach(function (card) {
+        var idx = visibleCards.indexOf(card);
+        var show = idx !== -1 && idx >= (currentPage - 1) * perPage && idx < currentPage * perPage;
+        card.style.display = show ? '' : 'none';
+      });
+      if (paginationEl) {
+        paginationEl.style.display = totalPages > 1 ? '' : 'none';
+        paginationEl.querySelector('.store-locator-v2__pagination-prev').disabled = currentPage <= 1;
+        paginationEl.querySelector('.store-locator-v2__pagination-next').disabled = currentPage >= totalPages;
+      }
+      if (paginationPagesEl) {
+        var btns = paginationPagesEl.querySelectorAll('button');
+        btns.forEach(function (b) {
+          b.classList.toggle('is-active', parseInt(b.getAttribute('data-page'), 10) === currentPage);
+        });
+      }
+    }
+
+    if (paginationEl && paginationPagesEl) {
+      paginationPagesEl.innerHTML = '';
+      for (var p = 1; p <= totalPages; p++) {
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'store-locator-v2__pagination-page' + (p === 1 ? ' is-active' : '');
+        btn.setAttribute('data-page', p);
+        btn.textContent = p;
+        btn.addEventListener('click', function () { showPage(parseInt(this.getAttribute('data-page'), 10)); });
+        paginationPagesEl.appendChild(btn);
+      }
+      var prevBtn = paginationEl.querySelector('.store-locator-v2__pagination-prev');
+      var nextBtn = paginationEl.querySelector('.store-locator-v2__pagination-next');
+      if (prevBtn) prevBtn.addEventListener('click', function () { showPage(currentPage - 1); });
+      if (nextBtn) nextBtn.addEventListener('click', function () { showPage(currentPage + 1); });
+    }
+
+    showPage(1);
+
+    if (searchInput) {
+      searchInput.addEventListener('input', function (event) {
+        var query = event.target.value.toLowerCase().trim();
+        cityLinks.forEach(function (link, index) {
+          if (index === 0) { link.style.display = ''; return; }
+          var name = (link.getAttribute('data-city-name') || link.textContent).toLowerCase();
+          link.style.display = name.indexOf(query) !== -1 ? '' : 'none';
+        });
+      });
+    }
+
+    var drawerOverlay = document.getElementById('StoreLocatorDrawerOverlay');
+    var mobileTrigger = document.getElementById('StoreLocatorMobileCityTrigger');
+    var drawerCloseBtn = document.getElementById('StoreLocatorDrawerClose');
+    var drawerSearchInput = document.getElementById('StoreLocatorDrawerSearch');
+
+    function openDrawer() {
+      if (drawerOverlay) {
+        drawerOverlay.classList.add('is-open');
+        drawerOverlay.setAttribute('aria-hidden', 'false');
+      }
+      if (mobileTrigger) mobileTrigger.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeDrawer() {
+      if (drawerOverlay) {
+        drawerOverlay.classList.remove('is-open');
+        drawerOverlay.setAttribute('aria-hidden', 'true');
+      }
+      if (mobileTrigger) mobileTrigger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+      if (drawerSearchInput) drawerSearchInput.value = '';
+      drawerCityItems.forEach(function (link) { link.style.display = ''; });
+    }
+
+    if (mobileTrigger) {
+      mobileTrigger.addEventListener('click', function () { openDrawer(); });
+    }
+    if (drawerOverlay) {
+      drawerOverlay.addEventListener('click', function (e) {
+        if (e.target === drawerOverlay) closeDrawer();
+      });
+    }
+    if (drawerCloseBtn) {
+      drawerCloseBtn.addEventListener('click', function () { closeDrawer(); });
+    }
+    drawerCityItems.forEach(function (link) {
+      link.addEventListener('click', function () { closeDrawer(); });
+    });
+    if (drawerSearchInput) {
+      drawerSearchInput.addEventListener('input', function (event) {
+        var query = event.target.value.toLowerCase().trim();
+        drawerCityItems.forEach(function (link, index) {
+          if (index === 0) { link.style.display = ''; return; }
+          var name = (link.getAttribute('data-city-name') || link.textContent).toLowerCase();
+          link.style.display = name.indexOf(query) !== -1 ? '' : 'none';
+        });
+      });
+    }
+
+    // Open/closed indicator based on current time
+    var statusEls = document.querySelectorAll('.store-status');
+
+    function parseHour(timeText) {
+      if (!timeText) return null;
+      var match = timeText.trim().match(/^(\d+)(am|pm)$/i);
+      if (!match) return null;
+      var hour = parseInt(match[1], 10);
+      var period = match[2].toLowerCase();
+      if (period === 'pm' && hour !== 12) hour += 12;
+      if (period === 'am' && hour === 12) hour = 0;
+      return hour;
+    }
+
+    if (statusEls.length) {
+      var now = new Date();
+      var currentHour = now.getHours();
+      statusEls.forEach(function (el) {
+        var openTime = el.dataset.openTime;
+        var closeTime = el.dataset.closeTime;
+        var openHour = parseHour(openTime);
+        var closeHour = parseHour(closeTime);
+        if (openHour == null || closeHour == null) return;
+        var isOpen = currentHour >= openHour && currentHour < closeHour;
+        var labelEl = el.previousElementSibling;
+        if (!labelEl) return;
+        labelEl.textContent = isOpen ? 'Open' : 'Closed';
+        labelEl.style.color = isOpen ? '#34C759' : '#D93025';
+      });
+    }
+
+    // Weekly hours flyout toggle
+    var hourToggles = document.querySelectorAll('.store-card-v2__hours-toggle');
+    hourToggles.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var wrapper = btn.closest('.store-card-v2__hours-wrapper');
+        if (!wrapper) return;
+        wrapper.classList.toggle('is-open');
+      });
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "New Store Locator",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Landing: /pages/store-locator. City filter via query: ?city=mumbai. Store detail pages: /pages/knya-store-{city}-{area} (e.g. knya-store-mumbai-panvel). Pagination: 10 stores per page (client-side on filtered set)."
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_desktop",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Margin Bottom Desktop",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_top_desktop",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Margin Top Desktop",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Margin Top Mobile",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Margin Bottom Mobile",
+      "default": 0
+    },
+    {
+      "type": "image_picker",
+      "id": "desk-image",
+      "label": "Desktop Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mob-image",
+      "label": "Mobile Image"
+    },
+    {
+      "type": "text",
+      "id": "mainheading",
+      "label": "Heading",
+      "default": "Our Stores"
+    },
+    {
+      "type": "text",
+      "id": "submainheading",
+      "label": "Sub Heading",
+      "default": "Now we are available in"
+    },
+    {
+      "type": "text",
+      "id": "submainheading2",
+      "label": "Sub Heading End",
+      "default": "Cities"
+    },
+    {
+      "type": "text",
+      "id": "sectionmainheading",
+      "label": "Section Heading",
+      "default": "Browse By Cities"
+    },
+    {
+      "type": "text",
+      "id": "viewonmap",
+      "label": "Location Button",
+      "default": " View On Map"
+    },
+    {
+      "type": "text",
+      "id": "cantfoundstore",
+      "label": "No Store Disclamer",
+      "default": "Sorry, we couldn't find any stores."
+    }
+  ],
+  "presets": [
+    {
+      "name": "New Store Locator"
+    }
+  ]
+}
+{% endschema %}
+

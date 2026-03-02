@@ -67,7 +67,7 @@
   if section.settings.content_width == 'content-center-aligned'
     # Define breakpoints and base sizes based on page width
     # Breakpoints are the page width setting + margin (where 2 x margin is 80px = 5rem)
-    case settings.page_width
+  case settings.page_width_mode
       when 'narrow'
         assign breakpoint = '95rem'
         assign media_base_size_equal_columns = '45rem'

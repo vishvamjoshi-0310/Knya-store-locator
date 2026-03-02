@@ -21,7 +21,7 @@
       if section.settings.section_width == 'full-width'
         assign sizes = '100vw'
       else
-        case settings.page_width
+        case settings.page_width_mode
           when 'narrow'
             # Narrow: max 90rem (1440px)
             assign sizes = '(min-width: 1440px) 1440px, 100vw'

@@ -60,7 +60,7 @@
       }
     },
     "store_locator_ad7RDW": {
-      "type": "store_locator",
+      "type": "store-locator-v2",
       "name": "New Store Locator",
       "settings": {
         "margin_bottom_desktop": 31,
