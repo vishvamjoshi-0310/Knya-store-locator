@@ -7,8 +7,10 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!toggle || !flyout) return;
 
     toggle.addEventListener('click', function () {
+      var button = block.querySelector('.store-detail__hours-toggle');
+      if (!button) return;
       var isOpen = block.classList.toggle('is-open');
-      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      button.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     });
   });
 });
