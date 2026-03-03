@@ -583,6 +583,11 @@ p.clickdropdownicon.rotateicon {
    Store Locator V2 – Desktop layout (Figma-based)
    ========================================================= */
 
+/* Page background just for the store locator template */
+body.template-store-locator-new {
+  background: #F7F7F7;
+}
+
 .store-locator-v2 {
   max-width: 1440px;
   margin: 0 auto;
@@ -826,7 +831,6 @@ p.clickdropdownicon.rotateicon {
   display: flex;
   flex-direction: column;
   gap: 14px;
-  border-bottom: 1px solid #E0E0E0;
 }
 
 .store-card-v2__title-row {
@@ -1277,6 +1281,7 @@ p.clickdropdownicon.rotateicon {
     height: 36px;
     min-width: 36px;
     min-height: 36px;
+    margin-right: -5px;
     border-radius: 6px;
     background: #462D8C;
     color: #FFFFFF;
@@ -1385,6 +1390,7 @@ p.clickdropdownicon.rotateicon {
     flex-direction: column;
     gap: 22px;
     width: 100%;
+    background-color: #F7F7F7;
   }
 
   /* Card: full width of parent, 354×424 */
@@ -1421,7 +1427,6 @@ p.clickdropdownicon.rotateicon {
     height: 228px;
     padding: 14px 16px 22px 16px;
     gap: 14px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
     box-sizing: border-box;
     flex: 1;
     min-height: 0;

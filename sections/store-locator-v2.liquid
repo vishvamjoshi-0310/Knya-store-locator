@@ -392,10 +392,6 @@
     if (mobileCityEl && activeLink) {
       mobileCityEl.textContent = (activeLink.getAttribute('data-city-name') || 'All Stores').toUpperCase();
     }
-    var triggerTextEl = document.querySelector('.store-locator-v2__mobile-city-trigger-text');
-    if (triggerTextEl && activeLink) {
-      triggerTextEl.textContent = activeLink.getAttribute('data-city-name') || 'Select Your City';
-    }
 
     var totalPages = visibleCards.length <= 0 ? 1 : Math.ceil(visibleCards.length / perPage);
     var currentPage = 1;
