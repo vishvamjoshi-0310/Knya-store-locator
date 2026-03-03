@@ -189,4 +189,28 @@ document.addEventListener('DOMContentLoaded', function () {
       wrapper.classList.toggle('is-open');
     });
   });
+
+  // Make store cards clickable to open the store detail page
+  var storeCards = document.querySelectorAll('.store-card-v2');
+  storeCards.forEach(function (card) {
+    var url = card.getAttribute('data-store-url');
+    if (!url) return;
+
+    card.style.cursor = 'pointer';
+
+    card.addEventListener('click', function (event) {
+      var interactive = event.target.closest('a, button');
+      if (interactive && interactive !== card) return;
+      window.location.href = url;
+    });
+
+    card.addEventListener('keydown', function (event) {
+      if (event.key === 'Enter' || event.key === ' ') {
+        var activeEl = document.activeElement;
+        if (activeEl && activeEl !== card && activeEl.closest('a, button')) return;
+        event.preventDefault();
+        window.location.href = url;
+      }
+    });
+  });
 });

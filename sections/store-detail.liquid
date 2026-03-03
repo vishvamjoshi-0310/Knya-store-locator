@@ -1,0 +1,241 @@
+{{ 'store-detail.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'store-detail.js' | asset_url }}" defer></script>
+
+<section class="store-detail page-width-updated">
+  <div class="store-detail__inner">
+    {% assign store_name = metaobject.name.value %}
+
+    <div class="store-detail__heading">
+      <div class="store-detail__back-bar">
+        <div class="store-detail__back-group">
+          <a
+            href="/pages/store-locator"
+            class="store-detail__back-icon-link"
+            aria-label="Back to all stores"
+          >
+            {% render 'store-locator-back-icon' %}
+          </a>
+          <span class="store-detail__back-text">Back To All Stores</span>
+        </div>
+        <span class="store-detail__share-icon">
+          {% render 'store-detail-share-icon' %}
+        </span>
+      </div>
+
+      <div class="store-detail__heading-row">
+        <h1 class="store-detail__title">
+          {{ store_name | default: metaobject.system.handle | escape }}
+        </h1>
+      </div>
+    </div>
+
+    <div class="store-detail__details">
+      <div class="store-detail__media">
+        <div class="store-detail__media-row">
+          {% if metaobject.store_image_main.value != blank %}
+            <div class="store-detail__media-card">
+              {{
+                metaobject.store_image_main.value
+                | image_url: width: 1200
+                | image_tag: class: 'store-detail__media-image', loading: 'lazy'
+              }}
+            </div>
+          {% endif %}
+
+          {% if metaobject.store_images.value != blank %}
+            {% for image in metaobject.store_images.value %}
+              {% if forloop.index0 < 2 %}
+                <div class="store-detail__media-card">
+                  {{
+                    image
+                    | image_url: width: 1200
+                    | image_tag: class: 'store-detail__media-image', loading: 'lazy'
+                  }}
+                </div>
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+        </div>
+
+        {% assign total_images = 0 %}
+        {% if metaobject.store_image_main.value != blank %}
+          {% assign total_images = total_images | plus: 1 %}
+        {% endif %}
+        {% if metaobject.store_images.value != blank %}
+          {% assign total_images = total_images | plus: metaobject.store_images.value.size %}
+        {% endif %}
+
+        {% if total_images > 1 %}
+          <div class="store-detail__media-dots">
+            {% for i in (1..total_images) %}
+              <span class="store-detail__media-dot{% if forloop.first %} is-active{% endif %}"></span>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="store-detail__info">
+        <div class="store-detail__info-row">
+          <div class="store-detail__info-left">
+            <div class="store-detail__info-card">
+              <div class="store-detail__info-card-heading">
+                <h2 class="store-detail__info-card-title">Address</h2>
+              </div>
+              <div class="store-detail__info-card-body">
+                {% if metaobject.address.value != blank %}
+                  <div class="store-detail__info-row-line">
+                    <span class="store-detail__info-icon">
+                      {% render 'store-detail-icon-address' %}
+                    </span>
+                    <span class="store-detail__info-text">
+                      {{ metaobject.address.value | newline_to_br }}
+                    </span>
+                  </div>
+                {% endif %}
+
+                <div class="store-detail__info-row-line">
+                  <span class="store-detail__info-icon">
+                    {% render 'store-detail-icon-location' %}
+                  </span>
+                  <span class="store-detail__info-text">
+                    Parel East, Mumbai
+                  </span>
+                </div>
+
+                {% if metaobject.phone_number.value != blank %}
+                  <div class="store-detail__info-row-line store-detail__info-row-line--divider">
+                    <span class="store-detail__info-icon">
+                      {% render 'store-detail-icon-call' %}
+                    </span>
+                    <span class="store-detail__info-text">
+                      {{ metaobject.phone_number.value }}
+                    </span>
+                  </div>
+                {% endif %}
+
+                {% if metaobject.hours_list.value != blank %}
+                  <div class="store-detail__info-row-line store-detail__hours">
+                    <span class="store-detail__info-icon">
+                      {% render 'store-detail-icon-time' %}
+                    </span>
+                    <button
+                      type="button"
+                      class="store-detail__hours-toggle"
+                      aria-expanded="false"
+                    >
+                      <span class="store-detail__info-text">
+                        Hours: <span class="store-detail__info-open">Open</span> Closes 10pm
+                      </span>
+                      {% render 'store-locator-dropdown-icon' %}
+                    </button>
+
+                    <div class="store-detail__hours-flyout">
+                      {% assign day_labels = 'Mon,Tue,Wed,Thu,Fri,Sat,Sun' | split: ',' %}
+                      {% for storetime in metaobject.hours_list.value %}
+                        <div class="store-detail__hours-row-detail">
+                          <span class="store-detail__hours-day">
+                            {{ day_labels[forloop.index0] }}
+                          </span>
+                          <span class="store-detail__hours-time">
+                            {{ storetime }}
+                          </span>
+                        </div>
+                      {% endfor %}
+                    </div>
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+
+            {% if metaobject.phone_number.value != blank or metaobject.map_url.value != blank %}
+              <div class="store-detail__info-actions">
+                <a
+                  {% if metaobject.map_url.value != blank %}
+                    href="{{ metaobject.map_url.value }}"
+                  {% else %}
+                    href="#"
+                  {% endif %}
+                  class="store-detail__button store-detail__button--primary"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  View On Map
+                </a>
+
+                {% if metaobject.phone_number.value != blank %}
+                  <a
+                    href="tel:{{ metaobject.phone_number.value }}"
+                    class="store-detail__button store-detail__button--outline"
+                  >
+                    Call
+                  </a>
+                {% endif %}
+              </div>
+            {% endif %}
+          </div>
+
+          <div class="store-detail__info-right">
+            <div class="store-detail__facilities-heading">
+              <h2 class="store-detail__facilities-title">Facilities</h2>
+            </div>
+            <div class="store-detail__facilities-list">
+              <div class="store-detail__facility-row">
+                <span class="store-detail__facility-name">Trail Room</span>
+                <span class="store-detail__facility-value">Yes</span>
+              </div>
+              <div class="store-detail__facility-row">
+                <span class="store-detail__facility-name">Embroidery Preview</span>
+                <span class="store-detail__facility-value">Yes</span>
+              </div>
+              <div class="store-detail__facility-row">
+                <span class="store-detail__facility-name">Out Door Sitting</span>
+                <span class="store-detail__facility-value">Yes</span>
+              </div>
+              <div class="store-detail__facility-row">
+                <span class="store-detail__facility-name">On Site Parking</span>
+                <span class="store-detail__facility-value">Yes</span>
+              </div>
+              <div class="store-detail__facility-row">
+                <span class="store-detail__facility-name">Open Terrace</span>
+                <span class="store-detail__facility-value store-detail__facility-value--no">No</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="store-detail__about">
+          <div class="store-detail__about-heading">
+            <div class="store-detail__about-title-row">
+              <h2 class="store-detail__about-title">About Knya Store</h2>
+            </div>
+            <div class="store-detail__about-location">
+              {% if metaobject.area.value != blank or metaobject.city.value != blank %}
+                <span class="store-detail__about-location-text">
+                  {{ metaobject.area.value }}{% if metaobject.area.value and metaobject.city.value %}, {% endif %}{{ metaobject.city.value }}
+                </span>
+              {% endif %}
+            </div>
+          </div>
+
+          <div class="store-detail__about-body">
+            {% if metaobject.description != blank %}
+              <div class="store-detail__about-text">
+                {{ metaobject.description | metafield_tag }}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="store-detail__reviews">
+      <h2 class="store-detail__reviews-title">Reviews</h2>
+      <div class="store-detail__reviews-grid">
+        <div class="store-detail__review-card">Review 1</div>
+        <div class="store-detail__review-card">Review 2</div>
+        <div class="store-detail__review-card">Review 3</div>
+        <div class="store-detail__review-card">Review 4</div>
+      </div>
+    </div>
+  </div>
+</section>

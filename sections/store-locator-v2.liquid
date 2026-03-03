@@ -149,6 +149,9 @@
                   class="store-card-v2"
                   data-city-slug="{{ city_slug | escape }}"
                   data-city-name="{{ city_name | escape }}"
+                  data-store-url="{{ store.system.url | default: '' }}"
+                  role="link"
+                  tabindex="0"
                 >
                   <div class="store-card-v2__image-wrapper">
                     {% if main_image != blank %}
