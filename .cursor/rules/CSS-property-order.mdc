@@ -1,0 +1,44 @@
+---
+description: 
+globs: "**/*.css"
+alwaysApply: false
+---
+
+# CSS Property Order
+
+Group properties by type and write them in this order within each rule:
+
+1. **Positioning** — `position`, `top`, `right`, `bottom`, `left`, `z-index`
+2. **Display & Box Model** — `display`, `flex`, `flex-direction`, `align-items`, `justify-content`, `width`, `height`, `min-width`, `max-width`, `margin`, `padding`, `overflow`
+3. **Typography** — `font-family`, `font-size`, `font-weight`, `line-height`, `letter-spacing`, `text-align`, `text-decoration`, `white-space`
+4. **Visual** — `background`, `background-color`, `background-image`, `border`, `border-radius`, `box-shadow`
+5. **Color** — `color`, `fill`, `stroke`
+6. **Misc** — `cursor`, `opacity`, `transition`, `animation`, `transform`
+
+### Example
+
+```css
+/* ❌ BAD — mixed order */
+.card {
+  color: #333;
+  padding: 1rem;
+  position: relative;
+  background: white;
+  margin: 0 auto;
+  font-size: 1rem;
+}
+
+/* ✅ GOOD — grouped and ordered */
+.card {
+  position: relative;
+  margin: 0 auto;
+  padding: 1rem;
+  font-size: 1rem;
+  background: white;
+  color: #333;
+}
+```
+
+### Within a Group
+
+Keep related properties together (e.g. `margin-top`, `margin-right`, `margin-bottom`, `margin-left` or shorthand `margin`). Prefer shorthand when all sides share the same value.

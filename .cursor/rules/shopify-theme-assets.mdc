@@ -1,0 +1,52 @@
+---
+description: 
+globs: "**/*.liquid"
+alwaysApply: false
+---
+
+# Shopify Theme: Separate Assets Rule
+
+Never write `<style>` or `<script>` blocks directly inside Liquid files. Always create dedicated asset files and reference them.
+
+## Rules
+
+1. **CSS** → Create or use a file in `assets/` (e.g. `assets/component-name.css`) and load it with `{{ 'component-name.css' | asset_url | stylesheet_tag }}`
+2. **JavaScript** → Create or use a file in `assets/` (e.g. `assets/component-name.js`) and load it with `{{ 'component-name.js' | asset_url | script_tag }}`
+
+## Examples
+
+### ❌ BAD – Inline in Liquid
+
+```liquid
+<style>
+  .store-locator { padding: 1rem; }
+</style>
+<script>
+  document.querySelector('.store-locator').addEventListener('click', () => {});
+</script>
+```
+
+### ✅ GOOD – Separate asset files
+
+**assets/store-locator.css**
+```css
+.store-locator {
+  padding: 1rem;
+}
+```
+
+**assets/store-locator.js**
+```javascript
+document.querySelector('.store-locator').addEventListener('click', () => {});
+```
+
+**sections/store-locator.liquid**
+```liquid
+{{ 'store-locator.css' | asset_url | stylesheet_tag }}
+{{ 'store-locator.js' | asset_url | script_tag }}
+```
+
+## File naming
+
+- Use kebab-case: `store-locator.css`, `product-quick-view.js`
+- Match the section/snippet name when possible for easier discovery
