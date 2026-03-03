@@ -6,6 +6,13 @@
   background: #F7F7F7;
 }
 
+@media (max-width: 1440px) {
+  .store-detail {
+    padding-left: clamp(18px, 5.56vw, 80px);
+    padding-right: clamp(18px, 5.56vw, 80px);
+  }
+}
+
 .store-detail__inner {
   margin: 0 auto;
   max-width: 1280px;
@@ -102,7 +109,8 @@
 }
 
 .store-detail__info-left {
-  width: 396px;
+  flex: 0 0 32%;
+  max-width: 396px;
   min-height: 240px;
   display: flex;
   flex-direction: column;
@@ -110,7 +118,8 @@
 }
 
 .store-detail__info-right {
-  width: 814px;
+  flex: 1;
+  max-width: 814px;
   min-height: 240px;
   padding: 12px 16px;
   border-radius: 8px;
@@ -179,6 +188,7 @@
 }
 
 .store-detail__about {
+  width: 100%;
   max-width: 1232px;
   min-height: 184px;
   display: flex;
@@ -190,7 +200,8 @@
 }
 
 .store-detail__about-heading {
-  width: 1200px;
+  width: 100%;
+  max-width: 1200px;
   min-height: 64px;
   display: flex;
   flex-direction: column;
@@ -198,7 +209,8 @@
 }
 
 .store-detail__about-title-row {
-  width: 1200px;
+  width: 100%;
+  max-width: 1200px;
   height: 36px;
   border-radius: 6px;
   display: flex;
@@ -216,7 +228,8 @@
 }
 
 .store-detail__about-location {
-  width: 1200px;
+  width: 100%;
+  max-width: 1200px;
   height: 24px;
   display: flex;
   align-items: center;
@@ -232,7 +245,8 @@
 }
 
 .store-detail__about-body {
-  width: 1200px;
+  width: 100%;
+  max-width: 1200px;
   min-height: 84px;
 }
 
@@ -247,7 +261,8 @@
 }
 
 .store-detail__info-card {
-  width: 396px;
+  width: 100%;
+  max-width: 396px;
   min-height: 186px;
   padding: 12px 16px;
   border-radius: 8px;
@@ -458,6 +473,7 @@
   padding-right: 24px;
   padding-bottom: 24px;
   padding-left: 24px;
+  width: 100%;
   max-width: 1280px;
   min-height: 379px;
   display: flex;
@@ -470,7 +486,8 @@
 
 .store-detail__reviews-title {
   margin: 0;
-  width: 1232px;
+  width: 100%;
+  max-width: 1232px;
   height: 45px;
   padding-top: 8px;
   padding-bottom: 8px;
@@ -484,7 +501,8 @@
 }
 
 .store-detail__reviews-grid {
-  width: 1232px;
+  width: 100%;
+  max-width: 1232px;
   height: 282px;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -492,7 +510,8 @@
 }
 
 .store-detail__review-card {
-  width: 291.5px;
+  width: 100%;
+  max-width: 291.5px;
   min-width: 150px;
   height: 282px;
   padding: 16px;
