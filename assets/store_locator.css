@@ -869,6 +869,11 @@ body.template-store-locator-new {
   position: relative;
 }
 
+/* When flyout is open, raise stacking so it appears above the next card */
+.store-card-v2__hours-wrapper.is-open {
+  z-index: 10;
+}
+
 .store-card-v2__hours-row {
   display: flex;
   align-items: center;
@@ -1064,13 +1069,16 @@ body.template-store-locator-new {
   }
 
   .store-locator-v2__body {
+    display: grid;
+    grid-template-columns: 1fr;
     max-width: 354px;
     width: 100%;
     gap: 22px;
   }
 
   .store-locator-v2__mobile-city-trigger {
-    display: flex;
+    display: flex !important;
+    visibility: visible;
     align-items: center;
     justify-content: space-between;
     width: 100%;
@@ -1108,6 +1116,9 @@ body.template-store-locator-new {
   }
 
   .store-locator-v2__sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
     background: transparent;
     padding: 0;
   }
@@ -1422,6 +1433,7 @@ body.template-store-locator-new {
   }
 
   /* Description div: 354×228, padding 14 16 22 16, gap 14px */
+  /* overflow: visible so hours flyout is not clipped */
   .store-card-v2__body {
     width: 100%;
     height: 228px;
@@ -1430,7 +1442,7 @@ body.template-store-locator-new {
     box-sizing: border-box;
     flex: 1;
     min-height: 0;
-    overflow: hidden;
+    overflow: visible;
     display: flex;
     flex-direction: column;
   }
