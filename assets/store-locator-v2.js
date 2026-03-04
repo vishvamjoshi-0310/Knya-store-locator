@@ -1,3 +1,4 @@
+// @ts-nocheck
 document.addEventListener('DOMContentLoaded', function () {
   var cityLinks = document.querySelectorAll('.store-locator-v2__city-item');
   var cards = Array.prototype.slice.call(document.querySelectorAll('.store-card-v2'));

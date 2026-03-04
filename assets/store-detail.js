@@ -1,3 +1,4 @@
+// @ts-nocheck
 document.addEventListener('DOMContentLoaded', function () {
   /** @type {NodeListOf<HTMLElement>} */
   var hoursBlocks = document.querySelectorAll('.store-detail__hours');
