@@ -1,0 +1,97 @@
+---
+description: Enforce merging duplicate CSS selectors and media queries into single blocks
+globs: **/*.{css,scss}
+alwaysApply: false
+---
+
+# CSS Selector & Media Query Merging
+
+Keep CSS maintainable by **avoiding duplicate selector blocks** and **consolidating repeated media queries**.
+
+## Merge Duplicate Selectors
+
+When the same selector is defined multiple times in the same file and scope, merge the declarations into a **single** rule block.
+
+```css
+/* ❌ BAD: duplicate selector blocks */
+.button {
+  padding: 8px 12px;
+}
+
+.button {
+  background: #000;
+  color: #fff;
+}
+
+/* ✅ GOOD: merged selector */
+.button {
+  padding: 8px 12px;
+  background: #000;
+  color: #fff;
+}
+```
+
+- **Prefer one block per selector per scope** (e.g., global, inside a media query).
+- If you must override styles for a selector, do it:
+  - Inside a more specific context (e.g., media query or parent selector), or
+  - With a more specific selector, **not** by repeating the same selector at the same level.
+
+```css
+/* ✅ GOOD: overrides live in a different context */
+.button {
+  padding: 8px 12px;
+  background: #000;
+}
+
+@media (max-width: 768px) {
+  .button {
+    padding: 6px 10px;
+  }
+}
+```
+
+## Consolidate Media Queries
+
+Avoid scattering the same media query (same condition) across the file. Instead, **group all rules for that breakpoint inside a single media block**.
+
+```css
+/* ❌ BAD: repeated media query blocks */
+@media (max-width: 768px) {
+  .header {
+    padding: 8px;
+  }
+}
+
+@media (max-width: 768px) {
+  .button {
+    width: 100%;
+  }
+}
+
+/* ✅ GOOD: single consolidated media query */
+@media (max-width: 768px) {
+  .header {
+    padding: 8px;
+  }
+
+  .button {
+    width: 100%;
+  }
+}
+```
+
+### Guidelines
+
+- **One block per media condition per file** (e.g., only one `@media (max-width: 768px)` block).
+- When adding a new rule for an existing breakpoint, **append it to the existing media block** instead of creating a new one.
+- If breakpoints differ even slightly (e.g., `(max-width: 767px)` vs `(max-width: 768px)`), treat them as **different** media queries.
+
+## When Exceptions Are Acceptable
+
+Occasional exceptions are acceptable when:
+
+- You are making a **local, temporary override** close to very specific code and consolidating would significantly hurt readability.
+- A third-party stylesheet or generated CSS makes merging unsafe or impractical.
+
+In these cases, consider adding a brief comment explaining **why** the selector or media query is intentionally duplicated.
+

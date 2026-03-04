@@ -605,7 +605,7 @@ body.template-store-locator-new {
 
 .store-locator-v2__title {
   margin: 0;
-  font-family: 'Heebo';
+  font-family: 'Heebo-Medium';
   font-size: 36px;
   font-weight: 500;
   line-height: 36px;
@@ -671,7 +671,7 @@ body.template-store-locator-new {
   width: 100%;
   border: 0;
   outline: 0;
-  font-family: 'Heebo';
+  font-family: 'Heebo-Medium';
   font-size: 18px;
   font-weight: 500;
   line-height: 28px;
@@ -717,9 +717,6 @@ body.template-store-locator-new {
   font-family: 'Heebo-Regular';
   font-size: 14px;
   line-height: 20px;
-  text-decoration: none;
-  background: transparent;
-  border: none;
   border-radius: 12px;
   color: #212121;
   cursor: pointer;
@@ -734,13 +731,23 @@ body.template-store-locator-new {
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  font-family: 'Heebo';
+  font-family: 'Heebo-Regular';
   font-size: 18px;
   font-weight: 400;
   line-height: 28px;
   letter-spacing: 0.2px;
   vertical-align: middle;
   color: var(--color-grey-17, #2C2C2C);
+}
+
+.store-locator-v2__city-item.is-active .store-locator-v2__city-name {
+  font-family: 'Heebo-Medium';
+  font-weight: 500;
+}
+
+.store-locator-v2__city-item.is-active .store-locator-v2__city-count {
+  font-family: 'Heebo-Medium';
+  font-weight: 500;
 }
 
 .store-locator-v2__city-count {
@@ -751,7 +758,7 @@ body.template-store-locator-new {
 
 .store-locator-v2__badge {
   padding: 2px 10px;
-  font-family: 'Heebo';
+  font-family: 'Heebo-Regular';
   font-size: 10px;
   font-weight: 400;
   line-height: 14px;
@@ -790,7 +797,7 @@ body.template-store-locator-new {
 
 .store-locator-v2__results-title {
   margin: 0;
-  font-family: 'Heebo';
+  font-family: 'Heebo-Medium';
   font-weight: 500;
   font-size: 20px;
   line-height: 28px;
@@ -842,7 +849,7 @@ body.template-store-locator-new {
 
 .store-card-v2__title {
   margin: 0;
-  font-family: 'Heebo';
+  font-family: 'Heebo-Medium';
   font-size: 20px;
   font-weight: 500;
   line-height: 28px;
@@ -851,7 +858,7 @@ body.template-store-locator-new {
 }
 
 .store-card-v2__address {
-  font-family: 'Heebo';
+  font-family: 'Heebo-Regular';
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
@@ -878,13 +885,18 @@ body.template-store-locator-new {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-family: 'Heebo';
+  font-family: 'Heebo-Regular';
   font-size: 16px;
   font-weight: 500;
   line-height: 24px;
   letter-spacing: 0%;
   vertical-align: middle;
   color: #605D64;
+}
+
+.store-card-v2__hours-row .weekdays-name-open {
+  font-family: 'Heebo-Medium';
+  font-weight: 500;
 }
 
 .store-card-v2__hours-label {
@@ -924,7 +936,7 @@ body.template-store-locator-new {
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  font-family: 'Heebo';
+  font-family: 'Heebo-Regular';
   font-size: 14px;
   line-height: 20px;
   color: #5F6368;
@@ -946,7 +958,7 @@ body.template-store-locator-new {
   align-items: center;
   padding: 0 0 2px 0;
   gap: 4px;
-  font-family: 'Heebo';
+  font-family: 'Heebo-Medium';
   font-size: 18px;
   font-weight: 500;
   line-height: 24px;
@@ -984,7 +996,7 @@ body.template-store-locator-new {
 
 .store-locator-v2__pagination-btn {
   padding: 10px 16px;
-  font-family: 'Heebo';
+  font-family: 'Heebo-Medium';
   font-weight: 500;
   font-size: 14px;
   color: #462D8C;
@@ -1008,7 +1020,7 @@ body.template-store-locator-new {
   min-width: 40px;
   height: 40px;
   padding: 0 8px;
-  font-family: 'Heebo';
+  font-family: 'Heebo-Medium';
   font-weight: 500;
   font-size: 14px;
   color: #212121;
@@ -1089,7 +1101,7 @@ body.template-store-locator-new {
     border: 1px solid #E0E0E0;
     background: #FFFFFF;
     cursor: pointer;
-    font-family: 'Heebo';
+    font-family: 'Heebo-Medium';
     font-weight: 500;
     font-size: 16px;
     line-height: 24px;
@@ -1149,7 +1161,7 @@ body.template-store-locator-new {
 
   .store-locator-v2__mobile-header-city {
     flex: 1;
-    font-family: 'Heebo';
+    font-family: 'Heebo-Medium';
     font-weight: 500;
     font-size: 14px;
     line-height: 20px;
@@ -1161,7 +1173,7 @@ body.template-store-locator-new {
   }
 
   .store-locator-v2__mobile-header-count {
-    font-family: 'Heebo';
+    font-family: 'Heebo-Medium';
     font-weight: 500;
     font-size: 12px;
     line-height: 18px;
@@ -1232,7 +1244,7 @@ body.template-store-locator-new {
 
   .store-locator-v2__drawer-title {
     margin: 0;
-    font-family: 'Heebo';
+    font-family: 'Heebo-Medium';
     font-weight: 500;
     font-size: 20px;
     line-height: 28px;
@@ -1278,7 +1290,7 @@ body.template-store-locator-new {
   }
 
   .store-locator-v2__drawer-search .store-locator-v2__search-input {
-    font-family: 'Heebo';
+    font-family: 'Heebo-Medium';
     font-weight: 500;
     font-size: 16px;
     line-height: 24px;
@@ -1304,7 +1316,7 @@ body.template-store-locator-new {
 
   .store-locator-v2__drawer-section-label {
     margin: 0;
-    font-family: 'Heebo';
+    font-family: 'Heebo-Medium';
     font-weight: 500;
     font-size: 16px;
     line-height: 24px;
@@ -1360,8 +1372,8 @@ body.template-store-locator-new {
     min-width: 0;
     max-width: 322px;
     height: 24px;
-    font-family: 'Heebo';
-    font-weight: 500;
+    font-family: 'Heebo-Regular';
+    font-weight: 400;
     font-size: 16px;
     line-height: 24px;
     letter-spacing: 0.2px;
@@ -1370,8 +1382,8 @@ body.template-store-locator-new {
   }
 
   .store-locator-v2__drawer-city-item .store-locator-v2__city-count {
-    font-family: 'Heebo';
-    font-weight: 500;
+    font-family: 'Heebo-Regular';
+    font-weight: 400;
     font-size: 16px;
     line-height: 24px;
     letter-spacing: 0.2px;
