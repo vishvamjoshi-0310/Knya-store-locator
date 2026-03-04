@@ -114,35 +114,61 @@
                 {% endif %}
 
                 {% if metaobject.hours_list.value != blank %}
-                  <div class="store-detail__info-row-line store-detail__hours">
-                    <span class="store-detail__info-icon">
-                      {% render 'store-detail-icon-time' %}
-                    </span>
-                    <button
-                      type="button"
-                      class="store-detail__hours-toggle"
-                      aria-expanded="false"
-                    >
-                      <span class="store-detail__info-text">
-                        Hours: <span class="store-detail__info-open">Open</span> Closes 10pm
-                      </span>
-                      {% render 'store-locator-dropdown-icon' %}
-                    </button>
+                  {%- liquid
+                    assign hours_items = metaobject.hours_list.value
+                    assign first_hours = ''
+                    assign open_time = ''
+                    assign close_time = ''
 
-                    <div class="store-detail__hours-flyout">
-                      {% assign day_labels = 'Mon,Tue,Wed,Thu,Fri,Sat,Sun' | split: ',' %}
-                      {% for storetime in metaobject.hours_list.value %}
-                        <div class="store-detail__hours-row-detail">
-                          <span class="store-detail__hours-day">
-                            {{ day_labels[forloop.index0] }}
+                    if hours_items != blank
+                      assign first_hours = hours_items.first
+                      assign parts = first_hours | split: '-'
+                      assign open_time = parts.first | strip
+                      assign close_time = parts.last | strip
+                    endif
+                  -%}
+
+                  {% if hours_items != blank and open_time != blank and close_time != blank %}
+                    <div class="store-detail__info-row-line store-detail__hours">
+                      <span class="store-detail__info-icon">
+                        {% render 'store-detail-icon-time' %}
+                      </span>
+                      <button
+                        type="button"
+                        class="store-detail__hours-toggle"
+                        aria-expanded="false"
+                      >
+                        <span class="store-detail__info-text">
+                          Hours:
+                          <span
+                            class="store-detail__info-open"
+                            data-open-time="{{ open_time }}"
+                            data-close-time="{{ close_time }}"
+                          >
+                            Open
                           </span>
-                          <span class="store-detail__hours-time">
-                            {{ storetime }}
+                          <span class="store-detail__info-text store-detail__status-time">
+                            Closes {{ close_time }}
                           </span>
-                        </div>
-                      {% endfor %}
+                        </span>
+                        {% render 'store-locator-dropdown-icon' %}
+                      </button>
+
+                      <div class="store-detail__hours-flyout">
+                        {% assign day_labels = 'Mon,Tue,Wed,Thu,Fri,Sat,Sun' | split: ',' %}
+                        {% for storetime in hours_items %}
+                          <div class="store-detail__hours-row-detail">
+                            <span class="store-detail__hours-day">
+                              {{ day_labels[forloop.index0] }}
+                            </span>
+                            <span class="store-detail__hours-time">
+                              {{ storetime }}
+                            </span>
+                          </div>
+                        {% endfor %}
+                      </div>
                     </div>
-                  </div>
+                  {% endif %}
                 {% endif %}
               </div>
             </div>

@@ -177,6 +177,8 @@ document.addEventListener('DOMContentLoaded', function () {
       if (!labelEl) return;
       labelEl.textContent = isOpen ? 'Open' : 'Closed';
       labelEl.style.color = isOpen ? '#34C759' : '#D93025';
+      // When open, show next close time; when closed, show next open time
+      el.textContent = isOpen ? ('Closes ' + closeTime) : ('Opens ' + openTime);
     });
   }
 
